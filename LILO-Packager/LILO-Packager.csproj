@@ -1,0 +1,108 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <WebView2UseWinRT>False</WebView2UseWinRT>
+    <WebView2LoaderPreference>Dynamic</WebView2LoaderPreference>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows10.0.22000.0</TargetFramework>
+    <RootNamespace>LILO_Packager</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <DocumentationFile>C:\Users\joeva\OneDrive - JW Lmt\LILO\LILO - api\apis-listed.xml</DocumentationFile>
+    <AssemblyName>crypterv2</AssemblyName>
+    <ApplicationIcon>favico.ico</ApplicationIcon>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <SignAssembly>False</SignAssembly>
+    <Title>LILO - Package Manager UI</Title>
+    <Version>2.0</Version>
+    <Authors>Joey West</Authors>
+    <Company>JW Lmt.</Company>
+    <Product>LILO_Packager</Product>
+    <Description>A Tool to Manage Lilo and packages for Lilo</Description>
+    <Copyright>JW Lmt.</Copyright>
+    <PackageIcon>favico.png</PackageIcon>
+    <IncludeSymbols>False</IncludeSymbols>
+    <UseWPF>False</UseWPF>
+    <UserSecretsId>3648ad94-a4cf-4080-bbd6-8dc3484f6da9</UserSecretsId>
+    <Platforms>AnyCPU;x64</Platforms>
+    <StartupObject>LILO_Packager.Program</StartupObject>
+    <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
+    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="open_external.ico" />
+    <None Remove="sync.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="open_external.ico" />
+    <Content Include="favico.ico" />
+    <Content Include="sync.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AuroraControls" Version="1.0.0" />
+    <PackageReference Include="bunifu.ui.winforms" Version="6.1.0" />
+    <PackageReference Include="bunifu.ui.winforms.1.5.3" Version="1.0.0" />
+    <PackageReference Include="CubeCsv" Version="1.2.0" />
+    <PackageReference Include="Guna.UI2.WinForms" Version="2.0.3.5" />
+    <PackageReference Include="metromodernui" Version="1.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0-preview.6.23329.7" />
+    <PackageReference Include="microsoft.web.webview2" Version="1.0.1988-prerelease" />
+    <PackageReference Include="modern.forms" Version="0.3.0" />
+    <PackageReference Include="Ookii.Dialogs.WinForms" Version="4.0.0" />
+    <PackageReference Include="Param" Version="1.0.2" />
+    <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
+    <PackageReference Include="SipaaFramework" Version="1.1.0" />
+    <PackageReference Include="ui.for.winforms.allcontrols.net70.trial" Version="2023.1.314" />
+    <PackageReference Include="WinForm.Transitions" Version="1.2.45" />
+    <PackageReference Include="WMPLib" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DialogHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Player.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="v2\config.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>config.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="favico.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="v2\config.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>config.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
