@@ -1,25 +1,11 @@
+using LILO_Packager.v2.Forms;
+using LILO_Packager.v2.shared;
+
 namespace LILO_Packager
 {
     public static class Program
     {
         public static int DefaultEnvironment = 0;
-
-        [STAThread]
-        public static void Main(string[] args)
-        {
-            InitializeApplication();
-
-            int startingEnvironment = GetStartingEnvironment(args);
-
-            if (startingEnvironment == 1)
-            {
-                RunInstallPackage();
-            }
-            else
-            {
-                RunMainUI();
-            }
-        }
 
         private static void InitializeApplication()
         {
@@ -28,14 +14,43 @@ namespace LILO_Packager
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
         }
 
-        private static int GetStartingEnvironment(string[] args)
+        [STAThread]
+        public static void Main(string[] args)
         {
-            if (args.Length > 0 && int.TryParse(args[0], out int environment))
+            InitializeApplication();
+
+            (var file, int startingEnvironment) = GetStartingMode(args);
+
+            if (startingEnvironment == 1)
             {
-                return environment;
+                var decrypt = uiArgumentStart.Instance(file);
+                Application.Run(decrypt);
+            }
+            else
+            {
+                RunMainUI();
+            }
+        }
+
+        
+
+        private static (EncryptedFile,int) GetStartingMode(string[] args)
+        {
+            if (args.Length > 0)
+            {
+                for (int i = 0; i < args.Length; i++)
+                {
+                    if (File.Exists(args[i]))
+                    {
+                        EncryptedFile env = new EncryptedFile(args[i]);
+                        return (env, 1);
+                    }
+                }
+
+                return (null, 0);
             }
 
-            return DefaultEnvironment;
+            return (null, 0);
         }
 
         private static void RunMainUI()

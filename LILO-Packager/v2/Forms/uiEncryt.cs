@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
-using static LILO_Packager.v2.MainHost;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiEncryt : Form
@@ -187,7 +186,7 @@ public partial class uiEncryt : Form
     public void ControlEnable(bool disable)
     {
         pnlChild.Enabled = disable;
-        guna2Button1.Enabled = disable;
+        guna2Button1.Visible = disable;
         pnlFiles.Enabled = disable;
         bntOpen.Enabled = disable;
 

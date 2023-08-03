@@ -170,7 +170,7 @@ public partial class uiDecrypt : Form
     public void ControlEnable(bool disable)
     {
         pnlChild.Enabled = disable;
-        guna2Button1.Enabled = disable;
+        guna2Button1.Visible = disable;
         pnlFiles.Enabled = disable;
         bntOpen.Enabled = disable;
 

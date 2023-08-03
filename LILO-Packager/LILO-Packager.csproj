@@ -100,7 +100,7 @@
       <PackagePath>\</PackagePath>
     </None>
     <None Update="v2\config.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>config.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
