@@ -1,5 +1,0 @@
-License ID: 1
-Signature: 7$7VlAEKO3I$3RHPII3rTTgL9MZC5AGN8MZ4VXRIUCFxY1TJkot7lZXG$JG4OhU4
-Maintenance Plan: 06/03/2023
-Expiration Date: 07/11/2030
-Register Until Date: 06/03/2023
