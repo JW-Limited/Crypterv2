@@ -24,6 +24,7 @@ namespace LILO_Packager.v2.shared
             this.Size = GetSizeString(fileInfo.Length);
             this.Encryption = fileInfo.Extension;
             this.Path = fileInfo.FullName;
+            this.Data = File.ReadAllBytes(file);
         }
 
         public string GetSizeString(long size)
