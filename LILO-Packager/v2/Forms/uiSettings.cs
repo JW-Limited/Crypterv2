@@ -11,8 +11,36 @@ using System.Windows.Forms;
 namespace LILO_Packager.v2.Forms;
 public partial class uiSettings : Form
 {
-    public uiSettings()
+    private static uiSettings _encrypt;
+    public shared.FileOperations sharedFile = new();
+    private static object _lock = new object();
+    public static uiSettings Instance()
+    {
+        lock (_lock)
+        {
+            if (_encrypt is null)
+            {
+                _encrypt = new uiSettings();
+            }
+
+            return _encrypt;
+        }
+    }
+
+
+    private uiSettings()
     {
         InitializeComponent();
+
+        this.FormClosing += (sender, e) =>
+        {
+            e.Cancel = true;
+            this.Hide();
+        };
+    }
+
+    private void uiSettings_Load(object sender, EventArgs e)
+    {
+
     }
 }

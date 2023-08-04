@@ -167,4 +167,9 @@ public partial class MainHost : System.Windows.Forms.Form
     {
         OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/work/")));
     }
+
+    private void guna2Button6_Click(object sender, EventArgs e)
+    {
+        OpenInApp(v2.Forms.uiSettings.Instance());
+    }
 }

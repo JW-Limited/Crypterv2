@@ -28,8 +28,8 @@ partial class MainHost
     /// </summary>
     private void InitializeComponent()
     {
-        var animation1 = new Guna.UI2.AnimatorNS.Animation();
-        var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
+        Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
         hider = new Sipaa.Framework.SPanel();
         guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
         guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
@@ -94,6 +94,7 @@ partial class MainHost
         guna2Button6.TabIndex = 15;
         guna2Button6.Text = "    Settings";
         guna2Button6.TextAlign = HorizontalAlignment.Left;
+        guna2Button6.Click += guna2Button6_Click;
         // 
         // guna2Button5
         // 
