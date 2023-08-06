@@ -17,6 +17,11 @@ public interface IPluginBase
         get; set;
     }
 
+    public String Version
+    {
+        get; set;
+    }
+
     public ObservableCollection<object> DynamicValues
     {
         get; set;
