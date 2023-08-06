@@ -5,29 +5,46 @@ namespace EncryptionLibary
 {
     public class AES256 : IPluginBase
     {
-        public string Name { get => "Encryption Library"; set => throw new NotImplementedException(); }
-        public string Description { get => "A Library for more Encryption Models"; set => throw new NotImplementedException(); }
-        public string Version { get => "v0.0.1alpha"; set => throw new NotImplementedException(); }
+        public string Name { get; set; } = "Encryption Library";
+        public string ID { get; set; } = "lvl01_enclbl";
+        public string Description { get; set; } = "A Library for more Encryption Models";
+        public string Version { get; set; } = "v0.0.1alpha";
 
-        public ObservableCollection<object> DynamicValues 
-        { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException(); 
-        }
+        public ObservableCollection<object> DynamicValues { get; set; } 
+       
 
         public PluginResponse Execute(PluginParameters args)
         {
-            throw new NotImplementedException();
+            var para = new PluginResponse();
+            para.HasError = false;
+            para.Message = "Executed Succesfully";
+            para.MessageID = "0x0";
+
+            return para;
         }
 
         public PluginResponse Initialize(PluginParameters args)
         {
             var para = new PluginResponse();
-            para.HasError = false;
-            para.Message = "Initilized Succesfully";
-            para.MessageID = "0x0";
 
-            return para;
+            try
+            {
+
+                para.HasError = false;
+                para.Message = "Initilized Succesfully";
+                para.MessageID = "0x0";
+
+                return para;
+            }
+            catch (Exception ex)
+            {
+                para.HasError = true;
+                para.Message = ex.Message;
+                para.MessageID = "0x10";
+
+                return para;
+            }
+            
         }
     }
 }

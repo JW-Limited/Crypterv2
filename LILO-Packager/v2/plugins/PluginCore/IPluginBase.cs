@@ -12,6 +12,10 @@ public interface IPluginBase
     {
         get; set;
     }
+    public String ID
+    {
+        get; set;
+    }
     public String Description
     {
         get; set;

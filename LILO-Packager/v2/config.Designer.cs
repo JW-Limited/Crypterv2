@@ -25,7 +25,7 @@ namespace LILO_Packager.v2 {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool allowedPlugins {
             get {
                 return ((bool)(this["allowedPlugins"]));

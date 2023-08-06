@@ -32,21 +32,11 @@ public partial class MainHost : System.Windows.Forms.Form
         }
 
     }
-
-    private PluginManager manager = null;
     public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
+    private PluginManager manager = null;
+
     private MainHost()
     {
-        if (config.Default.allowedPlugins)
-        {
-            manager = new PluginManager("/plugins");
-            foreach (var ele in manager.CurrentPlugins)
-            {
-                PluginEntry ent = new PluginEntry(ele);
-                plugins.Add(ent);
-            }
-        }
-
         InitializeComponent();
     }
 
@@ -80,6 +70,40 @@ public partial class MainHost : System.Windows.Forms.Form
         this.BackColor = SystemColors.ButtonFace;
 
         OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+
+        if (config.Default.allowedPlugins)
+        {
+
+            manager = new PluginManager(".\\plugins");
+
+            try
+            {
+                foreach (var ele in manager.CurrentPlugins)
+                {
+                    PluginEntry ent = new PluginEntry(ele);
+                    plugins.Add(ent);
+                }
+
+                // Just for Debug purposes because the Plugin Initializer 
+                // gives often back a NullException or StackOverflow
+
+                StringBuilder stringBuilder = new StringBuilder();
+               
+                foreach (var item in plugins)
+                {
+                    stringBuilder.Append($"Plugin : {item.Name}\n" +
+                                         $"Description : {item.Description}\n" +
+                                         $"Version : {item.Version}");
+                }
+
+                MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString(),"PluginManager");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 
     public enum ChildrenUse
@@ -141,7 +165,24 @@ public partial class MainHost : System.Windows.Forms.Form
 
     private void bntOpen_Click(object sender, EventArgs e)
     {
-        OpenInApp(v2.Forms.uiEncryt.Instance());
+        PluginEntry encryptionLibrary = null;
+
+        foreach(var plugin in plugins)
+        {
+            if(plugin.ID == "lvl01_enclbl")
+            {
+                encryptionLibrary = plugin;
+            }
+        }
+
+        if (encryptionLibrary is not null) 
+        {
+            OpenInApp(v2.Forms.uiEncryt.Instance());
+        }
+        else
+        {
+            MessageBox.Show("Please Install the necessary Librarys to such operations.\n\nMissing EncryptionModelLibrary.","PluginManager", MessageBoxButtons.OKCancel,MessageBoxIcon.Error);
+        }
     }
 
     private void guna2Button3_Click(object sender, EventArgs e)

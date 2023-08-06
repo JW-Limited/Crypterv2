@@ -4,10 +4,17 @@
     <TargetFramework>net7.0-windows10.0.22000.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <BaseOutputPath>C:\Users\joeva\Documents\GitHub\LILO-Packager\Crypterv2\LILO-Packager\bin\Debug\net7.0-windows10.0.22000.0\plugins</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LILO-Packager\LILO-Packager.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Core\PluginInterface.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>
