@@ -32,6 +32,7 @@ partial class MainHost
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
         hider = new Sipaa.Framework.SPanel();
         guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
+        guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
         guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
         guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
         guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
@@ -53,6 +54,7 @@ partial class MainHost
         hider.BorderRadius = 0;
         hider.BorderSize = 0;
         hider.Controls.Add(guna2Button6);
+        hider.Controls.Add(guna2Button2);
         hider.Controls.Add(guna2Button5);
         hider.Controls.Add(guna2Button4);
         hider.Controls.Add(guna2Button3);
@@ -96,6 +98,35 @@ partial class MainHost
         guna2Button6.TextAlign = HorizontalAlignment.Left;
         guna2Button6.Click += guna2Button6_Click;
         // 
+        // guna2Button2
+        // 
+        guna2Button2.Anchor = AnchorStyles.None;
+        guna2Button2.Animated = true;
+        guna2Button2.BorderColor = Color.Gainsboro;
+        guna2Button2.BorderRadius = 20;
+        guna2Button2.BorderThickness = 2;
+        guna2Transition1.SetDecoration(guna2Button2, Guna.UI2.AnimatorNS.DecorationType.None);
+        guna2Button2.DisabledState.BorderColor = Color.DarkGray;
+        guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
+        guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        guna2Button2.FillColor = Color.Empty;
+        guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
+        guna2Button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button2.ForeColor = Color.Black;
+        guna2Button2.Image = Properties.Resources.icons8_bursts_96;
+        guna2Button2.ImageAlign = HorizontalAlignment.Left;
+        guna2Button2.ImageOffset = new Point(15, 0);
+        guna2Button2.ImageSize = new Size(40, 40);
+        guna2Button2.Location = new Point(24, 616);
+        guna2Button2.Margin = new Padding(2);
+        guna2Button2.Name = "guna2Button2";
+        guna2Button2.Size = new Size(272, 80);
+        guna2Button2.TabIndex = 15;
+        guna2Button2.Text = "    Plugins";
+        guna2Button2.TextAlign = HorizontalAlignment.Left;
+        guna2Button2.Click += bntPlugin_Clicked;
+        // 
         // guna2Button5
         // 
         guna2Button5.Anchor = AnchorStyles.None;
@@ -116,7 +147,7 @@ partial class MainHost
         guna2Button5.ImageAlign = HorizontalAlignment.Left;
         guna2Button5.ImageOffset = new Point(15, 0);
         guna2Button5.ImageSize = new Size(40, 40);
-        guna2Button5.Location = new Point(24, 614);
+        guna2Button5.Location = new Point(24, 712);
         guna2Button5.Margin = new Padding(2);
         guna2Button5.Name = "guna2Button5";
         guna2Button5.Size = new Size(272, 80);
@@ -357,4 +388,5 @@ partial class MainHost
     private Label lblText;
     private Panel pnlChild;
     private Guna.UI2.WinForms.Guna2Button guna2Button1;
+    private Guna.UI2.WinForms.Guna2Button guna2Button2;
 }

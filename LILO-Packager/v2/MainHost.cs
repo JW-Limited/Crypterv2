@@ -30,8 +30,8 @@ public partial class MainHost : System.Windows.Forms.Form
 
             return instance;
         }
-
     }
+
     public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
     private PluginManager manager = null;
 
@@ -88,7 +88,7 @@ public partial class MainHost : System.Windows.Forms.Form
                 // gives often back a NullException or StackOverflow
 
                 StringBuilder stringBuilder = new StringBuilder();
-               
+
                 foreach (var item in plugins)
                 {
                     stringBuilder.Append($"Plugin : {item.Name}\n" +
@@ -96,7 +96,7 @@ public partial class MainHost : System.Windows.Forms.Form
                                          $"Version : {item.Version}");
                 }
 
-                MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString(),"PluginManager");
+                MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString(), "PluginManager");
             }
             catch (Exception ex)
             {
@@ -167,9 +167,9 @@ public partial class MainHost : System.Windows.Forms.Form
     {
         PluginEntry encryptionLibrary = null;
 
-        foreach(var plugin in plugins)
+        foreach (var plugin in plugins)
         {
-            if(PluginID.IDtoString(plugin.ID) == PluginID.IDtoString(PluginID.GetID("enc", "lbl", "lvl01")))
+            if (PluginID.IDtoString(plugin.ID) == PluginID.IDtoString(PluginID.GetID("enc", "lbl", "lvl01")))
             {
                 encryptionLibrary = plugin;
             }
@@ -194,7 +194,7 @@ public partial class MainHost : System.Windows.Forms.Form
         }
         else
         {
-            MessageBox.Show($"Please Install the necessary Librarys to such operations.\n\nMissing EncryptionModelLibrary.{encryptionLibrary.ID.ToString() + PluginID.GetID("enc", "lbl", "lvl01").ToString()}","PluginManager", MessageBoxButtons.OKCancel,MessageBoxIcon.Error);
+            MessageBox.Show($"Please Install the necessary Librarys to such operations.\n\nMissing EncryptionModelLibrary.{encryptionLibrary.ID.ToString() + PluginID.GetID("enc", "lbl", "lvl01").ToString()}", "PluginManager", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
         }
     }
 
@@ -225,5 +225,10 @@ public partial class MainHost : System.Windows.Forms.Form
     private void guna2Button6_Click(object sender, EventArgs e)
     {
         OpenInApp(v2.Forms.uiSettings.Instance());
+    }
+
+    private void bntPlugin_Clicked(object sender, EventArgs e)
+    {
+        OpenInApp(v2.Forms.uiPluginManager.Instance(plugins,manager));
     }
 }
