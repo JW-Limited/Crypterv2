@@ -180,7 +180,7 @@ partial class uiSettings
         tgl_diagnostics.Name = "tgl_diagnostics";
         tgl_diagnostics.OffBackColor = SystemColors.GrayText;
         tgl_diagnostics.OffToggleColor = Color.Gainsboro;
-        tgl_diagnostics.OnBackColor = Color.MediumSlateBlue;
+        tgl_diagnostics.OnBackColor = Color.FromArgb(42, 38, 207);
         tgl_diagnostics.OnToggleColor = Color.WhiteSmoke;
         tgl_diagnostics.Size = new Size(56, 28);
         tgl_diagnostics.TabIndex = 13;
@@ -269,7 +269,7 @@ partial class uiSettings
         sToggleButton1.Name = "sToggleButton1";
         sToggleButton1.OffBackColor = SystemColors.GrayText;
         sToggleButton1.OffToggleColor = Color.Gainsboro;
-        sToggleButton1.OnBackColor = Color.MediumSlateBlue;
+        sToggleButton1.OnBackColor = Color.FromArgb(42, 38, 207);
         sToggleButton1.OnToggleColor = Color.WhiteSmoke;
         sToggleButton1.Size = new Size(56, 28);
         sToggleButton1.TabIndex = 13;
@@ -342,7 +342,7 @@ partial class uiSettings
         sToggleButton2.Name = "sToggleButton2";
         sToggleButton2.OffBackColor = SystemColors.GrayText;
         sToggleButton2.OffToggleColor = Color.Gainsboro;
-        sToggleButton2.OnBackColor = Color.MediumSlateBlue;
+        sToggleButton2.OnBackColor = Color.FromArgb(42, 38, 207);
         sToggleButton2.OnToggleColor = Color.WhiteSmoke;
         sToggleButton2.Size = new Size(56, 28);
         sToggleButton2.TabIndex = 13;
@@ -413,7 +413,7 @@ partial class uiSettings
         sToggleButton3.Name = "sToggleButton3";
         sToggleButton3.OffBackColor = SystemColors.GrayText;
         sToggleButton3.OffToggleColor = Color.Gainsboro;
-        sToggleButton3.OnBackColor = Color.MediumSlateBlue;
+        sToggleButton3.OnBackColor = Color.FromArgb(42, 38, 207);
         sToggleButton3.OnToggleColor = Color.WhiteSmoke;
         sToggleButton3.Size = new Size(56, 28);
         sToggleButton3.TabIndex = 13;
