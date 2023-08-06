@@ -16,9 +16,10 @@ public class PluginEntry
 
     public String Name
     {
-    get; set; }
+        get; set; 
+    }
 
-    public String ID
+    public PluginID ID
     {
         get; set;
     }
@@ -30,11 +31,14 @@ public class PluginEntry
 
     public String Description
     {
-    get; set; }
+        get; set; 
+    }
 
     public String Type
     {
-    get; set; }
+        get; set; 
+    }
+
 
     public IPluginBase PluginBase
     {
@@ -43,11 +47,16 @@ public class PluginEntry
 
     IPluginBase plugin = null;
 
-    public UserControl form { get; set; } = null;
+    public Form form 
+    {
+        get; 
+        set; 
+    }
 
     public PluginEntry(IPluginBase p)
     {
         plugin = p;
+        this.form = p.PluginInterface;
         this.ID = p.ID;
         this.Name = p.Name;
         this.Description = p.Description;

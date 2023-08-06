@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <Compile Update="Core\PluginInterface.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
 

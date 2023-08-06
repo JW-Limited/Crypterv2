@@ -8,18 +8,38 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EncryptionLibary
+namespace EncryptionLibary.Core;
+public partial class PluginInterface : Form
 {
-    public partial class PluginInterface : UserControl
+    private static PluginInterface _encrypt;
+    private static object _lock = new object();
+    public static PluginInterface Instance()
     {
-        public PluginInterface()
+        lock (_lock)
         {
-            InitializeComponent();
-        }
+            if (_encrypt is null)
+            {
+                _encrypt = new PluginInterface();
+            }
 
-        private void UserControl1_Load(object sender, EventArgs e)
+            return _encrypt;
+        }
+    }
+
+
+    private PluginInterface()
+    {
+        InitializeComponent();
+
+        this.FormClosing += (sender, e) =>
         {
+            e.Cancel = true;
+            this.Hide();
+        };
+    }
 
-        }
+    private void uiSettings_Load(object sender, EventArgs e)
+    {
+
     }
 }

@@ -169,19 +169,32 @@ public partial class MainHost : System.Windows.Forms.Form
 
         foreach(var plugin in plugins)
         {
-            if(plugin.ID == "lvl01_enclbl")
+            if(PluginID.IDtoString(plugin.ID) == PluginID.IDtoString(PluginID.GetID("enc", "lbl", "lvl01")))
             {
                 encryptionLibrary = plugin;
             }
         }
 
-        if (encryptionLibrary is not null) 
+        if (encryptionLibrary is not null)
         {
-            OpenInApp(v2.Forms.uiEncryt.Instance());
+            var response = encryptionLibrary.PluginBase.Execute(null);
+
+            if (response.HasError)
+            {
+                MessageBox.Show(response.Message + "\n\nID:" + response.MessageID);
+            }
+            else
+            {
+                encryptionLibrary.form.Show();
+
+                OpenInApp(v2.Forms.uiEncryt.Instance());
+            }
+
+
         }
         else
         {
-            MessageBox.Show("Please Install the necessary Librarys to such operations.\n\nMissing EncryptionModelLibrary.","PluginManager", MessageBoxButtons.OKCancel,MessageBoxIcon.Error);
+            MessageBox.Show($"Please Install the necessary Librarys to such operations.\n\nMissing EncryptionModelLibrary.{encryptionLibrary.ID.ToString() + PluginID.GetID("enc", "lbl", "lvl01").ToString()}","PluginManager", MessageBoxButtons.OKCancel,MessageBoxIcon.Error);
         }
     }
 

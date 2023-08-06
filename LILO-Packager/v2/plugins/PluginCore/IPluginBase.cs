@@ -12,7 +12,7 @@ public interface IPluginBase
     {
         get; set;
     }
-    public String ID
+    public PluginID ID
     {
         get; set;
     }
@@ -26,6 +26,11 @@ public interface IPluginBase
         get; set;
     }
 
+    public Form PluginInterface
+    {
+        get; set;
+    }
+
     public ObservableCollection<object> DynamicValues
     {
         get; set;
@@ -34,4 +39,6 @@ public interface IPluginBase
     public PluginResponse Initialize(PluginParameters args);
 
     public PluginResponse Execute(PluginParameters args);
+
+    public PluginResponse Close();
 }
