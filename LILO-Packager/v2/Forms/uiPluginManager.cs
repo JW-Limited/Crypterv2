@@ -52,11 +52,16 @@ namespace LILO_Packager.v2.Forms
         {
             foreach (PluginEntry entry in plugins)
             {
-                listView1.Items.Add(entry.Name);
+                //listView1.Items.Add(entry.Name);
             }
         }
 
         private void pluginEntryBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

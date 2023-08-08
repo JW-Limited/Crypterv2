@@ -1,4 +1,5 @@
-﻿using LILO_Packager.Properties;
+﻿using LILO_Packager.v2.Forms;
+using LILO_Packager.Properties;
 using LILO_Packager.v2.shared;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TagLib;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -18,7 +20,8 @@ namespace LILO_Packager.v2.Forms
     {
         private static uiArgumentStart _instance;
         private static EncryptedFile file;
-
+        private bool istreamingReady = false;
+        private string tempFile = Path.Combine(Path.GetTempPath(), new Random().NextInt64(9999, 12345) + "temp_lsf.mp3");
         public static uiArgumentStart Instance(EncryptedFile enfile)
         {
             if (_instance == null)
@@ -46,6 +49,11 @@ namespace LILO_Packager.v2.Forms
 
                 this.lblEncryption.Text = "LILO Secured";
             }
+
+            if(file.Path.Replace(".lsf", "").EndsWith("mp3"))
+            {
+                bntCrypter.Text = "Stream";
+            }
         }
 
         private void UpdateProgress(double progres)
@@ -65,10 +73,69 @@ namespace LILO_Packager.v2.Forms
             return null;
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
+        private async void guna2Button1_Click(object sender, EventArgs e)
         {
-            Process.Start(Application.ExecutablePath);
-            this.Close();
+            if(bntCrypter.Text == "Stream")
+            {
+                string psw = null;
+
+                if (!istreamingReady) psw = GetPasswordFrromUser();
+                else psw = "n/a";
+
+                if (psw is not null or "")
+                {
+                    
+                    try
+                    {
+                        if(istreamingReady)
+                        {
+                            var player = uiPlayer.Instance(null);
+                            player.ShowDialog();
+                        }
+                        else
+                        {
+                            await Services.DecryptAndDecompressFileAsync(file.Path, tempFile, psw,
+                            progress =>
+                            {
+                                //UpdateProgress(progress);
+                            },
+                            error =>
+                            {
+                                //ShowError("Encryption Error", error.Message);
+                            },
+                            async currentTask =>
+                            {
+
+                            },
+                            false
+                          );
+
+                            istreamingReady = true;
+
+                            var para = await streaming.Core.MusicPlayerParameters.Get(tempFile);
+
+                            var player = uiPlayer.Instance(para);
+                            player.ShowDialog();
+                        }
+                        
+                    }
+                    catch (Exception ey)
+                    {
+                        ControlEnable(true);
+
+                        ShowError("Error", ey.Message);
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                Process.Start(Application.ExecutablePath);
+                this.Close();
+            }
         }
 
         public void ControlEnable(bool disable)
@@ -79,7 +146,7 @@ namespace LILO_Packager.v2.Forms
             progress1.Visible = !disable;
         }
 
-        private void bntDecrypt_Click(object sender, EventArgs e)
+        private async void bntDecrypt_Click(object sender, EventArgs e)
         {
             if (bntDecrypt.Text is not "Open")
             {
@@ -138,8 +205,26 @@ namespace LILO_Packager.v2.Forms
             }
             else
             {
-                Process.Start("explorer.exe", file.Path.Replace(".lsf", ""));
-                this.Close();
+                if(file.Path.Replace(".lsf", "").EndsWith("mp3"))
+                {
+                    try
+                    {
+                        var para = await streaming.Core.MusicPlayerParameters.Get(file.Path.Replace(".lsf", ""));
+
+                        var player = uiPlayer.Instance(para);
+                        player.ShowDialog();
+                    }
+                    catch(Exception ex)
+                    {
+                        ShowError("Error", ex.Message);
+                    }
+                    
+                }
+                else
+                {
+                    Process.Start("explorer.exe", file.Path.Replace(".lsf", ""));
+                    this.Close();
+                }
             }
 
         }

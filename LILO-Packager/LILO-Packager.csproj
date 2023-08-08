@@ -51,7 +51,10 @@
     <PackageReference Include="bunifu.ui.winforms" Version="6.1.0" />
     <PackageReference Include="bunifu.ui.winforms.1.5.3" Version="1.0.0" />
     <PackageReference Include="CubeCsv" Version="1.2.0" />
+    <PackageReference Include="FluentListView" Version="3.0.4" />
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.3.5" />
+    <PackageReference Include="HTAlt.WinForms" Version="0.1.7.7" />
+    <PackageReference Include="ImageListView" Version="13.8.2" />
     <PackageReference Include="metromodernui" Version="1.4.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0-preview.6.23329.7" />
     <PackageReference Include="microsoft.web.webview2" Version="1.0.1988-prerelease" />
@@ -60,19 +63,22 @@
     <PackageReference Include="Param" Version="1.0.2" />
     <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
     <PackageReference Include="SipaaFramework" Version="1.1.0" />
+    <PackageReference Include="TagLibSharp" Version="2.3.0" />
     <PackageReference Include="ui.for.winforms.allcontrols.net70.trial" Version="2023.1.314" />
+    <PackageReference Include="Unofficial.ObjectListView" Version="2.6.0" />
     <PackageReference Include="WinForm.Transitions" Version="1.2.45" />
     <PackageReference Include="WMPLib" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="XPTable" Version="1.6.1.139" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Update="DialogHost.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Player.cs">
+    <Compile Update="v2\streaming\Forms\uiPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
