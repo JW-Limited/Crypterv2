@@ -11,7 +11,7 @@
 
 ## How it works
 <p align="center">
-  <img width="960" alt="image" src="https://github.com/JW-Limited/Crypterv2/assets/120219149/b3490cdd-7da2-4c5a-9642-93245c7e973c">
+  <img width="878" alt="image" src="https://github.com/JW-Limited/Crypterv2/assets/120219149/da86adc4-358f-4a28-8ad6-7d3bd1010e2c">
 </p>
 
 - Download the latest build and Open `crypterv2.exe`.
