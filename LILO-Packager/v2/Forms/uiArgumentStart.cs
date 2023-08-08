@@ -1,6 +1,8 @@
 ﻿using LILO_Packager.v2.Forms;
 using LILO_Packager.Properties;
 using LILO_Packager.v2.shared;
+using LILO_Packager.v2.streaming.MusikPlayer.Core;
+using LILO_Packager.v2.streaming.MusikPlayer.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +14,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TagLib;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -112,7 +113,7 @@ namespace LILO_Packager.v2.Forms
 
                             istreamingReady = true;
 
-                            var para = await streaming.Core.MusicPlayerParameters.Get(tempFile);
+                            var para = await MusicPlayerParameters.Get(tempFile);
 
                             var player = uiPlayer.Instance(para);
                             player.ShowDialog();
@@ -209,7 +210,7 @@ namespace LILO_Packager.v2.Forms
                 {
                     try
                     {
-                        var para = await streaming.Core.MusicPlayerParameters.Get(file.Path.Replace(".lsf", ""));
+                        var para = await MusicPlayerParameters.Get(file.Path.Replace(".lsf", ""));
 
                         var player = uiPlayer.Instance(para);
                         player.ShowDialog();

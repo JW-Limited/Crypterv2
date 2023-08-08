@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using LILO_Packager.v2.plugins.Model;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiEncryt : Form
@@ -19,23 +20,26 @@ public partial class uiEncryt : Form
     public Color SignalColor = Color.FromArgb(94, 148, 255);
     public static List<string> _arFiles = new List<string>();
     public int fileCounter = 1;
+    private PluginEntry Extension;
 
-    public static uiEncryt Instance()
+    public static uiEncryt Instance(PluginEntry extension)
     {
         lock (_lock)
         {
             if (_encrypt is null)
             {
-                _encrypt = new uiEncryt();
+                _encrypt = new uiEncryt(extension);
             }
 
             return _encrypt;
         }
     }
 
-    public uiEncryt()
+    public uiEncryt(PluginEntry extension)
     {
         InitializeComponent();
+
+        this.Extension = extension;
 
         this.FormClosing += (sender, e) =>
         {
@@ -292,5 +296,10 @@ public partial class uiEncryt : Form
     private void bntCancel_Click(object sender, EventArgs e)
     {
         this.Close();
+    }
+
+    private void bntOpenPlugin_Clicj(object sender, EventArgs e)
+    {
+        Extension.form.Show();
     }
 }

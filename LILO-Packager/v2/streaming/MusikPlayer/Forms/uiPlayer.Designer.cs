@@ -1,6 +1,6 @@
 ﻿using Guna.UI2.WinForms;
 
-namespace LILO_Packager.v2.Forms;
+namespace LILO_Packager.v2.streaming.MusikPlayer.Forms;
 
 partial class uiPlayer
 {
@@ -46,6 +46,7 @@ partial class uiPlayer
         progressBar = new Guna2ProgressBar();
         lblAllTime = new Label();
         lblMoreInfo = new Label();
+        timeSlider = new HTAlt.WinForms.HTSlider();
         pnlSplash.SuspendLayout();
         SuspendLayout();
         // 
@@ -55,9 +56,9 @@ partial class uiPlayer
         lblCurrentTIme.BackColor = Color.Transparent;
         lblCurrentTIme.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
         lblCurrentTIme.ForeColor = SystemColors.AppWorkspace;
-        lblCurrentTIme.Location = new Point(83, 608);
+        lblCurrentTIme.Location = new Point(83, 600);
         lblCurrentTIme.Name = "lblCurrentTIme";
-        lblCurrentTIme.Size = new Size(61, 24);
+        lblCurrentTIme.Size = new Size(61, 32);
         lblCurrentTIme.TabIndex = 6;
         lblCurrentTIme.Text = "00:00";
         lblCurrentTIme.TextAlign = ContentAlignment.MiddleCenter;
@@ -129,15 +130,15 @@ partial class uiPlayer
         // 
         sPanel6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         sPanel6.BackColor = Color.FromArgb(30, 30, 30);
-        sPanel6.BackgroundImageLayout = ImageLayout.Zoom;
+        sPanel6.BackgroundImageLayout = ImageLayout.Stretch;
         sPanel6.BorderColor = Color.PaleVioletRed;
         sPanel6.BorderRadius = 14;
         sPanel6.BorderSize = 0;
         sPanel6.ForeColor = Color.White;
-        sPanel6.Location = new Point(600, 72);
+        sPanel6.Location = new Point(624, 72);
         sPanel6.Margin = new Padding(2);
         sPanel6.Name = "sPanel6";
-        sPanel6.Size = new Size(346, 320);
+        sPanel6.Size = new Size(322, 320);
         sPanel6.TabIndex = 8;
         // 
         // pnlSplash
@@ -207,12 +208,15 @@ partial class uiPlayer
         // 
         progressBar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         progressBar.BackColor = Color.Transparent;
+        progressBar.BorderColor = Color.Silver;
         progressBar.BorderRadius = 10;
+        progressBar.BorderThickness = 2;
+        progressBar.FillColor = Color.Black;
         progressBar.ForeColor = Color.Transparent;
         progressBar.Location = new Point(152, 608);
         progressBar.Margin = new Padding(2);
         progressBar.Name = "progressBar";
-        progressBar.ProgressColor = Color.White;
+        progressBar.ProgressColor = Color.LightCoral;
         progressBar.ProgressColor2 = Color.MediumSlateBlue;
         progressBar.Size = new Size(704, 24);
         progressBar.TabIndex = 11;
@@ -225,9 +229,9 @@ partial class uiPlayer
         lblAllTime.BackColor = Color.Transparent;
         lblAllTime.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
         lblAllTime.ForeColor = SystemColors.AppWorkspace;
-        lblAllTime.Location = new Point(872, 608);
+        lblAllTime.Location = new Point(872, 600);
         lblAllTime.Name = "lblAllTime";
-        lblAllTime.Size = new Size(61, 24);
+        lblAllTime.Size = new Size(61, 32);
         lblAllTime.TabIndex = 6;
         lblAllTime.Text = "00:00";
         lblAllTime.TextAlign = ContentAlignment.MiddleCenter;
@@ -245,6 +249,25 @@ partial class uiPlayer
         lblMoreInfo.Text = "titleInformation";
         lblMoreInfo.TextAlign = ContentAlignment.MiddleLeft;
         // 
+        // timeSlider
+        // 
+        timeSlider.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        timeSlider.BackColor = Color.Transparent;
+        timeSlider.BorderRoundRectSize = new Size(16, 16);
+        timeSlider.DrawSemitransparentThumb = false;
+        timeSlider.Font = new Font("Microsoft Sans Serif", 6F, FontStyle.Regular, GraphicsUnit.Point);
+        timeSlider.ForeColor = Color.White;
+        timeSlider.LargeChange = 5U;
+        timeSlider.Location = new Point(152, 576);
+        timeSlider.Name = "timeSlider";
+        timeSlider.OverlayColor = Color.FromArgb(20, 157, 204);
+        timeSlider.Size = new Size(704, 80);
+        timeSlider.SmallChange = 1U;
+        timeSlider.TabIndex = 12;
+        timeSlider.Text = "htSlider1";
+        timeSlider.ThumbRoundRectSize = new Size(16, 16);
+        timeSlider.ThumbSize = new Size(16, 16);
+        // 
         // uiPlayer
         // 
         AcceptButton = bntPlay;
@@ -254,6 +277,7 @@ partial class uiPlayer
         CancelButton = bntPause;
         ClientSize = new Size(1003, 783);
         Controls.Add(pnlSplash);
+        Controls.Add(timeSlider);
         Controls.Add(sPanel6);
         Controls.Add(bntPause);
         Controls.Add(bntPlay);
@@ -289,5 +313,6 @@ partial class uiPlayer
     private Guna2ProgressBar progressBar;
     public Label lblAllTime;
     private Label lblMoreInfo;
+    private HTAlt.WinForms.HTSlider timeSlider;
 }
 #endregion

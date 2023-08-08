@@ -63,6 +63,7 @@
     <PackageReference Include="Param" Version="1.0.2" />
     <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
     <PackageReference Include="SipaaFramework" Version="1.1.0" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
     <PackageReference Include="TagLibSharp" Version="2.3.0" />
     <PackageReference Include="ui.for.winforms.allcontrols.net70.trial" Version="2023.1.314" />
     <PackageReference Include="Unofficial.ObjectListView" Version="2.6.0" />
@@ -78,7 +79,7 @@
     <Compile Update="DialogHost.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="v2\streaming\Forms\uiPlayer.cs">
+    <Compile Update="v2\streaming\MusikPlayer\Forms\uiPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">

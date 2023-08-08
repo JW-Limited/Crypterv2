@@ -8,9 +8,9 @@ using SharpDX.MediaFoundation;
 using LILO.Shell;
 using Guna.UI2.WinForms;
 using System.Data.SqlClient;
-using LILO_Packager.v2.streaming.Core;
+using LILO_Packager.v2.streaming.MusikPlayer.Core;
 
-namespace LILO_Packager.v2.Forms
+namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
 {
     public partial class uiPlayer : Form
     {
@@ -20,11 +20,7 @@ namespace LILO_Packager.v2.Forms
 
         #endregion
 
-
-
         #region Variables / Instances
-
-        public string connectionString = "Server=localhost;Database=playlist;Trusted_Connection=True;";
 
         public static bool IsPaused = true;
         private static bool isMusicStopped;
@@ -99,7 +95,7 @@ namespace LILO_Packager.v2.Forms
             {
                 if (PlayerThread.IsAlive)
                 {
-                    ;
+                    
                 }
 
 
@@ -114,82 +110,18 @@ namespace LILO_Packager.v2.Forms
             }
         }
 
-        public void Playlist(string titleInsert, string id)
-        {
-            if (!File.Exists(".\\playlist.db"))
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-
-                    SqlCommand createDatabaseCommand = new SqlCommand(
-                        "CREATE DATABASE playlist",
-                        connection);
-
-                    createDatabaseCommand.ExecuteNonQuery();
-                }
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-
-
-                    SqlCommand createTableCommand = new SqlCommand(
-                        "CREATE TABLE PlayedSongs (Id INT, Name NVARCHAR(50))",
-                        connection);
-
-                    createTableCommand.ExecuteNonQuery();
-
-                    SqlCommand insertRowCommand = new SqlCommand(
-                        $"INSERT INTO PlayedSongs (Id, Name) VALUES ({id}, '{titleInsert}')",
-                        connection);
-                    insertRowCommand.ExecuteNonQuery();
-
-
-                }
-            }
-            else
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand insertRowCommand = new SqlCommand(
-                                            $"INSERT INTO PlayedSongs (Id, Name) VALUES ({id}, '{titleInsert}')",
-                                            connection);
-                    insertRowCommand.ExecuteNonQuery();
-                }
-            }
-
-
-        }
-
-        public void ShowPlaylist()
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                SqlCommand selectRowsCommand = new SqlCommand(
-                "SELECT * FROM MyTable",
-                connection);
-
-                using (SqlDataReader reader = selectRowsCommand.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int id = reader.GetInt32(0);
-                        string name = reader.GetString(1);
-                        Console.WriteLine("{0}: {1}", id, name);
-                    }
-                }
-            }
-        }
-
         private void OnPlaybackCallback(MediaEngineEvent playEvent, long param1, int param2)
         {
             Console.Write("PlayBack Event received: {0}", playEvent);
-            lblCurrentTIme.Text = String.Format("{0}", TimeSpan.FromMinutes(mediaEngineEx.CurrentTime));
-            lblAllTime.Text = String.Format("{0}", TimeSpan.FromMinutes(mediaEngineEx.Duration));
+            lblCurrentTIme.Text = String.Format("{0}", TimeSpan.FromMinutes(mediaEngineEx.CurrentTime).ToString().Remove(5));
+            lblAllTime.Text = String.Format("{0}", TimeSpan.FromMinutes(mediaEngineEx.Duration).ToString().Remove(5));
             lblMoreInfo.Text = String.Format("{0}", mediaEngineEx.PlaybackRate);
+
+            progressBar.Maximum = (int)mediaEngineEx.Duration;
+            progressBar.Value = (int)mediaEngineEx.CurrentTime;
+
+            timeSlider.Maximum = (int)mediaEngineEx.Duration;
+            timeSlider.Value = (int)mediaEngineEx.CurrentTime;
 
             switch (playEvent)
             {
@@ -225,30 +157,42 @@ namespace LILO_Packager.v2.Forms
 
         public async void LoadAll()
         {
-
             try
             {
+                if(playerParameters.Cover is not null)
+                {
+                    ImageProcessing.Templates template = new ImageProcessing.Templates(playerParameters.Cover);
+                    ImageProcessing.ColorManagment.ColorDetector detectCol = new ImageProcessing.ColorManagment.ColorDetector(playerParameters.Cover);
 
+                    var imgBlurred = await template.BlurredImage();
+                    var colorMain = await detectCol.DetectMainColor();
+                    var colorSecond = await detectCol.GetOppositeColor(colorMain);
 
-                ImageProcessing.Templates template = new ImageProcessing.Templates(playerParameters.Cover);
-                ImageProcessing.ColorManagment.ColorDetector detectCol = new ImageProcessing.ColorManagment.ColorDetector(playerParameters.Cover);
-
-                var imgBlurred = await template.BlurredImage();
-                var colorMain = await detectCol.DetectMainColor();
-                var colorSecond = await detectCol.GetOppositeColor(colorMain);
-
-                progTurner.ProgressColor = colorMain;
-                this.BackgroundImage = imgBlurred;
-                SetColor(colorMain, colorSecond);
+                    progTurner.ProgressColor = colorMain;
+                    this.BackgroundImage = imgBlurred;
+                    SetColor(colorMain, colorSecond);
+                    progressBar.FillColor = colorMain;
+                    sPanel6.BackgroundImage = playerParameters.Cover;
+                }
 
                 player = new SoundPlayer(playerParameters.Source);
-                sPanel6.BackgroundImage = playerParameters.Cover;
                 lblTitle.Text = playerParameters.Title;
                 lblArtist.Text = string.Join(", ", playerParameters.Artists);
+
+                var dbTasks = new DBTasks();
+                await dbTasks.InitializeDatabaseAsync(process =>
+                {
+                    lblLoading.Text = process;
+                });
+
+                var info = new FileInfo(playerParameters.Source);
+
+                await dbTasks.InsertSongAsync(playerParameters.Title, string.Join(", ",playerParameters.Artists),playerParameters.Source,info.Name.Remove(5));
 
                 pnlSplash.Visible = false;
 
                 PlayerThread.UnsafeStart();
+
             }
             catch (Exception ex)
             {

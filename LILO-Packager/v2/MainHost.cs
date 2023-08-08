@@ -32,8 +32,17 @@ public partial class MainHost : System.Windows.Forms.Form
         }
     }
 
+
+    public enum ChildrenUse
+    {
+        Auth,
+        WebView,
+        NormalForm
+    }
+
     public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
     private PluginManager manager = null;
+    public Core.History.DatabaseHandling dataHandler = new Core.History.DatabaseHandling();
 
     private MainHost()
     {
@@ -52,7 +61,7 @@ public partial class MainHost : System.Windows.Forms.Form
         }
     }
 
-    private void MainHost_Load(object sender, EventArgs e)
+    private async void MainHost_Load(object sender, EventArgs e)
     {
         var proc = new Process()
         {
@@ -71,10 +80,14 @@ public partial class MainHost : System.Windows.Forms.Form
 
         OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
 
-        if (config.Default.allowedPlugins)
+        await dataHandler.InitializeDatabaseAsync(process =>
         {
 
-            manager = new PluginManager(".\\plugins");
+        });
+
+        if (config.Default.allowedPlugins)
+        {
+            manager = new PluginManager(Application.ExecutablePath.Replace("crypterv2.exe", "") + "plugins");
 
             try
             {
@@ -104,13 +117,6 @@ public partial class MainHost : System.Windows.Forms.Form
             }
 
         }
-    }
-
-    public enum ChildrenUse
-    {
-        Auth,
-        WebView,
-        NormalForm
     }
 
     private Form currentOpenedApp;
@@ -185,9 +191,7 @@ public partial class MainHost : System.Windows.Forms.Form
             }
             else
             {
-                encryptionLibrary.form.Show();
-
-                OpenInApp(v2.Forms.uiEncryt.Instance());
+                OpenInApp(v2.Forms.uiEncryt.Instance(encryptionLibrary));
             }
 
 

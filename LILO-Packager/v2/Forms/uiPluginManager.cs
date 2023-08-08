@@ -50,9 +50,23 @@ namespace LILO_Packager.v2.Forms
 
         private void uiPluginManager_Load(object sender, EventArgs e)
         {
-            foreach (PluginEntry entry in plugins)
+            PluginEntry encryptionLibrary = null;
+
+            foreach (var plugin in plugins)
             {
-                //listView1.Items.Add(entry.Name);
+                if (PluginID.IDtoString(plugin.ID) == PluginID.IDtoString(PluginID.GetID("enc", "lbl", "lvl01")))
+                {
+                    encryptionLibrary = plugin;
+                }
+            }
+            if (encryptionLibrary is not null)
+            {
+                lblSize.Text = encryptionLibrary.Description;
+                lblName.Text = encryptionLibrary.Name;
+                lblVersion.Text = encryptionLibrary.Version;
+                lblAuther.Text = PluginID.IDtoString(encryptionLibrary.ID);
+                listViewUpdates.Items.Add("Latest: " + encryptionLibrary.Version);
+                listViewBerechtigungen.Items.Add("n/a");
             }
         }
 

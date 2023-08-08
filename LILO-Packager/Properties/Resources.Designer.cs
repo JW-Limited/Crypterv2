@@ -163,6 +163,26 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icons8_spielen_94 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-spielen-94", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_verified_badge_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-verified-badge-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Info {
             get {
                 object obj = ResourceManager.GetObject("Info", resourceCulture);
@@ -196,6 +216,26 @@ namespace LILO_Packager.Properties {
         public static System.Drawing.Bitmap Nimvelo {
             get {
                 object obj = ResourceManager.GetObject("Nimvelo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap no_cover {
+            get {
+                object obj = ResourceManager.GetObject("no_cover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap no_cover1 {
+            get {
+                object obj = ResourceManager.GetObject("no_cover1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
