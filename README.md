@@ -8,7 +8,7 @@
 
 <hr />
 
-## How it works [![.NET Core Desktop](https://github.com/JW-Limited/Crypterv2/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/JW-Limited/Crypterv2/actions/workflows/dotnet-desktop.yml)
+## How it works 
 <p align="center">
   <img width="878" alt="image" src="https://github.com/JW-Limited/Crypterv2/assets/120219149/da86adc4-358f-4a28-8ad6-7d3bd1010e2c">
 </p>
