@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using LILO_Packager.v2.Core.History;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiDecrypt : Form
@@ -20,22 +21,25 @@ public partial class uiDecrypt : Form
     public static List<string> _arFiles = new List<string>();
     public int fileCounter = 1;
     public shared.FileOperations sharedFile = new();
+    private DatabaseHandling dbHandler;
 
-    public static uiDecrypt Instance()
+    public static uiDecrypt Instance(DatabaseHandling handler)
     {
         lock (_lock)
         {
             if (_encrypt is null)
             {
-                _encrypt = new uiDecrypt();
+                _encrypt = new uiDecrypt(handler);
             }
 
             return _encrypt;
         }
     }
 
-    public uiDecrypt()
+    public uiDecrypt(DatabaseHandling handler)
     {
+        this.dbHandler = handler;
+
         InitializeComponent();
 
         this.FormClosing += (sender, e) =>
@@ -178,10 +182,13 @@ public partial class uiDecrypt : Form
         bntCancel.Visible = !disable;
     }
 
-    private void guna2Button1_Click(object sender, EventArgs e)
+    private async void guna2Button1_Click(object sender, EventArgs e)
     {
         var psw = GetPasswordFrromUser();
         var current = new TaskStatus();
+
+        var logged = false;
+        var previousFile = "";
 
         if (psw is not null or "")
         {
@@ -192,6 +199,19 @@ public partial class uiDecrypt : Form
 
                 foreach (string item in _arFiles)
                 {
+                    if (item != previousFile)
+                    {
+                        previousFile = item;
+                        logged = false;
+                    }
+
+                    if (!logged)
+                    {
+                        await dbHandler.InsertEncryptedOperationAsync("Decryption", "libraryBased", "v2", item, item.Replace(".lsf", ""), $"{new Random().NextInt64(11111, 99999)}");
+                        logged = true;
+                    }
+
+
                     Task.Run(() =>
                     {
 

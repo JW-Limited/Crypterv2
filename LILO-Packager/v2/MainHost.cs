@@ -204,7 +204,7 @@ public partial class MainHost : System.Windows.Forms.Form
 
     private void guna2Button3_Click(object sender, EventArgs e)
     {
-        OpenInApp(v2.Forms.uiDecrypt.Instance());
+        OpenInApp(v2.Forms.uiDecrypt.Instance(dataHandler));
     }
 
     private void lblText_Click(object sender, EventArgs e)

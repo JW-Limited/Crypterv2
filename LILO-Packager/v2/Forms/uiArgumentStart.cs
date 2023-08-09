@@ -23,6 +23,8 @@ namespace LILO_Packager.v2.Forms
         private static EncryptedFile file;
         private bool istreamingReady = false;
         private string tempFile = Path.Combine(Path.GetTempPath(), new Random().NextInt64(9999, 12345) + "temp_lsf.mp3");
+        public Core.History.DatabaseHandling dbHandler = new Core.History.DatabaseHandling();
+
         public static uiArgumentStart Instance(EncryptedFile enfile)
         {
             if (_instance == null)
@@ -40,10 +42,15 @@ namespace LILO_Packager.v2.Forms
             file = enfile;
         }
 
-        private void uiArgumentStart_Load(object sender, EventArgs e)
+        private async void uiArgumentStart_Load(object sender, EventArgs e)
         {
             this.lblName.Text = file.FileName;
             this.lblSize.Text = file.Size;
+
+            await dbHandler.InitializeDatabaseAsync(process =>
+            {
+
+            });
 
             if (file.Encryption == ".lsf")
             {
@@ -88,7 +95,9 @@ namespace LILO_Packager.v2.Forms
                     
                     try
                     {
-                        if(istreamingReady)
+                        await dbHandler.InsertEncryptedOperationAsync("Streaming", "AppCore", "v0.2beta", "n/a", "n/a", "0");
+
+                        if (istreamingReady)
                         {
                             var player = uiPlayer.Instance(null);
                             player.ShowDialog();
@@ -160,6 +169,7 @@ namespace LILO_Packager.v2.Forms
 
                     try
                     {
+                        await dbHandler.InsertEncryptedOperationAsync("Decryption", "AppCore", "v1", file.Path, file.Path.Replace(".lsf", ""), $"{new Random().NextInt64(11111, 99999)}");
 
                         Task.Run(() =>
                         {
@@ -183,7 +193,7 @@ namespace LILO_Packager.v2.Forms
                                     taskBarProgress.Value = 0;
                                     taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
                                     ControlEnable(true);
-
+                                    istreamingReady = true;
                                     bntDecrypt.Text = "Open";
                                     imgImage.BackgroundImage = Resources.Padlock;
                                     lblEncryption.Text = "None";
@@ -206,26 +216,8 @@ namespace LILO_Packager.v2.Forms
             }
             else
             {
-                if(file.Path.Replace(".lsf", "").EndsWith("mp3"))
-                {
-                    try
-                    {
-                        var para = await MusicPlayerParameters.Get(file.Path.Replace(".lsf", ""));
-
-                        var player = uiPlayer.Instance(para);
-                        player.ShowDialog();
-                    }
-                    catch(Exception ex)
-                    {
-                        ShowError("Error", ex.Message);
-                    }
-                    
-                }
-                else
-                {
-                    Process.Start("explorer.exe", file.Path.Replace(".lsf", ""));
-                    this.Close();
-                }
+                Process.Start("explorer.exe", file.Path.Replace(".lsf", ""));
+                this.Close();
             }
 
         }

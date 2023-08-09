@@ -36,7 +36,7 @@ namespace LILO_Packager.v2.Forms
 
             this.FormClosing += (sender, e) =>
             {
-                _instance = null; 
+                _instance = null;
             };
 
             InitializeComponent();
@@ -50,7 +50,6 @@ namespace LILO_Packager.v2.Forms
 
         private async void LoadData()
         {
-
             dbHandler = new DatabaseHandling();
             var data = await dbHandler.GetAllEncryptedOperationsAsync();
             if (data is not null) historyElements = data;
@@ -83,6 +82,11 @@ namespace LILO_Packager.v2.Forms
 
                 listViewHistory.Items.Add(item);
             }
+        }
+
+        private void bntPlugin_Click(object sender, EventArgs e)
+        {
+            uiHistory_Load(sender, e);
         }
     }
 }
