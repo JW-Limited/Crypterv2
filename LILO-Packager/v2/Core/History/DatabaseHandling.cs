@@ -56,6 +56,28 @@ namespace LILO_Packager.v2.Core.History
             }
         }
 
+        public async Task UpdateEncryptedOperationAsync(int id, string operationType, string mode, string algorithmVersion, string inputFileName, string outputFileName)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
+            {
+                await connection.OpenAsync();
+
+                string updateSql = "UPDATE EncryptedOperations SET OperationType = @operationType, Mode = @mode, AlgorithmVersion = @algorithmVersion, InputFileName = @inputFileName, OutputFileName = @outputFileName WHERE Id = @id";
+                using (SQLiteCommand updateRowCommand = new SQLiteCommand(updateSql, connection))
+                {
+                    updateRowCommand.Parameters.AddWithValue("@id", id);
+                    updateRowCommand.Parameters.AddWithValue("@operationType", operationType);
+                    updateRowCommand.Parameters.AddWithValue("@mode", mode);
+                    updateRowCommand.Parameters.AddWithValue("@algorithmVersion", algorithmVersion);
+                    updateRowCommand.Parameters.AddWithValue("@inputFileName", inputFileName);
+                    updateRowCommand.Parameters.AddWithValue("@outputFileName", outputFileName);
+
+                    await updateRowCommand.ExecuteNonQueryAsync();
+                }
+            }
+        }
+
+
         public async Task<List<HistoryElement>> GetAllEncryptedOperationsAsync()
         {
             List<HistoryElement> historyElements = new List<HistoryElement>();

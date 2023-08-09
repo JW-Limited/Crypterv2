@@ -191,7 +191,7 @@ public partial class MainHost : System.Windows.Forms.Form
             }
             else
             {
-                OpenInApp(v2.Forms.uiEncryt.Instance(encryptionLibrary));
+                OpenInApp(v2.Forms.uiEncryt.Instance(encryptionLibrary,dataHandler));
             }
 
 

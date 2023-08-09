@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.plugins.Model;
 
 namespace LILO_Packager.v2.Forms;
@@ -21,25 +22,28 @@ public partial class uiEncryt : Form
     public static List<string> _arFiles = new List<string>();
     public int fileCounter = 1;
     private PluginEntry Extension;
+    private DatabaseHandling dbHandler;
 
-    public static uiEncryt Instance(PluginEntry extension)
+    public static uiEncryt Instance(PluginEntry extension,DatabaseHandling handler)
     {
         lock (_lock)
         {
             if (_encrypt is null)
             {
-                _encrypt = new uiEncryt(extension);
+                _encrypt = new uiEncryt(extension,handler);
             }
 
             return _encrypt;
         }
     }
 
-    public uiEncryt(PluginEntry extension)
+    public uiEncryt(PluginEntry extension, DatabaseHandling handler)
     {
         InitializeComponent();
 
         this.Extension = extension;
+
+        dbHandler = handler;
 
         this.FormClosing += (sender, e) =>
         {
@@ -193,7 +197,7 @@ public partial class uiEncryt : Form
         guna2Button1.Visible = disable;
         pnlFiles.Enabled = disable;
         bntOpen.Enabled = disable;
-
+        bntPlugin.Visible = disable;
         progress.Visible = !disable;
         bntCancel.Visible = !disable;
     }
@@ -210,7 +214,7 @@ public partial class uiEncryt : Form
         var psw = GetPasswordFrromUser();
         var current = new TaskStatus();
 
-
+        
 
         if (psw is not null or "")
         {
@@ -221,6 +225,8 @@ public partial class uiEncryt : Form
 
                 foreach (string item in _arFiles)
                 {
+                    await dbHandler.InsertEncryptedOperationAsync("Encryption", "libraryBased", "v2", item, item + ".lsf", $"{new Random().NextInt64(11111, 99999)}");
+
                     Task.Run(() =>
                     {
 
@@ -257,6 +263,8 @@ public partial class uiEncryt : Form
 
                                 taskBarProgress.Value = 0;
                                 taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
+
+
 
                                 ControlEnable(true);
 
