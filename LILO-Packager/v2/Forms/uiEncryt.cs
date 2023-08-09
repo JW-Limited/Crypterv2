@@ -213,7 +213,8 @@ public partial class uiEncryt : Form
     {
         var psw = GetPasswordFrromUser();
         var current = new TaskStatus();
-
+        var logged = false;
+        var previousFile = "";
         
 
         if (psw is not null or "")
@@ -225,7 +226,18 @@ public partial class uiEncryt : Form
 
                 foreach (string item in _arFiles)
                 {
-                    await dbHandler.InsertEncryptedOperationAsync("Encryption", "libraryBased", "v2", item, item + ".lsf", $"{new Random().NextInt64(11111, 99999)}");
+                    if(item != previousFile)
+                    {
+                        previousFile = item;
+                        logged = false;
+                    }
+
+                    if (!logged)
+                    {
+                        await dbHandler.InsertEncryptedOperationAsync("Encryption", "libraryBased", "v2", item, item + ".lsf", $"{new Random().NextInt64(11111, 99999)}");
+                        logged = true;
+                    }
+
 
                     Task.Run(() =>
                     {

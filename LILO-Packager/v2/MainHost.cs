@@ -223,7 +223,7 @@ public partial class MainHost : System.Windows.Forms.Form
 
     private void guna2Button4_Click(object sender, EventArgs e)
     {
-        OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/work/")));
+        OpenInApp(v2.Forms.uiHistory.Instance());
     }
 
     private void guna2Button6_Click(object sender, EventArgs e)

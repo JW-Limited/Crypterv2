@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,13 @@ namespace LILO_Packager.v2.Core.History
             dbHandler = new DatabaseHandling();
             var data = await dbHandler.GetAllEncryptedOperationsAsync();
             if (data is not null) historyElements = data;
+            else
+            {
+                await dbHandler.InitializeDatabaseAsync(process =>
+                {
+                    Debug.WriteLine(process);
+                });
+            }
         }
 
         public string Get()
