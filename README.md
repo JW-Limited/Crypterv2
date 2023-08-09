@@ -18,5 +18,5 @@
 ```
 C:\Users\{Username}\AppData\Local\JW_Limited\crypterv2\config.settings
 ```
-- if you want to view youre history or delete it go to the directory where you enzipped the application and delete ```encrypted_operations.db```
+- if you want to delete youre history go to the directory where you enzipped the application and delete ```encrypted_operations.db```
 and ```playlist.db```
