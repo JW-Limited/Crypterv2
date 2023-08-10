@@ -14,7 +14,9 @@
 </p>
 
 - Download the latest build and Open `crypterv2.exe`.
-- If you want to configure the Application go to this Path because the Settings Ui is still under construction.
+- If you want to configure the Application go to this Path because the Settings Ui is still under construction. (We will switch to sql for the settings in later versions)
 ```
 C:\Users\{Username}\AppData\Local\JW_Limited\crypterv2\config.settings
 ```
+- if you want to delete youre history go to the directory where you enzipped the application and delete ```encrypted_operations.db```
+and ```playlist.db```
