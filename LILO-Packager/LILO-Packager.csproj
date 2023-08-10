@@ -112,4 +112,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="v2\Secure\Forms\" />
+  </ItemGroup>
+
 </Project>

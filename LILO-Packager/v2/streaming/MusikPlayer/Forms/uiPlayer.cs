@@ -95,7 +95,7 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
             {
                 if (PlayerThread.IsAlive)
                 {
-                    
+
                 }
 
 
@@ -159,7 +159,7 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
         {
             try
             {
-                if(playerParameters.Cover is not null)
+                if (playerParameters.Cover is not null)
                 {
                     ImageProcessing.Templates template = new ImageProcessing.Templates(playerParameters.Cover);
                     ImageProcessing.ColorManagment.ColorDetector detectCol = new ImageProcessing.ColorManagment.ColorDetector(playerParameters.Cover);
@@ -187,7 +187,7 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
 
                 var info = new FileInfo(playerParameters.Source);
 
-                await dbTasks.InsertSongAsync(playerParameters.Title, string.Join(", ",playerParameters.Artists),playerParameters.Source,info.Name.Remove(5));
+                await dbTasks.InsertSongAsync(playerParameters.Title, string.Join(", ", playerParameters.Artists), playerParameters.Source, info.Name.Remove(5));
 
                 pnlSplash.Visible = false;
 
@@ -222,5 +222,19 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
                 LoadAll();
             });
         }
+
+        private void progressBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!isMusicStopped)
+            {
+                mediaEngineEx.Pause();
+            }
+        }
+
+        private void progressBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            mediaEngineEx.CurrentTime = timeSlider.Value;
+        }
     }
 }
+ 

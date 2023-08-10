@@ -58,7 +58,7 @@ namespace LILO_Packager.v2.Forms
                 this.lblEncryption.Text = "LILO Secured";
             }
 
-            if(file.Path.Replace(".lsf", "").EndsWith("mp3"))
+            if(file.Path.Replace(".lsf", "").EndsWith("mp3") || file.Path.Replace(".lsf", "").EndsWith("wav"))
             {
                 bntCrypter.Text = "Stream";
             }
@@ -95,6 +95,8 @@ namespace LILO_Packager.v2.Forms
                     
                     try
                     {
+                        bool errorHappend = false;
+
                         await dbHandler.InsertEncryptedOperationAsync("Streaming", "AppCore", "v0.2beta", "n/a", "n/a", "0");
 
                         if (istreamingReady)
@@ -111,7 +113,9 @@ namespace LILO_Packager.v2.Forms
                             },
                             error =>
                             {
-                                //ShowError("Encryption Error", error.Message);
+                                errorHappend = true;
+
+                                ShowError("Encryption Error", error.Message);
                             },
                             async currentTask =>
                             {
@@ -120,12 +124,17 @@ namespace LILO_Packager.v2.Forms
                             false
                           );
 
-                            istreamingReady = true;
+                            if (!errorHappend)
+                            {
+                                istreamingReady = true;
 
-                            var para = await MusicPlayerParameters.Get(tempFile);
+                                var para = await MusicPlayerParameters.Get(tempFile);
 
-                            var player = uiPlayer.Instance(para);
-                            player.ShowDialog();
+                                var player = uiPlayer.Instance(para);
+                                player.ShowDialog();
+                            }
+
+                            
                         }
                         
                     }
@@ -181,7 +190,7 @@ namespace LILO_Packager.v2.Forms
                             },
                             error =>
                             {
-                                //ShowError("Encryption Error", error.Message);
+                                ShowError("Encryption Error", error.Message);
                             },
                             currentTask =>
                             {

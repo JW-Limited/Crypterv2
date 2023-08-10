@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LILO_Packager.v2.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LILO_Packager.v2.Core.History
 {
-    public class DatabaseHandling
+    public class DatabaseHandling : IHistoryBaseHandler
     {
         public string ConnectionString => $"Data Source={Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "encrypted_operations.db")};Version=3;";
 

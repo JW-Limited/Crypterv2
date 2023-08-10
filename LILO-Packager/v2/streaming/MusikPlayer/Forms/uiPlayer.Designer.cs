@@ -222,6 +222,8 @@ partial class uiPlayer
         progressBar.TabIndex = 11;
         progressBar.Text = "guna2ProgressBar1";
         progressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+        progressBar.MouseDown += progressBar_MouseDown;
+        progressBar.MouseUp += progressBar_MouseUp;
         // 
         // lblAllTime
         // 

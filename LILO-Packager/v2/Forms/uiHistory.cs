@@ -42,6 +42,39 @@ namespace LILO_Packager.v2.Forms
             InitializeComponent();
         }
 
+        private void ListViewHistory_DoubleClick(object? sender, EventArgs e)
+        {
+            var item = listViewHistory.SelectedItems[0];
+
+            foreach (var element in historyElements)
+            {
+                if (item.Text == $"{element.id}")
+                {
+                    if(element.id == 0)
+                    {
+                        MessageBox.Show("This Operation had no output.","No Output",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                        return;
+                    }
+
+                    try
+                    {
+                        if (File.Exists(element.outputFileName))
+                        {
+                            Process.Start("explorer.exe", element.outputFileName);
+                        }
+                        else
+                        {
+                            MessageBox.Show("The Output of this Operation is not existing anymore.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "FileError", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
         private void listViewBerechtigungen_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -66,7 +99,7 @@ namespace LILO_Packager.v2.Forms
         {
 
             this.listViewHistory.Items.Clear();
-
+            listViewHistory.DoubleClick += ListViewHistory_DoubleClick;
             foreach (HistoryElement element in historyElements)
             {
                 var item = new ListViewItem()
