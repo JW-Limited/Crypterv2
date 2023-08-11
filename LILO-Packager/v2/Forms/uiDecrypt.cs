@@ -175,8 +175,50 @@ public partial class uiDecrypt : Form
         taskBarProgress.Value = Convert.ToInt32(progres);
     }
 
-    public void ControlEnable(bool disable)
+    public async void ControlEnable(bool disable,string decryptedFile)
     {
+        if (disable && decryptedFile is not null)
+        {
+            var info = new FileInfo(decryptedFile);
+
+            if (decryptedFile.Replace(".lsf", "").Contains("collected_files"))
+            {
+                var items = await dbHandler.GetAllEncryptedOperationsAsync();
+
+                foreach (var env in items)
+                {
+                    if ($"{env.outputFileName}" == decryptedFile)
+                    {
+
+                        var handler = new shared.MultiplefileHandling();
+                        var ui = new uiAsyncTask();
+
+                        try
+                        {
+                            Directory.CreateDirectory(decryptedFile.Replace(".lsf", "").Replace(".zip", ""));
+
+                            ui.TopMost = true;
+                            ui.Show();
+                            await handler.UnzipFilesAsync(decryptedFile.Replace(".lsf", ""), decryptedFile.Replace(".lsf", "").Replace(".zip", ""), progress =>
+                            {
+                                ui.Update();
+                                ui.UpdateProcess(progress);
+                            });
+
+                            ui.Close();
+
+                            File.Delete(decryptedFile.Replace(".lsf", ""));
+                        }
+                        catch(Exception ex) 
+                        {
+                            ShowError("File Operation",ex.Message + decryptedFile.Replace(".lsf", "").Replace(".zip", ""));
+                        }
+                        
+                    }
+                }
+            }
+        }
+
         pnlChild.Enabled = disable;
         guna2Button1.Visible = disable;
         pnlFiles.Enabled = disable;
@@ -196,7 +238,7 @@ public partial class uiDecrypt : Form
 
         if (psw is not null or "")
         {
-            ControlEnable(false);
+            ControlEnable(false,null);
 
             try
             {
@@ -216,7 +258,7 @@ public partial class uiDecrypt : Form
                     }
 
 
-                    Task.Run(() =>
+                    await Task.Run(() =>
                     {
 
                         Services.DecryptAndDecompressFileAsync(item, item.Replace(".lsf", ""), psw,
@@ -228,7 +270,7 @@ public partial class uiDecrypt : Form
                         {
                             //ShowError("Encryption Error", error.Message);
                         },
-                        currentTask =>
+                        async currentTask => 
                         {
 
                             if (currentTask.StartsWith("Decompress") && current is not TaskStatus.DeCompress)
@@ -248,31 +290,25 @@ public partial class uiDecrypt : Form
 
                             if (currentTask == "success")
                             {
-                                MarkStatus(TaskStatus.Ready);
 
+                                var info = new FileInfo(item);
+                                MarkStatus(TaskStatus.Ready);
                                 taskBarProgress.Value = 0;
                                 taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
 
-                                ControlEnable(true);
-
+                                ControlEnable(true,item);
                                 _arFiles.Remove(item);
-
-                                var info = new FileInfo(item);
-
                                 chblistFiles.Items.Remove("  " + info.Name);
-
                                 fileCounter--;
                             }
                         });
                     });
                 }
 
-
-
             }
             catch (Exception ey)
             {
-                ControlEnable(true);
+                ControlEnable(true,null);
 
                 ShowError("Error", ey.Message);
             }

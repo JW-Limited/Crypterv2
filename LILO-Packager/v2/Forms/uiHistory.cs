@@ -61,10 +61,12 @@ namespace LILO_Packager.v2.Forms
                         if (File.Exists(element.outputFileName))
                         {
                             Process.Start("explorer.exe", element.outputFileName);
+                            return;
                         }
                         else
                         {
                             MessageBox.Show("The Output of this Operation is not existing anymore.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            return;
                         }
                     }
                     catch (Exception ex)

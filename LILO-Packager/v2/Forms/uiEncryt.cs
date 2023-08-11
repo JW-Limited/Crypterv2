@@ -215,7 +215,7 @@ public partial class uiEncryt : Form
 
     private async void guna2Button1_Click(object sender, EventArgs e)
     {
-        if(_arFiles.Count <= 1)
+        if(fileCounter == 2)
         {
             var psw = GetPasswordFrromUser();
             var current = new TaskStatus();
@@ -229,69 +229,65 @@ public partial class uiEncryt : Form
 
                 try
                 {
+                    string item = _arFiles[0];
 
-                    foreach (string item in _arFiles)
+                    if (item != previousFile)
                     {
-                        if(item != previousFile)
-                        {
-                            previousFile = item;
-                            logged = false;
-                        }
+                        previousFile = item;
+                        logged = false;
+                    }
 
-                        if (!logged)
-                        {
-                            await dbHandler.InsertEncryptedOperationAsync("Encryption", "libraryBased", "v2", item, item + ".lsf", $"{new Random().NextInt64(11111, 99999)}");
-                            logged = true;
-                        }
-
-
-                        Task.Run(() =>
-                        {
-
-                            Services.CompressAndEncryptFileAsync(item, item + ".lsf", psw,
-                            progress =>
-                            {
-                                UpdateProgress(progress);
-                            },
-                            error =>
-                            {
-                                //ShowError("Encryption Error", error.Message);
-                            },
-                            currentTask =>
-                            {
-
-                                if (currentTask.StartsWith("Compress") && current is not TaskStatus.Compress)
-                                {
-                                    MarkStatus(TaskStatus.Compress);
-
-                                    current = TaskStatus.Compress;
-                                }
-
-                                if (currentTask.StartsWith("Encyrpting") && current is not TaskStatus.Encrypting)
-                                {
-                                    MarkStatus(TaskStatus.Encrypting);
-
-                                    current = TaskStatus.Encrypting;
-                                }
-
-
-                                if (currentTask == "success")
-                                {
-                                    MarkStatus(TaskStatus.Ready);
-
-                                    taskBarProgress.Value = 0;
-                                    taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
-
-                                    ControlEnable(true);
-                                    _arFiles.Clear();
-                                    chblistFiles.Items.Clear();
-                                    fileCounter = 0;
-                                }
-                            });
-                        });
+                    if (!logged)
+                    {
+                        await dbHandler.InsertEncryptedOperationAsync("Encryption", "libraryBased", "v2", item, item + ".lsf", $"{new Random().NextInt64(11111, 99999)}");
+                        logged = true;
                     }
 
 
+                    Task.Run(() =>
+                    {
+
+                        Services.CompressAndEncryptFileAsync(item, item + ".lsf", psw,
+                        progress =>
+                        {
+                            UpdateProgress(progress);
+                        },
+                        error =>
+                        {
+                            //ShowError("Encryption Error", error.Message);
+                        },
+                        currentTask =>
+                        {
+
+                            if (currentTask.StartsWith("Compress") && current is not TaskStatus.Compress)
+                            {
+                                MarkStatus(TaskStatus.Compress);
+
+                                current = TaskStatus.Compress;
+                            }
+
+                            if (currentTask.StartsWith("Encyrpting") && current is not TaskStatus.Encrypting)
+                            {
+                                MarkStatus(TaskStatus.Encrypting);
+
+                                current = TaskStatus.Encrypting;
+                            }
+
+
+                            if (currentTask == "success")
+                            {
+                                MarkStatus(TaskStatus.Ready);
+
+                                taskBarProgress.Value = 0;
+                                taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
+
+                                ControlEnable(true);
+                                _arFiles.Clear();
+                                chblistFiles.Items.Clear();
+                                fileCounter = 0;
+                            }
+                        });
+                    });
 
                 }
                 catch (Exception ey)
@@ -312,6 +308,7 @@ public partial class uiEncryt : Form
 
             var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
             var musltifileHandler = new shared.MultiplefileHandling();
+
             var ui = new uiAsyncTask();
             ui.TopMost = true;
             ui.Show();
@@ -319,19 +316,20 @@ public partial class uiEncryt : Form
             await Task.Run(async () =>
             {
                 await musltifileHandler.ZipFilesAsync(tempZip,
-                reportProgress =>
-                {
-                    ui.UpdateProcess(reportProgress);
+                    reportProgress =>
+                    {
+                        ui.UpdateProcess((reportProgress));
 
-                }, _arFiles);
+                    }, _arFiles);
+
+                ui.Close();
+
             });
-            
-            ui.Close();
 
             chblistFiles.Items.Clear();
             chblistFiles.Items.Add(Path.GetFileName(tempZip));
             _arFiles.Clear();
-            fileCounter = 1;
+            fileCounter = 2;
             _arFiles.Add(tempZip);
             guna2Button1_Click(sender, e);
         }

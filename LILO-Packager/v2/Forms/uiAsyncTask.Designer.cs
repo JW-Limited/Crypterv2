@@ -28,25 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             progressBar = new ProgressBar();
             SuspendLayout();
             // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Location = new Point(40, 56);
-            label1.Name = "label1";
-            label1.Size = new Size(189, 25);
-            label1.TabIndex = 1;
-            label1.Text = "Preparing youre Files...";
-            // 
             // progressBar
             // 
-            progressBar.Location = new Point(40, 112);
+            progressBar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            progressBar.Location = new Point(32, 54);
             progressBar.Name = "progressBar";
-            progressBar.Size = new Size(496, 34);
+            progressBar.Size = new Size(504, 34);
+            progressBar.Style = ProgressBarStyle.Marquee;
             progressBar.TabIndex = 2;
             // 
             // uiAsyncTask
@@ -54,25 +45,21 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(582, 215);
+            ClientSize = new Size(582, 140);
             ControlBox = false;
             Controls.Add(progressBar);
-            Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MaximumSize = new Size(604, 271);
             MinimizeBox = false;
-            MinimumSize = new Size(604, 271);
             Name = "uiAsyncTask";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Preparing youre Files";
             Load += uiAsyncTask_Load;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private Label label1;
         private ProgressBar progressBar;
     }
 }

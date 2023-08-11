@@ -55,6 +55,7 @@ partial class uiEncryt
         guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
         pswDialog = new Ookii.Dialogs.WinForms.InputDialog(components);
         taskBarProgress = new Guna.UI2.WinForms.Guna2TaskBarProgress(components);
+        asyncTask = new Ookii.Dialogs.WinForms.ProgressDialog(components);
         sPanel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pnlFile).BeginInit();
         guna2Panel1.SuspendLayout();
@@ -471,6 +472,13 @@ partial class uiEncryt
         taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
         taskBarProgress.TargetForm = this;
         // 
+        // asyncTask
+        // 
+        asyncTask.Description = "We prepraing youre Files";
+        asyncTask.ShowTimeRemaining = true;
+        asyncTask.Text = "Please hold on";
+        asyncTask.WindowTitle = "MainHost";
+        // 
         // uiEncryt
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
@@ -529,4 +537,5 @@ partial class uiEncryt
     private Guna.UI2.WinForms.Guna2TaskBarProgress taskBarProgress;
     private Guna.UI2.WinForms.Guna2Button bntCancel;
     private Guna.UI2.WinForms.Guna2Button bntPlugin;
+    private Ookii.Dialogs.WinForms.ProgressDialog asyncTask;
 }
