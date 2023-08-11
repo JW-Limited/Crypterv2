@@ -52,6 +52,10 @@ public partial class uiEncryt : Form
                 e.Cancel = true;
                 this.Hide();
             }
+            else
+            {
+                _encrypt = null;
+            }
         };
     }
 
@@ -211,101 +215,127 @@ public partial class uiEncryt : Form
 
     private async void guna2Button1_Click(object sender, EventArgs e)
     {
-        var psw = GetPasswordFrromUser();
-        var current = new TaskStatus();
-        var logged = false;
-        var previousFile = "";
+        if(_arFiles.Count <= 1)
+        {
+            var psw = GetPasswordFrromUser();
+            var current = new TaskStatus();
+            var logged = false;
+            var previousFile = "";
         
 
-        if (psw is not null or "")
-        {
-            ControlEnable(false);
-
-            try
+            if (psw is not null or "")
             {
+                ControlEnable(false);
 
-                foreach (string item in _arFiles)
+                try
                 {
-                    if(item != previousFile)
+
+                    foreach (string item in _arFiles)
                     {
-                        previousFile = item;
-                        logged = false;
-                    }
-
-                    if (!logged)
-                    {
-                        await dbHandler.InsertEncryptedOperationAsync("Encryption", "libraryBased", "v2", item, item + ".lsf", $"{new Random().NextInt64(11111, 99999)}");
-                        logged = true;
-                    }
-
-
-                    Task.Run(() =>
-                    {
-
-                        Services.CompressAndEncryptFileAsync(item, item + ".lsf", psw,
-                        progress =>
+                        if(item != previousFile)
                         {
-                            UpdateProgress(progress);
-                        },
-                        error =>
+                            previousFile = item;
+                            logged = false;
+                        }
+
+                        if (!logged)
                         {
-                            //ShowError("Encryption Error", error.Message);
-                        },
-                        currentTask =>
+                            await dbHandler.InsertEncryptedOperationAsync("Encryption", "libraryBased", "v2", item, item + ".lsf", $"{new Random().NextInt64(11111, 99999)}");
+                            logged = true;
+                        }
+
+
+                        Task.Run(() =>
                         {
 
-                            if (currentTask.StartsWith("Compress") && current is not TaskStatus.Compress)
+                            Services.CompressAndEncryptFileAsync(item, item + ".lsf", psw,
+                            progress =>
                             {
-                                MarkStatus(TaskStatus.Compress);
-
-                                current = TaskStatus.Compress;
-                            }
-
-                            if (currentTask.StartsWith("Encyrpting") && current is not TaskStatus.Encrypting)
+                                UpdateProgress(progress);
+                            },
+                            error =>
                             {
-                                MarkStatus(TaskStatus.Encrypting);
-
-                                current = TaskStatus.Encrypting;
-                            }
-
-
-                            if (currentTask == "success")
+                                //ShowError("Encryption Error", error.Message);
+                            },
+                            currentTask =>
                             {
-                                MarkStatus(TaskStatus.Ready);
 
-                                taskBarProgress.Value = 0;
-                                taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
+                                if (currentTask.StartsWith("Compress") && current is not TaskStatus.Compress)
+                                {
+                                    MarkStatus(TaskStatus.Compress);
+
+                                    current = TaskStatus.Compress;
+                                }
+
+                                if (currentTask.StartsWith("Encyrpting") && current is not TaskStatus.Encrypting)
+                                {
+                                    MarkStatus(TaskStatus.Encrypting);
+
+                                    current = TaskStatus.Encrypting;
+                                }
 
 
+                                if (currentTask == "success")
+                                {
+                                    MarkStatus(TaskStatus.Ready);
 
-                                ControlEnable(true);
+                                    taskBarProgress.Value = 0;
+                                    taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
 
-                                _arFiles.Remove(item);
-
-                                var info = new FileInfo(item);
-
-                                chblistFiles.Items.Remove("  " + info.Name);
-
-                                fileCounter--;
-                            }
+                                    ControlEnable(true);
+                                    _arFiles.Clear();
+                                    chblistFiles.Items.Clear();
+                                    fileCounter = 0;
+                                }
+                            });
                         });
-                    });
+                    }
+
+
+
                 }
+                catch (Exception ey)
+                {
+                    ControlEnable(true);
 
-
-
+                    ShowError("Error", ey.Message);
+                }
             }
-            catch (Exception ey)
+            else
             {
-                ControlEnable(true);
-
-                ShowError("Error", ey.Message);
+                ShowError("Error", "Please Insert a valid Key.");
             }
         }
-        else
+        else 
         {
-            ShowError("Error", "Please Insert a valid Key.");
+            FileInfo info = new FileInfo(_arFiles[0]);
+
+            var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
+            var musltifileHandler = new shared.MultiplefileHandling();
+            var ui = new uiAsyncTask();
+            ui.TopMost = true;
+            ui.Show();
+
+            await Task.Run(async () =>
+            {
+                await musltifileHandler.ZipFilesAsync(tempZip,
+                reportProgress =>
+                {
+                    ui.UpdateProcess(reportProgress);
+
+                }, _arFiles);
+            });
+            
+            ui.Close();
+
+            chblistFiles.Items.Clear();
+            chblistFiles.Items.Add(Path.GetFileName(tempZip));
+            _arFiles.Clear();
+            fileCounter = 1;
+            _arFiles.Add(tempZip);
+            guna2Button1_Click(sender, e);
         }
+        
     }
 
     private void ShowError(string title, string message)

@@ -119,6 +119,7 @@ namespace LILO_Packager.v2.Forms
 
         private void bntPlugin_Click(object sender, EventArgs e)
         {
+            LoadData();
             uiHistory_Load(sender, e);
         }
     }

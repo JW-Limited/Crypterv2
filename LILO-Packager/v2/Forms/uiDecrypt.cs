@@ -49,6 +49,10 @@ public partial class uiDecrypt : Form
                 e.Cancel = true;
                 this.Hide();
             }
+            else
+            {
+                _encrypt = null;
+            }
         };
     }
 
