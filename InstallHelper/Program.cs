@@ -18,10 +18,22 @@ namespace InstallHelper
                     {
                         Console.WriteLine(args[i].Substring(5));
                         SetCustomFileHandlerAsync(args[i].Substring(5));
+                        RegisterContextMenuEntry(args[i].Substring(5));
                         Console.ReadKey();
                     }
                 }
 
+            }
+        }
+
+        public static void RegisterContextMenuEntry(string exePath)
+        {
+            string command = $"\"{exePath}\" \"%1\"";
+
+            using (RegistryKey key = Registry.ClassesRoot.CreateSubKey("*\\shell\\EncryptWithCrypterv2"))
+            {
+                key.SetValue(null, "Encrypt with Crypterv2");
+                key.CreateSubKey("command").SetValue(null, command);
             }
         }
 
