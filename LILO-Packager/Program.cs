@@ -1,5 +1,6 @@
 using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.shared;
+using Microsoft.Win32;
 
 namespace LILO_Packager
 {
@@ -18,6 +19,16 @@ namespace LILO_Packager
         public static void Main(string[] args)
         {
             InitializeApplication();
+            try
+            {
+                var fileExtension = SetCustomFileHandlerAsync();
+
+                MessageBox.Show(fileExtension, "Succesfull");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             (var file, int startingEnvironment) = GetStartingMode(args);
 
@@ -32,7 +43,19 @@ namespace LILO_Packager
             }
         }
 
-        
+        public static string SetCustomFileHandlerAsync()
+        {
+            string exePath = Application.ExecutablePath;
+            string fileExtension = ".lsf";
+            string description = "LILO secured File";
+
+            Registry.SetValue($"HKEY_CLASSES_ROOT\\{fileExtension}\\shell\\open\\command", null, $"{exePath} \"%1\"");
+
+            Registry.SetValue($"HKEY_CLASSES_ROOT\\{fileExtension}", null, description);
+
+            return "Completed";
+        }
+
 
         private static (EncryptedFile,int) GetStartingMode(string[] args)
         {

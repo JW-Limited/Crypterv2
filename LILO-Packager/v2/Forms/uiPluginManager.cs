@@ -43,8 +43,7 @@ namespace LILO_Packager.v2.Forms
 
             this.FormClosing += (sender, e) =>
             {
-                e.Cancel = true;
-                this.Hide();
+                _encrypt = null;
             };
         }
 
