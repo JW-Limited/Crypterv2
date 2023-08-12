@@ -5,10 +5,12 @@ VisualStudioVersion = 17.4.32804.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LILO-Packager", "LILO-Packager\LILO-Packager.csproj", "{C3AF61B4-3EE8-456F-B93D-14214DB6D42B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionLibary", "EncryptionLibary\EncryptionLibary.csproj", "{3C44ECCD-3857-496C-AF84-19AE7D434FAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncryptionLibary", "EncryptionLibary\EncryptionLibary.csproj", "{3C44ECCD-3857-496C-AF84-19AE7D434FAA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C3AF61B4-3EE8-456F-B93D-14214DB6D42B} = {C3AF61B4-3EE8-456F-B93D-14214DB6D42B}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallHelper", "InstallHelper\InstallHelper.csproj", "{46F2BC78-73A7-4A05-B7B0-3527926CAB36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,10 @@ Global
 		{3C44ECCD-3857-496C-AF84-19AE7D434FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C44ECCD-3857-496C-AF84-19AE7D434FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C44ECCD-3857-496C-AF84-19AE7D434FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46F2BC78-73A7-4A05-B7B0-3527926CAB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46F2BC78-73A7-4A05-B7B0-3527926CAB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46F2BC78-73A7-4A05-B7B0-3527926CAB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46F2BC78-73A7-4A05-B7B0-3527926CAB36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

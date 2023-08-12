@@ -116,4 +116,8 @@
     <Folder Include="v2\Secure\Forms\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InstallHelper\InstallHelper.csproj" />
+  </ItemGroup>
+
 </Project>
