@@ -38,15 +38,13 @@ namespace InstallHelper
                         Console.WriteLine("\nKilled all instances of: crypterv2");
 
                         Console.Write("Updating Registry: ");
-                        SetCustomFileHandlerAsync(path);
-                        RegisterContextMenuEntry(path);
+                        ExtensionBinder.SetCustomFileHandlerAsync(path);
+                        ExtensionBinder.RegisterContextMenuEntry(path);
                         Console.Write("Done!\n");
 
                         Console.Write("Creating Shortcuts: ");
-
                         ShortcutOperations.CreateDesktopShortcut(path);
                         ShortcutOperations.CreateStartMenuShortcut(path);
-
                         Console.Write("Done!\n");
 
                         Console.ReadKey();
@@ -76,17 +74,12 @@ namespace InstallHelper
             switch (choice)
             {
                 case 1:
-                    UninstallApplication();
+                    Uninstall.Start();
                     break;
                 default:
                     Console.WriteLine("Invalid choice.");
                     break;
             }
-        }
-
-        public static void UninstallApplication()
-        {
-            
         }
 
         public static int GetChoiceFromUser()
@@ -99,43 +92,6 @@ namespace InstallHelper
                 Console.WriteLine("Invalid input. Enter a valid choice.");
             }
         }
-
-        
-
-        public static void RegisterContextMenuEntry(string exePath)
-        {
-            string command = $"\"{exePath}\" \"%1\"";
-
-            using (RegistryKey key = Registry.ClassesRoot.CreateSubKey("*\\shell\\EncryptWithCrypterv2"))
-            {
-                key.SetValue(null, "Encrypt with Crypterv2");
-                key.CreateSubKey("command").SetValue(null, command);
-            }
-        }
-
-        public static string SetCustomFileHandlerAsync(string path)
-        {
-            string exePath = path;
-            string fileExtension = ".lsf";
-            string description = "LILO secured File";
-            string friendlyTypeName = "LILO Encrypted File";
-            string contentType = "application/lilo-encrypted"; //
-
-
-            Registry.SetValue($"HKEY_CLASSES_ROOT\\{fileExtension}", null, description);
-
-            Registry.SetValue($"HKEY_CLASSES_ROOT\\{fileExtension}", "FriendlyTypeName", friendlyTypeName);
-
-            Registry.SetValue($"HKEY_CLASSES_ROOT\\{fileExtension}\\Content Type", null, contentType);
-
-            Registry.SetValue($"HKEY_CLASSES_ROOT\\{fileExtension}\\shell\\open\\command", null, $"{exePath} \"%1\"");
-
-            Registry.SetValue($"HKEY_CLASSES_ROOT\\{fileExtension}", null, description);
-
-            return "Completed Succesfull";
-        }
     }
-
-    
-
 }
+    
