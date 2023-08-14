@@ -19,9 +19,12 @@ namespace LILO_Packager.v2.Forms
 {
     public partial class uiArgumentStart : Form
     {
+
+        private static EncryptedFile file = null;
         private static uiArgumentStart _instance;
-        private static EncryptedFile file;
+
         private bool istreamingReady = false;
+
         private string tempFile = Path.Combine(Path.GetTempPath(), new Random().NextInt64(9999, 12345) + "temp_lsf.mp3");
         public Core.History.DatabaseHandling dbHandler = new Core.History.DatabaseHandling();
 
@@ -44,24 +47,28 @@ namespace LILO_Packager.v2.Forms
 
         private async void uiArgumentStart_Load(object sender, EventArgs e)
         {
-            this.lblName.Text = file.FileName;
-            this.lblSize.Text = file.Size;
-
-            await dbHandler.InitializeDatabaseAsync(process =>
+            if(file is not null)
             {
+                this.lblName.Text = file.FileName;
+                this.lblSize.Text = file.Size;
 
-            });
+                await dbHandler.InitializeDatabaseAsync(process =>
+                {
 
-            if (file.Encryption == ".lsf")
-            {
+                });
 
-                this.lblEncryption.Text = "LILO Secured";
+                if (file.Encryption == ".lsf")
+                {
+
+                    this.lblEncryption.Text = "LILO Secured";
+                }
+
+                if (file.Path.Replace(".lsf", "").EndsWith("mp3") || file.Path.Replace(".lsf", "").EndsWith("wav"))
+                {
+                    bntCrypter.Text = "Stream";
+                }
             }
-
-            if(file.Path.Replace(".lsf", "").EndsWith("mp3") || file.Path.Replace(".lsf", "").EndsWith("wav"))
-            {
-                bntCrypter.Text = "Stream";
-            }
+            
         }
 
         private void UpdateProgress(double progres)

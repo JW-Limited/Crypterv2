@@ -12,6 +12,7 @@ using LILO_Packager.Properties;
 using LILO_Packager.v2.plugins.PluginCore;
 using LILO_Packager.v2.plugins.Model;
 using System.Collections.ObjectModel;
+using Microsoft.FeatureManagement;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form
@@ -77,13 +78,7 @@ public partial class MainHost : System.Windows.Forms.Form
         proc.Start();
 
         this.BackColor = SystemColors.ButtonFace;
-
         OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
-
-        await dataHandler.InitializeDatabaseAsync(process =>
-        {
-
-        });
 
         if (config.Default.allowedPlugins)
         {
@@ -116,6 +111,14 @@ public partial class MainHost : System.Windows.Forms.Form
                 MessageBox.Show(ex.Message);
             }
 
+
+            await dataHandler.InitializeDatabaseAsync(process =>
+            {
+
+            });
+
+
+            await v2.Core.FeatureManager.LoadConfigurationAsync();
         }
     }
 

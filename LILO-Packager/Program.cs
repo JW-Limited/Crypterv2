@@ -2,6 +2,7 @@ using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.shared;
 using Microsoft.Win32;
 using System.Diagnostics;
+using Microsoft.FeatureManagement;
 
 namespace LILO_Packager
 {
@@ -21,7 +22,6 @@ namespace LILO_Packager
         {
             InitializeApplication();
 
-
             try
             {
 
@@ -30,40 +30,38 @@ namespace LILO_Packager
 
             catch(Exception ex)
             {
-                //MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
 
-            (var file, int startingEnvironment) = GetStartingMode(args);
-
-            if (startingEnvironment == 1)
+            if (args.Length > 0)
             {
-                var decrypt = uiArgumentStart.Instance(file);
-                Application.Run(decrypt);
+                for (int i = 0; i < args.Length; i++)
+                {
+                    if (!File.Exists(args[i])) return;
+
+                    if (args[i].EndsWith(".lsf"))
+                    {
+                        EncryptedFile file = new EncryptedFile(args[i]);
+                        var decrypt = uiArgumentStart.Instance(file);
+                        Application.Run(decrypt);
+                    }
+                    else 
+                    {
+                        DecryptedFile file = new DecryptedFile(args[i]);
+                        var encrypt = uiArgumentStart_Encrypt.Instance(file);
+                        Application.Run(encrypt);
+                    }
+                }
+
             }
             else
             {
                 RunMainUI();
             }
+
+            
         }
 
-        private static (EncryptedFile,int) GetStartingMode(string[] args)
-        {
-            if (args.Length > 0)
-            {
-                for (int i = 0; i < args.Length; i++)
-                {
-                    if (File.Exists(args[i]))
-                    {
-                        EncryptedFile env = new EncryptedFile(args[i]);
-                        return (env, 1);
-                    }
-                }
-
-                return (null, 0);
-            }
-
-            return (null, 0);
-        }
 
         private static void RunMainUI()
         {

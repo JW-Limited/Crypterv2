@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LILO_Packager.v2.shared
 {
-    public class EncryptedFile
+    public class DecryptedFile
     {
         public String FileName { get; set; } = null;
         public byte[] Data { get; set; } = null;
@@ -15,14 +15,14 @@ namespace LILO_Packager.v2.shared
         public string Encryption { get; set; } = null;
         public string Path { get; set; } = null;
 
-        public EncryptedFile(string file) 
+        public DecryptedFile(string file)
         {
-            FileInfo fileInfo = new FileInfo(file); 
+            FileInfo fileInfo = new FileInfo(file);
 
             this.FileName = fileInfo.Name;
             this.Length = fileInfo.Length;
             this.Size = GetSizeString(fileInfo.Length);
-            this.Encryption = fileInfo.Extension;
+            this.Encryption = "null";
             this.Path = fileInfo.FullName;
         }
 

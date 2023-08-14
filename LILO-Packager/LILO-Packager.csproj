@@ -57,6 +57,7 @@
     <PackageReference Include="ImageListView" Version="13.8.2" />
     <PackageReference Include="metromodernui" Version="1.4.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0-preview.6.23329.7" />
+    <PackageReference Include="Microsoft.FeatureManagement" Version="2.6.1" />
     <PackageReference Include="microsoft.web.webview2" Version="1.0.1988-prerelease" />
     <PackageReference Include="modern.forms" Version="0.3.0" />
     <PackageReference Include="Ookii.Dialogs.WinForms" Version="4.0.0" />
