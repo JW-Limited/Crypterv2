@@ -9,6 +9,7 @@ using LILO_Packager.v2.Core;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace Crypterv2_DevTool.Core
 {
@@ -28,6 +29,28 @@ namespace Crypterv2_DevTool.Core
 #pragma warning disable SYSLIB0011 // Typ oder Element ist veraltet
                     formatter.Serialize(sw.BaseStream, featureFlagInfo);
 #pragma warning restore SYSLIB0011 // Typ oder Element ist veraltet
+                }
+            }
+        }
+
+        public Dictionary<string, bool> ListFeaturesViaSocket()
+        {
+            using (var client = new TcpClient())
+            {
+                client.Connect(IPAddress.Loopback, 9001); // Use the appropriate port
+
+                using (var stream = client.GetStream())
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine("list");
+                    writer.Flush();
+
+                    using (var reader = new StreamReader(stream))
+                    {
+                        string response = reader.ReadToEnd();
+                        Dictionary<string, bool> featureValues = JsonConvert.DeserializeObject<Dictionary<string, bool>>(response);
+                        return featureValues;
+                    }
                 }
             }
         }

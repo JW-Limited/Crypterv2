@@ -19,6 +19,7 @@ using System.IO.Pipes;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Net.Sockets;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
@@ -59,9 +60,15 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         listener = new TcpListener(IPAddress.Loopback, 9001); // Use the same port
         listener.Start();
 
-        // Start a new thread to handle incoming socket connections
-        Thread listenerThread = new Thread(ListenForConnections);
-        listenerThread.Start();
+        try
+        {
+            Thread listenerThread = new Thread(ListenForConnections);
+            listenerThread.Start();
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
 
         InitializeComponent();
 
@@ -72,57 +79,66 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     {
         while (true)
         {
-            TcpClient client = listener.AcceptTcpClient();
-            ThreadPool.QueueUserWorkItem(HandleClient, client);
+
+            try
+            {
+
+                TcpClient client = listener.AcceptTcpClient();
+                ThreadPool.QueueUserWorkItem(HandleClient, client);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 
     private void HandleClient(object clientObj)
     {
-        MessageBox.Show(clientObj.ToString());
-
         using (TcpClient client = (TcpClient)clientObj)
         using (NetworkStream stream = client.GetStream())
         using (StreamReader reader = new StreamReader(stream))
+        using (StreamWriter writer = new StreamWriter(stream))
         {
-            string featureName = reader.ReadLine();
-            bool isEnabled = bool.Parse(reader.ReadLine());
+            string command = reader.ReadLine();
 
-            var feature = Enum.Parse(typeof(FeatureFlags), featureName);
-
-            ToggleFeature((FeatureFlags)feature, isEnabled);
-        }
-    }
-
-    private void StartPipeServer()
-    {
-        try
-        {
-            pipeServer.WaitForConnection();
-
-            using (StreamReader sr = new StreamReader(pipeServer))
+            if (command.ToLower() == "list")
             {
-                var formatter = new BinaryFormatter();
-#pragma warning disable SYSLIB0011 
-                var featureFlagInfo = (FeatureFlagInfo)formatter.Deserialize(sr.BaseStream);
-#pragma warning restore SYSLIB0011 
+                Dictionary<string, bool> featureValues = GetFeaturesAndValues();
 
-                MessageBox.Show("Feature: " + featureFlagInfo.Feature + "State: " + featureFlagInfo.IsEnabled);
-
-                ToggleFeature(featureFlagInfo.Feature, featureFlagInfo.IsEnabled);
+                string featureValuesJson = JsonConvert.SerializeObject(featureValues);
+                writer.WriteLine(featureValuesJson);
+                writer.Flush();
             }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("An Error accourd while opening the pipeserver: " + ex.Message);;
-        }
-        finally
-        {
-            pipeServer.Disconnect();
-            StartPipeServer();
+            else
+            {
+                string featureName = reader.ReadLine();
+                bool isEnabled = bool.Parse(reader.ReadLine());
+
+                var feature = Enum.Parse(typeof(FeatureFlags), featureName);
+
+                ToggleFeature((FeatureFlags)feature, isEnabled);
+            }
+
+            
         }
     }
 
+    private Dictionary<string, bool> GetFeaturesAndValues()
+    {
+        Dictionary<string, bool> featureValues = new Dictionary<string, bool>
+        {
+            { FeatureFlags.NewEncryptionCore.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.NewEncryptionCore) },
+            { FeatureFlags.PluginSupport.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.PluginSupport) },
+            { FeatureFlags.ThirdPartyPluginSupport.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.ThirdPartyPluginSupport) },
+            { FeatureFlags.PluginManager.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.PluginManager) },
+            { FeatureFlags.WebView2GraphicalContent.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent) },
+            { FeatureFlags.SecuredContainerStreaming.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming) }
+        };
+
+
+        return featureValues;
+    }
 
     private async void FeatureFlagEvents_FeatureFlagUpdateRequested(object? sender, FeatureFlagUpdateEventArgs e)
     {
