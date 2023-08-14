@@ -13,12 +13,20 @@ using LILO_Packager.v2.plugins.PluginCore;
 using LILO_Packager.v2.plugins.Model;
 using System.Collections.ObjectModel;
 using Microsoft.FeatureManagement;
+using LILO_Packager.v2.Core;
+using LILO_Packager.v2.Core.Interfaces;
+using System.IO.Pipes;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Net.Sockets;
+using System.Net;
 
 namespace LILO_Packager.v2;
-public partial class MainHost : System.Windows.Forms.Form
+public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 {
     private static MainHost instance;
     private static object _lock = new object();
+    private NamedPipeServerStream pipeServer;
+    private TcpListener listener;
 
     public static MainHost Instance()
     {
@@ -47,7 +55,78 @@ public partial class MainHost : System.Windows.Forms.Form
 
     private MainHost()
     {
+        pipeServer = new NamedPipeServerStream(FeatureFlagePipeLineConfig.PipeName, PipeDirection.In, 1);
+        listener = new TcpListener(IPAddress.Loopback, 9001); // Use the same port
+        listener.Start();
+
+        // Start a new thread to handle incoming socket connections
+        Thread listenerThread = new Thread(ListenForConnections);
+        listenerThread.Start();
+
         InitializeComponent();
+
+        FeatureFlagEvents.FeatureFlagUpdateRequested += FeatureFlagEvents_FeatureFlagUpdateRequested;
+    }
+
+    private void ListenForConnections()
+    {
+        while (true)
+        {
+            TcpClient client = listener.AcceptTcpClient();
+            ThreadPool.QueueUserWorkItem(HandleClient, client);
+        }
+    }
+
+    private void HandleClient(object clientObj)
+    {
+        MessageBox.Show(clientObj.ToString());
+
+        using (TcpClient client = (TcpClient)clientObj)
+        using (NetworkStream stream = client.GetStream())
+        using (StreamReader reader = new StreamReader(stream))
+        {
+            string featureName = reader.ReadLine();
+            bool isEnabled = bool.Parse(reader.ReadLine());
+
+            var feature = Enum.Parse(typeof(FeatureFlags), featureName);
+
+            ToggleFeature((FeatureFlags)feature, isEnabled);
+        }
+    }
+
+    private void StartPipeServer()
+    {
+        try
+        {
+            pipeServer.WaitForConnection();
+
+            using (StreamReader sr = new StreamReader(pipeServer))
+            {
+                var formatter = new BinaryFormatter();
+#pragma warning disable SYSLIB0011 
+                var featureFlagInfo = (FeatureFlagInfo)formatter.Deserialize(sr.BaseStream);
+#pragma warning restore SYSLIB0011 
+
+                MessageBox.Show("Feature: " + featureFlagInfo.Feature + "State: " + featureFlagInfo.IsEnabled);
+
+                ToggleFeature(featureFlagInfo.Feature, featureFlagInfo.IsEnabled);
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("An Error accourd while opening the pipeserver: " + ex.Message);;
+        }
+        finally
+        {
+            pipeServer.Disconnect();
+            StartPipeServer();
+        }
+    }
+
+
+    private async void FeatureFlagEvents_FeatureFlagUpdateRequested(object? sender, FeatureFlagUpdateEventArgs e)
+    {
+        await FeatureManager.ToggleFeatureAsync(e.Flag);
     }
 
     public static void SetInstanceEqual(object newInstance)
@@ -60,6 +139,11 @@ public partial class MainHost : System.Windows.Forms.Form
         {
             throw new ArgumentOutOfRangeException(nameof(newInstance));
         }
+    }
+
+    public static void UpdateFeatureFlagFromHost(FeatureFlags feature, bool isEnabled)
+    {
+        FeatureFlagEvents.OnFeatureFlagUpdateRequested(feature, isEnabled);
     }
 
     private async void MainHost_Load(object sender, EventArgs e)
@@ -104,7 +188,7 @@ public partial class MainHost : System.Windows.Forms.Form
                                          $"Version : {item.Version}");
                 }
 
-                MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString(), "PluginManager");
+                MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString(), "MainHost");
             }
             catch (Exception ex)
             {
@@ -237,5 +321,10 @@ public partial class MainHost : System.Windows.Forms.Form
     private void bntPlugin_Clicked(object sender, EventArgs e)
     {
         OpenInApp(v2.Forms.uiPluginManager.Instance(plugins,manager));
+    }
+
+    public void ToggleFeature(FeatureFlags feature, bool isEnabled)
+    {
+        FeatureFlagEvents_FeatureFlagUpdateRequested(null, new FeatureFlagUpdateEventArgs(feature, isEnabled));
     }
 }

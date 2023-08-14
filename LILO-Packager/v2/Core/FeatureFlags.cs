@@ -16,9 +16,14 @@ namespace LILO_Packager.v2.Core
         SecuredContainerStreaming
     }
 
+    public class FeatureFlagePipeLineConfig
+    {
+        public static string PipeName { get; set; } = "FeatureFlagPipe";
+    }
+
     public class FeatureFlagConfig
     {
-        public bool NewEncryptionCore { get; set; } = false;
+        public bool NewEncryptionCore { get; set; } = true;
         public bool PluginSupport { get; set; } = false;
         public bool ThirdPartyPluginSupport { get; set; } = false;
         public bool PluginManager { get; set; } = false;

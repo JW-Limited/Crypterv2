@@ -13,7 +13,7 @@ namespace LILO_Packager.v2.Core
         private static FeatureFlagConfig _config;
         private static readonly Dictionary<FeatureFlags, bool> _featureFlagsDictionary = new Dictionary<FeatureFlags, bool>();
 
-        public static event EventHandler<FeatureFlagsChangedEventArgs> FeatureFlagsChanged;
+        public static event EventHandler<FeatureFlagUpdateEventArgs> FeatureFlagsChanged;
 
         public static async Task LoadConfigurationAsync()
         {
@@ -37,7 +37,7 @@ namespace LILO_Packager.v2.Core
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error loading configuration: {ex.Message}");
+                MessageBox.Show($"Error loading configuration: {ex.Message}");
                 _config = new FeatureFlagConfig();
             }
         }
@@ -63,7 +63,7 @@ namespace LILO_Packager.v2.Core
             _config.GetType().GetProperty(feature.ToString())?.SetValue(_config, newValue);
             await SaveConfigurationAsync();
 
-            FeatureFlagsChanged?.Invoke(null, new FeatureFlagsChangedEventArgs(feature, newValue));
+            FeatureFlagsChanged?.Invoke(null, new FeatureFlagUpdateEventArgs(feature, newValue));
         }
 
         private static async Task SaveConfigurationAsync()
@@ -75,17 +75,27 @@ namespace LILO_Packager.v2.Core
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error saving configuration: {ex.Message}");
+                MessageBox.Show($"Error saving configuration: {ex.Message}");
             }
         }
     }
 
-    public class FeatureFlagsChangedEventArgs : EventArgs
+    public static class FeatureFlagEvents
+    {
+        public static event EventHandler<FeatureFlagUpdateEventArgs> FeatureFlagUpdateRequested;
+
+        public static void OnFeatureFlagUpdateRequested(FeatureFlags feature, bool isEnabled)
+        {
+            FeatureFlagUpdateRequested?.Invoke(null, new FeatureFlagUpdateEventArgs(feature, isEnabled));
+        }
+    }
+
+    public class FeatureFlagUpdateEventArgs : EventArgs
     {
         public FeatureFlags Flag { get; }
         public bool NewValue { get; }
 
-        public FeatureFlagsChangedEventArgs(FeatureFlags flag, bool newValue)
+        public FeatureFlagUpdateEventArgs(FeatureFlags flag, bool newValue)
         {
             Flag = flag;
             NewValue = newValue;
