@@ -69,7 +69,7 @@ namespace Crypterv2_DevTool.Core.Forms
                         }
 
 
-                        MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString() + "\n", "Crypterv2-DevTool");
+                        //MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString() + "\n", "Crypterv2-DevTool");
                     }
                     else
                     {
@@ -124,7 +124,7 @@ namespace Crypterv2_DevTool.Core.Forms
                         PluginTestConfig.Default.recentDirectory = ofd.SelectedPath;
                         PluginTestConfig.Default.Save();
 
-                        MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString() + "\n", "Crypterv2-DevTool");
+                        //MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString() + "\n", "Crypterv2-DevTool");
                     }
                     else
                     {
