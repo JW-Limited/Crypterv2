@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             cmbPlugins = new ComboBox();
-            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            pnlControls = new Guna.UI2.WinForms.Guna2Panel();
             lblDirectory = new Label();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             pnlChild = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Panel1.SuspendLayout();
+            pnlControls.SuspendLayout();
             SuspendLayout();
             // 
             // cmbPlugins
@@ -46,23 +46,23 @@
             cmbPlugins.Size = new Size(198, 33);
             cmbPlugins.TabIndex = 0;
             // 
-            // guna2Panel1
+            // pnlControls
             // 
-            guna2Panel1.BackColor = Color.White;
-            guna2Panel1.BorderColor = SystemColors.ActiveBorder;
-            guna2Panel1.BorderRadius = 15;
-            guna2Panel1.BorderThickness = 2;
-            guna2Panel1.Controls.Add(lblDirectory);
-            guna2Panel1.Controls.Add(cmbPlugins);
-            guna2Panel1.Controls.Add(guna2Button1);
-            guna2Panel1.Controls.Add(guna2Button2);
-            guna2Panel1.Dock = DockStyle.Top;
-            guna2Panel1.FillColor = SystemColors.ButtonHighlight;
-            guna2Panel1.Location = new Point(0, 0);
-            guna2Panel1.Margin = new Padding(2);
-            guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(856, 80);
-            guna2Panel1.TabIndex = 25;
+            pnlControls.BackColor = Color.White;
+            pnlControls.BorderColor = SystemColors.ActiveBorder;
+            pnlControls.BorderRadius = 15;
+            pnlControls.BorderThickness = 2;
+            pnlControls.Controls.Add(lblDirectory);
+            pnlControls.Controls.Add(cmbPlugins);
+            pnlControls.Controls.Add(guna2Button1);
+            pnlControls.Controls.Add(guna2Button2);
+            pnlControls.Dock = DockStyle.Top;
+            pnlControls.FillColor = SystemColors.ButtonHighlight;
+            pnlControls.Location = new Point(0, 0);
+            pnlControls.Margin = new Padding(2);
+            pnlControls.Name = "pnlControls";
+            pnlControls.Size = new Size(856, 80);
+            pnlControls.TabIndex = 25;
             // 
             // lblDirectory
             // 
@@ -142,19 +142,19 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(856, 633);
             Controls.Add(pnlChild);
-            Controls.Add(guna2Panel1);
+            Controls.Add(pnlControls);
             MinimumSize = new Size(878, 689);
             Name = "uiTestPlugin";
             Text = "uiTestPlugin";
             Load += uiTestPlugin_Load;
-            guna2Panel1.ResumeLayout(false);
+            pnlControls.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private ComboBox cmbPlugins;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Panel pnlControls;
         private Guna.UI2.WinForms.Guna2Panel pnlChild;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;

@@ -33,28 +33,32 @@ partial class PluginInterface
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PluginInterface));
         sPanel1 = new Sipaa.Framework.SPanel();
-        bntVersion = new Guna.UI2.WinForms.Guna2Button();
+        lblVersion = new Label();
         lblText = new Label();
         windows11Theme1 = new Telerik.WinControls.Themes.Windows11Theme();
         sPanel2 = new Sipaa.Framework.SPanel();
+        guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
         label2 = new Label();
         label1 = new Label();
-        guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
         sPanel3 = new Sipaa.Framework.SPanel();
+        guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
         label3 = new Label();
         label4 = new Label();
-        guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
         sPanel4 = new Sipaa.Framework.SPanel();
+        guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
         label5 = new Label();
         label6 = new Label();
-        guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
         pnlFiles = new Guna.UI2.WinForms.Guna2Panel();
         progress = new Guna.UI2.WinForms.Guna2ProgressBar();
+        groupBox2 = new GroupBox();
+        groupBox1 = new GroupBox();
         sPanel1.SuspendLayout();
         sPanel2.SuspendLayout();
         sPanel3.SuspendLayout();
         sPanel4.SuspendLayout();
         pnlFiles.SuspendLayout();
+        groupBox2.SuspendLayout();
+        groupBox1.SuspendLayout();
         SuspendLayout();
         // 
         // sPanel1
@@ -66,37 +70,27 @@ partial class PluginInterface
         sPanel1.BorderColor = Color.Black;
         sPanel1.BorderRadius = 20;
         sPanel1.BorderSize = 0;
-        sPanel1.Controls.Add(bntVersion);
+        sPanel1.Controls.Add(lblVersion);
         sPanel1.Controls.Add(lblText);
         sPanel1.ForeColor = Color.White;
         sPanel1.Location = new Point(24, 32);
         sPanel1.Margin = new Padding(4);
         sPanel1.Name = "sPanel1";
-        sPanel1.Size = new Size(584, 88);
+        sPanel1.Size = new Size(591, 88);
         sPanel1.TabIndex = 12;
         // 
-        // bntVersion
+        // lblVersion
         // 
-        bntVersion.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        bntVersion.Animated = true;
-        bntVersion.BackColor = Color.Transparent;
-        bntVersion.BorderColor = Color.Gainsboro;
-        bntVersion.BorderRadius = 20;
-        bntVersion.BorderThickness = 2;
-        bntVersion.DisabledState.BorderColor = Color.DarkGray;
-        bntVersion.DisabledState.CustomBorderColor = Color.DarkGray;
-        bntVersion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-        bntVersion.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        bntVersion.FillColor = Color.Transparent;
-        bntVersion.FocusedColor = Color.FromArgb(100, 170, 209);
-        bntVersion.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        bntVersion.ForeColor = Color.White;
-        bntVersion.Location = new Point(408, 16);
-        bntVersion.Margin = new Padding(2);
-        bntVersion.Name = "bntVersion";
-        bntVersion.Size = new Size(160, 58);
-        bntVersion.TabIndex = 14;
-        bntVersion.Text = "Version";
+        lblVersion.BackColor = Color.Transparent;
+        lblVersion.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        lblVersion.ForeColor = Color.White;
+        lblVersion.Location = new Point(296, 16);
+        lblVersion.Margin = new Padding(4, 0, 4, 0);
+        lblVersion.Name = "lblVersion";
+        lblVersion.Size = new Size(288, 64);
+        lblVersion.TabIndex = 1;
+        lblVersion.Text = "n/a";
+        lblVersion.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // lblText
         // 
@@ -120,15 +114,39 @@ partial class PluginInterface
         sPanel2.BorderColor = Color.Black;
         sPanel2.BorderRadius = 20;
         sPanel2.BorderSize = 0;
+        sPanel2.Controls.Add(guna2Button1);
         sPanel2.Controls.Add(label2);
         sPanel2.Controls.Add(label1);
-        sPanel2.Controls.Add(guna2Button1);
         sPanel2.ForeColor = Color.White;
-        sPanel2.Location = new Point(24, 144);
+        sPanel2.Location = new Point(16, 40);
         sPanel2.Margin = new Padding(4);
         sPanel2.Name = "sPanel2";
-        sPanel2.Size = new Size(584, 88);
+        sPanel2.Size = new Size(541, 88);
         sPanel2.TabIndex = 12;
+        // 
+        // guna2Button1
+        // 
+        guna2Button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        guna2Button1.Animated = true;
+        guna2Button1.BackColor = Color.Transparent;
+        guna2Button1.BorderColor = Color.Gainsboro;
+        guna2Button1.BorderRadius = 20;
+        guna2Button1.BorderThickness = 2;
+        guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+        guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+        guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        guna2Button1.FillColor = Color.Transparent;
+        guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
+        guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button1.ForeColor = Color.White;
+        guna2Button1.Location = new Point(365, 16);
+        guna2Button1.Margin = new Padding(2);
+        guna2Button1.Name = "guna2Button1";
+        guna2Button1.Size = new Size(160, 58);
+        guna2Button1.TabIndex = 14;
+        guna2Button1.Text = "Deinstall";
+        guna2Button1.Click += guna2Button1_Click;
         // 
         // label2
         // 
@@ -156,30 +174,6 @@ partial class PluginInterface
         label1.Text = "LFS-Encryption";
         label1.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // guna2Button1
-        // 
-        guna2Button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        guna2Button1.Animated = true;
-        guna2Button1.BackColor = Color.Transparent;
-        guna2Button1.BorderColor = Color.Gainsboro;
-        guna2Button1.BorderRadius = 20;
-        guna2Button1.BorderThickness = 2;
-        guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-        guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-        guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-        guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        guna2Button1.FillColor = Color.Transparent;
-        guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-        guna2Button1.ForeColor = Color.White;
-        guna2Button1.Location = new Point(408, 16);
-        guna2Button1.Margin = new Padding(2);
-        guna2Button1.Name = "guna2Button1";
-        guna2Button1.Size = new Size(160, 58);
-        guna2Button1.TabIndex = 14;
-        guna2Button1.Text = "Deinstall";
-        guna2Button1.Click += guna2Button1_Click;
-        // 
         // sPanel3
         // 
         sPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -189,15 +183,39 @@ partial class PluginInterface
         sPanel3.BorderColor = Color.Black;
         sPanel3.BorderRadius = 20;
         sPanel3.BorderSize = 0;
+        sPanel3.Controls.Add(guna2Button2);
         sPanel3.Controls.Add(label3);
         sPanel3.Controls.Add(label4);
-        sPanel3.Controls.Add(guna2Button2);
         sPanel3.ForeColor = Color.White;
-        sPanel3.Location = new Point(24, 248);
+        sPanel3.Location = new Point(16, 40);
         sPanel3.Margin = new Padding(4);
         sPanel3.Name = "sPanel3";
-        sPanel3.Size = new Size(584, 88);
+        sPanel3.Size = new Size(541, 88);
         sPanel3.TabIndex = 12;
+        // 
+        // guna2Button2
+        // 
+        guna2Button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        guna2Button2.Animated = true;
+        guna2Button2.BackColor = Color.Transparent;
+        guna2Button2.BorderColor = Color.Gainsboro;
+        guna2Button2.BorderRadius = 20;
+        guna2Button2.BorderThickness = 2;
+        guna2Button2.DisabledState.BorderColor = Color.DarkGray;
+        guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
+        guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        guna2Button2.FillColor = Color.Transparent;
+        guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
+        guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button2.ForeColor = Color.White;
+        guna2Button2.Location = new Point(365, 16);
+        guna2Button2.Margin = new Padding(2);
+        guna2Button2.Name = "guna2Button2";
+        guna2Button2.Size = new Size(160, 58);
+        guna2Button2.TabIndex = 14;
+        guna2Button2.Text = "Install";
+        guna2Button2.Click += guna2Button2_Click;
         // 
         // label3
         // 
@@ -225,29 +243,6 @@ partial class PluginInterface
         label4.Text = "AIZI-Encryption";
         label4.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // guna2Button2
-        // 
-        guna2Button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        guna2Button2.Animated = true;
-        guna2Button2.BackColor = Color.Transparent;
-        guna2Button2.BorderColor = Color.Gainsboro;
-        guna2Button2.BorderRadius = 20;
-        guna2Button2.BorderThickness = 2;
-        guna2Button2.DisabledState.BorderColor = Color.DarkGray;
-        guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
-        guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-        guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        guna2Button2.FillColor = Color.Transparent;
-        guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-        guna2Button2.ForeColor = Color.White;
-        guna2Button2.Location = new Point(408, 16);
-        guna2Button2.Margin = new Padding(2);
-        guna2Button2.Name = "guna2Button2";
-        guna2Button2.Size = new Size(160, 58);
-        guna2Button2.TabIndex = 14;
-        guna2Button2.Text = "Install";
-        // 
         // sPanel4
         // 
         sPanel4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -257,15 +252,39 @@ partial class PluginInterface
         sPanel4.BorderColor = Color.Black;
         sPanel4.BorderRadius = 20;
         sPanel4.BorderSize = 0;
+        sPanel4.Controls.Add(guna2Button3);
         sPanel4.Controls.Add(label5);
         sPanel4.Controls.Add(label6);
-        sPanel4.Controls.Add(guna2Button3);
         sPanel4.ForeColor = Color.White;
-        sPanel4.Location = new Point(24, 352);
+        sPanel4.Location = new Point(16, 144);
         sPanel4.Margin = new Padding(4);
         sPanel4.Name = "sPanel4";
-        sPanel4.Size = new Size(584, 88);
+        sPanel4.Size = new Size(541, 88);
         sPanel4.TabIndex = 12;
+        // 
+        // guna2Button3
+        // 
+        guna2Button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        guna2Button3.Animated = true;
+        guna2Button3.BackColor = Color.Transparent;
+        guna2Button3.BorderColor = Color.Gainsboro;
+        guna2Button3.BorderRadius = 20;
+        guna2Button3.BorderThickness = 2;
+        guna2Button3.DisabledState.BorderColor = Color.DarkGray;
+        guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
+        guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        guna2Button3.FillColor = Color.Transparent;
+        guna2Button3.FocusedColor = Color.FromArgb(100, 170, 209);
+        guna2Button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button3.ForeColor = Color.White;
+        guna2Button3.Location = new Point(365, 16);
+        guna2Button3.Margin = new Padding(2);
+        guna2Button3.Name = "guna2Button3";
+        guna2Button3.Size = new Size(160, 58);
+        guna2Button3.TabIndex = 14;
+        guna2Button3.Text = "Install";
+        guna2Button3.Click += guna2Button2_Click;
         // 
         // label5
         // 
@@ -293,29 +312,6 @@ partial class PluginInterface
         label6.Text = "Cloud-Encryption";
         label6.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // guna2Button3
-        // 
-        guna2Button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        guna2Button3.Animated = true;
-        guna2Button3.BackColor = Color.Transparent;
-        guna2Button3.BorderColor = Color.Gainsboro;
-        guna2Button3.BorderRadius = 20;
-        guna2Button3.BorderThickness = 2;
-        guna2Button3.DisabledState.BorderColor = Color.DarkGray;
-        guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
-        guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-        guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        guna2Button3.FillColor = Color.Transparent;
-        guna2Button3.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-        guna2Button3.ForeColor = Color.White;
-        guna2Button3.Location = new Point(408, 16);
-        guna2Button3.Margin = new Padding(2);
-        guna2Button3.Name = "guna2Button3";
-        guna2Button3.Size = new Size(160, 58);
-        guna2Button3.TabIndex = 14;
-        guna2Button3.Text = "Install";
-        // 
         // pnlFiles
         // 
         pnlFiles.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -324,10 +320,10 @@ partial class PluginInterface
         pnlFiles.BorderThickness = 2;
         pnlFiles.Controls.Add(progress);
         pnlFiles.FillColor = Color.Gainsboro;
-        pnlFiles.Location = new Point(24, 816);
+        pnlFiles.Location = new Point(24, 846);
         pnlFiles.Margin = new Padding(2);
         pnlFiles.Name = "pnlFiles";
-        pnlFiles.Size = new Size(584, 104);
+        pnlFiles.Size = new Size(591, 104);
         pnlFiles.TabIndex = 16;
         // 
         // progress
@@ -343,22 +339,46 @@ partial class PluginInterface
         progress.ProgressColor = Color.DeepSkyBlue;
         progress.ProgressColor2 = Color.Navy;
         progress.ShowText = true;
-        progress.Size = new Size(536, 56);
+        progress.Size = new Size(543, 56);
         progress.TabIndex = 17;
         progress.Text = "guna2ProgressBar1";
         progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
         progress.Visible = false;
+        // 
+        // groupBox2
+        // 
+        groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        groupBox2.Controls.Add(sPanel3);
+        groupBox2.Controls.Add(sPanel4);
+        groupBox2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+        groupBox2.Location = new Point(32, 312);
+        groupBox2.Name = "groupBox2";
+        groupBox2.Size = new Size(576, 256);
+        groupBox2.TabIndex = 14;
+        groupBox2.TabStop = false;
+        groupBox2.Text = "Availabel";
+        // 
+        // groupBox1
+        // 
+        groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        groupBox1.Controls.Add(sPanel2);
+        groupBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+        groupBox1.Location = new Point(32, 144);
+        groupBox1.Name = "groupBox1";
+        groupBox1.Size = new Size(576, 150);
+        groupBox1.TabIndex = 13;
+        groupBox1.TabStop = false;
+        groupBox1.Text = "Installed";
         // 
         // PluginInterface
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.White;
-        ClientSize = new Size(628, 944);
+        ClientSize = new Size(635, 974);
+        Controls.Add(groupBox2);
+        Controls.Add(groupBox1);
         Controls.Add(pnlFiles);
-        Controls.Add(sPanel4);
-        Controls.Add(sPanel3);
-        Controls.Add(sPanel2);
         Controls.Add(sPanel1);
         MinimumSize = new Size(300, 500);
         Name = "PluginInterface";
@@ -371,13 +391,14 @@ partial class PluginInterface
         sPanel3.ResumeLayout(false);
         sPanel4.ResumeLayout(false);
         pnlFiles.ResumeLayout(false);
+        groupBox2.ResumeLayout(false);
+        groupBox1.ResumeLayout(false);
         ResumeLayout(false);
     }
 
     #endregion
 
     private Sipaa.Framework.SPanel sPanel1;
-    private Guna.UI2.WinForms.Guna2Button bntVersion;
     private Label lblText;
     private Telerik.WinControls.Themes.Windows11Theme windows11Theme1;
     private Sipaa.Framework.SPanel sPanel2;
@@ -394,4 +415,7 @@ partial class PluginInterface
     private Guna.UI2.WinForms.Guna2Button guna2Button3;
     private Guna.UI2.WinForms.Guna2Panel pnlFiles;
     private Guna.UI2.WinForms.Guna2ProgressBar progress;
+    private GroupBox groupBox2;
+    private GroupBox groupBox1;
+    private Label lblVersion;
 }

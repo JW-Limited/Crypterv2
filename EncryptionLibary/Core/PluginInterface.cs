@@ -19,6 +19,10 @@ public partial class PluginInterface : Form
     private static object _lock = new object();
 
     private static PluginInterface _encrypt;
+
+
+    public PluginID Id => throw new NotImplementedException();
+
     public static PluginInterface Instance(string Version, PluginID id, string Name)
     {
         lock (_lock)
@@ -50,12 +54,17 @@ public partial class PluginInterface : Form
 
     private void uiSettings_Load(object sender, EventArgs e)
     {
-        bntVersion.Text = Version;
+        lblVersion.Text = Version;
         this.Text = "Plugin: " + Name;
     }
 
     private void guna2Button1_Click(object sender, EventArgs e)
     {
-        MessageBox.Show("You cant deinstall this model.","PluginManager",MessageBoxButtons.OK,MessageBoxIcon.Error);
+        MessageBox.Show("You cant deinstall this model.", "PluginManager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+
+    private void guna2Button2_Click(object sender, EventArgs e)
+    {
+        progress.Visible = true;
     }
 }

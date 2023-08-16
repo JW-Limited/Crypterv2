@@ -17,13 +17,13 @@ namespace Crypterv2_DevTool
 
         private Dictionary<FeatureFlags, string> descriptions = new Dictionary<FeatureFlags, string>
         {
-            { FeatureFlags.NewEncryptionCore, "Aktiviert den neuen Verschlüsselungskern, um sicherzustellen, dass Ihre sensiblen Daten mit modernsten Sicherheitsmethoden geschützt sind." },
-            { FeatureFlags.PluginSupport, "Ermöglicht die Unterstützung von Plugins in Form von .dll-Dateien. Diese Erweiterbarkeit ermöglicht es Ihnen, zusätzliche Funktionen und Integrationen nahtlos in Crypterv2 einzuführen." },
-            { FeatureFlags.ThirdPartyPluginSupport, "Ermöglicht die Unterstützung von Plugins von Drittanbietern. Sie können nun von externen Entwicklern erstellte Erweiterungen in Crypterv2 integrieren." },
-            { FeatureFlags.PluginManager, "Aktiviert den Plugin-Manager, der Ihnen ermöglicht, Plugins zu verwalten, zu installieren und zu deaktivieren, ohne die Hauptanwendung neu starten zu müssen." },
-            { FeatureFlags.WebView2GraphicalContent, "Ermöglicht die Anzeige von grafischem Inhalt in WebView2. Dies passiert in einer integrierten Browserkomponente."},
-            { FeatureFlags.SecuredContainerStreaming, "Ermöglicht das Streaming von verschlüsselten Inhalten. Diese Funktion gewährleistet, dass vertrauliche Daten sicher übertragen werden, ohne die Integrität der Verschlüsselung zu beeinträchtigen." },
-            { FeatureFlags.HistoryElementQuering, "Ermöglicht das Abfragen von Verlaufsdaten, sodass Sie präzise Einblicke in frühere Aktivitäten und Aktionen innerhalb Crypterv2 erhalten können." }
+            { FeatureFlags.NewEncryptionCore,           "Aktiviert den neuen Verschlüsselungskern, um sicherzustellen, dass Ihre sensiblen Daten mit modernsten Sicherheitsmethoden geschützt sind." },
+            { FeatureFlags.PluginSupport,               "Ermöglicht die Unterstützung von Plugins in Form von .dll-Dateien. Diese Erweiterbarkeit ermöglicht es Ihnen, zusätzliche Funktionen und Integrationen nahtlos in Crypterv2 einzuführen." },
+            { FeatureFlags.ThirdPartyPluginSupport,     "Ermöglicht die Unterstützung von Plugins von Drittanbietern. Sie können nun von externen Entwicklern erstellte Erweiterungen in Crypterv2 integrieren." },
+            { FeatureFlags.PluginManager,               "Aktiviert den Plugin-Manager, der Ihnen ermöglicht, Plugins zu verwalten, zu installieren und zu deaktivieren, ohne die Hauptanwendung neu starten zu müssen." },
+            { FeatureFlags.WebView2GraphicalContent,    "Ermöglicht die Anzeige von grafischem Inhalt in WebView2. Dies passiert in einer integrierten Browserkomponente."},
+            { FeatureFlags.SecuredContainerStreaming,   "Ermöglicht das Streaming von verschlüsselten Inhalten. Diese Funktion gewährleistet, dass vertrauliche Daten sicher übertragen werden, ohne die Integrität der Verschlüsselung zu beeinträchtigen." },
+            { FeatureFlags.HistoryElementQuering,       "Ermöglicht das Abfragen von Verlaufsdaten, sodass Sie präzise Einblicke in frühere Aktivitäten und Aktionen innerhalb Crypterv2 erhalten können." }
         };
 
 
@@ -49,8 +49,6 @@ namespace Crypterv2_DevTool
             WebView,
             NormalForm
         }
-
-
 
         private Form currentOpenedApp;
 
@@ -200,7 +198,7 @@ namespace Crypterv2_DevTool
 
                 };
 
-                var detailViewUi = new Core.Forms.uiListElement(flagInfo);
+                var detailViewUi = new Core.Forms.uiListElement(flagInfo,Client);
                 OpenInApp(detailViewUi, "QuickView", ChildrenUse.Auth);
             }
         }

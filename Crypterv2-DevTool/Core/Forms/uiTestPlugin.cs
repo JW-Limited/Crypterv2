@@ -97,7 +97,8 @@ namespace Crypterv2_DevTool.Core.Forms
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 lblDirectory.Text = ofd.SelectedPath;
-
+                plugins.Clear();
+                cmbPlugins.Items.Clear();
                 manager = new PluginManager(ofd.SelectedPath);
 
                 try
@@ -136,6 +137,8 @@ namespace Crypterv2_DevTool.Core.Forms
                     MessageBox.Show(ex.Message);
                 }
             }
+            else { 
+            }
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
@@ -152,6 +155,8 @@ namespace Crypterv2_DevTool.Core.Forms
 
             if (neededPlugin is not null)
             {
+
+                this.Size = new System.Drawing.Size(neededPlugin.form.Size.Height + pnlControls.Height + 10, neededPlugin.form.Size.Width + pnlControls.Width +10);
                 OpenInApp(neededPlugin.form, "Test", ChildrenUse.Auth);
             }
         }
