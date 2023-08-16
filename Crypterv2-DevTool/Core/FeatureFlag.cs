@@ -15,6 +15,35 @@ namespace Crypterv2_DevTool.Core
 {
     public class FeatureFlag : IFeatureFlagSwitcher
     {
+        public Dictionary<string, bool> ListFeaturesViaConnectedSocket(TcpClient client)
+        {
+            using (var stream = client.GetStream())
+            using (var writer = new StreamWriter(stream))
+            {
+                writer.WriteLine("list");
+                writer.Flush();
+
+                using (var reader = new StreamReader(stream))
+                {
+                    string response = reader.ReadToEnd();
+                    Dictionary<string, bool> featureValues = JsonConvert.DeserializeObject<Dictionary<string, bool>>(response);
+                    return featureValues;
+                }
+            }
+        }
+
+        public void ToggleFeatureViaConnectedSocket(string featureName, bool isEnabled, TcpClient client)
+        {
+            using (var stream = client.GetStream())
+            using (var writer = new StreamWriter(stream))
+            {
+                writer.WriteLine(featureName);
+                writer.WriteLine(isEnabled);
+                writer.Flush();
+            }
+        }
+
+
         public void ToggleFeature(FeatureFlags feature, bool isEnabled)
         {
             using (NamedPipeClientStream pipeClient = new NamedPipeClientStream(".", FeatureFlagePipeLineConfig.PipeName, PipeDirection.Out))
@@ -23,12 +52,11 @@ namespace Crypterv2_DevTool.Core
 
                 using (StreamWriter sw = new StreamWriter(pipeClient))
                 {
-                    // Serialize the feature flag information and send it through the pipe
                     var formatter = new BinaryFormatter();
                     var featureFlagInfo = new FeatureFlagInfo(feature, isEnabled);
-#pragma warning disable SYSLIB0011 // Typ oder Element ist veraltet
+                    #pragma warning disable SYSLIB0011 
                     formatter.Serialize(sw.BaseStream, featureFlagInfo);
-#pragma warning restore SYSLIB0011 // Typ oder Element ist veraltet
+                    #pragma warning restore SYSLIB0011 
                 }
             }
         }
@@ -37,8 +65,8 @@ namespace Crypterv2_DevTool.Core
         {
             using (var client = new TcpClient())
             {
-                client.Connect(IPAddress.Loopback, 9001); // Use the appropriate port
-
+                client.Connect(IPAddress.Loopback, 9001);
+            
                 using (var stream = client.GetStream())
                 using (var writer = new StreamWriter(stream))
                 {

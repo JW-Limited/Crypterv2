@@ -9,8 +9,8 @@ namespace EncryptionLibary
         public string Name { get; set; } = "Encryption Library";
         public PluginID ID { get; set; } = PluginID.GetID("enc","lbl","lvl01");
         public string Description { get; set; } = "A Library for more Encryption Models";
-        public string Version { get; set; } = "v0.0.1alpha";
-        public Form PluginInterface { get; set; } = Core.PluginInterface.Instance("v0.0.1alpha", PluginID.GetID("enc", "lbl", "lvl01"), "EncryptionLibary Installer");
+        public string Version { get; set; } = "v0.1.1alpha";
+        public Form PluginInterface { get; set; } = Core.PluginInterface.Instance("v0.1.1alpha", PluginID.GetID("enc", "lbl", "lvl01"), "EncryptionLibary Installer");
 
         public ObservableCollection<object> DynamicValues { get; set; } 
        

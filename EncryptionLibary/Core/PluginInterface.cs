@@ -23,7 +23,7 @@ public partial class PluginInterface : Form
     {
         lock (_lock)
         {
-            if (_encrypt is null)
+            if (_encrypt is null || _encrypt.IsDisposed)
             {
                 _encrypt = new PluginInterface(Version, id, Name);
             }

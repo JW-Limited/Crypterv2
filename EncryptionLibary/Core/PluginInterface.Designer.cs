@@ -360,7 +360,7 @@ partial class PluginInterface
         Controls.Add(sPanel3);
         Controls.Add(sPanel2);
         Controls.Add(sPanel1);
-        MinimumSize = new Size(650, 1000);
+        MinimumSize = new Size(300, 500);
         Name = "PluginInterface";
         ShowIcon = false;
         ShowInTaskbar = false;

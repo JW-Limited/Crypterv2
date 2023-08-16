@@ -13,4 +13,19 @@
     <ProjectReference Include="..\LILO-Packager\LILO-Packager.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Core\PluginTestConfig.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PluginTestConfig.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Core\PluginTestConfig.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>PluginTestConfig.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
 </Project>

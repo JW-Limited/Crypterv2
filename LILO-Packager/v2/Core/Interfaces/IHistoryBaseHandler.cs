@@ -14,5 +14,6 @@ namespace LILO_Packager.v2.Core.Interfaces
         Task InsertEncryptedOperationAsync(string operationType, string mode, string algorithmVersion, string inputFileName, string outputFileName, string id);
         Task UpdateEncryptedOperationAsync(int id, string operationType, string mode, string algorithmVersion, string inputFileName, string outputFileName);
         Task<List<HistoryElement>> GetAllEncryptedOperationsAsync();
+        Task<IQueryable<HistoryElement>> GetAllOperationsAsQuery();
     }
 }

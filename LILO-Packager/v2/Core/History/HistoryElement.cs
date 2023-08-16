@@ -8,6 +8,7 @@ namespace LILO_Packager.v2.Core.History
 {
     public class HistoryElement
     {
+
         public int id { get; set; } = 0;
         public String operationType { get; set; } = String.Empty;
         public String mode { get; set; } = String.Empty;
@@ -15,4 +16,5 @@ namespace LILO_Packager.v2.Core.History
         public String inputFileName { get; set; } = String.Empty;
         public String outputFileName { get; set; } = String.Empty;
     }
+
 }

@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Crypterv2_DevTool.Core" GeneratedClassName="PluginTestConfig">
+  <Profiles />
+  <Settings>
+    <Setting Name="recentDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">null</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

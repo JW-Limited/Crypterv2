@@ -20,13 +20,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Net.Sockets;
 using System.Net;
 using Newtonsoft.Json;
+using Telerik.Pivot.Core;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 {
     private static MainHost instance;
     private static object _lock = new object();
-    private NamedPipeServerStream pipeServer;
     private TcpListener listener;
 
     public static MainHost Instance()
@@ -42,47 +42,52 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
     }
 
-
     public enum ChildrenUse
     {
         Auth,
         WebView,
         NormalForm
     }
-
-    public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
     private PluginManager manager = null;
     public Core.History.DatabaseHandling dataHandler = new Core.History.DatabaseHandling();
-
+    public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
+    
     private MainHost()
     {
-        pipeServer = new NamedPipeServerStream(FeatureFlagePipeLineConfig.PipeName, PipeDirection.In, 1);
-        listener = new TcpListener(IPAddress.Loopback, 9001); // Use the same port
-        listener.Start();
-
-        try
-        {
-            Thread listenerThread = new Thread(ListenForConnections);
-            listenerThread.Start();
-        }
-        catch(Exception ex)
-        {
-            MessageBox.Show(ex.Message);
-        }
-
         InitializeComponent();
 
-        FeatureFlagEvents.FeatureFlagUpdateRequested += FeatureFlagEvents_FeatureFlagUpdateRequested;
+        if (FeatureFlagePipeLineConfig.DebugModeEnabled)
+        {
+            Thread listenerThread = new Thread(ListenForConnections);
+            listener = new TcpListener(IPAddress.Loopback, 9001); // Use the same port
+            listener.Start();
+
+            try
+            {
+                listenerThread.TrySetApartmentState(ApartmentState.MTA);
+                listenerThread.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            FeatureFlagEvents.FeatureFlagUpdateRequested += FeatureFlagEvents_FeatureFlagUpdateRequested;
+
+        }
+
+        this.FormClosing += (sender, e) =>
+        {
+            Application.Exit();
+        };
     }
 
     private void ListenForConnections()
     {
         while (true)
         {
-
             try
             {
-
                 TcpClient client = listener.AcceptTcpClient();
                 ThreadPool.QueueUserWorkItem(HandleClient, client);
             }
@@ -133,7 +138,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             { FeatureFlags.ThirdPartyPluginSupport.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.ThirdPartyPluginSupport) },
             { FeatureFlags.PluginManager.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.PluginManager) },
             { FeatureFlags.WebView2GraphicalContent.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent) },
-            { FeatureFlags.SecuredContainerStreaming.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming) }
+            { FeatureFlags.SecuredContainerStreaming.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming) },
+            { FeatureFlags.HistoryElementQuering.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering) }
         };
 
 
@@ -164,6 +170,12 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private async void MainHost_Load(object sender, EventArgs e)
     {
+
+        foreach(var procSrv in Process.GetProcessesByName("srvlocal"))
+        {
+            procSrv.Kill();
+        }
+
         var proc = new Process()
         {
             StartInfo = new ProcessStartInfo()

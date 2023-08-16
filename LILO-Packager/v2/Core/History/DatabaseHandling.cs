@@ -109,6 +109,37 @@ namespace LILO_Packager.v2.Core.History
 
             return historyElements;
         }
+
+        public async Task<IQueryable<HistoryElement>> GetAllOperationsAsQuery()
+        {
+            List<HistoryElement> historyElements = new List<HistoryElement>();
+
+            using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
+            {
+                await connection.OpenAsync();
+
+                string selectSql = "SELECT * FROM EncryptedOperations";
+                using (SQLiteCommand selectRowsCommand = new SQLiteCommand(selectSql, connection))
+                using (SQLiteDataReader reader = (SQLiteDataReader)await selectRowsCommand.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        HistoryElement historyElement = new HistoryElement
+                        {
+                            id = reader.GetInt32(0),
+                            operationType = reader.GetString(1),
+                            mode = reader.GetString(2),
+                            algorithmVersion = reader.GetString(3),
+                            inputFileName = reader.GetString(4),
+                            outputFileName = reader.GetString(5)
+                        };
+                        historyElements.Add(historyElement);
+                    }
+                }
+            }
+
+            return historyElements.AsQueryable();
+        }
     }
 }
 
