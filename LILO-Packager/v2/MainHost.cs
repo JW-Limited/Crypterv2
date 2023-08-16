@@ -78,7 +78,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         this.FormClosing += (sender, e) =>
         {
-            Application.Exit();
+            e.Cancel = true;
+            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:9001")));
         };
     }
 
