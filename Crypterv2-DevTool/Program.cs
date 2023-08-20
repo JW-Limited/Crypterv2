@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Crypterv2_DevTool
 {
     internal static class Program
@@ -5,12 +7,26 @@ namespace Crypterv2_DevTool
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
+        /// 
+
+        private static void InitializeApplication()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(true);
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+        }
+
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
+            InitializeApplication();
+
+            if(Process.GetProcessesByName("crypterv2").Length < 1)
+            {
+                MessageBox.Show("Please start the Crypterv2 Application befor using this tool.","Mainhost",MessageBoxButtons.OK,MessageBoxIcon.Error,MessageBoxDefaultButton.Button1,MessageBoxOptions.ServiceNotification);
+                return;
+            }
+
             Application.Run(new Main());
         }
     }

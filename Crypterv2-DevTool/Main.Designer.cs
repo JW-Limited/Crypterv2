@@ -52,10 +52,10 @@
             pnlChild = new Panel();
             bntDisconnect = new Button();
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            bntPlugins = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
+            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            bntPlugins = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel1.SuspendLayout();
             guna2Panel2.SuspendLayout();
             guna2Panel3.SuspendLayout();
@@ -300,8 +300,7 @@
             // bntDisconnect
             // 
             bntDisconnect.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            bntDisconnect.Enabled = false;
-            bntDisconnect.Location = new Point(600, 20);
+            bntDisconnect.Location = new Point(736, 20);
             bntDisconnect.Margin = new Padding(2);
             bntDisconnect.Name = "bntDisconnect";
             bntDisconnect.Size = new Size(128, 34);
@@ -328,52 +327,28 @@
             guna2Panel3.Size = new Size(840, 80);
             guna2Panel3.TabIndex = 23;
             // 
-            // bntPlugins
+            // guna2Button4
             // 
-            bntPlugins.Anchor = AnchorStyles.None;
-            bntPlugins.Animated = true;
-            bntPlugins.BackColor = Color.Transparent;
-            bntPlugins.BorderColor = Color.Gainsboro;
-            bntPlugins.BorderRadius = 20;
-            bntPlugins.BorderThickness = 2;
-            bntPlugins.DisabledState.BorderColor = Color.DarkGray;
-            bntPlugins.DisabledState.CustomBorderColor = Color.DarkGray;
-            bntPlugins.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            bntPlugins.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            bntPlugins.FillColor = Color.White;
-            bntPlugins.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntPlugins.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            bntPlugins.ForeColor = Color.Black;
-            bntPlugins.Location = new Point(80, 16);
-            bntPlugins.Margin = new Padding(2);
-            bntPlugins.Name = "bntPlugins";
-            bntPlugins.Size = new Size(160, 48);
-            bntPlugins.TabIndex = 16;
-            bntPlugins.Text = "Plugins";
-            bntPlugins.Click += bntPlugins_Click;
-            // 
-            // guna2Button1
-            // 
-            guna2Button1.Anchor = AnchorStyles.None;
-            guna2Button1.Animated = true;
-            guna2Button1.BackColor = Color.Transparent;
-            guna2Button1.BorderColor = Color.Gainsboro;
-            guna2Button1.BorderRadius = 20;
-            guna2Button1.BorderThickness = 2;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = Color.White;
-            guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2Button1.ForeColor = Color.Black;
-            guna2Button1.Location = new Point(256, 16);
-            guna2Button1.Margin = new Padding(2);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(160, 48);
-            guna2Button1.TabIndex = 16;
-            guna2Button1.Text = "n/a";
+            guna2Button4.Anchor = AnchorStyles.None;
+            guna2Button4.Animated = true;
+            guna2Button4.BackColor = Color.Transparent;
+            guna2Button4.BorderColor = Color.Gainsboro;
+            guna2Button4.BorderRadius = 20;
+            guna2Button4.BorderThickness = 2;
+            guna2Button4.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button4.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button4.FillColor = Color.White;
+            guna2Button4.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button4.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button4.ForeColor = Color.Black;
+            guna2Button4.Location = new Point(608, 16);
+            guna2Button4.Margin = new Padding(2);
+            guna2Button4.Name = "guna2Button4";
+            guna2Button4.Size = new Size(160, 48);
+            guna2Button4.TabIndex = 16;
+            guna2Button4.Text = "n/a";
             // 
             // guna2Button2
             // 
@@ -398,28 +373,52 @@
             guna2Button2.TabIndex = 16;
             guna2Button2.Text = "n/a";
             // 
-            // guna2Button4
+            // guna2Button1
             // 
-            guna2Button4.Anchor = AnchorStyles.None;
-            guna2Button4.Animated = true;
-            guna2Button4.BackColor = Color.Transparent;
-            guna2Button4.BorderColor = Color.Gainsboro;
-            guna2Button4.BorderRadius = 20;
-            guna2Button4.BorderThickness = 2;
-            guna2Button4.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button4.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button4.FillColor = Color.White;
-            guna2Button4.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button4.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2Button4.ForeColor = Color.Black;
-            guna2Button4.Location = new Point(608, 16);
-            guna2Button4.Margin = new Padding(2);
-            guna2Button4.Name = "guna2Button4";
-            guna2Button4.Size = new Size(160, 48);
-            guna2Button4.TabIndex = 16;
-            guna2Button4.Text = "n/a";
+            guna2Button1.Anchor = AnchorStyles.None;
+            guna2Button1.Animated = true;
+            guna2Button1.BackColor = Color.Transparent;
+            guna2Button1.BorderColor = Color.Gainsboro;
+            guna2Button1.BorderRadius = 20;
+            guna2Button1.BorderThickness = 2;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = Color.White;
+            guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button1.ForeColor = Color.Black;
+            guna2Button1.Location = new Point(256, 16);
+            guna2Button1.Margin = new Padding(2);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.Size = new Size(160, 48);
+            guna2Button1.TabIndex = 16;
+            guna2Button1.Text = "n/a";
+            // 
+            // bntPlugins
+            // 
+            bntPlugins.Anchor = AnchorStyles.None;
+            bntPlugins.Animated = true;
+            bntPlugins.BackColor = Color.Transparent;
+            bntPlugins.BorderColor = Color.Gainsboro;
+            bntPlugins.BorderRadius = 20;
+            bntPlugins.BorderThickness = 2;
+            bntPlugins.DisabledState.BorderColor = Color.DarkGray;
+            bntPlugins.DisabledState.CustomBorderColor = Color.DarkGray;
+            bntPlugins.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            bntPlugins.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            bntPlugins.FillColor = Color.White;
+            bntPlugins.FocusedColor = Color.FromArgb(100, 170, 209);
+            bntPlugins.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            bntPlugins.ForeColor = Color.Black;
+            bntPlugins.Location = new Point(80, 16);
+            bntPlugins.Margin = new Padding(2);
+            bntPlugins.Name = "bntPlugins";
+            bntPlugins.Size = new Size(160, 48);
+            bntPlugins.TabIndex = 16;
+            bntPlugins.Text = "Plugins";
+            bntPlugins.Click += bntPlugins_Click;
             // 
             // Main
             // 

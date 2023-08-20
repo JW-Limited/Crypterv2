@@ -77,7 +77,7 @@ namespace Crypterv2_DevTool
                 currentOpenedApp.Close();
             }
 
-
+            this.Text = "Crypterv2 - " + FormName;
             this.IsMdiContainer = true;
             this.BackColor = Color.White;
 
@@ -122,6 +122,8 @@ namespace Crypterv2_DevTool
                 this.BackColor = Color.White;
                 pnlChild.Dock = DockStyle.None;
                 pnlChild.Size = new Size(1, 1);
+                this.Text = "Crypterv2 - Bridged";
+
             };
         }
 
@@ -140,7 +142,7 @@ namespace Crypterv2_DevTool
 
                 this.Text = "DevTool - Bridged";
                 this.button1.Text = "Connected";
-                this.button1.Enabled = false;
+                this.button1.Visible = false;
 
                 var feat = new FeatureFlag();
 
@@ -167,12 +169,12 @@ namespace Crypterv2_DevTool
                 lblCore.Text = nameof(LILO_Packager.v2.Core.Interfaces.IFeatureFlagSwitcher);
                 lblVersion.Text = Application.ProductVersion.ToString();
                 lblAccess.Text = "Unknown";
-                bntDisconnect.Enabled = true;
+                bntDisconnect.Visible = true;
             }
             catch
             {
                 this.button1.Text = "Retry";
-                this.button1.Enabled = true;
+                this.button1.Visible = true;
                 this.Text = "DevTool - Error";
                 MessageBox.Show("Cant connect to Crypterv2.", "DevConnection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -199,6 +201,7 @@ namespace Crypterv2_DevTool
                 };
 
                 var detailViewUi = new Core.Forms.uiListElement(flagInfo,Client);
+               
                 OpenInApp(detailViewUi, "QuickView", ChildrenUse.Auth);
             }
         }
@@ -206,8 +209,8 @@ namespace Crypterv2_DevTool
         private void bntDisconnect_Click(object sender, EventArgs e)
         {
             Client.Close();
-            button1.Enabled = true;
-            bntDisconnect.Enabled = false;
+            button1.Visible = true;
+            bntDisconnect.Visible = false;
             listViewHistory.Items.Clear();
             lblAccess.Text = "n/a";
             lblDebug.Text = "n/a";

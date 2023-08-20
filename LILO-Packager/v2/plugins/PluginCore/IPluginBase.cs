@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LILO_Packager.v2.plugins.PluginCore;
+
 public interface IPluginBase
 {
     public String Name

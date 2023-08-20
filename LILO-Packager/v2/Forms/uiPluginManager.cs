@@ -78,5 +78,11 @@ namespace LILO_Packager.v2.Forms
         {
 
         }
+
+        private void bntPlugin_Click(object sender, EventArgs e)
+        {
+            var login = uiLILOAccountLogin.Instance();
+            login.ShowDialog();
+        }
     }
 }

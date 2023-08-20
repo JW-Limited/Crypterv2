@@ -28,10 +28,10 @@ partial class MainHost
     /// </summary>
     private void InitializeComponent()
     {
-        Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
+        Guna.UI2.AnimatorNS.Animation animation2 = new Guna.UI2.AnimatorNS.Animation();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
         hider = new Sipaa.Framework.SPanel();
-        guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
+        bntAccount = new Guna.UI2.WinForms.Guna2Button();
         guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
         guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
         guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
@@ -53,7 +53,7 @@ partial class MainHost
         hider.BorderColor = Color.Black;
         hider.BorderRadius = 0;
         hider.BorderSize = 0;
-        hider.Controls.Add(guna2Button6);
+        hider.Controls.Add(bntAccount);
         hider.Controls.Add(guna2Button2);
         hider.Controls.Add(guna2Button5);
         hider.Controls.Add(guna2Button4);
@@ -66,37 +66,39 @@ partial class MainHost
         hider.Location = new Point(0, 0);
         hider.Margin = new Padding(4);
         hider.Name = "hider";
-        hider.Size = new Size(336, 1097);
+        hider.Size = new Size(336, 1055);
         hider.TabIndex = 10;
         // 
-        // guna2Button6
+        // bntAccount
         // 
-        guna2Button6.Anchor = AnchorStyles.Bottom;
-        guna2Button6.Animated = true;
-        guna2Button6.BorderColor = Color.Gainsboro;
-        guna2Button6.BorderRadius = 20;
-        guna2Button6.BorderThickness = 2;
-        guna2Transition1.SetDecoration(guna2Button6, Guna.UI2.AnimatorNS.DecorationType.None);
-        guna2Button6.DisabledState.BorderColor = Color.DarkGray;
-        guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray;
-        guna2Button6.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-        guna2Button6.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        guna2Button6.FillColor = Color.Empty;
-        guna2Button6.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-        guna2Button6.ForeColor = Color.Black;
-        guna2Button6.Image = Properties.Resources.Settings;
-        guna2Button6.ImageAlign = HorizontalAlignment.Left;
-        guna2Button6.ImageOffset = new Point(15, 0);
-        guna2Button6.ImageSize = new Size(40, 40);
-        guna2Button6.Location = new Point(24, 989);
-        guna2Button6.Margin = new Padding(2);
-        guna2Button6.Name = "guna2Button6";
-        guna2Button6.Size = new Size(272, 80);
-        guna2Button6.TabIndex = 15;
-        guna2Button6.Text = "    Settings";
-        guna2Button6.TextAlign = HorizontalAlignment.Left;
-        guna2Button6.Click += guna2Button6_Click;
+        bntAccount.Anchor = AnchorStyles.Bottom;
+        bntAccount.Animated = true;
+        bntAccount.BorderColor = Color.Gainsboro;
+        bntAccount.BorderRadius = 20;
+        bntAccount.BorderThickness = 2;
+        guna2Transition1.SetDecoration(bntAccount, Guna.UI2.AnimatorNS.DecorationType.None);
+        bntAccount.DisabledState.BorderColor = Color.DarkGray;
+        bntAccount.DisabledState.CustomBorderColor = Color.DarkGray;
+        bntAccount.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        bntAccount.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        bntAccount.FillColor = Color.Empty;
+        bntAccount.FocusedColor = Color.FromArgb(100, 170, 209);
+        bntAccount.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        bntAccount.ForeColor = Color.Black;
+        bntAccount.Image = Properties.Resources.icons8_male_user_96;
+        bntAccount.ImageAlign = HorizontalAlignment.Left;
+        bntAccount.ImageOffset = new Point(15, 0);
+        bntAccount.ImageSize = new Size(40, 40);
+        bntAccount.Location = new Point(24, 946);
+        bntAccount.Margin = new Padding(2);
+        bntAccount.Name = "bntAccount";
+        bntAccount.Size = new Size(272, 80);
+        bntAccount.TabIndex = 15;
+        bntAccount.Text = "    Account";
+        bntAccount.TextAlign = HorizontalAlignment.Left;
+        bntAccount.Click += guna2Button6_Click;
+        bntAccount.MouseLeave += bntAccount_MouseLeave;
+        bntAccount.MouseHover += guna2Button6_MouseHover;
         // 
         // guna2Button2
         // 
@@ -118,7 +120,7 @@ partial class MainHost
         guna2Button2.ImageAlign = HorizontalAlignment.Left;
         guna2Button2.ImageOffset = new Point(15, 0);
         guna2Button2.ImageSize = new Size(40, 40);
-        guna2Button2.Location = new Point(24, 616);
+        guna2Button2.Location = new Point(24, 595);
         guna2Button2.Margin = new Padding(2);
         guna2Button2.Name = "guna2Button2";
         guna2Button2.Size = new Size(272, 80);
@@ -147,7 +149,7 @@ partial class MainHost
         guna2Button5.ImageAlign = HorizontalAlignment.Left;
         guna2Button5.ImageOffset = new Point(15, 0);
         guna2Button5.ImageSize = new Size(40, 40);
-        guna2Button5.Location = new Point(24, 712);
+        guna2Button5.Location = new Point(24, 691);
         guna2Button5.Margin = new Padding(2);
         guna2Button5.Name = "guna2Button5";
         guna2Button5.Size = new Size(272, 80);
@@ -176,7 +178,7 @@ partial class MainHost
         guna2Button4.ImageAlign = HorizontalAlignment.Left;
         guna2Button4.ImageOffset = new Point(15, 0);
         guna2Button4.ImageSize = new Size(40, 40);
-        guna2Button4.Location = new Point(24, 518);
+        guna2Button4.Location = new Point(24, 496);
         guna2Button4.Margin = new Padding(2);
         guna2Button4.Name = "guna2Button4";
         guna2Button4.Size = new Size(272, 80);
@@ -205,7 +207,7 @@ partial class MainHost
         guna2Button3.ImageAlign = HorizontalAlignment.Left;
         guna2Button3.ImageOffset = new Point(15, 0);
         guna2Button3.ImageSize = new Size(40, 40);
-        guna2Button3.Location = new Point(24, 422);
+        guna2Button3.Location = new Point(24, 401);
         guna2Button3.Margin = new Padding(2);
         guna2Button3.Name = "guna2Button3";
         guna2Button3.Size = new Size(272, 80);
@@ -234,7 +236,7 @@ partial class MainHost
         bntOpen.ImageAlign = HorizontalAlignment.Left;
         bntOpen.ImageOffset = new Point(15, 0);
         bntOpen.ImageSize = new Size(40, 40);
-        bntOpen.Location = new Point(24, 326);
+        bntOpen.Location = new Point(24, 305);
         bntOpen.Margin = new Padding(2);
         bntOpen.Name = "bntOpen";
         bntOpen.Size = new Size(272, 80);
@@ -325,22 +327,22 @@ partial class MainHost
         // 
         guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Custom;
         guna2Transition1.Cursor = null;
-        animation1.AnimateOnlyDifferences = true;
-        animation1.BlindCoeff = (PointF)resources.GetObject("animation1.BlindCoeff");
-        animation1.LeafCoeff = 0F;
-        animation1.MaxTime = 1F;
-        animation1.MinTime = 0F;
-        animation1.MosaicCoeff = (PointF)resources.GetObject("animation1.MosaicCoeff");
-        animation1.MosaicShift = (PointF)resources.GetObject("animation1.MosaicShift");
-        animation1.MosaicSize = 0;
-        animation1.Padding = new Padding(0);
-        animation1.RotateCoeff = 0F;
-        animation1.RotateLimit = 0F;
-        animation1.ScaleCoeff = (PointF)resources.GetObject("animation1.ScaleCoeff");
-        animation1.SlideCoeff = (PointF)resources.GetObject("animation1.SlideCoeff");
-        animation1.TimeCoeff = 0F;
-        animation1.TransparencyCoeff = 1F;
-        guna2Transition1.DefaultAnimation = animation1;
+        animation2.AnimateOnlyDifferences = true;
+        animation2.BlindCoeff = (PointF)resources.GetObject("animation2.BlindCoeff");
+        animation2.LeafCoeff = 0F;
+        animation2.MaxTime = 1F;
+        animation2.MinTime = 0F;
+        animation2.MosaicCoeff = (PointF)resources.GetObject("animation2.MosaicCoeff");
+        animation2.MosaicShift = (PointF)resources.GetObject("animation2.MosaicShift");
+        animation2.MosaicSize = 0;
+        animation2.Padding = new Padding(0);
+        animation2.RotateCoeff = 0F;
+        animation2.RotateLimit = 0F;
+        animation2.ScaleCoeff = (PointF)resources.GetObject("animation2.ScaleCoeff");
+        animation2.SlideCoeff = (PointF)resources.GetObject("animation2.SlideCoeff");
+        animation2.TimeCoeff = 0F;
+        animation2.TransparencyCoeff = 1F;
+        guna2Transition1.DefaultAnimation = animation2;
         guna2Transition1.Interval = 1;
         // 
         // pnlChild
@@ -348,8 +350,9 @@ partial class MainHost
         guna2Transition1.SetDecoration(pnlChild, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlChild.Dock = DockStyle.Fill;
         pnlChild.Location = new Point(336, 0);
+        pnlChild.Margin = new Padding(2);
         pnlChild.Name = "pnlChild";
-        pnlChild.Size = new Size(1250, 1097);
+        pnlChild.Size = new Size(1250, 1055);
         pnlChild.TabIndex = 15;
         // 
         // MainHost
@@ -357,7 +360,7 @@ partial class MainHost
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.White;
-        ClientSize = new Size(1586, 1097);
+        ClientSize = new Size(1586, 1055);
         Controls.Add(pnlChild);
         Controls.Add(hider);
         Controls.Add(bntChoose_File);
@@ -365,7 +368,8 @@ partial class MainHost
         HelpButton = true;
         Icon = (Icon)resources.GetObject("$this.Icon");
         IsMdiContainer = true;
-        MinimumSize = new Size(1400, 1060);
+        Margin = new Padding(2);
+        MinimumSize = new Size(1400, 1057);
         Name = "MainHost";
         Text = "MainHost";
         Load += MainHost_Load;
@@ -383,7 +387,7 @@ partial class MainHost
     private Guna.UI2.WinForms.Guna2Button guna2Button4;
     private Guna.UI2.WinForms.Guna2Button guna2Button3;
     private Guna.UI2.WinForms.Guna2Button bntOpen;
-    private Guna.UI2.WinForms.Guna2Button guna2Button6;
+    private Guna.UI2.WinForms.Guna2Button bntAccount;
     private Guna.UI2.WinForms.Guna2Transition guna2Transition1;
     private Label lblText;
     private Panel pnlChild;

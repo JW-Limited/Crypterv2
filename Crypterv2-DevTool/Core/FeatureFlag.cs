@@ -83,7 +83,7 @@ namespace Crypterv2_DevTool.Core
             }
         }
 
-        public void ToggleFeatureViaSocket(string featureName, bool isEnabled)
+        public void ToggleFeatureViaSocket(string featureName)
         {
             using (var client = new TcpClient())
             {
@@ -93,7 +93,6 @@ namespace Crypterv2_DevTool.Core
                 using (var writer = new StreamWriter(stream))
                 {
                     writer.WriteLine(featureName);
-                    writer.WriteLine(isEnabled);
                     writer.Flush();
                 }
             }

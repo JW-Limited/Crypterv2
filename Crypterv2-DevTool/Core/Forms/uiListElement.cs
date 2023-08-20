@@ -48,8 +48,10 @@ namespace Crypterv2_DevTool.Core.Forms
 
         private void bntChange_Click(object sender, EventArgs e)
         {
+            tcpClient.Close();
+
             var handler = new FeatureFlag();
-            handler.ToggleFeatureViaConnectedSocket(featureName: _info.Name, _info.EnabledState, tcpClient);
+            handler.ToggleFeatureViaSocket(featureName: _info.Flag.ToString());
             this.Close();
         }
     }

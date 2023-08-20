@@ -153,6 +153,16 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icons8_male_user_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-male-user-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icons8_settings_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8_settings_32", resourceCulture);
@@ -256,6 +266,16 @@ namespace LILO_Packager.Properties {
         public static System.Drawing.Bitmap Padlock {
             get {
                 object obj = ResourceManager.GetObject("Padlock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap pexels_johannes_plenio_1103970 {
+            get {
+                object obj = ResourceManager.GetObject("pexels-johannes-plenio-1103970", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

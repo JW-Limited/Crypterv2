@@ -82,7 +82,7 @@ partial class uiEncryt
         sPanel1.Controls.Add(lblText);
         sPanel1.ForeColor = Color.White;
         sPanel1.Location = new Point(24, 32);
-        sPanel1.Margin = new Padding(4);
+        sPanel1.Margin = new Padding(4, 4, 4, 4);
         sPanel1.Name = "sPanel1";
         sPanel1.Size = new Size(976, 88);
         sPanel1.TabIndex = 10;
@@ -104,10 +104,10 @@ partial class uiEncryt
         bntPlugin.FocusedColor = Color.FromArgb(100, 170, 209);
         bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
         bntPlugin.ForeColor = Color.White;
-        bntPlugin.Location = new Point(872, 16);
+        bntPlugin.Location = new Point(864, 16);
         bntPlugin.Margin = new Padding(2);
         bntPlugin.Name = "bntPlugin";
-        bntPlugin.Size = new Size(88, 58);
+        bntPlugin.Size = new Size(96, 58);
         bntPlugin.TabIndex = 13;
         bntPlugin.Text = "More";
         bntPlugin.Click += bntOpenPlugin_Clicj;
@@ -264,7 +264,7 @@ partial class uiEncryt
         // 
         linkAccountOnline.Anchor = AnchorStyles.None;
         linkAccountOnline.AutoSize = true;
-        linkAccountOnline.Location = new Point(507, 535);
+        linkAccountOnline.Location = new Point(508, 535);
         linkAccountOnline.Margin = new Padding(2, 0, 2, 0);
         linkAccountOnline.Name = "linkAccountOnline";
         linkAccountOnline.Size = new Size(180, 25);
@@ -333,6 +333,7 @@ partial class uiEncryt
         progress.BorderThickness = 2;
         progress.FillColor = Color.Transparent;
         progress.Location = new Point(0, 0);
+        progress.Margin = new Padding(2);
         progress.Name = "progress";
         progress.ProgressColor = Color.DeepSkyBlue;
         progress.ProgressColor2 = Color.Navy;
@@ -391,8 +392,9 @@ partial class uiEncryt
         chblistFiles.ForeColor = Color.White;
         chblistFiles.FormattingEnabled = true;
         chblistFiles.Location = new Point(32, 64);
+        chblistFiles.Margin = new Padding(2);
         chblistFiles.Name = "chblistFiles";
-        chblistFiles.Size = new Size(296, 448);
+        chblistFiles.Size = new Size(296, 420);
         chblistFiles.TabIndex = 2;
         chblistFiles.ThreeDCheckBoxes = true;
         // 
@@ -492,6 +494,7 @@ partial class uiEncryt
         Controls.Add(guna2Panel3);
         Controls.Add(sPanel1);
         DoubleBuffered = true;
+        Margin = new Padding(2);
         Name = "uiEncryt";
         Text = "uiEncryt";
         Load += uiEncryt_Load;

@@ -21,6 +21,8 @@ using System.Net.Sockets;
 using System.Net;
 using Newtonsoft.Json;
 using Telerik.Pivot.Core;
+using LILO_Packager.v2.Core.LILO;
+using LILO_Packager.v2.Forms;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
@@ -48,18 +50,25 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         WebView,
         NormalForm
     }
+    public string UserFile { get => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"); private set => UserFile = value; }
     private PluginManager manager = null;
+    public User loggedInUser;
     public Core.History.DatabaseHandling dataHandler = new Core.History.DatabaseHandling();
     public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
-    
+
     private MainHost()
     {
         InitializeComponent();
 
+        if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
+        {
+            loggedInUser = UserManager.Instance().LoadUserFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"));
+        }
+
         if (FeatureFlagePipeLineConfig.DebugModeEnabled)
         {
             Thread listenerThread = new Thread(ListenForConnections);
-            listener = new TcpListener(IPAddress.Loopback, 9001); // Use the same port
+            listener = new TcpListener(IPAddress.Loopback, 9001);
             listener.Start();
 
             try
@@ -92,14 +101,14 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 TcpClient client = listener.AcceptTcpClient();
                 ThreadPool.QueueUserWorkItem(HandleClient, client);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
     }
 
-    private void HandleClient(object clientObj)
+    private async void HandleClient(object clientObj)
     {
         using (TcpClient client = (TcpClient)clientObj)
         using (NetworkStream stream = client.GetStream())
@@ -119,14 +128,13 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             else
             {
                 string featureName = reader.ReadLine();
-                bool isEnabled = bool.Parse(reader.ReadLine());
 
-                var feature = Enum.Parse(typeof(FeatureFlags), featureName);
+                var feature = (FeatureFlags)Enum.Parse(typeof(FeatureFlags), featureName);
 
-                ToggleFeature((FeatureFlags)feature, isEnabled);
+                await FeatureManager.ToggleFeatureAsync(feature);
             }
 
-            
+
         }
     }
 
@@ -172,7 +180,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     private async void MainHost_Load(object sender, EventArgs e)
     {
 
-        foreach(var procSrv in Process.GetProcessesByName("srvlocal"))
+        foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
         {
             procSrv.Kill();
         }
@@ -268,16 +276,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         children.Show();
 
         currentOpenedApp = children;
-
-        /*
-
-        currentOpenedApp.FormClosing += (sender, e) =>
-        {
-            this.IsMdiContainer = false;
-            this.BackColor = Color.White;
-            pnlChild.Dock = DockStyle.None;
-            pnlChild.Size = new Size(1, 1);
-        };*/
     }
 
     private void guna2Button5_Click(object sender, EventArgs e)
@@ -307,7 +305,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             }
             else
             {
-                OpenInApp(v2.Forms.uiEncryt.Instance(encryptionLibrary,dataHandler));
+                OpenInApp(v2.Forms.uiEncryt.Instance(encryptionLibrary, dataHandler));
             }
 
 
@@ -343,17 +341,46 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     }
 
     private void guna2Button6_Click(object sender, EventArgs e)
-    {
-        OpenInApp(v2.Forms.uiSettings.Instance());
+    { 
+        if(loggedInUser is null)
+        {
+            var loginUi = uiLILOAccountLogin.Instance();
+            loginUi.FormClosing += (sender, e) =>
+            {
+                if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
+                {
+                    loggedInUser = UserManager.Instance().LoadUserFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"));
+                }
+            };
+
+            loginUi.ShowDialog();
+        }
+        else
+        {
+            OpenInApp(v2.Forms.uiAccount.Instance(loggedInUser));
+        }
     }
 
     private void bntPlugin_Clicked(object sender, EventArgs e)
     {
-        OpenInApp(v2.Forms.uiPluginManager.Instance(plugins,manager));
+        OpenInApp(v2.Forms.uiPluginManager.Instance(plugins, manager));
     }
 
     public void ToggleFeature(FeatureFlags feature, bool isEnabled)
     {
         FeatureFlagEvents_FeatureFlagUpdateRequested(null, new FeatureFlagUpdateEventArgs(feature, isEnabled));
+    }
+
+    private void guna2Button6_MouseHover(object sender, EventArgs e)
+    {
+        if(loggedInUser is not null)
+        {
+            bntAccount.Text = "    " + loggedInUser.Email.Replace("@jwlmt.com", "").ToUpperInvariant();
+        }
+    }
+
+    private void bntAccount_MouseLeave(object sender, EventArgs e)
+    {
+        bntAccount.Text = "    Account";
     }
 }
