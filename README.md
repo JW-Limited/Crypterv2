@@ -10,7 +10,7 @@
 
 ## How it works 
 <p align="center">
-  <img width="878" alt="image" src="https://github.com/JW-Limited/Crypterv2/assets/120219149/da86adc4-358f-4a28-8ad6-7d3bd1010e2c">
+  <img width="817" alt="image" src="https://github.com/JW-Limited/Crypterv2/assets/120219149/65fa4514-1412-4920-bd05-0e412ee8c4b5">
 </p>
 
 - Download the latest build and Open `crypterv2.exe`.
