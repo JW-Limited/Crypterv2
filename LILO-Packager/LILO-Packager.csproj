@@ -55,11 +55,13 @@
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.3.5" />
     <PackageReference Include="HTAlt.WinForms" Version="0.1.7.7" />
     <PackageReference Include="ImageListView" Version="13.8.2" />
+    <PackageReference Include="Markdig" Version="0.32.0" />
     <PackageReference Include="metromodernui" Version="1.4.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0-preview.6.23329.7" />
     <PackageReference Include="Microsoft.FeatureManagement" Version="2.6.1" />
     <PackageReference Include="microsoft.web.webview2" Version="1.0.1988-prerelease" />
     <PackageReference Include="modern.forms" Version="0.3.0" />
+    <PackageReference Include="Octokit" Version="7.1.0" />
     <PackageReference Include="Ookii.Dialogs.WinForms" Version="4.0.0" />
     <PackageReference Include="Param" Version="1.0.2" />
     <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
@@ -119,6 +121,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InstallHelper\InstallHelper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Interop.IWshRuntimeLibrary">
+      <HintPath>..\InstallHelper\obj\Debug\net7.0\Interop.IWshRuntimeLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

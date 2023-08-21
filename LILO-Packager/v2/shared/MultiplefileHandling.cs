@@ -9,7 +9,7 @@ namespace LILO_Packager.v2.shared
 {
     public class MultiplefileHandling
     {
-        public async Task ZipFilesAsync(string zipFilePath, Action<double> progressCallback, List<string> files)
+        public async Task ZipFilesAsync(string zipFilePath, Action<int> progressCallback, List<string> files)
         {
             if (files == null || files.Count == 0)
             {
@@ -27,7 +27,7 @@ namespace LILO_Packager.v2.shared
                     string fileName = Path.GetFileName(fileToZip);
                     zipArchive.CreateEntryFromFile(fileToZip, fileName);
 
-                    double progress = (i + 1.0) / filesToZip.Count;
+                    int progress = (i + 1) / filesToZip.Count;
                     progressCallback?.Invoke(progress);
                 }
             }

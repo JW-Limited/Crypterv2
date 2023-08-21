@@ -23,6 +23,14 @@ using Newtonsoft.Json;
 using Telerik.Pivot.Core;
 using LILO_Packager.v2.Core.LILO;
 using LILO_Packager.v2.Forms;
+using System.Threading;
+using LILO_Packager.v2.shared;
+using srvlocal_gui;
+using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
+using srvlocal_gui.AppMananger;
+using TagLib.Mpeg;
+using Telerik.WinControls.UI;
+using IWshRuntimeLibrary;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
@@ -44,6 +52,17 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
     }
 
+    public NotifyIconManager noty;
+    public string owner = "JW-Limited";
+    public string repo = "Crypterv2";
+    public string htmlCode { get; set; }
+    public string name { get; set; }
+    public string version { get; set; }
+    public bool updating = false;
+    public bool downloaded = false;
+    public string zipPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "latest_release.zip");
+    public Action<bool> isEnabling;
+
     public enum ChildrenUse
     {
         Auth,
@@ -60,7 +79,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     {
         InitializeComponent();
 
-        if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
+        if (System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
         {
             loggedInUser = UserManager.Instance().LoadUserFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"));
         }
@@ -88,7 +107,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         this.FormClosing += (sender, e) =>
         {
             e.Cancel = true;
-            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:9001")));
+            this.Hide();
         };
     }
 
@@ -179,12 +198,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private async void MainHost_Load(object sender, EventArgs e)
     {
-
-        foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
-        {
-            procSrv.Kill();
-        }
-
+        var updater = Updater.Instance();
+        noty = new NotifyIconManager();
         var proc = new Process()
         {
             StartInfo = new ProcessStartInfo()
@@ -196,10 +211,27 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             }
         };
 
+
+        var currentVersion = System.Windows.Forms.Application.ProductVersion;
+        var latestVersion = updater.GetLatestVersion(owner, repo);
+
+        foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
+        {
+            procSrv.Kill();
+        }
+
         proc.Start();
 
-        this.BackColor = SystemColors.ButtonFace;
-        OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+        if(latestVersion != currentVersion)
+        {
+            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/update")));
+            noty.ShowBubbleNotification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}");
+        }
+        else
+        {
+            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+        }
+
 
         if (config.Default.allowedPlugins)
         {
@@ -225,7 +257,9 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                                          $"Version : {item.Version}");
                 }
 
-                MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString(), "MainHost");
+                noty.ShowBubbleNotification("PluginManager", stringBuilder.ToString());
+
+                //MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString(), "MainHost");
             }
             catch (Exception ex)
             {
@@ -347,7 +381,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             var loginUi = uiLILOAccountLogin.Instance();
             loginUi.FormClosing += (sender, e) =>
             {
-                if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
+                if (System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
                 {
                     loggedInUser = UserManager.Instance().LoadUserFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"));
                 }
@@ -382,5 +416,157 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     private void bntAccount_MouseLeave(object sender, EventArgs e)
     {
         bntAccount.Text = "    Account";
+    }
+
+
+    public Task CheckForUpdates(UpdateMode mode = UpdateMode.Manual)
+    {
+        try
+        {
+            var updater = Updater.Instance();
+
+            var latestVersion = updater.GetLatestVersion(owner, repo);
+            var latestChanges = updater.GetLatestChanges(owner, repo);
+            var currentVersion = System.Windows.Forms.Application.ProductVersion;
+
+            Task.Run(() =>
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    if (updater.HasNewRelease(owner, repo))
+                    {
+                        Console.WriteLine("A new release is available.");
+
+                        noty.ShowBubbleNotification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}");
+
+                        string html = Markdig.Markdown.ToHtml(latestChanges);
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("No new release available.");
+
+                        noty.ShowBubbleNotification("Updater", $"No new release available.\nYou are perfect.");
+                    }
+                });
+
+            });
+
+            return Task.CompletedTask;
+        }
+        catch (Exception ex)
+        {
+            noty.ShowBubbleNotification("Updater", ex.Message);
+            return Task.CompletedTask;
+        }
+    }
+
+    public static void CreateShortcut(string shortcutName, string targetFile)
+    {
+        string shortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + shortcutName + ".lnk";
+
+        IWshShell wshShell = new WshShell();
+        IWshShortcut shortcut = (IWshShortcut)wshShell.CreateShortcut(shortcutPath);
+
+        shortcut.TargetPath = targetFile;
+        shortcut.WorkingDirectory = Path.GetDirectoryName(targetFile);
+        shortcut.WindowStyle = 1; // Normal window
+        shortcut.Description = "Shortcut created using LAB Libary by JW Limited."; // Optional
+        shortcut.IconLocation = targetFile + ",0"; // Optional
+
+        shortcut.Save();
+    }
+
+    private async void bntUpdate_Click(object sender, EventArgs e)
+    {
+        var updater = Updater.Instance();
+
+        try
+        {
+            if (downloaded)
+            {
+                isEnabling?.Invoke(false);
+                this.ControlBox = false;
+                updating = true;
+                Text = "Installing Update...";
+
+                await Task.Run(() =>
+                {
+                    try
+                    {
+                        // Call the API to verify and extract the ZIP file
+                        updater.VerifyAndExtractZip(zipPath, "8a3a0cecf50f9e4a7387b23d4a4c4e4b3d2bbd8e91edc5729c15f9f1f10c8aaf", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "JW Limited"),
+                        progress =>
+                        {
+                            if (progress == 100)
+                            {
+                                Task.Run(() =>
+                                {
+                                    Application.ExitThread();
+                                });
+
+                                Application.ExitThread();
+                            }
+                        },
+                        error =>
+                        {
+                            MessageBox.Show($"Error: {error}", "Install Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.Message}", "Install Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                });
+
+                MessageBox.Show("Installed Updates", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                isEnabling?.Invoke(false);
+
+                this.ControlBox = false;
+                updating = true;
+
+                await Task.Run(() =>
+                {
+
+                    updater.DownloadLatestRelease(owner, repo, UpdateProgress);
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        this.ControlBox = false;
+                    });
+
+                });
+            }
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            updating = false;
+            downloaded = true;
+            this.ControlBox = true;
+        }
+
+
+    }
+
+    private void UpdateProgress(object sender, DownloadProgressChangedEventArgs e)
+    {
+        this.Invoke((MethodInvoker)delegate
+        {
+            //progessbar.Value = e.ProgressPercentage;
+            this.Text = $"Downloading newest release {e.ProgressPercentage}%";
+
+            if (e.ProgressPercentage == 100)
+            {
+                updating = false;
+                downloaded = true;
+                this.ControlBox = true;
+                isEnabling?.Invoke(true);
+            }
+        });
     }
 }

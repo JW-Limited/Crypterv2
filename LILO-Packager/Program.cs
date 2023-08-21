@@ -3,19 +3,24 @@ using LILO_Packager.v2.shared;
 using Microsoft.Win32;
 using System.Diagnostics;
 using Microsoft.FeatureManagement;
+using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace LILO_Packager
 {
     public static class Program
     {
         public static int DefaultEnvironment = 0;
+        public static NotifyIcon noty;
 
         private static void InitializeApplication()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(true);
+            Application.SetCompatibleTextRenderingDefault(false);
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
         }
+
+        public static Mutex myMutex = new Mutex(false, "crypter_v2");
 
         [STAThread]
         public static void Main(string[] args)
@@ -56,15 +61,67 @@ namespace LILO_Packager
             }
             else
             {
+
+                if (IsApplicationAlreadyRunning())
+                {
+                    BringRunningInstanceToFront();
+                    return;
+                }
+
+
                 RunMainUI();
             }
 
-            
+        }
+
+        private static bool IsApplicationAlreadyRunning()
+        {
+            var currentProcess = Process.GetCurrentProcess();
+            var processes = Process.GetProcessesByName(currentProcess.ProcessName);
+
+            var otherProcesses = processes.Where(p => p.Id != currentProcess.Id);
+
+            return otherProcesses.Any();
+        }
+
+        private static void BringRunningInstanceToFront()
+        {
+            var currentProcess = Process.GetCurrentProcess();
+            var processes = Process.GetProcessesByName(currentProcess.ProcessName);
+
+            foreach (var process in processes)
+            {
+                if (process.Id != currentProcess.Id)
+                {
+                    IntPtr hWnd = process.MainWindowHandle;
+                    if (hWnd != IntPtr.Zero)
+                    {
+                        NativeMethods.SetForegroundWindow(hWnd);
+                        NativeMethods.ShowWindow(hWnd, NativeMethods.SW_RESTORE);
+                    }
+                }
+            }
+
+            Environment.Exit(0);
+        }
+
+        private static class NativeMethods
+        {
+            [DllImport("user32.dll")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+            [DllImport("user32.dll")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+            public const int SW_RESTORE = 9;
         }
 
 
         private static void RunMainUI()
         {
+            v2.MainHost.Instance().AutoScaleMode = AutoScaleMode.Font;
             Application.Run(v2.MainHost.Instance());
         }
 

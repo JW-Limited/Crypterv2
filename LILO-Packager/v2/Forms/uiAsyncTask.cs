@@ -13,7 +13,22 @@ namespace LILO_Packager.v2.Forms
 {
     public partial class uiAsyncTask : Form
     {
-        public uiAsyncTask()
+        private static uiAsyncTask _encrypt;
+        private static object _lock = new object();
+        public static uiAsyncTask Instance()
+        {
+            lock (_lock)
+            {
+                if (_encrypt is null)
+                {
+                    _encrypt = new uiAsyncTask();
+                }
+
+                return _encrypt;
+            }
+        }
+
+        private uiAsyncTask()
         {
             InitializeComponent();
         }

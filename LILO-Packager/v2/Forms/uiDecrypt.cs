@@ -191,7 +191,7 @@ public partial class uiDecrypt : Form
                     {
 
                         var handler = new shared.MultiplefileHandling();
-                        var ui = new uiAsyncTask();
+                        var ui = uiAsyncTask.Instance();
 
                         try
                         {

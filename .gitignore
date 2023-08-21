@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+LILO-Packager/v2/Core/LILO/Configs.cs
+LILO-Packager/v2/Core/LILO/Login.cs
+LILO-Packager/v2/Core/LILO/UserManager.cs
+LILO-Packager/v2/Core/Updates/UpdatingModes.cs
+LILO-Packager/v2/Core/Updates/Updater.cs
+LILO-Packager/v2/shared/NotifyIconManager.cs

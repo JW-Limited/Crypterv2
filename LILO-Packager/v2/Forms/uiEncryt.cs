@@ -309,7 +309,7 @@ public partial class uiEncryt : Form
             var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
             var musltifileHandler = new shared.MultiplefileHandling();
 
-            var ui = new uiAsyncTask();
+            var ui = uiAsyncTask.Instance();
             ui.TopMost = true;
             ui.Show();
 
@@ -318,13 +318,18 @@ public partial class uiEncryt : Form
                 await musltifileHandler.ZipFilesAsync(tempZip,
                     reportProgress =>
                     {
-                        ui.UpdateProcess((reportProgress));
+                        uiAsyncTask.Instance().progressBar.Value = (int)reportProgress;
 
                     }, _arFiles);
 
                 ui.Close();
 
             });
+
+            foreach (var file in _arFiles) 
+            {
+                File.Delete(file);
+            }
 
             chblistFiles.Items.Clear();
             chblistFiles.Items.Add(Path.GetFileName(tempZip));

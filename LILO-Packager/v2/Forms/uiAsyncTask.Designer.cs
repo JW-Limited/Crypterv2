@@ -39,6 +39,7 @@
             progressBar.Size = new Size(504, 34);
             progressBar.Style = ProgressBarStyle.Marquee;
             progressBar.TabIndex = 2;
+            progressBar.Value = 1;
             // 
             // uiAsyncTask
             // 
@@ -60,6 +61,7 @@
         }
 
         #endregion
-        private ProgressBar progressBar;
+
+        public ProgressBar progressBar;
     }
 }
