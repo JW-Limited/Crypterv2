@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             pluginEntryBindingSource = new BindingSource(components);
             sPanel2 = new Sipaa.Framework.SPanel();
+            bntPlugin = new Guna.UI2.WinForms.Guna2Button();
             bntCancel = new Guna.UI2.WinForms.Guna2Button();
             lblText = new Label();
             pluginEntryBindingSource1 = new BindingSource(components);
@@ -54,7 +55,6 @@
             imgImage = new Guna.UI2.WinForms.Guna2Panel();
             pnlPreview = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
-            bntPlugin = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)pluginEntryBindingSource).BeginInit();
             sPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pluginEntryBindingSource1).BeginInit();
@@ -90,6 +90,31 @@
             sPanel2.Name = "sPanel2";
             sPanel2.Size = new Size(920, 88);
             sPanel2.TabIndex = 12;
+            // 
+            // bntPlugin
+            // 
+            bntPlugin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            bntPlugin.Animated = true;
+            bntPlugin.BackColor = Color.Transparent;
+            bntPlugin.BackgroundImageLayout = ImageLayout.Zoom;
+            bntPlugin.BorderColor = Color.Gainsboro;
+            bntPlugin.BorderRadius = 20;
+            bntPlugin.BorderThickness = 2;
+            bntPlugin.DisabledState.BorderColor = Color.DarkGray;
+            bntPlugin.DisabledState.CustomBorderColor = Color.DarkGray;
+            bntPlugin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            bntPlugin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            bntPlugin.FillColor = Color.Transparent;
+            bntPlugin.FocusedColor = Color.FromArgb(100, 170, 209);
+            bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            bntPlugin.ForeColor = Color.White;
+            bntPlugin.Location = new Point(792, 16);
+            bntPlugin.Margin = new Padding(2);
+            bntPlugin.Name = "bntPlugin";
+            bntPlugin.Size = new Size(112, 58);
+            bntPlugin.TabIndex = 15;
+            bntPlugin.Text = "Shop";
+            bntPlugin.Click += bntShop_Clikc;
             // 
             // bntCancel
             // 
@@ -433,31 +458,6 @@
             guna2Panel4.Name = "guna2Panel4";
             guna2Panel4.Size = new Size(168, 160);
             guna2Panel4.TabIndex = 15;
-            // 
-            // bntPlugin
-            // 
-            bntPlugin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            bntPlugin.Animated = true;
-            bntPlugin.BackColor = Color.Transparent;
-            bntPlugin.BackgroundImageLayout = ImageLayout.Zoom;
-            bntPlugin.BorderColor = Color.Gainsboro;
-            bntPlugin.BorderRadius = 20;
-            bntPlugin.BorderThickness = 2;
-            bntPlugin.DisabledState.BorderColor = Color.DarkGray;
-            bntPlugin.DisabledState.CustomBorderColor = Color.DarkGray;
-            bntPlugin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            bntPlugin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            bntPlugin.FillColor = Color.Transparent;
-            bntPlugin.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            bntPlugin.ForeColor = Color.White;
-            bntPlugin.Location = new Point(792, 16);
-            bntPlugin.Margin = new Padding(2);
-            bntPlugin.Name = "bntPlugin";
-            bntPlugin.Size = new Size(112, 58);
-            bntPlugin.TabIndex = 15;
-            bntPlugin.Text = "Login";
-            bntPlugin.Click += bntPlugin_Click;
             // 
             // uiPluginManager
             // 

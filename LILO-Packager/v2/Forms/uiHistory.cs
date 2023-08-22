@@ -1,4 +1,5 @@
 ﻿using LILO_Packager.v2.Core.History;
+using LILO_Packager.v2.shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -85,6 +86,8 @@ namespace LILO_Packager.v2.Forms
 
         private async void LoadData()
         {
+            Console.WriteLine("Connecting to Database");
+
             dbHandler = new DatabaseHandling();
             var data = await dbHandler.GetAllEncryptedOperationsAsync();
             if (data is not null) historyElements = data;
@@ -92,7 +95,7 @@ namespace LILO_Packager.v2.Forms
             {
                 await dbHandler.InitializeDatabaseAsync(process =>
                 {
-                    Debug.WriteLine(process);
+                    Console.WriteLine(process);
                 });
             }
         }
@@ -115,7 +118,22 @@ namespace LILO_Packager.v2.Forms
                 item.SubItems.Add(element.inputFileName);
                 item.SubItems.Add(element.outputFileName);
 
+                ConsoleManager.Instance().WriteLineWithColor("Loading: (ID)" + element.id + " (OPM)" + element.operationType + " (CORE)" + element.algorithmVersion,GetConsoleColorFromOperation(element.operationType));
+
+
                 listViewHistory.Items.Add(item);
+            }
+        }
+
+        private ConsoleColor GetConsoleColorFromOperation(string operationType)
+        {
+            switch(operationType)
+            {
+                case "Encryption":
+                    return ConsoleColor.Green;
+                case "Decryption":
+                    return ConsoleColor.Blue;
+                default: return ConsoleColor.Yellow;
             }
         }
 

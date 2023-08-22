@@ -50,6 +50,7 @@ partial class uiLILOAccountLogin
         label5 = new Label();
         bntLogin = new Guna.UI2.WinForms.Guna2Button();
         guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+        label6 = new Label();
         sPanel1.SuspendLayout();
         pnlTop.SuspendLayout();
         pnlPreview.SuspendLayout();
@@ -154,8 +155,8 @@ partial class uiLILOAccountLogin
         // txtUsr
         // 
         txtUsr.BackColor = Color.FromArgb(224, 224, 224);
-        txtUsr.BorderColor = Color.FromArgb(94, 148, 255);
-        txtUsr.BorderFocusColor = Color.HotPink;
+        txtUsr.BorderColor = Color.Silver;
+        txtUsr.BorderFocusColor = Color.DimGray;
         txtUsr.BorderRadius = 20;
         txtUsr.BorderSize = 1;
         txtUsr.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -176,8 +177,8 @@ partial class uiLILOAccountLogin
         // txtPsw
         // 
         txtPsw.BackColor = Color.FromArgb(224, 224, 224);
-        txtPsw.BorderColor = Color.FromArgb(94, 148, 255);
-        txtPsw.BorderFocusColor = Color.HotPink;
+        txtPsw.BorderColor = Color.Silver;
+        txtPsw.BorderFocusColor = Color.DimGray;
         txtPsw.BorderRadius = 20;
         txtPsw.BorderSize = 1;
         txtPsw.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -223,14 +224,15 @@ partial class uiLILOAccountLogin
         // 
         // label4
         // 
-        label4.AutoSize = true;
-        label4.ForeColor = SystemColors.ControlDark;
-        label4.Location = new Point(120, 18);
+        label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        label4.ForeColor = SystemColors.Control;
+        label4.Location = new Point(120, 0);
         label4.Margin = new Padding(2, 0, 2, 0);
         label4.Name = "label4";
-        label4.Size = new Size(72, 25);
+        label4.Size = new Size(128, 64);
         label4.TabIndex = 17;
-        label4.Text = "Preview";
+        label4.Text = "Authorization";
+        label4.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // pnlTop
         // 
@@ -240,6 +242,7 @@ partial class uiLILOAccountLogin
         pnlTop.BorderSize = 0;
         pnlTop.Controls.Add(sPanel4);
         pnlTop.Controls.Add(conClose);
+        pnlTop.Controls.Add(label6);
         pnlTop.Controls.Add(label4);
         pnlTop.Dock = DockStyle.Top;
         pnlTop.ForeColor = Color.White;
@@ -285,7 +288,7 @@ partial class uiLILOAccountLogin
         // 
         pnlPreview.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         pnlPreview.BackColor = Color.Transparent;
-        pnlPreview.BorderColor = Color.FromArgb(94, 148, 255);
+        pnlPreview.BorderColor = Color.Silver;
         pnlPreview.BorderRadius = 15;
         pnlPreview.BorderThickness = 2;
         pnlPreview.Controls.Add(pnlLoginLoad);
@@ -306,7 +309,7 @@ partial class uiLILOAccountLogin
         // 
         pnlLoginLoad.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         pnlLoginLoad.BackColor = Color.Transparent;
-        pnlLoginLoad.BorderColor = Color.FromArgb(94, 148, 255);
+        pnlLoginLoad.BorderColor = Color.Silver;
         pnlLoginLoad.BorderRadius = 15;
         pnlLoginLoad.BorderThickness = 2;
         pnlLoginLoad.Controls.Add(progressSpinner);
@@ -380,6 +383,18 @@ partial class uiLILOAccountLogin
         guna2Panel1.TabIndex = 15;
         guna2Panel1.Paint += guna2Panel1_Paint;
         // 
+        // label6
+        // 
+        label6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        label6.ForeColor = SystemColors.ControlDark;
+        label6.Location = new Point(240, 0);
+        label6.Margin = new Padding(2, 0, 2, 0);
+        label6.Name = "label6";
+        label6.Size = new Size(126, 64);
+        label6.TabIndex = 17;
+        label6.Text = "(Preview)";
+        label6.TextAlign = ContentAlignment.MiddleLeft;
+        // 
         // uiLILOAccountLogin
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
@@ -403,7 +418,6 @@ partial class uiLILOAccountLogin
         sPanel1.ResumeLayout(false);
         sPanel1.PerformLayout();
         pnlTop.ResumeLayout(false);
-        pnlTop.PerformLayout();
         pnlPreview.ResumeLayout(false);
         pnlPreview.PerformLayout();
         pnlLoginLoad.ResumeLayout(false);
@@ -433,4 +447,5 @@ partial class uiLILOAccountLogin
     private Guna.UI2.WinForms.Guna2Panel pnlLoginLoad;
     private Guna.UI2.WinForms.Guna2WinProgressIndicator progressSpinner;
     private Label label5;
+    private Label label6;
 }

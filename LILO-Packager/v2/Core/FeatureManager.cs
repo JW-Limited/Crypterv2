@@ -9,7 +9,7 @@ namespace LILO_Packager.v2.Core
 {
     public class FeatureManager
     {
-        private static readonly string ConfigFilePath = "featureManager.dll";
+        private static readonly string ConfigFilePath = Path.Combine(Application.CommonAppDataPath ,"FeatureManager.dll");
         private static FeatureFlagConfig _config;
         private static readonly Dictionary<FeatureFlags, bool> _featureFlagsDictionary = new Dictionary<FeatureFlags, bool>();
 

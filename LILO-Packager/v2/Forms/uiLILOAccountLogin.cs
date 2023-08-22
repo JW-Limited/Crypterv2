@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LILO_Packager.v2.Core.LILO;
+using LILO_Packager.v2.shared;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiLILOAccountLogin : Form
@@ -55,11 +56,20 @@ public partial class uiLILOAccountLogin : Form
 
         Task.Run(async () =>
         {
+            ConsoleManager.Instance().WriteLineWithColor("WebClient: Started Authorization", ConsoleColor.Blue);
+
             var liloManager = new LILO_Packager.v2.Core.LILO.LicenseManager();
             var userAuth = await liloManager.LogInAsync(txtUsr.Texts, txtPsw.Texts);
 
             if (userAuth)
             {
+                ConsoleManager.Instance().WriteLineWithColor("WebClient: Fetching User Data...", ConsoleColor.Blue);
+
+                Thread.Sleep(2000);
+
+
+                ConsoleManager.Instance().WriteLineWithColor("WebClient: All done.", ConsoleColor.Blue);
+
                 this.Close();
             }
 

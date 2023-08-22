@@ -1,4 +1,5 @@
-﻿using LILO_Packager.v2.Core.LILO;
+﻿using LILO_Packager.Properties;
+using LILO_Packager.v2.Core.LILO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,6 +42,11 @@ namespace LILO_Packager.v2.Forms
             {
                 _encrypt = null;
             };
+
+            lblEmail.Text = _user.Email;
+            lblUsername.Text = _user.Email.Replace("@jwlmt.com", "");
+            lblUser.Text = _user.Role;
+            videoPanel.BackgroundImage = Resources.icons8_male_user_96;
         }
 
         private void bntSettings_Click(object sender, EventArgs e)

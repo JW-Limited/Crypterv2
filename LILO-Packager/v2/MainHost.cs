@@ -199,7 +199,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     private async void MainHost_Load(object sender, EventArgs e)
     {
         var updater = Updater.Instance();
-        noty = new NotifyIconManager();
+        noty = NotifyIconManager.Instance();
+
         var proc = new Process()
         {
             StartInfo = new ProcessStartInfo()
@@ -245,9 +246,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                     plugins.Add(ent);
                 }
 
-                // Just for Debug purposes because the Plugin Initializer 
-                // gives often back a NullException or StackOverflow
-
                 StringBuilder stringBuilder = new StringBuilder();
 
                 foreach (var item in plugins)
@@ -257,9 +255,10 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                                          $"Version : {item.Version}");
                 }
 
-                noty.ShowBubbleNotification("PluginManager", stringBuilder.ToString());
+                Console.WriteLine(stringBuilder.ToString());
 
-                //MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString(), "MainHost");
+                //noty.ShowBubbleNotification("PluginManager", stringBuilder.ToString());
+
             }
             catch (Exception ex)
             {

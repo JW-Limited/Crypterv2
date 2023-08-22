@@ -84,5 +84,17 @@ namespace LILO_Packager.v2.Forms
             var login = uiLILOAccountLogin.Instance();
             login.ShowDialog();
         }
+
+        private void bntShop_Clikc(object sender, EventArgs e)
+        {
+            try
+            {
+                throw new NotImplementedException("pluginShop");
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
