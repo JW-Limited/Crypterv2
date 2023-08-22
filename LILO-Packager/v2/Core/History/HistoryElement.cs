@@ -8,7 +8,6 @@ namespace LILO_Packager.v2.Core.History
 {
     public class HistoryElement
     {
-
         public int id { get; set; } = 0;
         public String operationType { get; set; } = String.Empty;
         public String mode { get; set; } = String.Empty;
