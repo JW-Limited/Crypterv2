@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LILO_Packager.v2.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,6 +50,9 @@ public partial class uiWebView : Form
         webView21.CreateControl();
         webView21.CreateGraphics();
         webView21.Show();
+
+        
+
     }
 
     private void ChangeDisplayedContent(Uri newUri)

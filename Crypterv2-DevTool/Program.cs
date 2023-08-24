@@ -27,7 +27,7 @@ namespace Crypterv2_DevTool
                 return;
             }
 
-            Application.Run(new Main());
+            Application.Run(MainHost.GetInstance());
         }
     }
 }

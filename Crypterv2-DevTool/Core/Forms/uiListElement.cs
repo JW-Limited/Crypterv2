@@ -23,6 +23,11 @@ namespace Crypterv2_DevTool.Core.Forms
             InitializeComponent();
             tcpClient = client;
             _info = info;
+
+            this.FormClosing += (s, e) =>
+            {
+                MainHost.GetInstance().Main_Load(s,e);
+            };
         }
 
         private void uiListElement_Load(object sender, EventArgs e)
@@ -33,7 +38,7 @@ namespace Crypterv2_DevTool.Core.Forms
 
             if (_info.EnabledState)
             {
-                bntChange.Text = "Disabled";
+                bntChange.Text = "Disable";
             }
             else
             {
@@ -51,7 +56,7 @@ namespace Crypterv2_DevTool.Core.Forms
             tcpClient.Close();
 
             var handler = new FeatureFlag();
-            handler.ToggleFeatureViaSocket(featureName: _info.Flag.ToString());
+            handler.ToggleFeatureViaSocket(featureName: _info.Name);
             this.Close();
         }
     }

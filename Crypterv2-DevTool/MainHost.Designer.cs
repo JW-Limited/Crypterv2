@@ -1,6 +1,6 @@
 ﻿namespace Crypterv2_DevTool
 {
-    partial class Main
+    partial class MainHost
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             ListViewItem listViewItem1 = new ListViewItem(new string[] { "12345", "State", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
             button1 = new Button();
             lblName = new Label();
             listViewHistory = new HTAlt.WinForms.HTListView();

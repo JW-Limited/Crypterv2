@@ -55,7 +55,7 @@
             guna2Panel1.Controls.Add(label3);
             guna2Panel1.Controls.Add(lblFeature);
             guna2Panel1.FillColor = SystemColors.Control;
-            guna2Panel1.Location = new Point(80, 64);
+            guna2Panel1.Location = new Point(81, 65);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.Size = new Size(680, 512);
@@ -171,7 +171,7 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(800, 16);
+            guna2Button1.Location = new Point(802, 16);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.Size = new Size(40, 40);
@@ -184,7 +184,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(856, 632);
+            ClientSize = new Size(858, 634);
             Controls.Add(guna2Button1);
             Controls.Add(guna2Panel1);
             MinimumSize = new Size(878, 688);

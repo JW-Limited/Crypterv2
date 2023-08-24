@@ -9,7 +9,7 @@ using System.ServiceModel;
 
 namespace Crypterv2_DevTool
 {
-    public partial class Main : Form
+    public partial class MainHost : Form
     {
         public TcpClient Client;
 
@@ -25,10 +25,18 @@ namespace Crypterv2_DevTool
             { FeatureFlags.SecuredContainerStreaming,   "Ermöglicht das Streaming von verschlüsselten Inhalten. Diese Funktion gewährleistet, dass vertrauliche Daten sicher übertragen werden, ohne die Integrität der Verschlüsselung zu beeinträchtigen." },
             { FeatureFlags.HistoryElementQuering,       "Ermöglicht das Abfragen von Verlaufsdaten, sodass Sie präzise Einblicke in frühere Aktivitäten und Aktionen innerhalb Crypterv2 erhalten können." }
         };
+        private static MainHost _instance;
+        public static MainHost GetInstance()
+        {
+            if(_instance is null)
+            {
+                _instance = new MainHost();
+            }
 
+            return _instance;
+        }
 
-
-        public Main()
+        private MainHost()
         {
             InitializeComponent();
         }
@@ -127,12 +135,14 @@ namespace Crypterv2_DevTool
             };
         }
 
-        private async void Main_Load(object sender, EventArgs e)
+        public async void Main_Load(object sender, EventArgs e)
         {
 
             try
             {
                 var state = new object();
+
+                Features.Clear();
 
                 Client = new TcpClient();
                 var result = Client.BeginConnect(IPAddress.Loopback, 9001, callback =>
@@ -180,7 +190,7 @@ namespace Crypterv2_DevTool
             }
         }
 
-        private void listViewHistory_DoubleClick(object sender, EventArgs e)
+        public void listViewHistory_DoubleClick(object sender, EventArgs e)
         {
 
             string selectedItem = listViewHistory.SelectedItems[0].Text;

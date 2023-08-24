@@ -43,24 +43,6 @@ namespace Crypterv2_DevTool.Core
             }
         }
 
-
-        public void ToggleFeature(FeatureFlags feature, bool isEnabled)
-        {
-            using (NamedPipeClientStream pipeClient = new NamedPipeClientStream(".", FeatureFlagePipeLineConfig.PipeName, PipeDirection.Out))
-            {
-                pipeClient.Connect();
-
-                using (StreamWriter sw = new StreamWriter(pipeClient))
-                {
-                    var formatter = new BinaryFormatter();
-                    var featureFlagInfo = new FeatureFlagInfo(feature, isEnabled);
-                    #pragma warning disable SYSLIB0011 
-                    formatter.Serialize(sw.BaseStream, featureFlagInfo);
-                    #pragma warning restore SYSLIB0011 
-                }
-            }
-        }
-
         public Dictionary<string, bool> ListFeaturesViaSocket()
         {
             using (var client = new TcpClient())
@@ -83,6 +65,21 @@ namespace Crypterv2_DevTool.Core
             }
         }
 
+        public void CloseDeveloperSocket()
+        {
+            using (var client = new TcpClient())
+            {
+                client.Connect(IPAddress.Loopback, 9001);
+
+                using (var stream = client.GetStream())
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine("closeThread");
+                    writer.Flush();
+                }
+            }
+        }
+
         public void ToggleFeatureViaSocket(string featureName)
         {
             using (var client = new TcpClient())
@@ -94,6 +91,25 @@ namespace Crypterv2_DevTool.Core
                 {
                     writer.WriteLine(featureName);
                     writer.Flush();
+                }
+            }
+        }
+
+        //------------------------------ OLD and USED (only for compatibilty)--------------------------------------
+
+        public void ToggleFeature(FeatureFlags feature, bool isEnabled)
+        {
+            using (NamedPipeClientStream pipeClient = new NamedPipeClientStream(".", FeatureFlagePipeLineConfig.PipeName, PipeDirection.Out))
+            {
+                pipeClient.Connect();
+
+                using (StreamWriter sw = new StreamWriter(pipeClient))
+                {
+                    var formatter = new BinaryFormatter();
+                    var featureFlagInfo = new FeatureFlagInfo(feature, isEnabled);
+#pragma warning disable SYSLIB0011
+                    formatter.Serialize(sw.BaseStream, featureFlagInfo);
+#pragma warning restore SYSLIB0011
                 }
             }
         }

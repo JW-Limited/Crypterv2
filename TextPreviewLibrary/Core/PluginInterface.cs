@@ -67,16 +67,31 @@ public partial class PluginInterface : Form
 
     private void guna2Button1_Click_1(object sender, EventArgs e)
     {
-        var myclass = new CrypterTextFile()
+
+        var ofd = new SaveFileDialog()
         {
-            Author = "Joe",
-            FileName = "Test",
-            Locked = false,
-            TextColor = Color.Black,
-            Text = mainTextBox.Text
+            InitialDirectory = Application.StartupPath,
+            ShowHiddenFiles = true,
         };
 
-        CrypterTextFile.SetInstanceToFile(myclass, ".\\test.ctv");
+        if(ofd.ShowDialog() == DialogResult.OK)
+        {
+
+            var file = new CrypterTextFile()
+            {
+                Author = Environment.UserDomainName,
+                FileName = new FileInfo(ofd.FileName).Name,
+                Locked = false,
+                TextFont = mainTextBox.Font,
+                TextColor = mainTextBox.ForeColor,
+                Text = mainTextBox.Text
+            };
+
+            CrypterTextFile.SetInstanceToFile(file, ofd.FileName);
+        }
+
+        bntPlugin_Click(sender, e);
+
     }
 
     private void guna2Button5_Click(object sender, EventArgs e)
@@ -89,13 +104,23 @@ public partial class PluginInterface : Form
             Multiselect = false
         };
 
-        if(ofd.ShowDialog() == DialogResult.OK)
+        if (ofd.ShowDialog() == DialogResult.OK)
         {
             var file = CrypterTextFile.GetInstanceFromFile(ofd.FileName);
 
             mainTextBox.Text = file.Text;
             mainTextBox.Enabled = !file.Locked;
             mainTextBox.ForeColor = file.TextColor;
+
+            lblName.Text = file.FileName;
         }
+
+        bntPlugin_Click(sender, e);
+
+    }
+
+    private void newFile_Click(object sender, EventArgs e)
+    {
+
     }
 }

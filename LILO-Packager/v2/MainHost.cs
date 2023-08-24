@@ -31,6 +31,7 @@ using srvlocal_gui.AppMananger;
 using TagLib.Mpeg;
 using Telerik.WinControls.UI;
 using IWshRuntimeLibrary;
+using Guna.UI2.WinForms;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
@@ -144,11 +145,13 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 writer.WriteLine(featureValuesJson);
                 writer.Flush();
             }
+            else if (command.ToLower() == "closeThread")
+            {
+                Application.ExitThread();
+            }
             else
             {
-                string featureName = reader.ReadLine();
-
-                var feature = (FeatureFlags)Enum.Parse(typeof(FeatureFlags), featureName);
+                var feature = (FeatureFlags)Enum.Parse(typeof(FeatureFlags), command);
 
                 await FeatureManager.ToggleFeatureAsync(feature);
             }
@@ -212,7 +215,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             }
         };
 
-
         var currentVersion = System.Windows.Forms.Application.ProductVersion;
         var latestVersion = updater.GetLatestVersion(owner, repo);
 
@@ -225,12 +227,27 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         if(latestVersion != currentVersion)
         {
-            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/update")));
+            if (!FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent))
+            {
+                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/nullFeature")));
+            }
+            else
+            {
+                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/update")));
+            }
+
             noty.ShowBubbleNotification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}");
         }
         else
         {
-            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+            if (!FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent))
+            {
+                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/nullFeature")));
+            }
+            else
+            {
+                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+            }
         }
 
 
@@ -365,7 +382,14 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private void guna2Button1_Click(object sender, EventArgs e)
     {
-        OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+        if (!FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent))
+        {
+            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/nullFeature")));
+        }
+        else
+        {
+            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+        }
     }
 
     private void guna2Button4_Click(object sender, EventArgs e)
@@ -383,6 +407,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 if (System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
                 {
                     loggedInUser = UserManager.Instance().LoadUserFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"));
+
+                    OpenInApp(uiAccount.Instance(loggedInUser));
                 }
             };
 
