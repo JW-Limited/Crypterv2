@@ -293,6 +293,16 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap pngwing_com__19_ {
+            get {
+                object obj = ResourceManager.GetObject("pngwing.com (19)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap pull_32 {
             get {
                 object obj = ResourceManager.GetObject("pull_32", resourceCulture);

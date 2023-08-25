@@ -225,29 +225,15 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         proc.Start();
 
-        if(latestVersion != currentVersion)
+        if (latestVersion != currentVersion)
         {
-            if (!FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent))
-            {
-                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/nullFeature")));
-            }
-            else
-            {
-                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/update")));
-            }
 
+            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/update")));
             noty.ShowBubbleNotification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}");
         }
         else
         {
-            if (!FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent))
-            {
-                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/nullFeature")));
-            }
-            else
-            {
-                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
-            }
+            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
         }
 
 
@@ -382,19 +368,20 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private void guna2Button1_Click(object sender, EventArgs e)
     {
-        if (!FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent))
-        {
-            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/nullFeature")));
-        }
-        else
-        {
-            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
-        }
+        OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
     }
 
     private void guna2Button4_Click(object sender, EventArgs e)
     {
-        OpenInApp(v2.Forms.uiHistory.Instance());
+        if (!FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering))
+        {
+            OpenInApp(new uiFeatureNullException("(FeatureNullException)","This feature is not activated right now."));
+        }
+        else
+        {
+            OpenInApp(v2.Forms.uiHistory.Instance());
+        }
+
     }
 
     private void guna2Button6_Click(object sender, EventArgs e)
@@ -422,7 +409,15 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private void bntPlugin_Clicked(object sender, EventArgs e)
     {
-        OpenInApp(v2.Forms.uiPluginManager.Instance(plugins, manager));
+        if (!FeatureManager.IsFeatureEnabled(FeatureFlags.PluginManager) || !FeatureManager.IsFeatureEnabled(FeatureFlags.PluginSupport))
+        {
+            OpenInApp(new uiFeatureNullException("(FeatureNullException)", "This feature is not activated right now."));
+        }
+        else
+        {
+            OpenInApp(v2.Forms.uiPluginManager.Instance(plugins, manager));
+        }
+
     }
 
     public void ToggleFeature(FeatureFlags feature, bool isEnabled)

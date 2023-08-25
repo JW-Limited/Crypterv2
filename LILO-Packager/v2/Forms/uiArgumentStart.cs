@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LILO_Packager.v2.Core;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -52,6 +53,9 @@ namespace LILO_Packager.v2.Forms
                 this.lblName.Text = file.FileName;
                 this.lblSize.Text = file.Size;
 
+
+                await FeatureManager.LoadConfigurationAsync();
+
                 await dbHandler.InitializeDatabaseAsync(process =>
                 {
 
@@ -63,7 +67,7 @@ namespace LILO_Packager.v2.Forms
                     this.lblEncryption.Text = "LILO Secured";
                 }
 
-                if (file.Path.Replace(".lsf", "").EndsWith("mp3") || file.Path.Replace(".lsf", "").EndsWith("wav"))
+                if ((file.Path.Replace(".lsf", "").EndsWith("mp3") || file.Path.Replace(".lsf", "").EndsWith("wav")) && FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming))
                 {
                     bntCrypter.Text = "Stream";
                 }

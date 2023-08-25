@@ -1,4 +1,5 @@
-﻿using LILO_Packager.v2.Core.History;
+﻿using LILO_Packager.v2.Core;
+using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.shared;
 using System;
 using System.Collections.Generic;
@@ -61,8 +62,7 @@ namespace LILO_Packager.v2.Forms
                     {
                         if (File.Exists(element.outputFileName))
                         {
-                            Process.Start("explorer.exe", element.outputFileName);
-                            return;
+                            MainHost.Instance().OpenInApp(new uiHistoryElementInfo(element));
                         }
                         else
                         {
@@ -100,28 +100,30 @@ namespace LILO_Packager.v2.Forms
             }
         }
 
-        private void uiHistory_Load(object sender, EventArgs e)
+        private async void uiHistory_Load(object sender, EventArgs e)
         {
-
-            this.listViewHistory.Items.Clear();
-            listViewHistory.DoubleClick += ListViewHistory_DoubleClick;
-            foreach (HistoryElement element in historyElements)
+            if(FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering))
             {
-                var item = new ListViewItem()
+                this.listViewHistory.Items.Clear();
+                listViewHistory.DoubleClick += ListViewHistory_DoubleClick;
+                foreach (HistoryElement element in historyElements)
                 {
-                    Text = $"{element.id}",
-                };
+                    var item = new ListViewItem()
+                    {
+                        Text = $"{element.id}",
+                    };
 
-                item.SubItems.Add(element.operationType);
-                item.SubItems.Add(element.mode);
-                item.SubItems.Add(element.algorithmVersion);
-                item.SubItems.Add(element.inputFileName);
-                item.SubItems.Add(element.outputFileName);
+                    item.SubItems.Add(element.operationType);
+                    item.SubItems.Add(element.mode);
+                    item.SubItems.Add(element.algorithmVersion);
+                    item.SubItems.Add(element.inputFileName);
+                    item.SubItems.Add(element.outputFileName);
 
-                ConsoleManager.Instance().WriteLineWithColor("Loading: (ID)" + element.id + " (OPM)" + element.operationType + " (CORE)" + element.algorithmVersion,GetConsoleColorFromOperation(element.operationType));
+                    ConsoleManager.Instance().WriteLineWithColor("Loading: (ID)" + element.id + " (OPM)" + element.operationType + " (CORE)" + element.algorithmVersion, GetConsoleColorFromOperation(element.operationType));
 
 
-                listViewHistory.Items.Add(item);
+                    listViewHistory.Items.Add(item);
+                }
             }
         }
 
