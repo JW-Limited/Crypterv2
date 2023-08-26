@@ -35,12 +35,14 @@
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             pnlImage = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            lbl3 = new Label();
+            lblDes2 = new Label();
             lblDescription = new Label();
             label1 = new Label();
+            lblApp = new Label();
             lblDirectory = new Label();
+            label2 = new Label();
             label3 = new Label();
-            lblDes2 = new Label();
-            lbl3 = new Label();
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             guna2Panel2.SuspendLayout();
@@ -82,7 +84,9 @@
             guna2Panel1.Controls.Add(guna2Panel3);
             guna2Panel1.Controls.Add(guna2Panel2);
             guna2Panel1.Controls.Add(label1);
+            guna2Panel1.Controls.Add(lblApp);
             guna2Panel1.Controls.Add(lblDirectory);
+            guna2Panel1.Controls.Add(label2);
             guna2Panel1.Controls.Add(label3);
             guna2Panel1.FillColor = SystemColors.Control;
             guna2Panel1.Location = new Point(160, 152);
@@ -176,6 +180,26 @@
             guna2Panel2.Size = new Size(800, 296);
             guna2Panel2.TabIndex = 24;
             // 
+            // lbl3
+            // 
+            lbl3.BackColor = Color.White;
+            lbl3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl3.Location = new Point(24, 104);
+            lbl3.Name = "lbl3";
+            lbl3.Size = new Size(752, 32);
+            lbl3.TabIndex = 1;
+            lbl3.Text = "Function";
+            // 
+            // lblDes2
+            // 
+            lblDes2.BackColor = Color.White;
+            lblDes2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDes2.Location = new Point(24, 64);
+            lblDes2.Name = "lblDes2";
+            lblDes2.Size = new Size(752, 32);
+            lblDes2.TabIndex = 1;
+            lblDes2.Text = "Function";
+            // 
             // lblDescription
             // 
             lblDescription.BackColor = Color.White;
@@ -197,17 +221,40 @@
             label1.Text = "File:";
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // lblApp
+            // 
+            lblApp.AutoEllipsis = true;
+            lblApp.BackColor = SystemColors.Control;
+            lblApp.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblApp.Location = new Point(424, 192);
+            lblApp.Name = "lblApp";
+            lblApp.Size = new Size(408, 40);
+            lblApp.TabIndex = 1;
+            lblApp.Text = "n/a";
+            lblApp.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // lblDirectory
             // 
             lblDirectory.AutoEllipsis = true;
             lblDirectory.BackColor = SystemColors.Control;
             lblDirectory.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDirectory.Location = new Point(400, 152);
+            lblDirectory.Location = new Point(424, 160);
             lblDirectory.Name = "lblDirectory";
-            lblDirectory.Size = new Size(456, 48);
+            lblDirectory.Size = new Size(376, 32);
             lblDirectory.TabIndex = 1;
             lblDirectory.Text = "n/a";
             lblDirectory.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            label2.BackColor = SystemColors.Control;
+            label2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(304, 192);
+            label2.Name = "label2";
+            label2.Size = new Size(560, 40);
+            label2.TabIndex = 1;
+            label2.Text = "Application:";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
@@ -219,26 +266,6 @@
             label3.TabIndex = 1;
             label3.Text = "Directory:";
             label3.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblDes2
-            // 
-            lblDes2.BackColor = Color.White;
-            lblDes2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDes2.Location = new Point(24, 64);
-            lblDes2.Name = "lblDes2";
-            lblDes2.Size = new Size(752, 32);
-            lblDes2.TabIndex = 1;
-            lblDes2.Text = "Function";
-            // 
-            // lbl3
-            // 
-            lbl3.BackColor = Color.White;
-            lbl3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl3.Location = new Point(24, 104);
-            lbl3.Name = "lbl3";
-            lbl3.Size = new Size(752, 32);
-            lbl3.TabIndex = 1;
-            lbl3.Text = "Function";
             // 
             // uiHistoryElementInfo
             // 
@@ -272,5 +299,7 @@
         private Label label3;
         private Label lbl3;
         private Label lblDes2;
+        private Label label2;
+        private Label lblApp;
     }
 }

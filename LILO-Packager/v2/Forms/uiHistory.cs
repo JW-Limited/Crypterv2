@@ -125,6 +125,10 @@ namespace LILO_Packager.v2.Forms
                     listViewHistory.Items.Add(item);
                 }
             }
+
+            Thread.Sleep(300);
+
+            pnlLoginLoad.Visible = false;
         }
 
         private ConsoleColor GetConsoleColorFromOperation(string operationType)

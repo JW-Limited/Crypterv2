@@ -32,7 +32,6 @@
             label1 = new Label();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             bntLogin = new Guna.UI2.WinForms.Guna2Button();
-            label2 = new Label();
             pnlPreview.SuspendLayout();
             SuspendLayout();
             // 
@@ -43,7 +42,6 @@
             pnlPreview.BorderColor = Color.Silver;
             pnlPreview.BorderRadius = 15;
             pnlPreview.BorderThickness = 2;
-            pnlPreview.Controls.Add(label2);
             pnlPreview.Controls.Add(label1);
             pnlPreview.FillColor = Color.White;
             pnlPreview.Location = new Point(24, 23);
@@ -113,19 +111,6 @@
             bntLogin.Text = "n/a";
             bntLogin.UseTransparentBackground = true;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.White;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(424, 24);
-            label2.Margin = new Padding(2, 0, 2, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(187, 25);
-            label2.TabIndex = 17;
-            label2.Text = "powered by LILO Sync";
-            // 
             // uiKeyInput
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -148,6 +133,5 @@
         private Label label1;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Button bntLogin;
-        private Label label2;
     }
 }

@@ -41,6 +41,36 @@
   </ItemGroup>
 
   <ItemGroup>
+    <COMReference Include="UIA">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>930299ce-9965-4dec-b0f4-a54848d4b667</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="UIAutomationClient">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>944de083-8fb8-45cf-bcb7-c477acb2f897</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="UIAutomationCrossBitnessHookLib">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>8acc2016-04a3-4343-b8e1-1870e35d6a41</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="open_external.ico" />
     <Content Include="favico.ico" />
     <Content Include="sync.ico" />
@@ -51,6 +81,9 @@
     <PackageReference Include="bunifu.ui.winforms" Version="6.1.0" />
     <PackageReference Include="bunifu.ui.winforms.1.5.3" Version="1.0.0" />
     <PackageReference Include="CubeCsv" Version="1.2.0" />
+    <PackageReference Include="FirebaseAdmin" Version="2.4.0" />
+    <PackageReference Include="FirebaseAuthentication.net" Version="4.0.2" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
     <PackageReference Include="FluentListView" Version="3.0.4" />
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.3.5" />
     <PackageReference Include="HTAlt.WinForms" Version="0.1.7.7" />

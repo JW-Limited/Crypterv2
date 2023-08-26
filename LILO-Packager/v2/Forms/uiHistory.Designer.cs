@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem(new string[] { "12345", "Encryption", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
+            ListViewItem listViewItem2 = new ListViewItem(new string[] { "12345", "Encryption", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
             tableLayoutPanel1 = new TableLayoutPanel();
             listViewHistory = new HTAlt.WinForms.HTListView();
             ColId = new ColumnHeader();
@@ -41,8 +41,12 @@
             bntPlugin = new Guna.UI2.WinForms.Guna2Button();
             bntCancel = new Guna.UI2.WinForms.Guna2Button();
             lblText = new Label();
+            pnlLoginLoad = new Guna.UI2.WinForms.Guna2Panel();
+            progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
+            label5 = new Label();
             tableLayoutPanel1.SuspendLayout();
             sPanel2.SuspendLayout();
+            pnlLoginLoad.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -71,7 +75,7 @@
             listViewHistory.HeaderBorderThickness = 2;
             listViewHistory.HeaderForeColor = Color.Black;
             listViewHistory.HideSelection = true;
-            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem1 });
+            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem2 });
             listViewHistory.Location = new Point(3, 53);
             listViewHistory.MultiSelect = false;
             listViewHistory.Name = "listViewHistory";
@@ -195,12 +199,51 @@
             lblText.Text = "History";
             lblText.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // pnlLoginLoad
+            // 
+            pnlLoginLoad.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pnlLoginLoad.BackColor = Color.Transparent;
+            pnlLoginLoad.BorderColor = Color.Silver;
+            pnlLoginLoad.BorderRadius = 15;
+            pnlLoginLoad.BorderThickness = 2;
+            pnlLoginLoad.Controls.Add(progressSpinner);
+            pnlLoginLoad.Controls.Add(label5);
+            pnlLoginLoad.FillColor = Color.White;
+            pnlLoginLoad.Location = new Point(32, 152);
+            pnlLoginLoad.Margin = new Padding(2);
+            pnlLoginLoad.Name = "pnlLoginLoad";
+            pnlLoginLoad.Size = new Size(968, 776);
+            pnlLoginLoad.TabIndex = 16;
+            // 
+            // progressSpinner
+            // 
+            progressSpinner.Anchor = AnchorStyles.None;
+            progressSpinner.AutoStart = true;
+            progressSpinner.BackColor = Color.White;
+            progressSpinner.Location = new Point(408, 256);
+            progressSpinner.Name = "progressSpinner";
+            progressSpinner.Size = new Size(135, 135);
+            progressSpinner.TabIndex = 8;
+            // 
+            // label5
+            // 
+            label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = SystemColors.ActiveCaptionText;
+            label5.Location = new Point(400, 416);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(144, 30);
+            label5.TabIndex = 6;
+            label5.Text = "Loading...";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // uiHistory
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(1020, 948);
+            Controls.Add(pnlLoginLoad);
             Controls.Add(sPanel2);
             Controls.Add(tableLayoutPanel1);
             Name = "uiHistory";
@@ -208,6 +251,7 @@
             Load += uiHistory_Load;
             tableLayoutPanel1.ResumeLayout(false);
             sPanel2.ResumeLayout(false);
+            pnlLoginLoad.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -225,5 +269,8 @@
         private Guna.UI2.WinForms.Guna2Button bntCancel;
         private Label lblText;
         private Guna.UI2.WinForms.Guna2Button bntPlugin;
+        private Guna.UI2.WinForms.Guna2Panel pnlLoginLoad;
+        private Guna.UI2.WinForms.Guna2WinProgressIndicator progressSpinner;
+        private Label label5;
     }
 }
