@@ -112,7 +112,7 @@ namespace LILO_Packager.v2.Forms
 
                         if (istreamingReady)
                         {
-                            var player = uiPlayer.Instance(null);
+                            var player = uiPlayer.Instance(null,false);
                             player.ShowDialog();
                         }
                         else
@@ -141,7 +141,7 @@ namespace LILO_Packager.v2.Forms
 
                                 var para = await MusicPlayerParameters.Get(tempFile);
 
-                                var player = uiPlayer.Instance(para);
+                                var player = uiPlayer.Instance(para,false);
                                 player.ShowDialog();
                             }
 

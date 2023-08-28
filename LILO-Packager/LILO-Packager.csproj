@@ -77,38 +77,29 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AuroraControls" Version="1.0.0" />
+    <PackageReference Include="AudioSwitcher.AudioApi.CoreAudio" Version="4.0.0-alpha5" />
     <PackageReference Include="bunifu.ui.winforms" Version="6.1.0" />
     <PackageReference Include="bunifu.ui.winforms.1.5.3" Version="1.0.0" />
-    <PackageReference Include="CubeCsv" Version="1.2.0" />
-    <PackageReference Include="FirebaseAdmin" Version="2.4.0" />
-    <PackageReference Include="FirebaseAuthentication.net" Version="4.0.2" />
+    <PackageReference Include="CoreAudio" Version="1.37.0" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
-    <PackageReference Include="FluentListView" Version="3.0.4" />
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.3.5" />
     <PackageReference Include="HTAlt.WinForms" Version="0.1.7.7" />
-    <PackageReference Include="ImageListView" Version="13.8.2" />
     <PackageReference Include="Markdig" Version="0.32.0" />
     <PackageReference Include="metromodernui" Version="1.4.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0-preview.6.23329.7" />
-    <PackageReference Include="Microsoft.FeatureManagement" Version="2.6.1" />
     <PackageReference Include="microsoft.web.webview2" Version="1.0.1988-prerelease" />
     <PackageReference Include="modern.forms" Version="0.3.0" />
     <PackageReference Include="Octokit" Version="7.1.0" />
     <PackageReference Include="Ookii.Dialogs.WinForms" Version="4.0.0" />
-    <PackageReference Include="Param" Version="1.0.2" />
     <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
     <PackageReference Include="SipaaFramework" Version="1.1.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
     <PackageReference Include="TagLibSharp" Version="2.3.0" />
     <PackageReference Include="ui.for.winforms.allcontrols.net70.trial" Version="2023.1.314" />
-    <PackageReference Include="Unofficial.ObjectListView" Version="2.6.0" />
-    <PackageReference Include="WinForm.Transitions" Version="1.2.45" />
     <PackageReference Include="WMPLib" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="XPTable" Version="1.6.1.139" />
   </ItemGroup>
 
   <ItemGroup>
@@ -153,7 +144,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InstallHelper\InstallHelper.csproj" />
+    <ProjectReference Include="..\InstallHelper\InstallHelper.csproj">
+      <TreatAsUsed>true</TreatAsUsed>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>

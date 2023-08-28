@@ -12,7 +12,6 @@ using LILO_Packager.Properties;
 using LILO_Packager.v2.plugins.PluginCore;
 using LILO_Packager.v2.plugins.Model;
 using System.Collections.ObjectModel;
-using Microsoft.FeatureManagement;
 using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.Interfaces;
 using System.IO.Pipes;
@@ -36,9 +35,99 @@ using Guna.UI2.WinForms;
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 {
-    private static MainHost instance;
+    
+    
     private static object _lock = new object();
+    public string owner = "JW-Limited";
+    public string repo = "Crypterv2";
+    public string htmlCode { get; set; }
+    public string name { get; set; }
+    public string version { get; set; }
+    public bool updating = false;
+    public bool downloaded = false;
+    public string UserFile { get => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"); private set => UserFile = value; }
+    public string zipPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "latest_release.zip");
+    public Action<bool> isEnabling; 
+    private static MainHost instance;
     private TcpListener listener;
+    private PluginManager manager = null;
+    public User loggedInUser;
+    public NotifyIconManager noty;
+    public Core.History.DatabaseHandling dataHandler = new Core.History.DatabaseHandling();
+    public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
+
+    public enum ChildrenUse
+    {
+        Auth,
+        WebView,
+        NormalForm
+    }
+
+    private Dictionary<string, bool> GetFeaturesAndValues()
+    {
+        Dictionary<string, bool> featureValues = new Dictionary<string, bool>
+        {
+            { FeatureFlags.NewEncryptionCore.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.NewEncryptionCore) },
+            { FeatureFlags.PluginSupport.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.PluginSupport) },
+            { FeatureFlags.ThirdPartyPluginSupport.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.ThirdPartyPluginSupport) },
+            { FeatureFlags.PluginManager.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.PluginManager) },
+            { FeatureFlags.WebView2GraphicalContent.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent) },
+            { FeatureFlags.SecuredContainerStreaming.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming) },
+            { FeatureFlags.HistoryElementQuering.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering) }
+        };
+
+
+        return featureValues;
+    }
+
+    private async void HandleClient(object clientObj)
+    {
+        using (TcpClient client = (TcpClient)clientObj)
+        using (NetworkStream stream = client.GetStream())
+        using (StreamReader reader = new StreamReader(stream))
+        using (StreamWriter writer = new StreamWriter(stream))
+        {
+            string command = reader.ReadLine();
+
+            if (command.ToLower() == "list")
+            {
+                Dictionary<string, bool> featureValues = GetFeaturesAndValues();
+
+                string featureValuesJson = JsonConvert.SerializeObject(featureValues);
+                writer.WriteLine(featureValuesJson);
+                writer.Flush();
+            }
+            else if (command.ToLower() == "closeThread")
+            {
+                Application.ExitThread();
+            }
+            else
+            {
+                var feature = (FeatureFlags)Enum.Parse(typeof(FeatureFlags), command);
+
+                await FeatureManager.ToggleFeatureAsync(feature);
+            }
+
+
+        }
+    }
+
+
+    private void ListenForConnections()
+    {
+        while (true)
+        {
+            try
+            {
+                TcpClient client = listener.AcceptTcpClient();
+                ThreadPool.QueueUserWorkItem(HandleClient, client);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+    }
 
     public static MainHost Instance()
     {
@@ -52,29 +141,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             return instance;
         }
     }
-
-    public NotifyIconManager noty;
-    public string owner = "JW-Limited";
-    public string repo = "Crypterv2";
-    public string htmlCode { get; set; }
-    public string name { get; set; }
-    public string version { get; set; }
-    public bool updating = false;
-    public bool downloaded = false;
-    public string zipPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "latest_release.zip");
-    public Action<bool> isEnabling;
-
-    public enum ChildrenUse
-    {
-        Auth,
-        WebView,
-        NormalForm
-    }
-    public string UserFile { get => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"); private set => UserFile = value; }
-    private PluginManager manager = null;
-    public User loggedInUser;
-    public Core.History.DatabaseHandling dataHandler = new Core.History.DatabaseHandling();
-    public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
 
     private MainHost()
     {
@@ -112,70 +178,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         };
     }
 
-    private void ListenForConnections()
-    {
-        while (true)
-        {
-            try
-            {
-                TcpClient client = listener.AcceptTcpClient();
-                ThreadPool.QueueUserWorkItem(HandleClient, client);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-    }
-
-    private async void HandleClient(object clientObj)
-    {
-        using (TcpClient client = (TcpClient)clientObj)
-        using (NetworkStream stream = client.GetStream())
-        using (StreamReader reader = new StreamReader(stream))
-        using (StreamWriter writer = new StreamWriter(stream))
-        {
-            string command = reader.ReadLine();
-
-            if (command.ToLower() == "list")
-            {
-                Dictionary<string, bool> featureValues = GetFeaturesAndValues();
-
-                string featureValuesJson = JsonConvert.SerializeObject(featureValues);
-                writer.WriteLine(featureValuesJson);
-                writer.Flush();
-            }
-            else if (command.ToLower() == "closeThread")
-            {
-                Application.ExitThread();
-            }
-            else
-            {
-                var feature = (FeatureFlags)Enum.Parse(typeof(FeatureFlags), command);
-
-                await FeatureManager.ToggleFeatureAsync(feature);
-            }
-
-
-        }
-    }
-
-    private Dictionary<string, bool> GetFeaturesAndValues()
-    {
-        Dictionary<string, bool> featureValues = new Dictionary<string, bool>
-        {
-            { FeatureFlags.NewEncryptionCore.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.NewEncryptionCore) },
-            { FeatureFlags.PluginSupport.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.PluginSupport) },
-            { FeatureFlags.ThirdPartyPluginSupport.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.ThirdPartyPluginSupport) },
-            { FeatureFlags.PluginManager.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.PluginManager) },
-            { FeatureFlags.WebView2GraphicalContent.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent) },
-            { FeatureFlags.SecuredContainerStreaming.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming) },
-            { FeatureFlags.HistoryElementQuering.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering) }
-        };
-
-
-        return featureValues;
-    }
+    
 
     private async void FeatureFlagEvents_FeatureFlagUpdateRequested(object? sender, FeatureFlagUpdateEventArgs e)
     {

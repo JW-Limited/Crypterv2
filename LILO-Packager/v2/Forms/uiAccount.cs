@@ -52,11 +52,15 @@ namespace LILO_Packager.v2.Forms
             lblUsername.Text = _user.Email.Replace("@jwlmt.com", "");
             lblUser.Text = _user.Role;
             videoPanel.BackgroundImage = Resources.icons8_male_user_96;
+
+            Thread.Sleep(300);
+
+            pnlLoading.Visible = false;
         }
 
         private void bntSettings_Click(object sender, EventArgs e)
         {
-            MainHost.Instance().OpenInApp(uiSettings.Instance());
+            MainHost.Instance().OpenInApp(uiSettings.Instance(_user));
         }
 
         private void bntCancel_Click(object sender, EventArgs e)

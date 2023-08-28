@@ -7,8 +7,8 @@ using System.Diagnostics;
 using SharpDX.MediaFoundation;
 using LILO.Shell;
 using Guna.UI2.WinForms;
-using System.Data.SqlClient;
 using LILO_Packager.v2.streaming.MusikPlayer.Core;
+using System.Runtime.InteropServices;
 
 namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
 {
@@ -26,7 +26,7 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
         private static bool isMusicStopped;
 
         public Thread PlayerThread;
-        public MusicPlayerParameters playerParameters;
+        public static MusicPlayerParameters playerParameters;
 
         private static readonly ManualResetEvent eventReadyToPlay = new ManualResetEvent(false);
         public static Stopwatch sw = new Stopwatch();
@@ -38,20 +38,38 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
 
         private static uiPlayer _instance;
 
-        public static uiPlayer Instance(MusicPlayerParameters parameters)
+        public static uiPlayer Instance(MusicPlayerParameters parameters,bool back_)
         {
-            if (_instance == null)
+            if (_instance == null || _instance.IsDisposed || parameters.Source != playerParameters.Source)
             {
-                _instance = new uiPlayer(parameters);
+                _instance = new uiPlayer(parameters,back_);
             }
 
 
             return _instance;
         }
 
-        public uiPlayer(MusicPlayerParameters parameters)
+        [DllImport("user32.dll")]
+        public static extern int SendMessageW(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam);
+
+        private const int APPCOMMAND_VOLUME_MUTE = 0x80000;
+        private const int APPCOMMAND_VOLUME_UP = 0xA0000;
+        private const int APPCOMMAND_VOLUME_DOWN = 0x90000;
+        private const int WM_APPCOMMAND = 0x319;
+
+        private void ShowVolumeNotification()
+        {
+            IntPtr handle = this.Handle;
+            SendMessageW(handle, WM_APPCOMMAND, handle,
+                (IntPtr)APPCOMMAND_VOLUME_UP);
+            SendMessageW(handle, WM_APPCOMMAND, handle,
+                (IntPtr)APPCOMMAND_VOLUME_DOWN);
+        }
+
+        public uiPlayer(MusicPlayerParameters parameters,bool back)
         {
             InitializeComponent();
+            bntBack.Visible = back;
             playerParameters = parameters;
 
             PlayerThread = new Thread(() =>
@@ -74,6 +92,8 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
                 {
                     MessageBox.Show("Unexpected error: Unable to play this file", "PlaybackError", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                ShowVolumeNotification();
 
             });
 
@@ -234,6 +254,11 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
         private void progressBar_MouseUp(object sender, MouseEventArgs e)
         {
             mediaEngineEx.CurrentTime = timeSlider.Value;
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            MainHost.Instance().OpenInApp(v2.Forms.uiHistory.Instance());
         }
     }
 }

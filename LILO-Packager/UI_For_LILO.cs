@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LILO;
 using LILO_Packager.Properties;
-using Param.IO.Compression;
 
 namespace LILO_Packager;
 public partial class InstallPackage : Form

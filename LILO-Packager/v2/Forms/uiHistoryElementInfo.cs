@@ -60,22 +60,31 @@ namespace LILO_Packager.v2.Forms
             pnlImage.BackgroundImage = fileIcon.ToBitmap();
 
             var appName = await GetDefaultApplication(_file.outputFileName);
-            if(appName is not null)
+            if (appName is not null)
             {
                 if (appName.DefaultApp is "LILO secured File") { appName.DefaultApp = "Crypterv2"; pnlImage.BackgroundImage = Resources.Lock; }
-                
-                lblApp.Text = appName.DefaultApp.Replace(appName.Extension,"");
+
+                lblApp.Text = appName.DefaultApp.Replace(appName.Extension, "");
             }
             else
             {
-                lblApp.Text = "default - "+ $" ({new FileInfo(_file.outputFileName).Extension})";
+                lblApp.Text = "default - " + $" ({new FileInfo(_file.outputFileName).Extension})";
             }
         }
 
-        private void bntOpen_Click(object sender, EventArgs e)
+        private async void bntOpen_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", _file.outputFileName);
-            MainHost.Instance().OpenInApp(v2.Forms.uiHistory.Instance());
+            if((_file.outputFileName.EndsWith(".mp3") || _file.outputFileName.EndsWith(".wav")) && config.Default.openMediaIn == "buildIn")
+            {
+                var para = await streaming.MusikPlayer.Core.MusicPlayerParameters.Get(_file.outputFileName);
+                var mediaInstance = streaming.MusikPlayer.Forms.uiPlayer.Instance(para,true);
+                MainHost.Instance().OpenInApp(mediaInstance);
+            }
+            else
+            {
+                Process.Start("explorer.exe", _file.outputFileName);
+                MainHost.Instance().OpenInApp(v2.Forms.uiHistory.Instance());
+            }
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -139,7 +148,7 @@ namespace LILO_Packager.v2.Forms
                             {
                                 using (RegistryKey fileTypeKey = Registry.ClassesRoot.OpenSubKey(defaultValue.ToString()))
                                 {
-                                    
+
 
                                     ConsoleManager.Instance().WriteLineWithColor($"RegEdit (TYPE): {fileTypeKey}", ConsoleColor.White);
 
@@ -215,10 +224,16 @@ namespace LILO_Packager.v2.Forms
             {
                 lblApp.Text = "Error";
 
-                ConsoleManager.Instance().WriteLineWithColor("Error: " + ex.Message,ConsoleColor.DarkRed);
+                ConsoleManager.Instance().WriteLineWithColor("Error: " + ex.Message, ConsoleColor.DarkRed);
             }
 
             return null;
+        }
+
+        private void bntOpenDirectory(object sender, EventArgs e)
+        {
+            Process.Start("explorer", _file.outputFileName.Replace(new FileInfo(_file.outputFileName).Name,""));
+            MainHost.Instance().OpenInApp(v2.Forms.uiHistory.Instance());
         }
     }
 }

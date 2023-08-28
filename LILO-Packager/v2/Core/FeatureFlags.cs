@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Contacts;
 
 namespace LILO_Packager.v2.Core
 {
@@ -20,7 +21,7 @@ namespace LILO_Packager.v2.Core
     public class FeatureFlagePipeLineConfig
     {
         public static string PipeName { get; } = "FeatureFlagPipe";
-        public static bool DebugModeEnabled { get; } = true;
+        public static bool DebugModeEnabled { get; } = config.Default.debugMode;
     }
 
     public class FeatureFlagConfig

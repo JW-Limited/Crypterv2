@@ -47,6 +47,7 @@ partial class uiPlayer
         lblAllTime = new Label();
         lblMoreInfo = new Label();
         timeSlider = new HTAlt.WinForms.HTSlider();
+        bntBack = new Guna2Button();
         pnlSplash.SuspendLayout();
         SuspendLayout();
         // 
@@ -270,6 +271,32 @@ partial class uiPlayer
         timeSlider.ThumbRoundRectSize = new Size(16, 16);
         timeSlider.ThumbSize = new Size(16, 16);
         // 
+        // bntBack
+        // 
+        bntBack.Animated = true;
+        bntBack.BackColor = Color.Transparent;
+        bntBack.BorderColor = Color.Gainsboro;
+        bntBack.BorderRadius = 12;
+        bntBack.BorderThickness = 2;
+        bntBack.DisabledState.BorderColor = Color.DarkGray;
+        bntBack.DisabledState.CustomBorderColor = Color.DarkGray;
+        bntBack.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        bntBack.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        bntBack.FillColor = Color.Transparent;
+        bntBack.FocusedColor = Color.FromArgb(100, 170, 209);
+        bntBack.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        bntBack.ForeColor = Color.White;
+        bntBack.Image = Properties.Resources.icons8_back_96;
+        bntBack.ImageAlign = HorizontalAlignment.Left;
+        bntBack.Location = new Point(34, 40);
+        bntBack.Margin = new Padding(2);
+        bntBack.Name = "bntBack";
+        bntBack.Size = new Size(104, 40);
+        bntBack.TabIndex = 26;
+        bntBack.Text = "   Back";
+        bntBack.Visible = false;
+        bntBack.Click += guna2Button1_Click;
+        // 
         // uiPlayer
         // 
         AcceptButton = bntPlay;
@@ -289,6 +316,7 @@ partial class uiPlayer
         Controls.Add(lblArtist);
         Controls.Add(lblTitle);
         Controls.Add(progressBar);
+        Controls.Add(bntBack);
         Icon = (Icon)resources.GetObject("$this.Icon");
         KeyPreview = true;
         MaximizeBox = false;
@@ -316,5 +344,6 @@ partial class uiPlayer
     public Label lblAllTime;
     private Label lblMoreInfo;
     private HTAlt.WinForms.HTSlider timeSlider;
+    private Guna2Button bntBack;
 }
 #endregion

@@ -66,6 +66,7 @@
             // 
             // listViewHistory
             // 
+            listViewHistory.Activation = ItemActivation.OneClick;
             listViewHistory.Alignment = ListViewAlignment.Default;
             listViewHistory.AllowColumnReorder = true;
             listViewHistory.BorderStyle = BorderStyle.None;
@@ -75,11 +76,13 @@
             listViewHistory.HeaderBorderThickness = 2;
             listViewHistory.HeaderForeColor = Color.Black;
             listViewHistory.HideSelection = true;
+            listViewHistory.HoverSelection = true;
             listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem2 });
             listViewHistory.Location = new Point(3, 53);
             listViewHistory.MultiSelect = false;
             listViewHistory.Name = "listViewHistory";
             listViewHistory.OverlayColor = Color.DodgerBlue;
+            listViewHistory.ShowGroups = false;
             listViewHistory.ShowItemToolTips = true;
             listViewHistory.Size = new Size(946, 768);
             listViewHistory.TabIndex = 0;
@@ -201,7 +204,7 @@
             // 
             // pnlLoginLoad
             // 
-            pnlLoginLoad.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pnlLoginLoad.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlLoginLoad.BackColor = Color.Transparent;
             pnlLoginLoad.BorderColor = Color.Silver;
             pnlLoginLoad.BorderRadius = 15;

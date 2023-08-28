@@ -2,7 +2,6 @@ using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.shared;
 using Microsoft.Win32;
 using System.Diagnostics;
-using Microsoft.FeatureManagement;
 using System.Runtime.InteropServices;
 using System.Threading;
 

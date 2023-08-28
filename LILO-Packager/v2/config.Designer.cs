@@ -34,5 +34,53 @@ namespace LILO_Packager.v2 {
                 this["allowedPlugins"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("buildIn")]
+        public string openMediaIn {
+            get {
+                return ((string)(this["openMediaIn"]));
+            }
+            set {
+                this["openMediaIn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool debugMode {
+            get {
+                return ((bool)(this["debugMode"]));
+            }
+            set {
+                this["debugMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool autoUpdates {
+            get {
+                return ((bool)(this["autoUpdates"]));
+            }
+            set {
+                this["autoUpdates"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool deleteFile {
+            get {
+                return ((bool)(this["deleteFile"]));
+            }
+            set {
+                this["deleteFile"] = value;
+            }
+        }
     }
 }

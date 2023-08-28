@@ -51,7 +51,7 @@ public partial class uiWebView : Form
         webView21.CreateGraphics();
         webView21.Show();
 
-        
+
 
     }
 
@@ -65,12 +65,26 @@ public partial class uiWebView : Form
 
             webView21.NavigationStarting += (sender, e) =>
             {
+                pnlError.Visible = false;
                 progressSpinner.Visible = true;
+                pnlLoading.Visible = true;
+                bntTrouble.Visible = false;
             };
 
             webView21.NavigationCompleted += (sender, e) =>
             {
-                progressSpinner.Visible = false;
+                if (e.IsSuccess)
+                {
+                    progressSpinner.Visible = false;
+                    pnlLoading.Visible = false;
+                }
+                else
+                {
+                    pnlError.Visible = true;
+                    bntTrouble.Visible = true;
+                    lblExc.Text = "Something went wrong!";
+                }
+
             };
 
             _url = newUri;
@@ -79,5 +93,18 @@ public partial class uiWebView : Form
         {
             MessageBox.Show(ex.Message);
         }
+    }
+
+    private void bntOpen_Click(object sender, EventArgs e)
+    {
+        pnlError.Visible = false;
+        bntTrouble.Visible = false;
+        webView21.Reload();
+    }
+
+    private void guna2Button1_Click(object sender, EventArgs e)
+    {
+        var trouble = uiCare.Instance();
+        trouble.ShowDialog();
     }
 }

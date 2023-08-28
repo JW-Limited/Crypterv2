@@ -55,7 +55,7 @@ namespace LILO_Packager.v2.Forms
                     if(element.id == 0)
                     {
                         MessageBox.Show("This Operation had no output.","No Output",MessageBoxButtons.OK,MessageBoxIcon.Stop);
-                        return;
+                        break;
                     }
 
                     try
@@ -67,7 +67,7 @@ namespace LILO_Packager.v2.Forms
                         else
                         {
                             MessageBox.Show("The Output of this Operation is not existing anymore.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                            return;
+                            break;
                         }
                     }
                     catch (Exception ex)
