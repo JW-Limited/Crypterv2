@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace LILO_Packager.v2.shared
 {
+    using System;
+    using System.IO;
+    using System.Runtime.InteropServices;
+
     public class ConsoleManager
     {
+        private string _sessionId;
         private static bool _consoleAllocated = false;
         private static StreamWriter _writer;
 
@@ -19,6 +24,7 @@ namespace LILO_Packager.v2.shared
         private static extern bool FreeConsole();
 
         private static ConsoleManager _instance;
+        private StreamWriter _logWriter;
 
         public static ConsoleManager Instance()
         {
@@ -30,6 +36,21 @@ namespace LILO_Packager.v2.shared
             return _instance;
         }
 
+        public void InitializeLogger()
+        {
+            if (!Directory.Exists(Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "log")))
+            {
+                Directory.CreateDirectory(Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "log"));
+            }
+            _sessionId = GenerateSessionId();
+            _logWriter = new StreamWriter(Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "log") + "\\" + $"log_session_{_sessionId}.dbgsl", true) { AutoFlush = true };
+            _logWriter.WriteLine("Session Generated: Program is starting now.\n\n");
+        }
+
+        private string GenerateSessionId()
+        {
+            return $"{DateTime.Now:yyyyMMdd_HHmmss}_{Guid.NewGuid():N}";
+        }
 
         public void ShowConsoleWindow(string header = "Debug Console")
         {
@@ -68,6 +89,25 @@ namespace LILO_Packager.v2.shared
             Console.ForegroundColor = color;
             Console.WriteLine($"[{DateTime.Now}] - " + text);
             Console.ResetColor();
+
+            Log(text);
+        }
+
+        public void Log(string message)
+        {
+            if (_logWriter == null)
+            {
+                InitializeLogger();
+            }
+
+            _logWriter.WriteLine($"[{DateTime.Now}] (Session {_sessionId.Remove(5)}): {message}");
+        }
+
+        public void EndSession()
+        {
+            _logWriter?.Close();
+            _logWriter = null;
         }
     }
+
 }

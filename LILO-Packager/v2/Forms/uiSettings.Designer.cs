@@ -101,10 +101,9 @@ partial class uiSettings
         sPanel1.Controls.Add(label5);
         sPanel1.Controls.Add(lblText);
         sPanel1.ForeColor = Color.White;
-        sPanel1.Location = new Point(24, 32);
-        sPanel1.Margin = new Padding(4);
+        sPanel1.Location = new Point(19, 26);
         sPanel1.Name = "sPanel1";
-        sPanel1.Size = new Size(976, 88);
+        sPanel1.Size = new Size(779, 70);
         sPanel1.TabIndex = 12;
         // 
         // guna2Button5
@@ -123,10 +122,10 @@ partial class uiSettings
         guna2Button5.FocusedColor = Color.FromArgb(100, 170, 209);
         guna2Button5.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
         guna2Button5.ForeColor = Color.White;
-        guna2Button5.Location = new Point(816, 16);
+        guna2Button5.Location = new Point(651, 13);
         guna2Button5.Margin = new Padding(2);
         guna2Button5.Name = "guna2Button5";
-        guna2Button5.Size = new Size(144, 58);
+        guna2Button5.Size = new Size(115, 46);
         guna2Button5.TabIndex = 17;
         guna2Button5.Text = "Passwords";
         // 
@@ -139,10 +138,10 @@ partial class uiSettings
         guna2Panel7.BorderRadius = 15;
         guna2Panel7.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
         guna2Panel7.FillColor = Color.Transparent;
-        guna2Panel7.Location = new Point(88, 32);
+        guna2Panel7.Location = new Point(70, 26);
         guna2Panel7.Margin = new Padding(2);
         guna2Panel7.Name = "guna2Panel7";
-        guna2Panel7.Size = new Size(40, 32);
+        guna2Panel7.Size = new Size(32, 26);
         guna2Panel7.TabIndex = 16;
         // 
         // label5
@@ -151,9 +150,8 @@ partial class uiSettings
         label5.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
         label5.ForeColor = Color.White;
         label5.Location = new Point(0, 0);
-        label5.Margin = new Padding(4, 0, 4, 0);
         label5.Name = "label5";
-        label5.Size = new Size(112, 80);
+        label5.Size = new Size(90, 64);
         label5.TabIndex = 1;
         label5.Text = "...";
         label5.TextAlign = ContentAlignment.MiddleCenter;
@@ -164,10 +162,9 @@ partial class uiSettings
         lblText.BackColor = Color.Transparent;
         lblText.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
         lblText.ForeColor = Color.White;
-        lblText.Location = new Point(128, 0);
-        lblText.Margin = new Padding(4, 0, 4, 0);
+        lblText.Location = new Point(102, 0);
         lblText.Name = "lblText";
-        lblText.Size = new Size(144, 88);
+        lblText.Size = new Size(115, 70);
         lblText.TabIndex = 1;
         lblText.Text = "Settings";
         lblText.TextAlign = ContentAlignment.MiddleCenter;
@@ -176,10 +173,10 @@ partial class uiSettings
         // 
         lblProductName.BackColor = Color.Transparent;
         lblProductName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-        lblProductName.Location = new Point(24, 20);
+        lblProductName.Location = new Point(19, 16);
         lblProductName.Margin = new Padding(2, 0, 2, 0);
         lblProductName.Name = "lblProductName";
-        lblProductName.Size = new Size(176, 39);
+        lblProductName.Size = new Size(141, 31);
         lblProductName.TabIndex = 15;
         lblProductName.Text = "Delete File";
         lblProductName.TextAlign = ContentAlignment.MiddleLeft;
@@ -188,10 +185,10 @@ partial class uiSettings
         // 
         label4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
         label4.BackColor = Color.Transparent;
-        label4.Location = new Point(24, 68);
+        label4.Location = new Point(19, 54);
         label4.Margin = new Padding(2, 0, 2, 0);
         label4.Name = "label4";
-        label4.Size = new Size(248, 64);
+        label4.Size = new Size(198, 51);
         label4.TabIndex = 14;
         label4.Text = "Deletes the original file after Encryption";
         label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -203,15 +200,14 @@ partial class uiSettings
         chbDeleteFile.BackColor = Color.White;
         chbDeleteFile.Checked = true;
         chbDeleteFile.CheckState = CheckState.Checked;
-        chbDeleteFile.Location = new Point(184, 16);
-        chbDeleteFile.Margin = new Padding(4);
-        chbDeleteFile.MinimumSize = new Size(56, 28);
+        chbDeleteFile.Location = new Point(147, 13);
+        chbDeleteFile.MinimumSize = new Size(45, 22);
         chbDeleteFile.Name = "chbDeleteFile";
         chbDeleteFile.OffBackColor = SystemColors.GrayText;
         chbDeleteFile.OffToggleColor = Color.Gainsboro;
         chbDeleteFile.OnBackColor = Color.FromArgb(42, 38, 207);
         chbDeleteFile.OnToggleColor = Color.WhiteSmoke;
-        chbDeleteFile.Size = new Size(56, 28);
+        chbDeleteFile.Size = new Size(45, 22);
         chbDeleteFile.TabIndex = 13;
         chbDeleteFile.UseVisualStyleBackColor = false;
         chbDeleteFile.CheckedChanged += chbDeleteFile_CheckedChanged;
@@ -227,20 +223,20 @@ partial class uiSettings
         guna2Panel1.Controls.Add(lblProductName);
         guna2Panel1.Controls.Add(guna2Panel2);
         guna2Panel1.FillColor = Color.White;
-        guna2Panel1.Location = new Point(32, 192);
+        guna2Panel1.Location = new Point(25, 154);
         guna2Panel1.Margin = new Padding(2);
         guna2Panel1.Name = "guna2Panel1";
-        guna2Panel1.Size = new Size(296, 224);
+        guna2Panel1.Size = new Size(237, 179);
         guna2Panel1.TabIndex = 16;
         // 
         // label1
         // 
         label1.Anchor = AnchorStyles.Left;
         label1.BackColor = Color.Transparent;
-        label1.Location = new Point(32, 160);
+        label1.Location = new Point(26, 128);
         label1.Margin = new Padding(2, 0, 2, 0);
         label1.Name = "label1";
-        label1.Size = new Size(96, 40);
+        label1.Size = new Size(77, 32);
         label1.TabIndex = 14;
         label1.Text = "Enabled";
         label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -254,10 +250,10 @@ partial class uiSettings
         guna2Panel2.BorderThickness = 2;
         guna2Panel2.Controls.Add(chbDeleteFile);
         guna2Panel2.FillColor = Color.White;
-        guna2Panel2.Location = new Point(16, 152);
+        guna2Panel2.Location = new Point(13, 122);
         guna2Panel2.Margin = new Padding(2);
         guna2Panel2.Name = "guna2Panel2";
-        guna2Panel2.Size = new Size(264, 56);
+        guna2Panel2.Size = new Size(211, 45);
         guna2Panel2.TabIndex = 16;
         // 
         // guna2Panel5
@@ -270,20 +266,20 @@ partial class uiSettings
         guna2Panel5.Controls.Add(label14);
         guna2Panel5.Controls.Add(guna2Panel3);
         guna2Panel5.FillColor = Color.White;
-        guna2Panel5.Location = new Point(360, 192);
+        guna2Panel5.Location = new Point(287, 154);
         guna2Panel5.Margin = new Padding(2);
         guna2Panel5.Name = "guna2Panel5";
-        guna2Panel5.Size = new Size(296, 224);
+        guna2Panel5.Size = new Size(237, 179);
         guna2Panel5.TabIndex = 16;
         // 
         // label13
         // 
         label13.Anchor = AnchorStyles.Left | AnchorStyles.Right;
         label13.BackColor = Color.Transparent;
-        label13.Location = new Point(24, 68);
+        label13.Location = new Point(19, 54);
         label13.Margin = new Padding(2, 0, 2, 0);
         label13.Name = "label13";
-        label13.Size = new Size(248, 64);
+        label13.Size = new Size(198, 51);
         label13.TabIndex = 14;
         label13.Text = "Enables the secured stream container";
         label13.TextAlign = ContentAlignment.MiddleLeft;
@@ -292,10 +288,10 @@ partial class uiSettings
         // 
         label14.BackColor = Color.Transparent;
         label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-        label14.Location = new Point(24, 20);
+        label14.Location = new Point(19, 16);
         label14.Margin = new Padding(2, 0, 2, 0);
         label14.Name = "label14";
-        label14.Size = new Size(176, 39);
+        label14.Size = new Size(141, 31);
         label14.TabIndex = 15;
         label14.Text = "Stream";
         label14.TextAlign = ContentAlignment.MiddleLeft;
@@ -310,20 +306,20 @@ partial class uiSettings
         guna2Panel3.Controls.Add(label2);
         guna2Panel3.Controls.Add(chbStream);
         guna2Panel3.FillColor = Color.White;
-        guna2Panel3.Location = new Point(16, 152);
+        guna2Panel3.Location = new Point(13, 122);
         guna2Panel3.Margin = new Padding(2);
         guna2Panel3.Name = "guna2Panel3";
-        guna2Panel3.Size = new Size(264, 56);
+        guna2Panel3.Size = new Size(211, 45);
         guna2Panel3.TabIndex = 16;
         // 
         // label2
         // 
         label2.Anchor = AnchorStyles.Left;
         label2.BackColor = Color.Transparent;
-        label2.Location = new Point(16, 8);
+        label2.Location = new Point(13, 6);
         label2.Margin = new Padding(2, 0, 2, 0);
         label2.Name = "label2";
-        label2.Size = new Size(96, 40);
+        label2.Size = new Size(77, 32);
         label2.TabIndex = 14;
         label2.Text = "Enabled";
         label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -335,15 +331,14 @@ partial class uiSettings
         chbStream.BackColor = Color.White;
         chbStream.Checked = true;
         chbStream.CheckState = CheckState.Checked;
-        chbStream.Location = new Point(184, 16);
-        chbStream.Margin = new Padding(4);
-        chbStream.MinimumSize = new Size(56, 28);
+        chbStream.Location = new Point(147, 13);
+        chbStream.MinimumSize = new Size(45, 22);
         chbStream.Name = "chbStream";
         chbStream.OffBackColor = SystemColors.GrayText;
         chbStream.OffToggleColor = Color.Gainsboro;
         chbStream.OnBackColor = Color.FromArgb(42, 38, 207);
         chbStream.OnToggleColor = Color.WhiteSmoke;
-        chbStream.Size = new Size(56, 28);
+        chbStream.Size = new Size(45, 22);
         chbStream.TabIndex = 13;
         chbStream.UseVisualStyleBackColor = false;
         chbStream.CheckedChanged += chbStream_CheckedChanged;
@@ -359,20 +354,20 @@ partial class uiSettings
         guna2Panel6.Controls.Add(label17);
         guna2Panel6.Controls.Add(guna2Panel4);
         guna2Panel6.FillColor = Color.White;
-        guna2Panel6.Location = new Point(688, 192);
+        guna2Panel6.Location = new Point(549, 154);
         guna2Panel6.Margin = new Padding(2);
         guna2Panel6.Name = "guna2Panel6";
-        guna2Panel6.Size = new Size(296, 224);
+        guna2Panel6.Size = new Size(237, 179);
         guna2Panel6.TabIndex = 16;
         // 
         // label6
         // 
         label6.Anchor = AnchorStyles.Left | AnchorStyles.Right;
         label6.BackColor = Color.Transparent;
-        label6.Location = new Point(112, 16);
+        label6.Location = new Point(90, 13);
         label6.Margin = new Padding(2, 0, 2, 0);
         label6.Name = "label6";
-        label6.Size = new Size(152, 48);
+        label6.Size = new Size(122, 38);
         label6.TabIndex = 14;
         label6.Text = "(Restart)";
         label6.TextAlign = ContentAlignment.MiddleLeft;
@@ -381,10 +376,10 @@ partial class uiSettings
         // 
         label16.Anchor = AnchorStyles.Left | AnchorStyles.Right;
         label16.BackColor = Color.Transparent;
-        label16.Location = new Point(24, 68);
+        label16.Location = new Point(19, 54);
         label16.Margin = new Padding(2, 0, 2, 0);
         label16.Name = "label16";
-        label16.Size = new Size(248, 64);
+        label16.Size = new Size(198, 51);
         label16.TabIndex = 14;
         label16.Text = "Enables the Debug-Mode and opens a dev port.";
         label16.TextAlign = ContentAlignment.MiddleLeft;
@@ -393,10 +388,10 @@ partial class uiSettings
         // 
         label17.BackColor = Color.Transparent;
         label17.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-        label17.Location = new Point(24, 20);
+        label17.Location = new Point(19, 16);
         label17.Margin = new Padding(2, 0, 2, 0);
         label17.Name = "label17";
-        label17.Size = new Size(176, 39);
+        label17.Size = new Size(141, 31);
         label17.TabIndex = 15;
         label17.Text = "Debug";
         label17.TextAlign = ContentAlignment.MiddleLeft;
@@ -411,20 +406,20 @@ partial class uiSettings
         guna2Panel4.Controls.Add(label3);
         guna2Panel4.Controls.Add(chbDebug);
         guna2Panel4.FillColor = Color.White;
-        guna2Panel4.Location = new Point(16, 152);
+        guna2Panel4.Location = new Point(13, 122);
         guna2Panel4.Margin = new Padding(2);
         guna2Panel4.Name = "guna2Panel4";
-        guna2Panel4.Size = new Size(264, 56);
+        guna2Panel4.Size = new Size(211, 45);
         guna2Panel4.TabIndex = 16;
         // 
         // label3
         // 
         label3.Anchor = AnchorStyles.Left;
         label3.BackColor = Color.Transparent;
-        label3.Location = new Point(16, 8);
+        label3.Location = new Point(13, 6);
         label3.Margin = new Padding(2, 0, 2, 0);
         label3.Name = "label3";
-        label3.Size = new Size(96, 40);
+        label3.Size = new Size(77, 32);
         label3.TabIndex = 14;
         label3.Text = "Enabled";
         label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -436,15 +431,14 @@ partial class uiSettings
         chbDebug.BackColor = Color.White;
         chbDebug.Checked = true;
         chbDebug.CheckState = CheckState.Checked;
-        chbDebug.Location = new Point(184, 16);
-        chbDebug.Margin = new Padding(4);
-        chbDebug.MinimumSize = new Size(56, 28);
+        chbDebug.Location = new Point(147, 13);
+        chbDebug.MinimumSize = new Size(45, 22);
         chbDebug.Name = "chbDebug";
         chbDebug.OffBackColor = SystemColors.GrayText;
         chbDebug.OffToggleColor = Color.Gainsboro;
         chbDebug.OnBackColor = Color.FromArgb(42, 38, 207);
         chbDebug.OnToggleColor = Color.WhiteSmoke;
-        chbDebug.Size = new Size(56, 28);
+        chbDebug.Size = new Size(45, 22);
         chbDebug.TabIndex = 13;
         chbDebug.UseVisualStyleBackColor = false;
         chbDebug.CheckedChanged += chbDebug_CheckedChanged;
@@ -460,20 +454,20 @@ partial class uiSettings
         guna2Panel8.Controls.Add(label9);
         guna2Panel8.Controls.Add(guna2Panel9);
         guna2Panel8.FillColor = Color.White;
-        guna2Panel8.Location = new Point(32, 440);
+        guna2Panel8.Location = new Point(25, 352);
         guna2Panel8.Margin = new Padding(2);
         guna2Panel8.Name = "guna2Panel8";
-        guna2Panel8.Size = new Size(296, 224);
+        guna2Panel8.Size = new Size(237, 179);
         guna2Panel8.TabIndex = 16;
         // 
         // label7
         // 
         label7.Anchor = AnchorStyles.Left;
         label7.BackColor = Color.Transparent;
-        label7.Location = new Point(32, 160);
+        label7.Location = new Point(26, 128);
         label7.Margin = new Padding(2, 0, 2, 0);
         label7.Name = "label7";
-        label7.Size = new Size(96, 40);
+        label7.Size = new Size(77, 32);
         label7.TabIndex = 14;
         label7.Text = "Enabled";
         label7.TextAlign = ContentAlignment.MiddleLeft;
@@ -482,10 +476,10 @@ partial class uiSettings
         // 
         label8.Anchor = AnchorStyles.Left | AnchorStyles.Right;
         label8.BackColor = Color.Transparent;
-        label8.Location = new Point(24, 68);
+        label8.Location = new Point(19, 54);
         label8.Margin = new Padding(2, 0, 2, 0);
         label8.Name = "label8";
-        label8.Size = new Size(248, 64);
+        label8.Size = new Size(198, 51);
         label8.TabIndex = 14;
         label8.Text = "Automaticly Check for newer Versions";
         label8.TextAlign = ContentAlignment.MiddleLeft;
@@ -494,10 +488,10 @@ partial class uiSettings
         // 
         label9.BackColor = Color.Transparent;
         label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-        label9.Location = new Point(24, 20);
+        label9.Location = new Point(19, 16);
         label9.Margin = new Padding(2, 0, 2, 0);
         label9.Name = "label9";
-        label9.Size = new Size(176, 39);
+        label9.Size = new Size(141, 31);
         label9.TabIndex = 15;
         label9.Text = "Updates";
         label9.TextAlign = ContentAlignment.MiddleLeft;
@@ -511,10 +505,10 @@ partial class uiSettings
         guna2Panel9.BorderThickness = 2;
         guna2Panel9.Controls.Add(chbUpdates);
         guna2Panel9.FillColor = Color.White;
-        guna2Panel9.Location = new Point(16, 152);
+        guna2Panel9.Location = new Point(13, 122);
         guna2Panel9.Margin = new Padding(2);
         guna2Panel9.Name = "guna2Panel9";
-        guna2Panel9.Size = new Size(264, 56);
+        guna2Panel9.Size = new Size(211, 45);
         guna2Panel9.TabIndex = 16;
         // 
         // chbUpdates
@@ -524,15 +518,14 @@ partial class uiSettings
         chbUpdates.BackColor = Color.White;
         chbUpdates.Checked = true;
         chbUpdates.CheckState = CheckState.Checked;
-        chbUpdates.Location = new Point(184, 16);
-        chbUpdates.Margin = new Padding(4);
-        chbUpdates.MinimumSize = new Size(56, 28);
+        chbUpdates.Location = new Point(147, 13);
+        chbUpdates.MinimumSize = new Size(45, 22);
         chbUpdates.Name = "chbUpdates";
         chbUpdates.OffBackColor = SystemColors.GrayText;
         chbUpdates.OffToggleColor = Color.Gainsboro;
         chbUpdates.OnBackColor = Color.FromArgb(42, 38, 207);
         chbUpdates.OnToggleColor = Color.WhiteSmoke;
-        chbUpdates.Size = new Size(56, 28);
+        chbUpdates.Size = new Size(45, 22);
         chbUpdates.TabIndex = 13;
         chbUpdates.UseVisualStyleBackColor = false;
         chbUpdates.CheckedChanged += chbUpdates_CheckedChanged;
@@ -548,20 +541,20 @@ partial class uiSettings
         guna2Panel10.Controls.Add(label12);
         guna2Panel10.Controls.Add(guna2Panel11);
         guna2Panel10.FillColor = Color.White;
-        guna2Panel10.Location = new Point(360, 440);
+        guna2Panel10.Location = new Point(287, 352);
         guna2Panel10.Margin = new Padding(2);
         guna2Panel10.Name = "guna2Panel10";
-        guna2Panel10.Size = new Size(296, 224);
+        guna2Panel10.Size = new Size(237, 179);
         guna2Panel10.TabIndex = 16;
         // 
         // label10
         // 
         label10.Anchor = AnchorStyles.Left;
         label10.BackColor = Color.Transparent;
-        label10.Location = new Point(32, 160);
+        label10.Location = new Point(26, 128);
         label10.Margin = new Padding(2, 0, 2, 0);
         label10.Name = "label10";
-        label10.Size = new Size(96, 40);
+        label10.Size = new Size(77, 32);
         label10.TabIndex = 14;
         label10.Text = "Enabled";
         label10.TextAlign = ContentAlignment.MiddleLeft;
@@ -570,10 +563,10 @@ partial class uiSettings
         // 
         label11.Anchor = AnchorStyles.Left | AnchorStyles.Right;
         label11.BackColor = Color.Transparent;
-        label11.Location = new Point(24, 68);
+        label11.Location = new Point(19, 54);
         label11.Margin = new Padding(2, 0, 2, 0);
         label11.Name = "label11";
-        label11.Size = new Size(248, 68);
+        label11.Size = new Size(198, 54);
         label11.TabIndex = 14;
         label11.Text = "Enable feature enhancements based off on external librarys";
         label11.TextAlign = ContentAlignment.MiddleLeft;
@@ -582,10 +575,10 @@ partial class uiSettings
         // 
         label12.BackColor = Color.Transparent;
         label12.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-        label12.Location = new Point(24, 20);
+        label12.Location = new Point(19, 16);
         label12.Margin = new Padding(2, 0, 2, 0);
         label12.Name = "label12";
-        label12.Size = new Size(176, 39);
+        label12.Size = new Size(141, 31);
         label12.TabIndex = 15;
         label12.Text = "Librarys";
         label12.TextAlign = ContentAlignment.MiddleLeft;
@@ -599,10 +592,10 @@ partial class uiSettings
         guna2Panel11.BorderThickness = 2;
         guna2Panel11.Controls.Add(chbLibrarys);
         guna2Panel11.FillColor = Color.White;
-        guna2Panel11.Location = new Point(16, 152);
+        guna2Panel11.Location = new Point(13, 122);
         guna2Panel11.Margin = new Padding(2);
         guna2Panel11.Name = "guna2Panel11";
-        guna2Panel11.Size = new Size(264, 56);
+        guna2Panel11.Size = new Size(211, 45);
         guna2Panel11.TabIndex = 16;
         // 
         // chbLibrarys
@@ -612,15 +605,14 @@ partial class uiSettings
         chbLibrarys.BackColor = Color.White;
         chbLibrarys.Checked = true;
         chbLibrarys.CheckState = CheckState.Checked;
-        chbLibrarys.Location = new Point(184, 16);
-        chbLibrarys.Margin = new Padding(4);
-        chbLibrarys.MinimumSize = new Size(56, 28);
+        chbLibrarys.Location = new Point(147, 13);
+        chbLibrarys.MinimumSize = new Size(45, 22);
         chbLibrarys.Name = "chbLibrarys";
         chbLibrarys.OffBackColor = SystemColors.GrayText;
         chbLibrarys.OffToggleColor = Color.Gainsboro;
         chbLibrarys.OnBackColor = Color.FromArgb(42, 38, 207);
         chbLibrarys.OnToggleColor = Color.WhiteSmoke;
-        chbLibrarys.Size = new Size(56, 28);
+        chbLibrarys.Size = new Size(45, 22);
         chbLibrarys.TabIndex = 13;
         chbLibrarys.UseVisualStyleBackColor = false;
         chbLibrarys.CheckedChanged += chbLibrarys_CheckedChanged;
@@ -637,20 +629,20 @@ partial class uiSettings
         guna2Panel12.Controls.Add(label19);
         guna2Panel12.Controls.Add(guna2Panel13);
         guna2Panel12.FillColor = Color.White;
-        guna2Panel12.Location = new Point(688, 440);
+        guna2Panel12.Location = new Point(549, 352);
         guna2Panel12.Margin = new Padding(2);
         guna2Panel12.Name = "guna2Panel12";
-        guna2Panel12.Size = new Size(296, 224);
+        guna2Panel12.Size = new Size(237, 179);
         guna2Panel12.TabIndex = 16;
         // 
         // label20
         // 
         label20.Anchor = AnchorStyles.Left | AnchorStyles.Right;
         label20.BackColor = Color.Transparent;
-        label20.Location = new Point(120, 16);
+        label20.Location = new Point(96, 13);
         label20.Margin = new Padding(2, 0, 2, 0);
         label20.Name = "label20";
-        label20.Size = new Size(152, 48);
+        label20.Size = new Size(122, 38);
         label20.TabIndex = 14;
         label20.Text = "(Required)";
         label20.TextAlign = ContentAlignment.MiddleLeft;
@@ -659,10 +651,10 @@ partial class uiSettings
         // 
         label15.Anchor = AnchorStyles.Left;
         label15.BackColor = Color.Transparent;
-        label15.Location = new Point(32, 160);
+        label15.Location = new Point(26, 128);
         label15.Margin = new Padding(2, 0, 2, 0);
         label15.Name = "label15";
-        label15.Size = new Size(96, 40);
+        label15.Size = new Size(77, 32);
         label15.TabIndex = 14;
         label15.Text = "Enabled";
         label15.TextAlign = ContentAlignment.MiddleLeft;
@@ -671,10 +663,10 @@ partial class uiSettings
         // 
         label18.Anchor = AnchorStyles.Left | AnchorStyles.Right;
         label18.BackColor = Color.Transparent;
-        label18.Location = new Point(24, 68);
+        label18.Location = new Point(19, 54);
         label18.Margin = new Padding(2, 0, 2, 0);
         label18.Name = "label18";
-        label18.Size = new Size(248, 64);
+        label18.Size = new Size(198, 51);
         label18.TabIndex = 14;
         label18.Text = "Enables the support and the Manager\r\n";
         label18.TextAlign = ContentAlignment.MiddleLeft;
@@ -683,10 +675,10 @@ partial class uiSettings
         // 
         label19.BackColor = Color.Transparent;
         label19.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-        label19.Location = new Point(24, 20);
+        label19.Location = new Point(19, 16);
         label19.Margin = new Padding(2, 0, 2, 0);
         label19.Name = "label19";
-        label19.Size = new Size(176, 39);
+        label19.Size = new Size(141, 31);
         label19.TabIndex = 15;
         label19.Text = "Plugins";
         label19.TextAlign = ContentAlignment.MiddleLeft;
@@ -701,10 +693,10 @@ partial class uiSettings
         guna2Panel13.Controls.Add(chbPlugins);
         guna2Panel13.Enabled = false;
         guna2Panel13.FillColor = Color.White;
-        guna2Panel13.Location = new Point(16, 152);
+        guna2Panel13.Location = new Point(13, 122);
         guna2Panel13.Margin = new Padding(2);
         guna2Panel13.Name = "guna2Panel13";
-        guna2Panel13.Size = new Size(264, 56);
+        guna2Panel13.Size = new Size(211, 45);
         guna2Panel13.TabIndex = 16;
         // 
         // chbPlugins
@@ -715,25 +707,24 @@ partial class uiSettings
         chbPlugins.Checked = true;
         chbPlugins.CheckState = CheckState.Checked;
         chbPlugins.Enabled = false;
-        chbPlugins.Location = new Point(184, 16);
-        chbPlugins.Margin = new Padding(4);
-        chbPlugins.MinimumSize = new Size(56, 28);
+        chbPlugins.Location = new Point(147, 13);
+        chbPlugins.MinimumSize = new Size(45, 22);
         chbPlugins.Name = "chbPlugins";
         chbPlugins.OffBackColor = SystemColors.GrayText;
         chbPlugins.OffToggleColor = Color.Gainsboro;
         chbPlugins.OnBackColor = Color.FromArgb(42, 38, 207);
         chbPlugins.OnToggleColor = Color.WhiteSmoke;
-        chbPlugins.Size = new Size(56, 28);
+        chbPlugins.Size = new Size(45, 22);
         chbPlugins.TabIndex = 13;
         chbPlugins.UseVisualStyleBackColor = false;
         chbPlugins.CheckedChanged += chbPlugins_CheckedChanged;
         // 
         // uiSettings
         // 
-        AutoScaleDimensions = new SizeF(10F, 25F);
+        AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.White;
-        ClientSize = new Size(1020, 948);
+        ClientSize = new Size(814, 756);
         Controls.Add(guna2Panel6);
         Controls.Add(guna2Panel5);
         Controls.Add(guna2Panel12);
@@ -741,6 +732,7 @@ partial class uiSettings
         Controls.Add(guna2Panel8);
         Controls.Add(guna2Panel1);
         Controls.Add(sPanel1);
+        Margin = new Padding(2, 2, 2, 2);
         Name = "uiSettings";
         Text = "uiSettings";
         Load += uiSettings_Load;

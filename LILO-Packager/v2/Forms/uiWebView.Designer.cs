@@ -31,6 +31,7 @@ partial class uiWebView
         webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
         progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
         pnlLoading = new Panel();
+        label1 = new Label();
         bntTrouble = new Guna.UI2.WinForms.Guna2Button();
         pnlError = new Panel();
         guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -73,12 +74,27 @@ partial class uiWebView
         // 
         pnlLoading.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         pnlLoading.BackColor = Color.White;
+        pnlLoading.Controls.Add(label1);
         pnlLoading.Controls.Add(bntTrouble);
         pnlLoading.Controls.Add(progressSpinner);
         pnlLoading.Location = new Point(0, 0);
         pnlLoading.Name = "pnlLoading";
         pnlLoading.Size = new Size(1024, 952);
         pnlLoading.TabIndex = 8;
+        // 
+        // label1
+        // 
+        label1.Anchor = AnchorStyles.None;
+        label1.BackColor = Color.Transparent;
+        label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        label1.ForeColor = SystemColors.WindowFrame;
+        label1.Location = new Point(408, 864);
+        label1.Margin = new Padding(4, 0, 4, 0);
+        label1.Name = "label1";
+        label1.Size = new Size(200, 40);
+        label1.TabIndex = 1;
+        label1.Text = "JW Limited ©️ 2023";
+        label1.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // bntTrouble
         // 
@@ -123,7 +139,6 @@ partial class uiWebView
         guna2Panel1.BorderColor = SystemColors.ActiveBorder;
         guna2Panel1.BorderRadius = 15;
         guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-        guna2Panel1.BorderThickness = 2;
         guna2Panel1.Controls.Add(bntOpen);
         guna2Panel1.Controls.Add(lblExc);
         guna2Panel1.FillColor = Color.Transparent;
@@ -247,4 +262,5 @@ partial class uiWebView
     private Guna.UI2.WinForms.Guna2Button bntOpen;
     private Guna.UI2.WinForms.Guna2Button bntTrouble;
     public Microsoft.Web.WebView2.WinForms.WebView2 webView21;
+    private Label label1;
 }

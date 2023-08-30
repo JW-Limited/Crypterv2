@@ -1,4 +1,5 @@
-﻿using LILO_Packager.v2.plugins.PluginCore;
+﻿using Bunifu.UI.WinForms.Helpers.Transitions;
+using LILO_Packager.v2.plugins.PluginCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,6 +34,7 @@ public partial class PluginInterface : Form
         }
     }
 
+    public CrypterTextFile _file;
 
     private PluginInterface(string Version, PluginID id, string Name)
     {
@@ -49,14 +51,41 @@ public partial class PluginInterface : Form
         };
     }
 
+    public void SetContent(CrypterTextFile file)
+    {
+        if (file is not null)
+        {
+            _file = file;
+        }
+    }
+
     private void ui_Load(object sender, EventArgs e)
     {
         lblVersion.Text = Version;
+
+        mainTextBox.Text = _file.Text;
+        mainTextBox.Enabled = !_file.Locked;
+        mainTextBox.ForeColor = _file.TextColor;
     }
 
     private void guna2Button1_Click(object sender, EventArgs e)
     {
+        var ofd = new OpenFileDialog()
+        {
+            Filter = "TextFile(.txt)|*.txt",
+            AddToRecent = true,
+            AutoUpgradeEnabled = true,
+            Multiselect = false,
+            RestoreDirectory = true,
+        };
 
+        var result = ofd.ShowDialog();  
+
+        if(result == DialogResult.OK)
+        {
+            (bool isSuccess, string Text) = Handler.ReadAllText();
+            Text;
+        }
     }
 
     private void bntPlugin_Click(object sender, EventArgs e)
@@ -82,7 +111,6 @@ public partial class PluginInterface : Form
                 Author = Environment.UserDomainName,
                 FileName = new FileInfo(ofd.FileName).Name,
                 Locked = false,
-                TextFont = mainTextBox.Font,
                 TextColor = mainTextBox.ForeColor,
                 Text = mainTextBox.Text
             };

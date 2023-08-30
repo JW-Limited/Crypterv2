@@ -1,4 +1,5 @@
 ﻿using LILO_Packager.v2.Core;
+using LILO_Packager.v2.shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,8 +52,7 @@ public partial class uiWebView : Form
         webView21.CreateGraphics();
         webView21.Show();
 
-
-
+        ConsoleManager.Instance().WriteLineWithColor("Initializing WebView2 Core.", ConsoleColor.Cyan);
     }
 
     private void ChangeDisplayedContent(Uri newUri)

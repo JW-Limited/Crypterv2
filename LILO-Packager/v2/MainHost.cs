@@ -218,8 +218,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             }
         };
 
-        var currentVersion = System.Windows.Forms.Application.ProductVersion;
-        var latestVersion = updater.GetLatestVersion(owner, repo);
 
         foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
         {
@@ -228,16 +226,26 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         proc.Start();
 
-        if (latestVersion != currentVersion)
+        if (config.Default.autoUpdates)
         {
+            var currentVersion = System.Windows.Forms.Application.ProductVersion;
+            var latestVersion = updater.GetLatestVersion(owner, repo);
 
-            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/update")));
-            noty.ShowBubbleNotification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}");
+            if (latestVersion != currentVersion)
+            {
+                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/update")));
+                noty.ShowBubbleNotification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}");
+            }
+            else
+            {
+                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+            }
         }
         else
         {
             OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
         }
+
 
 
         if (config.Default.allowedPlugins)

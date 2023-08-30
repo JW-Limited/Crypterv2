@@ -12,6 +12,7 @@ namespace LILO_Packager
         public static int DefaultEnvironment = 0;
         public static NotifyIcon noty;
 
+        /// @brief Initializes the application to work with Visual Stylus. Enables visual styles
         private static void InitializeApplication()
         {
             Application.EnableVisualStyles();
@@ -28,12 +29,13 @@ namespace LILO_Packager
 
             try
             {
-
+                
                 Process.Start(@$"{Application.ExecutablePath.Replace("crypterv2.exe", "")}InstallHelper.exe", "--cp=" + Application.ExecutablePath);
+                ConsoleManager.Instance().WriteLineWithColor("Started InstallHelper the Application is closing now meanwhile the Helper is doing his thing.", ConsoleColor.DarkGreen);
             }
 
             catch(Exception ex)
-                        {
+            {
                 
             }
 
@@ -45,6 +47,8 @@ namespace LILO_Packager
 
                     if (args[i].EndsWith(".lsf"))
                     {
+                        ConsoleManager.Instance().WriteLineWithColor("Started with Arguments: Now Open EncyrptionPopupDialog",ConsoleColor.DarkGreen);
+
                         EncryptedFile file = new EncryptedFile(args[i]);
                         var decrypt = uiArgumentStart.Instance(file);
                         Application.Run(decrypt);
@@ -73,6 +77,8 @@ namespace LILO_Packager
 
         }
 
+        /// @brief Determines whether the application is already running. This is used to prevent an attacker from accidentally restarting the application if it is running multiple times.
+        /// @return A value indicating whether the application is already running or not
         private static bool IsApplicationAlreadyRunning()
         {
             var currentProcess = Process.GetCurrentProcess();
@@ -90,9 +96,11 @@ namespace LILO_Packager
 
             foreach (var process in processes)
             {
+                /// Set the foreground window to the current process.
                 if (process.Id != currentProcess.Id)
                 {
                     IntPtr hWnd = process.MainWindowHandle;
+                    /// Set the foreground window to the given window.
                     if (hWnd != IntPtr.Zero)
                     {
                         NativeMethods.SetForegroundWindow(hWnd);
@@ -118,6 +126,7 @@ namespace LILO_Packager
         }
 
 
+        /// @brief Runs the V2 UI. This is called when the user clicks the Main UI
         private static void RunMainUI()
         {
             v2.MainHost.Instance().AutoScaleMode = AutoScaleMode.Font;
