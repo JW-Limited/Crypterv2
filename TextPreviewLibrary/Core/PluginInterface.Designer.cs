@@ -36,7 +36,7 @@ partial class PluginInterface
         lblVersion = new Label();
         mainTextBox = new RichTextBox();
         sPanel2 = new Sipaa.Framework.SPanel();
-        lblName = new Label();
+        lblWordCounts = new Label();
         lblErrors = new Label();
         lblLanguage = new Label();
         pnlMenu = new Sipaa.Framework.SPanel();
@@ -66,9 +66,9 @@ partial class PluginInterface
         sPanel1.Dock = DockStyle.Top;
         sPanel1.ForeColor = Color.White;
         sPanel1.Location = new Point(0, 0);
-        sPanel1.Margin = new Padding(4, 4, 4, 4);
+        sPanel1.Margin = new Padding(4);
         sPanel1.Name = "sPanel1";
-        sPanel1.Size = new Size(1926, 88);
+        sPanel1.Size = new Size(1604, 88);
         sPanel1.TabIndex = 12;
         // 
         // bntMenu
@@ -101,7 +101,7 @@ partial class PluginInterface
         lblVersion.BackColor = Color.Transparent;
         lblVersion.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
         lblVersion.ForeColor = Color.Black;
-        lblVersion.Location = new Point(1827, 16);
+        lblVersion.Location = new Point(1505, 16);
         lblVersion.Margin = new Padding(4, 0, 4, 0);
         lblVersion.Name = "lblVersion";
         lblVersion.Size = new Size(88, 56);
@@ -116,7 +116,7 @@ partial class PluginInterface
         mainTextBox.Location = new Point(40, 24);
         mainTextBox.Margin = new Padding(2);
         mainTextBox.Name = "mainTextBox";
-        mainTextBox.Size = new Size(1552, 831);
+        mainTextBox.Size = new Size(1230, 884);
         mainTextBox.TabIndex = 13;
         mainTextBox.Text = "";
         // 
@@ -127,29 +127,29 @@ partial class PluginInterface
         sPanel2.BorderColor = Color.Black;
         sPanel2.BorderRadius = 0;
         sPanel2.BorderSize = 0;
-        sPanel2.Controls.Add(lblName);
+        sPanel2.Controls.Add(lblWordCounts);
         sPanel2.Controls.Add(lblErrors);
         sPanel2.Controls.Add(lblLanguage);
         sPanel2.Dock = DockStyle.Bottom;
         sPanel2.ForeColor = Color.White;
-        sPanel2.Location = new Point(0, 1018);
-        sPanel2.Margin = new Padding(4, 4, 4, 4);
+        sPanel2.Location = new Point(0, 1079);
+        sPanel2.Margin = new Padding(4);
         sPanel2.Name = "sPanel2";
-        sPanel2.Size = new Size(1926, 38);
+        sPanel2.Size = new Size(1604, 38);
         sPanel2.TabIndex = 14;
         // 
-        // lblName
+        // lblWordCounts
         // 
-        lblName.BackColor = Color.Transparent;
-        lblName.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        lblName.ForeColor = Color.Black;
-        lblName.Location = new Point(280, 8);
-        lblName.Margin = new Padding(4, 0, 4, 0);
-        lblName.Name = "lblName";
-        lblName.Size = new Size(104, 24);
-        lblName.TabIndex = 1;
-        lblName.Text = "n/a";
-        lblName.TextAlign = ContentAlignment.MiddleLeft;
+        lblWordCounts.BackColor = Color.Transparent;
+        lblWordCounts.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        lblWordCounts.ForeColor = Color.Black;
+        lblWordCounts.Location = new Point(280, 8);
+        lblWordCounts.Margin = new Padding(4, 0, 4, 0);
+        lblWordCounts.Name = "lblWordCounts";
+        lblWordCounts.Size = new Size(104, 24);
+        lblWordCounts.TabIndex = 1;
+        lblWordCounts.Text = "n/a";
+        lblWordCounts.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // lblErrors
         // 
@@ -193,7 +193,7 @@ partial class PluginInterface
         pnlMenu.Controls.Add(guna2Button1);
         pnlMenu.ForeColor = Color.White;
         pnlMenu.Location = new Point(16, 104);
-        pnlMenu.Margin = new Padding(4, 4, 4, 4);
+        pnlMenu.Margin = new Padding(4);
         pnlMenu.Name = "pnlMenu";
         pnlMenu.Size = new Size(328, 586);
         pnlMenu.TabIndex = 15;
@@ -217,13 +217,14 @@ partial class PluginInterface
         guna2Button4.Image = Properties.Resources.icons8_close_96;
         guna2Button4.ImageAlign = HorizontalAlignment.Left;
         guna2Button4.ImageSize = new Size(35, 35);
-        guna2Button4.Location = new Point(30, 350);
+        guna2Button4.Location = new Point(24, 350);
         guna2Button4.Margin = new Padding(2);
         guna2Button4.Name = "guna2Button4";
         guna2Button4.Size = new Size(280, 58);
         guna2Button4.TabIndex = 16;
         guna2Button4.Text = "  Beenden";
         guna2Button4.TextAlign = HorizontalAlignment.Left;
+        guna2Button4.Click += guna2Button4_Click;
         // 
         // label6
         // 
@@ -271,7 +272,7 @@ partial class PluginInterface
         guna2Button3.Image = Properties.Resources.icons8_document_240;
         guna2Button3.ImageAlign = HorizontalAlignment.Left;
         guna2Button3.ImageSize = new Size(35, 35);
-        guna2Button3.Location = new Point(30, 30);
+        guna2Button3.Location = new Point(24, 30);
         guna2Button3.Margin = new Padding(2);
         guna2Button3.Name = "guna2Button3";
         guna2Button3.Size = new Size(280, 58);
@@ -298,7 +299,7 @@ partial class PluginInterface
         guna2Button5.Image = Properties.Resources.icons8_folder_240;
         guna2Button5.ImageAlign = HorizontalAlignment.Left;
         guna2Button5.ImageSize = new Size(35, 35);
-        guna2Button5.Location = new Point(30, 110);
+        guna2Button5.Location = new Point(24, 110);
         guna2Button5.Margin = new Padding(2);
         guna2Button5.Name = "guna2Button5";
         guna2Button5.Size = new Size(280, 58);
@@ -325,7 +326,7 @@ partial class PluginInterface
         guna2Button2.Image = Properties.Resources.icons8_save_all_96;
         guna2Button2.ImageAlign = HorizontalAlignment.Left;
         guna2Button2.ImageSize = new Size(35, 35);
-        guna2Button2.Location = new Point(30, 270);
+        guna2Button2.Location = new Point(24, 270);
         guna2Button2.Margin = new Padding(2);
         guna2Button2.Name = "guna2Button2";
         guna2Button2.Size = new Size(280, 58);
@@ -351,7 +352,7 @@ partial class PluginInterface
         guna2Button1.Image = Properties.Resources.icons8_save_96;
         guna2Button1.ImageAlign = HorizontalAlignment.Left;
         guna2Button1.ImageSize = new Size(35, 35);
-        guna2Button1.Location = new Point(30, 190);
+        guna2Button1.Location = new Point(24, 190);
         guna2Button1.Margin = new Padding(2);
         guna2Button1.Name = "guna2Button1";
         guna2Button1.Size = new Size(280, 58);
@@ -362,7 +363,7 @@ partial class PluginInterface
         // 
         // sPanel3
         // 
-        sPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        sPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
         sPanel3.BackColor = Color.White;
         sPanel3.BackgroundImageLayout = ImageLayout.Stretch;
         sPanel3.BorderColor = Color.DarkGray;
@@ -371,9 +372,9 @@ partial class PluginInterface
         sPanel3.Controls.Add(mainTextBox);
         sPanel3.ForeColor = Color.White;
         sPanel3.Location = new Point(168, 120);
-        sPanel3.Margin = new Padding(4, 4, 4, 4);
+        sPanel3.Margin = new Padding(4);
         sPanel3.Name = "sPanel3";
-        sPanel3.Size = new Size(1624, 880);
+        sPanel3.Size = new Size(1302, 933);
         sPanel3.TabIndex = 15;
         // 
         // PluginInterface
@@ -381,7 +382,7 @@ partial class PluginInterface
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.WhiteSmoke;
-        ClientSize = new Size(1926, 1056);
+        ClientSize = new Size(1604, 1117);
         Controls.Add(pnlMenu);
         Controls.Add(sPanel3);
         Controls.Add(sPanel2);
@@ -393,6 +394,7 @@ partial class PluginInterface
         ShowInTaskbar = false;
         Text = "TextPreview";
         Load += ui_Load;
+        Shown += PluginInterface_Shown;
         sPanel1.ResumeLayout(false);
         sPanel2.ResumeLayout(false);
         pnlMenu.ResumeLayout(false);
@@ -408,7 +410,7 @@ partial class PluginInterface
     private RichTextBox mainTextBox;
     private Sipaa.Framework.SPanel sPanel2;
     private Label lblLanguage;
-    private Label lblName;
+    private Label lblWordCounts;
     private Label lblErrors;
     private Sipaa.Framework.SPanel pnlMenu;
     private Guna.UI2.WinForms.Guna2Button guna2Button1;

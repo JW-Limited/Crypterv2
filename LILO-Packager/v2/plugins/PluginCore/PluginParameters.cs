@@ -9,5 +9,6 @@ namespace LILO_Packager.v2.plugins.PluginCore;
 public class PluginParameters
 {
     public DbConnection con { get; set; } = null;
-    public HashSet<object> Context { get; set; } = new HashSet<object>();
+    public List<object> Context { get; set; } = new List<object>();
+    public bool needNewInstance { get; set; } = false;
 }

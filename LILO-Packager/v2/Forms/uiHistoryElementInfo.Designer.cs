@@ -30,6 +30,8 @@
         {
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.bntPreview = new Guna.UI2.WinForms.Guna2Button();
+            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             lblFile = new Label();
             bntOpen = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
@@ -43,7 +45,6 @@
             lblDirectory = new Label();
             label2 = new Label();
             label3 = new Label();
-            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             guna2Panel2.SuspendLayout();
@@ -80,6 +81,7 @@
             guna2Panel1.BorderColor = SystemColors.ActiveBorder;
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.BorderThickness = 2;
+            guna2Panel1.Controls.Add(this.bntPreview);
             guna2Panel1.Controls.Add(guna2Button2);
             guna2Panel1.Controls.Add(lblFile);
             guna2Panel1.Controls.Add(bntOpen);
@@ -96,6 +98,55 @@
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.Size = new Size(880, 736);
             guna2Panel1.TabIndex = 26;
+            // 
+            // bntPreview
+            // 
+            this.bntPreview.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.bntPreview.Animated = true;
+            this.bntPreview.BackColor = Color.Transparent;
+            this.bntPreview.BorderColor = Color.Gainsboro;
+            this.bntPreview.BorderRadius = 12;
+            this.bntPreview.BorderThickness = 2;
+            this.bntPreview.DisabledState.BorderColor = Color.DarkGray;
+            this.bntPreview.DisabledState.CustomBorderColor = Color.DarkGray;
+            this.bntPreview.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            this.bntPreview.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            this.bntPreview.FillColor = Color.White;
+            this.bntPreview.FocusedColor = Color.FromArgb(100, 170, 209);
+            this.bntPreview.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            this.bntPreview.ForeColor = Color.DimGray;
+            this.bntPreview.Image = Properties.Resources.Info;
+            this.bntPreview.Location = new Point(720, 200);
+            this.bntPreview.Margin = new Padding(2);
+            this.bntPreview.Name = "bntPreview";
+            this.bntPreview.Size = new Size(128, 40);
+            this.bntPreview.TabIndex = 25;
+            this.bntPreview.Text = "Preview";
+            this.bntPreview.Click += this.bntPreview_Click;
+            // 
+            // guna2Button2
+            // 
+            guna2Button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            guna2Button2.Animated = true;
+            guna2Button2.BackColor = Color.Transparent;
+            guna2Button2.BorderColor = Color.Gainsboro;
+            guna2Button2.BorderRadius = 12;
+            guna2Button2.BorderThickness = 2;
+            guna2Button2.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button2.FillColor = Color.White;
+            guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button2.ForeColor = Color.DimGray;
+            guna2Button2.Image = Properties.Resources.icons8_external_link_240;
+            guna2Button2.Location = new Point(808, 152);
+            guna2Button2.Margin = new Padding(2);
+            guna2Button2.Name = "guna2Button2";
+            guna2Button2.Size = new Size(40, 40);
+            guna2Button2.TabIndex = 25;
+            guna2Button2.Click += bntOpenDirectory;
             // 
             // lblFile
             // 
@@ -269,30 +320,6 @@
             label3.Text = "Directory:";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // guna2Button2
-            // 
-            guna2Button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            guna2Button2.Animated = true;
-            guna2Button2.BackColor = Color.Transparent;
-            guna2Button2.BorderColor = Color.Gainsboro;
-            guna2Button2.BorderRadius = 12;
-            guna2Button2.BorderThickness = 2;
-            guna2Button2.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button2.FillColor = Color.White;
-            guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2Button2.ForeColor = Color.DimGray;
-            guna2Button2.Image = Properties.Resources.icons8_external_link_240;
-            guna2Button2.Location = new Point(808, 152);
-            guna2Button2.Margin = new Padding(2);
-            guna2Button2.Name = "guna2Button2";
-            guna2Button2.Size = new Size(40, 40);
-            guna2Button2.TabIndex = 25;
-            guna2Button2.Click += bntOpenDirectory;
-            // 
             // uiHistoryElementInfo
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -328,5 +355,6 @@
         private Label label2;
         private Label lblApp;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button bntPreview;
     }
 }

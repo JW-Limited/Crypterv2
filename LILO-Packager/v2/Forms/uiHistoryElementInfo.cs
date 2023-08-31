@@ -1,5 +1,7 @@
 ﻿using LILO_Packager.Properties;
 using LILO_Packager.v2.Core.History;
+using LILO_Packager.v2.plugins.Model;
+using LILO_Packager.v2.plugins.PluginCore;
 using LILO_Packager.v2.shared;
 using Microsoft.Win32;
 using System;
@@ -74,10 +76,10 @@ namespace LILO_Packager.v2.Forms
 
         private async void bntOpen_Click(object sender, EventArgs e)
         {
-            if((_file.outputFileName.EndsWith(".mp3") || _file.outputFileName.EndsWith(".wav")) && config.Default.openMediaIn == "buildIn")
+            if ((_file.outputFileName.EndsWith(".mp3") || _file.outputFileName.EndsWith(".wav")) && config.Default.openMediaIn == "buildIn")
             {
                 var para = await streaming.MusikPlayer.Core.MusicPlayerParameters.Get(_file.outputFileName);
-                var mediaInstance = streaming.MusikPlayer.Forms.uiPlayer.Instance(para,true);
+                var mediaInstance = streaming.MusikPlayer.Forms.uiPlayer.Instance(para, true);
                 MainHost.Instance().OpenInApp(mediaInstance);
             }
             else
@@ -232,8 +234,35 @@ namespace LILO_Packager.v2.Forms
 
         private void bntOpenDirectory(object sender, EventArgs e)
         {
-            Process.Start("explorer", _file.outputFileName.Replace(new FileInfo(_file.outputFileName).Name,""));
+            Process.Start("explorer", _file.outputFileName.Replace(new FileInfo(_file.outputFileName).Name, ""));
             MainHost.Instance().OpenInApp(v2.Forms.uiHistory.Instance());
+        }
+
+        private void bntPreview_Click(object sender, EventArgs e)
+        {
+            foreach(var plugin in MainHost.Instance().manager.CurrentPlugins)
+            {
+                if (PluginID.IDtoString(plugin.ID) == PluginID.IDtoString(PluginID.GetID("tpl", "lbl", "lvl02")))
+                {
+                    ConsoleManager.Instance().WriteLineWithColor("Showed Previewer", ConsoleColor.Yellow);
+
+                    var list = new List<object>
+                    {
+                        _file.outputFileName
+                    };
+
+                    plugin.Initialize(new PluginParameters()
+                    {
+                        needNewInstance = true,
+                    });
+
+                    plugin.Execute(new PluginParameters()
+                    {
+                        Context = list
+                    });
+                    plugin.PluginInterface.Show();
+                }
+            }
         }
     }
 }

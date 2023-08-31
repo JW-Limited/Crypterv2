@@ -17,6 +17,7 @@ namespace EncryptionLibary
         public PluginResponse Execute(PluginParameters args)
         {
             var para = new PluginResponse();
+
             try
             {
                 para.HasError = false;

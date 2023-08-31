@@ -50,7 +50,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     public Action<bool> isEnabling; 
     private static MainHost instance;
     private TcpListener listener;
-    private PluginManager manager = null;
+    public PluginManager manager = null;
     public User loggedInUser;
     public NotifyIconManager noty;
     public Core.History.DatabaseHandling dataHandler = new Core.History.DatabaseHandling();
@@ -269,14 +269,12 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                                          $"Version : {item.Version}");
                 }
 
-                Console.WriteLine(stringBuilder.ToString());
-
-                //noty.ShowBubbleNotification("PluginManager", stringBuilder.ToString());
+                ConsoleManager.Instance().WriteLineWithColor(stringBuilder.ToString(),ConsoleColor.Cyan);
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"Mainhost: PluginManager",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
 
 
@@ -386,7 +384,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     {
         if (!FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering))
         {
-            OpenInApp(new uiFeatureNullException("(FeatureNullException)","This feature is not activated right now."));
+            OpenInApp(new uiFeatureNullException("FeatureNullException", "This Feature is not availlabel."));
         }
         else
         {

@@ -1,3 +1,4 @@
+using LILO_Packager.v2.Core.Debug;
 using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.shared;
 using Microsoft.Win32;
@@ -53,8 +54,27 @@ namespace LILO_Packager
                         var decrypt = uiArgumentStart.Instance(file);
                         Application.Run(decrypt);
                     }
+                    else if (args[i].EndsWith(".dbgsl"))
+                    {
+                        if (!File.Exists(args[i])) return;
+
+                        ConsoleManager.Instance().WriteLineWithColor("Started with Arguments: Now Open DebugSessionLogViewer", ConsoleColor.DarkGreen);
+
+                        var debugSession = new DebugSession()
+                        {
+                            FileName = args[i],
+                            Content = File.ReadAllText(args[i]),
+                            CreatedAt = new FileInfo(args[i]).CreationTime,
+                            SessionName = new FileInfo(args[i]).Name,
+                        };
+
+                        var debugUI = new uiDebugSessionLogViewer(debugSession);
+                        Application.Run(debugUI);
+                    }
                     else 
                     {
+                        ConsoleManager.Instance().WriteLineWithColor("Started with Arguments: Now Open DecyrptionPopupDialog", ConsoleColor.DarkGreen);
+
                         DecryptedFile file = new DecryptedFile(args[i]);
                         var encrypt = uiArgumentStart_Encrypt.Instance(file);
                         Application.Run(encrypt);

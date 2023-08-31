@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.PerformanceData;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,11 @@ public partial class PluginInterface : Form
 
     private static object _lock = new object();
     private static PluginInterface _encrypt;
-    public static PluginInterface Instance(string Version, PluginID id, string Name)
+    public static PluginInterface Instance(string Version, PluginID id, string Name, bool needNewInstance)
     {
         lock (_lock)
         {
-            if (_encrypt is null || _encrypt.IsDisposed)
+            if (_encrypt is null || _encrypt.IsDisposed || needNewInstance)
             {
                 _encrypt = new PluginInterface(Version, id, Name);
             }
@@ -34,9 +35,15 @@ public partial class PluginInterface : Form
         }
     }
 
-    public CrypterTextFile _file;
+    public static void SetInstance(object newInstance)
+    {
+        _encrypt = (PluginInterface) newInstance;
+    }
 
-    private PluginInterface(string Version, PluginID id, string Name)
+    public CrypterTextFile _file;
+    public string openedFilePath;
+
+    public PluginInterface(string Version, PluginID id, string Name)
     {
         InitializeComponent();
 
@@ -59,33 +66,22 @@ public partial class PluginInterface : Form
         }
     }
 
-    private void ui_Load(object sender, EventArgs e)
+    public void ui_Load(object sender, EventArgs e)
     {
         lblVersion.Text = Version;
 
-        mainTextBox.Text = _file.Text;
-        mainTextBox.Enabled = !_file.Locked;
-        mainTextBox.ForeColor = _file.TextColor;
+        if (_file is not null)
+        {
+            mainTextBox.Text = _file.RtfContent;
+            mainTextBox.Enabled = !_file.IsLocked;
+            mainTextBox.ForeColor = _file.TextColor;
+            lblWordCounts.Text = "Words: " + _file.WordCount;
+            lblLanguage.Text = _file.FileName;
+        }
     }
 
     private void guna2Button1_Click(object sender, EventArgs e)
     {
-        var ofd = new OpenFileDialog()
-        {
-            Filter = "TextFile(.txt)|*.txt",
-            AddToRecent = true,
-            AutoUpgradeEnabled = true,
-            Multiselect = false,
-            RestoreDirectory = true,
-        };
-
-        var result = ofd.ShowDialog();  
-
-        if(result == DialogResult.OK)
-        {
-            (bool isSuccess, string Text) = Handler.ReadAllText();
-            Text;
-        }
     }
 
     private void bntPlugin_Click(object sender, EventArgs e)
@@ -96,26 +92,58 @@ public partial class PluginInterface : Form
 
     private void guna2Button1_Click_1(object sender, EventArgs e)
     {
-
-        var ofd = new SaveFileDialog()
+        if (openedFilePath is not null or "")
         {
-            InitialDirectory = Application.StartupPath,
-            ShowHiddenFiles = true,
-        };
-
-        if(ofd.ShowDialog() == DialogResult.OK)
-        {
-
-            var file = new CrypterTextFile()
+            if (File.Exists(openedFilePath))
             {
-                Author = Environment.UserDomainName,
-                FileName = new FileInfo(ofd.FileName).Name,
-                Locked = false,
-                TextColor = mainTextBox.ForeColor,
-                Text = mainTextBox.Text
+                var file = _file;
+                file.RtfContent = mainTextBox.Text;
+                file.LastModified = DateTime.Now;
+                file.TextColor = mainTextBox.ForeColor;
+
+                CrypterTextFile.SaveInstanceToFile(file, openedFilePath);
+
+                mainTextBox.Text = file.RtfContent;
+                mainTextBox.Enabled = !file.IsLocked;
+                mainTextBox.ForeColor = file.TextColor;
+                lblWordCounts.Text = "Words: " + file.WordCount;
+                lblLanguage.Text = file.FileName;
+            }
+        }
+        else
+        {
+            var ofd = new SaveFileDialog()
+            {
+                Filter = "CrypterTextFile(.ctv)|*.ctv|Alle Datein(.)|*.",
+                InitialDirectory = Application.StartupPath,
+                ShowHiddenFiles = true,
             };
 
-            CrypterTextFile.SetInstanceToFile(file, ofd.FileName);
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+
+                var file = new CrypterTextFile()
+                {
+                    Author = Environment.UserDomainName,
+                    FileName = new FileInfo(ofd.FileName).Name,
+                    IsLocked = false,
+                    TextColor = mainTextBox.ForeColor,
+                    RtfContent = mainTextBox.Text,
+                    CreatedAt = DateTime.Now,
+                    LastModified = DateTime.Now
+                };
+
+                CrypterTextFile.SaveInstanceToFile(file, ofd.FileName);
+                _file = file;
+                openedFilePath = ofd.FileName;
+
+                mainTextBox.Text = file.RtfContent;
+                mainTextBox.Enabled = !file.IsLocked;
+                mainTextBox.ForeColor = file.TextColor;
+                lblWordCounts.Text = "Words: " + file.WordCount;
+                lblLanguage.Text = file.FileName;
+            }
+
         }
 
         bntPlugin_Click(sender, e);
@@ -126,6 +154,7 @@ public partial class PluginInterface : Form
     {
         var ofd = new OpenFileDialog()
         {
+            Filter = "CrypterTextFile(.ctv)|*.ctv|Alle Datein(.)|*.",
             AddToRecent = true,
             ShowPinnedPlaces = true,
             ShowHiddenFiles = true,
@@ -134,13 +163,16 @@ public partial class PluginInterface : Form
 
         if (ofd.ShowDialog() == DialogResult.OK)
         {
-            var file = CrypterTextFile.GetInstanceFromFile(ofd.FileName);
+            var file = CrypterTextFile.LoadInstanceFromFile(ofd.FileName);
 
-            mainTextBox.Text = file.Text;
-            mainTextBox.Enabled = !file.Locked;
+            mainTextBox.Text = file.RtfContent;
+            mainTextBox.Enabled = !file.IsLocked;
             mainTextBox.ForeColor = file.TextColor;
+            lblWordCounts.Text = "Words: " + file.WordCount;
+            lblLanguage.Text = file.FileName;
 
-            lblName.Text = file.FileName;
+            _file = file;
+            openedFilePath = ofd.FileName;
         }
 
         bntPlugin_Click(sender, e);
@@ -150,5 +182,15 @@ public partial class PluginInterface : Form
     private void newFile_Click(object sender, EventArgs e)
     {
 
+    }
+
+    private void guna2Button4_Click(object sender, EventArgs e)
+    {
+        this.Close();
+    }
+
+    private void PluginInterface_Shown(object sender, EventArgs e)
+    {
+        ui_Load(sender,e);
     }
 }

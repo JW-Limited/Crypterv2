@@ -84,7 +84,7 @@ partial class uiWebView
         // 
         // label1
         // 
-        label1.Anchor = AnchorStyles.None;
+        label1.Anchor = AnchorStyles.Bottom;
         label1.BackColor = Color.Transparent;
         label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
         label1.ForeColor = SystemColors.WindowFrame;

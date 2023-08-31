@@ -173,6 +173,16 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icons8_earth_planet_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-earth-planet-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icons8_external_link_240 {
             get {
                 object obj = ResourceManager.GetObject("icons8-external-link-240", resourceCulture);

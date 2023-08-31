@@ -156,7 +156,7 @@ namespace Crypterv2_DevTool.Core.Forms
             if (neededPlugin is not null)
             {
 
-                this.Size = new System.Drawing.Size(neededPlugin.form.Size.Height + pnlControls.Height + 10, neededPlugin.form.Size.Width + pnlControls.Width +10);
+                this.Size = new System.Drawing.Size(neededPlugin.form.Size.Height + 10, neededPlugin.form.Size.Width +10);
                 OpenInApp(neededPlugin.form, "Test", ChildrenUse.Auth);
             }
         }
