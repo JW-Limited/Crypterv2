@@ -20,3 +20,13 @@ C:\Users\{Username}\AppData\Local\JW_Limited\crypterv2\config.settings
 ```
 - if you want to delete youre history go to the directory where you enzipped the application and delete ```encrypted_operations.db```
 and ```playlist.db```
+
+## Plugins 
+
+| Plugin   | Version | Description         | Link |
+| -------- | ------- | ------------------- | ------- |
+| Encryption Library Installer | 0.1.9   | This Plugin enables the third party Library support and also downloads and installs them. The List of Librarys to install is influeced by youre Location and Language| [Link]()|
+| Enrypted PDF Preview | 1.2.2   | An MS Edge and JW Limited LILO Encrypted Container Streaming based PDF Shower | [Link]() |
+| TextPreview | 3.2.1   | An JW Limited LILO Encrypted Container Streaming based Plaintext Shower | [Link]() |
+| File Backup Manager             | 2.1.3   | Automatically back up your Encrypted files to the cloud. | [Link]()           |
+| Image Gallery Viewer            | 2.0.5   | View and navigate through a collection of Encrypted images with ease. | [Link]()           |
