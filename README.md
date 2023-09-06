@@ -23,17 +23,11 @@ To install CrypterV2, follow these steps:
 2. Follow the installation instructions for your operating system on the release page.
 
 ## 💡 How it works 
+#### A quick few on the ui
 <p align="center">
   <img width="817" alt="image" src="https://github.com/JW-Limited/Crypterv2/assets/120219149/65fa4514-1412-4920-bd05-0e412ee8c4b5">
 </p>
 
-- Download the latest build and Open `crypterv2.exe`.
-- If you want to configure the Application go to this Path because the Settings Ui is still under construction. (We will switch to sql for the settings in later versions)
-```
-C:\Users\{Username}\AppData\Local\JW_Limited\crypterv2\config.settings
-```
-- if you want to delete youre history go to the directory where you enzipped the application and delete ```encrypted_operations.db```
-and ```playlist.db```
 
 ## Plugins 
 
