@@ -7,7 +7,7 @@
 <p align="center">But please keep in mind its still in early alpha and in development.</p>
 
 
-## Features
+## 🚀 Features
 
 - **Strong Encryption**: Utilizes state-of-the-art encryption techniques to safeguard your data.
 - **User-Friendly Interface**: Intuitive and easy-to-use interface for both beginners and experts.
@@ -15,14 +15,14 @@
 - **Customizable**: Tailor encryption settings to your specific needs.
 - **File and Folder Encryption**: Secure individual files or entire directories.
 
-## Installation
+## 📦 Installation
 
 To install CrypterV2, follow these steps:
 
 1. Download the latest release from the [Releases](https://github.com/JW-Limited/Crypterv2/releases) page.
 2. Follow the installation instructions for your operating system on the release page.
 
-## How it works 
+## 💡 How it works 
 <p align="center">
   <img width="817" alt="image" src="https://github.com/JW-Limited/Crypterv2/assets/120219149/65fa4514-1412-4920-bd05-0e412ee8c4b5">
 </p>
