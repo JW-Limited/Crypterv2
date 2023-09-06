@@ -84,7 +84,7 @@ namespace LILO_Packager.v2.shared
             Console.BackgroundColor = backgroundColor;
         }
 
-        public void WriteLineWithColor(string text, ConsoleColor color)
+        public void WriteLineWithColor(string text, ConsoleColor color = ConsoleColor.Yellow)
         {
             Console.ForegroundColor = color;
             Console.WriteLine($"[{DateTime.Now}] - " + text);

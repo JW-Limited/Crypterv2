@@ -79,10 +79,9 @@
             sPanel2.Controls.Add(pnlPreview);
             sPanel2.Controls.Add(bntSettings);
             sPanel2.ForeColor = Color.White;
-            sPanel2.Location = new Point(24, 32);
-            sPanel2.Margin = new Padding(4);
+            sPanel2.Location = new Point(19, 26);
             sPanel2.Name = "sPanel2";
-            sPanel2.Size = new Size(968, 88);
+            sPanel2.Size = new Size(774, 70);
             sPanel2.TabIndex = 14;
             // 
             // pnlPreview
@@ -92,10 +91,10 @@
             pnlPreview.BackgroundImageLayout = ImageLayout.Zoom;
             pnlPreview.BorderColor = Color.Silver;
             pnlPreview.BorderRadius = 15;
-            pnlPreview.Location = new Point(24, 16);
+            pnlPreview.Location = new Point(19, 13);
             pnlPreview.Margin = new Padding(2);
             pnlPreview.Name = "pnlPreview";
-            pnlPreview.Size = new Size(288, 56);
+            pnlPreview.Size = new Size(230, 45);
             pnlPreview.TabIndex = 20;
             // 
             // bntSettings
@@ -114,10 +113,10 @@
             bntSettings.FocusedColor = Color.FromArgb(100, 170, 209);
             bntSettings.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             bntSettings.ForeColor = Color.White;
-            bntSettings.Location = new Point(824, 16);
+            bntSettings.Location = new Point(659, 13);
             bntSettings.Margin = new Padding(2);
             bntSettings.Name = "bntSettings";
-            bntSettings.Size = new Size(128, 58);
+            bntSettings.Size = new Size(102, 46);
             bntSettings.TabIndex = 14;
             bntSettings.Text = "Settings";
             bntSettings.Click += bntSettings_Click;
@@ -135,10 +134,10 @@
             guna2Button1.FillColor = Color.Red;
             guna2Button1.Font = new Font("Open Sans SemiBold", 8F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(848, 224);
+            guna2Button1.Location = new Point(678, 179);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(128, 40);
+            guna2Button1.Size = new Size(102, 32);
             guna2Button1.TabIndex = 17;
             guna2Button1.Text = "Abmelden";
             guna2Button1.Click += bntCancel_Click;
@@ -146,10 +145,10 @@
             // lblUsername
             // 
             lblUsername.Font = new Font("Open Sans", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            lblUsername.Location = new Point(182, 188);
+            lblUsername.Location = new Point(146, 150);
             lblUsername.Margin = new Padding(2, 0, 2, 0);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(464, 32);
+            lblUsername.Size = new Size(371, 26);
             lblUsername.TabIndex = 16;
             lblUsername.Text = "n/a";
             lblUsername.TextAlign = ContentAlignment.MiddleLeft;
@@ -157,10 +156,10 @@
             // lblEmail
             // 
             lblEmail.Font = new Font("Open Sans", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblEmail.Location = new Point(184, 224);
+            lblEmail.Location = new Point(147, 179);
             lblEmail.Margin = new Padding(2, 0, 2, 0);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(462, 32);
+            lblEmail.Size = new Size(370, 26);
             lblEmail.TabIndex = 16;
             lblEmail.Text = "n/a";
             lblEmail.TextAlign = ContentAlignment.MiddleLeft;
@@ -168,10 +167,10 @@
             // lblUser
             // 
             lblUser.Font = new Font("Open Sans", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblUser.Location = new Point(184, 256);
+            lblUser.Location = new Point(147, 205);
             lblUser.Margin = new Padding(2, 0, 2, 0);
             lblUser.Name = "lblUser";
-            lblUser.Size = new Size(462, 32);
+            lblUser.Size = new Size(370, 26);
             lblUser.TabIndex = 16;
             lblUser.Text = "n/a";
             lblUser.TextAlign = ContentAlignment.MiddleLeft;
@@ -190,10 +189,9 @@
             sPanel1.Controls.Add(label3);
             sPanel1.Controls.Add(sPanel5);
             sPanel1.ForeColor = Color.White;
-            sPanel1.Location = new Point(24, 352);
-            sPanel1.Margin = new Padding(4);
+            sPanel1.Location = new Point(19, 282);
             sPanel1.Name = "sPanel1";
-            sPanel1.Size = new Size(968, 104);
+            sPanel1.Size = new Size(774, 83);
             sPanel1.TabIndex = 14;
             // 
             // guna2Button2
@@ -212,10 +210,10 @@
             guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button2.ForeColor = Color.White;
-            guna2Button2.Location = new Point(848, 24);
+            guna2Button2.Location = new Point(678, 19);
             guna2Button2.Margin = new Padding(2);
             guna2Button2.Name = "guna2Button2";
-            guna2Button2.Size = new Size(104, 58);
+            guna2Button2.Size = new Size(83, 46);
             guna2Button2.TabIndex = 14;
             guna2Button2.Text = "More";
             // 
@@ -224,10 +222,9 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(120, 48);
-            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Location = new Point(96, 38);
             label8.Name = "label8";
-            label8.Size = new Size(456, 40);
+            label8.Size = new Size(365, 32);
             label8.TabIndex = 1;
             label8.Text = "Profilbild, Name, usw.";
             label8.TextAlign = ContentAlignment.MiddleLeft;
@@ -237,10 +234,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(120, -8);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Location = new Point(96, -6);
             label3.Name = "label3";
-            label3.Size = new Size(232, 88);
+            label3.Size = new Size(186, 70);
             label3.TabIndex = 1;
             label3.Text = "Ihre Infos";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -254,10 +250,9 @@
             sPanel5.BorderSize = 0;
             sPanel5.Controls.Add(sPanel8);
             sPanel5.ForeColor = Color.White;
-            sPanel5.Location = new Point(16, 16);
-            sPanel5.Margin = new Padding(4);
+            sPanel5.Location = new Point(13, 13);
             sPanel5.Name = "sPanel5";
-            sPanel5.Size = new Size(80, 72);
+            sPanel5.Size = new Size(64, 58);
             sPanel5.TabIndex = 14;
             // 
             // sPanel8
@@ -269,10 +264,9 @@
             sPanel8.BorderRadius = 20;
             sPanel8.BorderSize = 0;
             sPanel8.ForeColor = Color.White;
-            sPanel8.Location = new Point(8, 8);
-            sPanel8.Margin = new Padding(4);
+            sPanel8.Location = new Point(6, 6);
             sPanel8.Name = "sPanel8";
-            sPanel8.Size = new Size(64, 56);
+            sPanel8.Size = new Size(51, 45);
             sPanel8.TabIndex = 14;
             // 
             // sPanel3
@@ -289,10 +283,9 @@
             sPanel3.Controls.Add(label4);
             sPanel3.Controls.Add(sPanel6);
             sPanel3.ForeColor = Color.White;
-            sPanel3.Location = new Point(24, 472);
-            sPanel3.Margin = new Padding(4);
+            sPanel3.Location = new Point(19, 378);
             sPanel3.Name = "sPanel3";
-            sPanel3.Size = new Size(968, 104);
+            sPanel3.Size = new Size(774, 83);
             sPanel3.TabIndex = 14;
             // 
             // guna2Button3
@@ -311,10 +304,10 @@
             guna2Button3.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button3.ForeColor = Color.White;
-            guna2Button3.Location = new Point(848, 24);
+            guna2Button3.Location = new Point(678, 19);
             guna2Button3.Margin = new Padding(2);
             guna2Button3.Name = "guna2Button3";
-            guna2Button3.Size = new Size(104, 58);
+            guna2Button3.Size = new Size(83, 46);
             guna2Button3.TabIndex = 14;
             guna2Button3.Text = "More";
             // 
@@ -323,10 +316,9 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(120, 56);
-            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Location = new Point(96, 45);
             label7.Name = "label7";
-            label7.Size = new Size(448, 40);
+            label7.Size = new Size(358, 32);
             label7.TabIndex = 1;
             label7.Text = "Sicherheitsschlüssel, Kennwort, 2nd Authorization\r\n";
             label7.TextAlign = ContentAlignment.MiddleLeft;
@@ -336,10 +328,9 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(120, -8);
-            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Location = new Point(96, -6);
             label4.Name = "label4";
-            label4.Size = new Size(232, 88);
+            label4.Size = new Size(186, 70);
             label4.TabIndex = 1;
             label4.Text = "Anmeldung";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -353,10 +344,9 @@
             sPanel6.BorderSize = 0;
             sPanel6.Controls.Add(sPanel9);
             sPanel6.ForeColor = Color.White;
-            sPanel6.Location = new Point(16, 16);
-            sPanel6.Margin = new Padding(4);
+            sPanel6.Location = new Point(13, 13);
             sPanel6.Name = "sPanel6";
-            sPanel6.Size = new Size(80, 72);
+            sPanel6.Size = new Size(64, 58);
             sPanel6.TabIndex = 14;
             // 
             // sPanel9
@@ -368,10 +358,9 @@
             sPanel9.BorderRadius = 20;
             sPanel9.BorderSize = 0;
             sPanel9.ForeColor = Color.White;
-            sPanel9.Location = new Point(8, 8);
-            sPanel9.Margin = new Padding(4);
+            sPanel9.Location = new Point(6, 6);
             sPanel9.Name = "sPanel9";
-            sPanel9.Size = new Size(64, 56);
+            sPanel9.Size = new Size(51, 45);
             sPanel9.TabIndex = 14;
             // 
             // sPanel4
@@ -388,10 +377,9 @@
             sPanel4.Controls.Add(label5);
             sPanel4.Controls.Add(sPanel7);
             sPanel4.ForeColor = Color.White;
-            sPanel4.Location = new Point(24, 592);
-            sPanel4.Margin = new Padding(4);
+            sPanel4.Location = new Point(19, 474);
             sPanel4.Name = "sPanel4";
-            sPanel4.Size = new Size(968, 104);
+            sPanel4.Size = new Size(774, 83);
             sPanel4.TabIndex = 14;
             // 
             // guna2Button4
@@ -410,10 +398,10 @@
             guna2Button4.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button4.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button4.ForeColor = Color.White;
-            guna2Button4.Location = new Point(848, 24);
+            guna2Button4.Location = new Point(678, 19);
             guna2Button4.Margin = new Padding(2);
             guna2Button4.Name = "guna2Button4";
-            guna2Button4.Size = new Size(104, 58);
+            guna2Button4.Size = new Size(83, 46);
             guna2Button4.TabIndex = 14;
             guna2Button4.Text = "More";
             // 
@@ -422,10 +410,9 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(120, 48);
-            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Location = new Point(96, 38);
             label6.Name = "label6";
-            label6.Size = new Size(448, 40);
+            label6.Size = new Size(358, 32);
             label6.TabIndex = 1;
             label6.Text = "Verwalten sie Dienste und Services";
             label6.TextAlign = ContentAlignment.MiddleLeft;
@@ -435,10 +422,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(120, -8);
-            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Location = new Point(96, -6);
             label5.Name = "label5";
-            label5.Size = new Size(232, 88);
+            label5.Size = new Size(186, 70);
             label5.TabIndex = 1;
             label5.Text = "Abonomments";
             label5.TextAlign = ContentAlignment.MiddleLeft;
@@ -452,10 +438,9 @@
             sPanel7.BorderSize = 0;
             sPanel7.Controls.Add(sPanel10);
             sPanel7.ForeColor = Color.White;
-            sPanel7.Location = new Point(16, 16);
-            sPanel7.Margin = new Padding(4);
+            sPanel7.Location = new Point(13, 13);
             sPanel7.Name = "sPanel7";
-            sPanel7.Size = new Size(80, 72);
+            sPanel7.Size = new Size(64, 58);
             sPanel7.TabIndex = 14;
             // 
             // sPanel10
@@ -467,10 +452,9 @@
             sPanel10.BorderRadius = 20;
             sPanel10.BorderSize = 0;
             sPanel10.ForeColor = Color.White;
-            sPanel10.Location = new Point(8, 8);
-            sPanel10.Margin = new Padding(4);
+            sPanel10.Location = new Point(6, 6);
             sPanel10.Name = "sPanel10";
-            sPanel10.Size = new Size(64, 56);
+            sPanel10.Size = new Size(51, 45);
             sPanel10.TabIndex = 14;
             // 
             // videoPanel
@@ -481,10 +465,9 @@
             videoPanel.BorderRadius = 20;
             videoPanel.BorderSize = 0;
             videoPanel.ForeColor = Color.White;
-            videoPanel.Location = new Point(32, 168);
-            videoPanel.Margin = new Padding(4);
+            videoPanel.Location = new Point(26, 134);
             videoPanel.Name = "videoPanel";
-            videoPanel.Size = new Size(140, 140);
+            videoPanel.Size = new Size(112, 112);
             videoPanel.TabIndex = 14;
             // 
             // label1
@@ -493,10 +476,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.Gray;
-            label1.Location = new Point(880, 864);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(704, 691);
             label1.Name = "label1";
-            label1.Size = new Size(136, 32);
+            label1.Size = new Size(109, 26);
             label1.TabIndex = 18;
             label1.Text = "powered by ";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -507,10 +489,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(880, 888);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(704, 710);
             label2.Name = "label2";
-            label2.Size = new Size(136, 40);
+            label2.Size = new Size(109, 32);
             label2.TabIndex = 19;
             label2.Text = "LILO Sync ";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -525,10 +506,9 @@
             sPanel11.BorderRadius = 20;
             sPanel11.BorderSize = 0;
             sPanel11.ForeColor = Color.White;
-            sPanel11.Location = new Point(800, 856);
-            sPanel11.Margin = new Padding(4);
+            sPanel11.Location = new Point(640, 685);
             sPanel11.Name = "sPanel11";
-            sPanel11.Size = new Size(80, 80);
+            sPanel11.Size = new Size(64, 64);
             sPanel11.TabIndex = 14;
             // 
             // pnlLoading
@@ -539,18 +519,17 @@
             pnlLoading.BorderRadius = 20;
             pnlLoading.BorderSize = 0;
             pnlLoading.ForeColor = Color.White;
-            pnlLoading.Location = new Point(16, 16);
-            pnlLoading.Margin = new Padding(4);
+            pnlLoading.Location = new Point(13, 13);
             pnlLoading.Name = "pnlLoading";
-            pnlLoading.Size = new Size(992, 912);
+            pnlLoading.Size = new Size(794, 730);
             pnlLoading.TabIndex = 14;
             // 
             // uiAccount
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1020, 948);
+            ClientSize = new Size(816, 758);
             Controls.Add(pnlLoading);
             Controls.Add(label1);
             Controls.Add(label2);
@@ -564,6 +543,7 @@
             Controls.Add(sPanel1);
             Controls.Add(videoPanel);
             Controls.Add(sPanel2);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "uiAccount";
             Text = "uiAccount";
             Load += uiAccount_Load;

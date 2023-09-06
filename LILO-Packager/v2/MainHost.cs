@@ -31,12 +31,14 @@ using TagLib.Mpeg;
 using Telerik.WinControls.UI;
 using IWshRuntimeLibrary;
 using Guna.UI2.WinForms;
+using static System.Data.Entity.Infrastructure.Design.Executor;
+using LILO_Packager.v2.Core.Updates;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 {
-    
-    
+
+
     private static object _lock = new object();
     public string owner = "JW-Limited";
     public string repo = "Crypterv2";
@@ -47,7 +49,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     public bool downloaded = false;
     public string UserFile { get => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"); private set => UserFile = value; }
     public string zipPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "latest_release.zip");
-    public Action<bool> isEnabling; 
+    public Action<bool> isEnabling;
     private static MainHost instance;
     private TcpListener listener;
     public PluginManager manager = null;
@@ -103,6 +105,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             }
             else
             {
+
                 var feature = (FeatureFlags)Enum.Parse(typeof(FeatureFlags), command);
 
                 await FeatureManager.ToggleFeatureAsync(feature);
@@ -111,7 +114,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         }
     }
-
 
     private void ListenForConnections()
     {
@@ -178,7 +180,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         };
     }
 
-    
+
 
     private async void FeatureFlagEvents_FeatureFlagUpdateRequested(object? sender, FeatureFlagUpdateEventArgs e)
     {
@@ -226,26 +228,51 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         proc.Start();
 
+
+        OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+
         if (config.Default.autoUpdates)
         {
-            var currentVersion = System.Windows.Forms.Application.ProductVersion;
-            var latestVersion = updater.GetLatestVersion(owner, repo);
+            try
+            {
+                pnlNothing.Visible = false;
+                pnlLoading.Visible = true;
+                var currentVersion = Program.Version.ToString();
+                var latestVersion = updater.GetLatestVersion(owner, repo);
+                var Semi = VersionComparer.CompareSemanticVersions(currentVersion, latestVersion);
 
-            if (latestVersion != currentVersion)
-            {
-                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/update")));
-                noty.ShowBubbleNotification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}");
+                if (Semi.IsNewer)
+                {
+                    noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
+                    pnlNotifications.Visible = true;
+
+                    pnlMes1.Visible = true;
+                    Mes1_Title.Text = "Update";
+                    Mes1_Message.Text = "A new Update is availlable.\nNewest: " + Semi.ToString();
+                    Mes1_bnt.Text = "Update";
+                }
+                else if (!Semi.IsNewer)
+                {
+                    pnlNothing.Visible = true;
+                }
+
+
             }
-            else
+            catch (System.AggregateException ex)
             {
-                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+                ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
+
+                OpenInApp(new uiFeatureNullException("NetworkError", "The server didnt respond."));
+
+                pnlSide.Visible = false;
+
+                hider.Visible = false;
             }
         }
         else
         {
             OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
         }
-
 
 
         if (config.Default.allowedPlugins)
@@ -269,12 +296,12 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                                          $"Version : {item.Version}");
                 }
 
-                ConsoleManager.Instance().WriteLineWithColor(stringBuilder.ToString(),ConsoleColor.Cyan);
+                ConsoleManager.Instance().WriteLineWithColor(stringBuilder.ToString(), ConsoleColor.Cyan);
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Mainhost: PluginManager",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Mainhost: PluginManager", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -368,7 +395,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private void lblText_Click(object sender, EventArgs e)
     {
-
+        pnlSide.Visible = !pnlSide.Visible;
     }
 
     private void sPanel1_Paint(object sender, PaintEventArgs e)
@@ -394,8 +421,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     }
 
     private void guna2Button6_Click(object sender, EventArgs e)
-    { 
-        if(loggedInUser is null)
+    {
+        if (loggedInUser is null)
         {
             var loginUi = uiLILOAccountLogin.Instance();
             loginUi.FormClosing += (sender, e) =>
@@ -436,7 +463,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private void guna2Button6_MouseHover(object sender, EventArgs e)
     {
-        if(loggedInUser is not null)
+        if (loggedInUser is not null)
         {
             bntAccount.Text = "    " + loggedInUser.Email.Replace("@jwlmt.com", "").ToUpperInvariant();
         }
@@ -466,7 +493,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                     {
                         Console.WriteLine("A new release is available.");
 
-                        noty.ShowBubbleNotification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}");
+                        noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}"));
 
                         string html = Markdig.Markdown.ToHtml(latestChanges);
 
@@ -475,7 +502,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                     {
                         Console.WriteLine("No new release available.");
 
-                        noty.ShowBubbleNotification("Updater", $"No new release available.\nYou are perfect.");
+                        noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"No new release available.\nYou are perfect."));
                     }
                 });
 
@@ -485,7 +512,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
         catch (Exception ex)
         {
-            noty.ShowBubbleNotification("Updater", ex.Message);
+            noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", ex.Message));
             return Task.CompletedTask;
         }
     }
@@ -597,5 +624,68 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 isEnabling?.Invoke(true);
             }
         });
+    }
+
+    public void SetNotification(string title, string Message)
+    {
+
+    }
+
+    private void bntCloseSideBoard_Click(object sender, EventArgs e)
+    {
+        pnlSide.Visible = false;
+    }
+
+    private void guna2Button6_Click_1(object sender, EventArgs e)
+    {
+
+        try
+        {
+            pnlNothing.Visible = false;
+            pnlLoading.Visible = true;
+            var updater = Updater.Instance();
+            var currentVersion = Program.Version.ToString();
+            var latestVersion = updater.GetLatestVersion(owner, repo);
+            var Semi = VersionComparer.CompareSemanticVersions(currentVersion, latestVersion);
+
+            if (Semi.IsNewer)
+            {
+                noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
+                pnlNotifications.Visible = true;
+
+                pnlMes1.Visible = true;
+                Mes1_Title.Text = "Update";
+                Mes1_Message.Text = "A new Update is availlable.\nNewest: " + Semi.ToString();
+                Mes1_bnt.Text = "Update";
+            }
+            else if (!Semi.IsNewer)
+            {
+                pnlNothing.Visible = true;
+            }
+        }
+        catch (System.AggregateException ex)
+        {
+            ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
+
+            OpenInApp(new uiFeatureNullException("NetworkError", "The server didnt respond."));
+
+            pnlSide.Visible = false;
+
+            hider.Visible = false;
+        }
+    }
+
+    private void bntUpdate(object sender, EventArgs e)
+    {
+        var updater = Updater.Instance();
+        var currentVersion = Program.Version.ToString();
+        var latestVersion = updater.GetLatestVersion(owner, repo);
+        var Semi = VersionComparer.CompareSemanticVersions(currentVersion, latestVersion);
+
+        hider.Visible = false;
+        pnlSide.Visible = false;
+        pnlNotifications.Visible = false;
+        this.Text = "Updater";
+        OpenInApp(new v2.Forms.uiUpdater(Semi));
     }
 }

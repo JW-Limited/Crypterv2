@@ -39,9 +39,9 @@ partial class uiPlayer
         bntPause = new Guna2Button();
         sPanel6 = new Sipaa.Framework.SPanel();
         pnlSplash = new Sipaa.Framework.SPanel();
+        label1 = new Label();
         imgImage = new Guna2Panel();
         progTurner = new Guna2WinProgressIndicator();
-        lblLoading = new Label();
         tmWaiter = new System.Windows.Forms.Timer(components);
         progressBar = new Guna2ProgressBar();
         lblAllTime = new Label();
@@ -89,7 +89,7 @@ partial class uiPlayer
         // 
         // bntPlay
         // 
-        bntPlay.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        bntPlay.Anchor = AnchorStyles.Bottom;
         bntPlay.Animated = true;
         bntPlay.BackColor = Color.Transparent;
         bntPlay.BorderRadius = 15;
@@ -100,16 +100,17 @@ partial class uiPlayer
         bntPlay.FillColor = Color.MediumSlateBlue;
         bntPlay.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
         bntPlay.ForeColor = Color.White;
-        bntPlay.Location = new Point(83, 680);
+        bntPlay.Image = Properties.Resources.icons8_circled_play_96;
+        bntPlay.ImageSize = new Size(45, 45);
+        bntPlay.Location = new Point(424, 672);
         bntPlay.Name = "bntPlay";
-        bntPlay.Size = new Size(145, 48);
+        bntPlay.Size = new Size(48, 48);
         bntPlay.TabIndex = 7;
-        bntPlay.Text = "Play";
         bntPlay.Click += btnPlay_Click;
         // 
         // bntPause
         // 
-        bntPause.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        bntPause.Anchor = AnchorStyles.Bottom;
         bntPause.Animated = true;
         bntPause.BackColor = Color.Transparent;
         bntPause.BorderRadius = 15;
@@ -120,11 +121,12 @@ partial class uiPlayer
         bntPause.FillColor = Color.MediumSlateBlue;
         bntPause.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
         bntPause.ForeColor = Color.White;
-        bntPause.Location = new Point(272, 680);
+        bntPause.Image = Properties.Resources.icons8_pause_button_96;
+        bntPause.ImageSize = new Size(45, 45);
+        bntPause.Location = new Point(496, 672);
         bntPause.Name = "bntPause";
-        bntPause.Size = new Size(145, 48);
+        bntPause.Size = new Size(48, 48);
         bntPause.TabIndex = 7;
-        bntPause.Text = "Pause";
         bntPause.Click += btnStop_Click;
         // 
         // sPanel6
@@ -150,15 +152,29 @@ partial class uiPlayer
         pnlSplash.BorderColor = Color.PaleVioletRed;
         pnlSplash.BorderRadius = 14;
         pnlSplash.BorderSize = 0;
+        pnlSplash.Controls.Add(label1);
         pnlSplash.Controls.Add(imgImage);
         pnlSplash.Controls.Add(progTurner);
-        pnlSplash.Controls.Add(lblLoading);
         pnlSplash.ForeColor = Color.White;
-        pnlSplash.Location = new Point(0, 0);
+        pnlSplash.Location = new Point(976, 0);
         pnlSplash.Margin = new Padding(2);
         pnlSplash.Name = "pnlSplash";
         pnlSplash.Size = new Size(1003, 784);
         pnlSplash.TabIndex = 9;
+        // 
+        // label1
+        // 
+        label1.Anchor = AnchorStyles.Bottom;
+        label1.BackColor = Color.Transparent;
+        label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        label1.ForeColor = SystemColors.Window;
+        label1.Location = new Point(401, 696);
+        label1.Margin = new Padding(4, 0, 4, 0);
+        label1.Name = "label1";
+        label1.Size = new Size(200, 40);
+        label1.TabIndex = 29;
+        label1.Text = "JW Limited ©️ 2023";
+        label1.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // imgImage
         // 
@@ -169,7 +185,7 @@ partial class uiPlayer
         imgImage.BorderColor = SystemColors.ActiveBorder;
         imgImage.BorderRadius = 15;
         imgImage.FillColor = Color.Transparent;
-        imgImage.Location = new Point(472, 296);
+        imgImage.Location = new Point(472, 336);
         imgImage.Margin = new Padding(2);
         imgImage.Name = "imgImage";
         imgImage.Size = new Size(56, 56);
@@ -180,24 +196,11 @@ partial class uiPlayer
         progTurner.Anchor = AnchorStyles.None;
         progTurner.AutoStart = true;
         progTurner.BackColor = Color.Transparent;
-        progTurner.Location = new Point(424, 248);
+        progTurner.Location = new Point(424, 288);
         progTurner.Name = "progTurner";
         progTurner.Size = new Size(160, 152);
         progTurner.TabIndex = 6;
         progTurner.UseTransparentBackground = true;
-        // 
-        // lblLoading
-        // 
-        lblLoading.Anchor = AnchorStyles.None;
-        lblLoading.BackColor = Color.Transparent;
-        lblLoading.Font = new Font("Century Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point);
-        lblLoading.ForeColor = Color.White;
-        lblLoading.Location = new Point(416, 482);
-        lblLoading.Name = "lblLoading";
-        lblLoading.Size = new Size(168, 34);
-        lblLoading.TabIndex = 5;
-        lblLoading.Text = "Loading...";
-        lblLoading.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // tmWaiter
         // 
@@ -245,7 +248,7 @@ partial class uiPlayer
         lblMoreInfo.BackColor = Color.Transparent;
         lblMoreInfo.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
         lblMoreInfo.ForeColor = Color.White;
-        lblMoreInfo.Location = new Point(448, 680);
+        lblMoreInfo.Location = new Point(80, 536);
         lblMoreInfo.Name = "lblMoreInfo";
         lblMoreInfo.Size = new Size(456, 48);
         lblMoreInfo.TabIndex = 4;
@@ -333,7 +336,6 @@ partial class uiPlayer
     public Label lblCurrentTIme;
     public Sipaa.Framework.SPanel pnlSplash;
     private Guna2WinProgressIndicator progTurner;
-    private Label lblLoading;
     private System.Windows.Forms.Timer tmWaiter;
     private Guna2Button bntPlay;
     private Guna2Button bntPause;
@@ -345,5 +347,6 @@ partial class uiPlayer
     private Label lblMoreInfo;
     private HTAlt.WinForms.HTSlider timeSlider;
     private Guna2Button bntBack;
+    private Label label1;
 }
 #endregion

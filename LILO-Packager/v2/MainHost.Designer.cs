@@ -28,7 +28,7 @@ partial class MainHost
     /// </summary>
     private void InitializeComponent()
     {
-        Guna.UI2.AnimatorNS.Animation animation2 = new Guna.UI2.AnimatorNS.Animation();
+        Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
         hider = new Sipaa.Framework.SPanel();
         bntAccount = new Guna.UI2.WinForms.Guna2Button();
@@ -43,8 +43,29 @@ partial class MainHost
         bntChoose_File = new Guna.UI2.WinForms.Guna2Button();
         guna2Transition1 = new Guna.UI2.WinForms.Guna2Transition();
         pnlChild = new Panel();
+        pnlSide = new Sipaa.Framework.SPanel();
+        pnlNotifications = new Panel();
+        pnlMes1 = new Guna.UI2.WinForms.Guna2Panel();
+        Mes1_Message = new Label();
+        Mes1_bnt = new Guna.UI2.WinForms.Guna2Button();
+        Mes1_Title = new Label();
+        guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
+        label1 = new Label();
+        label2 = new Label();
+        guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
+        bntCloseSideBoard = new Guna.UI2.WinForms.Guna2Button();
+        pnlNothing = new Sipaa.Framework.SPanel();
+        lblMessage = new Label();
+        sPanel3 = new Sipaa.Framework.SPanel();
+        pnlLoading = new Panel();
+        progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
         hider.SuspendLayout();
         sPanel1.SuspendLayout();
+        pnlSide.SuspendLayout();
+        pnlNotifications.SuspendLayout();
+        pnlMes1.SuspendLayout();
+        pnlNothing.SuspendLayout();
+        pnlLoading.SuspendLayout();
         SuspendLayout();
         // 
         // hider
@@ -280,13 +301,14 @@ partial class MainHost
         guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
         guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
         guna2Button1.ForeColor = Color.White;
+        guna2Button1.ImageSize = new Size(40, 40);
         guna2Button1.Location = new Point(200, 16);
         guna2Button1.Margin = new Padding(2);
         guna2Button1.Name = "guna2Button1";
         guna2Button1.Size = new Size(64, 58);
         guna2Button1.TabIndex = 1;
         guna2Button1.Text = "v2";
-        guna2Button1.Click += guna2Button1_Click;
+        guna2Button1.Click += lblText_Click;
         // 
         // lblText
         // 
@@ -301,7 +323,7 @@ partial class MainHost
         lblText.TabIndex = 1;
         lblText.Text = "Crypter ";
         lblText.TextAlign = ContentAlignment.MiddleCenter;
-        lblText.Click += lblText_Click;
+        lblText.Click += guna2Button1_Click;
         // 
         // bntChoose_File
         // 
@@ -327,22 +349,22 @@ partial class MainHost
         // 
         guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Custom;
         guna2Transition1.Cursor = null;
-        animation2.AnimateOnlyDifferences = true;
-        animation2.BlindCoeff = (PointF)resources.GetObject("animation2.BlindCoeff");
-        animation2.LeafCoeff = 0F;
-        animation2.MaxTime = 1F;
-        animation2.MinTime = 0F;
-        animation2.MosaicCoeff = (PointF)resources.GetObject("animation2.MosaicCoeff");
-        animation2.MosaicShift = (PointF)resources.GetObject("animation2.MosaicShift");
-        animation2.MosaicSize = 0;
-        animation2.Padding = new Padding(0);
-        animation2.RotateCoeff = 0F;
-        animation2.RotateLimit = 0F;
-        animation2.ScaleCoeff = (PointF)resources.GetObject("animation2.ScaleCoeff");
-        animation2.SlideCoeff = (PointF)resources.GetObject("animation2.SlideCoeff");
-        animation2.TimeCoeff = 0F;
-        animation2.TransparencyCoeff = 1F;
-        guna2Transition1.DefaultAnimation = animation2;
+        animation1.AnimateOnlyDifferences = true;
+        animation1.BlindCoeff = (PointF)resources.GetObject("animation1.BlindCoeff");
+        animation1.LeafCoeff = 0F;
+        animation1.MaxTime = 1F;
+        animation1.MinTime = 0F;
+        animation1.MosaicCoeff = (PointF)resources.GetObject("animation1.MosaicCoeff");
+        animation1.MosaicShift = (PointF)resources.GetObject("animation1.MosaicShift");
+        animation1.MosaicSize = 0;
+        animation1.Padding = new Padding(0);
+        animation1.RotateCoeff = 0F;
+        animation1.RotateLimit = 0F;
+        animation1.ScaleCoeff = (PointF)resources.GetObject("animation1.ScaleCoeff");
+        animation1.SlideCoeff = (PointF)resources.GetObject("animation1.SlideCoeff");
+        animation1.TimeCoeff = 0F;
+        animation1.TransparencyCoeff = 1F;
+        guna2Transition1.DefaultAnimation = animation1;
         guna2Transition1.Interval = 1;
         // 
         // pnlChild
@@ -352,8 +374,298 @@ partial class MainHost
         pnlChild.Location = new Point(336, 0);
         pnlChild.Margin = new Padding(2);
         pnlChild.Name = "pnlChild";
-        pnlChild.Size = new Size(1250, 1055);
+        pnlChild.Size = new Size(922, 1055);
         pnlChild.TabIndex = 15;
+        // 
+        // pnlSide
+        // 
+        pnlSide.BackColor = Color.White;
+        pnlSide.BackgroundImageLayout = ImageLayout.Stretch;
+        pnlSide.BorderColor = Color.DimGray;
+        pnlSide.BorderRadius = 0;
+        pnlSide.BorderSize = 1;
+        pnlSide.Controls.Add(pnlNotifications);
+        pnlSide.Controls.Add(guna2Button6);
+        pnlSide.Controls.Add(label1);
+        pnlSide.Controls.Add(label2);
+        pnlSide.Controls.Add(guna2Button7);
+        pnlSide.Controls.Add(bntCloseSideBoard);
+        pnlSide.Controls.Add(pnlNothing);
+        pnlSide.Controls.Add(pnlLoading);
+        guna2Transition1.SetDecoration(pnlSide, Guna.UI2.AnimatorNS.DecorationType.None);
+        pnlSide.Dock = DockStyle.Right;
+        pnlSide.ForeColor = Color.White;
+        pnlSide.Location = new Point(1258, 0);
+        pnlSide.Margin = new Padding(4);
+        pnlSide.Name = "pnlSide";
+        pnlSide.Size = new Size(328, 1055);
+        pnlSide.TabIndex = 16;
+        pnlSide.Visible = false;
+        // 
+        // pnlNotifications
+        // 
+        pnlNotifications.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        pnlNotifications.BackColor = Color.White;
+        pnlNotifications.Controls.Add(pnlMes1);
+        guna2Transition1.SetDecoration(pnlNotifications, Guna.UI2.AnimatorNS.DecorationType.None);
+        pnlNotifications.Location = new Point(8, 72);
+        pnlNotifications.Name = "pnlNotifications";
+        pnlNotifications.Size = new Size(312, 904);
+        pnlNotifications.TabIndex = 18;
+        pnlNotifications.Visible = false;
+        // 
+        // pnlMes1
+        // 
+        pnlMes1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        pnlMes1.BorderColor = SystemColors.ButtonFace;
+        pnlMes1.BorderRadius = 15;
+        pnlMes1.BorderThickness = 2;
+        pnlMes1.Controls.Add(Mes1_Message);
+        pnlMes1.Controls.Add(Mes1_bnt);
+        pnlMes1.Controls.Add(Mes1_Title);
+        guna2Transition1.SetDecoration(pnlMes1, Guna.UI2.AnimatorNS.DecorationType.None);
+        pnlMes1.FillColor = Color.White;
+        pnlMes1.Location = new Point(8, 24);
+        pnlMes1.Margin = new Padding(2);
+        pnlMes1.Name = "pnlMes1";
+        pnlMes1.Size = new Size(296, 272);
+        pnlMes1.TabIndex = 4;
+        pnlMes1.Visible = false;
+        // 
+        // Mes1_Message
+        // 
+        Mes1_Message.BackColor = Color.Transparent;
+        guna2Transition1.SetDecoration(Mes1_Message, Guna.UI2.AnimatorNS.DecorationType.None);
+        Mes1_Message.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        Mes1_Message.ForeColor = Color.DimGray;
+        Mes1_Message.Location = new Point(24, 64);
+        Mes1_Message.Margin = new Padding(4, 0, 4, 0);
+        Mes1_Message.Name = "Mes1_Message";
+        Mes1_Message.Size = new Size(248, 136);
+        Mes1_Message.TabIndex = 1;
+        Mes1_Message.Text = "n/a";
+        // 
+        // Mes1_bnt
+        // 
+        Mes1_bnt.Animated = true;
+        Mes1_bnt.BackColor = Color.Transparent;
+        Mes1_bnt.BackgroundImageLayout = ImageLayout.Zoom;
+        Mes1_bnt.BorderColor = Color.Gainsboro;
+        Mes1_bnt.BorderRadius = 10;
+        Mes1_bnt.BorderThickness = 2;
+        guna2Transition1.SetDecoration(Mes1_bnt, Guna.UI2.AnimatorNS.DecorationType.None);
+        Mes1_bnt.DisabledState.BorderColor = Color.DarkGray;
+        Mes1_bnt.DisabledState.CustomBorderColor = Color.DarkGray;
+        Mes1_bnt.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        Mes1_bnt.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        Mes1_bnt.FillColor = Color.Transparent;
+        Mes1_bnt.FocusedColor = Color.FromArgb(100, 170, 209);
+        Mes1_bnt.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        Mes1_bnt.ForeColor = Color.Black;
+        Mes1_bnt.ImageAlign = HorizontalAlignment.Left;
+        Mes1_bnt.ImageSize = new Size(35, 35);
+        Mes1_bnt.Location = new Point(24, 208);
+        Mes1_bnt.Margin = new Padding(2);
+        Mes1_bnt.Name = "Mes1_bnt";
+        Mes1_bnt.Size = new Size(248, 40);
+        Mes1_bnt.TabIndex = 17;
+        Mes1_bnt.Text = "n/a";
+        Mes1_bnt.Click += bntUpdate;
+        // 
+        // Mes1_Title
+        // 
+        Mes1_Title.BackColor = Color.Transparent;
+        guna2Transition1.SetDecoration(Mes1_Title, Guna.UI2.AnimatorNS.DecorationType.None);
+        Mes1_Title.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        Mes1_Title.ForeColor = Color.Black;
+        Mes1_Title.Location = new Point(24, 16);
+        Mes1_Title.Margin = new Padding(4, 0, 4, 0);
+        Mes1_Title.Name = "Mes1_Title";
+        Mes1_Title.Size = new Size(176, 48);
+        Mes1_Title.TabIndex = 1;
+        Mes1_Title.Text = "n/a";
+        Mes1_Title.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // guna2Button6
+        // 
+        guna2Button6.Animated = true;
+        guna2Button6.BackColor = Color.Transparent;
+        guna2Button6.BackgroundImageLayout = ImageLayout.Zoom;
+        guna2Button6.BorderColor = Color.Gainsboro;
+        guna2Button6.BorderRadius = 10;
+        guna2Button6.BorderThickness = 2;
+        guna2Transition1.SetDecoration(guna2Button6, Guna.UI2.AnimatorNS.DecorationType.None);
+        guna2Button6.DisabledState.BorderColor = Color.DarkGray;
+        guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray;
+        guna2Button6.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        guna2Button6.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        guna2Button6.FillColor = Color.Transparent;
+        guna2Button6.FocusedColor = Color.FromArgb(100, 170, 209);
+        guna2Button6.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button6.ForeColor = Color.Black;
+        guna2Button6.ImageAlign = HorizontalAlignment.Left;
+        guna2Button6.ImageSize = new Size(35, 35);
+        guna2Button6.Location = new Point(16, 16);
+        guna2Button6.Margin = new Padding(2);
+        guna2Button6.Name = "guna2Button6";
+        guna2Button6.Size = new Size(184, 48);
+        guna2Button6.TabIndex = 17;
+        guna2Button6.Text = " Notifications";
+        guna2Button6.TextAlign = HorizontalAlignment.Left;
+        // 
+        // label1
+        // 
+        label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        label1.BackColor = Color.Transparent;
+        guna2Transition1.SetDecoration(label1, Guna.UI2.AnimatorNS.DecorationType.None);
+        label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
+        label1.ForeColor = Color.Gray;
+        label1.Location = new Point(24, 975);
+        label1.Margin = new Padding(4, 0, 4, 0);
+        label1.Name = "label1";
+        label1.Size = new Size(288, 32);
+        label1.TabIndex = 2;
+        label1.Text = "powered by ";
+        label1.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // label2
+        // 
+        label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        label2.BackColor = Color.Transparent;
+        guna2Transition1.SetDecoration(label2, Guna.UI2.AnimatorNS.DecorationType.None);
+        label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        label2.ForeColor = Color.Black;
+        label2.Location = new Point(24, 999);
+        label2.Margin = new Padding(4, 0, 4, 0);
+        label2.Name = "label2";
+        label2.Size = new Size(288, 40);
+        label2.TabIndex = 3;
+        label2.Text = "LILO Sync ";
+        label2.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // guna2Button7
+        // 
+        guna2Button7.Animated = true;
+        guna2Button7.BackColor = Color.Transparent;
+        guna2Button7.BorderColor = Color.Gainsboro;
+        guna2Button7.BorderRadius = 10;
+        guna2Button7.BorderThickness = 2;
+        guna2Transition1.SetDecoration(guna2Button7, Guna.UI2.AnimatorNS.DecorationType.None);
+        guna2Button7.DisabledState.BorderColor = Color.DarkGray;
+        guna2Button7.DisabledState.CustomBorderColor = Color.DarkGray;
+        guna2Button7.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        guna2Button7.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        guna2Button7.FillColor = Color.Transparent;
+        guna2Button7.FocusedColor = Color.FromArgb(100, 170, 209);
+        guna2Button7.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button7.ForeColor = Color.White;
+        guna2Button7.Image = Properties.Resources.icons8_synchronize_240;
+        guna2Button7.ImageSize = new Size(30, 30);
+        guna2Button7.Location = new Point(208, 16);
+        guna2Button7.Margin = new Padding(2);
+        guna2Button7.Name = "guna2Button7";
+        guna2Button7.Size = new Size(48, 48);
+        guna2Button7.TabIndex = 1;
+        guna2Button7.Click += guna2Button6_Click_1;
+        // 
+        // bntCloseSideBoard
+        // 
+        bntCloseSideBoard.Animated = true;
+        bntCloseSideBoard.BackColor = Color.Transparent;
+        bntCloseSideBoard.BorderColor = Color.Gainsboro;
+        bntCloseSideBoard.BorderRadius = 10;
+        bntCloseSideBoard.BorderThickness = 2;
+        guna2Transition1.SetDecoration(bntCloseSideBoard, Guna.UI2.AnimatorNS.DecorationType.None);
+        bntCloseSideBoard.DisabledState.BorderColor = Color.DarkGray;
+        bntCloseSideBoard.DisabledState.CustomBorderColor = Color.DarkGray;
+        bntCloseSideBoard.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        bntCloseSideBoard.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        bntCloseSideBoard.FillColor = Color.Transparent;
+        bntCloseSideBoard.FocusedColor = Color.FromArgb(100, 170, 209);
+        bntCloseSideBoard.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        bntCloseSideBoard.ForeColor = Color.White;
+        bntCloseSideBoard.Image = Properties.Resources.Close;
+        bntCloseSideBoard.ImageSize = new Size(25, 25);
+        bntCloseSideBoard.Location = new Point(264, 16);
+        bntCloseSideBoard.Margin = new Padding(2);
+        bntCloseSideBoard.Name = "bntCloseSideBoard";
+        bntCloseSideBoard.Size = new Size(48, 48);
+        bntCloseSideBoard.TabIndex = 1;
+        bntCloseSideBoard.Click += bntCloseSideBoard_Click;
+        // 
+        // pnlNothing
+        // 
+        pnlNothing.Anchor = AnchorStyles.None;
+        pnlNothing.BackColor = Color.White;
+        pnlNothing.BackgroundImageLayout = ImageLayout.Stretch;
+        pnlNothing.BorderColor = Color.Black;
+        pnlNothing.BorderRadius = 20;
+        pnlNothing.BorderSize = 0;
+        pnlNothing.Controls.Add(lblMessage);
+        pnlNothing.Controls.Add(sPanel3);
+        guna2Transition1.SetDecoration(pnlNothing, Guna.UI2.AnimatorNS.DecorationType.None);
+        pnlNothing.ForeColor = Color.White;
+        pnlNothing.Location = new Point(16, 376);
+        pnlNothing.Margin = new Padding(4);
+        pnlNothing.Name = "pnlNothing";
+        pnlNothing.Size = new Size(296, 288);
+        pnlNothing.TabIndex = 9;
+        pnlNothing.Paint += sPanel1_Paint;
+        // 
+        // lblMessage
+        // 
+        lblMessage.BackColor = Color.Transparent;
+        guna2Transition1.SetDecoration(lblMessage, Guna.UI2.AnimatorNS.DecorationType.None);
+        lblMessage.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        lblMessage.ForeColor = Color.DimGray;
+        lblMessage.Location = new Point(24, 184);
+        lblMessage.Margin = new Padding(4, 0, 4, 0);
+        lblMessage.Name = "lblMessage";
+        lblMessage.Size = new Size(248, 56);
+        lblMessage.TabIndex = 1;
+        lblMessage.Text = "Nothing to Display";
+        lblMessage.TextAlign = ContentAlignment.MiddleCenter;
+        lblMessage.Click += lblText_Click;
+        // 
+        // sPanel3
+        // 
+        sPanel3.BackColor = Color.White;
+        sPanel3.BackgroundImage = Properties.Resources.nothing;
+        sPanel3.BackgroundImageLayout = ImageLayout.Zoom;
+        sPanel3.BorderColor = Color.Black;
+        sPanel3.BorderRadius = 20;
+        sPanel3.BorderSize = 0;
+        guna2Transition1.SetDecoration(sPanel3, Guna.UI2.AnimatorNS.DecorationType.None);
+        sPanel3.ForeColor = Color.White;
+        sPanel3.Location = new Point(56, 40);
+        sPanel3.Margin = new Padding(4);
+        sPanel3.Name = "sPanel3";
+        sPanel3.Size = new Size(176, 128);
+        sPanel3.TabIndex = 9;
+        sPanel3.Paint += sPanel1_Paint;
+        // 
+        // pnlLoading
+        // 
+        pnlLoading.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        pnlLoading.BackColor = Color.White;
+        pnlLoading.Controls.Add(progressSpinner);
+        guna2Transition1.SetDecoration(pnlLoading, Guna.UI2.AnimatorNS.DecorationType.None);
+        pnlLoading.Location = new Point(16, 96);
+        pnlLoading.Name = "pnlLoading";
+        pnlLoading.Size = new Size(296, 880);
+        pnlLoading.TabIndex = 18;
+        pnlLoading.Visible = false;
+        // 
+        // progressSpinner
+        // 
+        progressSpinner.Anchor = AnchorStyles.None;
+        progressSpinner.AutoStart = true;
+        progressSpinner.BackColor = Color.White;
+        guna2Transition1.SetDecoration(progressSpinner, Guna.UI2.AnimatorNS.DecorationType.None);
+        progressSpinner.Location = new Point(80, 364);
+        progressSpinner.Name = "progressSpinner";
+        progressSpinner.Size = new Size(135, 143);
+        progressSpinner.TabIndex = 8;
         // 
         // MainHost
         // 
@@ -362,6 +674,7 @@ partial class MainHost
         BackColor = Color.White;
         ClientSize = new Size(1586, 1055);
         Controls.Add(pnlChild);
+        Controls.Add(pnlSide);
         Controls.Add(hider);
         Controls.Add(bntChoose_File);
         guna2Transition1.SetDecoration(this, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -375,6 +688,11 @@ partial class MainHost
         Load += MainHost_Load;
         hider.ResumeLayout(false);
         sPanel1.ResumeLayout(false);
+        pnlSide.ResumeLayout(false);
+        pnlNotifications.ResumeLayout(false);
+        pnlMes1.ResumeLayout(false);
+        pnlNothing.ResumeLayout(false);
+        pnlLoading.ResumeLayout(false);
         ResumeLayout(false);
     }
 
@@ -393,4 +711,20 @@ partial class MainHost
     private Panel pnlChild;
     private Guna.UI2.WinForms.Guna2Button guna2Button1;
     private Guna.UI2.WinForms.Guna2Button guna2Button2;
+    private Sipaa.Framework.SPanel pnlSide;
+    private Guna.UI2.WinForms.Guna2Button bntCloseSideBoard;
+    private Label label1;
+    private Label label2;
+    private Guna.UI2.WinForms.Guna2Button guna2Button6;
+    private Sipaa.Framework.SPanel pnlNothing;
+    private Label lblMessage;
+    private Sipaa.Framework.SPanel sPanel3;
+    private Panel pnlLoading;
+    private Guna.UI2.WinForms.Guna2WinProgressIndicator progressSpinner;
+    private Panel pnlNotifications;
+    private Guna.UI2.WinForms.Guna2Panel pnlMes1;
+    private Label Mes1_Title;
+    private Label Mes1_Message;
+    private Guna.UI2.WinForms.Guna2Button Mes1_bnt;
+    private Guna.UI2.WinForms.Guna2Button guna2Button7;
 }

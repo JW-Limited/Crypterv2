@@ -95,4 +95,14 @@ public partial class uiSettings : Form
     {
         await FeatureManager.ToggleFeatureAsync(FeatureFlags.PluginSupport);
     }
+
+    private void guna2Button5_Click(object sender, EventArgs e)
+    {
+        MainHost.Instance().OpenInApp(new uiFeatureNullException("AccountDenied", "This Feature is not availlabel."));
+    }
+
+    private void bntSrvlocal(object sender, EventArgs e)
+    {
+        MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/config/")));
+    }
 }

@@ -1,4 +1,6 @@
+using LILO_Packager.v2.Core.Boot;
 using LILO_Packager.v2.Core.Debug;
+using LILO_Packager.v2.Core.Updates;
 using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.shared;
 using Microsoft.Win32;
@@ -12,8 +14,8 @@ namespace LILO_Packager
     {
         public static int DefaultEnvironment = 0;
         public static NotifyIcon noty;
+        public static string Version = "v0.9.2-beta";
 
-        /// @brief Initializes the application to work with Visual Stylus. Enables visual styles
         private static void InitializeApplication()
         {
             Application.EnableVisualStyles();
@@ -40,60 +42,39 @@ namespace LILO_Packager
                 
             }
 
-            if (args.Length > 0)
-            {
-                for (int i = 0; i < args.Length; i++)
-                {
-                    if (!File.Exists(args[i])) return;
-
-                    if (args[i].EndsWith(".lsf"))
-                    {
-                        ConsoleManager.Instance().WriteLineWithColor("Started with Arguments: Now Open EncyrptionPopupDialog",ConsoleColor.DarkGreen);
-
-                        EncryptedFile file = new EncryptedFile(args[i]);
-                        var decrypt = uiArgumentStart.Instance(file);
-                        Application.Run(decrypt);
-                    }
-                    else if (args[i].EndsWith(".dbgsl"))
-                    {
-                        if (!File.Exists(args[i])) return;
-
-                        ConsoleManager.Instance().WriteLineWithColor("Started with Arguments: Now Open DebugSessionLogViewer", ConsoleColor.DarkGreen);
-
-                        var debugSession = new DebugSession()
-                        {
-                            FileName = args[i],
-                            Content = File.ReadAllText(args[i]),
-                            CreatedAt = new FileInfo(args[i]).CreationTime,
-                            SessionName = new FileInfo(args[i]).Name,
-                        };
-
-                        var debugUI = new uiDebugSessionLogViewer(debugSession);
-                        Application.Run(debugUI);
-                    }
-                    else 
-                    {
-                        ConsoleManager.Instance().WriteLineWithColor("Started with Arguments: Now Open DecyrptionPopupDialog", ConsoleColor.DarkGreen);
-
-                        DecryptedFile file = new DecryptedFile(args[i]);
-                        var encrypt = uiArgumentStart_Encrypt.Instance(file);
-                        Application.Run(encrypt);
-                    }
-                }
-
-            }
-            else
+            try
             {
 
-                if (IsApplicationAlreadyRunning())
+                if (args.Length > 0)
                 {
-                    BringRunningInstanceToFront();
-                    return;
+                    var bootManager = new BootManager();
+                    bootManager.AnalyzeArguments(args);
                 }
+                else
+                {
 
+                    if (IsApplicationAlreadyRunning())
+                    {
+                        BringRunningInstanceToFront();
+                        return;
+                    }
 
-                RunMainUI();
+                    try
+                    {
+                        RunMainUI();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An Error Accoured: " + ex.Message,"Error - RunMainUi");
+                        ConsoleManager.Instance().WriteLineWithColor("An Error Acourred: " + ex.Message, ConsoleColor.Red);
+                    }
+                }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error - BootManager", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification);
+            }
+
 
         }
 

@@ -15,16 +15,15 @@
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <DocumentationFile>C:\Users\joeva\OneDrive - JW Lmt\LILO\LILO - api\apis-listed.xml</DocumentationFile>
     <AssemblyName>crypterv2</AssemblyName>
-    <ApplicationIcon>favico.ico</ApplicationIcon>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <SignAssembly>False</SignAssembly>
-    <Title>LILO - Package Manager UI</Title>
+    <Title>LILO - Crypterv2</Title>
     <Version>2.0</Version>
     <Authors>Joey West</Authors>
-    <Company>JW Lmt.</Company>
+    <Company>JW Limited</Company>
     <Product>LILO_Packager</Product>
     <Description>A Tool to Manage Lilo and packages for Lilo</Description>
-    <Copyright>JW Lmt.</Copyright>
+    <Copyright>JW Limited © 2023</Copyright>
     <PackageIcon>favico.png</PackageIcon>
     <IncludeSymbols>False</IncludeSymbols>
     <UseWPF>False</UseWPF>
@@ -33,6 +32,14 @@
     <StartupObject>LILO_Packager.Program</StartupObject>
     <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/JW-Limited/Crypterv2</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/JW-Limited/Crypterv2</PackageProjectUrl>
+    <PackageLicenseFile>Agrement.rtf</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <ApplicationIcon>favico.ico</ApplicationIcon>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -141,6 +148,17 @@
 
   <ItemGroup>
     <Folder Include="v2\Secure\Forms\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Agrement.rtf">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

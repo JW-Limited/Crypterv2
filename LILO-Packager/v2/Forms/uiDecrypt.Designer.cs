@@ -265,7 +265,7 @@ partial class uiDecrypt
         // 
         label4.BackColor = Color.Transparent;
         label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-        label4.ForeColor = Color.White;
+        label4.ForeColor = Color.DimGray;
         label4.Location = new Point(8, 8);
         label4.Margin = new Padding(4, 0, 4, 0);
         label4.Name = "label4";

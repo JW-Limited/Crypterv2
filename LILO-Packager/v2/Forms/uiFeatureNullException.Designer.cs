@@ -76,7 +76,7 @@
             // 
             imgImage.Anchor = AnchorStyles.None;
             imgImage.BackColor = Color.Transparent;
-            imgImage.BackgroundImage = Properties.Resources.icons8_earth_planet_96;
+            imgImage.BackgroundImage = Properties.Resources.image_removebg_preview__2_;
             imgImage.BackgroundImageLayout = ImageLayout.Zoom;
             imgImage.BorderColor = SystemColors.ActiveBorder;
             imgImage.BorderRadius = 20;

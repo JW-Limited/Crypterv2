@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LILO_Packager.v2.Core;
 
 namespace Crypterv2_DevTool.Core
 {
@@ -16,6 +17,6 @@ namespace Crypterv2_DevTool.Core
         public string Name { get; set; }
         public string Description { get; set; }
         public bool EnabledState { get; set; }
-        public LILO_Packager.v2.Core.FeatureFlags Flag { get; set; }
+        public FeatureFlags Flag { get; set; }
     }
 }

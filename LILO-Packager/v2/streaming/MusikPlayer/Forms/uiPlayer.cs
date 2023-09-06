@@ -9,6 +9,7 @@ using LILO.Shell;
 using Guna.UI2.WinForms;
 using LILO_Packager.v2.streaming.MusikPlayer.Core;
 using System.Runtime.InteropServices;
+using LILO_Packager.v2.shared;
 
 namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
 {
@@ -61,9 +62,10 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
         {
             IntPtr handle = this.Handle;
             SendMessageW(handle, WM_APPCOMMAND, handle,
-                (IntPtr)APPCOMMAND_VOLUME_UP);
-            SendMessageW(handle, WM_APPCOMMAND, handle,
                 (IntPtr)APPCOMMAND_VOLUME_DOWN);
+
+            SendMessageW(handle, WM_APPCOMMAND, handle,
+                (IntPtr)APPCOMMAND_VOLUME_UP);
         }
 
         public uiPlayer(MusicPlayerParameters parameters,bool back)
@@ -132,39 +134,50 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
 
         private void OnPlaybackCallback(MediaEngineEvent playEvent, long param1, int param2)
         {
-            Console.Write("PlayBack Event received: {0}", playEvent);
-            lblCurrentTIme.Text = String.Format("{0}", TimeSpan.FromMinutes(mediaEngineEx.CurrentTime).ToString().Remove(5));
-            lblAllTime.Text = String.Format("{0}", TimeSpan.FromMinutes(mediaEngineEx.Duration).ToString().Remove(5));
-            lblMoreInfo.Text = String.Format("{0}", mediaEngineEx.PlaybackRate);
-
-            progressBar.Maximum = (int)mediaEngineEx.Duration;
-            progressBar.Value = (int)mediaEngineEx.CurrentTime;
-
-            timeSlider.Maximum = (int)mediaEngineEx.Duration;
-            timeSlider.Value = (int)mediaEngineEx.CurrentTime;
-
-            switch (playEvent)
+            if(playEvent is not MediaEngineEvent.Error)
             {
-                case MediaEngineEvent.CanPlay:
-                    eventReadyToPlay.Set();
-                    break;
-                case MediaEngineEvent.TimeUpdate:
-                    Console.Write(" {0}", TimeSpan.FromSeconds(mediaEngineEx.CurrentTime));
+                Console.Write("PlayBack Event received: {0}", playEvent);
+                lblCurrentTIme.Text = String.Format("{0}", TimeSpan.FromMinutes(mediaEngineEx.CurrentTime).ToString().Remove(5));
+                lblAllTime.Text = String.Format("{0}", TimeSpan.FromMinutes(mediaEngineEx.Duration).ToString().Remove(5));
+                //lblMoreInfo.Text = String.Format("{0}", mediaEngineEx.AudioEndpointRole);
 
-                    break;
-                case MediaEngineEvent.Error:
-                    PlayerThread.Suspend();
-                    break;
-                case MediaEngineEvent.Abort:
-                    PlayerThread.Abort();
-                    break;
-                case MediaEngineEvent.Ended:
-                    PlayerThread.Abort();
-                    isMusicStopped = true;
-                    break;
+                progressBar.Maximum = (int)mediaEngineEx.Duration;
+                progressBar.Value = (int)mediaEngineEx.CurrentTime;
+
+                timeSlider.Maximum = (int)mediaEngineEx.Duration;
+                timeSlider.Value = (int)mediaEngineEx.CurrentTime;
+
+                switch (playEvent)
+                {
+                    case MediaEngineEvent.CanPlay:
+                        eventReadyToPlay.Set();
+                        break;
+                    case MediaEngineEvent.TimeUpdate:
+                        //Console.Write(" {0}", TimeSpan.FromSeconds(mediaEngineEx.CurrentTime));
+
+                        break;
+                    case MediaEngineEvent.Error:
+                        PlayerThread.Suspend();
+                        break;
+                    case MediaEngineEvent.Abort:
+                        PlayerThread.Abort();
+                        break;
+                    case MediaEngineEvent.Ended:
+                        PlayerThread.Abort();
+                        isMusicStopped = true;
+                        break;
+                }
+
+                Console.WriteLine();
+            }
+            else
+            {
+                lblMoreInfo.Text = "DirectXMediaError: " + mediaEngineEx.Error;
+                ConsoleManager.Instance().WriteLineWithColor("PlackbackError received: " + mediaEngineEx.Error + mediaEngineEx.Error.GetErrorCode() + " State: " + mediaEngineEx.ReadyState.ToString());
+                
             }
 
-            Console.WriteLine();
+            
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -202,7 +215,7 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
                 var dbTasks = new DBTasks();
                 await dbTasks.InitializeDatabaseAsync(process =>
                 {
-                    lblLoading.Text = process;
+                    
                 });
 
                 var info = new FileInfo(playerParameters.Source);

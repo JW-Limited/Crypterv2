@@ -19,7 +19,7 @@ namespace LILO_Packager.v2.Forms
         {
             lock (_lock)
             {
-                if (_encrypt is null)
+                if (_encrypt is null|| _encrypt.IsDisposed)
                 {
                     _encrypt = new uiAsyncTask();
                 }

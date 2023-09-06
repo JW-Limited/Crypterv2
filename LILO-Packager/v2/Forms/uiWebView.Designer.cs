@@ -142,7 +142,7 @@ partial class uiWebView
         guna2Panel1.Controls.Add(bntOpen);
         guna2Panel1.Controls.Add(lblExc);
         guna2Panel1.FillColor = Color.Transparent;
-        guna2Panel1.Location = new Point(64, 467);
+        guna2Panel1.Location = new Point(80, 464);
         guna2Panel1.Margin = new Padding(2);
         guna2Panel1.Name = "guna2Panel1";
         guna2Panel1.Size = new Size(496, 141);
@@ -194,7 +194,7 @@ partial class uiWebView
         pnlPreview.Controls.Add(lblName);
         pnlPreview.Controls.Add(imgImage);
         pnlPreview.FillColor = Color.White;
-        pnlPreview.Location = new Point(72, 19);
+        pnlPreview.Location = new Point(88, 16);
         pnlPreview.Margin = new Padding(2);
         pnlPreview.Name = "pnlPreview";
         pnlPreview.Size = new Size(488, 416);
