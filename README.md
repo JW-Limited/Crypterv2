@@ -6,7 +6,14 @@
 <p align="center">Aes 256 based - Lightweight, Extandeble and easy to use.</p>
 <p align="center">But please keep in mind its still in early alpha and in development.</p>
 
-<hr />
+
+## Features
+
+- **Strong Encryption**: Utilizes state-of-the-art encryption techniques to safeguard your data.
+- **User-Friendly Interface**: Intuitive and easy-to-use interface for both beginners and experts.
+- **Cross-Platform**: Runs on Windows, macOS, and Linux.
+- **Customizable**: Tailor encryption settings to your specific needs.
+- **File and Folder Encryption**: Secure individual files or entire directories.
 
 ## How it works 
 <p align="center">
