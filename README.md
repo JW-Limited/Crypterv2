@@ -37,3 +37,7 @@ To install CrypterV2, follow these steps:
 | TextPreview | 3.2.1   | An JW Limited LILO Encrypted Container Streaming based Plaintext Shower | [Link]() |
 | File Backup Manager             | 2.1.3   | Automatically back up your Encrypted files to the cloud. | [Link]()           |
 | Image Gallery Viewer            | 2.0.5   | View and navigate through a collection of Encrypted images with ease. | [Link]()           |
+
+## ❌ Report Error
+
+**You can do that here**: [Link](https://github.com/JW-Limited/Crypterv2/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=Error)
