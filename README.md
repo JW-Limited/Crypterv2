@@ -1,10 +1,9 @@
-<p align="center">
-  <img src="LILO-Packager/favico.ico" />
-</p>
-
-# <p align="center">Crypterv2</p>
-<p align="center">Aes 256 based - Lightweight, Extandeble and easy to use.</p>
-<p align="center">But please keep in mind its still in early alpha and in development.</p>
+<div align="center" style="background-color: #1E90FF; padding: 20px;">
+  <img src="LILO-Packager/favico.ico" alt="CrypterV2 Logo" width="150">
+  <h1 style="color: white;">CrypterV2</h1>
+  <p style="color: white;">Aes 256 based - Lightweight, Extandeble and easy to use.</p>
+  <p style="color: white;">But please keep in mind its still in early alpha and in development.</p>
+</div>
 
 
 ## 🚀 Features
