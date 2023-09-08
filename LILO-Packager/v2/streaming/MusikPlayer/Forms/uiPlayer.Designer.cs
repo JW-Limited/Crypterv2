@@ -57,7 +57,7 @@ partial class uiPlayer
         lblCurrentTIme.BackColor = Color.Transparent;
         lblCurrentTIme.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
         lblCurrentTIme.ForeColor = SystemColors.AppWorkspace;
-        lblCurrentTIme.Location = new Point(83, 600);
+        lblCurrentTIme.Location = new Point(83, 598);
         lblCurrentTIme.Name = "lblCurrentTIme";
         lblCurrentTIme.Size = new Size(61, 32);
         lblCurrentTIme.TabIndex = 6;
@@ -102,7 +102,7 @@ partial class uiPlayer
         bntPlay.ForeColor = Color.White;
         bntPlay.Image = Properties.Resources.icons8_circled_play_96;
         bntPlay.ImageSize = new Size(45, 45);
-        bntPlay.Location = new Point(424, 672);
+        bntPlay.Location = new Point(423, 670);
         bntPlay.Name = "bntPlay";
         bntPlay.Size = new Size(48, 48);
         bntPlay.TabIndex = 7;
@@ -123,7 +123,7 @@ partial class uiPlayer
         bntPause.ForeColor = Color.White;
         bntPause.Image = Properties.Resources.icons8_pause_button_96;
         bntPause.ImageSize = new Size(45, 45);
-        bntPause.Location = new Point(496, 672);
+        bntPause.Location = new Point(495, 670);
         bntPause.Name = "bntPause";
         bntPause.Size = new Size(48, 48);
         bntPause.TabIndex = 7;
@@ -138,7 +138,7 @@ partial class uiPlayer
         sPanel6.BorderRadius = 14;
         sPanel6.BorderSize = 0;
         sPanel6.ForeColor = Color.White;
-        sPanel6.Location = new Point(624, 72);
+        sPanel6.Location = new Point(622, 72);
         sPanel6.Margin = new Padding(2);
         sPanel6.Name = "sPanel6";
         sPanel6.Size = new Size(322, 320);
@@ -156,10 +156,10 @@ partial class uiPlayer
         pnlSplash.Controls.Add(imgImage);
         pnlSplash.Controls.Add(progTurner);
         pnlSplash.ForeColor = Color.White;
-        pnlSplash.Location = new Point(976, 0);
+        pnlSplash.Location = new Point(0, 0);
         pnlSplash.Margin = new Padding(2);
         pnlSplash.Name = "pnlSplash";
-        pnlSplash.Size = new Size(1003, 784);
+        pnlSplash.Size = new Size(1001, 782);
         pnlSplash.TabIndex = 9;
         // 
         // label1
@@ -168,7 +168,7 @@ partial class uiPlayer
         label1.BackColor = Color.Transparent;
         label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
         label1.ForeColor = SystemColors.Window;
-        label1.Location = new Point(401, 696);
+        label1.Location = new Point(400, 694);
         label1.Margin = new Padding(4, 0, 4, 0);
         label1.Name = "label1";
         label1.Size = new Size(200, 40);
@@ -185,7 +185,7 @@ partial class uiPlayer
         imgImage.BorderColor = SystemColors.ActiveBorder;
         imgImage.BorderRadius = 15;
         imgImage.FillColor = Color.Transparent;
-        imgImage.Location = new Point(472, 336);
+        imgImage.Location = new Point(471, 335);
         imgImage.Margin = new Padding(2);
         imgImage.Name = "imgImage";
         imgImage.Size = new Size(56, 56);
@@ -196,7 +196,7 @@ partial class uiPlayer
         progTurner.Anchor = AnchorStyles.None;
         progTurner.AutoStart = true;
         progTurner.BackColor = Color.Transparent;
-        progTurner.Location = new Point(424, 288);
+        progTurner.Location = new Point(423, 287);
         progTurner.Name = "progTurner";
         progTurner.Size = new Size(160, 152);
         progTurner.TabIndex = 6;
@@ -217,12 +217,12 @@ partial class uiPlayer
         progressBar.BorderThickness = 2;
         progressBar.FillColor = Color.Black;
         progressBar.ForeColor = Color.Transparent;
-        progressBar.Location = new Point(152, 608);
+        progressBar.Location = new Point(152, 606);
         progressBar.Margin = new Padding(2);
         progressBar.Name = "progressBar";
         progressBar.ProgressColor = Color.LightCoral;
         progressBar.ProgressColor2 = Color.MediumSlateBlue;
-        progressBar.Size = new Size(704, 24);
+        progressBar.Size = new Size(702, 24);
         progressBar.TabIndex = 11;
         progressBar.Text = "guna2ProgressBar1";
         progressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -235,7 +235,7 @@ partial class uiPlayer
         lblAllTime.BackColor = Color.Transparent;
         lblAllTime.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
         lblAllTime.ForeColor = SystemColors.AppWorkspace;
-        lblAllTime.Location = new Point(872, 600);
+        lblAllTime.Location = new Point(870, 598);
         lblAllTime.Name = "lblAllTime";
         lblAllTime.Size = new Size(61, 32);
         lblAllTime.TabIndex = 6;
@@ -248,11 +248,10 @@ partial class uiPlayer
         lblMoreInfo.BackColor = Color.Transparent;
         lblMoreInfo.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
         lblMoreInfo.ForeColor = Color.White;
-        lblMoreInfo.Location = new Point(80, 536);
+        lblMoreInfo.Location = new Point(80, 534);
         lblMoreInfo.Name = "lblMoreInfo";
         lblMoreInfo.Size = new Size(456, 48);
         lblMoreInfo.TabIndex = 4;
-        lblMoreInfo.Text = "titleInformation";
         lblMoreInfo.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // timeSlider
@@ -264,10 +263,10 @@ partial class uiPlayer
         timeSlider.Font = new Font("Microsoft Sans Serif", 6F, FontStyle.Regular, GraphicsUnit.Point);
         timeSlider.ForeColor = Color.White;
         timeSlider.LargeChange = 5U;
-        timeSlider.Location = new Point(152, 576);
+        timeSlider.Location = new Point(152, 574);
         timeSlider.Name = "timeSlider";
         timeSlider.OverlayColor = Color.FromArgb(20, 157, 204);
-        timeSlider.Size = new Size(704, 80);
+        timeSlider.Size = new Size(702, 80);
         timeSlider.SmallChange = 1U;
         timeSlider.TabIndex = 12;
         timeSlider.Text = "htSlider1";
@@ -307,7 +306,7 @@ partial class uiPlayer
         BackColor = SystemColors.ActiveCaptionText;
         BackgroundImageLayout = ImageLayout.Stretch;
         CancelButton = bntPause;
-        ClientSize = new Size(1003, 783);
+        ClientSize = new Size(1001, 781);
         Controls.Add(pnlSplash);
         Controls.Add(timeSlider);
         Controls.Add(sPanel6);

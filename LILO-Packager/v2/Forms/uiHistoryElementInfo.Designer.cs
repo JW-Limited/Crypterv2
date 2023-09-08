@@ -30,7 +30,7 @@
         {
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.bntPreview = new Guna.UI2.WinForms.Guna2Button();
+            bntPreview = new Guna.UI2.WinForms.Guna2Button();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             lblFile = new Label();
             bntOpen = new Guna.UI2.WinForms.Guna2Button();
@@ -66,10 +66,10 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(1072, 24);
+            guna2Button1.Location = new Point(856, 19);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(128, 40);
+            guna2Button1.Size = new Size(102, 32);
             guna2Button1.TabIndex = 25;
             guna2Button1.Text = "Close";
             guna2Button1.Click += guna2Button1_Click;
@@ -81,7 +81,7 @@
             guna2Panel1.BorderColor = SystemColors.ActiveBorder;
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.BorderThickness = 2;
-            guna2Panel1.Controls.Add(this.bntPreview);
+            guna2Panel1.Controls.Add(bntPreview);
             guna2Panel1.Controls.Add(guna2Button2);
             guna2Panel1.Controls.Add(lblFile);
             guna2Panel1.Controls.Add(bntOpen);
@@ -93,36 +93,36 @@
             guna2Panel1.Controls.Add(label2);
             guna2Panel1.Controls.Add(label3);
             guna2Panel1.FillColor = SystemColors.Control;
-            guna2Panel1.Location = new Point(160, 152);
+            guna2Panel1.Location = new Point(127, 121);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(880, 736);
+            guna2Panel1.Size = new Size(704, 589);
             guna2Panel1.TabIndex = 26;
             // 
             // bntPreview
             // 
-            this.bntPreview.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.bntPreview.Animated = true;
-            this.bntPreview.BackColor = Color.Transparent;
-            this.bntPreview.BorderColor = Color.Gainsboro;
-            this.bntPreview.BorderRadius = 12;
-            this.bntPreview.BorderThickness = 2;
-            this.bntPreview.DisabledState.BorderColor = Color.DarkGray;
-            this.bntPreview.DisabledState.CustomBorderColor = Color.DarkGray;
-            this.bntPreview.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            this.bntPreview.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            this.bntPreview.FillColor = Color.White;
-            this.bntPreview.FocusedColor = Color.FromArgb(100, 170, 209);
-            this.bntPreview.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            this.bntPreview.ForeColor = Color.DimGray;
-            this.bntPreview.Image = Properties.Resources.Info;
-            this.bntPreview.Location = new Point(720, 200);
-            this.bntPreview.Margin = new Padding(2);
-            this.bntPreview.Name = "bntPreview";
-            this.bntPreview.Size = new Size(128, 40);
-            this.bntPreview.TabIndex = 25;
-            this.bntPreview.Text = "Preview";
-            this.bntPreview.Click += this.bntPreview_Click;
+            bntPreview.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            bntPreview.Animated = true;
+            bntPreview.BackColor = Color.Transparent;
+            bntPreview.BorderColor = Color.Gainsboro;
+            bntPreview.BorderRadius = 12;
+            bntPreview.BorderThickness = 2;
+            bntPreview.DisabledState.BorderColor = Color.DarkGray;
+            bntPreview.DisabledState.CustomBorderColor = Color.DarkGray;
+            bntPreview.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            bntPreview.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            bntPreview.FillColor = Color.White;
+            bntPreview.FocusedColor = Color.FromArgb(100, 170, 209);
+            bntPreview.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            bntPreview.ForeColor = Color.DimGray;
+            bntPreview.Image = Properties.Resources.Info;
+            bntPreview.Location = new Point(576, 160);
+            bntPreview.Margin = new Padding(2);
+            bntPreview.Name = "bntPreview";
+            bntPreview.Size = new Size(102, 32);
+            bntPreview.TabIndex = 25;
+            bntPreview.Text = "Preview";
+            bntPreview.Click += bntPreview_Click;
             // 
             // guna2Button2
             // 
@@ -141,10 +141,10 @@
             guna2Button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button2.ForeColor = Color.DimGray;
             guna2Button2.Image = Properties.Resources.icons8_external_link_240;
-            guna2Button2.Location = new Point(808, 152);
+            guna2Button2.Location = new Point(646, 122);
             guna2Button2.Margin = new Padding(2);
             guna2Button2.Name = "guna2Button2";
-            guna2Button2.Size = new Size(40, 40);
+            guna2Button2.Size = new Size(32, 32);
             guna2Button2.TabIndex = 25;
             guna2Button2.Click += bntOpenDirectory;
             // 
@@ -152,9 +152,10 @@
             // 
             lblFile.BackColor = SystemColors.Control;
             lblFile.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            lblFile.Location = new Point(368, 96);
+            lblFile.Location = new Point(294, 77);
+            lblFile.Margin = new Padding(2, 0, 2, 0);
             lblFile.Name = "lblFile";
-            lblFile.Size = new Size(440, 40);
+            lblFile.Size = new Size(352, 32);
             lblFile.TabIndex = 1;
             lblFile.Text = "n/a";
             lblFile.TextAlign = ContentAlignment.MiddleLeft;
@@ -175,10 +176,10 @@
             bntOpen.FocusedColor = Color.FromArgb(100, 170, 209);
             bntOpen.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             bntOpen.ForeColor = Color.Black;
-            bntOpen.Location = new Point(40, 656);
+            bntOpen.Location = new Point(32, 525);
             bntOpen.Margin = new Padding(2);
             bntOpen.Name = "bntOpen";
-            bntOpen.Size = new Size(800, 48);
+            bntOpen.Size = new Size(640, 38);
             bntOpen.TabIndex = 15;
             bntOpen.Text = "Open";
             bntOpen.Click += bntOpen_Click;
@@ -193,10 +194,10 @@
             guna2Panel3.BorderThickness = 2;
             guna2Panel3.Controls.Add(pnlImage);
             guna2Panel3.FillColor = Color.White;
-            guna2Panel3.Location = new Point(40, 40);
+            guna2Panel3.Location = new Point(32, 32);
             guna2Panel3.Margin = new Padding(2);
             guna2Panel3.Name = "guna2Panel3";
-            guna2Panel3.Size = new Size(240, 216);
+            guna2Panel3.Size = new Size(192, 173);
             guna2Panel3.TabIndex = 24;
             // 
             // pnlImage
@@ -209,10 +210,10 @@
             pnlImage.BorderRadius = 15;
             pnlImage.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             pnlImage.FillColor = Color.Transparent;
-            pnlImage.Location = new Point(20, 24);
+            pnlImage.Location = new Point(16, 19);
             pnlImage.Margin = new Padding(2);
             pnlImage.Name = "pnlImage";
-            pnlImage.Size = new Size(200, 168);
+            pnlImage.Size = new Size(160, 134);
             pnlImage.TabIndex = 24;
             // 
             // guna2Panel2
@@ -227,19 +228,20 @@
             guna2Panel2.Controls.Add(lblDes2);
             guna2Panel2.Controls.Add(lblDescription);
             guna2Panel2.FillColor = Color.White;
-            guna2Panel2.Location = new Point(40, 312);
+            guna2Panel2.Location = new Point(32, 250);
             guna2Panel2.Margin = new Padding(2);
             guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.Size = new Size(800, 296);
+            guna2Panel2.Size = new Size(640, 237);
             guna2Panel2.TabIndex = 24;
             // 
             // lbl3
             // 
             lbl3.BackColor = Color.White;
             lbl3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl3.Location = new Point(24, 104);
+            lbl3.Location = new Point(19, 83);
+            lbl3.Margin = new Padding(2, 0, 2, 0);
             lbl3.Name = "lbl3";
-            lbl3.Size = new Size(752, 32);
+            lbl3.Size = new Size(602, 26);
             lbl3.TabIndex = 1;
             lbl3.Text = "Function";
             // 
@@ -247,9 +249,10 @@
             // 
             lblDes2.BackColor = Color.White;
             lblDes2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDes2.Location = new Point(24, 64);
+            lblDes2.Location = new Point(19, 51);
+            lblDes2.Margin = new Padding(2, 0, 2, 0);
             lblDes2.Name = "lblDes2";
-            lblDes2.Size = new Size(752, 32);
+            lblDes2.Size = new Size(602, 26);
             lblDes2.TabIndex = 1;
             lblDes2.Text = "Function";
             // 
@@ -257,9 +260,10 @@
             // 
             lblDescription.BackColor = Color.White;
             lblDescription.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDescription.Location = new Point(24, 24);
+            lblDescription.Location = new Point(19, 19);
+            lblDescription.Margin = new Padding(2, 0, 2, 0);
             lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(752, 32);
+            lblDescription.Size = new Size(602, 26);
             lblDescription.TabIndex = 1;
             lblDescription.Text = "Function";
             // 
@@ -267,9 +271,10 @@
             // 
             label1.BackColor = SystemColors.Control;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(304, 96);
+            label1.Location = new Point(243, 77);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(128, 40);
+            label1.Size = new Size(102, 32);
             label1.TabIndex = 1;
             label1.Text = "File:";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -279,9 +284,10 @@
             lblApp.AutoEllipsis = true;
             lblApp.BackColor = SystemColors.Control;
             lblApp.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblApp.Location = new Point(424, 192);
+            lblApp.Location = new Point(339, 154);
+            lblApp.Margin = new Padding(2, 0, 2, 0);
             lblApp.Name = "lblApp";
-            lblApp.Size = new Size(408, 40);
+            lblApp.Size = new Size(326, 32);
             lblApp.TabIndex = 1;
             lblApp.Text = "n/a";
             lblApp.TextAlign = ContentAlignment.MiddleLeft;
@@ -291,9 +297,10 @@
             lblDirectory.AutoEllipsis = true;
             lblDirectory.BackColor = SystemColors.Control;
             lblDirectory.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDirectory.Location = new Point(424, 160);
+            lblDirectory.Location = new Point(339, 128);
+            lblDirectory.Margin = new Padding(2, 0, 2, 0);
             lblDirectory.Name = "lblDirectory";
-            lblDirectory.Size = new Size(376, 32);
+            lblDirectory.Size = new Size(301, 26);
             lblDirectory.TabIndex = 1;
             lblDirectory.Text = "n/a";
             lblDirectory.TextAlign = ContentAlignment.MiddleLeft;
@@ -302,9 +309,10 @@
             // 
             label2.BackColor = SystemColors.Control;
             label2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(304, 192);
+            label2.Location = new Point(243, 154);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(560, 40);
+            label2.Size = new Size(448, 32);
             label2.TabIndex = 1;
             label2.Text = "Application:";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -313,21 +321,23 @@
             // 
             label3.BackColor = SystemColors.Control;
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(304, 152);
+            label3.Location = new Point(243, 122);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(560, 40);
+            label3.Size = new Size(448, 32);
             label3.TabIndex = 1;
             label3.Text = "Directory:";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // uiHistoryElementInfo
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(1224, 1009);
+            ClientSize = new Size(977, 805);
             Controls.Add(guna2Button1);
             Controls.Add(guna2Panel1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "uiHistoryElementInfo";
             Text = "uiHistoryElementInfo";
             Load += uiHistoryElementInfo_Load;

@@ -84,8 +84,7 @@ namespace LILO_Packager.v2.Forms
             }
             else
             {
-                Process.Start("explorer.exe", _file.outputFileName);
-                MainHost.Instance().OpenInApp(v2.Forms.uiHistory.Instance());
+                
             }
         }
 
@@ -238,29 +237,47 @@ namespace LILO_Packager.v2.Forms
             MainHost.Instance().OpenInApp(v2.Forms.uiHistory.Instance());
         }
 
-        private void bntPreview_Click(object sender, EventArgs e)
+        private async void bntPreview_Click(object sender, EventArgs e)
         {
-            foreach(var plugin in MainHost.Instance().manager.CurrentPlugins)
+            if (_file.outputFileName.EndsWith(".pdf"))
             {
-                if (PluginID.IDtoString(plugin.ID) == PluginID.IDtoString(PluginID.GetID("tpl", "lbl", "lvl02")))
+                MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri(_file.outputFileName)));
+            }
+            else if (_file.outputFileName.EndsWith(".mp3") || _file.outputFileName.EndsWith(".wav"))
+            {
+                if(config.Default.openMediaIn != "buildIn")
                 {
-                    ConsoleManager.Instance().WriteLineWithColor("Showed Previewer", ConsoleColor.Yellow);
-
-                    var list = new List<object>
+                    MessageBox.Show("You need to enable this feature first because its still in development.","Activation required",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    return;
+                }
+                var para = await streaming.MusikPlayer.Core.MusicPlayerParameters.Get(_file.outputFileName);
+                var mediaInstance = streaming.MusikPlayer.Forms.uiPlayer.Instance(para, true);
+                MainHost.Instance().OpenInApp(mediaInstance);
+            }
+            else
+            {
+                foreach (var plugin in MainHost.Instance().manager.CurrentPlugins)
+                {
+                    if (PluginID.IDtoString(plugin.ID) == PluginID.IDtoString(PluginID.GetID("tpl", "lbl", "lvl02")))
                     {
-                        _file.outputFileName
-                    };
+                        ConsoleManager.Instance().WriteLineWithColor("Showed Previewer", ConsoleColor.Yellow);
 
-                    plugin.Initialize(new PluginParameters()
-                    {
-                        needNewInstance = true,
-                    });
+                        var list = new List<object>
+                        {
+                            _file.outputFileName
+                        };
 
-                    plugin.Execute(new PluginParameters()
-                    {
-                        Context = list
-                    });
-                    plugin.PluginInterface.Show();
+                        plugin.Initialize(new PluginParameters()
+                        {
+                            needNewInstance = true,
+                        });
+
+                        plugin.Execute(new PluginParameters()
+                        {
+                            Context = list
+                        });
+                        MainHost.Instance().OpenInApp(plugin.PluginInterface);
+                    }
                 }
             }
         }

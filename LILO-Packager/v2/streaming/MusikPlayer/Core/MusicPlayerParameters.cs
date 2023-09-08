@@ -1,4 +1,5 @@
 ﻿using LILO_Packager.v2.Forms;
+using LILO_Packager.v2.shared;
 using SharpDX.DXGI;
 using System;
 using System.Collections.Generic;
@@ -73,7 +74,7 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Core
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + ex.Source, "Error: MusicParametering");
+                ConsoleManager.Instance().WriteLineWithColor(ex.Message + ex.Source + "\n\nError: MusicParametering");
                 FileInfo var = new FileInfo(musicSource);
 
                 return new MusicPlayerParameters()
