@@ -1,44 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LILO_Packager.Properties;
 using LILO_Packager.v2.plugins.PluginCore;
 using LILO_Packager.v2.plugins.Model;
 using System.Collections.ObjectModel;
 using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.Interfaces;
-using System.IO.Pipes;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Net.Sockets;
 using System.Net;
 using Newtonsoft.Json;
-using Telerik.Pivot.Core;
 using LILO_Packager.v2.Core.LILO;
 using LILO_Packager.v2.Forms;
-using System.Threading;
 using LILO_Packager.v2.shared;
-using srvlocal_gui;
-using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
 using srvlocal_gui.AppMananger;
-using TagLib.Mpeg;
-using Telerik.WinControls.UI;
 using IWshRuntimeLibrary;
-using Guna.UI2.WinForms;
-using static System.Data.Entity.Infrastructure.Design.Executor;
 using LILO_Packager.v2.Core.Updates;
+using LILO_Packager.v2.Core.ColorManager;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 {
+    #region Variables
 
-
+    public ThemeManager _thManager;
+    private Form _currentOpenedApp;
     private static object _lock = new object();
     public string owner = "JW-Limited";
     public string repo = "Crypterv2";
@@ -54,6 +38,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     private TcpListener listener;
     public PluginManager manager = null;
     public User loggedInUser;
+    public string _ThemePath = Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "themes");
     public NotifyIconManager noty;
     public Core.History.DatabaseHandling dataHandler = new Core.History.DatabaseHandling();
     public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
@@ -81,6 +66,10 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         return featureValues;
     }
+
+    #endregion
+
+    #region Debug Socket
 
     private async void HandleClient(object clientObj)
     {
@@ -131,6 +120,32 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
     }
 
+    private async void FeatureFlagEvents_FeatureFlagUpdateRequested(object? sender, FeatureFlagUpdateEventArgs e)
+    {
+        await FeatureManager.ToggleFeatureAsync(e.Flag);
+    }
+
+    public static void SetInstanceEqual(object newInstance)
+    {
+        if (newInstance.Equals(typeof(MainHost)))
+        {
+            instance = (MainHost)newInstance;
+        }
+        else
+        {
+            throw new ArgumentOutOfRangeException(nameof(newInstance));
+        }
+    }
+
+    public static void UpdateFeatureFlagFromHost(FeatureFlags feature, bool isEnabled)
+    {
+        FeatureFlagEvents.OnFeatureFlagUpdateRequested(feature, isEnabled);
+    }
+
+    #endregion
+
+    #region Loading Tasks
+
     public static MainHost Instance()
     {
         lock (_lock)
@@ -152,6 +167,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         {
             loggedInUser = UserManager.Instance().LoadUserFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"));
         }
+
+        if (!Directory.Exists(_ThemePath)) Directory.CreateDirectory(_ThemePath);
 
         if (FeatureFlagePipeLineConfig.DebugModeEnabled)
         {
@@ -181,32 +198,10 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     }
 
 
-
-    private async void FeatureFlagEvents_FeatureFlagUpdateRequested(object? sender, FeatureFlagUpdateEventArgs e)
-    {
-        await FeatureManager.ToggleFeatureAsync(e.Flag);
-    }
-
-    public static void SetInstanceEqual(object newInstance)
-    {
-        if (newInstance.Equals(typeof(MainHost)))
-        {
-            instance = (MainHost)newInstance;
-        }
-        else
-        {
-            throw new ArgumentOutOfRangeException(nameof(newInstance));
-        }
-    }
-
-    public static void UpdateFeatureFlagFromHost(FeatureFlags feature, bool isEnabled)
-    {
-        FeatureFlagEvents.OnFeatureFlagUpdateRequested(feature, isEnabled);
-    }
-
     private async void MainHost_Load(object sender, EventArgs e)
     {
         var updater = Updater.Instance();
+        _thManager = ThemeManager.Initialize();
         noty = NotifyIconManager.Instance();
 
         var proc = new Process()
@@ -220,6 +215,18 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             }
         };
 
+        foreach (Control item in this.Controls)
+        {
+            if (item.Name == "pnlSide")
+            {
+                _thManager.RegisterControl(item, ThemeManager.ModeType.Light, Color.LightGray, Color.Black);
+            }
+
+            _thManager.RegisterControl(item, ThemeManager.ModeType.Light, Color.White, Color.Black);
+        }
+
+        _thManager.ApplyTheme("White");
+        _thManager.SaveThemesToJson(Path.Combine(_ThemePath,"default.lcs"));
 
         foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
         {
@@ -293,7 +300,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 {
                     stringBuilder.Append($"Plugin : {item.Name}\n" +
                                          $"Description : {item.Description}\n" +
-                                         $"Version : {item.Version}");
+                                         $"Version : {item.Version}\n\n");
                 }
 
                 ConsoleManager.Instance().WriteLineWithColor(stringBuilder.ToString(), ConsoleColor.Cyan);
@@ -315,16 +322,18 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
     }
 
-    private Form currentOpenedApp;
+    #endregion
+
+    #region Important Host Functions 
 
     public void OpenInApp(Form children, string FormName = null, ChildrenUse usage = ChildrenUse.WebView)
     {
 
-        if (children == currentOpenedApp) return;
+        if (children == _currentOpenedApp) return;
 
-        if (currentOpenedApp is not null)
+        if (_currentOpenedApp is not null)
         {
-            currentOpenedApp.Close();
+            _currentOpenedApp.Close();
         }
 
 
@@ -347,8 +356,12 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         children.Show();
 
-        currentOpenedApp = children;
+        _currentOpenedApp = children;
     }
+
+    #endregion
+
+    #region Hider Button Events
 
     private void guna2Button5_Click(object sender, EventArgs e)
     {
@@ -474,6 +487,9 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         bntAccount.Text = "    Account";
     }
 
+    #endregion
+
+    #region Updater
 
     public Task CheckForUpdates(UpdateMode mode = UpdateMode.Manual)
     {
@@ -626,16 +642,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         });
     }
 
-    public void SetNotification(string title, string Message)
-    {
-
-    }
-
-    private void bntCloseSideBoard_Click(object sender, EventArgs e)
-    {
-        pnlSide.Visible = false;
-    }
-
     private void guna2Button6_Click_1(object sender, EventArgs e)
     {
 
@@ -687,5 +693,28 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         pnlNotifications.Visible = false;
         this.Text = "Updater";
         OpenInApp(new v2.Forms.uiUpdater(Semi));
+    }
+
+    #endregion
+
+    public void SetNotification(string title, string Message)
+    {
+
+    }
+
+    private void bntCloseSideBoard_Click(object sender, EventArgs e)
+    {
+        pnlSide.Visible = false;
+    }
+
+    
+
+    private void bntChangeTheme(object sender, EventArgs e)
+    {
+        foreach(var theme in _thManager.Themes)
+        {
+            Console.WriteLine(theme.Key + ": " + theme.Value.ToString());
+        }
+        _thManager.ToggleDarkMode();
     }
 }

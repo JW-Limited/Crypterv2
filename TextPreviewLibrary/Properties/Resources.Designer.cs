@@ -103,6 +103,16 @@ namespace TextPreviewLibrary.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_foxit_reader_240 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-foxit-reader-240", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_menu_240 {
             get {
                 object obj = ResourceManager.GetObject("icons8-menu-240", resourceCulture);
@@ -126,6 +136,16 @@ namespace TextPreviewLibrary.Properties {
         internal static System.Drawing.Bitmap icons8_save_all_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-save-all-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_windows_10_personalization_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-windows-10-personalization-96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

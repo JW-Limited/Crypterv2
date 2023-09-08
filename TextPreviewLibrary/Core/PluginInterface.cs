@@ -37,7 +37,7 @@ public partial class PluginInterface : Form
 
     public static void SetInstance(object newInstance)
     {
-        _encrypt = (PluginInterface) newInstance;
+        _encrypt = (PluginInterface)newInstance;
     }
 
     public CrypterTextFile _file;
@@ -74,6 +74,10 @@ public partial class PluginInterface : Form
         {
             mainTextBox.Text = _file.RtfContent;
             mainTextBox.Enabled = !_file.IsLocked;
+            if(_file.IsLocked)
+            {
+                lblTip.Text = "You need to safe the file first before you can edit it.";
+            }
             mainTextBox.ForeColor = _file.TextColor;
             lblWordCounts.Text = "Words: " + _file.WordCount;
             lblLanguage.Text = _file.FileName;
@@ -88,6 +92,11 @@ public partial class PluginInterface : Form
     {
         pnlMenu.Visible = !pnlMenu.Visible;
         bntMenu.Checked = !bntMenu.Checked;
+
+        if (bntDesign.Checked)
+        {
+            bntOpenDesingPop_Click(sender, e);
+        }
     }
 
     private void guna2Button1_Click_1(object sender, EventArgs e)
@@ -112,9 +121,11 @@ public partial class PluginInterface : Form
         }
         else
         {
+            lblTip.Text = "";
+
             var ofd = new SaveFileDialog()
             {
-                Filter = "CrypterTextFile(.ctv)|*.ctv|Alle Datein(.)|*.",
+                Filter = "CrypterTextFile|*.ctv|Alle Datein(.)|*.",
                 InitialDirectory = Application.StartupPath,
                 ShowHiddenFiles = true,
             };
@@ -154,7 +165,7 @@ public partial class PluginInterface : Form
     {
         var ofd = new OpenFileDialog()
         {
-            Filter = "CrypterTextFile(.ctv)|*.ctv|Alle Datein(.)|*.",
+            Filter = "CrypterTextFile|*.ctv|Alle Datein(.)|*.",
             AddToRecent = true,
             ShowPinnedPlaces = true,
             ShowHiddenFiles = true,
@@ -191,6 +202,16 @@ public partial class PluginInterface : Form
 
     private void PluginInterface_Shown(object sender, EventArgs e)
     {
-        ui_Load(sender,e);
+        ui_Load(sender, e);
+    }
+
+    private void bntOpenDesingPop_Click(object sender, EventArgs e)
+    {
+        bntDesign.Checked = !bntDesign.Checked;
+        if(bntMenu.Checked)
+        {
+            bntPlugin_Click(sender, e);
+        }
+        pnlDesing.Visible = !pnlDesing.Visible;
     }
 }
