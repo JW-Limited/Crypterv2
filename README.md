@@ -28,7 +28,7 @@ To install CrypterV2, follow these steps:
 </p>
 
 
-## Plugins 
+## 🔌 Plugins 
 
 | Plugin   | Version | Description         | Link |
 | -------- | ------- | ------------------- | ------- |
