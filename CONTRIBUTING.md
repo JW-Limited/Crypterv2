@@ -15,7 +15,7 @@ Thank you for considering contributing to CrypterV2! Your help is invaluable in 
 
 2. **Clone the Repository**: Clone the forked repository to your local machine using the following command:
    ```bash
-   git clone https://github.com/yourusername/crypterv2.git  
+   git clone https://github.com/JW-Limited/Crypterv2.git  
 3. **Create a Feature Branch**: Create a new branch for your contribution with a descriptive name, for example:
    ```bash
    git checkout -b feature/new-feature
