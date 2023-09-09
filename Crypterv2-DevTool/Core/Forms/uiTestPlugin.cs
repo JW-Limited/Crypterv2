@@ -143,21 +143,28 @@ namespace Crypterv2_DevTool.Core.Forms
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            PluginEntry neededPlugin = null;
-
-            foreach (var plug in plugins)
+            try
             {
-                if(plug.Name == cmbPlugins.SelectedItem)
+                PluginEntry neededPlugin = null;
+
+                foreach (var plug in plugins)
                 {
-                    neededPlugin = plug;
+                    if (plug.Name == cmbPlugins.SelectedItem)
+                    {
+                        neededPlugin = plug;
+                    }
+                }
+
+                if (neededPlugin is not null)
+                {
+
+                    this.Size = new System.Drawing.Size(neededPlugin.form.Size.Height + 10, neededPlugin.form.Size.Width + 10);
+                    OpenInApp(neededPlugin.form, "Test", ChildrenUse.Auth);
                 }
             }
-
-            if (neededPlugin is not null)
+            catch(Exception ex)
             {
-
-                this.Size = new System.Drawing.Size(neededPlugin.form.Size.Height + 10, neededPlugin.form.Size.Width +10);
-                OpenInApp(neededPlugin.form, "Test", ChildrenUse.Auth);
+                MessageBox.Show("It seems like the Plugin has a problem: \n\n" + ex.Message,"PluginError",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 

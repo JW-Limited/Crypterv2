@@ -14,13 +14,13 @@ namespace LILO_Packager
     {
         public static int DefaultEnvironment = 0;
         public static NotifyIcon noty;
-        public static string Version = "v0.9.2-beta";
+        public static string Version = "v0.9.3-beta";
 
         private static void InitializeApplication()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
         }
 
         public static Mutex myMutex = new Mutex(false, "crypter_v2");
@@ -77,9 +77,6 @@ namespace LILO_Packager
 
 
         }
-
-        /// @brief Determines whether the application is already running. This is used to prevent an attacker from accidentally restarting the application if it is running multiple times.
-        /// @return A value indicating whether the application is already running or not
         private static bool IsApplicationAlreadyRunning()
         {
             var currentProcess = Process.GetCurrentProcess();

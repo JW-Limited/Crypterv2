@@ -175,7 +175,6 @@ partial class MainHost
         guna2Button8.Name = "guna2Button8";
         guna2Button8.Size = new Size(272, 80);
         guna2Button8.TabIndex = 15;
-        guna2Button8.Visible = false;
         guna2Button8.Click += bntChangeTheme;
         // 
         // guna2Button5

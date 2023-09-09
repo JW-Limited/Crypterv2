@@ -1,4 +1,6 @@
-﻿using LILO_Packager.v2.plugins.PluginCore;
+﻿using LILO_Packager.v2.Core.ColorManager;
+using LILO_Packager.v2.Core.Updates;
+using LILO_Packager.v2.plugins.PluginCore;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
@@ -12,8 +14,9 @@ namespace TextPreviewLibrary
         public PluginID ID { get; set; } = PluginID.GetID("tpl", "lbl", "lvl02");
         public string Description { get; set; } = "A Library for previewing plain based Files";
         public string Version { get; set; } = "v0.1";
+        public static SemanticVersion _sVersion = new SemanticVersion(0, 1, 2, "alpha", false);
         public Form PluginInterface { get; set; } = Core.PluginInterface.Instance("v0.1", PluginID.GetID("tpl", "lbl", "lvl02"), "Text-Preview",true);
-
+        public static ThemeManager _thManager;
         public ObservableCollection<object> DynamicValues { get; set; }
 
         public PluginResponse Execute(PluginParameters args)
@@ -23,6 +26,15 @@ namespace TextPreviewLibrary
 
             try
             {
+
+                if(args.themeManager != null)
+                {
+                    _thManager = (ThemeManager)args.themeManager;
+                }
+                else
+                {
+                    _thManager = ThemeManager.Initialize();
+                }
 
                 var file = (string)args.Context[0];
 

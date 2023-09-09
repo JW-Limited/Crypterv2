@@ -274,7 +274,8 @@ namespace LILO_Packager.v2.Forms
 
                         plugin.Execute(new PluginParameters()
                         {
-                            Context = list
+                            Context = list,
+                            themeManager = MainHost.Instance()._thManager,
                         });
                         MainHost.Instance().OpenInApp(plugin.PluginInterface);
                     }

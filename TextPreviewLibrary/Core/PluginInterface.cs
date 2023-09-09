@@ -1,14 +1,5 @@
-﻿using Bunifu.UI.WinForms.Helpers.Transitions;
-using LILO_Packager.v2.plugins.PluginCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.PerformanceData;
+﻿using LILO_Packager.v2.plugins.PluginCore;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TextPreviewLibrary.Core.Formats;
 
@@ -19,9 +10,11 @@ public partial class PluginInterface : Form
     public PluginID id;
     public string Name;
     public PluginID Id => throw new NotImplementedException();
-
+    public CrypterTextFile _file;
+    public string openedFilePath;
     private static object _lock = new object();
     private static PluginInterface _encrypt;
+
     public static PluginInterface Instance(string Version, PluginID id, string Name, bool needNewInstance)
     {
         lock (_lock)
@@ -40,8 +33,17 @@ public partial class PluginInterface : Form
         _encrypt = (PluginInterface)newInstance;
     }
 
-    public CrypterTextFile _file;
-    public string openedFilePath;
+    public CrypterTextFile _emptyFile = new CrypterTextFile() 
+    {
+        CreatedAt = DateTime.Now,
+        Author = "",
+        IsLocked = false,
+        FileName = "",
+        RtfContent = "",
+        TextColor = Color.Black,
+        LastModified = DateTime.Now,
+    };
+
 
     public PluginInterface(string Version, PluginID id, string Name)
     {
@@ -69,6 +71,19 @@ public partial class PluginInterface : Form
     public void ui_Load(object sender, EventArgs e)
     {
         lblVersion.Text = Version;
+
+        foreach(Control c in this.Controls)
+        {
+            try
+            {
+                if(PluginBase._thManager is not null)
+                    PluginBase._thManager.RegisterControl(c, LILO_Packager.v2.Core.ColorManager.ThemeManager.ModeType.Light, Color.White, Color.Black);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         if (_file is not null)
         {
@@ -109,6 +124,8 @@ public partial class PluginInterface : Form
                 file.RtfContent = mainTextBox.Text;
                 file.LastModified = DateTime.Now;
                 file.TextColor = mainTextBox.ForeColor;
+                file.version = PluginBase._sVersion;
+
 
                 CrypterTextFile.SaveInstanceToFile(file, openedFilePath);
 
@@ -141,7 +158,8 @@ public partial class PluginInterface : Form
                     TextColor = mainTextBox.ForeColor,
                     RtfContent = mainTextBox.Text,
                     CreatedAt = DateTime.Now,
-                    LastModified = DateTime.Now
+                    LastModified = DateTime.Now,
+                    version = PluginBase._sVersion
                 };
 
                 CrypterTextFile.SaveInstanceToFile(file, ofd.FileName);
@@ -163,36 +181,55 @@ public partial class PluginInterface : Form
 
     private void guna2Button5_Click(object sender, EventArgs e)
     {
-        var ofd = new OpenFileDialog()
+        try
         {
-            Filter = "CrypterTextFile|*.ctv|Alle Datein(.)|*.",
-            AddToRecent = true,
-            ShowPinnedPlaces = true,
-            ShowHiddenFiles = true,
-            Multiselect = false
-        };
+            var ofd = new OpenFileDialog()
+            {
+                Filter = "CrypterTextFile|*.ctv|Alle Datein(.)|*.",
+                AddToRecent = true,
+                ShowPinnedPlaces = true,
+                ShowHiddenFiles = true,
+                Multiselect = false
+            };
 
-        if (ofd.ShowDialog() == DialogResult.OK)
-        {
-            var file = CrypterTextFile.LoadInstanceFromFile(ofd.FileName);
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                var file = CrypterTextFile.LoadInstanceFromFile(ofd.FileName);
 
-            mainTextBox.Text = file.RtfContent;
-            mainTextBox.Enabled = !file.IsLocked;
-            mainTextBox.ForeColor = file.TextColor;
-            lblWordCounts.Text = "Words: " + file.WordCount;
-            lblLanguage.Text = file.FileName;
+                mainTextBox.Text = file.RtfContent;
+                mainTextBox.Enabled = !file.IsLocked;
+                mainTextBox.ForeColor = file.TextColor;
+                lblWordCounts.Text = "Words: " + file.WordCount;
+                lblLanguage.Text = file.FileName;
+                lblVersion.Text += " - " + file.version;
 
-            _file = file;
-            openedFilePath = ofd.FileName;
+                _file = file;
+                openedFilePath = ofd.FileName;
+            }
+
+            bntPlugin_Click(sender, e);
         }
-
-        bntPlugin_Click(sender, e);
-
+        catch (ArgumentOutOfRangeException ex)
+        {
+            MessageBox.Show("It seems that the file was created with another structure i can not understand. Please be sure you use the same version that the file was created with.\n\n" + ex.Message,"Not Matching Formats",MessageBoxButtons.OK,MessageBoxIcon.Error);
+        }
+        catch (ArgumentException ex)
+        {
+            MessageBox.Show("It seems that the file is missing on of its main components. Please be sure you use the same version that the file was created with and it is not corrupted.\n\n" + ex.Message, "Not Matching Formats", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 
     private void newFile_Click(object sender, EventArgs e)
     {
+        _file = null;
+        openedFilePath = null;
+        mainTextBox.Text = _emptyFile.RtfContent;
+        mainTextBox.Enabled = !_emptyFile.IsLocked;
+        mainTextBox.ForeColor = _emptyFile.TextColor;
+        lblWordCounts.Text = "Words: " + _emptyFile.WordCount;
+        lblLanguage.Text = _emptyFile.FileName;
 
+        bntPlugin_Click(sender, e);
     }
 
     private void guna2Button4_Click(object sender, EventArgs e)

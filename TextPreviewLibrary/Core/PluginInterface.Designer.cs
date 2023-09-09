@@ -111,7 +111,7 @@ partial class PluginInterface
         lblTip.Location = new Point(520, 16);
         lblTip.Margin = new Padding(4, 0, 4, 0);
         lblTip.Name = "lblTip";
-        lblTip.Size = new Size(976, 56);
+        lblTip.Size = new Size(936, 56);
         lblTip.TabIndex = 1;
         lblTip.TextAlign = ContentAlignment.MiddleLeft;
         // 
@@ -121,10 +121,10 @@ partial class PluginInterface
         lblVersion.BackColor = Color.Transparent;
         lblVersion.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
         lblVersion.ForeColor = Color.Black;
-        lblVersion.Location = new Point(1505, 16);
+        lblVersion.Location = new Point(1464, 16);
         lblVersion.Margin = new Padding(4, 0, 4, 0);
         lblVersion.Name = "lblVersion";
-        lblVersion.Size = new Size(88, 56);
+        lblVersion.Size = new Size(129, 56);
         lblVersion.TabIndex = 1;
         lblVersion.Text = "n/a";
         lblVersion.TextAlign = ContentAlignment.MiddleLeft;
@@ -217,10 +217,10 @@ partial class PluginInterface
         lblWordCounts.BackColor = Color.Transparent;
         lblWordCounts.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
         lblWordCounts.ForeColor = Color.Black;
-        lblWordCounts.Location = new Point(280, 8);
+        lblWordCounts.Location = new Point(208, 8);
         lblWordCounts.Margin = new Padding(4, 0, 4, 0);
         lblWordCounts.Name = "lblWordCounts";
-        lblWordCounts.Size = new Size(104, 24);
+        lblWordCounts.Size = new Size(368, 24);
         lblWordCounts.TabIndex = 1;
         lblWordCounts.Text = "n/a";
         lblWordCounts.TextAlign = ContentAlignment.MiddleLeft;
@@ -230,10 +230,10 @@ partial class PluginInterface
         lblErrors.BackColor = Color.Transparent;
         lblErrors.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
         lblErrors.ForeColor = Color.Black;
-        lblErrors.Location = new Point(144, 8);
+        lblErrors.Location = new Point(584, 8);
         lblErrors.Margin = new Padding(4, 0, 4, 0);
         lblErrors.Name = "lblErrors";
-        lblErrors.Size = new Size(104, 24);
+        lblErrors.Size = new Size(120, 24);
         lblErrors.TabIndex = 1;
         lblErrors.Text = "n/a";
         lblErrors.TextAlign = ContentAlignment.MiddleLeft;
@@ -246,7 +246,7 @@ partial class PluginInterface
         lblLanguage.Location = new Point(8, 8);
         lblLanguage.Margin = new Padding(4, 0, 4, 0);
         lblLanguage.Name = "lblLanguage";
-        lblLanguage.Size = new Size(104, 24);
+        lblLanguage.Size = new Size(192, 24);
         lblLanguage.TabIndex = 1;
         lblLanguage.Text = "n/a";
         lblLanguage.TextAlign = ContentAlignment.MiddleLeft;

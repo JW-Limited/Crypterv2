@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Drawing;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using LILO_Packager.v2.Core.Updates;
 
 namespace TextPreviewLibrary.Core.Formats
 {
@@ -17,14 +18,19 @@ namespace TextPreviewLibrary.Core.Formats
         public string RtfContent { get; set; } 
         public DateTime CreatedAt { get; set; }
         public DateTime LastModified { get; set; }
-        public int WordCount => RtfContent.Split(new[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length;
-
+        public int WordCount => CountWords();
+        public SemanticVersion version { get; set; }
 
         private int CountWords()
         {
-            var richTextBox = new RichTextBox();
-            richTextBox.Rtf = RtfContent;
-            return richTextBox.Text.Split(new[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            try
+            {
+                return RtfContent.Split(new[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            }
+            catch
+            {
+                throw new ArgumentException(RtfContent);
+            }
         }
 
         public bool IsDifferentFrom(CrypterTextFile otherFile)
@@ -54,7 +60,13 @@ namespace TextPreviewLibrary.Core.Formats
             if (File.Exists(filePath))
             {
                 string json = File.ReadAllText(filePath);
-                return JsonSerializer.Deserialize<CrypterTextFile>(json) ?? new CrypterTextFile();
+                try
+                {
+                    return JsonSerializer.Deserialize<CrypterTextFile>(json) ?? new CrypterTextFile();
+                }
+                catch { 
+                    throw new ArgumentOutOfRangeException(nameof(json));
+                }
             }
             else
             {

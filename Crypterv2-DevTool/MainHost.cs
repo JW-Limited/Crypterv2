@@ -235,6 +235,13 @@ namespace Crypterv2_DevTool
             uiTestPlugin.Instance().Text = this.Text;
             uiTestPlugin.Instance().Icon = this.Icon;
             uiTestPlugin.Instance().Show();
+
+            this.Hide();
+
+            uiTestPlugin.Instance().FormClosing += (s, e) =>
+            {
+                this.Show();
+            };
         }
     }
 }
