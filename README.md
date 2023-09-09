@@ -1,10 +1,9 @@
-<p align="center">
-  <img src="LILO-Packager/favico.ico" />
-</p>
-
-# <p align="center">Crypterv2</p>
-<p align="center">Aes 256 based - Lightweight, Extandeble and easy to use.</p>
-<p align="center">But please keep in mind its still in early alpha and in development.</p>
+<div align="center" style="background-color: #1E90FF; padding: 20px;">
+  <img src="LILO-Packager/favico.ico" alt="CrypterV2 Logo" width="150">
+  <h1 style="color: white;">CrypterV2</h1>
+  <p style="color: white;">Aes 256 based - Lightweight, Extandeble and easy to use.</p>
+  <p style="color: white;">But please keep in mind its still in early alpha and in development.</p>
+</div>
 
 
 ## 🚀 Features
@@ -29,7 +28,7 @@ To install CrypterV2, follow these steps:
 </p>
 
 
-## Plugins 
+## 🔌 Plugins 
 
 | Plugin   | Version | Description         | Link |
 | -------- | ------- | ------------------- | ------- |
@@ -38,3 +37,7 @@ To install CrypterV2, follow these steps:
 | TextPreview | 3.2.1   | An JW Limited LILO Encrypted Container Streaming based Plaintext Shower | [Link]() |
 | File Backup Manager             | 2.1.3   | Automatically back up your Encrypted files to the cloud. | [Link]()           |
 | Image Gallery Viewer            | 2.0.5   | View and navigate through a collection of Encrypted images with ease. | [Link]()           |
+
+## ❌ Report Error
+
+**You can do that here**: [Link](https://github.com/JW-Limited/Crypterv2/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=Error)
