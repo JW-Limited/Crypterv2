@@ -16,6 +16,7 @@
 - **Plugins**: Enhance youre Experience with Third-Party Plugin Support.
 - **Preview and Manage Files**: Managing and Viewing youre En and Decrypted Files in seconds.
 - **Secured Containering**: Use youre Encrypted-files without the need to decrypt them.
+- **JW Limited© - BugBarrier®**: A robust error handling system developed by JW Limited and designed to safeguard the stability by intelligently managing and mitigating errors, ensuring uninterrupted operation even when unexpected issues occur.
 
 ## 📦 Installation
 
