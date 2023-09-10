@@ -13,6 +13,9 @@
 - **Cross-Platform**: Runs on Windows, macOS, and Linux.
 - **Customizable**: Tailor encryption settings to your specific needs.
 - **File and Folder Encryption**: Secure individual files or entire directories.
+- **Plugins**: Enhance youre Experience with Third-Party Plugin Support.
+- **Preview and Manage Files**: Managing and Viewing youre En and Decrypted Files in seconds.
+- **Secured Containering**: Use youre Encrypted-files without the need to decrypt them.
 
 ## 📦 Installation
 
