@@ -402,3 +402,6 @@ LILO-Packager/v2/Core/LILO/UserManager.cs
 LILO-Packager/v2/Core/Updates/UpdatingModes.cs
 LILO-Packager/v2/Core/Updates/Updater.cs
 LILO-Packager/v2/shared/NotifyIconManager.cs
+LILO-Packager/v2/MainHost.cs
+LILO-Packager/v2/Forms/uiHistoryElementInfo.cs
+LILO-Packager/v2/Forms/uiHistory.cs

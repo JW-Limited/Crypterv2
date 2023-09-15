@@ -57,6 +57,8 @@ namespace LILO_Packager.v2.Forms
             lblDescription.Text = "Library: " + _file.mode;
             lblDes2.Text = "Mode: " + _file.operationType;
             lbl3.Text = "Algorythemversion: " + _file.algorithmVersion;
+            lblMoreInfo.Text = "InputFile: " + _file.inputFileName;
+            lblMoreInfo.Text += "\nOperation Identifier: " + _file.id;
 
             var fileIcon = GetFileIcon(_file.outputFileName);
             pnlImage.BackgroundImage = fileIcon.ToBitmap();
@@ -76,16 +78,9 @@ namespace LILO_Packager.v2.Forms
 
         private async void bntOpen_Click(object sender, EventArgs e)
         {
-            if ((_file.outputFileName.EndsWith(".mp3") || _file.outputFileName.EndsWith(".wav")) && config.Default.openMediaIn == "buildIn")
-            {
-                var para = await streaming.MusikPlayer.Core.MusicPlayerParameters.Get(_file.outputFileName);
-                var mediaInstance = streaming.MusikPlayer.Forms.uiPlayer.Instance(para, true);
-                MainHost.Instance().OpenInApp(mediaInstance);
-            }
-            else
-            {
-                
-            }
+            Process.Start("explorer.exe", _file.outputFileName);
+            MainHost.Instance().OpenInApp(v2.Forms.uiHistory.Instance());
+
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -239,15 +234,38 @@ namespace LILO_Packager.v2.Forms
 
         private async void bntPreview_Click(object sender, EventArgs e)
         {
+            if (_file.outputFileName.EndsWith(".mp3") || _file.outputFileName.EndsWith(".wav"))
+            {
+                pnlWarning.Visible = true;
+            }
+            else
+            {
+                bntPreview_C(sender, e);
+            }
+        }
+
+        private async void bntShareFIle(object sender, EventArgs e)
+        {
+            var shareManager = new ShareManager();
+            await shareManager.OpenShareDialogAsync(_file.outputFileName);
+        }
+
+        private void bntCloseWarning(object sender, EventArgs e)
+        {
+            pnlWarning.Visible = false;
+        }
+
+        private async void bntPreview_C(object sender, EventArgs e)
+        {
             if (_file.outputFileName.EndsWith(".pdf"))
             {
                 MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri(_file.outputFileName)));
             }
             else if (_file.outputFileName.EndsWith(".mp3") || _file.outputFileName.EndsWith(".wav"))
             {
-                if(config.Default.openMediaIn != "buildIn")
+                if (config.Default.openMediaIn != "buildIn")
                 {
-                    MessageBox.Show("You need to enable this feature first because its still in development.","Activation required",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("You need to enable this feature first because its still in development.", "Activation required", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var para = await streaming.MusikPlayer.Core.MusicPlayerParameters.Get(_file.outputFileName);
@@ -281,6 +299,11 @@ namespace LILO_Packager.v2.Forms
                     }
                 }
             }
+        }
+
+        private void bntPreviewInfo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

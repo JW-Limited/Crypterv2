@@ -65,15 +65,13 @@ namespace LILO_Packager.v2.Core.ColorManager
                 }
             }
 
-            // ADD Default Skins
-
             var darkTheme = new ThemeManager.Theme
             {
                 Name = "Dark",
             };
             darkTheme.ModeSettings[ThemeManager.ModeType.Dark] = new ThemeManager.ModeSettings
             {
-                BackColor = Color.Black,
+                BackColor = Color.FromArgb(32,32,32),
                 ForeColor = Color.White,
             };
             var whiteTheme = new ThemeManager.Theme

@@ -1,15 +1,6 @@
 ﻿using LILO_Packager.v2.plugins.Model;
 using LILO_Packager.v2.plugins.PluginCore;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -65,7 +56,32 @@ namespace LILO_Packager.v2.Forms
                 lblVersion.Text = encryptionLibrary.Version;
                 lblAuther.Text = PluginID.IDtoString(encryptionLibrary.ID);
                 listViewUpdates.Items.Add("Latest: " + encryptionLibrary.Version);
-                listViewBerechtigungen.Items.Add("n/a");
+
+                var listBerechtigungen = new ListViewItem[]
+                {
+                    new ListViewItem()
+                    {
+                        Text = "  +- Managing Account - Licenses."
+                    },
+                    new ListViewItem()
+                    {
+                        Text = "  +- Create Directorys."
+                    },
+                    new ListViewItem()
+                    {
+                        Text = "  +- Gain Access to youre Account-Details (Email,Name,Subscriptionstatus)."
+                    },
+                    new ListViewItem()
+                    {
+                        Text = "  +- Gain Access to the Core of the App."
+                    },
+                    new ListViewItem()
+                    {
+                        Text = "  +- Request Updates."
+                    },
+                };
+
+                listViewBerechtigungen.Items.AddRange(listBerechtigungen);
             }
         }
 
@@ -87,14 +103,12 @@ namespace LILO_Packager.v2.Forms
 
         private void bntShop_Clikc(object sender, EventArgs e)
         {
-            try
-            {
-                throw new NotImplementedException("pluginShop");
-            }
-            catch(Exception ex) 
-            {
-                MessageBox.Show(ex.Message);
-            }
+            throw new NotImplementedException("pluginShop");
+        }
+
+        private void bntDeinstall_CLICK(object sender, EventArgs e)
+        {
+
         }
     }
 }

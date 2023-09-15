@@ -82,5 +82,17 @@ namespace LILO_Packager.v2 {
                 this["deleteFile"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool aggrementAccepted {
+            get {
+                return ((bool)(this["aggrementAccepted"]));
+            }
+            set {
+                this["aggrementAccepted"] = value;
+            }
+        }
     }
 }

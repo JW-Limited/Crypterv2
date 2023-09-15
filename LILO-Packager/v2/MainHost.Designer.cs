@@ -32,8 +32,8 @@ partial class MainHost
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
         hider = new Sipaa.Framework.SPanel();
         bntAccount = new Guna.UI2.WinForms.Guna2Button();
+        bntMenu_c = new Guna.UI2.WinForms.Guna2Button();
         guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-        guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
         guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
         guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
         guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
@@ -41,6 +41,9 @@ partial class MainHost
         sPanel1 = new Sipaa.Framework.SPanel();
         guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
         lblText = new Label();
+        pnlMenu = new Guna.UI2.WinForms.Guna2Panel();
+        guna2Button10 = new Guna.UI2.WinForms.Guna2Button();
+        guna2Button9 = new Guna.UI2.WinForms.Guna2Button();
         bntChoose_File = new Guna.UI2.WinForms.Guna2Button();
         guna2Transition1 = new Guna.UI2.WinForms.Guna2Transition();
         pnlChild = new Panel();
@@ -62,6 +65,8 @@ partial class MainHost
         progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
         hider.SuspendLayout();
         sPanel1.SuspendLayout();
+        pnlMenu.SuspendLayout();
+        pnlChild.SuspendLayout();
         pnlSide.SuspendLayout();
         pnlNotifications.SuspendLayout();
         pnlMes1.SuspendLayout();
@@ -76,8 +81,8 @@ partial class MainHost
         hider.BorderRadius = 0;
         hider.BorderSize = 0;
         hider.Controls.Add(bntAccount);
+        hider.Controls.Add(bntMenu_c);
         hider.Controls.Add(guna2Button2);
-        hider.Controls.Add(guna2Button8);
         hider.Controls.Add(guna2Button5);
         hider.Controls.Add(guna2Button4);
         hider.Controls.Add(guna2Button3);
@@ -120,8 +125,35 @@ partial class MainHost
         bntAccount.Text = "    Account";
         bntAccount.TextAlign = HorizontalAlignment.Left;
         bntAccount.Click += guna2Button6_Click;
+        bntAccount.DoubleClick += bntAccount_DoubleClick;
         bntAccount.MouseLeave += bntAccount_MouseLeave;
         bntAccount.MouseHover += guna2Button6_MouseHover;
+        // 
+        // bntMenu_c
+        // 
+        bntMenu_c.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        bntMenu_c.Animated = true;
+        bntMenu_c.BackColor = Color.Transparent;
+        bntMenu_c.BorderColor = Color.Transparent;
+        bntMenu_c.BorderRadius = 16;
+        bntMenu_c.CheckedState.BorderColor = Color.Transparent;
+        guna2Transition1.SetDecoration(bntMenu_c, Guna.UI2.AnimatorNS.DecorationType.None);
+        bntMenu_c.DisabledState.BorderColor = Color.DarkGray;
+        bntMenu_c.DisabledState.CustomBorderColor = Color.DarkGray;
+        bntMenu_c.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        bntMenu_c.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        bntMenu_c.FillColor = Color.Transparent;
+        bntMenu_c.FocusedColor = Color.FromArgb(100, 170, 209);
+        bntMenu_c.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        bntMenu_c.ForeColor = Color.White;
+        bntMenu_c.Image = Properties.Resources.icons8_menu_240__1_;
+        bntMenu_c.ImageSize = new Size(40, 40);
+        bntMenu_c.Location = new Point(224, 960);
+        bntMenu_c.Margin = new Padding(2);
+        bntMenu_c.Name = "bntMenu_c";
+        bntMenu_c.Size = new Size(56, 56);
+        bntMenu_c.TabIndex = 1;
+        bntMenu_c.Click += bntMenu;
         // 
         // guna2Button2
         // 
@@ -151,31 +183,6 @@ partial class MainHost
         guna2Button2.Text = "    Plugins";
         guna2Button2.TextAlign = HorizontalAlignment.Left;
         guna2Button2.Click += bntPlugin_Clicked;
-        // 
-        // guna2Button8
-        // 
-        guna2Button8.Anchor = AnchorStyles.None;
-        guna2Button8.Animated = true;
-        guna2Button8.BorderColor = Color.Gainsboro;
-        guna2Button8.BorderRadius = 20;
-        guna2Button8.BorderThickness = 2;
-        guna2Transition1.SetDecoration(guna2Button8, Guna.UI2.AnimatorNS.DecorationType.None);
-        guna2Button8.DisabledState.BorderColor = Color.DarkGray;
-        guna2Button8.DisabledState.CustomBorderColor = Color.DarkGray;
-        guna2Button8.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-        guna2Button8.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        guna2Button8.FillColor = Color.Empty;
-        guna2Button8.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-        guna2Button8.ForeColor = Color.Black;
-        guna2Button8.Image = Properties.Resources.icons8_earth_planet_96;
-        guna2Button8.ImageSize = new Size(40, 40);
-        guna2Button8.Location = new Point(32, 128);
-        guna2Button8.Margin = new Padding(2);
-        guna2Button8.Name = "guna2Button8";
-        guna2Button8.Size = new Size(272, 80);
-        guna2Button8.TabIndex = 15;
-        guna2Button8.Click += bntChangeTheme;
         // 
         // guna2Button5
         // 
@@ -352,6 +359,77 @@ partial class MainHost
         lblText.TextAlign = ContentAlignment.MiddleCenter;
         lblText.Click += guna2Button1_Click;
         // 
+        // pnlMenu
+        // 
+        pnlMenu.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        pnlMenu.BorderColor = SystemColors.ButtonFace;
+        pnlMenu.BorderRadius = 15;
+        pnlMenu.BorderThickness = 2;
+        pnlMenu.Controls.Add(guna2Button10);
+        pnlMenu.Controls.Add(guna2Button9);
+        guna2Transition1.SetDecoration(pnlMenu, Guna.UI2.AnimatorNS.DecorationType.None);
+        pnlMenu.FillColor = Color.White;
+        pnlMenu.Location = new Point(24, 872);
+        pnlMenu.Margin = new Padding(2);
+        pnlMenu.Name = "pnlMenu";
+        pnlMenu.Size = new Size(272, 152);
+        pnlMenu.TabIndex = 4;
+        pnlMenu.Visible = false;
+        // 
+        // guna2Button10
+        // 
+        guna2Button10.Animated = true;
+        guna2Button10.BackColor = Color.Transparent;
+        guna2Button10.BackgroundImageLayout = ImageLayout.Zoom;
+        guna2Button10.BorderColor = Color.Gainsboro;
+        guna2Button10.BorderRadius = 10;
+        guna2Button10.BorderThickness = 2;
+        guna2Transition1.SetDecoration(guna2Button10, Guna.UI2.AnimatorNS.DecorationType.None);
+        guna2Button10.DisabledState.BorderColor = Color.DarkGray;
+        guna2Button10.DisabledState.CustomBorderColor = Color.DarkGray;
+        guna2Button10.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        guna2Button10.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        guna2Button10.FillColor = Color.Transparent;
+        guna2Button10.FocusedColor = Color.FromArgb(100, 170, 209);
+        guna2Button10.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button10.ForeColor = Color.Black;
+        guna2Button10.ImageAlign = HorizontalAlignment.Left;
+        guna2Button10.ImageSize = new Size(35, 35);
+        guna2Button10.Location = new Point(16, 24);
+        guna2Button10.Margin = new Padding(2);
+        guna2Button10.Name = "guna2Button10";
+        guna2Button10.Size = new Size(240, 48);
+        guna2Button10.TabIndex = 17;
+        guna2Button10.Text = "Developer App";
+        guna2Button10.Click += bntOpenDevApp;
+        // 
+        // guna2Button9
+        // 
+        guna2Button9.Animated = true;
+        guna2Button9.BackColor = Color.Transparent;
+        guna2Button9.BackgroundImageLayout = ImageLayout.Zoom;
+        guna2Button9.BorderColor = Color.Gainsboro;
+        guna2Button9.BorderRadius = 10;
+        guna2Button9.BorderThickness = 2;
+        guna2Transition1.SetDecoration(guna2Button9, Guna.UI2.AnimatorNS.DecorationType.None);
+        guna2Button9.DisabledState.BorderColor = Color.DarkGray;
+        guna2Button9.DisabledState.CustomBorderColor = Color.DarkGray;
+        guna2Button9.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        guna2Button9.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        guna2Button9.FillColor = Color.Transparent;
+        guna2Button9.FocusedColor = Color.FromArgb(100, 170, 209);
+        guna2Button9.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button9.ForeColor = Color.Black;
+        guna2Button9.ImageAlign = HorizontalAlignment.Left;
+        guna2Button9.ImageSize = new Size(35, 35);
+        guna2Button9.Location = new Point(16, 88);
+        guna2Button9.Margin = new Padding(2);
+        guna2Button9.Name = "guna2Button9";
+        guna2Button9.Size = new Size(240, 48);
+        guna2Button9.TabIndex = 17;
+        guna2Button9.Text = "About";
+        guna2Button9.Click += bntOpenAboutPage;
+        // 
         // bntChoose_File
         // 
         bntChoose_File.Animated = true;
@@ -396,6 +474,7 @@ partial class MainHost
         // 
         // pnlChild
         // 
+        pnlChild.Controls.Add(pnlMenu);
         guna2Transition1.SetDecoration(pnlChild, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlChild.Dock = DockStyle.Fill;
         pnlChild.Location = new Point(336, 0);
@@ -715,6 +794,8 @@ partial class MainHost
         Load += MainHost_Load;
         hider.ResumeLayout(false);
         sPanel1.ResumeLayout(false);
+        pnlMenu.ResumeLayout(false);
+        pnlChild.ResumeLayout(false);
         pnlSide.ResumeLayout(false);
         pnlNotifications.ResumeLayout(false);
         pnlMes1.ResumeLayout(false);
@@ -754,5 +835,8 @@ partial class MainHost
     private Label Mes1_Message;
     private Guna.UI2.WinForms.Guna2Button Mes1_bnt;
     private Guna.UI2.WinForms.Guna2Button guna2Button7;
-    private Guna.UI2.WinForms.Guna2Button guna2Button8;
+    private Guna.UI2.WinForms.Guna2Button bntMenu_c;
+    private Guna.UI2.WinForms.Guna2Panel pnlMenu;
+    private Guna.UI2.WinForms.Guna2Button guna2Button10;
+    private Guna.UI2.WinForms.Guna2Button guna2Button9;
 }

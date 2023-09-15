@@ -37,6 +37,7 @@
             pluginEntryBindingSource1 = new BindingSource(components);
             tabControl = new HTAlt.WinForms.HTTabControl();
             tbDefault = new TabPage();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             lblName = new Label();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -55,7 +56,6 @@
             imgImage = new Guna.UI2.WinForms.Guna2Panel();
             pnlPreview = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
-            tbTextEditor = new TabPage();
             ((System.ComponentModel.ISupportInitialize)pluginEntryBindingSource).BeginInit();
             sPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pluginEntryBindingSource1).BeginInit();
@@ -165,7 +165,6 @@
             tabControl.BackgroundColor = Color.White;
             tabControl.BorderTabLineColor = Color.FromArgb(0, 122, 204);
             tabControl.Controls.Add(tbDefault);
-            tabControl.Controls.Add(tbTextEditor);
             tabControl.DisableClose = true;
             tabControl.DisableDragging = false;
             tabControl.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
@@ -191,6 +190,7 @@
             // tbDefault
             // 
             tbDefault.BackColor = Color.White;
+            tbDefault.Controls.Add(guna2Button1);
             tbDefault.Controls.Add(lblName);
             tbDefault.Controls.Add(guna2Panel2);
             tbDefault.Controls.Add(guna2Panel1);
@@ -203,6 +203,31 @@
             tbDefault.Size = new Size(912, 722);
             tbDefault.TabIndex = 0;
             tbDefault.Text = "Encryption Library";
+            // 
+            // guna2Button1
+            // 
+            guna2Button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            guna2Button1.Animated = true;
+            guna2Button1.BackColor = Color.Transparent;
+            guna2Button1.BackgroundImageLayout = ImageLayout.Zoom;
+            guna2Button1.BorderColor = Color.Gainsboro;
+            guna2Button1.BorderRadius = 14;
+            guna2Button1.BorderThickness = 2;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = Color.Transparent;
+            guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button1.ForeColor = Color.Black;
+            guna2Button1.Location = new Point(672, 56);
+            guna2Button1.Margin = new Padding(2);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.Size = new Size(216, 48);
+            guna2Button1.TabIndex = 15;
+            guna2Button1.Text = "Deinstall";
+            guna2Button1.Click += bntDeinstall_CLICK;
             // 
             // lblName
             // 
@@ -299,6 +324,7 @@
             // 
             listViewBerechtigungen.BorderStyle = BorderStyle.None;
             listViewBerechtigungen.Dock = DockStyle.Fill;
+            listViewBerechtigungen.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             listViewBerechtigungen.HeaderBackColor = Color.FromArgb(235, 235, 235);
             listViewBerechtigungen.HeaderBorderThickness = 2;
             listViewBerechtigungen.HeaderForeColor = Color.Black;
@@ -309,6 +335,7 @@
             listViewBerechtigungen.Size = new Size(403, 194);
             listViewBerechtigungen.TabIndex = 0;
             listViewBerechtigungen.UseCompatibleStateImageBehavior = false;
+            listViewBerechtigungen.View = View.List;
             // 
             // guna2Panel1
             // 
@@ -327,7 +354,7 @@
             guna2Panel1.Location = new Point(32, 152);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(600, 208);
+            guna2Panel1.Size = new Size(624, 208);
             guna2Panel1.TabIndex = 13;
             // 
             // lblAuther
@@ -339,7 +366,7 @@
             lblAuther.Location = new Point(216, 136);
             lblAuther.Margin = new Padding(4, 0, 4, 0);
             lblAuther.Name = "lblAuther";
-            lblAuther.Size = new Size(219, 56);
+            lblAuther.Size = new Size(243, 56);
             lblAuther.TabIndex = 1;
             lblAuther.Text = "n/a";
             lblAuther.TextAlign = ContentAlignment.MiddleLeft;
@@ -354,7 +381,7 @@
             lblSize.Location = new Point(216, 24);
             lblSize.Margin = new Padding(4, 0, 4, 0);
             lblSize.Name = "lblSize";
-            lblSize.Size = new Size(368, 56);
+            lblSize.Size = new Size(392, 56);
             lblSize.TabIndex = 1;
             lblSize.Text = "n/a";
             lblSize.TextAlign = ContentAlignment.MiddleLeft;
@@ -368,7 +395,7 @@
             lblVersion.Location = new Point(216, 80);
             lblVersion.Margin = new Padding(4, 0, 4, 0);
             lblVersion.Name = "lblVersion";
-            lblVersion.Size = new Size(211, 56);
+            lblVersion.Size = new Size(235, 56);
             lblVersion.TabIndex = 1;
             lblVersion.Text = "n/a";
             lblVersion.TextAlign = ContentAlignment.MiddleLeft;
@@ -468,16 +495,6 @@
             guna2Panel4.Size = new Size(168, 160);
             guna2Panel4.TabIndex = 15;
             // 
-            // tbTextEditor
-            // 
-            tbTextEditor.Location = new Point(4, 49);
-            tbTextEditor.Margin = new Padding(2);
-            tbTextEditor.Name = "tbTextEditor";
-            tbTextEditor.Size = new Size(192, 47);
-            tbTextEditor.TabIndex = 1;
-            tbTextEditor.Text = "Text";
-            tbTextEditor.UseVisualStyleBackColor = true;
-            // 
             // uiPluginManager
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -532,6 +549,6 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
         private TableLayoutPanel tableLayoutPanel1;
         private Guna.UI2.WinForms.Guna2Button bntPlugin;
-        private TabPage tbTextEditor;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

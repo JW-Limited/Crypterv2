@@ -1,20 +1,20 @@
-﻿using System.Diagnostics;
-using System.Text;
+﻿using LILO_Packager.v2.Core;
+using LILO_Packager.v2.Core.Interfaces;
+using LILO_Packager.v2.Core.LILO;
+using LILO_Packager.v2.Forms;
+using LILO_Packager.v2.Core.Updates;
+using LILO_Packager.v2.Core.ColorManager;
+using LILO_Packager.v2.shared;
 using LILO_Packager.v2.plugins.PluginCore;
 using LILO_Packager.v2.plugins.Model;
 using System.Collections.ObjectModel;
-using LILO_Packager.v2.Core;
-using LILO_Packager.v2.Core.Interfaces;
 using System.Net.Sockets;
+using System.Diagnostics;
+using System.Text;
 using System.Net;
 using Newtonsoft.Json;
-using LILO_Packager.v2.Core.LILO;
-using LILO_Packager.v2.Forms;
-using LILO_Packager.v2.shared;
 using srvlocal_gui.AppMananger;
 using IWshRuntimeLibrary;
-using LILO_Packager.v2.Core.Updates;
-using LILO_Packager.v2.Core.ColorManager;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
@@ -163,6 +163,9 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     {
         InitializeComponent();
 
+        _thManager = ThemeManager.Initialize();
+        noty = NotifyIconManager.Instance();
+
         if (System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
         {
             loggedInUser = UserManager.Instance().LoadUserFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"));
@@ -201,8 +204,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     private async void MainHost_Load(object sender, EventArgs e)
     {
         var updater = Updater.Instance();
-        _thManager = ThemeManager.Initialize();
-        noty = NotifyIconManager.Instance();
 
         var proc = new Process()
         {
@@ -226,7 +227,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
 
         _thManager.ApplyTheme("White");
-        _thManager.SaveThemesToJson(Path.Combine(_ThemePath,"default.lcs"));
+        _thManager.SaveThemesToJson(Path.Combine(_ThemePath, "default.lcs"));
 
         foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
         {
@@ -366,6 +367,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     private void guna2Button5_Click(object sender, EventArgs e)
     {
         OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/help/")));
+        //OpenInApp(new uiNews());
     }
 
     private void bntOpen_Click(object sender, EventArgs e)
@@ -435,6 +437,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private void guna2Button6_Click(object sender, EventArgs e)
     {
+
+
         if (loggedInUser is null)
         {
             var loginUi = uiLILOAccountLogin.Instance();
@@ -511,7 +515,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
                         noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}"));
 
-                        string html = Markdig.Markdown.ToHtml(latestChanges);
+                        //string html = Markdig.Markdown.ToHtml(latestChanges);
 
                     }
                     else
@@ -707,14 +711,37 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         pnlSide.Visible = false;
     }
 
-    
+
 
     private void bntChangeTheme(object sender, EventArgs e)
     {
-        foreach(var theme in _thManager.Themes)
+        foreach (var theme in _thManager.Themes)
         {
             Console.WriteLine(theme.Key + ": " + theme.Value.ToString());
         }
         _thManager.ToggleDarkMode();
+    }
+
+    private void bntMenu(object sender, EventArgs e)
+    {
+        pnlMenu.Visible = !pnlMenu.Visible;
+        bntMenu_c.Checked = !bntMenu_c.Checked;
+
+    }
+
+    private void bntOpenAboutPage(object sender, EventArgs e)
+    {
+        OpenInApp(new uiNews());
+        bntMenu(sender, e);
+    }
+
+    private void bntAccount_DoubleClick(object sender, EventArgs e)
+    {
+        bntMenu(sender, e);
+    }
+
+    private void bntOpenDevApp(object sender, EventArgs e)
+    {
+        bntMenu(sender, e);
     }
 }

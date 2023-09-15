@@ -119,6 +119,11 @@ namespace LILO_Packager.v2.Forms
                     item.SubItems.Add(element.inputFileName);
                     item.SubItems.Add(element.outputFileName);
 
+                    if (!File.Exists(element.outputFileName))
+                    {
+                        item.ForeColor = Color.DarkGray;
+                    }
+
                     ConsoleManager.Instance().WriteLineWithColor("Loading: (ID)" + element.id + " (OPM)" + element.operationType + " (CORE)" + element.algorithmVersion, GetConsoleColorFromOperation(element.operationType));
 
 

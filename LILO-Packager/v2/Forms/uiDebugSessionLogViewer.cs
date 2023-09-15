@@ -245,8 +245,51 @@ namespace LILO_Packager.v2.Forms
         private void bntAnalyze_Click(object sender, EventArgs e)
         {
             mainText.Text = string.Empty;
+            lblSessionName.Text = _session.SessionName;
+            lblCreated.Text = "Session from: " + _session.CreatedAt;
+            lblCrashed.Text = "Crashed: " + _session.Crashed.ToString();
 
-            AnalyzeLog(logEntries);
+            mainText.Text = "Started Analizing the Session.\n";
+            mainText.Text += ("----------------------------------------\n\n");
+
+            pnlLoading.Visible = true;
+
+            Task.Run(() =>
+            {
+                var logEntries = LogAnalyzerv2.ParseLog(_session.Content);
+
+                foreach (var logEntry in logEntries)
+                {
+                    Console.WriteLine($"Timestamp: {logEntry.Timestamp}");
+                    Console.WriteLine($"SessionID: {logEntry.SessionID}");
+                    Console.WriteLine($"SessionGenerated: {logEntry.SessionGenerated}");
+
+                    foreach (var error in logEntry.Errors)
+                    {
+                        Console.WriteLine($"Error: {error}");
+                    }
+
+                    foreach (var plugin in logEntry.Plugins)
+                    {
+                        Console.WriteLine($"Plugin: {plugin.Name}, Description: {plugin.Description}, Version: {plugin.Version}");
+                    }
+
+                    foreach (var loading in logEntry.Loadings)
+                    {
+                        Console.WriteLine($"Loading: ID={loading.ID}, OPM: {loading.OPM}, CORE: {loading.CORE}");
+                    }
+
+                    foreach (var fileOpen in logEntry.FilesOpened)
+                    {
+                        Console.WriteLine($"FileOpen: FileName: {fileOpen.FileName}, FileType: {fileOpen.FileType}");
+                    }
+
+                    Console.WriteLine();
+                }
+
+                pnlLoading.Visible = false;
+
+            });
         }
     }
 }
