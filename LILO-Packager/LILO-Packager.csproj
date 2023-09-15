@@ -114,6 +114,11 @@
     <Compile Update="DialogHost.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="v2\Core\Dialogs\DialogResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="v2\Forms\uiErrorHandle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +141,10 @@
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="v2\Core\Dialogs\DialogResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

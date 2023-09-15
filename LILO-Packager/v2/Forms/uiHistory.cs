@@ -52,9 +52,9 @@ namespace LILO_Packager.v2.Forms
             {
                 if (item.Text == $"{element.id}")
                 {
-                    if(element.id == 0)
+                    if (element.id == 0)
                     {
-                        MessageBox.Show("This Operation had no output.","No Output",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                        MessageBox.Show("This Operation had no output.", "No Output", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         break;
                     }
 
@@ -102,7 +102,7 @@ namespace LILO_Packager.v2.Forms
 
         private async void uiHistory_Load(object sender, EventArgs e)
         {
-            if(FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering))
+            if (FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering))
             {
                 this.listViewHistory.Items.Clear();
                 listViewHistory.DoubleClick += ListViewHistory_DoubleClick;
@@ -138,7 +138,7 @@ namespace LILO_Packager.v2.Forms
 
         private ConsoleColor GetConsoleColorFromOperation(string operationType)
         {
-            switch(operationType)
+            switch (operationType)
             {
                 case "Encryption":
                     return ConsoleColor.Green;
@@ -152,6 +152,56 @@ namespace LILO_Packager.v2.Forms
         {
             LoadData();
             uiHistory_Load(sender, e);
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void viewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listViewHistory.SelectedItems.Count > 0) 
+                {
+                    var item = listViewHistory.SelectedItems[0];
+
+                    foreach (var element in historyElements)
+                    {
+                        if (item.Text == $"{element.id}")
+                        {
+                            if (element.id == 0)
+                            {
+                                MessageBox.Show("This Operation had no output.", "No Output", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                break;
+                            }
+
+                            try
+                            {
+                                if (File.Exists(element.outputFileName))
+                                {
+                                    MainHost.Instance().OpenInApp(new uiHistoryElementInfo(element));
+                                }
+                                else
+                                {
+                                    MessageBox.Show("The Output of this Operation is not existing anymore.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    break;
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "FileError", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ConsoleManager.Instance().WriteLineWithColor(ex.Message,ConsoleColor.DarkRed);
+            }
         }
     }
 }

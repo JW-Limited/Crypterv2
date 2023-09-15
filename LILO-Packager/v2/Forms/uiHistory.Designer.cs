@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem2 = new ListViewItem(new string[] { "12345", "Encryption", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
+            ListViewItem listViewItem1 = new ListViewItem(new string[] { "12345", "Encryption", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
             tableLayoutPanel1 = new TableLayoutPanel();
             listViewHistory = new HTAlt.WinForms.HTListView();
             ColId = new ColumnHeader();
@@ -37,6 +37,13 @@
             ColVersion = new ColumnHeader();
             ColInput = new ColumnHeader();
             ColOutput = new ColumnHeader();
+            conmenu = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            viewToolStripMenuItem = new ToolStripMenuItem();
+            compareToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator2 = new ToolStripSeparator();
+            reportToolStripMenuItem = new ToolStripMenuItem();
             sPanel2 = new Sipaa.Framework.SPanel();
             bntPlugin = new Guna.UI2.WinForms.Guna2Button();
             bntCancel = new Guna.UI2.WinForms.Guna2Button();
@@ -45,6 +52,7 @@
             progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
             label5 = new Label();
             tableLayoutPanel1.SuspendLayout();
+            conmenu.SuspendLayout();
             sPanel2.SuspendLayout();
             pnlLoginLoad.SuspendLayout();
             SuspendLayout();
@@ -71,13 +79,14 @@
             listViewHistory.AllowColumnReorder = true;
             listViewHistory.BorderStyle = BorderStyle.None;
             listViewHistory.Columns.AddRange(new ColumnHeader[] { ColId, ColOperation, ColMode, ColVersion, ColInput, ColOutput });
+            listViewHistory.ContextMenuStrip = conmenu;
             listViewHistory.Dock = DockStyle.Fill;
             listViewHistory.HeaderBackColor = Color.FromArgb(235, 235, 235);
             listViewHistory.HeaderBorderThickness = 2;
             listViewHistory.HeaderForeColor = Color.Black;
             listViewHistory.HideSelection = true;
             listViewHistory.HoverSelection = true;
-            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem2 });
+            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem1 });
             listViewHistory.Location = new Point(3, 53);
             listViewHistory.MultiSelect = false;
             listViewHistory.Name = "listViewHistory";
@@ -120,6 +129,59 @@
             // 
             ColOutput.Text = "Output File";
             ColOutput.Width = 250;
+            // 
+            // conmenu
+            // 
+            conmenu.BackColor = Color.White;
+            conmenu.ImageScalingSize = new Size(24, 24);
+            conmenu.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem, toolStripSeparator1, viewToolStripMenuItem, compareToolStripMenuItem, toolStripSeparator2, reportToolStripMenuItem });
+            conmenu.Name = "ConMenu";
+            conmenu.RenderStyle.ArrowColor = Color.FromArgb(125, 100, 255);
+            conmenu.RenderStyle.BorderColor = Color.Black;
+            conmenu.RenderStyle.ColorTable = null;
+            conmenu.RenderStyle.RoundedEdges = true;
+            conmenu.RenderStyle.SelectionArrowColor = Color.White;
+            conmenu.RenderStyle.SelectionBackColor = Color.FromArgb(94, 148, 255);
+            conmenu.RenderStyle.SelectionForeColor = Color.White;
+            conmenu.RenderStyle.SeparatorColor = Color.LightGray;
+            conmenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            conmenu.Size = new Size(158, 144);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(157, 32);
+            deleteToolStripMenuItem.Text = "Delete";
+            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(154, 6);
+            // 
+            // viewToolStripMenuItem
+            // 
+            viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            viewToolStripMenuItem.Size = new Size(157, 32);
+            viewToolStripMenuItem.Text = "View";
+            viewToolStripMenuItem.Click += viewToolStripMenuItem_Click;
+            // 
+            // compareToolStripMenuItem
+            // 
+            compareToolStripMenuItem.Name = "compareToolStripMenuItem";
+            compareToolStripMenuItem.Size = new Size(157, 32);
+            compareToolStripMenuItem.Text = "Compare";
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(154, 6);
+            // 
+            // reportToolStripMenuItem
+            // 
+            reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            reportToolStripMenuItem.Size = new Size(157, 32);
+            reportToolStripMenuItem.Text = "Report";
             // 
             // sPanel2
             // 
@@ -215,7 +277,7 @@
             pnlLoginLoad.Location = new Point(32, 152);
             pnlLoginLoad.Margin = new Padding(2);
             pnlLoginLoad.Name = "pnlLoginLoad";
-            pnlLoginLoad.Size = new Size(968, 776);
+            pnlLoginLoad.Size = new Size(960, 776);
             pnlLoginLoad.TabIndex = 16;
             // 
             // progressSpinner
@@ -223,7 +285,7 @@
             progressSpinner.Anchor = AnchorStyles.None;
             progressSpinner.AutoStart = true;
             progressSpinner.BackColor = Color.White;
-            progressSpinner.Location = new Point(408, 256);
+            progressSpinner.Location = new Point(404, 256);
             progressSpinner.Name = "progressSpinner";
             progressSpinner.Size = new Size(135, 135);
             progressSpinner.TabIndex = 8;
@@ -253,6 +315,7 @@
             Text = "uiHistory";
             Load += uiHistory_Load;
             tableLayoutPanel1.ResumeLayout(false);
+            conmenu.ResumeLayout(false);
             sPanel2.ResumeLayout(false);
             pnlLoginLoad.ResumeLayout(false);
             ResumeLayout(false);
@@ -260,6 +323,7 @@
 
         #endregion
 
+        private Guna.UI2.WinForms.Guna2ContextMenuStrip conmenu;
         private TableLayoutPanel tableLayoutPanel1;
         private HTAlt.WinForms.HTListView listViewHistory;
         private ColumnHeader ColId;
@@ -275,5 +339,11 @@
         private Guna.UI2.WinForms.Guna2Panel pnlLoginLoad;
         private Guna.UI2.WinForms.Guna2WinProgressIndicator progressSpinner;
         private Label label5;
+        private ToolStripMenuItem deleteToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem viewToolStripMenuItem;
+        private ToolStripMenuItem compareToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem reportToolStripMenuItem;
     }
 }
