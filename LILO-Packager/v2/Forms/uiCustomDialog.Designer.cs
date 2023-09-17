@@ -47,10 +47,10 @@
             sPanel2.Controls.Add(bntCancel);
             sPanel2.Dock = DockStyle.Bottom;
             sPanel2.ForeColor = Color.White;
-            sPanel2.Location = new Point(0, 200);
+            sPanel2.Location = new Point(0, 152);
             sPanel2.Margin = new Padding(4);
             sPanel2.Name = "sPanel2";
-            sPanel2.Size = new Size(647, 82);
+            sPanel2.Size = new Size(619, 82);
             sPanel2.TabIndex = 14;
             // 
             // bntOk
@@ -70,7 +70,7 @@
             bntOk.FocusedColor = Color.FromArgb(100, 170, 209);
             bntOk.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             bntOk.ForeColor = Color.Black;
-            bntOk.Location = new Point(360, 16);
+            bntOk.Location = new Point(332, 16);
             bntOk.Margin = new Padding(2);
             bntOk.Name = "bntOk";
             bntOk.Size = new Size(136, 48);
@@ -95,7 +95,7 @@
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
             bntCancel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             bntCancel.ForeColor = Color.Black;
-            bntCancel.Location = new Point(512, 16);
+            bntCancel.Location = new Point(484, 16);
             bntCancel.Margin = new Padding(2);
             bntCancel.Name = "bntCancel";
             bntCancel.Size = new Size(120, 48);
@@ -107,12 +107,12 @@
             // 
             lblMessageText.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblMessageText.BackColor = Color.Transparent;
-            lblMessageText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblMessageText.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             lblMessageText.ForeColor = Color.Black;
-            lblMessageText.Location = new Point(144, 80);
+            lblMessageText.Location = new Point(128, 56);
             lblMessageText.Margin = new Padding(4, 0, 4, 0);
             lblMessageText.Name = "lblMessageText";
-            lblMessageText.Size = new Size(477, 88);
+            lblMessageText.Size = new Size(465, 72);
             lblMessageText.TabIndex = 1;
             lblMessageText.Text = "MessageText";
             // 
@@ -125,7 +125,7 @@
             pnlIcon.BorderColor = SystemColors.ActiveBorder;
             pnlIcon.BorderRadius = 15;
             pnlIcon.FillColor = Color.Transparent;
-            pnlIcon.Location = new Point(48, 56);
+            pnlIcon.Location = new Point(40, 40);
             pnlIcon.Margin = new Padding(2);
             pnlIcon.Name = "pnlIcon";
             pnlIcon.Size = new Size(72, 72);
@@ -136,7 +136,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(647, 282);
+            ClientSize = new Size(619, 234);
             Controls.Add(pnlIcon);
             Controls.Add(lblMessageText);
             Controls.Add(sPanel2);
@@ -144,7 +144,6 @@
             MaximizeBox = false;
             MaximumSize = new Size(669, 338);
             MinimizeBox = false;
-            MinimumSize = new Size(669, 338);
             Name = "uiCustomDialog";
             ShowIcon = false;
             ShowInTaskbar = false;

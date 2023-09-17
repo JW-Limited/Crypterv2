@@ -9,7 +9,7 @@ namespace LILO_Packager.v2.shared
 {
     public class MultiplefileHandling
     {
-        public async Task ZipFilesAsync(string zipFilePath, Action<int> progressCallback, List<string> files)
+        public async Task ZipFilesAsync(string zipFilePath, IProgress<int> progress, List<string> files)
         {
             if (files == null || files.Count == 0)
             {
@@ -17,9 +17,9 @@ namespace LILO_Packager.v2.shared
             }
 
             var filesHash = new HashSet<string>(files);
-            var filesToZip = new List<string>(filesHash);   
+            var filesToZip = new List<string>(filesHash);
 
-            using (ZipArchive zipArchive = ZipFile.Open(zipFilePath, ZipArchiveMode.Create))
+            using (var zipArchive = ZipFile.Open(zipFilePath, ZipArchiveMode.Create))
             {
                 for (int i = 0; i < filesToZip.Count; i++)
                 {
@@ -27,15 +27,16 @@ namespace LILO_Packager.v2.shared
                     string fileName = Path.GetFileName(fileToZip);
                     zipArchive.CreateEntryFromFile(fileToZip, fileName);
 
-                    int progress = (i + 1) / filesToZip.Count;
-                    progressCallback?.Invoke(progress);
+                    int progressPercentage = (i + 1) * 100 / filesToZip.Count;
+                    progress?.Report(progressPercentage);
+                    await Task.Yield();
                 }
             }
         }
 
-        public async Task UnzipFilesAsync(string zipFilePath, string extractionPath, Action<double> progressCallback)
+        public async Task UnzipFilesAsync(string zipFilePath, string extractionPath, IProgress<int> progress)
         {
-            using (ZipArchive zipArchive = ZipFile.OpenRead(zipFilePath))
+            using (var zipArchive = ZipFile.OpenRead(zipFilePath))
             {
                 for (int i = 0; i < zipArchive.Entries.Count; i++)
                 {
@@ -43,8 +44,9 @@ namespace LILO_Packager.v2.shared
                     string entryFullName = Path.Combine(extractionPath, entry.FullName);
                     entry.ExtractToFile(entryFullName, true);
 
-                    double progress = (i + 1.0) / zipArchive.Entries.Count;
-                    progressCallback?.Invoke(progress);
+                    int progressPercentage = (i + 1) * 100 / zipArchive.Entries.Count;
+                    progress?.Report(progressPercentage);
+                    await Task.Yield(); 
                 }
             }
         }

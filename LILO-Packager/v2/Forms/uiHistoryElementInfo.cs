@@ -88,30 +88,6 @@ namespace LILO_Packager.v2.Forms
             MainHost.Instance().OpenInApp(v2.Forms.uiHistory.Instance());
         }
 
-        public string GetDefaultApplicationName(string extension)
-        {
-            try
-            {
-                using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(extension))
-                {
-                    if (key != null)
-                    {
-                        object friendlyAppName = key.GetValue("FriendlyAppName");
-                        if (friendlyAppName != null)
-                        {
-                            return friendlyAppName.ToString();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
-
-            return null;
-        }
-
         public async Task<FileAppInformation> GetDefaultApplication(string filePath)
         {
 
@@ -228,8 +204,7 @@ namespace LILO_Packager.v2.Forms
 
         private void bntOpenDirectory(object sender, EventArgs e)
         {
-            Process.Start("explorer", _file.outputFileName.Replace(new FileInfo(_file.outputFileName).Name, ""));
-            MainHost.Instance().OpenInApp(v2.Forms.uiHistory.Instance());
+            MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/" + _file.outputFileName.Replace(new FileInfo(_file.outputFileName).Name, ""))));
         }
 
         private async void bntPreview_Click(object sender, EventArgs e)

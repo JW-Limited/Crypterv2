@@ -17,7 +17,14 @@ namespace LILO_Packager.v2.shared
 
         private Logger()
         {
-            logFilePath = "log.log";
+            var _sessionId = GenerateSessionId();
+            logFilePath = Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "log") + "\\" + $"log_session_{_sessionId}.dbgsl";
+        }
+
+
+        private string GenerateSessionId()
+        {
+            return $"{DateTime.Now:yyyyMMdd_HHmmss}_{Guid.NewGuid():N}";
         }
 
         public static Logger Instance => lazyInstance.Value;

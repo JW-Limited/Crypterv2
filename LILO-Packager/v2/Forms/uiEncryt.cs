@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.plugins.Model;
 
@@ -308,23 +309,18 @@ public partial class uiEncryt : Form
 
             var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
             var musltifileHandler = new shared.MultiplefileHandling();
-
-            var ui = uiAsyncTask.Instance();
-            ui.TopMost = true;
-            ui.Show();
-
-            await Task.Run(async () =>
+            var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Refresing, async (progress) =>
             {
-                await musltifileHandler.ZipFilesAsync(tempZip,
-                    reportProgress =>
-                    {
-                        uiAsyncTask.Instance().progressBar.Value = (int)reportProgress;
+                var zipProgress = new Progress<int>(progressPercentage =>
+                {
+                    progress?.Report(progressPercentage);
+                });
 
-                    }, _arFiles);
-
-                ui.Close();
-
+                await musltifileHandler.ZipFilesAsync(tempZip, zipProgress,_arFiles);
             });
+
+            var uiAsyncTask = new uiCustomProcess(asyncTask);
+            uiAsyncTask.ShowDialog();
 
             foreach (var file in _arFiles) 
             {

@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LILO_Packager.v2.Core;
+using LILO_Packager.v2.Core.AsyncTasks;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -168,8 +169,55 @@ namespace LILO_Packager.v2.Forms
             }
         }
 
-        public void ControlEnable(bool disable)
+        public async void ControlEnable(bool disable, string decryptedFile = null)
         {
+            if (disable && decryptedFile is not null)
+            {
+                var info = new FileInfo(decryptedFile);
+
+                if (decryptedFile.Replace(".lsf", "").Contains("collected_files"))
+                {
+                    var items = await dbHandler.GetAllEncryptedOperationsAsync();
+
+                    foreach (var env in items)
+                    {
+                        if ($"{env.outputFileName}" == decryptedFile)
+                        {
+
+                            try
+                            {
+                                Directory.CreateDirectory(decryptedFile.Replace(".lsf", "").Replace(".zip", ""));
+
+                                var handler = new shared.MultiplefileHandling();
+                                var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
+                                var musltifileHandler = new shared.MultiplefileHandling();
+                                var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Copying, async (progress) =>
+                                {
+
+                                    var unzipProgress = new Progress<int>(progressPercentage =>
+                                    {
+                                        progress?.Report(progressPercentage);
+                                    });
+
+
+                                    await handler.UnzipFilesAsync(decryptedFile.Replace(".lsf", ""), decryptedFile.Replace(".lsf", "").Replace(".zip", ""), unzipProgress);
+                                });
+
+                                var uiAsyncTask = new uiCustomProcess(asyncTask);
+                                uiAsyncTask.ShowDialog();
+
+                                File.Delete(decryptedFile.Replace(".lsf", ""));
+                            }
+                            catch (Exception ex)
+                            {
+                                ShowError("File Operation", ex.Message + decryptedFile.Replace(".lsf", "").Replace(".zip", ""));
+                            }
+
+                        }
+                    }
+                }
+            }
+
             bntDecrypt.Visible = disable;
             this.ControlBox = disable;
             bntCrypter.Enabled = disable;
@@ -212,7 +260,7 @@ namespace LILO_Packager.v2.Forms
 
                                     taskBarProgress.Value = 0;
                                     taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
-                                    ControlEnable(true);
+                                    ControlEnable(true, file.Path.Replace(".lsf", ""));
                                     istreamingReady = true;
                                     bntDecrypt.Text = "Open";
                                     imgImage.BackgroundImage = Resources.Padlock;

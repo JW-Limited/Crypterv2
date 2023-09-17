@@ -711,8 +711,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         pnlSide.Visible = false;
     }
 
-
-
     private void bntChangeTheme(object sender, EventArgs e)
     {
         foreach (var theme in _thManager.Themes)
@@ -742,22 +740,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private void bntOpenDevApp(object sender, EventArgs e)
     {
-        var dialogtest = new uiCustomDialog(
-            new Core.Dialogs.MessageDialogPreference(
-                "Test", 
-                "TestMessage", 
-                Core.Dialogs.Dialog.Authorization, 
-                Core.Dialogs.DialogButtons.Authorization, 
-                Core.Dialogs.DialogIcon.Information, 
-                result => 
-                {
-                    if (result == Core.Dialogs.DialogResults.Ok)
-                    {
-                        MessageBox.Show("Hurray");
-                    }
-                })
-            );
-        dialogtest.ShowDialog();
+        
         bntMenu(sender, e);
     }
 }

@@ -491,6 +491,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1221, 1006);
             Controls.Add(guna2Button1);
             Controls.Add(guna2Panel1);

@@ -83,6 +83,16 @@ namespace LILO_Packager.v2.Core.Dialogs {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap error_small {
+            get {
+                object obj = ResourceManager.GetObject("error_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap help_small {
             get {
                 object obj = ResourceManager.GetObject("help_small", resourceCulture);

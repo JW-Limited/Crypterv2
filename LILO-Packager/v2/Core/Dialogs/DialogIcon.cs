@@ -6,7 +6,7 @@
         {
             {DialogIcon.Risk, DialogResources.risk_small },
             {DialogIcon.Information, DialogResources.info_small },
-            {DialogIcon.Error, DialogResources.close_small },
+            {DialogIcon.Error, DialogResources.error_small },
             {DialogIcon.Question, DialogResources.help_small },
         };
 

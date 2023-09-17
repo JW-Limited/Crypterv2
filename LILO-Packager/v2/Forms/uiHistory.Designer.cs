@@ -182,6 +182,7 @@
             reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             reportToolStripMenuItem.Size = new Size(157, 32);
             reportToolStripMenuItem.Text = "Report";
+            reportToolStripMenuItem.Click += reportToolStripMenuItem_Click;
             // 
             // sPanel2
             // 

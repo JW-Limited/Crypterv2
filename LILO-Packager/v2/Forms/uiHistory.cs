@@ -1,4 +1,5 @@
 ﻿using LILO_Packager.v2.Core;
+using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.shared;
 using System;
@@ -66,7 +67,7 @@ namespace LILO_Packager.v2.Forms
                         }
                         else
                         {
-                            MessageBox.Show("The Output of this Operation is not existing anymore.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            OkDialog.Show("The Output of this Operation is not existing anymore.", "File Not Found");
                             break;
                         }
                     }
@@ -156,14 +157,61 @@ namespace LILO_Packager.v2.Forms
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var dialogtest = new uiCustomDialog(
+            new Core.Dialogs.MessageDialogPreference(
+                "File Operation",
+                "Do you realy want to delete the file?",
+                Core.Dialogs.Dialog.Authorization,
+                Core.Dialogs.DialogButtons.Authorization,
+                Core.Dialogs.DialogIcon.Question,
+                result =>
+                {
+                    if (result == Core.Dialogs.DialogResults.Ok)
+                    {
+                        if (listViewHistory.SelectedItems.Count > 0)
+                        {
+                            var item = listViewHistory.SelectedItems[0];
 
+                            foreach (var element in historyElements)
+                            {
+                                if (item.Text == $"{element.id}")
+                                {
+                                    if (element.id == 0)
+                                    {
+                                        MessageBox.Show("This Operation had no output i can delete.", "No Output", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                        break;
+                                    }
+
+                                    try
+                                    {
+                                        if (File.Exists(element.outputFileName))
+                                        {
+                                            File.Delete(element.outputFileName);
+                                        }
+                                        else
+                                        {
+                                            OkDialog.Show("The Output of this Operation is not existing anymore.", "File Not Found",DialogIcon.Error);
+                                            break;
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.Message, "FileError", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                })
+            );
+            dialogtest.ShowDialog();
         }
 
         private void viewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                if (listViewHistory.SelectedItems.Count > 0) 
+                if (listViewHistory.SelectedItems.Count > 0)
                 {
                     var item = listViewHistory.SelectedItems[0];
 
@@ -185,7 +233,7 @@ namespace LILO_Packager.v2.Forms
                                 }
                                 else
                                 {
-                                    MessageBox.Show("The Output of this Operation is not existing anymore.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    OkDialog.Show("The Output of this Operation is not existing anymore.", "File Not Found", DialogIcon.Error);
                                     break;
                                 }
                             }
@@ -196,12 +244,38 @@ namespace LILO_Packager.v2.Forms
                         }
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
-                ConsoleManager.Instance().WriteLineWithColor(ex.Message,ConsoleColor.DarkRed);
+                ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
             }
+        }
+
+        private void reportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dialogtest = new uiCustomDialog(
+            new Core.Dialogs.MessageDialogPreference(
+                "Report Bug",
+                "To report a bug we need to open youre Browser and guide you to Github. Continue?",
+                Core.Dialogs.Dialog.Authorization,
+                Core.Dialogs.DialogButtons.OkCancel,
+                Core.Dialogs.DialogIcon.Question,
+                result =>
+                {
+                    if (result == Core.Dialogs.DialogResults.Ok)
+                    {
+                        string url = $"https://github.com/JW-Limited/Crypterv2/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=HistoryElementError";
+
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = url,
+                            UseShellExecute = true
+                        });
+                    }
+                })
+            );
+            dialogtest.ShowDialog();
         }
     }
 }

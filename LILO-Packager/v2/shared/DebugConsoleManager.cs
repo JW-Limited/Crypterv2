@@ -43,8 +43,6 @@ namespace LILO_Packager.v2.shared
                 Directory.CreateDirectory(Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "log"));
             }
             _sessionId = GenerateSessionId();
-            _logWriter = new StreamWriter(Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "log") + "\\" + $"log_session_{_sessionId}.dbgsl", true) { AutoFlush = true };
-            _logWriter.WriteLine("Session Generated: Program is starting now.\n\n");
         }
 
         private string GenerateSessionId()
@@ -93,14 +91,9 @@ namespace LILO_Packager.v2.shared
             Log(text);
         }
 
-        public void Log(string message)
+        public void Log(string message, Logger.LogLevel level = Logger.LogLevel.Info)
         {
-            if (_logWriter == null)
-            {
-                InitializeLogger();
-            }
-
-            _logWriter.WriteLine($"[{DateTime.Now}] (Session {_sessionId.Remove(5)}): {message}");
+            Logger.Instance.Log($"{message}",level);
         }
 
         public void EndSession()
