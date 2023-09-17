@@ -18,12 +18,6 @@ namespace LILO_Packager.v2.Core
         HistoryElementQuering
     }
 
-    public class FeatureFlagePipeLineConfig
-    {
-        public static string PipeName { get; } = "FeatureFlagPipe";
-        public static bool DebugModeEnabled { get; } = true;
-    }
-
     public class FeatureFlagConfig
     {
         public bool NewEncryptionCore { get; set; } = true;
