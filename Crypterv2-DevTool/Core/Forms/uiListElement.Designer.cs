@@ -48,12 +48,12 @@
             guna2Panel1.BorderColor = SystemColors.ActiveBorder;
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.BorderThickness = 2;
+            guna2Panel1.Controls.Add(lblFeature);
             guna2Panel1.Controls.Add(bntChange);
             guna2Panel1.Controls.Add(guna2Panel2);
             guna2Panel1.Controls.Add(label1);
             guna2Panel1.Controls.Add(lblFeatureState);
             guna2Panel1.Controls.Add(label3);
-            guna2Panel1.Controls.Add(lblFeature);
             guna2Panel1.FillColor = SystemColors.Control;
             guna2Panel1.Location = new Point(81, 65);
             guna2Panel1.Margin = new Padding(2);

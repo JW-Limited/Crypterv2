@@ -15,7 +15,7 @@ namespace LILO_Packager
     {
         public static int DefaultEnvironment = 0;
         public static NotifyIcon noty;
-        public static string Version = "v0.9.3-beta";
+        public static string Version = "v0.9.5-beta";
 
         private static void InitializeApplication()
         {
@@ -31,6 +31,8 @@ namespace LILO_Packager
         public static void Main(string[] args)
         {
             InitializeApplication();
+            
+            //uiSplashScreen.Instance.ShowDialog();
 
             try
             {

@@ -30,7 +30,7 @@ namespace LILO_Packager.v2.Core.AsyncTasks
             Name = name;
             Description = description;
             Mode = mode;
-            TaskFunc = taskFunc;
+            TaskFunc = taskFunc;    
         }
 
         public async Task ExecuteAsync(IProgress<int> progress = null)

@@ -321,6 +321,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
             await v2.Core.FeatureManager.LoadConfigurationAsync();
         }
+
+        uiSplashScreen.Instance.Close();
     }
 
     #endregion

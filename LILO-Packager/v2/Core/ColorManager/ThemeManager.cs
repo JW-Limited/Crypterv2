@@ -181,8 +181,6 @@ namespace LILO_Packager.v2.Core.ColorManager
             return ColorMatch(color, CurrentTheme.ModeSettings[ModeType.Default].ForeColor, tolerance);
         }
 
-        // MATCHING the colors
-
         private bool ColorMatch(Color color1, Color color2, int tolerance)
         {
             return Math.Abs(color1.R - color2.R) <= tolerance
