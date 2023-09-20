@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.History;
+using LILO_Packager.v2.Core.Service;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiDecrypt : Form

@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using LILO.Shell;
 using Guna.UI2.WinForms;
+using LILO_Packager.v2.Core.Service;
 
 namespace LILO_Packager;
 

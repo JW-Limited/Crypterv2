@@ -1,6 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using LILO_Packager.Properties;
 using LILO_Packager.v2.Core.History;
+using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.shared;
 using System;
 using System.Collections.Generic;

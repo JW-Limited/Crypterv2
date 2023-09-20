@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.AsyncTasks;
+using LILO_Packager.v2.Core.Service;
 
 namespace LILO_Packager.v2.Forms
 {

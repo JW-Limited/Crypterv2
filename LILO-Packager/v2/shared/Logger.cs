@@ -10,11 +10,10 @@ namespace LILO_Packager.v2.shared
     public class Logger
     {
         private static readonly Lazy<Logger> lazyInstance = new Lazy<Logger>(() => new Logger());
-        private static readonly object padlock = new object();
         private readonly string logFilePath;
         private readonly ConcurrentQueue<string> logQueue = new ConcurrentQueue<string>();
         private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
-
+        public static Logger Instance => lazyInstance.Value;
         private Logger()
         {
             var _sessionId = GenerateSessionId();
@@ -27,7 +26,7 @@ namespace LILO_Packager.v2.shared
             return $"{DateTime.Now:yyyyMMdd_HHmmss}_{Guid.NewGuid():N}";
         }
 
-        public static Logger Instance => lazyInstance.Value;
+       
 
         public void Log(string message, LogLevel logLevel = LogLevel.Info)
         {

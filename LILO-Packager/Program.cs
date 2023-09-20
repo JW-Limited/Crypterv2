@@ -51,7 +51,7 @@ namespace LILO_Packager
                 if (args.Length > 0)
                 {
                     var bootManager = new BootManager();
-                    bootManager.AnalyzeArguments(args);
+                    bootManager.Run(args);
                 }
                 else
                 {

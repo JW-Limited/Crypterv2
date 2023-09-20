@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.History;
+using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.plugins.Model;
 
 namespace LILO_Packager.v2.Forms;
