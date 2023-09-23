@@ -111,7 +111,7 @@
             // pnlWarning
             // 
             pnlWarning.Anchor = AnchorStyles.None;
-            pnlWarning.BackColor = SystemColors.Control;
+            pnlWarning.BackColor = Color.Transparent;
             pnlWarning.BorderColor = SystemColors.ActiveBorder;
             pnlWarning.BorderRadius = 15;
             pnlWarning.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
@@ -124,6 +124,10 @@
             pnlWarning.Location = new Point(608, 200);
             pnlWarning.Margin = new Padding(2);
             pnlWarning.Name = "pnlWarning";
+            pnlWarning.ShadowDecoration.BorderRadius = 20;
+            pnlWarning.ShadowDecoration.Color = Color.DarkGray;
+            pnlWarning.ShadowDecoration.Depth = 40;
+            pnlWarning.ShadowDecoration.Shadow = new Padding(7);
             pnlWarning.Size = new Size(240, 216);
             pnlWarning.TabIndex = 24;
             pnlWarning.Visible = false;
@@ -148,6 +152,11 @@
             guna2Button6.Location = new Point(16, 160);
             guna2Button6.Margin = new Padding(2);
             guna2Button6.Name = "guna2Button6";
+            guna2Button6.ShadowDecoration.BorderRadius = 20;
+            guna2Button6.ShadowDecoration.Color = Color.DarkGray;
+            guna2Button6.ShadowDecoration.Depth = 10;
+            guna2Button6.ShadowDecoration.Enabled = true;
+            guna2Button6.ShadowDecoration.Shadow = new Padding(7);
             guna2Button6.Size = new Size(208, 40);
             guna2Button6.TabIndex = 25;
             guna2Button6.Text = "Do it!!!";
@@ -372,10 +381,10 @@
             guna2Panel2.Controls.Add(lblDes2);
             guna2Panel2.Controls.Add(lblDescription);
             guna2Panel2.FillColor = Color.White;
-            guna2Panel2.Location = new Point(40, 312);
+            guna2Panel2.Location = new Point(40, 288);
             guna2Panel2.Margin = new Padding(2);
             guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.Size = new Size(800, 296);
+            guna2Panel2.Size = new Size(800, 320);
             guna2Panel2.TabIndex = 24;
             // 
             // lblMoreInfo
@@ -387,7 +396,7 @@
             lblMoreInfo.Location = new Point(24, 144);
             lblMoreInfo.Margin = new Padding(2, 0, 2, 0);
             lblMoreInfo.Name = "lblMoreInfo";
-            lblMoreInfo.Size = new Size(752, 136);
+            lblMoreInfo.Size = new Size(752, 160);
             lblMoreInfo.TabIndex = 1;
             lblMoreInfo.Text = "Function";
             // 
@@ -444,7 +453,7 @@
             lblApp.Location = new Point(424, 192);
             lblApp.Margin = new Padding(2, 0, 2, 0);
             lblApp.Name = "lblApp";
-            lblApp.Size = new Size(408, 40);
+            lblApp.Size = new Size(176, 40);
             lblApp.TabIndex = 1;
             lblApp.Text = "n/a";
             lblApp.TextAlign = ContentAlignment.MiddleLeft;
@@ -469,7 +478,7 @@
             label2.Location = new Point(304, 192);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(560, 40);
+            label2.Size = new Size(120, 40);
             label2.TabIndex = 1;
             label2.Text = "Application:";
             label2.TextAlign = ContentAlignment.MiddleLeft;

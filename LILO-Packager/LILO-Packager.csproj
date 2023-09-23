@@ -123,6 +123,9 @@
     <Compile Update="v2\Forms\uiErrorHandle.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="v2\Forms\uiNetworkError.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="v2\streaming\MusikPlayer\Forms\uiPlayer.cs">
       <SubType>Form</SubType>
     </Compile>

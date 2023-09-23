@@ -232,6 +232,8 @@ namespace LILO_Packager.v2.Forms
 
         private async void bntPreview_C(object sender, EventArgs e)
         {
+            pnlWarning.Visible = false;
+
             if (_file.outputFileName.EndsWith(".pdf"))
             {
                 MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri(_file.outputFileName)));
@@ -243,8 +245,16 @@ namespace LILO_Packager.v2.Forms
                     MessageBox.Show("You need to enable this feature first because its still in development.", "Activation required", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                this.FormClosing += (sender, e) =>
+                {
+                    e.Cancel = true;
+                    this.Hide();
+                };
+
                 var para = await streaming.MusikPlayer.Core.MusicPlayerParameters.Get(_file.outputFileName);
-                var mediaInstance = streaming.MusikPlayer.Forms.uiPlayer.Instance(para, true);
+                //var mediaInstance = streaming.MusikPlayer.Forms.uiPlayer.Instance(para, true);
+                var mediaInstance = new streaming.MusikPlayer.Forms.uiPlayerDynamic(para, this);
                 MainHost.Instance().OpenInApp(mediaInstance);
             }
             else

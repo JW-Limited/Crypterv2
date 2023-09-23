@@ -406,3 +406,4 @@ LILO-Packager/v2/MainHost.cs
 LILO-Packager/v2/Forms/uiHistoryElementInfo.cs
 LILO-Packager/v2/Forms/uiHistory.cs
 LILO-Packager/v2/Core/Service/Services.cs
+LILO-Packager/v2/Core/LILO/User.cs

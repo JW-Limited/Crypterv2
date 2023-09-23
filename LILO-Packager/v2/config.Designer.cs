@@ -94,5 +94,17 @@ namespace LILO_Packager.v2 {
                 this["aggrementAccepted"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool experimentsEnabled {
+            get {
+                return ((bool)(this["experimentsEnabled"]));
+            }
+            set {
+                this["experimentsEnabled"] = value;
+            }
+        }
     }
 }

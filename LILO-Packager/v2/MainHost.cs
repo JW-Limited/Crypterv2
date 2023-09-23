@@ -270,7 +270,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             {
                 ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
 
-                OpenInApp(new uiFeatureNullException("NetworkError", "The server didnt respond."));
+                OpenInApp(new uiNetworkError("NetworkError", "The server didnt respond."));
 
                 pnlSide.Visible = false;
 
@@ -648,7 +648,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         });
     }
 
-    private void guna2Button6_Click_1(object sender, EventArgs e)
+    public void guna2Button6_Click_1(object sender, EventArgs e)
     {
 
         try
@@ -679,7 +679,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         {
             ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
 
-            OpenInApp(new uiFeatureNullException("NetworkError", "The server didnt respond."));
+            OpenInApp(new uiNetworkError("NetworkError", "The server didnt respond."));
 
             pnlSide.Visible = false;
 
@@ -740,9 +740,16 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         bntMenu(sender, e);
     }
 
-    private void bntOpenDevApp(object sender, EventArgs e)
+    private async void bntOpenDevApp(object sender, EventArgs e)
     {
-        
+        OpenFileDialog ofd = new OpenFileDialog();
+        ofd.ShowDialog();
+        OpenInApp(new streaming.MusikPlayer.Forms.uiPlayer(await streaming.MusikPlayer.Core.MusicPlayerParameters.Get(ofd.FileName),false));
         bntMenu(sender, e);
+    }
+
+    private void bntCloseNoti(object sender, EventArgs e)
+    {
+        pnlNoti.Visible = false;
     }
 }

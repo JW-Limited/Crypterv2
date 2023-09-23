@@ -159,7 +159,7 @@ partial class uiPlayer
         pnlSplash.Location = new Point(0, 0);
         pnlSplash.Margin = new Padding(2);
         pnlSplash.Name = "pnlSplash";
-        pnlSplash.Size = new Size(1001, 782);
+        pnlSplash.Size = new Size(1001, 774);
         pnlSplash.TabIndex = 9;
         // 
         // label1
@@ -168,7 +168,7 @@ partial class uiPlayer
         label1.BackColor = Color.Transparent;
         label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
         label1.ForeColor = SystemColors.Window;
-        label1.Location = new Point(400, 694);
+        label1.Location = new Point(400, 686);
         label1.Margin = new Padding(4, 0, 4, 0);
         label1.Name = "label1";
         label1.Size = new Size(200, 40);
@@ -185,7 +185,7 @@ partial class uiPlayer
         imgImage.BorderColor = SystemColors.ActiveBorder;
         imgImage.BorderRadius = 15;
         imgImage.FillColor = Color.Transparent;
-        imgImage.Location = new Point(471, 335);
+        imgImage.Location = new Point(471, 331);
         imgImage.Margin = new Padding(2);
         imgImage.Name = "imgImage";
         imgImage.Size = new Size(56, 56);
@@ -196,7 +196,7 @@ partial class uiPlayer
         progTurner.Anchor = AnchorStyles.None;
         progTurner.AutoStart = true;
         progTurner.BackColor = Color.Transparent;
-        progTurner.Location = new Point(423, 287);
+        progTurner.Location = new Point(423, 283);
         progTurner.Name = "progTurner";
         progTurner.Size = new Size(160, 152);
         progTurner.TabIndex = 6;

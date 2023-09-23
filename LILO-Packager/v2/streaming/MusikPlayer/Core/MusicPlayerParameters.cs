@@ -1,92 +1,83 @@
-﻿using LILO_Packager.v2.Forms;
-using LILO_Packager.v2.shared;
-using SharpDX.DXGI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
+using System.IO;
+using System.Drawing;
 using System.Threading.Tasks;
-using TagLib;
-using Telerik.WinControls.UI;
+using System.IO;
 
 namespace LILO_Packager.v2.streaming.MusikPlayer.Core
 {
     public class MusicPlayerParameters
     {
-        public string Source { get; set; }
+        public string Source { get; private set; }
+        public string[] Artists { get; private set; }
+        public string Title { get; private set; }
+        public Bitmap Cover { get; private set; }
 
-        public string[] Artists { get; set; }
-
-        public string Title { get; set; }
-
-        public Bitmap Cover { get; set; }
+        private MusicPlayerParameters() { }
 
         public static async Task<MusicPlayerParameters> Get(string musicSource)
         {
-            if (string.IsNullOrEmpty(musicSource)) throw new ArgumentNullException("musicSource");
-            if (!System.IO.File.Exists(musicSource)) throw new FileNotFoundException();
+            if (string.IsNullOrWhiteSpace(musicSource))
+            {
+                throw new ArgumentException("Music source cannot be empty or null.", nameof(musicSource));
+            }
+
+            if (!System.IO.File.Exists(musicSource))
+            {
+                throw new FileNotFoundException("File not found.", musicSource);
+            }
 
             var pp = new MusicPlayerParameters();
 
             try
             {
-                using (var file3 = TagLib.File.Create(musicSource))
-                {
+                var tag = await Task.Run(() => TagLib.File.Create(musicSource));
 
-                    if (file3.Tag.Pictures.Length >= 1)
-                    {
-                        if (file3.Tag.Pictures[0] is not null)
-                        {
-                            var cover = file3.Tag.Pictures[0];
-                            var image = new Bitmap(new MemoryStream(cover.Data.Data));
-                            pp.Cover = image;
-                        }
-                        else
-                        {
-                            pp.Cover = Properties.Resources.Lock;
-                        }
-                    }
+                pp.Cover = GetCoverImage(tag);
 
-                    if (file3.Tag.Artists.Length >= 1)
-                    {
-                        pp.Artists = file3.Tag.Artists;
-                    }
-                    else
-                    {
-                        pp.Artists[0] = "Unknown";
-                    }
+                pp.Artists = GetArtists(tag);
 
-                    if (file3.Tag.Title is not null or "")
-                    {
-                        pp.Title = file3.Tag.Title;
-                    }
-                    else
-                    {
-                        FileInfo var = new FileInfo(musicSource);
+                pp.Title = GetTitle(tag);
 
-                        pp.Title = var.Name;
-                    }
-
-                    pp.Source = musicSource;
-
-                    return pp;
-                }
+                pp.Source = musicSource;
+            }
+            catch (TagLib.UnsupportedFormatException)
+            {
+                Console.WriteLine("Unsupported file format.");
+                pp.Artists = new[] { "Unknown" };
+                pp.Title = Path.GetFileNameWithoutExtension(musicSource);
+                pp.Cover = Properties.Resources.no_cover;
             }
             catch (Exception ex)
             {
-                ConsoleManager.Instance().WriteLineWithColor(ex.Message + ex.Source + "\n\nError: MusicParametering");
-                FileInfo var = new FileInfo(musicSource);
-
-                return new MusicPlayerParameters()
-                {
-                    Source = musicSource,
-                    Artists = new string[] { "Unknown" },
-                    Title = var.Name,
-                    Cover = Properties.Resources.no_cover
-                };
+                Console.WriteLine($"Error: {ex.Message}");
+                pp.Artists = new[] { "Unknown" };
+                pp.Title = Path.GetFileNameWithoutExtension(musicSource);
+                pp.Cover = Properties.Resources.no_cover;
             }
 
-
+            return pp;
         }
+
+        private static Bitmap GetCoverImage(TagLib.File tag)
+        {
+            if (tag.Tag.Pictures.Length >= 1 && tag.Tag.Pictures[0] != null)
+            {
+                var cover = tag.Tag.Pictures[0];
+                return new Bitmap(new MemoryStream(cover.Data.Data));
+            }
+            return Properties.Resources.Lock; 
+        }
+
+        private static string[] GetArtists(TagLib.File tag)
+        {
+            return tag.Tag.Artists.Length >= 1 ? tag.Tag.Artists : new[] { "Unknown" };
+        }
+
+        private static string GetTitle(TagLib.File tag)
+        {
+            return !string.IsNullOrWhiteSpace(tag.Tag.Title) ? tag.Tag.Title : Path.GetFileNameWithoutExtension(tag.Name);
+        }
+    
     }
 }

@@ -15,7 +15,7 @@ namespace LILO_Packager
     {
         public static int DefaultEnvironment = 0;
         public static NotifyIcon noty;
-        public static string Version = "v0.9.5-beta";
+        public static string Version = "v0.9.6-dev_edition";
 
         private static void InitializeApplication()
         {
