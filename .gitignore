@@ -407,3 +407,17 @@ LILO-Packager/v2/Forms/uiHistoryElementInfo.cs
 LILO-Packager/v2/Forms/uiHistory.cs
 LILO-Packager/v2/Core/Service/Services.cs
 LILO-Packager/v2/Core/LILO/User.cs
+LILO-WebEngine/LILO-WebEngine.csproj
+LILO-WebEngine/Core/Service/LocalServerOptions.cs
+LILO-WebEngine/Core/Service/LocalServer.cs
+LILO-WebEngine/Core/Service/LocalMediaServerOptions.cs
+LILO-WebEngine/Core/Service/LocalMediaServer.cs
+LILO-WebEngine/Core/Request/Media.cs
+LILO-WebEngine/Core/Port.cs
+LILO-WebEngine/Core/Pages/SearchSide.cs
+LILO-WebEngine/Core/Pages/IndexHtml.cs
+LILO-WebEngine/Core/Pages/ErrorHtmlDynamic.cs
+LILO-WebEngine/Core/IntitializationResponse.cs
+LILO-WebEngine/Core/Interfaces/ILILOWebService.cs
+LILO-WebEngine/Core/Interfaces/IErrorPageGenerator.cs
+LILO-WebEngine/Core/Handler/ErrorHandler.cs

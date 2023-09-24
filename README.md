@@ -17,6 +17,8 @@
 - **Preview and Manage Files**: Managing and Viewing youre En and Decrypted Files in seconds.
 - **Secured Containering**: Use youre Encrypted-files without the need to decrypt them.
 - **JW Limited© - BugBarrier®**: A robust error handling system developed by JW Limited and designed to safeguard the stability by intelligently managing and mitigating errors, ensuring uninterrupted operation even when unexpected issues occur.
+- **JW Limited© - LILO®-WebEngine**: A newly developed renderer that allows Crypterv2 to be modern and fluent. (not rolled out yet)
+- **JW Limited© - Desync®**: A AsyncTask Managing System that allows Crypterv2 to be at least 10x faster then its competition because now it understands what is going on.
 
 ## 📦 Installation
 

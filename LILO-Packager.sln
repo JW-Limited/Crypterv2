@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstallHelper", "InstallHel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crypterv2-DevTool", "Crypterv2-DevTool\Crypterv2-DevTool.csproj", "{D393A4CB-BF73-48C9-921B-990861EDAC7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextPreviewLibrary", "TextPreviewLibrary\TextPreviewLibrary.csproj", "{EC2A96AF-D33B-4008-B044-F1263BA53919}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextPreviewLibrary", "TextPreviewLibrary\TextPreviewLibrary.csproj", "{EC2A96AF-D33B-4008-B044-F1263BA53919}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LILO-WebEngine", "LILO-WebEngine\LILO-WebEngine.csproj", "{069B93C0-3581-476D-B741-6990918FCC6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,10 @@ Global
 		{EC2A96AF-D33B-4008-B044-F1263BA53919}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC2A96AF-D33B-4008-B044-F1263BA53919}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC2A96AF-D33B-4008-B044-F1263BA53919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{069B93C0-3581-476D-B741-6990918FCC6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{069B93C0-3581-476D-B741-6990918FCC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{069B93C0-3581-476D-B741-6990918FCC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{069B93C0-3581-476D-B741-6990918FCC6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

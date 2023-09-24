@@ -182,6 +182,7 @@
     <ProjectReference Include="..\InstallHelper\InstallHelper.csproj">
       <TreatAsUsed>true</TreatAsUsed>
     </ProjectReference>
+    <ProjectReference Include="..\LILO-WebEngine\LILO-WebEngine.csproj" />
   </ItemGroup>
 
   <ItemGroup>

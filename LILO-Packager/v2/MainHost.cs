@@ -15,6 +15,7 @@ using System.Net;
 using Newtonsoft.Json;
 using srvlocal_gui.AppMananger;
 using IWshRuntimeLibrary;
+using LILO_Packager.v2.Core.Dialogs;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
@@ -204,6 +205,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     private async void MainHost_Load(object sender, EventArgs e)
     {
         var updater = Updater.Instance();
+        var localServer = LILO_WebEngine.Core.Service.LocalServer.Instance;
 
         var proc = new Process()
         {
@@ -215,6 +217,30 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 CreateNoWindow = true
             }
         };
+
+        var response  = await localServer.Initialization(
+            new LILO_WebEngine.Core.Service.LocalServerOptions()
+            {
+                Port = new LILO_WebEngine.Core.Port()
+                {
+                    Default = 8089,
+                    FallBack = 8090
+                },
+                SourceDirectory = ".\\html",
+                ApiKey = "liloDev-420",
+                LogDirectory = ".\\log",
+                ServerName = "Crypterv2-WebRenderer"
+            }
+        );
+
+        if (response.SuccessFull)
+        {
+            var running = await localServer.Start();
+        }
+        else
+        {
+            OkDialog.Show(response.ErrorMessage, "InternalServerErrror");
+        }
 
         foreach (Control item in this.Controls)
         {

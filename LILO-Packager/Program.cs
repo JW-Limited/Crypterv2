@@ -1,4 +1,5 @@
 using LILO_Packager.v2;
+using LILO_WebEngine;
 using LILO_Packager.v2.Core.Boot;
 using LILO_Packager.v2.Core.Debug;
 using LILO_Packager.v2.Core.Updates;
@@ -31,7 +32,10 @@ namespace LILO_Packager
         public static void Main(string[] args)
         {
             InitializeApplication();
+
             
+
+
             //uiSplashScreen.Instance.ShowDialog();
 
             try
