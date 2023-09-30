@@ -26,7 +26,7 @@ public partial class uiWebView : Form
                 _webView = new uiWebView();
             }
 
-            if (uri != _url)
+            if (uri != _url && uri is not null)
             {
                 _webView.ChangeDisplayedContent(uri);
             }
@@ -106,5 +106,15 @@ public partial class uiWebView : Form
     {
         var trouble = uiCare.Instance();
         trouble.ShowDialog();
+    }
+
+    private void bntBack_Click(object sender, EventArgs e)
+    {
+        webView21.GoBack();
+    }
+
+    private void label1_Click(object sender, EventArgs e)
+    {
+
     }
 }

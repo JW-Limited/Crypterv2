@@ -121,7 +121,6 @@ namespace LILO_Packager.v2.Forms
                                 using (RegistryKey fileTypeKey = Registry.ClassesRoot.OpenSubKey(defaultValue.ToString()))
                                 {
 
-
                                     ConsoleManager.Instance().WriteLineWithColor($"RegEdit (TYPE): {fileTypeKey}", ConsoleColor.White);
 
                                     if (fileTypeKey != null)

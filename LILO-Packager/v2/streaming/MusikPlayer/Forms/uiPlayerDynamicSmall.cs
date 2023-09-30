@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LILO_Packager.v2.streaming.MusikPlayer.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
 {
     public partial class uiPlayerDynamicSmall : Form
     {
-        public uiPlayerDynamicSmall()
+        public uiPlayerDynamicSmall(MusicPlayerParameters playerOptions)
         {
             InitializeComponent();
         }

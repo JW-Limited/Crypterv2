@@ -28,6 +28,7 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
         public bool IsMusicStopped => isMusicStopped;
         public TimeSpan CurrentTime => throw new NotImplementedException();
         public TimeSpan Duration => throw new NotImplementedException();
+        public FileStream OpendFileStream;
 
         Core.MusicPlayerParameters _Parameters;
         public Thread PlayerThread;
@@ -49,6 +50,7 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
             PlayerThread = new Thread(() =>
             {
                 var ofdLessfileStream = new FileStream(_Parameters.Source, FileMode.Open);
+                OpendFileStream = ofdLessfileStream;
 
                 MediaManager.Startup();
 
@@ -138,6 +140,12 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
                 {
                     LoadAll();
                 });
+            };
+
+            this.FormClosing += (sender, e) =>
+            {
+                OpendFileStream.Close();
+                OpendFileStream.Dispose();
             };
 
             timer.Start();

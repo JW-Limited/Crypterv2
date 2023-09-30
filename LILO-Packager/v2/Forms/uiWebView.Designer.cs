@@ -31,6 +31,7 @@ partial class uiWebView
         webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
         progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
         pnlLoading = new Panel();
+        bntBack = new Guna.UI2.WinForms.Guna2Button();
         label1 = new Label();
         bntTrouble = new Guna.UI2.WinForms.Guna2Button();
         pnlError = new Panel();
@@ -74,13 +75,44 @@ partial class uiWebView
         // 
         pnlLoading.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         pnlLoading.BackColor = Color.White;
+        pnlLoading.Controls.Add(bntBack);
         pnlLoading.Controls.Add(label1);
         pnlLoading.Controls.Add(bntTrouble);
         pnlLoading.Controls.Add(progressSpinner);
         pnlLoading.Location = new Point(0, 0);
         pnlLoading.Name = "pnlLoading";
-        pnlLoading.Size = new Size(1024, 952);
+        pnlLoading.Size = new Size(1024, 944);
         pnlLoading.TabIndex = 8;
+        // 
+        // bntBack
+        // 
+        bntBack.Animated = true;
+        bntBack.BackColor = Color.Transparent;
+        bntBack.BorderColor = Color.Gainsboro;
+        bntBack.BorderRadius = 12;
+        bntBack.BorderThickness = 2;
+        bntBack.DisabledState.BorderColor = Color.DarkGray;
+        bntBack.DisabledState.CustomBorderColor = Color.DarkGray;
+        bntBack.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        bntBack.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        bntBack.FillColor = Color.White;
+        bntBack.FocusedColor = Color.FromArgb(100, 170, 209);
+        bntBack.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        bntBack.ForeColor = Color.Black;
+        bntBack.Image = Properties.Resources.icons8_back_96;
+        bntBack.ImageAlign = HorizontalAlignment.Left;
+        bntBack.Location = new Point(24, 24);
+        bntBack.Margin = new Padding(2);
+        bntBack.Name = "bntBack";
+        bntBack.ShadowDecoration.BorderRadius = 20;
+        bntBack.ShadowDecoration.Color = Color.DarkGray;
+        bntBack.ShadowDecoration.Depth = 10;
+        bntBack.ShadowDecoration.Enabled = true;
+        bntBack.ShadowDecoration.Shadow = new Padding(7);
+        bntBack.Size = new Size(112, 40);
+        bntBack.TabIndex = 31;
+        bntBack.Text = "   Back";
+        bntBack.Click += bntBack_Click;
         // 
         // label1
         // 
@@ -88,13 +120,14 @@ partial class uiWebView
         label1.BackColor = Color.Transparent;
         label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
         label1.ForeColor = SystemColors.WindowFrame;
-        label1.Location = new Point(408, 864);
+        label1.Location = new Point(24, 856);
         label1.Margin = new Padding(4, 0, 4, 0);
         label1.Name = "label1";
-        label1.Size = new Size(200, 40);
+        label1.Size = new Size(976, 40);
         label1.TabIndex = 1;
         label1.Text = "JW Limited ©️ 2023";
         label1.TextAlign = ContentAlignment.MiddleCenter;
+        label1.Click += label1_Click;
         // 
         // bntTrouble
         // 
@@ -115,6 +148,10 @@ partial class uiWebView
         bntTrouble.Location = new Point(808, 24);
         bntTrouble.Margin = new Padding(2);
         bntTrouble.Name = "bntTrouble";
+        bntTrouble.ShadowDecoration.BorderRadius = 20;
+        bntTrouble.ShadowDecoration.Color = Color.DarkGray;
+        bntTrouble.ShadowDecoration.Depth = 10;
+        bntTrouble.ShadowDecoration.Enabled = true;
         bntTrouble.Size = new Size(192, 40);
         bntTrouble.TabIndex = 26;
         bntTrouble.Text = "Troubleshooting";
@@ -127,9 +164,9 @@ partial class uiWebView
         pnlError.BackColor = Color.White;
         pnlError.Controls.Add(guna2Panel1);
         pnlError.Controls.Add(pnlPreview);
-        pnlError.Location = new Point(192, 168);
+        pnlError.Location = new Point(176, 168);
         pnlError.Name = "pnlError";
-        pnlError.Size = new Size(624, 608);
+        pnlError.Size = new Size(672, 608);
         pnlError.TabIndex = 8;
         pnlError.Visible = false;
         // 
@@ -142,7 +179,7 @@ partial class uiWebView
         guna2Panel1.Controls.Add(bntOpen);
         guna2Panel1.Controls.Add(lblExc);
         guna2Panel1.FillColor = Color.Transparent;
-        guna2Panel1.Location = new Point(80, 464);
+        guna2Panel1.Location = new Point(96, 456);
         guna2Panel1.Margin = new Padding(2);
         guna2Panel1.Name = "guna2Panel1";
         guna2Panel1.Size = new Size(496, 141);
@@ -194,7 +231,7 @@ partial class uiWebView
         pnlPreview.Controls.Add(lblName);
         pnlPreview.Controls.Add(imgImage);
         pnlPreview.FillColor = Color.White;
-        pnlPreview.Location = new Point(88, 16);
+        pnlPreview.Location = new Point(104, 8);
         pnlPreview.Margin = new Padding(2);
         pnlPreview.Name = "pnlPreview";
         pnlPreview.Size = new Size(488, 416);
@@ -263,4 +300,5 @@ partial class uiWebView
     private Guna.UI2.WinForms.Guna2Button bntTrouble;
     public Microsoft.Web.WebView2.WinForms.WebView2 webView21;
     private Label label1;
+    private Guna.UI2.WinForms.Guna2Button bntBack;
 }

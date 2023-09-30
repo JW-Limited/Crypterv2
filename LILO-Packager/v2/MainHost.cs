@@ -16,6 +16,8 @@ using Newtonsoft.Json;
 using srvlocal_gui.AppMananger;
 using IWshRuntimeLibrary;
 using LILO_Packager.v2.Core.Dialogs;
+using LILO_Packager.v2.streaming.MusikPlayer.Forms;
+using LILO_Packager.v2.streaming.MusikPlayer.Core;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
@@ -201,12 +203,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         };
     }
 
-
-    private async void MainHost_Load(object sender, EventArgs e)
-    {
-        var updater = Updater.Instance();
-        var localServer = LILO_WebEngine.Core.Service.LocalServer.Instance;
-
+    /*
         var proc = new Process()
         {
             StartInfo = new ProcessStartInfo()
@@ -217,30 +214,58 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 CreateNoWindow = true
             }
         };
+        proc.Start();
+    */
 
-        var response  = await localServer.Initialization(
-            new LILO_WebEngine.Core.Service.LocalServerOptions()
+    private async void MainHost_Load(object sender, EventArgs e)
+    {
+        var updater     = Updater.Instance();
+        var localCdn    = LILO_WebEngine.Core.Service.LocalMediaServer.Instance;
+        var localServer = LILO_WebEngine.Core.Service.LocalServer.Instance;
+
+        foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
+        {
+            procSrv.Kill();
+        }
+
+        var response  = await localServer.Initialization(new LILO_WebEngine.Core.Service.LocalServerOptions()
+        {
+            Port = new LILO_WebEngine.Core.Port()
             {
-                Port = new LILO_WebEngine.Core.Port()
-                {
-                    Default = 8089,
-                    FallBack = 8090
-                },
-                SourceDirectory = ".\\html",
-                ApiKey = "liloDev-420",
-                LogDirectory = ".\\log",
-                ServerName = "Crypterv2-WebRenderer"
-            }
-        );
+                Default = 8080,
+                FallBack = 8090
+            },
+            SourceDirectory = ".\\html",
+            ApiKey = "liloDev-420",
+            LogDirectory = ".\\log",
+            ServerName = "Crypterv2",
+        });
 
         if (response.SuccessFull)
         {
             var running = await localServer.Start();
+            localServer.OnLocalServerRequest += async (sender, e) =>
+            {
+                ConsoleManager.Instance().WriteLineWithColor($"[LILO-WebEngine(Running: {e.IsRunning})] - {e.Message}");
+
+                if (e.ListenerContext.Request.Url.LocalPath.TrimStart('/').EndsWith("mp3") || e.Message.EndsWith("mp3"))
+                {
+                    await OpenDynamicPlayer(e.ListenerContext,e.Message);
+                }
+            };
+
+            localServer.OnError += (sender, e) =>
+            {
+                OkDialog.Show("An internal Server Error happend.", e.ErrorFatality.ToString(),DialogIcon.Error);
+            };
         }
         else
         {
             OkDialog.Show(response.ErrorMessage, "InternalServerErrror");
         }
+
+        OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+
 
         foreach (Control item in this.Controls)
         {
@@ -254,16 +279,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         _thManager.ApplyTheme("White");
         _thManager.SaveThemesToJson(Path.Combine(_ThemePath, "default.lcs"));
-
-        foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
-        {
-            procSrv.Kill();
-        }
-
-        proc.Start();
-
-
-        OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
 
         if (config.Default.autoUpdates)
         {
@@ -295,11 +310,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             catch (System.AggregateException ex)
             {
                 ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
-
                 OpenInApp(new uiNetworkError("NetworkError", "The server didnt respond."));
-
                 pnlSide.Visible = false;
-
                 hider.Visible = false;
             }
         }
@@ -330,7 +342,9 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                                          $"Version : {item.Version}\n\n");
                 }
 
-                ConsoleManager.Instance().WriteLineWithColor(stringBuilder.ToString(), ConsoleColor.Cyan);
+                //ConsoleManager.Instance().WriteLineWithColor(stringBuilder.ToString(), ConsoleColor.Cyan);
+
+                ConsoleManager.Instance().WriteLineWithColor($"[PLUGIN-MANAGER] - Plugins Loaded (Count: {plugins.Count} / Errors: 0");
 
             }
             catch (Exception ex)
@@ -339,10 +353,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             }
 
 
-            await dataHandler.InitializeDatabaseAsync(process =>
-            {
-
-            });
+            await dataHandler.InitializeDatabaseAsync(process => { });
 
 
             await v2.Core.FeatureManager.LoadConfigurationAsync();
@@ -565,22 +576,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
     }
 
-    public static void CreateShortcut(string shortcutName, string targetFile)
-    {
-        string shortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + shortcutName + ".lnk";
-
-        IWshShell wshShell = new WshShell();
-        IWshShortcut shortcut = (IWshShortcut)wshShell.CreateShortcut(shortcutPath);
-
-        shortcut.TargetPath = targetFile;
-        shortcut.WorkingDirectory = Path.GetDirectoryName(targetFile);
-        shortcut.WindowStyle = 1; // Normal window
-        shortcut.Description = "Shortcut created using LAB Libary by JW Limited."; // Optional
-        shortcut.IconLocation = targetFile + ",0"; // Optional
-
-        shortcut.Save();
-    }
-
     private async void bntUpdate_Click(object sender, EventArgs e)
     {
         var updater = Updater.Instance();
@@ -598,7 +593,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 {
                     try
                     {
-                        // Call the API to verify and extract the ZIP file
                         updater.VerifyAndExtractZip(zipPath, "8a3a0cecf50f9e4a7387b23d4a4c4e4b3d2bbd8e91edc5729c15f9f1f10c8aaf", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "JW Limited"),
                         progress =>
                         {
@@ -729,9 +723,55 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     #endregion
 
-    public void SetNotification(string title, string Message)
+    public async Task OpenDynamicPlayer(HttpListenerContext con, string fallbackFile)
     {
+        ConsoleManager.Instance().WriteLineWithColor("Opening LocalPlayer with Stream.");
+        try
+        {
+            ConsoleManager.Instance().WriteLineWithColor("[PLAYER.Dynamic] - Requesting Information");
 
+            var mediaPlayer = new uiPlayerDynamic(await MusicPlayerParameters.Get(con.Request.Url.AbsolutePath.TrimStart('/')), uiWebView.Instance(null));
+
+            this.Invoke(delegate
+            {
+                OpenInApp(mediaPlayer);
+                con.Response.Close(); 
+                uiWebView.Instance(null).Invoke(delegate 
+                {
+                    uiWebView.Instance(null).webView21.GoBack(); 
+                });
+            });
+        }
+        catch(Exception ex)
+        {
+            ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkMagenta);
+
+            try
+            {
+                ConsoleManager.Instance().WriteLineWithColor("[PLAYER.Dynamic] - Requesting Fallback - Information");
+
+                var fallback = new uiPlayerDynamic(await MusicPlayerParameters.Get(fallbackFile), uiWebView.Instance(null));
+
+                this.Invoke(delegate
+                {
+                    OpenInApp(fallback);
+                    con.Response.Close();
+                });
+            }
+            catch(Exception ex2)
+            {
+                OkDialog.Show(ex2.Message, "Error: Stream Failure", DialogIcon.Error);
+            }
+
+            
+        }
+        
+    }
+
+    public void SetNotification(string Message)
+    {
+        pnlNotifications.Visible = true;
+        lblMessage_Noti.Text = Message;
     }
 
     private void bntCloseSideBoard_Click(object sender, EventArgs e)
@@ -750,8 +790,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private void bntMenu(object sender, EventArgs e)
     {
-        pnlMenu.Visible = !pnlMenu.Visible;
-        bntMenu_c.Checked = !bntMenu_c.Checked;
+        pnlMenu.Visible     = !pnlMenu.Visible;
+        bntMenu_c.Checked   = !bntMenu_c.Checked;
 
     }
 

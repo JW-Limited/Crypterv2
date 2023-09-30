@@ -421,3 +421,9 @@ LILO-WebEngine/Core/IntitializationResponse.cs
 LILO-WebEngine/Core/Interfaces/ILILOWebService.cs
 LILO-WebEngine/Core/Interfaces/IErrorPageGenerator.cs
 LILO-WebEngine/Core/Handler/ErrorHandler.cs
+LILO-WebEngine/Core/Interfaces/ILILOHtmlGenerator.cs
+LILO-WebEngine/Core/Interfaces/ILILOServerOptions.cs
+LILO-WebEngine/Core/Service/LocalErrorEventArgs.cs
+LILO-WebEngine/Core/Service/LocalErrorFatality.cs
+LILO-WebEngine/Core/Service/LocalServer.Filter.cs
+LILO-WebEngine/Core/Service/LocalServerEventArgs.cs

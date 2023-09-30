@@ -61,7 +61,7 @@ namespace LILO_Packager.v2 {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool autoUpdates {
             get {
                 return ((bool)(this["autoUpdates"]));

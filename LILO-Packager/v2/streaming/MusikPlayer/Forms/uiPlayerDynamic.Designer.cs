@@ -44,6 +44,7 @@
             label1 = new Label();
             imgImage = new Guna.UI2.WinForms.Guna2Panel();
             progTurner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             pnlCover_Blurred.SuspendLayout();
             pnlSplashScreen.SuspendLayout();
             SuspendLayout();
@@ -276,6 +277,7 @@
             pnlSplashScreen.Controls.Add(label1);
             pnlSplashScreen.Controls.Add(imgImage);
             pnlSplashScreen.Controls.Add(progTurner);
+            pnlSplashScreen.Controls.Add(guna2Panel1);
             pnlSplashScreen.FillColor = Color.Transparent;
             pnlSplashScreen.Location = new Point(0, 0);
             pnlSplashScreen.Margin = new Padding(2);
@@ -309,13 +311,15 @@
             imgImage.Location = new Point(456, 288);
             imgImage.Margin = new Padding(2);
             imgImage.Name = "imgImage";
+            imgImage.ShadowDecoration.BorderRadius = 100;
             imgImage.ShadowDecoration.Color = Color.DarkGray;
-            imgImage.ShadowDecoration.Depth = 100;
+            imgImage.ShadowDecoration.Depth = 60;
             imgImage.ShadowDecoration.Enabled = true;
             imgImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             imgImage.ShadowDecoration.Shadow = new Padding(7);
             imgImage.Size = new Size(56, 56);
             imgImage.TabIndex = 31;
+            imgImage.Visible = false;
             // 
             // progTurner
             // 
@@ -327,6 +331,26 @@
             progTurner.Size = new Size(160, 152);
             progTurner.TabIndex = 30;
             progTurner.UseTransparentBackground = true;
+            // 
+            // guna2Panel1
+            // 
+            guna2Panel1.Anchor = AnchorStyles.None;
+            guna2Panel1.BackColor = Color.Transparent;
+            guna2Panel1.BackgroundImage = Properties.Resources.image_removebg_preview__2_;
+            guna2Panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            guna2Panel1.BorderColor = SystemColors.ActiveCaptionText;
+            guna2Panel1.BorderRadius = 30;
+            guna2Panel1.FillColor = Color.White;
+            guna2Panel1.Location = new Point(376, 200);
+            guna2Panel1.Margin = new Padding(2);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.BorderRadius = 30;
+            guna2Panel1.ShadowDecoration.Color = Color.DarkGray;
+            guna2Panel1.ShadowDecoration.Depth = 10;
+            guna2Panel1.ShadowDecoration.Enabled = true;
+            guna2Panel1.ShadowDecoration.Shadow = new Padding(7);
+            guna2Panel1.Size = new Size(216, 224);
+            guna2Panel1.TabIndex = 42;
             // 
             // uiPlayerDynamic
             // 
@@ -371,5 +395,6 @@
         private Guna.UI2.WinForms.Guna2WinProgressIndicator progTurner;
         private Guna.UI2.WinForms.Guna2Button bntCollapse;
         private Guna.UI2.WinForms.Guna2Button bntCollapse_1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
     }
 }
