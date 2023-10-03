@@ -153,7 +153,7 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
                 });
 
                 var info = new FileInfo(playerParameters.Source);
-                await dbTasks.InsertSongAsync(playerParameters.Title, string.Join(", ", playerParameters.Artists), playerParameters.Source, info.Name.Remove(5));
+                await dbTasks.InsertSongAsync(new SongEntry(int.Parse(info.Name.Remove(5)), playerParameters.Title, string.Join(", ", playerParameters.Artists), playerParameters.Source));
                 pnlSplash.Visible = false;
             }
             catch (Exception ex)

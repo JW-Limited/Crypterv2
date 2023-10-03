@@ -2,6 +2,7 @@
 using LILO.Shell;
 using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.Interfaces;
+using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.shared;
 using LILO_Packager.v2.streaming.MusikPlayer.Core;
 using SharpDX.MediaFoundation;
@@ -39,13 +40,26 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
         public static MediaEngineEx mediaEngineEx;
         Form _GoBackUi;
 
-        
+        public enum DynamicPlayerOpendedForm
+        {
+            LocalHistoryQuery = 4,
+            LILO_WebEngine = 8,
+            BrowserQuery = 16
+        }
 
-        public uiPlayerDynamic(Core.MusicPlayerParameters para, Form previousUI = null)
+        public uiPlayerDynamic(Core.MusicPlayerParameters para, Form previousUI = null, DynamicPlayerOpendedForm openedFrom = DynamicPlayerOpendedForm.LocalHistoryQuery)
         {
             InitializeComponent();
             bntCollapse.Visible = config.Default.experimentsEnabled;
-            _GoBackUi = previousUI;
+
+            if(openedFrom is not DynamicPlayerOpendedForm.LILO_WebEngine or DynamicPlayerOpendedForm.BrowserQuery)
+            {
+                _GoBackUi = previousUI;
+            }
+            else if(openedFrom is DynamicPlayerOpendedForm.LILO_WebEngine)
+            {
+                _GoBackUi = uiHistory.Instance();
+            }
 
             PlayerThread = new Thread(() =>
             {
@@ -178,7 +192,13 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
                 });
 
                 var info = new FileInfo(_Parameters.Source);
-                await dbTasks.InsertSongAsync(_Parameters.Title, string.Join(", ", _Parameters.Artists), _Parameters.Source, info.Name.Remove(5));
+                await dbTasks.InsertSongAsync(
+                    new SongEntry(
+                        //new SongID(_Parameters.Source).GetId(), 
+                        FileIdentifier.GenerateIdentifier(_Parameters.Source),
+                        _Parameters.Title,
+                        string.Join(", ", _Parameters.Artists), 
+                        _Parameters.Source));
 
 
                 pnlCover.BackgroundImage = _Parameters.Cover;

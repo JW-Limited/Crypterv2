@@ -1,12 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LILO_Packager.v2.Core
 {
+    [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
     public class FeatureManager
     {
         private static readonly string ConfigFilePath = Path.Combine(Application.CommonAppDataPath ,"FeatureManager.dll");
@@ -78,27 +80,25 @@ namespace LILO_Packager.v2.Core
                 MessageBox.Show($"Error saving configuration: {ex.Message}");
             }
         }
-    }
 
-    public static class FeatureFlagEvents
-    {
-        public static event EventHandler<FeatureFlagUpdateEventArgs> FeatureFlagUpdateRequested;
-
-        public static void OnFeatureFlagUpdateRequested(FeatureFlags feature, bool isEnabled)
+        public override bool Equals(object? obj)
         {
-            FeatureFlagUpdateRequested?.Invoke(null, new FeatureFlagUpdateEventArgs(feature, isEnabled));
+            return base.Equals(obj);
         }
-    }
 
-    public class FeatureFlagUpdateEventArgs : EventArgs
-    {
-        public FeatureFlags Flag { get; }
-        public bool NewValue { get; }
-
-        public FeatureFlagUpdateEventArgs(FeatureFlags flag, bool newValue)
+        public override int GetHashCode()
         {
-            Flag = flag;
-            NewValue = newValue;
+            return base.GetHashCode();
+        }
+
+        public override string? ToString()
+        {
+            return "A FeatureManager for Crypterv2 Flags";
+        }
+
+        private string GetDebuggerDisplay()
+        {
+            return ToString();
         }
     }
 }

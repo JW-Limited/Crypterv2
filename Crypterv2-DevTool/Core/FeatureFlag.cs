@@ -5,11 +5,11 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using LILO_Packager.v2.Core.Interfaces;
-using LILO_Packager.v2.Core;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using Newtonsoft.Json;
+using LILO_Packager.v2.Core.Flags;
 
 namespace Crypterv2_DevTool.Core
 {

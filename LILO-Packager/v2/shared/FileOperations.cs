@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LILO_Packager.v2.shared;
+
+[DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 public class FileOperations
 {
     public string GetFileFromDialog()
@@ -41,5 +44,10 @@ public class FileOperations
         }
 
         else { return null; }
+    }
+
+    public string GetDebuggerDisplay()
+    {
+        return ToString();
     }
 }

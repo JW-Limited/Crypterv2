@@ -8,7 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LILO_Packager.v2.Core.Debug;
+using LILO_Packager.v2.Core.BugBarrier;
+using LILO_Packager.v2.Core.BugBarrier.Types;
 
 namespace LILO_Packager.v2.Forms
 {

@@ -66,7 +66,8 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Core
                 var cover = tag.Tag.Pictures[0];
                 return new Bitmap(new MemoryStream(cover.Data.Data));
             }
-            return Properties.Resources.Lock; 
+
+            return Properties.Resources.no_cover1; 
         }
 
         private static string[] GetArtists(TagLib.File tag)

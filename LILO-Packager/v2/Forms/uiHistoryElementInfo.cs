@@ -203,7 +203,7 @@ namespace LILO_Packager.v2.Forms
 
         private void bntOpenDirectory(object sender, EventArgs e)
         {
-            MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/" + _file.outputFileName.Replace(new FileInfo(_file.outputFileName).Name, ""))));
+            MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri($"http://localhost:{MainHost.Instance().Port}/" + _file.outputFileName.Replace(new FileInfo(_file.outputFileName).Name, ""))));
         }
 
         private async void bntPreview_Click(object sender, EventArgs e)

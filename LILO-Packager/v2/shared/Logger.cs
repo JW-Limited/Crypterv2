@@ -7,13 +7,17 @@ using System.Threading.Tasks;
 
 namespace LILO_Packager.v2.shared
 {
-    public class Logger
+
+    public class Logger : ILILOLogger
     {
         private static readonly Lazy<Logger> lazyInstance = new Lazy<Logger>(() => new Logger());
         private readonly string logFilePath;
         private readonly ConcurrentQueue<string> logQueue = new ConcurrentQueue<string>();
         private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
         public static Logger Instance => lazyInstance.Value;
+
+        string ILILOLogger.logFilePath => this.logFilePath;
+
         private Logger()
         {
             var _sessionId = GenerateSessionId();
@@ -87,6 +91,11 @@ namespace LILO_Packager.v2.shared
         public void ClearLog()
         {
             File.Delete(logFilePath);
+        }
+
+        public void Log(string message, global::LogLevel logLevel = global::LogLevel.Info)
+        {
+            throw new NotImplementedException();
         }
 
         public enum LogLevel

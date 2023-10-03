@@ -10,6 +10,7 @@ using Telerik.WinControls.Commands;
 using CommandLine;
 using Windows.Globalization;
 using CommandLine.Text;
+using LILO_Packager.v2.Core.Debug.Types;
 
 namespace LILO_Packager.v2.Core.Boot
 {
@@ -53,31 +54,11 @@ namespace LILO_Packager.v2.Core.Boot
                 });
         }
 
-        private void HandleParsedOptions(CommandLineOptions options)
-        {
-            if (!File.Exists(options.FilePath))
-            {
-                HandleFileNotFound(options.FilePath);
-                return;
-            }
-
-            if (options.ViewMode == ViewMode.Encrypted)
-            {
-                HandleEncryptedFile(options.FilePath);
-            }
-            else if (options.ViewMode == ViewMode.DebugSessionLog)
-            {
-                HandleDebugSessionLogFile(options.FilePath);
-            }
-            else
-            {
-                HandleUnknownViewMode(options.FilePath);
-            }
-        }
-
         private void HandleFileNotFound(string filePath)
         {
+            ConsoleManager.Instance().ShowConsoleWindow();
             ConsoleManager.Instance().WriteLineWithColor($"File not found: {filePath}", ConsoleColor.Red);
+            Console.ReadKey();
         }
 
         private void HandleEncryptedFile(string filePath)
@@ -110,6 +91,11 @@ namespace LILO_Packager.v2.Core.Boot
         private void HandleUnknownFile(string filePath)
         {
             ConsoleManager.Instance().WriteLineWithColor($"Unknown file type: {filePath}", ConsoleColor.Yellow);
+            ConsoleManager.Instance().WriteLineWithColor("Started with Arguments: Opening DecryptionPopupDialog", ConsoleColor.DarkGreen);
+
+            DecryptedFile file = new DecryptedFile(filePath);
+            var decryptionUI = uiArgumentStart_Encrypt.Instance(file);
+            Application.Run(decryptionUI);
         }
 
         private void HandleUnknownViewMode(string filePath)
@@ -132,8 +118,9 @@ namespace LILO_Packager.v2.Core.Boot
                     break;
                 }
             }
-
+            ConsoleManager.Instance().ShowConsoleWindow();
             ConsoleManager.Instance().WriteLineWithColor(helpText.ToString(), ConsoleColor.Red);
+            Console.ReadKey();
         }
     }
 }

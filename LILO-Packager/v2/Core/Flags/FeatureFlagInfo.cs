@@ -8,7 +8,7 @@ using LILO_Packager.v2.Core;
 namespace LILO_Packager.v2.Core
 {
     [Serializable]
-    public class FeatureFlagInfo
+    public class FeatureFlagInfo : IFeatureFlagInfo
     {
         public FeatureFlags Feature { get; }
         public bool IsEnabled { get; }

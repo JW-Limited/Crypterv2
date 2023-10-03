@@ -39,7 +39,7 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Core
             }
         }
 
-        public async Task InsertSongAsync(string titleInsert, string artist, string place, string id)
+        public async Task InsertSongAsync(ISongEntry song)
         {
             using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
             {
@@ -48,10 +48,10 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Core
                 string insertSql = "INSERT INTO PlayedSongs (Id, Name, Artist, Place) VALUES (@id, @titleInsert, @artist, @place)";
                 using (SQLiteCommand insertRowCommand = new SQLiteCommand(insertSql, connection))
                 {
-                    insertRowCommand.Parameters.AddWithValue("@id", id);
-                    insertRowCommand.Parameters.AddWithValue("@titleInsert", titleInsert);
-                    insertRowCommand.Parameters.AddWithValue("@artist", artist);
-                    insertRowCommand.Parameters.AddWithValue("@place", place);
+                    insertRowCommand.Parameters.AddWithValue("@id", song.Id);
+                    insertRowCommand.Parameters.AddWithValue("@titleInsert", song.Title ?? "");
+                    insertRowCommand.Parameters.AddWithValue("@artist", song.Artist);
+                    insertRowCommand.Parameters.AddWithValue("@place", song.Place);
 
                     await insertRowCommand.ExecuteNonQueryAsync();
                 }

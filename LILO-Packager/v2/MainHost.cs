@@ -39,6 +39,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     public Action<bool> isEnabling;
     private static MainHost instance;
     private TcpListener listener;
+    public int Port = 8080;
     public PluginManager manager = null;
     public User loggedInUser;
     public string _ThemePath = Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "themes");
@@ -66,7 +67,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             { FeatureFlags.HistoryElementQuering.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering) }
         };
 
-
+        GetHashCode();
         return featureValues;
     }
 
@@ -230,7 +231,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         var response  = await localServer.Initialization(new LILO_WebEngine.Core.Service.LocalServerOptions()
         {
-            Port = new LILO_WebEngine.Core.Port()
+            Port = new LILO_WebEngine.Shared.Port()
             {
                 Default = 8080,
                 FallBack = 8090
@@ -244,9 +245,13 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         if (response.SuccessFull)
         {
             var running = await localServer.Start();
+            Port = response.Port;
+
             localServer.OnLocalServerRequest += async (sender, e) =>
             {
                 ConsoleManager.Instance().WriteLineWithColor($"[LILO-WebEngine(Running: {e.IsRunning})] - {e.Message}");
+
+
 
                 if (e.ListenerContext.Request.Url.LocalPath.TrimStart('/').EndsWith("mp3") || e.Message.EndsWith("mp3"))
                 {
@@ -264,8 +269,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             OkDialog.Show(response.ErrorMessage, "InternalServerErrror");
         }
 
-        OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
-
+        OpenInApp(v2.Forms.uiWebView.Instance(new Uri($"http://localhost:{Port}")));
 
         foreach (Control item in this.Controls)
         {
@@ -405,7 +409,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private void guna2Button5_Click(object sender, EventArgs e)
     {
-        OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/help/")));
+        OpenInApp(v2.Forms.uiWebView.Instance(new Uri($"http://localhost:{Port}/help/")));
         //OpenInApp(new uiNews());
     }
 
@@ -458,7 +462,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private void guna2Button1_Click(object sender, EventArgs e)
     {
-        OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+        OpenInApp(v2.Forms.uiWebView.Instance(new Uri($"http://localhost:{Port}")));
     }
 
     private void guna2Button4_Click(object sender, EventArgs e)
@@ -726,20 +730,17 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     public async Task OpenDynamicPlayer(HttpListenerContext con, string fallbackFile)
     {
         ConsoleManager.Instance().WriteLineWithColor("Opening LocalPlayer with Stream.");
+
         try
         {
             ConsoleManager.Instance().WriteLineWithColor("[PLAYER.Dynamic] - Requesting Information");
 
-            var mediaPlayer = new uiPlayerDynamic(await MusicPlayerParameters.Get(con.Request.Url.AbsolutePath.TrimStart('/')), uiWebView.Instance(null));
+            var mediaPlayer = new uiPlayerDynamic(await MusicPlayerParameters.Get(con.Request.Url.AbsolutePath.TrimStart('/')),null,uiPlayerDynamic.DynamicPlayerOpendedForm.LILO_WebEngine);
 
             this.Invoke(delegate
             {
                 OpenInApp(mediaPlayer);
-                con.Response.Close(); 
-                uiWebView.Instance(null).Invoke(delegate 
-                {
-                    uiWebView.Instance(null).webView21.GoBack(); 
-                });
+                con.Response.Close();
             });
         }
         catch(Exception ex)
@@ -750,7 +751,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             {
                 ConsoleManager.Instance().WriteLineWithColor("[PLAYER.Dynamic] - Requesting Fallback - Information");
 
-                var fallback = new uiPlayerDynamic(await MusicPlayerParameters.Get(fallbackFile), uiWebView.Instance(null));
+                var fallback = new uiPlayerDynamic(await MusicPlayerParameters.Get(fallbackFile));
 
                 this.Invoke(delegate
                 {

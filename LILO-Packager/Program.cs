@@ -1,7 +1,6 @@
 using LILO_Packager.v2;
 using LILO_WebEngine;
 using LILO_Packager.v2.Core.Boot;
-using LILO_Packager.v2.Core.Debug;
 using LILO_Packager.v2.Core.Updates;
 using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.shared;
@@ -9,6 +8,7 @@ using Microsoft.Win32;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
+using LILO_Packager.v2.Core.BugBarrier;
 
 namespace LILO_Packager
 {
@@ -16,7 +16,7 @@ namespace LILO_Packager
     {
         public static int DefaultEnvironment = 0;
         public static NotifyIcon noty;
-        public static string Version = "v0.9.6-dev_edition";
+        public static string Version = "v0.9.7-dev_edition";
 
         private static void InitializeApplication()
         {

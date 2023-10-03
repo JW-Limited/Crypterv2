@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using LILO_Packager.v2.plugins.PluginCore;
 
 namespace LILO_Packager.v2.plugins.Model;
-public class PluginEntry
+public class PluginEntry : IPluginEntry
 {
     //IDs : Importancy
     //--------------------
@@ -16,7 +16,7 @@ public class PluginEntry
 
     public String Name
     {
-        get; set; 
+        get; set;
     }
 
     public PluginID ID
@@ -31,12 +31,12 @@ public class PluginEntry
 
     public String Description
     {
-        get; set; 
+        get; set;
     }
 
     public String Type
     {
-        get; set; 
+        get; set;
     }
 
 
@@ -47,10 +47,10 @@ public class PluginEntry
 
     IPluginBase plugin = null;
 
-    public Form form 
+    public Form form
     {
-        get; 
-        set; 
+        get;
+        set;
     }
 
     public PluginEntry(IPluginBase p)
@@ -63,8 +63,8 @@ public class PluginEntry
         this.Version = p.Version;
 
         var response = plugin.Initialize(null);
-        
-        if(response != null)
+
+        if (response != null)
         {
             if (response.HasError)
             {
@@ -76,7 +76,7 @@ public class PluginEntry
 
                 //form = (UserControl)plugin.DynamicValues[0];
             }
-        }  
-       
+        }
+
     }
 }

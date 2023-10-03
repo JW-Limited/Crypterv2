@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LILO_Packager.v2.shared
 {
-    public class GuidUtility
+    public class GuidUtilityBase
     {
         public static Guid CreateGuidForSession(DateTime sessionDateTime, string sessionId, string userId, string userRights)
         {
@@ -51,6 +51,11 @@ namespace LILO_Packager.v2.shared
 
             return (sessionDateTime, sessionId, userId, userRights);
         }
+    }
+
+    public class GuidUtility : GuidUtilityBase
+    {
+        public GuidUtility() { }
     }
 
 }

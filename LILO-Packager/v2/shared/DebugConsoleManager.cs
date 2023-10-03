@@ -11,7 +11,7 @@ namespace LILO_Packager.v2.shared
     using System.IO;
     using System.Runtime.InteropServices;
 
-    public class ConsoleManager
+    public class ConsoleManager : IConsoleManager
     {
         private string _sessionId;
         private static bool _consoleAllocated = false;
@@ -93,7 +93,7 @@ namespace LILO_Packager.v2.shared
 
         public void Log(string message, Logger.LogLevel level = Logger.LogLevel.Info)
         {
-            Logger.Instance.Log($"{message}",level);
+            Logger.Instance.Log($"{message}", level);
         }
 
         public void EndSession()

@@ -18,7 +18,7 @@ namespace LILO_Packager.v2.Core
         HistoryElementQuering
     }
 
-    public class FeatureFlagConfig
+    public class FeatureFlagConfig : IFeatureFlagConfig
     {
         public bool NewEncryptionCore { get; set; } = true;
         public bool PluginSupport { get; set; } = true;

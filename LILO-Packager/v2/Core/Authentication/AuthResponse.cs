@@ -90,8 +90,6 @@ namespace LILO_Packager.v2.Core.Authentication
 
         }
 
-
-
         public static Uri GetAutenticationURI(string clientId, string redirectUri)
         {
             string scopes = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
