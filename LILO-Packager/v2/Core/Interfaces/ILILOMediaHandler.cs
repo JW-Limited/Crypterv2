@@ -1,4 +1,5 @@
-﻿using SharpDX.MediaFoundation;
+﻿using LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core;
+using SharpDX.MediaFoundation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace LILO_Packager.v2.Core.Interfaces
 {
     public interface ILILOMediaHandler
     {
-        streaming.MusikPlayer.Core.MusicPlayerParameters Parameters { get; }
+        MusicPlayerParameters Parameters { get; }
         bool IsPaused { get; }
         bool IsMusicStopped { get; }
         TimeSpan CurrentTime { get; }

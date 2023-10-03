@@ -77,7 +77,7 @@ public partial class PluginInterface : Form
             try
             {
                 if(PluginBase._thManager is not null)
-                    PluginBase._thManager.RegisterControl(c, LILO_Packager.v2.Core.ColorManager.ThemeManager.ModeType.Light, Color.White, Color.Black);
+                    PluginBase._thManager.RegisterControl(c, LILO_Packager.v2.Core.Visuals.ThemeManager.ModeType.Light, Color.White, Color.Black);
             }
             catch(Exception ex)
             {

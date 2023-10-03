@@ -3,6 +3,7 @@ using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.plugins.Model;
 using LILO_Packager.v2.plugins.PluginCore;
 using LILO_Packager.v2.shared;
+using LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -251,7 +252,7 @@ namespace LILO_Packager.v2.Forms
                     this.Hide();
                 };
 
-                var para = await streaming.MusikPlayer.Core.MusicPlayerParameters.Get(_file.outputFileName);
+                var para = await MusicPlayerParameters.Get(_file.outputFileName);
                 //var mediaInstance = streaming.MusikPlayer.Forms.uiPlayer.Instance(para, true);
                 var mediaInstance = new streaming.MusikPlayer.Forms.uiPlayerDynamic(para, this);
                 MainHost.Instance().OpenInApp(mediaInstance);

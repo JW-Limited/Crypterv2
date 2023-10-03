@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using LILO_Packager.v2.shared;
 using Newtonsoft.Json;
 
-namespace LILO_Packager.v2.Core.ColorManager
+namespace LILO_Packager.v2.Core.Visuals
 {
     public class ThemeManager
     {

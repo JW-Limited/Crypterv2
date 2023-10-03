@@ -43,6 +43,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="v2\Secure\**" />
+    <EmbeddedResource Remove="v2\Secure\**" />
+    <None Remove="v2\Secure\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="open_external.ico" />
     <None Remove="sync.ico" />
   </ItemGroup>
@@ -126,7 +132,7 @@
     <Compile Update="v2\Forms\uiNetworkError.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="v2\streaming\MusikPlayer\Forms\uiPlayer.cs">
+    <Compile Update="v2\Shared\Streaming\MusikPlayer\Forms\uiPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -161,10 +167,6 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>config.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="v2\Secure\Forms\" />
   </ItemGroup>
 
   <ItemGroup>

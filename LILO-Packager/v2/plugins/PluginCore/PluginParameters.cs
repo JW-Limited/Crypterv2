@@ -1,4 +1,4 @@
-﻿using LILO_Packager.v2.Core.ColorManager;
+﻿using LILO_Packager.v2.Core.Visuals;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;

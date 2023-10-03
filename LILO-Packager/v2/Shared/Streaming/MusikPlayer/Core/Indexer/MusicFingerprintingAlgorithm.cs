@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace LILO_Packager.v2.streaming.MusikPlayer.Core.Indexer
+namespace LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core.Indexer
 {
     public class MusicFingerprintingAlgorithm : IMusicFingerprintingAlgorithm
     {

@@ -3,7 +3,7 @@ using LILO_Packager.v2.Core.Interfaces;
 using LILO_Packager.v2.Core.LILO;
 using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.Core.Updates;
-using LILO_Packager.v2.Core.ColorManager;
+using LILO_Packager.v2.Core.Visuals;
 using LILO_Packager.v2.shared;
 using LILO_Packager.v2.plugins.PluginCore;
 using LILO_Packager.v2.plugins.Model;
@@ -17,7 +17,7 @@ using srvlocal_gui.AppMananger;
 using IWshRuntimeLibrary;
 using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.streaming.MusikPlayer.Forms;
-using LILO_Packager.v2.streaming.MusikPlayer.Core;
+using LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
@@ -811,7 +811,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     {
         OpenFileDialog ofd = new OpenFileDialog();
         ofd.ShowDialog();
-        OpenInApp(new streaming.MusikPlayer.Forms.uiPlayer(await streaming.MusikPlayer.Core.MusicPlayerParameters.Get(ofd.FileName),false));
+        OpenInApp(new streaming.MusikPlayer.Forms.uiPlayer(await MusicPlayerParameters.Get(ofd.FileName),false));
         bntMenu(sender, e);
     }
 

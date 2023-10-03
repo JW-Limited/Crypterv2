@@ -407,6 +407,7 @@ LILO-Packager/v2/Forms/uiHistoryElementInfo.cs
 LILO-Packager/v2/Forms/uiHistory.cs
 LILO-Packager/v2/Core/Service/Services.cs
 LILO-Packager/v2/Core/LILO/User.cs
+LILO-Packager/v2/Core/BugBarrier
 LILO-WebEngine/LILO-WebEngine.csproj
 LILO-WebEngine/Core/Service/LocalServerOptions.cs
 LILO-WebEngine/Core/Service/LocalServer.cs

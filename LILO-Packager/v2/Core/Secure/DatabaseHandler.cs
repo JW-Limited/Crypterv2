@@ -5,7 +5,7 @@ using System.Data.SQLite;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace LILO_Packager.v2.Core.Secure
+namespace LILO_Packager.v2.Core.Keys
 {
     public class DatabaseHandler : IDatabaseHandler
     {

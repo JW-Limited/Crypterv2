@@ -1,4 +1,4 @@
-﻿using LILO_Packager.v2.Core.ColorManager;
+﻿using LILO_Packager.v2.Core.Visuals;
 using LILO_Packager.v2.Core.Updates;
 using LILO_Packager.v2.plugins.PluginCore;
 using System.Collections.ObjectModel;
