@@ -5,8 +5,10 @@
   <p style="color: white;">But please keep in mind its still in early alpha and in development.</p>
 </div>
 
+## 📜 Cloning 
+**If you want to Clone the repo [EMAIL ME](mailto:kidjjoe@duck.com) for a full Link with all the CODE (EN and DECRYPT Algorythems along with Algorythems arent on Github)**
 
-## 🚀 Features
+## 🚀 Features  
 
 - **Strong Encryption**: Utilizes state-of-the-art encryption techniques to safeguard your data.
 - **User-Friendly Interface**: Intuitive and easy-to-use interface for both beginners and experts.
