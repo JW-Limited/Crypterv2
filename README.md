@@ -11,8 +11,6 @@
   <p style="color: white;"></p>
   <a href="https://sourceforge.net/projects/crypterv2/files/latest/download"><img alt="Download Crypterv2" src="https://img.shields.io/sourceforge/dt/crypterv2.svg" ></a>
 
-  
-<a href="https://sourceforge.net/p/crypterv2/"><img alt="Download Crypterv2" src="https://sourceforge.net/sflogo.php?type=17&group_id=3682137" width=200></a>
 
 
 
