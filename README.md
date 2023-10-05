@@ -1,6 +1,6 @@
 <div align="center" style="background-color: #1E90FF; padding: 20px;">
   <img src="LILO-Packager/favico.ico" alt="CrypterV2 Logo" width="150">
-  <h1 style="color: white;">CrypterV2 </h1> 
+  <h1 style="color: white;" href="https://sourceforge.net/projects/crypterv2/"> CrypterV2 </h1> 
   <p style="color: white;">Aes 256 based - Lightweight, Extandeble and easy to use.</p>
   <p style="color: white;">But please keep in mind its still in early alpha and in development.</p>
   
