@@ -14,6 +14,7 @@ using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Core.Keys;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.plugins.Model;
+using LILO_Packager.v2.Shared.Api.Core;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiEncryt : Form
@@ -160,6 +161,7 @@ public partial class uiEncryt : Form
     private void uiEncryt_Load(object sender, EventArgs e)
     {
         MarkStatus(TaskStatus.FileChoose);
+        
     }
 
     private void bntOpen_Click(object sender, EventArgs e)

@@ -66,7 +66,7 @@ namespace LILO_Packager.v2.Forms
 
         private async void bntRefrewsh(object sender, EventArgs e)
         {
-            string markdownText = await Updater.Instance().GetLatestChanges(MainHost.Instance().owner, MainHost.Instance().repo);
+            string markdownText = await Updater.Instance().GetLatestChanges(MainHost.Instance().Owner, MainHost.Instance().Repository);
             string html = CommonMarkConverter.Convert(markdownText);
             richText.Text = html;
         }

@@ -28,7 +28,7 @@ partial class MainHost
     /// </summary>
     private void InitializeComponent()
     {
-        Guna.UI2.AnimatorNS.Animation animation2 = new Guna.UI2.AnimatorNS.Animation();
+        Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
         hider = new Sipaa.Framework.SPanel();
         bntAccount = new Guna.UI2.WinForms.Guna2Button();
@@ -68,6 +68,10 @@ partial class MainHost
         pnlLoading = new Panel();
         progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
         panel1 = new Panel();
+        pnlNotiv2 = new Guna.UI2.WinForms.Guna2Panel();
+        bntNotiv2 = new Guna.UI2.WinForms.Guna2Button();
+        txtNotiv2 = new Label();
+        label5 = new Label();
         hider.SuspendLayout();
         pnlMenu.SuspendLayout();
         sPanel1.SuspendLayout();
@@ -78,6 +82,7 @@ partial class MainHost
         pnlMes1.SuspendLayout();
         pnlNothing.SuspendLayout();
         pnlLoading.SuspendLayout();
+        pnlNotiv2.SuspendLayout();
         SuspendLayout();
         // 
         // hider
@@ -480,26 +485,27 @@ partial class MainHost
         // 
         guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Custom;
         guna2Transition1.Cursor = null;
-        animation2.AnimateOnlyDifferences = true;
-        animation2.BlindCoeff = (PointF)resources.GetObject("animation2.BlindCoeff");
-        animation2.LeafCoeff = 0F;
-        animation2.MaxTime = 1F;
-        animation2.MinTime = 0F;
-        animation2.MosaicCoeff = (PointF)resources.GetObject("animation2.MosaicCoeff");
-        animation2.MosaicShift = (PointF)resources.GetObject("animation2.MosaicShift");
-        animation2.MosaicSize = 0;
-        animation2.Padding = new Padding(0);
-        animation2.RotateCoeff = 0F;
-        animation2.RotateLimit = 0F;
-        animation2.ScaleCoeff = (PointF)resources.GetObject("animation2.ScaleCoeff");
-        animation2.SlideCoeff = (PointF)resources.GetObject("animation2.SlideCoeff");
-        animation2.TimeCoeff = 0F;
-        animation2.TransparencyCoeff = 1F;
-        guna2Transition1.DefaultAnimation = animation2;
+        animation1.AnimateOnlyDifferences = true;
+        animation1.BlindCoeff = (PointF)resources.GetObject("animation1.BlindCoeff");
+        animation1.LeafCoeff = 0F;
+        animation1.MaxTime = 1F;
+        animation1.MinTime = 0F;
+        animation1.MosaicCoeff = (PointF)resources.GetObject("animation1.MosaicCoeff");
+        animation1.MosaicShift = (PointF)resources.GetObject("animation1.MosaicShift");
+        animation1.MosaicSize = 0;
+        animation1.Padding = new Padding(0);
+        animation1.RotateCoeff = 0F;
+        animation1.RotateLimit = 0F;
+        animation1.ScaleCoeff = (PointF)resources.GetObject("animation1.ScaleCoeff");
+        animation1.SlideCoeff = (PointF)resources.GetObject("animation1.SlideCoeff");
+        animation1.TimeCoeff = 0F;
+        animation1.TransparencyCoeff = 1F;
+        guna2Transition1.DefaultAnimation = animation1;
         guna2Transition1.Interval = 1;
         // 
         // pnlChild
         // 
+        pnlChild.Controls.Add(pnlNotiv2);
         pnlChild.Controls.Add(pnlNoti);
         guna2Transition1.SetDecoration(pnlChild, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlChild.Dock = DockStyle.Fill;
@@ -520,8 +526,8 @@ partial class MainHost
         pnlNoti.Controls.Add(lblMessage_Noti);
         pnlNoti.Controls.Add(label4);
         guna2Transition1.SetDecoration(pnlNoti, Guna.UI2.AnimatorNS.DecorationType.None);
-        pnlNoti.FillColor = Color.Crimson;
-        pnlNoti.Location = new Point(24, 841);
+        pnlNoti.FillColor = Color.FromArgb(94, 148, 255);
+        pnlNoti.Location = new Point(24, 808);
         pnlNoti.Margin = new Padding(2);
         pnlNoti.Name = "pnlNoti";
         pnlNoti.ShadowDecoration.BorderRadius = 20;
@@ -583,7 +589,7 @@ partial class MainHost
         label4.BackColor = Color.Transparent;
         guna2Transition1.SetDecoration(label4, Guna.UI2.AnimatorNS.DecorationType.None);
         label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-        label4.ForeColor = Color.White;
+        label4.ForeColor = Color.LightGray;
         label4.Location = new Point(664, -8);
         label4.Margin = new Padding(4, 0, 4, 0);
         label4.Name = "label4";
@@ -892,6 +898,89 @@ partial class MainHost
         panel1.TabIndex = 18;
         panel1.Visible = false;
         // 
+        // pnlNotiv2
+        // 
+        pnlNotiv2.Anchor = AnchorStyles.Bottom;
+        pnlNotiv2.BackColor = Color.Transparent;
+        pnlNotiv2.BorderColor = Color.LightGray;
+        pnlNotiv2.BorderRadius = 15;
+        pnlNotiv2.BorderThickness = 2;
+        pnlNotiv2.Controls.Add(bntNotiv2);
+        pnlNotiv2.Controls.Add(txtNotiv2);
+        pnlNotiv2.Controls.Add(label5);
+        guna2Transition1.SetDecoration(pnlNotiv2, Guna.UI2.AnimatorNS.DecorationType.None);
+        pnlNotiv2.FillColor = Color.FromArgb(94, 148, 255);
+        pnlNotiv2.Location = new Point(408, 24);
+        pnlNotiv2.Margin = new Padding(2);
+        pnlNotiv2.Name = "pnlNotiv2";
+        pnlNotiv2.ShadowDecoration.BorderRadius = 20;
+        pnlNotiv2.ShadowDecoration.Color = Color.DarkGray;
+        pnlNotiv2.ShadowDecoration.Depth = 10;
+        pnlNotiv2.ShadowDecoration.Shadow = new Padding(7);
+        pnlNotiv2.Size = new Size(496, 104);
+        pnlNotiv2.TabIndex = 4;
+        pnlNotiv2.Visible = false;
+        // 
+        // bntNotiv2
+        // 
+        bntNotiv2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+        bntNotiv2.Animated = true;
+        bntNotiv2.BackColor = Color.Transparent;
+        bntNotiv2.BackgroundImageLayout = ImageLayout.Zoom;
+        bntNotiv2.BorderColor = Color.Gainsboro;
+        bntNotiv2.BorderRadius = 10;
+        guna2Transition1.SetDecoration(bntNotiv2, Guna.UI2.AnimatorNS.DecorationType.None);
+        bntNotiv2.DisabledState.BorderColor = Color.DarkGray;
+        bntNotiv2.DisabledState.CustomBorderColor = Color.DarkGray;
+        bntNotiv2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        bntNotiv2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        bntNotiv2.FillColor = Color.Transparent;
+        bntNotiv2.FocusedColor = Color.FromArgb(100, 170, 209);
+        bntNotiv2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        bntNotiv2.ForeColor = Color.White;
+        bntNotiv2.ImageAlign = HorizontalAlignment.Left;
+        bntNotiv2.ImageSize = new Size(35, 35);
+        bntNotiv2.Location = new Point(352, 24);
+        bntNotiv2.Margin = new Padding(2);
+        bntNotiv2.Name = "bntNotiv2";
+        bntNotiv2.ShadowDecoration.BorderRadius = 20;
+        bntNotiv2.ShadowDecoration.Color = Color.DarkGray;
+        bntNotiv2.ShadowDecoration.Depth = 10;
+        bntNotiv2.ShadowDecoration.Shadow = new Padding(7);
+        bntNotiv2.Size = new Size(136, 56);
+        bntNotiv2.TabIndex = 17;
+        bntNotiv2.Text = "Dismis";
+        bntNotiv2.Click += bntCloseNoti;
+        // 
+        // txtNotiv2
+        // 
+        txtNotiv2.BackColor = Color.Transparent;
+        guna2Transition1.SetDecoration(txtNotiv2, Guna.UI2.AnimatorNS.DecorationType.None);
+        txtNotiv2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        txtNotiv2.ForeColor = Color.White;
+        txtNotiv2.Location = new Point(24, 16);
+        txtNotiv2.Margin = new Padding(4, 0, 4, 0);
+        txtNotiv2.Name = "txtNotiv2";
+        txtNotiv2.Size = new Size(264, 72);
+        txtNotiv2.TabIndex = 1;
+        txtNotiv2.Text = "Message";
+        txtNotiv2.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // label5
+        // 
+        label5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+        label5.BackColor = Color.Transparent;
+        guna2Transition1.SetDecoration(label5, Guna.UI2.AnimatorNS.DecorationType.None);
+        label5.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        label5.ForeColor = Color.LightGray;
+        label5.Location = new Point(312, -8);
+        label5.Margin = new Padding(4, 0, 4, 0);
+        label5.Name = "label5";
+        label5.Size = new Size(32, 112);
+        label5.TabIndex = 1;
+        label5.Text = "|";
+        label5.TextAlign = ContentAlignment.MiddleCenter;
+        // 
         // MainHost
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
@@ -922,6 +1011,7 @@ partial class MainHost
         pnlMes1.ResumeLayout(false);
         pnlNothing.ResumeLayout(false);
         pnlLoading.ResumeLayout(false);
+        pnlNotiv2.ResumeLayout(false);
         ResumeLayout(false);
     }
 
@@ -964,4 +1054,8 @@ partial class MainHost
     private Label lblMessage_Noti;
     private Label label4;
     private Panel panel1;
+    private Guna.UI2.WinForms.Guna2Panel pnlNotiv2;
+    private Guna.UI2.WinForms.Guna2Button bntNotiv2;
+    private Label txtNotiv2;
+    private Label label5;
 }

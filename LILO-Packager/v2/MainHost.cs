@@ -19,32 +19,42 @@ using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.streaming.MusikPlayer.Forms;
 using LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core;
 using LILO_Packager.v2.streaming.MusikPlayer.Core;
+using LILO_Packager.v2.Shared.Api.Core;
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 {
     #region Variables
 
-    public ThemeManager _thManager;
-    private Form _currentOpenedApp;
-    private static object _lock = new object();
-    public string owner = "JW-Limited";
-    public string repo = "Crypterv2";
-    public string htmlCode { get; set; }
-    public string name { get; set; }
-    public string version { get; set; }
-    public bool updating = false;
-    public bool downloaded = false;
-    public string UserFile { get => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"); private set => UserFile = value; }
-    public string zipPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "latest_release.zip");
-    public Action<bool> isEnabling;
-    private static MainHost instance;
-    private TcpListener listener;
-    public int Port = 8080;
-    public PluginManager manager = null;
-    public User loggedInUser;
-    public string _ThemePath = Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "themes");
-    public NotifyIconManager noty;
+    public  readonly ThemeManager _thManager;
+    private readonly BroadcastChannel _broadCastChannel;
+    private readonly TcpListener _listener;
+    private readonly Thread _listenerThread;
+    private readonly LILO_WebEngine.Core.Service.LocalServer _localServer;
+    private readonly LILO_WebEngine.Core.Service.LocalMediaServer _localMediaServer;
+    public  readonly NotifyIconManager _noty;
+    public  readonly PluginManager _pluginManager;
+
+    public  readonly string ThemePath = Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "themes");
+    public  readonly string Owner = "JW-Limited";
+    public  readonly string Repository = "Crypterv2";
+    public  readonly string ZipPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "latest_release.zip");
+
+    private static   MainHost _hostInstance;
+    public  static   Form _currentOpenedApp;
+    private static   object _lock = new object();
+
+    public string   htmlCode { get; set; }
+    public string   name { get; set; }
+    public string   version { get; set; }
+    public bool     updating = false;
+    public bool     downloaded = false;
+    public string   UserFile { get => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"); private set => UserFile = value; }
+    public int      Port = 8080;
+
+    public Action<bool>     isEnabling;
+    public User             loggedInUser;
+    
     public Core.History.DatabaseHandling dataHandler = new Core.History.DatabaseHandling();
     public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
 
@@ -115,7 +125,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         {
             try
             {
-                TcpClient client = listener.AcceptTcpClient();
+                TcpClient client = _listener.AcceptTcpClient();
                 ThreadPool.QueueUserWorkItem(HandleClient, client);
             }
             catch (Exception ex)
@@ -128,18 +138,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     private async void FeatureFlagEvents_FeatureFlagUpdateRequested(object? sender, FeatureFlagUpdateEventArgs e)
     {
         await FeatureManager.ToggleFeatureAsync(e.Flag);
-    }
-
-    public static void SetInstanceEqual(object newInstance)
-    {
-        if (newInstance.Equals(typeof(MainHost)))
-        {
-            instance = (MainHost)newInstance;
-        }
-        else
-        {
-            throw new ArgumentOutOfRangeException(nameof(newInstance));
-        }
     }
 
     public static void UpdateFeatureFlagFromHost(FeatureFlags feature, bool isEnabled)
@@ -155,12 +153,12 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     {
         lock (_lock)
         {
-            if (instance is null)
+            if (_hostInstance is null)
             {
-                instance = new MainHost();
+                _hostInstance = new MainHost();
             }
 
-            return instance;
+            return _hostInstance;
         }
     }
 
@@ -168,26 +166,30 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     {
         InitializeComponent();
 
+        _broadCastChannel = BroadcastChannel.Instance;
+        _broadCastChannel.Subscribe(new MainHostBroadCast());
         _thManager = ThemeManager.Initialize();
-        noty = NotifyIconManager.Instance();
+        _noty = NotifyIconManager.Instance();
+        _pluginManager = new PluginManager(Application.ExecutablePath.Replace("crypterv2.exe", "") + "plugins");
+        _localServer = LILO_WebEngine.Core.Service.LocalServer.Instance;
 
         if (System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
         {
             loggedInUser = UserManager.Instance().LoadUserFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"));
         }
 
-        if (!Directory.Exists(_ThemePath)) Directory.CreateDirectory(_ThemePath);
+        if (!Directory.Exists(ThemePath)) Directory.CreateDirectory(ThemePath);
 
         if (FeatureFlagePipeLineConfig.DebugModeEnabled)
         {
-            Thread listenerThread = new Thread(ListenForConnections);
-            listener = new TcpListener(IPAddress.Loopback, 9001);
-            listener.Start();
+            _listenerThread = new Thread(ListenForConnections);
+            _listener = TcpListener.Create(9001);
+            _listener.Start();
 
             try
             {
-                listenerThread.TrySetApartmentState(ApartmentState.MTA);
-                listenerThread.Start();
+                _listenerThread.TrySetApartmentState(ApartmentState.MTA);
+                _listenerThread.Start();
             }
             catch (Exception ex)
             {
@@ -205,32 +207,16 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         };
     }
 
-    /*
-        var proc = new Process()
-        {
-            StartInfo = new ProcessStartInfo()
-            {
-                FileName = Application.ExecutablePath.Replace("crypterv2.exe", "") + "srvlocal\\srvlocal.exe",
-                Arguments = "--folder=" + Application.ExecutablePath.Replace("crypterv2.exe", "") + "html",
-                WindowStyle = ProcessWindowStyle.Hidden,
-                CreateNoWindow = true
-            }
-        };
-        proc.Start();
-    */
-
     private async void MainHost_Load(object sender, EventArgs e)
     {
         var updater     = Updater.Instance();
-        var localCdn    = LILO_WebEngine.Core.Service.LocalMediaServer.Instance;
-        var localServer = LILO_WebEngine.Core.Service.LocalServer.Instance;
 
         foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
         {
             procSrv.Kill();
         }
 
-        var response  = await localServer.Initialization(new LILO_WebEngine.Core.Service.LocalServerOptions()
+        var response  = await _localServer.Initialization(new LILO_WebEngine.Core.Service.LocalServerOptions()
         {
             Port = new LILO_WebEngine.Shared.Port()
             {
@@ -245,10 +231,10 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         if (response.SuccessFull)
         {
-            var running = await localServer.Start();
+            var running = await _localServer.Start();
             Port = response.Port;
 
-            localServer.OnLocalServerRequest += async (sender, e) =>
+            _localServer.OnLocalServerRequest += async (sender, e) =>
             {
                 ConsoleManager.Instance().WriteLineWithColor($"[LILO-WebEngine(Running: {e.IsRunning})] - {e.Message}");
 
@@ -260,7 +246,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 }
             };
 
-            localServer.OnError += (sender, e) =>
+            _localServer.OnError += (sender, e) =>
             {
                 OkDialog.Show("An internal Server Error happend.", e.ErrorFatality.ToString(),DialogIcon.Error);
             };
@@ -283,7 +269,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
 
         _thManager.ApplyTheme("White");
-        _thManager.SaveThemesToJson(Path.Combine(_ThemePath, "default.lcs"));
+        _thManager.SaveThemesToJson(Path.Combine(ThemePath, "default.lcs"));
 
         if (config.Default.autoUpdates)
         {
@@ -292,12 +278,12 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 pnlNothing.Visible = false;
                 pnlLoading.Visible = true;
                 var currentVersion = Program.Version.ToString();
-                var latestVersion = updater.GetLatestVersion(owner, repo);
+                var latestVersion = updater.GetLatestVersion(Owner, Repository);
                 var Semi = VersionComparer.CompareSemanticVersions(currentVersion, latestVersion);
 
                 if (Semi.IsNewer)
                 {
-                    noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
+                    _noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
                     pnlNotifications.Visible = true;
 
                     pnlMes1.Visible = true;
@@ -328,11 +314,9 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         if (config.Default.allowedPlugins)
         {
-            manager = new PluginManager(Application.ExecutablePath.Replace("crypterv2.exe", "") + "plugins");
-
             try
             {
-                foreach (var ele in manager.CurrentPlugins)
+                foreach (var ele in _pluginManager.CurrentPlugins)
                 {
                     PluginEntry ent = new PluginEntry(ele);
                     plugins.Add(ent);
@@ -404,9 +388,102 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         _currentOpenedApp = children;
     }
 
+    public async Task OpenDynamicPlayer(HttpListenerContext con, string fallbackFile)
+    {
+        ConsoleManager.Instance().WriteLineWithColor("Opening LocalPlayer with Stream.");
+
+        try
+        {
+            ConsoleManager.Instance().WriteLineWithColor("[PLAYER.Dynamic] - Requesting Information");
+
+            var mediaPlayer = new uiPlayerDynamic(await MusicPlayerParameters.Get(con.Request.Url.AbsolutePath.TrimStart('/')), null, uiPlayerDynamic.DynamicPlayerOpendedForm.LILO_WebEngine);
+
+            this.Invoke(delegate
+            {
+                OpenInApp(mediaPlayer);
+                con.Response.Close();
+            });
+        }
+        catch (Exception ex)
+        {
+            ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkMagenta);
+
+            try
+            {
+                ConsoleManager.Instance().WriteLineWithColor("[PLAYER.Dynamic] - Requesting Fallback - Information");
+
+                var fallback = new uiPlayerDynamic(await MusicPlayerParameters.Get(fallbackFile));
+
+                this.Invoke(delegate
+                {
+                    OpenInApp(fallback);
+                    con.Response.Close();
+                });
+            }
+            catch (Exception ex2)
+            {
+                OkDialog.Show(ex2.Message, "Error: Stream Failure", DialogIcon.Error);
+            }
+
+
+        }
+
+    }
+
+    public void SetNotification(string Message)
+    {
+        pnlNoti.Visible = true;
+        lblMessage_Noti.Text = Message;
+    }
+
     #endregion
 
-    #region Hider Button Events
+    #region Button Events
+
+    private void bntCloseSideBoard_Click(object sender, EventArgs e)
+    {
+        pnlSide.Visible = false;
+    }
+
+    private void bntChangeTheme(object sender, EventArgs e)
+    {
+        foreach (var theme in _thManager.Themes)
+        {
+            Console.WriteLine(theme.Key + ": " + theme.Value.ToString());
+        }
+        _thManager.ToggleDarkMode();
+    }
+
+    private void bntMenu(object sender, EventArgs e)
+    {
+        pnlMenu.Visible = !pnlMenu.Visible;
+        bntMenu_c.Checked = !bntMenu_c.Checked;
+
+    }
+
+    private void bntOpenAboutPage(object sender, EventArgs e)
+    {
+        OpenInApp(new uiNews());
+        bntMenu(sender, e);
+    }
+
+    private void bntAccount_DoubleClick(object sender, EventArgs e)
+    {
+        bntMenu(sender, e);
+    }
+
+    private async void bntOpenDevApp(object sender, EventArgs e)
+    {
+        OpenFileDialog ofd = new OpenFileDialog();
+        ofd.ShowDialog();
+        OpenInApp(new streaming.MusikPlayer.Forms.uiPlayer(await MusicPlayerParameters.Get(ofd.FileName), false));
+        bntMenu(sender, e);
+    }
+
+    private void bntCloseNoti(object sender, EventArgs e)
+    {
+        pnlNoti.Visible = false;
+    }
 
     private void guna2Button5_Click(object sender, EventArgs e)
     {
@@ -512,7 +589,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
         else
         {
-            OpenInApp(v2.Forms.uiPluginManager.Instance(plugins, manager));
+            OpenInApp(v2.Forms.uiPluginManager.Instance(plugins, _pluginManager));
         }
 
     }
@@ -545,19 +622,19 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         {
             var updater = Updater.Instance();
 
-            var latestVersion = updater.GetLatestVersion(owner, repo);
-            var latestChanges = updater.GetLatestChanges(owner, repo);
+            var latestVersion = updater.GetLatestVersion(Owner, Repository);
+            var latestChanges = updater.GetLatestChanges(Owner, Repository);
             var currentVersion = System.Windows.Forms.Application.ProductVersion;
 
             Task.Run(() =>
             {
                 this.Invoke((MethodInvoker)delegate
                 {
-                    if (updater.HasNewRelease(owner, repo))
+                    if (updater.HasNewRelease(Owner, Repository))
                     {
                         Console.WriteLine("A new release is available.");
 
-                        noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}"));
+                        _noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}"));
 
                         //string html = Markdig.Markdown.ToHtml(latestChanges);
 
@@ -566,7 +643,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                     {
                         Console.WriteLine("No new release available.");
 
-                        noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"No new release available.\nYou are perfect."));
+                        _noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"No new release available.\nYou are perfect."));
                     }
                 });
 
@@ -576,7 +653,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
         catch (Exception ex)
         {
-            noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", ex.Message));
+            _noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", ex.Message));
             return Task.CompletedTask;
         }
     }
@@ -598,7 +675,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 {
                     try
                     {
-                        updater.VerifyAndExtractZip(zipPath, "8a3a0cecf50f9e4a7387b23d4a4c4e4b3d2bbd8e91edc5729c15f9f1f10c8aaf", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "JW Limited"),
+                        updater.VerifyAndExtractZip(ZipPath, "8a3a0cecf50f9e4a7387b23d4a4c4e4b3d2bbd8e91edc5729c15f9f1f10c8aaf", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "JW Limited"),
                         progress =>
                         {
                             if (progress == 100)
@@ -634,7 +711,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                 await Task.Run(() =>
                 {
 
-                    updater.DownloadLatestRelease(owner, repo, UpdateProgress);
+                    updater.DownloadLatestRelease(Owner, Repository, UpdateProgress);
                     this.Invoke((MethodInvoker)delegate
                     {
                         this.ControlBox = false;
@@ -682,12 +759,12 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             pnlLoading.Visible = true;
             var updater = Updater.Instance();
             var currentVersion = Program.Version.ToString();
-            var latestVersion = updater.GetLatestVersion(owner, repo);
+            var latestVersion = updater.GetLatestVersion(Owner, Repository);
             var Semi = VersionComparer.CompareSemanticVersions(currentVersion, latestVersion);
 
             if (Semi.IsNewer)
             {
-                noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
+                _noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
                 pnlNotifications.Visible = true;
 
                 pnlMes1.Visible = true;
@@ -716,7 +793,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     {
         var updater = Updater.Instance();
         var currentVersion = Program.Version.ToString();
-        var latestVersion = updater.GetLatestVersion(owner, repo);
+        var latestVersion = updater.GetLatestVersion(Owner, Repository);
         var Semi = VersionComparer.CompareSemanticVersions(currentVersion, latestVersion);
 
         hider.Visible = false;
@@ -727,97 +804,4 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     }
 
     #endregion
-
-    public async Task OpenDynamicPlayer(HttpListenerContext con, string fallbackFile)
-    {
-        ConsoleManager.Instance().WriteLineWithColor("Opening LocalPlayer with Stream.");
-
-        try
-        {
-            ConsoleManager.Instance().WriteLineWithColor("[PLAYER.Dynamic] - Requesting Information");
-
-            var mediaPlayer = new uiPlayerDynamic(await MusicPlayerParameters.Get(con.Request.Url.AbsolutePath.TrimStart('/')),null,uiPlayerDynamic.DynamicPlayerOpendedForm.LILO_WebEngine);
-
-            this.Invoke(delegate
-            {
-                OpenInApp(mediaPlayer);
-                con.Response.Close();
-            });
-        }
-        catch(Exception ex)
-        {
-            ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkMagenta);
-
-            try
-            {
-                ConsoleManager.Instance().WriteLineWithColor("[PLAYER.Dynamic] - Requesting Fallback - Information");
-
-                var fallback = new uiPlayerDynamic(await MusicPlayerParameters.Get(fallbackFile));
-
-                this.Invoke(delegate
-                {
-                    OpenInApp(fallback);
-                    con.Response.Close();
-                });
-            }
-            catch(Exception ex2)
-            {
-                OkDialog.Show(ex2.Message, "Error: Stream Failure", DialogIcon.Error);
-            }
-
-            
-        }
-        
-    }
-
-    public void SetNotification(string Message)
-    {
-        pnlNotifications.Visible = true;
-        lblMessage_Noti.Text = Message;
-    }
-
-    private void bntCloseSideBoard_Click(object sender, EventArgs e)
-    {
-        pnlSide.Visible = false;
-    }
-
-    private void bntChangeTheme(object sender, EventArgs e)
-    {
-        foreach (var theme in _thManager.Themes)
-        {
-            Console.WriteLine(theme.Key + ": " + theme.Value.ToString());
-        }
-        _thManager.ToggleDarkMode();
-    }
-
-    private void bntMenu(object sender, EventArgs e)
-    {
-        pnlMenu.Visible     = !pnlMenu.Visible;
-        bntMenu_c.Checked   = !bntMenu_c.Checked;
-
-    }
-
-    private void bntOpenAboutPage(object sender, EventArgs e)
-    {
-        OpenInApp(new uiNews());
-        bntMenu(sender, e);
-    }
-
-    private void bntAccount_DoubleClick(object sender, EventArgs e)
-    {
-        bntMenu(sender, e);
-    }
-
-    private async void bntOpenDevApp(object sender, EventArgs e)
-    {
-        OpenFileDialog ofd = new OpenFileDialog();
-        ofd.ShowDialog();
-        OpenInApp(new streaming.MusikPlayer.Forms.uiPlayer(await MusicPlayerParameters.Get(ofd.FileName),false));
-        bntMenu(sender, e);
-    }
-
-    private void bntCloseNoti(object sender, EventArgs e)
-    {
-        pnlNoti.Visible = false;
-    }
 }

@@ -82,7 +82,7 @@ partial class uiEncryt
         sPanel1.Controls.Add(lblText);
         sPanel1.ForeColor = Color.White;
         sPanel1.Location = new Point(24, 32);
-        sPanel1.Margin = new Padding(4, 4, 4, 4);
+        sPanel1.Margin = new Padding(4);
         sPanel1.Name = "sPanel1";
         sPanel1.Size = new Size(976, 88);
         sPanel1.TabIndex = 10;

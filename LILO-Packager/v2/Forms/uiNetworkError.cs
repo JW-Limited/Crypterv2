@@ -40,7 +40,7 @@ namespace LILO_Packager.v2.Forms
             try
             {
                 var currentVersion = Program.Version.ToString();
-                var latestVersion = updater.GetLatestVersion(MainHost.Instance().owner, MainHost.Instance().repo);
+                var latestVersion = updater.GetLatestVersion(MainHost.Instance().Owner, MainHost.Instance().Repository);
                 var Semi = VersionComparer.CompareSemanticVersions(currentVersion, latestVersion);
 
                 MainHost.Instance().pnlSide.Visible = false;

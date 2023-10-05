@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crypterv2-DevTool", "Crypte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextPreviewLibrary", "TextPreviewLibrary\TextPreviewLibrary.csproj", "{EC2A96AF-D33B-4008-B044-F1263BA53919}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LILO-WebEngine", "LILO-WebEngine\LILO-WebEngine.csproj", "{069B93C0-3581-476D-B741-6990918FCC6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LILO-WebEngine", "LILO-WebEngine\LILO-WebEngine.csproj", "{069B93C0-3581-476D-B741-6990918FCC6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
