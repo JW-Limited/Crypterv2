@@ -11,6 +11,7 @@ using LILO_Packager.v2.streaming.MusikPlayer.Core;
 using System.Runtime.InteropServices;
 using LILO_Packager.v2.shared;
 using Windows.UI.Popups;
+using LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core;
 
 namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
 {

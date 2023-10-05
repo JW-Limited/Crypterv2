@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.History;
+using LILO_Packager.v2.Core.Keys;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.plugins.Model;
 
@@ -18,6 +19,7 @@ namespace LILO_Packager.v2.Forms;
 public partial class uiEncryt : Form
 {
     private static uiEncryt _encrypt;
+    private readonly Manager _keyManager;
     public shared.FileOperations sharedFile = new();
     private static object _lock = new object();
     public Color SignalColor = Color.FromArgb(94, 148, 255);
@@ -42,7 +44,7 @@ public partial class uiEncryt : Form
     public uiEncryt(PluginEntry extension, DatabaseHandling handler)
     {
         InitializeComponent();
-
+        _keyManager = new Manager(new DatabaseHandler(),Core.LILO.UserRole.User);
         this.Extension = extension;
 
         dbHandler = handler;
@@ -220,6 +222,7 @@ public partial class uiEncryt : Form
         if(fileCounter == 2)
         {
             var psw = GetPasswordFrromUser();
+
             var current = new TaskStatus();
             var logged = false;
             var previousFile = "";
@@ -232,7 +235,7 @@ public partial class uiEncryt : Form
                 try
                 {
                     string item = _arFiles[0];
-
+                    await _keyManager.AddPasswordEntryAsync(psw, DateTime.Now, item);
                     if (item != previousFile)
                     {
                         previousFile = item;
@@ -246,6 +249,7 @@ public partial class uiEncryt : Form
                     }
 
 
+                    
                     Task.Run(() =>
                     {
 

@@ -1,4 +1,5 @@
-﻿using LILO_Packager.v2.Core.Keys;
+﻿
+using LILO_Packager.v2.Core.Keys.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;

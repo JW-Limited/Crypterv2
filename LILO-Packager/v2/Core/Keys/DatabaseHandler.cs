@@ -1,4 +1,5 @@
 ﻿using LILO_Packager.v2.Core.Interfaces;
+using LILO_Packager.v2.Core.Keys.Types;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LILO_Packager.v2.Core.Keys
 {
-    public class DatabaseHandler : IDatabaseHandler
+    public class DatabaseHandler : IPasswordRepository
     {
         public string ConnectionString => $"Data Source={Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "password_history.db")};Version=3;";
 
@@ -80,6 +81,72 @@ namespace LILO_Packager.v2.Core.Keys
             }
 
             return passwordEntries;
+        }
+
+        public async Task UpdatePasswordEntryAsync(PasswordEntry passwordEntry)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(this.ConnectionString))
+            {
+                await connection.OpenAsync();
+
+                string updateSql = "UPDATE PasswordHistory SET Password = @password, DateAdded = @dateAdded, Source = @source WHERE Id = @id";
+                using (SQLiteCommand updateRowCommand = new SQLiteCommand(updateSql, connection))
+                {
+                    updateRowCommand.Parameters.AddWithValue("@id", passwordEntry.Id);
+                    updateRowCommand.Parameters.AddWithValue("@password", passwordEntry.Password);
+                    updateRowCommand.Parameters.AddWithValue("@dateAdded", passwordEntry.DateAdded);
+                    updateRowCommand.Parameters.AddWithValue("@source", passwordEntry.Source);
+
+                    await updateRowCommand.ExecuteNonQueryAsync();
+                }
+            }
+        }
+
+        public async Task DeletePasswordEntryAsync(int id)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(this.ConnectionString))
+            {
+                await connection.OpenAsync();
+
+                string deleteSql = "DELETE FROM PasswordHistory WHERE Id = @id";
+                using (SQLiteCommand deleteRowCommand = new SQLiteCommand(deleteSql, connection))
+                {
+                    deleteRowCommand.Parameters.AddWithValue("@id", id);
+
+                    await deleteRowCommand.ExecuteNonQueryAsync();
+                }
+            }
+        }
+
+        public async Task<PasswordEntry> GetPasswordEntryAsync(int id)
+        {
+            PasswordEntry passwordEntry = null;
+            using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
+            {
+                await connection.OpenAsync();
+
+                string selectSql = "SELECT * FROM PasswordHistory WHERE Id = @id";
+                using (SQLiteCommand selectRowCommand = new SQLiteCommand(selectSql, connection))
+                {
+                    selectRowCommand.Parameters.AddWithValue("@id", id);
+
+                    using (SQLiteDataReader reader = (SQLiteDataReader)await selectRowCommand.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            passwordEntry = new PasswordEntry
+                            {
+                                Id = reader.GetInt32(0),
+                                Password = reader.GetString(1),
+                                DateAdded = reader.GetDateTime(2),
+                                Source = reader.GetString(3)
+                            };
+                        }
+                    }
+                }
+            }
+
+            return passwordEntry;
         }
     }
 }

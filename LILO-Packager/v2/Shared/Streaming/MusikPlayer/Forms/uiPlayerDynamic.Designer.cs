@@ -56,9 +56,10 @@
             lblArtist.BackColor = Color.Transparent;
             lblArtist.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             lblArtist.ForeColor = Color.Black;
-            lblArtist.Location = new Point(13, 544);
+            lblArtist.Location = new Point(16, 680);
+            lblArtist.Margin = new Padding(4, 0, 4, 0);
             lblArtist.Name = "lblArtist";
-            lblArtist.Size = new Size(237, 32);
+            lblArtist.Size = new Size(296, 40);
             lblArtist.TabIndex = 29;
             lblArtist.Text = "ARTIST";
             lblArtist.TextAlign = ContentAlignment.MiddleLeft;
@@ -67,6 +68,7 @@
             // 
             pnlCover_Blurred.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlCover_Blurred.BackColor = Color.White;
+            pnlCover_Blurred.BackgroundImageLayout = ImageLayout.Stretch;
             pnlCover_Blurred.BorderColor = SystemColors.ActiveBorder;
             pnlCover_Blurred.BorderRadius = 15;
             pnlCover_Blurred.Controls.Add(bntCollapse);
@@ -77,7 +79,7 @@
             pnlCover_Blurred.Location = new Point(0, 0);
             pnlCover_Blurred.Margin = new Padding(2);
             pnlCover_Blurred.Name = "pnlCover_Blurred";
-            pnlCover_Blurred.Size = new Size(787, 467);
+            pnlCover_Blurred.Size = new Size(984, 584);
             pnlCover_Blurred.TabIndex = 28;
             // 
             // bntCollapse
@@ -95,7 +97,7 @@
             bntCollapse.ForeColor = Color.White;
             bntCollapse.Image = Properties.Resources.icons8_expand_arrow_96;
             bntCollapse.ImageSize = new Size(25, 25);
-            bntCollapse.Location = new Point(712, 19);
+            bntCollapse.Location = new Point(890, 24);
             bntCollapse.Margin = new Padding(2);
             bntCollapse.Name = "bntCollapse";
             bntCollapse.ShadowDecoration.BorderRadius = 15;
@@ -103,7 +105,7 @@
             bntCollapse.ShadowDecoration.Depth = 10;
             bntCollapse.ShadowDecoration.Enabled = true;
             bntCollapse.ShadowDecoration.Shadow = new Padding(7);
-            bntCollapse.Size = new Size(51, 32);
+            bntCollapse.Size = new Size(64, 40);
             bntCollapse.TabIndex = 32;
             bntCollapse.Visible = false;
             bntCollapse.Click += bntCollapse_CLICK;
@@ -125,7 +127,7 @@
             bntBack.ForeColor = Color.Black;
             bntBack.Image = Properties.Resources.icons8_back_96;
             bntBack.ImageAlign = HorizontalAlignment.Left;
-            bntBack.Location = new Point(19, 19);
+            bntBack.Location = new Point(24, 24);
             bntBack.Margin = new Padding(2);
             bntBack.Name = "bntBack";
             bntBack.ShadowDecoration.BorderRadius = 20;
@@ -133,7 +135,7 @@
             bntBack.ShadowDecoration.Depth = 10;
             bntBack.ShadowDecoration.Enabled = true;
             bntBack.ShadowDecoration.Shadow = new Padding(7);
-            bntBack.Size = new Size(83, 32);
+            bntBack.Size = new Size(104, 40);
             bntBack.TabIndex = 30;
             bntBack.Text = "   Back";
             bntBack.Click += bntBack_Click;
@@ -147,14 +149,14 @@
             pnlCover.BorderColor = SystemColors.ActiveCaptionText;
             pnlCover.BorderRadius = 20;
             pnlCover.FillColor = Color.Transparent;
-            pnlCover.Location = new Point(269, 90);
+            pnlCover.Location = new Point(336, 112);
             pnlCover.Margin = new Padding(2);
             pnlCover.Name = "pnlCover";
             pnlCover.ShadowDecoration.Color = Color.DarkGray;
             pnlCover.ShadowDecoration.CustomizableEdges.BottomLeft = false;
             pnlCover.ShadowDecoration.Depth = 50;
             pnlCover.ShadowDecoration.Enabled = true;
-            pnlCover.Size = new Size(256, 256);
+            pnlCover.Size = new Size(320, 320);
             pnlCover.TabIndex = 11;
             // 
             // lblError
@@ -163,9 +165,10 @@
             lblError.BackColor = Color.Transparent;
             lblError.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             lblError.ForeColor = Color.Black;
-            lblError.Location = new Point(109, 19);
+            lblError.Location = new Point(136, 24);
+            lblError.Margin = new Padding(4, 0, 4, 0);
             lblError.Name = "lblError";
-            lblError.Size = new Size(587, 32);
+            lblError.Size = new Size(734, 40);
             lblError.TabIndex = 29;
             lblError.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -176,9 +179,10 @@
             lblTrack.BackColor = Color.Transparent;
             lblTrack.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblTrack.ForeColor = Color.Black;
-            lblTrack.Location = new Point(13, 518);
+            lblTrack.Location = new Point(16, 648);
+            lblTrack.Margin = new Padding(4, 0, 4, 0);
             lblTrack.Name = "lblTrack";
-            lblTrack.Size = new Size(237, 32);
+            lblTrack.Size = new Size(296, 40);
             lblTrack.TabIndex = 29;
             lblTrack.Text = "TITLE";
             lblTrack.TextAlign = ContentAlignment.MiddleLeft;
@@ -187,10 +191,10 @@
             // 
             trackBar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             trackBar.LargeChange = 1;
-            trackBar.Location = new Point(64, 480);
+            trackBar.Location = new Point(80, 600);
             trackBar.Margin = new Padding(2);
             trackBar.Name = "trackBar";
-            trackBar.Size = new Size(659, 32);
+            trackBar.Size = new Size(824, 40);
             trackBar.TabIndex = 30;
             trackBar.ThumbColor = Color.FromArgb(94, 148, 255);
             // 
@@ -209,10 +213,10 @@
             bntPause.ForeColor = Color.White;
             bntPause.Image = Properties.Resources.icons8_pause_button_96;
             bntPause.ImageSize = new Size(55, 55);
-            bntPause.Location = new Point(358, 518);
+            bntPause.Location = new Point(448, 648);
             bntPause.Margin = new Padding(2);
             bntPause.Name = "bntPause";
-            bntPause.Size = new Size(70, 58);
+            bntPause.Size = new Size(88, 72);
             bntPause.TabIndex = 31;
             bntPause.Visible = false;
             bntPause.Click += btnStop_Click;
@@ -233,10 +237,10 @@
             bntPlay.ForeColor = Color.White;
             bntPlay.Image = Properties.Resources.icons8_circled_play_96;
             bntPlay.ImageSize = new Size(55, 55);
-            bntPlay.Location = new Point(365, 518);
+            bntPlay.Location = new Point(456, 648);
             bntPlay.Margin = new Padding(2);
             bntPlay.Name = "bntPlay";
-            bntPlay.Size = new Size(58, 58);
+            bntPlay.Size = new Size(72, 72);
             bntPlay.TabIndex = 32;
             bntPlay.Click += btnPlay_Click;
             // 
@@ -246,10 +250,10 @@
             lblAllTime.BackColor = Color.Transparent;
             lblAllTime.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             lblAllTime.ForeColor = SystemColors.AppWorkspace;
-            lblAllTime.Location = new Point(723, 480);
+            lblAllTime.Location = new Point(904, 600);
             lblAllTime.Margin = new Padding(2, 0, 2, 0);
             lblAllTime.Name = "lblAllTime";
-            lblAllTime.Size = new Size(49, 32);
+            lblAllTime.Size = new Size(61, 40);
             lblAllTime.TabIndex = 33;
             lblAllTime.Text = "00:00";
             lblAllTime.TextAlign = ContentAlignment.MiddleCenter;
@@ -260,10 +264,10 @@
             lblCurrentTIme.BackColor = Color.Transparent;
             lblCurrentTIme.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             lblCurrentTIme.ForeColor = SystemColors.AppWorkspace;
-            lblCurrentTIme.Location = new Point(13, 480);
+            lblCurrentTIme.Location = new Point(16, 600);
             lblCurrentTIme.Margin = new Padding(2, 0, 2, 0);
             lblCurrentTIme.Name = "lblCurrentTIme";
-            lblCurrentTIme.Size = new Size(49, 32);
+            lblCurrentTIme.Size = new Size(61, 40);
             lblCurrentTIme.TabIndex = 34;
             lblCurrentTIme.Text = "00:00";
             lblCurrentTIme.TextAlign = ContentAlignment.MiddleCenter;
@@ -282,7 +286,7 @@
             pnlSplashScreen.Location = new Point(0, 0);
             pnlSplashScreen.Margin = new Padding(2);
             pnlSplashScreen.Name = "pnlSplashScreen";
-            pnlSplashScreen.Size = new Size(784, 600);
+            pnlSplashScreen.Size = new Size(984, 754);
             pnlSplashScreen.TabIndex = 31;
             // 
             // label1
@@ -291,9 +295,10 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.DarkGray;
-            label1.Location = new Point(309, 530);
+            label1.Location = new Point(388, 666);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(160, 32);
+            label1.Size = new Size(200, 40);
             label1.TabIndex = 32;
             label1.Text = "JW Limited ©️ 2023";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -307,7 +312,7 @@
             imgImage.BorderColor = SystemColors.ActiveBorder;
             imgImage.BorderRadius = 15;
             imgImage.FillColor = Color.Transparent;
-            imgImage.Location = new Point(367, 233);
+            imgImage.Location = new Point(461, 293);
             imgImage.Margin = new Padding(2);
             imgImage.Name = "imgImage";
             imgImage.ShadowDecoration.BorderRadius = 100;
@@ -316,7 +321,7 @@
             imgImage.ShadowDecoration.Enabled = true;
             imgImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             imgImage.ShadowDecoration.Shadow = new Padding(7);
-            imgImage.Size = new Size(45, 45);
+            imgImage.Size = new Size(56, 56);
             imgImage.TabIndex = 31;
             imgImage.Visible = false;
             // 
@@ -325,10 +330,10 @@
             progTurner.Anchor = AnchorStyles.None;
             progTurner.AutoStart = true;
             progTurner.BackColor = Color.Transparent;
-            progTurner.Location = new Point(328, 195);
+            progTurner.Location = new Point(412, 246);
             progTurner.Margin = new Padding(2);
             progTurner.Name = "progTurner";
-            progTurner.Size = new Size(128, 122);
+            progTurner.Size = new Size(160, 152);
             progTurner.TabIndex = 30;
             progTurner.UseTransparentBackground = true;
             // 
@@ -341,7 +346,7 @@
             guna2Panel1.BorderColor = SystemColors.ActiveCaptionText;
             guna2Panel1.BorderRadius = 30;
             guna2Panel1.FillColor = Color.White;
-            guna2Panel1.Location = new Point(303, 163);
+            guna2Panel1.Location = new Point(381, 206);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.ShadowDecoration.BorderRadius = 30;
@@ -349,15 +354,15 @@
             guna2Panel1.ShadowDecoration.Depth = 10;
             guna2Panel1.ShadowDecoration.Enabled = true;
             guna2Panel1.ShadowDecoration.Shadow = new Padding(7);
-            guna2Panel1.Size = new Size(173, 179);
+            guna2Panel1.Size = new Size(216, 224);
             guna2Panel1.TabIndex = 42;
             // 
             // uiPlayerDynamic
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(786, 602);
+            ClientSize = new Size(982, 752);
             Controls.Add(pnlSplashScreen);
             Controls.Add(lblAllTime);
             Controls.Add(lblCurrentTIme);
@@ -368,7 +373,7 @@
             Controls.Add(lblArtist);
             Controls.Add(pnlCover_Blurred);
             Margin = new Padding(2);
-            MinimumSize = new Size(804, 649);
+            MinimumSize = new Size(1000, 797);
             Name = "uiPlayerDynamic";
             Text = "uiPlayerDynamic";
             Load += uiPlayerDynamic_Load;

@@ -6,18 +6,7 @@ using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.shared;
 using LILO_Packager.v2.streaming.MusikPlayer.Core;
 using SharpDX.MediaFoundation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-using System.Windows.Forms;
 
 namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
 {
@@ -65,11 +54,16 @@ namespace LILO_Packager.v2.streaming.MusikPlayer.Forms
             {
                 var ofdLessfileStream = new FileStream(_Parameters.Source, FileMode.Open);
                 OpendFileStream = ofdLessfileStream;
-
                 MediaManager.Startup();
 
                 var mediaEngineFactory = new MediaEngineClassFactory();
-                var mediaEngine = new MediaEngine(mediaEngineFactory, null, MediaEngineCreateFlags.AudioOnly);
+                var mediaEngineATT = new MediaEngineAttributes();
+                mediaEngineATT.AudioCategory = SharpDX.Multimedia.AudioStreamCategory.Media;
+                mediaEngineATT.AudioEndpointRole = SharpDX.Multimedia.AudioEndpointRole.Multimedia;
+                mediaEngineATT.ContentProtectionFlags = MediaEngineProtectionFlags.EnableProtectedContent;
+                var mediaEngine = new MediaEngine(mediaEngineFactory, mediaEngineATT, MediaEngineCreateFlags.AudioOnly);
+                mediaEngine.Preload = MediaEnginePreload.Automatic;
+                mediaEngine.Load();
                 var stream = new ByteStream(ofdLessfileStream);
                 var url = new Uri(_Parameters.Source, UriKind.RelativeOrAbsolute);
 

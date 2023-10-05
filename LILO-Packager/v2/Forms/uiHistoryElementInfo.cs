@@ -4,6 +4,7 @@ using LILO_Packager.v2.plugins.Model;
 using LILO_Packager.v2.plugins.PluginCore;
 using LILO_Packager.v2.shared;
 using LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core;
+using LILO_Packager.v2.streaming.MusikPlayer.Core;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -56,20 +57,29 @@ namespace LILO_Packager.v2.Forms
             lblFile.Text = new FileInfo(_file.outputFileName).Name;
             lblDirectory.Text = _file.outputFileName.Replace(new FileInfo(_file.outputFileName).Name, "");
             lblDescription.Text = "Library: " + _file.mode;
-            lblDes2.Text = "Mode: " + _file.operationType;
+            lblDes2.Text = $"Mode: " + _file.operationType;
             lbl3.Text = "Algorythemversion: " + _file.algorithmVersion;
             lblMoreInfo.Text = "InputFile: " + _file.inputFileName;
-            lblMoreInfo.Text += "\nOperation Identifier: " + _file.id;
 
             var fileIcon = GetFileIcon(_file.outputFileName);
             pnlImage.BackgroundImage = fileIcon.ToBitmap();
 
             var appName = await GetDefaultApplication(_file.outputFileName);
+
+            
             if (appName is not null)
             {
-                if (appName.DefaultApp is "LILO secured File") { appName.DefaultApp = "Crypterv2"; pnlImage.BackgroundImage = Resources.Lock; }
+                if (appName.DefaultApp is "LILO secured File") 
+                { 
+                    appName.DefaultApp = "Crypterv2"; pnlImage.BackgroundImage = Resources.Lock;
+                }
+                else
+                {
+                    //lblMoreInfo.Text += "\nFile Type: " + $"{Shared.GetFileType.GetContentType(_file.outputFileName)}";
+                }
 
                 lblApp.Text = appName.DefaultApp.Replace(appName.Extension, "");
+
             }
             else
             {

@@ -106,6 +106,7 @@
     <PackageReference Include="modern.forms" Version="0.3.0" />
     <PackageReference Include="Octokit" Version="7.1.0" />
     <PackageReference Include="Ookii.Dialogs.WinForms" Version="4.0.0" />
+    <PackageReference Include="Paket.Core" Version="7.2.1" />
     <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
     <PackageReference Include="SipaaFramework" Version="1.1.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
@@ -191,6 +192,10 @@
     <Reference Include="Interop.IWshRuntimeLibrary">
       <HintPath>..\InstallHelper\obj\Debug\net7.0\Interop.IWshRuntimeLibrary.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="v2\Forms\NewFolder\" />
   </ItemGroup>
 
 </Project>

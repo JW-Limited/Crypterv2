@@ -66,7 +66,7 @@ partial class uiWebView
         progressSpinner.Anchor = AnchorStyles.None;
         progressSpinner.AutoStart = true;
         progressSpinner.BackColor = Color.White;
-        progressSpinner.Location = new Point(440, 408);
+        progressSpinner.Location = new Point(440, 410);
         progressSpinner.Name = "progressSpinner";
         progressSpinner.Size = new Size(135, 135);
         progressSpinner.TabIndex = 7;
@@ -81,7 +81,7 @@ partial class uiWebView
         pnlLoading.Controls.Add(progressSpinner);
         pnlLoading.Location = new Point(0, 0);
         pnlLoading.Name = "pnlLoading";
-        pnlLoading.Size = new Size(1024, 944);
+        pnlLoading.Size = new Size(1024, 948);
         pnlLoading.TabIndex = 8;
         // 
         // bntBack
@@ -120,7 +120,7 @@ partial class uiWebView
         label1.BackColor = Color.Transparent;
         label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
         label1.ForeColor = SystemColors.WindowFrame;
-        label1.Location = new Point(24, 856);
+        label1.Location = new Point(24, 860);
         label1.Margin = new Padding(4, 0, 4, 0);
         label1.Name = "label1";
         label1.Size = new Size(976, 40);

@@ -33,8 +33,10 @@ namespace LILO_Packager.v2.Forms
 
             lblName.Text = _error.Message;
             lblExc.Text = _error.Timestamp.ToString();
-            lblMes.Text = sb.ToString();
+            lblMes.Text = _error.ParsedMessage.ToString();
             lblAddtional.Text = _error.ApplicationVersion.ToString();
+
+            ConsoleManager.Instance().WriteLineWithColor(_error.ParsedMessage.ToString());
         }
 
         private void bntTrouble_Click(object sender, EventArgs e)

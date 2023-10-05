@@ -24,7 +24,7 @@ namespace LILO_Packager.v2.Core.BugBarrier.Types
             Message = message;
 
             Source = exception.Source ?? "N/A";
-            ParsedMessage = new ErrorMessageParser("Unhandled Exception:\n\n" + exception.ToString());
+            ParsedMessage = new ErrorMessageParser("Unhandled Exception:\n\n" + exception.ToString(),exception);
             StackTrace = exception.StackTrace ?? "N/A";
             InnerExceptionMessage = exception.InnerException?.Message ?? "N/A";
             MachineName = Environment.MachineName ?? "N/A";

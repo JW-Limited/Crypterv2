@@ -1,5 +1,8 @@
 ﻿using LILO_Packager.v2.Core.BugBarrier.Types;
+using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.shared;
+using Paket;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,6 +68,7 @@ namespace LILO_Packager.v2.Core.BugBarrier
             errorList.Add(customError);
             MainHost.Instance().OpenInApp(new Forms.uiErrorHandle(customError));
         }
+
 
         private static void LogException(Exception ex)
         {

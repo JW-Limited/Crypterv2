@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LILO.Shell;
-public class ImageProcessing
+public partial class ImageProcessing
 {
     public class Templates
     {
@@ -21,7 +21,7 @@ public class ImageProcessing
         {
             ScaleFilter scale = new ScaleFilter(0.01f);
             BlurFilter blur = new BlurFilter(60);
-            DarkenFilter darker = new DarkenFilter(0.5f);
+            DarkenFilter darker = new DarkenFilter(0.2f);
 
             Bitmap scaledPic = scale.ApplyFilter(source);
             Bitmap blurredPic = blur.ApplyFilter(scaledPic);
@@ -30,73 +30,64 @@ public class ImageProcessing
         }
     }
 
-    public class ColorManagment
+    public class BlurFilterv2
     {
-        public class ColorDetector
+        private int kernelSize;
+
+        public BlurFilterv2(int kernelSize)
         {
-            public Bitmap image;
+            this.kernelSize = kernelSize;
+        }
 
-            public ColorDetector(Bitmap sourceImage)
+        public Bitmap ApplyFilter(Bitmap sourceImage)
+        {
+            Bitmap outputImage = new Bitmap(sourceImage.Width, sourceImage.Height);
+
+            int kernelWeightSum = 0;
+            for (int i = -kernelSize / 2; i <= kernelSize / 2; i++)
             {
-               this.image = sourceImage;
+                for (int j = -kernelSize / 2; j <= kernelSize / 2; j++)
+                {
+                    kernelWeightSum += Math.Abs(i) + Math.Abs(j);
+                }
             }
 
-            public async Task<Color> DetectMainColor()
+            for (int x = 0; x < sourceImage.Width; x++)
             {
-                // Create a dictionary to store the count of each color
-                Dictionary<Color, int> colorCounts = new Dictionary<Color, int>();
-
-                // Loop through each pixel in the image
-                for (int x = 0; x < image.Width; x++)
+                for (int y = 0; y < sourceImage.Height; y++)
                 {
-                    for (int y = 0; y < image.Height; y++)
+                    int red = 0, green = 0, blue = 0;
+                    for (int i = -kernelSize / 2; i <= kernelSize / 2; i++)
                     {
-                        // Get the color of the pixel
-                        Color pixelColor = image.GetPixel(x, y);
-
-                        // Add the color to the dictionary or increment the count if it already exists
-                        if (colorCounts.ContainsKey(pixelColor))
+                        for (int j = -kernelSize / 2; j <= kernelSize / 2; j++)
                         {
-                            colorCounts[pixelColor]++;
-                        }
-                        else
-                        {
-                            colorCounts[pixelColor] = 1;
+                            if (x + i >= 0 && x + i < sourceImage.Width && y + j >= 0 && y + j < sourceImage.Height)
+                            {
+                                Color pixelColor = sourceImage.GetPixel(x + i, y + j);
+                                int weight = Math.Abs(i) + Math.Abs(j);
+                                red += pixelColor.R * weight;
+                                green += pixelColor.G * weight;
+                                blue += pixelColor.B * weight;
+                            }
                         }
                     }
-                }
 
-                // Find the color with the highest count
-                Color mainColor = Color.Black;
-                int maxCount = 0;
-                foreach (KeyValuePair<Color, int> colorCount in colorCounts)
-                {
-                    if (colorCount.Value > maxCount)
-                    {
-                        mainColor = colorCount.Key;
-                        maxCount = colorCount.Value;
-                    }
-                }
+                    red /= kernelWeightSum;
+                    green /= kernelWeightSum;
+                    blue /= kernelWeightSum;
 
-                return mainColor;
+                    outputImage.SetPixel(x, y, Color.FromArgb(red, green, blue));
+                }
             }
 
-            public async Task<Color> GetOppositeColor(Color color)
-            {
-                // Calculate the opposite color by subtracting each component from 255
-                int red = 255 - color.R;
-                int green = 255 - color.G;
-                int blue = 255 - color.B;
-
-                return Color.FromArgb(red, green, blue);
-            }
+            return outputImage;
         }
     }
 
     public class BlurFilter
     {
-        // The size of the blur kernel
-        private int kernelSize;
+
+        private readonly int kernelSize;
 
         public BlurFilter(int kernelSize)
         {
@@ -105,22 +96,18 @@ public class ImageProcessing
 
         public Bitmap ApplyFilter(Bitmap sourceImage)
         {
-            // Create a new bitmap to store the output image
             Bitmap outputImage = new Bitmap(sourceImage.Width, sourceImage.Height);
 
-            // Loop through each pixel in the image
             for (int x = 0; x < sourceImage.Width; x++)
             {
                 for (int y = 0; y < sourceImage.Height; y++)
                 {
-                    // Calculate the average color of the surrounding pixels
                     int red = 0, green = 0, blue = 0;
                     int count = 0;
                     for (int i = -kernelSize / 2; i <= kernelSize / 2; i++)
                     {
                         for (int j = -kernelSize / 2; j <= kernelSize / 2; j++)
                         {
-                            // Check if the pixel is within the bounds of the image
                             if (x + i >= 0 && x + i < sourceImage.Width && y + j >= 0 && y + j < sourceImage.Height)
                             {
                                 Color pixelColor = sourceImage.GetPixel(x + i, y + j);
@@ -132,12 +119,10 @@ public class ImageProcessing
                         }
                     }
 
-                    // Calculate the average values
                     red /= count;
                     green /= count;
                     blue /= count;
 
-                    // Set the pixel in the output image to the average color
                     outputImage.SetPixel(x, y, Color.FromArgb(red, green, blue));
                 }
             }
@@ -145,6 +130,7 @@ public class ImageProcessing
             return outputImage;
         }
     }
+
 
     public class ScaleFilter
     {

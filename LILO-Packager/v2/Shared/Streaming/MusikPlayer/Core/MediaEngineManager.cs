@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LILO_Packager.v2.Core.Interfaces;
+using LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core;
 using SharpDX.MediaFoundation;
 
 namespace LILO_Packager.v2.streaming.MusikPlayer.Core

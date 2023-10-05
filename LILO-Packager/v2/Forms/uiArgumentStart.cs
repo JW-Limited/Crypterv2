@@ -17,6 +17,7 @@ using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core;
+using LILO_Packager.v2.streaming.MusikPlayer.Core;
 
 namespace LILO_Packager.v2.Forms
 {
