@@ -1,11 +1,21 @@
 <div align="center" style="background-color: #1E90FF; padding: 20px;">
   <img src="LILO-Packager/favico.ico" alt="CrypterV2 Logo" width="150">
-  <h1 style="color: white;">CrypterV2</h1>
+  <h1 style="color: white;">CrypterV2 </h1> 
   <p style="color: white;">Aes 256 based - Lightweight, Extandeble and easy to use.</p>
   <p style="color: white;">But please keep in mind its still in early alpha and in development.</p>
+  
 </div>
 
 ## 📜 Cloning 
+
+  <p style="color: white;"></p>
+  <a href="https://sourceforge.net/projects/crypterv2/files/latest/download"><img alt="Download Crypterv2" src="https://img.shields.io/sourceforge/dt/crypterv2.svg" ></a>
+
+  
+<a href="https://sourceforge.net/p/crypterv2/"><img alt="Download Crypterv2" src="https://sourceforge.net/sflogo.php?type=17&group_id=3682137" width=200></a>
+
+
+
 **If you want to Clone the repo [EMAIL ME](mailto:kidjjoe@duck.com) for a full Link with all the CODE (EN and DECRYPT Algorythems along with uther Algorythems arent on Github)**
 
 ## 🚀 Features
