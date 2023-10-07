@@ -4,9 +4,14 @@ using LILO_Packager.v2.Core.LILO;
 using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.Core.Updates;
 using LILO_Packager.v2.Core.Visuals;
-using LILO_Packager.v2.shared;
-using LILO_Packager.v2.plugins.PluginCore;
-using LILO_Packager.v2.plugins.Model;
+using LILO_Packager.v2.Shared;
+using LILO_Packager.v2.Plugins.PluginCore;
+using LILO_Packager.v2.Plugins.Model;
+using LILO_Packager.v2.Core.Dialogs;
+using LILO_Packager.v2.Streaming.MusikPlayer.Forms;
+using LILO_Packager.v2.Shared.Api.Core;
+using LILO_Packager.v2.Shared.Types;
+using LILO_Packager.v2.Shared.Streaming.Core;
 using System.Collections.ObjectModel;
 using System.Net.Sockets;
 using System.Diagnostics;
@@ -14,12 +19,8 @@ using System.Text;
 using System.Net;
 using Newtonsoft.Json;
 using srvlocal_gui.AppMananger;
-using IWshRuntimeLibrary;
-using LILO_Packager.v2.Core.Dialogs;
-using LILO_Packager.v2.streaming.MusikPlayer.Forms;
-using LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core;
-using LILO_Packager.v2.streaming.MusikPlayer.Core;
-using LILO_Packager.v2.Shared.Api.Core;
+using LILO_Packager.v2.Core.Dialogs.Secured;
+
 
 namespace LILO_Packager.v2;
 public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
@@ -31,7 +32,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     private readonly TcpListener _listener;
     private readonly Thread _listenerThread;
     private readonly LILO_WebEngine.Core.Service.LocalServer _localServer;
-    private readonly LILO_WebEngine.Core.Service.LocalMediaServer _localMediaServer;
     public  readonly NotifyIconManager _noty;
     public  readonly PluginManager _pluginManager;
 
@@ -54,7 +54,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     public Action<bool>     isEnabling;
     public User             loggedInUser;
-    
+
     public Core.History.DatabaseHandling dataHandler = new Core.History.DatabaseHandling();
     public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
 
@@ -162,12 +162,26 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
     }
 
-    private MainHost()
+    private unsafe MainHost()
     {
         InitializeComponent();
 
         _broadCastChannel = BroadcastChannel.Instance;
+
         _broadCastChannel.Subscribe(new MainHostBroadCast());
+
+        _broadCastChannel.BroadcastEvent += (sender, e) =>
+        {
+            ConsoleManager.Instance().WriteLineWithColor("[BROADCAST(Message)] Payload: " + e.Message.Payload ?? e.Message.BroadcastMessageArgs?.Message ?? "null");
+        };
+
+        _broadCastChannel.BroadCastSubscribeEvent += (sender, e) =>
+        {
+            ConsoleManager.Instance().WriteLineWithColor("[BROADCAST(Event)] Subscription: " + e.Subscriped.ToString() + " - Name: " + e.Observer + " - TotalCount: " + _broadCastChannel.ObserverCount);
+        };
+
+
+
         _thManager = ThemeManager.Initialize();
         _noty = NotifyIconManager.Instance();
         _pluginManager = new PluginManager(Application.ExecutablePath.Replace("crypterv2.exe", "") + "plugins");
@@ -200,6 +214,9 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         }
 
+        var memo = new System.Buffers.MemoryHandle();
+        var mP = memo.Pointer;
+        
         this.FormClosing += (sender, e) =>
         {
             e.Cancel = true;
@@ -283,7 +300,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
                 if (Semi.IsNewer)
                 {
-                    _noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
+                    _noty.ShowBubbleNotification(new Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
                     pnlNotifications.Visible = true;
 
                     pnlMes1.Visible = true;
@@ -474,9 +491,14 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private async void bntOpenDevApp(object sender, EventArgs e)
     {
-        OpenFileDialog ofd = new OpenFileDialog();
-        ofd.ShowDialog();
-        OpenInApp(new streaming.MusikPlayer.Forms.uiPlayer(await MusicPlayerParameters.Get(ofd.FileName), false));
+        var securedHost = new SecuredDialogHost(SecuredDialogUsecase.EnCryptionKeyFetch);
+        var callback = securedHost.Show();
+        if(callback != null && callback.DialogClosingReason == DialogClosingReason.Success)
+        {
+            OkDialog.Show("ClosingReason: " + callback.DialogClosingReason.ToString() + " DynamikValues: " + string.Join("\n", callback.DynamicCallbackValues), "Callback");
+        }
+        //this._broadCastChannel.Broadcast(new Shared.Api.Types.BroadcastMessage(Shared.Api.Types.BroadcastMessageType.Info, Shared.Api.Types.BroadcastEndPoint.TPL, "close"));
+
         bntMenu(sender, e);
     }
 
@@ -558,8 +580,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private void guna2Button6_Click(object sender, EventArgs e)
     {
-
-
         if (loggedInUser is null)
         {
             var loginUi = uiLILOAccountLogin.Instance();
@@ -634,7 +654,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                     {
                         Console.WriteLine("A new release is available.");
 
-                        _noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}"));
+                        _noty.ShowBubbleNotification(new Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}"));
 
                         //string html = Markdig.Markdown.ToHtml(latestChanges);
 
@@ -643,7 +663,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
                     {
                         Console.WriteLine("No new release available.");
 
-                        _noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"No new release available.\nYou are perfect."));
+                        _noty.ShowBubbleNotification(new Notification("Updater", $"No new release available.\nYou are perfect."));
                     }
                 });
 
@@ -653,7 +673,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         }
         catch (Exception ex)
         {
-            _noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", ex.Message));
+            _noty.ShowBubbleNotification(new Notification("Updater", ex.Message));
             return Task.CompletedTask;
         }
     }
@@ -764,7 +784,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
             if (Semi.IsNewer)
             {
-                _noty.ShowBubbleNotification(new LILO_Packager.v2.shared.Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
+                _noty.ShowBubbleNotification(new Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
                 pnlNotifications.Visible = true;
 
                 pnlMes1.Visible = true;

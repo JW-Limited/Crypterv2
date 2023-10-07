@@ -1,10 +1,10 @@
 ﻿using LILO_Packager.Properties;
 using LILO_Packager.v2.Core.History;
-using LILO_Packager.v2.plugins.Model;
-using LILO_Packager.v2.plugins.PluginCore;
-using LILO_Packager.v2.shared;
-using LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core;
-using LILO_Packager.v2.streaming.MusikPlayer.Core;
+using LILO_Packager.v2.Plugins.Model;
+using LILO_Packager.v2.Plugins.PluginCore;
+using LILO_Packager.v2.Shared;
+using LILO_Packager.v2.Shared.Streaming.Core;
+using LILO_Packager.v2.Shared.Types;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -264,7 +264,7 @@ namespace LILO_Packager.v2.Forms
 
                 var para = await MusicPlayerParameters.Get(_file.outputFileName);
                 //var mediaInstance = streaming.MusikPlayer.Forms.uiPlayer.Instance(para, true);
-                var mediaInstance = new streaming.MusikPlayer.Forms.uiPlayerDynamic(para, this);
+                var mediaInstance = new Streaming.MusikPlayer.Forms.uiPlayerDynamic(para, this);
                 MainHost.Instance().OpenInApp(mediaInstance);
             }
             else
@@ -285,11 +285,17 @@ namespace LILO_Packager.v2.Forms
                             needNewInstance = true,
                         });
 
-                        plugin.Execute(new PluginParameters()
+                        var responseEx = plugin.Execute(new PluginParameters()
                         {
                             Context = list,
                             themeManager = MainHost.Instance()._thManager,
                         });
+
+                        if (responseEx.HasError)
+                        {
+                            ConsoleManager.Instance().WriteLineWithColor(responseEx.Message + responseEx.MESSAGE_UINT,ConsoleColor.DarkRed);
+                        }
+
                         MainHost.Instance().OpenInApp(plugin.PluginInterface);
                     }
                 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LILO_Packager.v2.Core.Flags;
+﻿using LILO_Packager.v2.Core;
 
 namespace Crypterv2_DevTool.Core
 {

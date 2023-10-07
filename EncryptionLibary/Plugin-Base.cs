@@ -1,4 +1,4 @@
-﻿using LILO_Packager.v2.plugins.PluginCore;
+﻿using LILO_Packager.v2.Plugins.PluginCore;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
 

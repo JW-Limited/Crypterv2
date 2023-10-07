@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LILO_Packager.v2.shared
+namespace LILO_Packager.v2.Shared
 {
 
     public class Logger : ILILOLogger
     {
         private static readonly Lazy<Logger> lazyInstance = new Lazy<Logger>(() => new Logger());
-        private readonly string logFilePath;
+        public  readonly string logFilePath;
         private readonly ConcurrentQueue<string> logQueue = new ConcurrentQueue<string>();
         private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
         public static Logger Instance => lazyInstance.Value;

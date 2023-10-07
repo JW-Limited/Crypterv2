@@ -1,4 +1,4 @@
-﻿namespace LILO_Packager.v2.streaming.MusikPlayer.Core
+﻿namespace LILO_Packager.v2.Streaming.MusikPlayer.Core
 {
     public interface ISongEntry
     {

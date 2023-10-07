@@ -1,27 +1,21 @@
 ﻿using LILO_Packager.v2.Core;
+using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.History;
-using LILO_Packager.v2.shared;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using LILO_Packager.v2.Shared;
+using LILO_Packager.v2.Shared.Api.Core;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LILO_Packager.v2.Forms
 {
     public partial class uiHistory : Form
     {
-        private string NameDisplayed = "History";
-        private DatabaseHandling dbHandler;
-        private List<HistoryElement> historyElements;
+        private readonly BroadcastChannel BroadCastChannelInstance;
+        private readonly DatabaseHandling dbHandler;
+        public static CancellationToken loadingAbort;
 
-        private static uiHistory _instance;
+        private List<HistoryElement> historyElements;
+        private static uiHistory? _instance;
         public static uiHistory Instance()
         {
             if (_instance == null)
@@ -35,14 +29,29 @@ namespace LILO_Packager.v2.Forms
 
         private uiHistory()
         {
+            dbHandler = new DatabaseHandling();
+            BroadCastChannelInstance = BroadcastChannel.Instance;
+            BroadCastChannelInstance.Subscribe(HistoryBroadCastObserver.Instance, "LocalHistoryProvider");
+
             LoadData();
 
             this.FormClosing += (sender, e) =>
             {
+                BroadCastChannelInstance.Unsubscribe(HistoryBroadCastObserver.Instance, "LocalHistoryProvider");
+                loadingAbort.Register(() =>
+                {
+                    this.Invoke(delegate
+                    {
+                        lblText.Text = "Canceling";
+                    });
+                });
+
                 _instance = null;
             };
 
             InitializeComponent();
+
+            loadingAbort = new CancellationToken();
         }
 
         private void ListViewHistory_DoubleClick(object? sender, EventArgs e)
@@ -87,54 +96,70 @@ namespace LILO_Packager.v2.Forms
 
         private async void LoadData()
         {
-            Console.WriteLine("Connecting to Database");
+            ConsoleManager.Instance().WriteLineWithColor("[LocalHistoryProvider] Connecting to Database");
 
-            dbHandler = new DatabaseHandling();
             var data = await dbHandler.GetAllEncryptedOperationsAsync();
             if (data is not null) historyElements = data;
             else
             {
-                await dbHandler.InitializeDatabaseAsync(process =>
-                {
-                    Console.WriteLine(process);
-                });
+                await dbHandler.InitializeDatabaseAsync(Console.WriteLine);
             }
         }
 
-        private async void uiHistory_Load(object sender, EventArgs e)
+        private void uiHistory_Load(object sender, EventArgs e)
         {
             if (FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering))
             {
-                this.listViewHistory.Items.Clear();
-                listViewHistory.DoubleClick += ListViewHistory_DoubleClick;
-                foreach (HistoryElement element in historyElements)
+                Task.Run(() =>
                 {
-                    var item = new ListViewItem()
-                    {
-                        Text = $"{element.id}",
-                    };
+                    this.listViewHistory.Items.Clear();
+                    listViewHistory.DoubleClick += ListViewHistory_DoubleClick;
+                    int stepps = historyElements.Count;
+                    int doneStepps = 0;
 
-                    item.SubItems.Add(element.operationType);
-                    item.SubItems.Add(element.mode);
-                    item.SubItems.Add(element.algorithmVersion);
-                    item.SubItems.Add(element.inputFileName);
-                    item.SubItems.Add(element.outputFileName);
-
-                    if (!File.Exists(element.outputFileName))
+                    if (stepps >= 1000)
                     {
-                        item.ForeColor = Color.DarkGray;
+                        MainHost.Instance().hider.Enabled = false;
                     }
 
-                    ConsoleManager.Instance().WriteLineWithColor("Loading: (ID)" + element.id + " (OPM)" + element.operationType + " (CORE)" + element.algorithmVersion, GetConsoleColorFromOperation(element.operationType));
+                    foreach (HistoryElement element in historyElements)
+                    {
+                        var item = new ListViewItem()
+                        {
+                            Text = $"{element.id}",
+                        };
+
+                        item.SubItems.Add(element.operationType);
+                        item.SubItems.Add(element.mode);
+                        item.SubItems.Add(element.algorithmVersion);
+                        item.SubItems.Add(element.inputFileName);
+                        item.SubItems.Add(element.outputFileName);
+
+                        if (!File.Exists(element.outputFileName))
+                        {
+                            item.ForeColor = Color.DarkGray;
+                        }
+
+                        ConsoleManager.Instance().WriteLineWithColor("Loading: (ID)" + element.id + " (OPM)" + element.operationType + " (CORE)" + element.algorithmVersion, GetConsoleColorFromOperation(element.operationType));
 
 
-                    listViewHistory.Items.Add(item);
-                }
+                        listViewHistory.Items.Add(item);
+
+                        doneStepps++;
+
+                        label5.Text = $"{doneStepps * 100 / stepps}%";
+                    }
+
+                    pnlLoginLoad.Visible = false;
+
+                    MainHost.Instance().hider.Enabled = true;
+                }, loadingAbort);
+            }
+            else
+            {
+                MainHost.Instance().OpenInApp(new uiFeatureNullException("FeatureNullException", "This feature isnt enabled yet."));
             }
 
-            Thread.Sleep(300);
-
-            pnlLoginLoad.Visible = false;
         }
 
         private ConsoleColor GetConsoleColorFromOperation(string operationType)
@@ -178,7 +203,7 @@ namespace LILO_Packager.v2.Forms
                                 {
                                     if (element.id == 0)
                                     {
-                                        MessageBox.Show("This Operation had no output i can delete.", "No Output", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                        MessageBox.Show("This Operation had no output that could be deleted.", "No Output", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                                         break;
                                     }
 
@@ -186,11 +211,20 @@ namespace LILO_Packager.v2.Forms
                                     {
                                         if (File.Exists(element.outputFileName))
                                         {
-                                            File.Delete(element.outputFileName);
+                                            var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Deleting, async (progress) =>
+                                            {
+                                                progress?.Report(20);
+                                                File.Delete(element.outputFileName);
+                                                progress?.Report(100);
+                                            });
+
+                                            var uiAsyncTask = new uiCustomProcess(asyncTask);
+                                            uiAsyncTask.ShowDialog();
+
                                         }
                                         else
                                         {
-                                            OkDialog.Show("The Output of this Operation is not existing anymore.", "File Not Found",DialogIcon.Error);
+                                            OkDialog.Show("The Output of this Operation is not existing anymore.", "File Not Found", DialogIcon.Error);
                                             break;
                                         }
                                     }
@@ -221,7 +255,7 @@ namespace LILO_Packager.v2.Forms
                         {
                             if (element.id == 0)
                             {
-                                MessageBox.Show("This Operation had no output.", "No Output", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                OkDialog.Show("This Operation had no output.", "No Output");
                                 break;
                             }
 
@@ -276,6 +310,11 @@ namespace LILO_Packager.v2.Forms
                 })
             );
             dialogtest.ShowDialog();
+        }
+
+        private void bntSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

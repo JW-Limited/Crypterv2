@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LILO_Packager.v2.plugins.PluginCore;
+namespace LILO_Packager.v2.Plugins.PluginCore;
 public class PluginManager
 {
     private HashSet<String> DirectoryPaths = new HashSet<string>();

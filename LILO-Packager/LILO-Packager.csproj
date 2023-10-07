@@ -44,8 +44,11 @@
 
   <ItemGroup>
     <Compile Remove="v2\Secure\**" />
+    <Compile Remove="v2\Shared\Streaming\MusikPlayer\**" />
     <EmbeddedResource Remove="v2\Secure\**" />
+    <EmbeddedResource Remove="v2\Shared\Streaming\MusikPlayer\**" />
     <None Remove="v2\Secure\**" />
+    <None Remove="v2\Shared\Streaming\MusikPlayer\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -129,13 +132,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DialogResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="v2\Forms\Dialogs\uiSecureInputHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="v2\Forms\uiErrorHandle.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="v2\Forms\uiNetworkError.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="v2\Shared\Streaming\MusikPlayer\Forms\uiPlayer.cs">
+    <Compile Update="v2\Shared\Streaming\Forms\uiPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -194,10 +200,6 @@
     <Reference Include="Interop.IWshRuntimeLibrary">
       <HintPath>..\InstallHelper\obj\Debug\net7.0\Interop.IWshRuntimeLibrary.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="v2\Forms\NewFolder\" />
   </ItemGroup>
 
 </Project>

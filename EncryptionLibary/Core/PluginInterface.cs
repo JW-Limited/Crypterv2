@@ -1,4 +1,4 @@
-﻿using LILO_Packager.v2.plugins.PluginCore;
+﻿using LILO_Packager.v2.Plugins.PluginCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

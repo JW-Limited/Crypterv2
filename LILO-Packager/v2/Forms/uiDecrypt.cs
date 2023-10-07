@@ -11,8 +11,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using LILO_Packager.v2.Core.AsyncTasks;
+using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Core.Service;
+using LILO_Packager.v2.Shared;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiDecrypt : Form
@@ -22,7 +24,7 @@ public partial class uiDecrypt : Form
     public Color SignalColor = Color.FromArgb(94, 148, 255);
     public static List<string> _arFiles = new List<string>();
     public int fileCounter = 1;
-    public shared.FileOperations sharedFile = new();
+    public Shared.FileOperations sharedFile = new();
     private DatabaseHandling dbHandler;
 
     public static uiDecrypt Instance(DatabaseHandling handler)
@@ -196,9 +198,9 @@ public partial class uiDecrypt : Form
                         {
                             Directory.CreateDirectory(decryptedFile.Replace(".lsf", "").Replace(".zip", ""));
 
-                            var handler = new shared.MultiplefileHandling();
+                            var handler = new Shared.MultiplefileHandling();
                             var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
-                            var musltifileHandler = new shared.MultiplefileHandling();
+                            var musltifileHandler = new Shared.MultiplefileHandling();
                             var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Copying, async (progress) =>
                             {
 
@@ -268,16 +270,16 @@ public partial class uiDecrypt : Form
                     await Task.Run(() =>
                     {
 
-                        Services.DecryptAndDecompressFileAsync(item, item.Replace(".lsf", ""), psw,
+                        _ = Services.DecryptAndDecompressFileAsync(item, item.Replace(".lsf", ""), psw,
                         progress =>
                         {
                             UpdateProgress(progress);
                         },
                         error =>
                         {
-                            //ShowError("Encryption Error", error.Message);
+                            ShowError("Encryption Error", error.Message);
                         },
-                        async currentTask => 
+                        async currentTask =>
                         {
 
                             if (currentTask.StartsWith("Decompress") && current is not TaskStatus.DeCompress)
@@ -303,7 +305,7 @@ public partial class uiDecrypt : Form
                                 taskBarProgress.Value = 0;
                                 taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
 
-                                ControlEnable(true,item);
+                                ControlEnable(true, item);
                                 _arFiles.Remove(item);
                                 chblistFiles.Items.Remove("  " + info.Name);
                                 fileCounter--;
@@ -328,12 +330,21 @@ public partial class uiDecrypt : Form
 
     private void ShowError(string title, string message)
     {
-        MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        ConsoleManager.Instance().WriteLineWithColor($"({title}) - {message}");
+
+        try
+        {
+            OkDialog.Show(message, title, DialogIcon.Error);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(message + "\n\n" + ex.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 
     private void bntOpen_Click(object sender, EventArgs e)
     {
-        var files = sharedFile.GetFilesFromDialog();
+        var files = sharedFile.GetFilesFromDialogFilter(Shared.FileOperations.FileDialogFilter.FilterType.EncryptedFiles);
 
         if (files != null)
         {

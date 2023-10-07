@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LILO_Packager.v2.Core.LILO;
-using LILO_Packager.v2.shared;
+using LILO_Packager.v2.Shared;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiLILOAccountLogin : Form

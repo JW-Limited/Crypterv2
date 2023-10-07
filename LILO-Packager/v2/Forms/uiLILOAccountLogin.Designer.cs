@@ -42,6 +42,7 @@ partial class uiLILOAccountLogin
         label3 = new Label();
         label4 = new Label();
         pnlTop = new Sipaa.Framework.SPanel();
+        label6 = new Label();
         showPsw = new Guna.UI2.WinForms.Guna2Button();
         Drager = new Guna.UI2.WinForms.Guna2DragControl(components);
         pnlPreview = new Guna.UI2.WinForms.Guna2Panel();
@@ -50,7 +51,6 @@ partial class uiLILOAccountLogin
         label5 = new Label();
         bntLogin = new Guna.UI2.WinForms.Guna2Button();
         guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-        label6 = new Label();
         sPanel1.SuspendLayout();
         pnlTop.SuspendLayout();
         pnlPreview.SuspendLayout();
@@ -252,6 +252,18 @@ partial class uiLILOAccountLogin
         pnlTop.Size = new Size(881, 60);
         pnlTop.TabIndex = 19;
         // 
+        // label6
+        // 
+        label6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        label6.ForeColor = SystemColors.ControlDark;
+        label6.Location = new Point(240, 0);
+        label6.Margin = new Padding(2, 0, 2, 0);
+        label6.Name = "label6";
+        label6.Size = new Size(126, 64);
+        label6.TabIndex = 17;
+        label6.Text = "(Preview)";
+        label6.TextAlign = ContentAlignment.MiddleLeft;
+        // 
         // showPsw
         // 
         showPsw.Animated = true;
@@ -382,18 +394,6 @@ partial class uiLILOAccountLogin
         guna2Panel1.Size = new Size(881, 811);
         guna2Panel1.TabIndex = 15;
         guna2Panel1.Paint += guna2Panel1_Paint;
-        // 
-        // label6
-        // 
-        label6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-        label6.ForeColor = SystemColors.ControlDark;
-        label6.Location = new Point(240, 0);
-        label6.Margin = new Padding(2, 0, 2, 0);
-        label6.Name = "label6";
-        label6.Size = new Size(126, 64);
-        label6.TabIndex = 17;
-        label6.Text = "(Preview)";
-        label6.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // uiLILOAccountLogin
         // 

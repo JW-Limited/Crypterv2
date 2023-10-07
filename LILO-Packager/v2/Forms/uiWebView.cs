@@ -1,5 +1,5 @@
 ﻿using LILO_Packager.v2.Core;
-using LILO_Packager.v2.shared;
+using LILO_Packager.v2.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

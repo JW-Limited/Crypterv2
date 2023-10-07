@@ -41,10 +41,10 @@
             // 
             cmbPlugins.Anchor = AnchorStyles.Right;
             cmbPlugins.FormattingEnabled = true;
-            cmbPlugins.Location = new Point(515, 19);
-            cmbPlugins.Margin = new Padding(2, 2, 2, 2);
+            cmbPlugins.Location = new Point(644, 24);
+            cmbPlugins.Margin = new Padding(2);
             cmbPlugins.Name = "cmbPlugins";
-            cmbPlugins.Size = new Size(159, 28);
+            cmbPlugins.Size = new Size(198, 33);
             cmbPlugins.TabIndex = 0;
             // 
             // pnlControls
@@ -61,17 +61,17 @@
             pnlControls.Location = new Point(0, 0);
             pnlControls.Margin = new Padding(2);
             pnlControls.Name = "pnlControls";
-            pnlControls.Size = new Size(688, 64);
+            pnlControls.Size = new Size(860, 80);
             pnlControls.TabIndex = 25;
             // 
             // lblDirectory
             // 
             lblDirectory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblDirectory.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDirectory.Location = new Point(198, 19);
+            lblDirectory.Location = new Point(248, 24);
             lblDirectory.Margin = new Padding(2, 0, 2, 0);
             lblDirectory.Name = "lblDirectory";
-            lblDirectory.Size = new Size(233, 26);
+            lblDirectory.Size = new Size(291, 32);
             lblDirectory.TabIndex = 17;
             lblDirectory.Text = "label1";
             lblDirectory.TextAlign = ContentAlignment.MiddleLeft;
@@ -91,10 +91,10 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(19, 19);
+            guna2Button1.Location = new Point(24, 24);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(179, 26);
+            guna2Button1.Size = new Size(224, 32);
             guna2Button1.TabIndex = 16;
             guna2Button1.Text = "Choose Directory";
             guna2Button1.Click += guna2Button1_Click;
@@ -114,10 +114,10 @@
             guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button2.ForeColor = Color.DimGray;
-            guna2Button2.Location = new Point(438, 19);
+            guna2Button2.Location = new Point(548, 24);
             guna2Button2.Margin = new Padding(2);
             guna2Button2.Name = "guna2Button2";
-            guna2Button2.Size = new Size(70, 26);
+            guna2Button2.Size = new Size(88, 32);
             guna2Button2.TabIndex = 16;
             guna2Button2.Text = "Show";
             guna2Button2.Click += guna2Button2_Click;
@@ -126,26 +126,25 @@
             // 
             pnlChild.BackColor = SystemColors.Control;
             pnlChild.BorderColor = SystemColors.ActiveBorder;
-            pnlChild.BorderRadius = 15;
-            pnlChild.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            pnlChild.BorderThickness = 2;
+            pnlChild.BorderRadius = 25;
             pnlChild.Dock = DockStyle.Fill;
-            pnlChild.FillColor = Color.White;
-            pnlChild.Location = new Point(0, 64);
+            pnlChild.FillColor = Color.Gainsboro;
+            pnlChild.Location = new Point(0, 80);
             pnlChild.Margin = new Padding(2);
             pnlChild.Name = "pnlChild";
-            pnlChild.Size = new Size(688, 449);
+            pnlChild.Size = new Size(860, 561);
             pnlChild.TabIndex = 24;
             // 
             // uiTestPlugin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(688, 513);
+            BackColor = Color.White;
+            ClientSize = new Size(860, 641);
             Controls.Add(pnlChild);
             Controls.Add(pnlControls);
-            Margin = new Padding(2, 2, 2, 2);
-            MinimumSize = new Size(706, 561);
+            Margin = new Padding(2);
+            MinimumSize = new Size(877, 687);
             Name = "uiTestPlugin";
             Text = "uiTestPlugin";
             Load += uiTestPlugin_Load;

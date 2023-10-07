@@ -1,5 +1,5 @@
 ﻿
-namespace LILO_Packager.v2.shared
+namespace LILO_Packager.v2.Shared
 {
     public interface IConsoleManager
     {

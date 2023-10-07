@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using LILO_Packager.v2.Core.AsyncTasks;
+using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Core.Keys;
 using LILO_Packager.v2.Core.Service;
-using LILO_Packager.v2.plugins.Model;
+using LILO_Packager.v2.Plugins.Model;
+using LILO_Packager.v2.Shared;
 using LILO_Packager.v2.Shared.Api.Core;
 
 namespace LILO_Packager.v2.Forms;
@@ -21,7 +23,7 @@ public partial class uiEncryt : Form
 {
     private static uiEncryt _encrypt;
     private readonly Manager _keyManager;
-    public shared.FileOperations sharedFile = new();
+    public Shared.FileOperations sharedFile = new();
     private static object _lock = new object();
     public Color SignalColor = Color.FromArgb(94, 148, 255);
     public static List<string> _arFiles = new List<string>();
@@ -144,14 +146,15 @@ public partial class uiEncryt : Form
                     if (File.Exists(file))
                     {
                         _arFiles.Add(file);
-
                         var info = new FileInfo(file);
-
                         chblistFiles.Items.Add("  " + info.Name);
-
                         chblistFiles.SetItemCheckState(fileCounter - 1, CheckState.Checked);
-
                         fileCounter++;
+                    }
+                    else
+                    {
+                        ConsoleManager.Instance().WriteLineWithColor($"File: {file} is not availlabel or require higher rights.");
+                        OkDialog.Show($"File: {file} is not availlabel or require higher rights.", "System IO Exception", DialogIcon.Error);
                     }
                 }
             }
@@ -315,7 +318,7 @@ public partial class uiEncryt : Form
             FileInfo info = new FileInfo(_arFiles[0]);
 
             var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
-            var musltifileHandler = new shared.MultiplefileHandling();
+            var musltifileHandler = new Shared.MultiplefileHandling();
             var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Refresing, async (progress) =>
             {
                 var zipProgress = new Progress<int>(progressPercentage =>

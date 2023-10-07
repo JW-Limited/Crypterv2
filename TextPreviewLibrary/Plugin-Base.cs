@@ -1,16 +1,18 @@
 ﻿using LILO_Packager.v2.Core.Visuals;
 using LILO_Packager.v2.Core.Updates;
-using LILO_Packager.v2.plugins.PluginCore;
+using LILO_Packager.v2.Plugins.PluginCore;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
-using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
 using TextPreviewLibrary.Core.Formats;
+using LILO_Packager.v2.Shared.Api.Core;
+using TextPreviewLibrary.Core;
 
 namespace TextPreviewLibrary
 {
     public class PluginBase : IPluginBase
     {
         public string Name { get; set; } = "TextPreviewLibrary";
+        public BroadcastChannel Channel { get; set; }
         public PluginID ID { get; set; } = PluginID.GetID("tpl", "lbl", "lvl02");
         public string Description { get; set; } = "A Library for previewing plain based Files";
         public string Version { get; set; } = "v0.1";
@@ -36,15 +38,27 @@ namespace TextPreviewLibrary
                     _thManager = ThemeManager.Initialize();
                 }
 
+
                 var file = (string)args.Context[0];
 
-                Core.PluginInterface.Instance(null, null, null, false).SetContent(new CrypterTextFile()
+                if (file.EndsWith(".ctv"))
                 {
-                    RtfContent = File.ReadAllText(file),
-                    IsLocked = true,
-                    FileName = Path.GetFileName(file),
-                    Author = "n/a"
-                });
+                    var content = CrypterTextFile.LoadInstanceFromFile(file);
+                    Core.PluginInterface.Instance(null, null, null, false).SetContent(content);
+                }
+                else
+                {
+                    Core.PluginInterface.Instance(null, null, null, false).SetContent(new CrypterTextFile()
+                    {
+                        RtfContent = File.ReadAllText(file),
+                        IsLocked = true,
+                        FileName = Path.GetFileName(file),
+                        Author = "n/a"
+                    });
+                }
+                
+                Channel = args.Channel;
+                Channel.Subscribe(new PluginBroadCastObserver(),"TPL - Plugin");
 
                 para.HasError = false;
                 para.Message = "Executed Succesfully";
@@ -53,7 +67,8 @@ namespace TextPreviewLibrary
             catch (Exception ex)
             {
                 para.HasError = true;
-                para.Message = ex.Message;
+                para.MESSAGE_UINT = 0x19129;
+                para.Message = ex.Message + ex.StackTrace + ex.InnerException;
                 para.MessageID = "0x10";
             }
 
@@ -67,6 +82,7 @@ namespace TextPreviewLibrary
 
             try
             {
+
                 para.HasError = false;
                 para.Message = "Initilized Succesfully";
                 para.MessageID = "0x0";
@@ -87,6 +103,7 @@ namespace TextPreviewLibrary
         public PluginResponse Close()
         {
             var para = new PluginResponse();
+            PluginInterface.Dispose();
             return para;
         }
     }

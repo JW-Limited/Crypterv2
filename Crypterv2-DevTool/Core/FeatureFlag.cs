@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Pipes;
-using System.Linq;
+﻿using System.IO.Pipes;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using LILO_Packager.v2.Core.Interfaces;
-using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using Newtonsoft.Json;
-using LILO_Packager.v2.Core.Flags;
+using LILO_Packager.v2.Core;
 
 namespace Crypterv2_DevTool.Core
 {

@@ -1,5 +1,5 @@
-﻿using LILO_Packager.v2.plugins.Model;
-using LILO_Packager.v2.plugins.PluginCore;
+﻿using LILO_Packager.v2.Plugins.Model;
+using LILO_Packager.v2.Plugins.PluginCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +15,10 @@ namespace Crypterv2_DevTool.Core.Forms
 {
     public partial class uiTestPlugin : Form
     {
+        private PluginManager manager = null;
+        public LILO_Packager.v2.Core.History.DatabaseHandling dataHandler = new LILO_Packager.v2.Core.History.DatabaseHandling();
+        public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
+
         private static uiTestPlugin _instance;
         public static uiTestPlugin Instance()
         {
@@ -25,14 +29,13 @@ namespace Crypterv2_DevTool.Core.Forms
             return _instance;
         }
 
-
-        private PluginManager manager = null;
-        public LILO_Packager.v2.Core.History.DatabaseHandling dataHandler = new LILO_Packager.v2.Core.History.DatabaseHandling();
-        public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
+        
 
         private uiTestPlugin()
         {
             InitializeComponent();
+
+
 
             this.FormClosing += (s, e) =>
             {
@@ -42,45 +45,47 @@ namespace Crypterv2_DevTool.Core.Forms
 
         private void uiTestPlugin_Load(object sender, EventArgs e)
         {
-            if(PluginTestConfig.Default.recentDirectory is not "null")
+            Task.Run(() =>
             {
-                manager = new PluginManager(PluginTestConfig.Default.recentDirectory);
-                lblDirectory.Text = PluginTestConfig.Default.recentDirectory;
+                lblDirectory.Text = "Select Directory";
 
-                try
+                if (PluginTestConfig.Default.recentDirectory is not "null")
                 {
-                    if (manager.CurrentPlugins.Count > 0)
+                    manager = new PluginManager(PluginTestConfig.Default.recentDirectory);
+                    lblDirectory.Text = PluginTestConfig.Default.recentDirectory;
+
+                    try
                     {
-                        foreach (var ele in manager.CurrentPlugins)
+                        if (manager.CurrentPlugins.Count > 0)
                         {
-                            PluginEntry ent = new PluginEntry(ele);
-                            plugins.Add(ent);
+                            foreach (var ele in manager.CurrentPlugins)
+                            {
+                                PluginEntry ent = new PluginEntry(ele);
+                                plugins.Add(ent);
+                            }
+
+                            StringBuilder stringBuilder = new StringBuilder();
+
+                            foreach (var item in plugins)
+                            {
+                                stringBuilder.Append($"Plugin : {item.Name}\n" +
+                                                     $"Description : {item.Description}\n" +
+                                                     $"Version : {item.Version}");
+                                cmbPlugins.Items.Add(item.Name);
+                                cmbPlugins.SelectedItem = item.Name;
+                            };
                         }
-
-                        StringBuilder stringBuilder = new StringBuilder();
-
-                        foreach (var item in plugins)
+                        else
                         {
-                            stringBuilder.Append($"Plugin : {item.Name}\n" +
-                                                 $"Description : {item.Description}\n" +
-                                                 $"Version : {item.Version}");
-                            cmbPlugins.Items.Add(item.Name);
-                            cmbPlugins.SelectedItem = item.Name;
+                            MessageBox.Show("We didnt found any Plugins", "Crypterv2-DevTool");
                         }
-
-
-                        //MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString() + "\n", "Crypterv2-DevTool");
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("We didnt found any Plugins", "Crypterv2-DevTool");
+                        MessageBox.Show(ex.Message);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            });
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -96,48 +101,44 @@ namespace Crypterv2_DevTool.Core.Forms
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                lblDirectory.Text = ofd.SelectedPath;
-                plugins.Clear();
-                cmbPlugins.Items.Clear();
-                manager = new PluginManager(ofd.SelectedPath);
-
-                try
+                Task.Run(() =>
                 {
-                    if (manager.CurrentPlugins.Count > 0)
+                    plugins.Clear();
+                    lblDirectory.Text = "Searching...";
+                    cmbPlugins.Items.Clear();
+                    cmbPlugins.Text = string.Empty;
+                    manager = new PluginManager(ofd.SelectedPath);
+
+                    try
                     {
-                        foreach (var ele in manager.CurrentPlugins)
+                        if (manager.CurrentPlugins.Count > 0)
                         {
-                            PluginEntry ent = new PluginEntry(ele);
-                            plugins.Add(ent);
+                            foreach (var ele in manager.CurrentPlugins)
+                            {
+                                PluginEntry ent = new PluginEntry(ele);
+                                plugins.Add(ent);
+                                cmbPlugins.Items.Add(ent.Name);
+                                cmbPlugins.SelectedItem = ent.Name;
+                            }
+
+                            PluginTestConfig.Default.recentDirectory = ofd.SelectedPath;
+                            PluginTestConfig.Default.Save();
+
+                            lblDirectory.Text = ofd.SelectedPath;
+
                         }
-
-                        StringBuilder stringBuilder = new StringBuilder();
-
-                        foreach (var item in plugins)
+                        else
                         {
-                            stringBuilder.Append($"Plugin : {item.Name}\n" +
-                                                 $"Description : {item.Description}\n" +
-                                                 $"Version : {item.Version}");
-                            cmbPlugins.Items.Add(item.Name);
-                            cmbPlugins.SelectedItem = item.Name;
+                            MessageBox.Show("We didnt found any Plugins", "Crypterv2-DevTool");
+                            lblDirectory.Text = "Select directory.";
                         }
-
-                        PluginTestConfig.Default.recentDirectory = ofd.SelectedPath;
-                        PluginTestConfig.Default.Save();
-
-                        //MessageBox.Show("We found Plugins and loaded them:\n\n" + stringBuilder.ToString() + "\n", "Crypterv2-DevTool");
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("We didnt found any Plugins", "Crypterv2-DevTool");
+                        MessageBox.Show(ex.Message);
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else { 
+                });
+                
             }
         }
 
@@ -157,8 +158,7 @@ namespace Crypterv2_DevTool.Core.Forms
 
                 if (neededPlugin is not null)
                 {
-
-                    this.Size = new System.Drawing.Size(neededPlugin.form.Size.Height + 10, neededPlugin.form.Size.Width + 10);
+                    this.Size = new System.Drawing.Size(neededPlugin.form.Size.Width + 10, neededPlugin.form.Size.Height + 10);
                     OpenInApp(neededPlugin.form, "Test", ChildrenUse.Auth);
                 }
             }
@@ -168,31 +168,9 @@ namespace Crypterv2_DevTool.Core.Forms
             }
         }
 
-        public enum ChildrenUse
-        {
-            Auth,
-            WebView,
-            NormalForm
-        }
-
 
 
         private Form currentOpenedApp;
-
-        /// <summary>
-        /// This Method accpets a WinForm object and 
-        /// displays it over all controls with help of
-        /// a Panel
-        /// </summary>
-        /// <param name="children">
-        /// The Form Object
-        /// </param>
-        /// <param name="FormName">
-        /// The displayed Formname
-        /// </param>
-        /// <param name="usage">
-        /// The Mode and Accessability clarifier
-        /// </param>
 
         public void OpenInApp(Form children, string FormName = null, ChildrenUse usage = ChildrenUse.WebView)
         {

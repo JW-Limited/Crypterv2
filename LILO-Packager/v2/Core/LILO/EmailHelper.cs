@@ -1,5 +1,5 @@
 ﻿using LILO_Packager.v2.Core.Interfaces;
-using LILO_Packager.v2.shared;
+using LILO_Packager.v2.Shared;
 using System.Diagnostics;
 
 namespace LILO_Packager.v2.Core.LILO

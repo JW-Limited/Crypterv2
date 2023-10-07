@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using LILO_Packager.v2.shared;
+using LILO_Packager.v2.Shared;
 using Newtonsoft.Json;
 
 namespace LILO_Packager.v2.Core.Visuals

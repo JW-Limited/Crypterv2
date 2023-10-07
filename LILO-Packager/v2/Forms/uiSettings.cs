@@ -16,7 +16,7 @@ public partial class uiSettings : Form
 {
     private static uiSettings _encrypt;
     private User _user;
-    public shared.FileOperations sharedFile = new();
+    public Shared.FileOperations sharedFile = new();
     private static object _lock = new object();
     public static uiSettings Instance(User user)
     {

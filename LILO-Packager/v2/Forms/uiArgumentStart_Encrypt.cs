@@ -2,7 +2,7 @@
 using LILO_Packager.Properties;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Core.Service;
-using LILO_Packager.v2.shared;
+using LILO_Packager.v2.Shared.Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

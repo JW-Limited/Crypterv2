@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LILO_Packager.v2.shared
+namespace LILO_Packager.v2.Shared
 {
     public class GuidUtilityBase
     {

@@ -1,4 +1,4 @@
-﻿using LILO_Packager.v2.plugins.PluginCore;
+﻿using LILO_Packager.v2.Plugins.PluginCore;
 using System.Drawing;
 using System.Windows.Forms;
 using TextPreviewLibrary.Core.Formats;
@@ -65,6 +65,12 @@ public partial class PluginInterface : Form
         if (file is not null)
         {
             _file = file;
+            mainTextBox.Text = file.RtfContent;
+            mainTextBox.Enabled = !file.IsLocked;
+            mainTextBox.ForeColor = file.TextColor;
+            lblWordCounts.Text = "Words: " + file.WordCount;
+            lblLanguage.Text = file.FileName;
+            lblVersion.Text += " - " + file.version;
         }
     }
 

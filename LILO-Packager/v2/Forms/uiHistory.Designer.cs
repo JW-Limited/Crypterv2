@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             ListViewItem listViewItem1 = new ListViewItem(new string[] { "12345", "Encryption", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiHistory));
             tableLayoutPanel1 = new TableLayoutPanel();
             listViewHistory = new HTAlt.WinForms.HTListView();
             ColId = new ColumnHeader();
@@ -45,6 +46,8 @@
             toolStripSeparator2 = new ToolStripSeparator();
             reportToolStripMenuItem = new ToolStripMenuItem();
             sPanel2 = new Sipaa.Framework.SPanel();
+            bntSearch = new Guna.UI2.WinForms.Guna2Button();
+            txtSearchInput = new Sipaa.Framework.STextBox();
             bntPlugin = new Guna.UI2.WinForms.Guna2Button();
             bntCancel = new Guna.UI2.WinForms.Guna2Button();
             lblText = new Label();
@@ -64,6 +67,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.Controls.Add(listViewHistory, 0, 1);
             tableLayoutPanel1.Location = new Point(40, 104);
+            tableLayoutPanel1.Margin = new Padding(2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
@@ -87,13 +91,14 @@
             listViewHistory.HideSelection = true;
             listViewHistory.HoverSelection = true;
             listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem1 });
-            listViewHistory.Location = new Point(3, 53);
+            listViewHistory.Location = new Point(2, 52);
+            listViewHistory.Margin = new Padding(2);
             listViewHistory.MultiSelect = false;
             listViewHistory.Name = "listViewHistory";
             listViewHistory.OverlayColor = Color.DodgerBlue;
             listViewHistory.ShowGroups = false;
             listViewHistory.ShowItemToolTips = true;
-            listViewHistory.Size = new Size(946, 768);
+            listViewHistory.Size = new Size(948, 770);
             listViewHistory.TabIndex = 0;
             listViewHistory.UseCompatibleStateImageBehavior = false;
             listViewHistory.View = View.Details;
@@ -193,6 +198,8 @@
             sPanel2.BorderColor = Color.Black;
             sPanel2.BorderRadius = 20;
             sPanel2.BorderSize = 0;
+            sPanel2.Controls.Add(bntSearch);
+            sPanel2.Controls.Add(txtSearchInput);
             sPanel2.Controls.Add(bntPlugin);
             sPanel2.Controls.Add(bntCancel);
             sPanel2.Controls.Add(lblText);
@@ -202,6 +209,56 @@
             sPanel2.Name = "sPanel2";
             sPanel2.Size = new Size(968, 88);
             sPanel2.TabIndex = 13;
+            // 
+            // bntSearch
+            // 
+            bntSearch.Animated = true;
+            bntSearch.BackColor = Color.Transparent;
+            bntSearch.BorderColor = Color.FromArgb(224, 224, 224);
+            bntSearch.BorderRadius = 15;
+            bntSearch.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
+            bntSearch.CheckedState.Image = (Image)resources.GetObject("resource.Image");
+            bntSearch.DisabledState.BorderColor = Color.DarkGray;
+            bntSearch.DisabledState.CustomBorderColor = Color.DarkGray;
+            bntSearch.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            bntSearch.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            bntSearch.FillColor = Color.Transparent;
+            bntSearch.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            bntSearch.ForeColor = Color.White;
+            bntSearch.Image = Properties.Resources.icons8_spielen_94;
+            bntSearch.Location = new Point(760, 24);
+            bntSearch.Margin = new Padding(4);
+            bntSearch.Name = "bntSearch";
+            bntSearch.PressedColor = Color.DarkGray;
+            bntSearch.Size = new Size(46, 48);
+            bntSearch.TabIndex = 22;
+            bntSearch.UseTransparentBackground = true;
+            bntSearch.Visible = false;
+            bntSearch.Click += bntSearch_Click;
+            // 
+            // txtSearchInput
+            // 
+            txtSearchInput.Anchor = AnchorStyles.None;
+            txtSearchInput.BackColor = Color.White;
+            txtSearchInput.BorderColor = Color.Silver;
+            txtSearchInput.BorderFocusColor = Color.DimGray;
+            txtSearchInput.BorderRadius = 20;
+            txtSearchInput.BorderSize = 1;
+            txtSearchInput.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            txtSearchInput.ForeColor = Color.Black;
+            txtSearchInput.Location = new Point(568, 24);
+            txtSearchInput.Margin = new Padding(5);
+            txtSearchInput.Multiline = false;
+            txtSearchInput.Name = "txtSearchInput";
+            txtSearchInput.Padding = new Padding(12, 9, 12, 9);
+            txtSearchInput.PasswordChar = true;
+            txtSearchInput.PlaceholderColor = Color.DarkGray;
+            txtSearchInput.PlaceholderText = "Search here";
+            txtSearchInput.Size = new Size(248, 49);
+            txtSearchInput.TabIndex = 21;
+            txtSearchInput.Texts = "";
+            txtSearchInput.UnderlinedStyle = false;
+            txtSearchInput.Visible = false;
             // 
             // bntPlugin
             // 
@@ -244,7 +301,7 @@
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
             bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             bntCancel.ForeColor = Color.White;
-            bntCancel.Location = new Point(2367, 16);
+            bntCancel.Location = new Point(2368, 16);
             bntCancel.Margin = new Padding(2);
             bntCancel.Name = "bntCancel";
             bntCancel.Size = new Size(128, 58);
@@ -271,7 +328,6 @@
             pnlLoginLoad.BackColor = Color.Transparent;
             pnlLoginLoad.BorderColor = Color.Silver;
             pnlLoginLoad.BorderRadius = 15;
-            pnlLoginLoad.BorderThickness = 2;
             pnlLoginLoad.Controls.Add(progressSpinner);
             pnlLoginLoad.Controls.Add(label5);
             pnlLoginLoad.FillColor = Color.White;
@@ -287,12 +343,14 @@
             progressSpinner.AutoStart = true;
             progressSpinner.BackColor = Color.White;
             progressSpinner.Location = new Point(404, 256);
+            progressSpinner.Margin = new Padding(2);
             progressSpinner.Name = "progressSpinner";
             progressSpinner.Size = new Size(135, 135);
             progressSpinner.TabIndex = 8;
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.None;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ActiveCaptionText;
             label5.Location = new Point(400, 416);
@@ -312,6 +370,7 @@
             Controls.Add(pnlLoginLoad);
             Controls.Add(sPanel2);
             Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(2);
             Name = "uiHistory";
             Text = "uiHistory";
             Load += uiHistory_Load;
@@ -346,5 +405,7 @@
         private ToolStripMenuItem compareToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem reportToolStripMenuItem;
+        private Sipaa.Framework.STextBox txtSearchInput;
+        private Guna.UI2.WinForms.Guna2Button bntSearch;
     }
 }

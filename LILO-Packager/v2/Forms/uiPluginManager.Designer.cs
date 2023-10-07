@@ -70,7 +70,7 @@
             // 
             // pluginEntryBindingSource
             // 
-            pluginEntryBindingSource.DataSource = typeof(plugins.Model.PluginEntry);
+            pluginEntryBindingSource.DataSource = typeof(Plugins.Model.PluginEntry);
             pluginEntryBindingSource.CurrentChanged += pluginEntryBindingSource_CurrentChanged;
             // 
             // sPanel2
@@ -156,7 +156,7 @@
             // 
             // pluginEntryBindingSource1
             // 
-            pluginEntryBindingSource1.DataSource = typeof(plugins.Model.PluginEntry);
+            pluginEntryBindingSource1.DataSource = typeof(Plugins.Model.PluginEntry);
             // 
             // tabControl
             // 
@@ -354,7 +354,7 @@
             guna2Panel1.Location = new Point(32, 152);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(624, 208);
+            guna2Panel1.Size = new Size(632, 208);
             guna2Panel1.TabIndex = 13;
             // 
             // lblAuther
@@ -366,7 +366,7 @@
             lblAuther.Location = new Point(216, 136);
             lblAuther.Margin = new Padding(4, 0, 4, 0);
             lblAuther.Name = "lblAuther";
-            lblAuther.Size = new Size(243, 56);
+            lblAuther.Size = new Size(251, 56);
             lblAuther.TabIndex = 1;
             lblAuther.Text = "n/a";
             lblAuther.TextAlign = ContentAlignment.MiddleLeft;
@@ -381,7 +381,7 @@
             lblSize.Location = new Point(216, 24);
             lblSize.Margin = new Padding(4, 0, 4, 0);
             lblSize.Name = "lblSize";
-            lblSize.Size = new Size(392, 56);
+            lblSize.Size = new Size(400, 56);
             lblSize.TabIndex = 1;
             lblSize.Text = "n/a";
             lblSize.TextAlign = ContentAlignment.MiddleLeft;
@@ -395,7 +395,7 @@
             lblVersion.Location = new Point(216, 80);
             lblVersion.Margin = new Padding(4, 0, 4, 0);
             lblVersion.Name = "lblVersion";
-            lblVersion.Size = new Size(235, 56);
+            lblVersion.Size = new Size(243, 56);
             lblVersion.TabIndex = 1;
             lblVersion.Text = "n/a";
             lblVersion.TextAlign = ContentAlignment.MiddleLeft;

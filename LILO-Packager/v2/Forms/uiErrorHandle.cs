@@ -1,4 +1,4 @@
-﻿using LILO_Packager.v2.shared;
+﻿using LILO_Packager.v2.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +21,7 @@ namespace LILO_Packager.v2.Forms
         {
             InitializeComponent();
 
-            _error = error ?? new CustomError(ErrorCatcher.ErrorRank.Medium, null, DateTime.Now, null);
+            _error = error ?? new CustomError(BugBarrier.ErrorRank.Medium, null, DateTime.Now, null);
         }
 
         private void uiFeatureNullException_Load(object sender, EventArgs e)

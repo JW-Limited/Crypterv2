@@ -8,7 +8,7 @@
         string MachineName { get; set; }
         string Message { get; set; }
         ErrorMessageParser ParsedMessage { get; set; }
-        ErrorCatcher.ErrorRank Rank { get; set; }
+        BugBarrier.ErrorRank Rank { get; set; }
         string Source { get; set; }
         string StackTrace { get; set; }
         DateTime Timestamp { get; set; }

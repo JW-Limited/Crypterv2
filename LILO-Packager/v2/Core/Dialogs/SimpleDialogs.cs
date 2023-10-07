@@ -19,14 +19,25 @@ namespace LILO_Packager.v2.Core.Dialogs
                 Core.Dialogs.Dialog.Message,
                 Core.Dialogs.DialogButtons.OkCancel,
                 icon,
-                result =>
-                {
-                    if (result == Core.Dialogs.DialogResults.Ok)
-                    {
+                result => {})
+            );
+            dialogtest.ShowDialog();
+        }
+    }
 
-                    }
-                })
-            ); ;
+    public class ContinueDialog
+    {
+        public static void Show(string _message, string _title, DialogIcon _icon = Core.Dialogs.DialogIcon.Information)
+        {
+            var dialogtest = new uiCustomDialog(
+            new Core.Dialogs.MessageDialogPreference(
+                _title,
+                _message,
+                Core.Dialogs.Dialog.Authorization,
+                Core.Dialogs.DialogButtons.Allow,
+                _icon,
+                result => {})
+            );
             dialogtest.ShowDialog();
         }
     }

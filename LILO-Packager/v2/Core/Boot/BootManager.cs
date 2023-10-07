@@ -1,6 +1,6 @@
 ﻿using LILO_Packager.v2.Core.Debug;
 using LILO_Packager.v2.Forms;
-using LILO_Packager.v2.shared;
+using LILO_Packager.v2.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,7 @@ using CommandLine;
 using Windows.Globalization;
 using CommandLine.Text;
 using LILO_Packager.v2.Core.Debug.Types;
+using LILO_Packager.v2.Shared.Types;
 
 namespace LILO_Packager.v2.Core.Boot
 {

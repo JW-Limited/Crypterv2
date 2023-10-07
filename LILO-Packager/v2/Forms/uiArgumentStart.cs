@@ -1,7 +1,6 @@
 ﻿using LILO_Packager.v2.Forms;
 using LILO_Packager.Properties;
-using LILO_Packager.v2.shared;
-using LILO_Packager.v2.streaming.MusikPlayer.Forms;
+using LILO_Packager.v2.Streaming.MusikPlayer.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,8 +15,8 @@ using System.Windows.Forms;
 using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.Service;
-using LILO_Packager.v2.Shared.Streaming.MusikPlayer.Core;
-using LILO_Packager.v2.streaming.MusikPlayer.Core;
+using LILO_Packager.v2.Shared.Types;
+using LILO_Packager.v2.Shared.Streaming.Core;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -190,9 +189,9 @@ namespace LILO_Packager.v2.Forms
                             {
                                 Directory.CreateDirectory(decryptedFile.Replace(".lsf", "").Replace(".zip", ""));
 
-                                var handler = new shared.MultiplefileHandling();
+                                var handler = new Shared.MultiplefileHandling();
                                 var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
-                                var musltifileHandler = new shared.MultiplefileHandling();
+                                var musltifileHandler = new Shared.MultiplefileHandling();
                                 var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Copying, async (progress) =>
                                 {
 

@@ -1,6 +1,6 @@
 ﻿using LILO_Packager.v2.Core.BugBarrier.Types;
 using LILO_Packager.v2.Core.Dialogs;
-using LILO_Packager.v2.shared;
+using LILO_Packager.v2.Shared;
 using Paket;
 using RestSharp;
 using System;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace LILO_Packager.v2.Core.BugBarrier
 {
-    public static partial class ErrorCatcher
+    public static partial class BugBarrier
     {
         public static List<ICustomError> errorList = new List<ICustomError>();
         private static ErrorRank GetErrorRank(Exception ex)

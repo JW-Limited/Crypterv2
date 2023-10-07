@@ -516,5 +516,5 @@ partial class PluginInterface
     private Guna.UI2.WinForms.Guna2Button guna2Button7;
     private Guna.UI2.WinForms.Guna2Button bntDesign;
     private Sipaa.Framework.SPanel pnlDesing;
-    private Label lblTip;
+    public Label lblTip;
 }

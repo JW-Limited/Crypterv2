@@ -1,6 +1,6 @@
-﻿using LILO_Packager.v2.plugins.PluginCore;
+﻿using LILO_Packager.v2.Plugins.PluginCore;
 
-namespace LILO_Packager.v2.plugins.Model
+namespace LILO_Packager.v2.Plugins.Model
 {
     public interface IPluginEntry
     {

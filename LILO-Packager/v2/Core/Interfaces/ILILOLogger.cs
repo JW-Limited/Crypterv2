@@ -1,6 +1,6 @@
-﻿using static LILO_Packager.v2.shared.Logger;
+﻿using static LILO_Packager.v2.Shared.Logger;
 
-namespace LILO_Packager.v2.shared
+namespace LILO_Packager.v2.Shared
 {
     public interface ILILOLogger
     {

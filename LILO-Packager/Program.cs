@@ -1,14 +1,12 @@
 using LILO_Packager.v2;
-using LILO_WebEngine;
 using LILO_Packager.v2.Core.Boot;
-using LILO_Packager.v2.Core.Updates;
-using LILO_Packager.v2.Forms;
-using LILO_Packager.v2.shared;
-using Microsoft.Win32;
+using LILO_Packager.v2.Shared;
+using LILO_Packager.v2.Core.BugBarrier;
+using LILO_Packager.v2.Shared.Types;
+
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Threading;
-using LILO_Packager.v2.Core.BugBarrier;
+using LILO_Packager.v2.Forms;
 
 namespace LILO_Packager
 {
@@ -16,12 +14,12 @@ namespace LILO_Packager
     {
         public static int DefaultEnvironment = 0;
         public static NotifyIcon noty;
-        public static string Version = "v0.9.7-dev_edition";
+        public static string Version = "v0.9.10-dev_edition";
 
         private static void InitializeApplication()
         {
             Application.EnableVisualStyles();
-            ErrorCatcher.Initialize();
+            BugBarrier.Initialize();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
         }
@@ -33,10 +31,7 @@ namespace LILO_Packager
         {
             InitializeApplication();
 
-            
 
-
-            //uiSplashScreen.Instance.ShowDialog();
 
             try
             {
@@ -44,10 +39,7 @@ namespace LILO_Packager
                 ConsoleManager.Instance().WriteLineWithColor("Started InstallHelper the Application is closing now meanwhile the Helper is doing his thing.", ConsoleColor.DarkGreen);
             }
 
-            catch(Exception ex)
-            {
-                
-            }
+            catch (Exception) { }
 
             try
             {
@@ -79,12 +71,12 @@ namespace LILO_Packager
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("An Error Accoured: " + ex.Message,"Error - RunMainUi");
+                        MessageBox.Show("An Error Accoured: " + ex.Message, "Error - RunMainUi");
                         ConsoleManager.Instance().WriteLineWithColor("An Error Acourred: " + ex.Message, ConsoleColor.Red);
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error - BootManager", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification);
             }

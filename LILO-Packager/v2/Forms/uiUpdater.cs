@@ -1,6 +1,6 @@
 ﻿using LILO_Packager.Properties;
 using LILO_Packager.v2.Core.Updates;
-using LILO_Packager.v2.shared;
+using LILO_Packager.v2.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

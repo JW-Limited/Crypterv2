@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Services.Description;
-using Grpc.Core;
-using LILO_Packager.v2.shared;
-using Microsoft.Extensions.DependencyInjection;
+﻿using LILO_Packager.v2.Shared;
+using LILO_Packager.v2.Shared.Api.Types;
 
 namespace LILO_Packager.v2.Shared.Api.Core
 {
@@ -19,20 +12,24 @@ namespace LILO_Packager.v2.Shared.Api.Core
         public static BroadcastChannel Instance => _lazyInstance.Value;
 
         public event EventHandler<BroadcastEventArgs> BroadcastEvent;
+        public event EventHandler<BroadCastSubscriptionEventArgs> BroadCastSubscribeEvent;
 
-        public void Subscribe(IObserver<BroadcastMessage> observer)
+        public void Subscribe(IObserver<BroadcastMessage> observer,string name = null)
         {
             lock (lockObject)
             {
                 observers.Add(observer);
+                BroadCastSubscribeEvent?.Invoke(this,new BroadCastSubscriptionEventArgs(true, name ?? "n/a"));
             }
         }
 
-        public void Unsubscribe(IObserver<BroadcastMessage> observer)
+        public void Unsubscribe(IObserver<BroadcastMessage> observer, string name = null)
         {
             lock (lockObject)
             {
                 observers.Remove(observer);
+                BroadCastSubscribeEvent?.Invoke(this, new BroadCastSubscriptionEventArgs(false, name ?? "n/a"));
+              
             }
         }
 
@@ -62,62 +59,15 @@ namespace LILO_Packager.v2.Shared.Api.Core
         }
     }
 
-    public class BroadcastEventArgs : EventArgs
+    public class BroadCastSubscriptionEventArgs : EventArgs
     {
-        public BroadcastMessage Message { get; }
+        public bool Subscriped { get; private set; }
+        public string Observer { get; private set; }
 
-        public BroadcastEventArgs(BroadcastMessage message)
+        public BroadCastSubscriptionEventArgs(bool subscriped, string observer)
         {
-            Message = message;
+            Subscriped = subscriped;
+            Observer = observer;
         }
-    }
-
-
-    public enum BroadcastMessageType
-    {
-        Info,
-        Warning,
-        Error,
-        Action
-    }
-
-    public enum BroadcastEndPoint
-    {
-        ForAll,
-        MainHost,
-        Encryption,
-        Decryption,
-
-    }
-
-    public class BroadcastMessage
-    {
-        public BroadcastMessageType Type { get; private set; }
-        public BroadcastEndPoint EndPoint { get; private set; }
-        public string? Payload { get; private set; }
-        public BroadCastMessageParameters? BroadcastMessageArgs {  get; private set; }
-
-        public BroadcastMessage(BroadcastMessageType type,
-                                BroadcastEndPoint endPoint,
-                                string payload)
-        {
-            Type = type;
-            EndPoint = endPoint;
-            Payload = payload;
-        }
-
-        public BroadcastMessage(BroadcastMessageType type,
-                                BroadcastEndPoint endPoint,
-                                BroadCastMessageParameters castMessageParameters)
-        {
-            Type = type;
-            EndPoint = endPoint;
-            BroadcastMessageArgs = castMessageParameters;
-        }
-    }
-
-    public class BroadCastMessageParameters
-    {
-
     }
 }

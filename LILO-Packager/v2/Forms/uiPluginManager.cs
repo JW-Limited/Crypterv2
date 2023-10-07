@@ -1,5 +1,5 @@
-﻿using LILO_Packager.v2.plugins.Model;
-using LILO_Packager.v2.plugins.PluginCore;
+﻿using LILO_Packager.v2.Plugins.Model;
+using LILO_Packager.v2.Plugins.PluginCore;
 using System.Collections.ObjectModel;
 
 namespace LILO_Packager.v2.Forms

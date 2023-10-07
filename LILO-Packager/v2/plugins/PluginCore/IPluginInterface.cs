@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LILO_Packager.v2.plugins.PluginCore
+namespace LILO_Packager.v2.Plugins.PluginCore
 {
     public interface IPluginInterface
     {

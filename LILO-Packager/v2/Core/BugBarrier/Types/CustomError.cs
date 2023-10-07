@@ -1,4 +1,4 @@
-﻿using static LILO_Packager.v2.Core.BugBarrier.ErrorCatcher;
+﻿using static LILO_Packager.v2.Core.BugBarrier.BugBarrier;
 
 namespace LILO_Packager.v2.Core.BugBarrier.Types
 {

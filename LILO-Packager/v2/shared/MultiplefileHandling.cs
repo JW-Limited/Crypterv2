@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LILO_Packager.v2.Core.History;
 using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LILO_Packager.v2.shared
+namespace LILO_Packager.v2.Shared
 {
     public class MultiplefileHandling
     {
@@ -36,6 +32,8 @@ namespace LILO_Packager.v2.shared
 
         public async Task UnzipFilesAsync(string zipFilePath, string extractionPath, IProgress<int> progress)
         {
+            DatabaseHandling dbHandler = new DatabaseHandling();
+
             using (var zipArchive = ZipFile.OpenRead(zipFilePath))
             {
                 for (int i = 0; i < zipArchive.Entries.Count; i++)
@@ -43,6 +41,7 @@ namespace LILO_Packager.v2.shared
                     ZipArchiveEntry entry = zipArchive.Entries[i];
                     string entryFullName = Path.Combine(extractionPath, entry.FullName);
                     entry.ExtractToFile(entryFullName, true);
+                    await dbHandler.InsertEncryptedOperationAsync("DeCompress", "libraryBased", "v1", zipFilePath, entryFullName, $"{new Random().NextInt64(11111, 99999)}");
 
                     int progressPercentage = (i + 1) * 100 / zipArchive.Entries.Count;
                     progress?.Report(progressPercentage);

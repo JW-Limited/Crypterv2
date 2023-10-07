@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LILO_Packager.v2.shared
+namespace LILO_Packager.v2.Shared
 {
     using System;
     using System.IO;
