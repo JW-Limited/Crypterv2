@@ -1,9 +1,10 @@
 ﻿using LILO_Packager.v2.Core.History;
+using LILO_Packager.v2.Shared.Interfaces;
 using System.IO.Compression;
 
 namespace LILO_Packager.v2.Shared
 {
-    public class MultiplefileHandling
+    public class MultiplefileHandling : ILILOFilePacker
     {
         public async Task ZipFilesAsync(string zipFilePath, IProgress<int> progress, List<string> files)
         {
@@ -45,7 +46,7 @@ namespace LILO_Packager.v2.Shared
 
                     int progressPercentage = (i + 1) * 100 / zipArchive.Entries.Count;
                     progress?.Report(progressPercentage);
-                    await Task.Yield(); 
+                    await Task.Yield();
                 }
             }
         }

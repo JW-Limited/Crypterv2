@@ -73,6 +73,7 @@ namespace LILO_Packager.v2.Forms
                         if (File.Exists(element.outputFileName))
                         {
                             MainHost.Instance().OpenInApp(new uiHistoryElementInfo(element));
+                            break;
                         }
                         else
                         {
@@ -82,7 +83,8 @@ namespace LILO_Packager.v2.Forms
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "FileError", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(ex.Message, "FileError", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                        break;
                     }
                 }
             }

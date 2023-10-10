@@ -1,22 +1,17 @@
-﻿using LILO_Packager.v2.Core.Debug;
-using LILO_Packager.v2.Forms;
+﻿using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Telerik.WinControls.Commands;
 using CommandLine;
-using Windows.Globalization;
-using CommandLine.Text;
 using LILO_Packager.v2.Core.Debug.Types;
 using LILO_Packager.v2.Shared.Types;
+using LILO_Packager.v2.Plugins.ThirdParty;
+using System.Diagnostics;
+using LILO_Packager.v2.Core.Interfaces;
 
 namespace LILO_Packager.v2.Core.Boot
 {
 
-    public class BootManager
+    public class BootManager : IBootManager
     {
         public void Run(string[] args)
         {
@@ -39,6 +34,10 @@ namespace LILO_Packager.v2.Core.Boot
                     if (options.FilePath.EndsWith(".lsf"))
                     {
                         HandleEncryptedFile(options.FilePath);
+                    }
+                    else if (options.FilePath.EndsWith(".cryptex"))
+                    {
+                        HandlePluginFile(options.FilePath);
                     }
                     else if (options.FilePath.EndsWith(".dbgsl"))
                     {
@@ -69,6 +68,14 @@ namespace LILO_Packager.v2.Core.Boot
             EncryptedFile file = new EncryptedFile(filePath);
             var decryptionUI = uiArgumentStart.Instance(file);
             Application.Run(decryptionUI);
+        }
+
+        private void HandlePluginFile(string filePath)
+        {
+            //ConsoleManager.Instance().ShowConsoleWindow();
+            ConsoleManager.Instance().WriteLineWithColor("Started with Arguments: Opening EncryptionPopupDialog", ConsoleColor.DarkGreen);
+
+            Application.Run(PluginInstaller.Instance(LILO_Packager.v2.Plugins.ThirdParty.Types.Plugin.Create(filePath)));
         }
 
         private void HandleDebugSessionLogFile(string filePath)
@@ -123,7 +130,45 @@ namespace LILO_Packager.v2.Core.Boot
             ConsoleManager.Instance().WriteLineWithColor(helpText.ToString(), ConsoleColor.Red);
             Console.ReadKey();
         }
+
+        public static void ExecuteBatchScript(int waitTimeInSeconds, string applicationPath)
+        {
+            try
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = "cmd.exe";
+                process.StartInfo.RedirectStandardInput = true;
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+
+                process.Start();
+
+                process.StandardInput.WriteLine($"@echo off");
+                process.StandardInput.WriteLine($"setlocal");
+                process.StandardInput.WriteLine($":: Define the number of seconds to wait");
+                process.StandardInput.WriteLine($"set \"wait_seconds={waitTimeInSeconds}\"");
+                process.StandardInput.WriteLine($":: Display a countdown message");
+                process.StandardInput.WriteLine($"for /l %%i in (!wait_seconds! -1 1) do (");
+                process.StandardInput.WriteLine($"cls");
+                process.StandardInput.WriteLine($"echo Waiting for %%i seconds...");
+                process.StandardInput.WriteLine($"timeout /t 1 /nobreak >nul");
+                process.StandardInput.WriteLine($")");
+                process.StandardInput.WriteLine($":: Start the application");
+                process.StandardInput.WriteLine($"start \"\" \"{applicationPath}\"");
+                process.StandardInput.WriteLine($"endlocal");
+                process.StandardInput.WriteLine($"exit");
+
+                process.WaitForExit();
+                process.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+        }
     }
+
+
 }
 
 

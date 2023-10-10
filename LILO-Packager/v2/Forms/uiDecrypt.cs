@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Formats.Tar;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Guna.UI2.WinForms;
+﻿using Guna.UI2.WinForms;
 using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.History;
@@ -344,7 +333,7 @@ public partial class uiDecrypt : Form
 
     private void bntOpen_Click(object sender, EventArgs e)
     {
-        var files = sharedFile.GetFilesFromDialogFilter(Shared.FileOperations.FileDialogFilter.FilterType.EncryptedFiles);
+        var files = sharedFile.GetFilesFromDialogFilter(Shared.FilterType.EncryptedFiles);
 
         if (files != null)
         {

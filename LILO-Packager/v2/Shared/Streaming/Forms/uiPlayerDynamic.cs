@@ -153,8 +153,8 @@ namespace LILO_Packager.v2.Streaming.MusikPlayer.Forms
 
             this.FormClosing += (sender, e) =>
             {
-                OpendFileStream.Close();
-                OpendFileStream.Dispose();
+                OpendFileStream?.Close();
+                OpendFileStream?.Dispose();
             };
 
             timer.Start();

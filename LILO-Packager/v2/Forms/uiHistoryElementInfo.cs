@@ -248,7 +248,10 @@ namespace LILO_Packager.v2.Forms
             {
                 MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri(_file.outputFileName)));
             }
-            else if (_file.outputFileName.EndsWith(".mp3") || _file.outputFileName.EndsWith(".wav"))
+            else if (_file.outputFileName.EndsWith(".mp3") || 
+                     _file.outputFileName.EndsWith(".wav") || 
+                     _file.outputFileName.EndsWith(".m4a") || 
+                     _file.outputFileName.EndsWith(".aac"))
             {
                 if (config.Default.openMediaIn != "buildIn")
                 {

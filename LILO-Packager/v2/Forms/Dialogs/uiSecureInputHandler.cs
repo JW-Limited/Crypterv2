@@ -56,7 +56,12 @@ namespace LILO_Packager.v2.Forms
                 DynamicCallbackValues = new System.Collections.ObjectModel.ObservableCollection<string>() { txtPsw.Texts }
             });
 
-            this.Close() ;
+            this.Close();
+        }
+
+        private void showPsw_Click(object sender, EventArgs e)
+        {
+            txtPsw.PasswordChar = !showPsw.Checked;
         }
     }
 }

@@ -12,6 +12,8 @@ using LILO_Packager.v2.Streaming.MusikPlayer.Forms;
 using LILO_Packager.v2.Shared.Api.Core;
 using LILO_Packager.v2.Shared.Types;
 using LILO_Packager.v2.Shared.Streaming.Core;
+using LILO_Packager.v2.Core.Dialogs.Secured;
+
 using System.Collections.ObjectModel;
 using System.Net.Sockets;
 using System.Diagnostics;
@@ -19,41 +21,42 @@ using System.Text;
 using System.Net;
 using Newtonsoft.Json;
 using srvlocal_gui.AppMananger;
-using LILO_Packager.v2.Core.Dialogs.Secured;
+using LILO_Packager.v2.Controls;
 
 
 namespace LILO_Packager.v2;
-public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
+public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 {
     #region Variables
 
-    public  readonly ThemeManager _thManager;
+    public readonly ThemeManager _thManager;
     private readonly BroadcastChannel _broadCastChannel;
     private readonly TcpListener _listener;
     private readonly Thread _listenerThread;
     private readonly LILO_WebEngine.Core.Service.LocalServer _localServer;
-    public  readonly NotifyIconManager _noty;
-    public  readonly PluginManager _pluginManager;
+    public readonly NotifyIconManager _noty;
+    public readonly PluginManager _pluginManager;
 
-    public  readonly string ThemePath = Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "themes");
-    public  readonly string Owner = "JW-Limited";
-    public  readonly string Repository = "Crypterv2";
-    public  readonly string ZipPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "latest_release.zip");
+    public readonly string ThemePath = Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "themes");
+    public readonly string Owner = "JW-Limited";
+    public static readonly string _PluginDirectory = Application.ExecutablePath.Replace("crypterv2.exe", "") + "plugins";
+    public readonly string Repository = "Crypterv2";
+    public readonly string ZipPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "latest_release.zip");
 
-    private static   MainHost _hostInstance;
-    public  static   Form _currentOpenedApp;
-    private static   object _lock = new object();
+    private static MainHost _hostInstance;
+    public static Form _currentOpenedApp;
+    private static object _lock = new object();
 
-    public string   htmlCode { get; set; }
-    public string   name { get; set; }
-    public string   version { get; set; }
-    public bool     updating = false;
-    public bool     downloaded = false;
-    public string   UserFile { get => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"); private set => UserFile = value; }
-    public int      Port = 8080;
+    public string htmlCode { get; set; }
+    public string name { get; set; }
+    public string version { get; set; }
+    public bool updating = false;
+    public bool downloaded = false;
+    public string UserFile { get => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"); private set => UserFile = value; }
+    public int Port = 8080;
 
-    public Action<bool>     isEnabling;
-    public User             loggedInUser;
+    public Action<bool> isEnabling;
+    public User loggedInUser;
 
     public Core.History.DatabaseHandling dataHandler = new Core.History.DatabaseHandling();
     public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
@@ -156,11 +159,14 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             if (_hostInstance is null)
             {
                 _hostInstance = new MainHost();
+                Program.InstanceCacheContainer.Register<ILILOMainHost>(() =>  _hostInstance);
             }
 
             return _hostInstance;
         }
     }
+
+
 
     private unsafe MainHost()
     {
@@ -180,11 +186,9 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
             ConsoleManager.Instance().WriteLineWithColor("[BROADCAST(Event)] Subscription: " + e.Subscriped.ToString() + " - Name: " + e.Observer + " - TotalCount: " + _broadCastChannel.ObserverCount);
         };
 
-
-
         _thManager = ThemeManager.Initialize();
         _noty = NotifyIconManager.Instance();
-        _pluginManager = new PluginManager(Application.ExecutablePath.Replace("crypterv2.exe", "") + "plugins");
+        _pluginManager = new PluginManager(_PluginDirectory);
         _localServer = LILO_WebEngine.Core.Service.LocalServer.Instance;
 
         if (System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
@@ -216,7 +220,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
         var memo = new System.Buffers.MemoryHandle();
         var mP = memo.Pointer;
-        
+
         this.FormClosing += (sender, e) =>
         {
             e.Cancel = true;
@@ -226,14 +230,15 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     private async void MainHost_Load(object sender, EventArgs e)
     {
-        var updater     = Updater.Instance();
+        var updater = Updater.Instance();
+        Program.InstanceCacheContainer.Register<IUpdater>(() => updater);
 
         foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
         {
             procSrv.Kill();
         }
 
-        var response  = await _localServer.Initialization(new LILO_WebEngine.Core.Service.LocalServerOptions()
+        var response = await _localServer.Initialization(new LILO_WebEngine.Core.Service.LocalServerOptions()
         {
             Port = new LILO_WebEngine.Shared.Port()
             {
@@ -259,13 +264,13 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
                 if (e.ListenerContext.Request.Url.LocalPath.TrimStart('/').EndsWith("mp3") || e.Message.EndsWith("mp3"))
                 {
-                    await OpenDynamicPlayer(e.ListenerContext,e.Message);
+                    await OpenDynamicPlayer(e.ListenerContext, e.Message);
                 }
             };
 
             _localServer.OnError += (sender, e) =>
             {
-                OkDialog.Show("An internal Server Error happend.", e.ErrorFatality.ToString(),DialogIcon.Error);
+                OkDialog.Show("An internal Server Error happend.", e.ErrorFatality.ToString(), DialogIcon.Error);
             };
         }
         else
@@ -493,7 +498,7 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
     {
         var securedHost = new SecuredDialogHost(SecuredDialogUsecase.EnCryptionKeyFetch);
         var callback = securedHost.Show();
-        if(callback != null && callback.DialogClosingReason == DialogClosingReason.Success)
+        if (callback != null && callback.DialogClosingReason == DialogClosingReason.Success)
         {
             OkDialog.Show("ClosingReason: " + callback.DialogClosingReason.ToString() + " DynamikValues: " + string.Join("\n", callback.DynamicCallbackValues), "Callback");
         }
@@ -772,7 +777,6 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
 
     public void guna2Button6_Click_1(object sender, EventArgs e)
     {
-
         try
         {
             pnlNothing.Visible = false;
@@ -800,11 +804,8 @@ public partial class MainHost : System.Windows.Forms.Form, IFeatureFlagSwitcher
         catch (System.AggregateException ex)
         {
             ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
-
             OpenInApp(new uiNetworkError("NetworkError", "The server didnt respond."));
-
             pnlSide.Visible = false;
-
             hider.Visible = false;
         }
     }

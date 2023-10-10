@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LILO_Packager.v2.Shared.Interfaces;
 
 namespace LILO_Packager.v2.Shared.Types
 {
-    public class EncryptedFile
+    public class EncryptedFile : IEncryptedFile
     {
         public string FileName { get; set; } = null;
         public byte[] Data { get; set; } = null;

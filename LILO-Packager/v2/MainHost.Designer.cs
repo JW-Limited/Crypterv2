@@ -99,7 +99,7 @@ partial class MainHost
         hider.Dock = DockStyle.Left;
         hider.ForeColor = Color.White;
         hider.Location = new Point(0, 0);
-        hider.Margin = new Padding(4, 4, 4, 4);
+        hider.Margin = new Padding(4);
         hider.Name = "hider";
         hider.Size = new Size(336, 1055);
         hider.TabIndex = 10;
@@ -406,7 +406,7 @@ partial class MainHost
         guna2Transition1.SetDecoration(sPanel1, Guna.UI2.AnimatorNS.DecorationType.None);
         sPanel1.ForeColor = Color.White;
         sPanel1.Location = new Point(24, 32);
-        sPanel1.Margin = new Padding(4, 4, 4, 4);
+        sPanel1.Margin = new Padding(4);
         sPanel1.Name = "sPanel1";
         sPanel1.Size = new Size(288, 88);
         sPanel1.TabIndex = 9;
@@ -611,7 +611,7 @@ partial class MainHost
         pnlSide.Dock = DockStyle.Right;
         pnlSide.ForeColor = Color.White;
         pnlSide.Location = new Point(1258, 0);
-        pnlSide.Margin = new Padding(4, 4, 4, 4);
+        pnlSide.Margin = new Padding(4);
         pnlSide.Name = "pnlSide";
         pnlSide.Size = new Size(328, 927);
         pnlSide.TabIndex = 16;
@@ -822,7 +822,7 @@ partial class MainHost
         guna2Transition1.SetDecoration(pnlNothing, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlNothing.ForeColor = Color.White;
         pnlNothing.Location = new Point(16, 311);
-        pnlNothing.Margin = new Padding(4, 4, 4, 4);
+        pnlNothing.Margin = new Padding(4);
         pnlNothing.Name = "pnlNothing";
         pnlNothing.Size = new Size(296, 288);
         pnlNothing.TabIndex = 9;
@@ -854,7 +854,7 @@ partial class MainHost
         guna2Transition1.SetDecoration(sPanel3, Guna.UI2.AnimatorNS.DecorationType.None);
         sPanel3.ForeColor = Color.White;
         sPanel3.Location = new Point(56, 40);
-        sPanel3.Margin = new Padding(4, 4, 4, 4);
+        sPanel3.Margin = new Padding(4);
         sPanel3.Name = "sPanel3";
         sPanel3.Size = new Size(176, 128);
         sPanel3.TabIndex = 9;

@@ -1,20 +1,19 @@
-using LILO_Packager.v2;
-using LILO_Packager.v2.Core.Boot;
-using LILO_Packager.v2.Shared;
-using LILO_Packager.v2.Core.BugBarrier;
-using LILO_Packager.v2.Shared.Types;
-
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using LILO_Packager.v2.Forms;
+using LILO_Packager.v2;
+using LILO_Packager.v2.Shared;
+using LILO_Packager.v2.Core.Boot;
+using LILO_Packager.v2.Shared.Types;
+using LILO_Packager.v2.Core.BugBarrier;
+using LILO_Packager.v2.Core.Interfaces;
 
 namespace LILO_Packager
 {
-    public static class Program
+    public static partial class Program
     {
-        public static int DefaultEnvironment = 0;
         public static NotifyIcon noty;
-        public static string Version = "v0.9.10-dev_edition";
+        public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
+        public static string Version = "v0.9.10-beta";
+        private static IBootManager _bootManager;
 
         private static void InitializeApplication()
         {
@@ -22,67 +21,65 @@ namespace LILO_Packager
             BugBarrier.Initialize();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
-        }
 
-        public static Mutex myMutex = new Mutex(false, "crypter_v2");
+            InstanceCacheContainer.Register<IBootManager>(() => new BootManager());
+            _bootManager = InstanceCacheContainer.Resolve<IBootManager>();
+
+            try
+            {
+                Task.Run(() => Process.Start(@$"{Application.ExecutablePath.Replace("crypterv2.exe", "")}InstallHelper.exe", "--cp=" + Application.ExecutablePath));
+                ConsoleManager.Instance().WriteLineWithColor("Started InstallHelper the Application is closing now meanwhile the Helper is doing his thing.", ConsoleColor.DarkGreen);
+            }
+            catch (Exception ex)
+            {
+                ConsoleManager.Instance().WriteLineWithColor(ex.Message);
+            }
+        }
 
         [STAThread]
         public static void Main(string[] args)
         {
             InitializeApplication();
 
-
-
-            try
+            if (config.Default.aggrementAccepted)
             {
-                Process.Start(@$"{Application.ExecutablePath.Replace("crypterv2.exe", "")}InstallHelper.exe", "--cp=" + Application.ExecutablePath);
-                ConsoleManager.Instance().WriteLineWithColor("Started InstallHelper the Application is closing now meanwhile the Helper is doing his thing.", ConsoleColor.DarkGreen);
-            }
-
-            catch (Exception) { }
-
-            try
-            {
-
-                if (args.Length > 0)
+                try
                 {
-                    var bootManager = new BootManager();
-                    bootManager.Run(args);
-                }
-                else
-                {
-
-                    if (IsApplicationAlreadyRunning())
+                    if (args.Length > 0)
                     {
-                        BringRunningInstanceToFront();
-                        return;
+                        _bootManager.Run(args);
                     }
-
-                    try
+                    else
                     {
-                        if (config.Default.aggrementAccepted)
+                        try
                         {
+                            if (IsApplicationAlreadyRunning())
+                            {
+                                BringRunningInstanceToFront();
+                                return;
+                            }
+
                             RunMainUI();
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            RunAgrrement();
+                            MessageBox.Show("An Error Accoured: " + ex.Message, "Error - RunMainUi");
+                            ConsoleManager.Instance().WriteLineWithColor("An Error Acourred: " + ex.Message, ConsoleColor.Red);
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("An Error Accoured: " + ex.Message, "Error - RunMainUi");
-                        ConsoleManager.Instance().WriteLineWithColor("An Error Acourred: " + ex.Message, ConsoleColor.Red);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error - BootManager", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Error - BootManager", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification);
+                RunAgrrement();
             }
-
-
+            
         }
+
         private static bool IsApplicationAlreadyRunning()
         {
             var currentProcess = Process.GetCurrentProcess();
@@ -100,11 +97,9 @@ namespace LILO_Packager
 
             foreach (var process in processes)
             {
-                /// Set the foreground window to the current process.
                 if (process.Id != currentProcess.Id)
                 {
                     IntPtr hWnd = process.MainWindowHandle;
-                    /// Set the foreground window to the given window.
                     if (hWnd != IntPtr.Zero)
                     {
                         NativeMethods.SetForegroundWindow(hWnd);
@@ -116,21 +111,6 @@ namespace LILO_Packager
             Environment.Exit(0);
         }
 
-        private static class NativeMethods
-        {
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool SetForegroundWindow(IntPtr hWnd);
-
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-
-            public const int SW_RESTORE = 9;
-        }
-
-
-        /// @brief Runs the V2 UI. This is called when the user clicks the Main UI
         private static void RunMainUI()
         {
             v2.MainHost.Instance().AutoScaleMode = AutoScaleMode.Font;
@@ -141,11 +121,6 @@ namespace LILO_Packager
         private static void RunAgrrement()
         {
             Application.Run(v2.Forms.uiAgrement.Instance());
-        }
-
-        private static void RunInstallPackage()
-        {
-            Application.Run(new InstallPackage());
         }
     }
 }

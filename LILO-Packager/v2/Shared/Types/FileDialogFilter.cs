@@ -4,13 +4,6 @@ public partial class FileOperations
 {
     public class FileDialogFilter
     {
-        public enum FilterType
-        {
-            EncryptedFiles,
-            EncryptedFilesLegacy,
-            Default
-        }
-
         private static Dictionary<FilterType, string> _Filter = new Dictionary<FilterType, string>()
         {
             { FilterType.EncryptedFiles,"Encrypted Files|*.lsf|Alle Datein|*" },

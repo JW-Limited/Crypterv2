@@ -124,9 +124,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="DialogHost.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="v2\Core\Dialogs\DialogResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
