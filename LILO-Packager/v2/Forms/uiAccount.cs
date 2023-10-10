@@ -1,6 +1,6 @@
 ﻿using LILO_Packager.Properties;
 using LILO_Packager.v2.Core.Authentication;
-using LILO_Packager.v2.Core.LILO;
+using LILO_Packager.v2.Core.LILO.Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

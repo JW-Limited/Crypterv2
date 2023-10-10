@@ -1,5 +1,5 @@
 ﻿using LILO_Packager.v2.Core;
-using LILO_Packager.v2.Core.LILO;
+using LILO_Packager.v2.Core.LILO.Types;
 using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;

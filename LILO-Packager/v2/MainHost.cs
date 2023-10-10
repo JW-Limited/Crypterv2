@@ -22,6 +22,7 @@ using System.Net;
 using Newtonsoft.Json;
 using srvlocal_gui.AppMananger;
 using LILO_Packager.v2.Controls;
+using LILO_Packager.v2.Core.LILO.Types;
 
 
 namespace LILO_Packager.v2;

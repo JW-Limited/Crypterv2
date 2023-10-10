@@ -8,18 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LILO_Packager.v2.Core.LILO;
+using LILO_Packager.v2.Core.LILO.Interfaces;
 using LILO_Packager.v2.Shared;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiLILOAccountLogin : Form
 {
+    private bool pswVisible = false;
+    public static string? errorMessage;
+    private ILILOLicenseManager liloManager;
+    public static bool loggingInProgress = true;
+    private static uiLILOAccountLogin? _instance;
+
     private uiLILOAccountLogin()
     {
         InitializeComponent();
     }
-
-    private static uiLILOAccountLogin? _instance;
 
     public static uiLILOAccountLogin Instance()
     {
@@ -46,9 +50,6 @@ public partial class uiLILOAccountLogin : Form
 
     }
 
-    private bool pswVisible = false;
-    public static string? errorMessage;
-    public static bool loggingInProgress = true;
 
     private void bntLogin_Click(object sender, EventArgs e)
     {
@@ -58,15 +59,13 @@ public partial class uiLILOAccountLogin : Form
         {
             ConsoleManager.Instance().WriteLineWithColor("WebClient: Started Authorization", ConsoleColor.Blue);
 
-            var liloManager = new LILO_Packager.v2.Core.LILO.LicenseManager();
+            liloManager = new LILO_Packager.v2.Core.LILO.LicenseManager();
             var userAuth = await liloManager.LogInAsync(txtUsr.Texts, txtPsw.Texts);
 
             if (userAuth)
             {
                 ConsoleManager.Instance().WriteLineWithColor("WebClient: Fetching User Data...", ConsoleColor.Blue);
-
                 Thread.Sleep(2000);
-
 
                 ConsoleManager.Instance().WriteLineWithColor("WebClient: All done.", ConsoleColor.Blue);
 

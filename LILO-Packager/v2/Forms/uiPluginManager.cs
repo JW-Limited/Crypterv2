@@ -1,4 +1,5 @@
-﻿using LILO_Packager.v2.Plugins.Model;
+﻿using LILO_Packager.v2.Core.Interfaces;
+using LILO_Packager.v2.Plugins.Model;
 using LILO_Packager.v2.Plugins.PluginCore;
 using System.Collections.ObjectModel;
 
@@ -34,31 +35,34 @@ namespace LILO_Packager.v2.Forms
 
             this.FormClosing += (sender, e) =>
             {
-                _encrypt = null;
+                e.Cancel = true;
+                this.Hide();
             };
         }
 
         private void uiPluginManager_Load(object sender, EventArgs e)
         {
-            PluginEntry encryptionLibrary = null;
-
-            foreach (var plugin in plugins)
+            if(manager != null)
             {
-                if (PluginID.IDtoString(plugin.ID) == PluginID.IDtoString(PluginID.GetID("enc", "lbl", "lvl01")))
+                PluginEntry encryptionLibrary = null;
+
+                foreach (var plugin in plugins)
                 {
-                    encryptionLibrary = plugin;
+                    if (PluginID.IDtoString(plugin.ID) == PluginID.IDtoString(PluginID.GetID("enc", "lbl", "lvl01")))
+                    {
+                        encryptionLibrary = plugin;
+                    }
                 }
-            }
-            if (encryptionLibrary is not null)
-            {
-                lblSize.Text = encryptionLibrary.Description;
-                lblName.Text = encryptionLibrary.Name;
-                lblVersion.Text = encryptionLibrary.Version;
-                lblAuther.Text = PluginID.IDtoString(encryptionLibrary.ID);
-                listViewUpdates.Items.Add("Latest: " + encryptionLibrary.Version);
-
-                var listBerechtigungen = new ListViewItem[]
+                if (encryptionLibrary is not null)
                 {
+                    lblSize.Text = encryptionLibrary.Description;
+                    lblName.Text = encryptionLibrary.Name;
+                    lblVersion.Text = encryptionLibrary.Version;
+                    lblAuther.Text = PluginID.IDtoString(encryptionLibrary.ID);
+                    listViewUpdates.Items.Add("Latest: " + encryptionLibrary.Version);
+
+                    var listBerechtigungen = new ListViewItem[]
+                    {
                     new ListViewItem()
                     {
                         Text = "  +- Managing Account - Licenses."
@@ -79,9 +83,10 @@ namespace LILO_Packager.v2.Forms
                     {
                         Text = "  +- Request Updates."
                     },
-                };
+                    };
 
-                listViewBerechtigungen.Items.AddRange(listBerechtigungen);
+                    listViewBerechtigungen.Items.AddRange(listBerechtigungen);
+                }
             }
         }
 
@@ -103,7 +108,7 @@ namespace LILO_Packager.v2.Forms
 
         private void bntShop_Clikc(object sender, EventArgs e)
         {
-            throw new NotImplementedException("pluginShop");
+            Program.InstanceCacheContainer.Resolve<ILILOMainHost>().OpenInApp(uiPluginStore.Instance);
         }
 
         private void bntDeinstall_CLICK(object sender, EventArgs e)

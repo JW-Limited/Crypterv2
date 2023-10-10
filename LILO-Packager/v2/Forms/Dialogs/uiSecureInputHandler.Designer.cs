@@ -69,10 +69,10 @@
             sPanel2.Controls.Add(bntOk);
             sPanel2.Dock = DockStyle.Bottom;
             sPanel2.ForeColor = Color.White;
-            sPanel2.Location = new Point(0, 512);
+            sPanel2.Location = new Point(0, 508);
             sPanel2.Margin = new Padding(4);
             sPanel2.Name = "sPanel2";
-            sPanel2.Size = new Size(699, 76);
+            sPanel2.Size = new Size(695, 76);
             sPanel2.TabIndex = 18;
             // 
             // guna2Button1
@@ -91,7 +91,7 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(306, 16);
+            guna2Button1.Location = new Point(302, 16);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.Size = new Size(240, 48);
@@ -116,7 +116,7 @@
             bntOk.FocusedColor = Color.FromArgb(100, 170, 209);
             bntOk.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             bntOk.ForeColor = Color.Black;
-            bntOk.Location = new Point(562, 16);
+            bntOk.Location = new Point(558, 16);
             bntOk.Margin = new Padding(2);
             bntOk.Name = "bntOk";
             bntOk.Size = new Size(128, 48);
@@ -264,8 +264,9 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            BackgroundImage = Properties.Resources.Aqua_Marine;
-            ClientSize = new Size(699, 588);
+            BackgroundImage = Properties.Resources.Royal_Blue;
+            BackgroundImageLayout = ImageLayout.Center;
+            ClientSize = new Size(695, 584);
             ControlBox = false;
             Controls.Add(sPanel2);
             Controls.Add(gunaSwitch);

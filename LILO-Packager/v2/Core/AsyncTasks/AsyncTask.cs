@@ -1,14 +1,9 @@
-﻿using LILO_Packager.v2.Shared;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LILO_Packager.v2.Core.AsyncTasks.Interface;
+using LILO_Packager.v2.Shared;
 
 namespace LILO_Packager.v2.Core.AsyncTasks
 {
-    public class AsyncTask
+    public class AsyncTask : ILILOAsyncTask
     {
         public string Name { get; }
         public string Description { get; }
@@ -30,7 +25,7 @@ namespace LILO_Packager.v2.Core.AsyncTasks
             Name = name;
             Description = description;
             Mode = mode;
-            TaskFunc = taskFunc;    
+            TaskFunc = taskFunc;
         }
 
         public async Task ExecuteAsync(IProgress<int> progress = null)
@@ -66,7 +61,7 @@ namespace LILO_Packager.v2.Core.AsyncTasks
 
         protected virtual void OnTaskFailed(string message)
         {
-            ConsoleManager.Instance().WriteLineWithColor(message,ConsoleColor.DarkRed);
+            ConsoleManager.Instance().WriteLineWithColor(message, ConsoleColor.DarkRed);
             TaskFailed?.Invoke(this, message);
         }
 

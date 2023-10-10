@@ -13,6 +13,7 @@ using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Core.Keys;
+using LILO_Packager.v2.Core.LILO.Types;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.Plugins.Model;
 using LILO_Packager.v2.Shared;
@@ -47,7 +48,7 @@ public partial class uiEncryt : Form
     public uiEncryt(PluginEntry extension, DatabaseHandling handler)
     {
         InitializeComponent();
-        _keyManager = new Manager(new DatabaseHandler(),Core.LILO.UserRole.User);
+        _keyManager = new Manager(new DatabaseHandler(),UserRole.User);
         this.Extension = extension;
 
         dbHandler = handler;
