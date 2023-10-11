@@ -1,7 +1,7 @@
 ﻿
 namespace LILO_Packager.v2.Shared
 {
-    public interface IConsoleManager
+    public interface ILILOConsoleManager
     {
         void EndSession();
         void HideConsoleWindow();

@@ -29,8 +29,8 @@ partial class uiSettings
     private void InitializeComponent()
     {
         sPanel1 = new Sipaa.Framework.SPanel();
+        guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
         guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
-        guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
         label5 = new Label();
         lblText = new Label();
         windows11Theme1 = new Telerik.WinControls.Themes.Windows11Theme();
@@ -72,7 +72,6 @@ partial class uiSettings
         label19 = new Label();
         guna2Panel13 = new Guna.UI2.WinForms.Guna2Panel();
         chbPlugins = new Sipaa.Framework.SToggleButton();
-        guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
         sPanel1.SuspendLayout();
         guna2Panel1.SuspendLayout();
         guna2Panel2.SuspendLayout();
@@ -97,9 +96,8 @@ partial class uiSettings
         sPanel1.BorderColor = Color.Black;
         sPanel1.BorderRadius = 20;
         sPanel1.BorderSize = 0;
-        sPanel1.Controls.Add(guna2Button1);
+        sPanel1.Controls.Add(guna2Button2);
         sPanel1.Controls.Add(guna2Button5);
-        sPanel1.Controls.Add(guna2Panel7);
         sPanel1.Controls.Add(label5);
         sPanel1.Controls.Add(lblText);
         sPanel1.ForeColor = Color.White;
@@ -108,6 +106,30 @@ partial class uiSettings
         sPanel1.Name = "sPanel1";
         sPanel1.Size = new Size(974, 88);
         sPanel1.TabIndex = 12;
+        // 
+        // guna2Button2
+        // 
+        guna2Button2.Animated = true;
+        guna2Button2.BackColor = Color.Transparent;
+        guna2Button2.BorderColor = Color.Gainsboro;
+        guna2Button2.BorderRadius = 20;
+        guna2Button2.BorderThickness = 2;
+        guna2Button2.DisabledState.BorderColor = Color.DarkGray;
+        guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
+        guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        guna2Button2.FillColor = Color.Transparent;
+        guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
+        guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button2.ForeColor = Color.White;
+        guna2Button2.Image = Properties.Resources.icons8_back_96;
+        guna2Button2.ImageSize = new Size(35, 35);
+        guna2Button2.Location = new Point(24, 16);
+        guna2Button2.Margin = new Padding(2);
+        guna2Button2.Name = "guna2Button2";
+        guna2Button2.Size = new Size(72, 58);
+        guna2Button2.TabIndex = 17;
+        guna2Button2.Click += label5_Click;
         // 
         // guna2Button5
         // 
@@ -133,21 +155,6 @@ partial class uiSettings
         guna2Button5.Text = "Passwords";
         guna2Button5.Click += guna2Button5_Click;
         // 
-        // guna2Panel7
-        // 
-        guna2Panel7.BackColor = Color.Transparent;
-        guna2Panel7.BackgroundImage = Properties.Resources.icons8_more_than_52;
-        guna2Panel7.BackgroundImageLayout = ImageLayout.Zoom;
-        guna2Panel7.BorderColor = SystemColors.ActiveBorder;
-        guna2Panel7.BorderRadius = 15;
-        guna2Panel7.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-        guna2Panel7.FillColor = Color.Transparent;
-        guna2Panel7.Location = new Point(88, 32);
-        guna2Panel7.Margin = new Padding(2);
-        guna2Panel7.Name = "guna2Panel7";
-        guna2Panel7.Size = new Size(40, 32);
-        guna2Panel7.TabIndex = 16;
-        // 
         // label5
         // 
         label5.BackColor = Color.Transparent;
@@ -167,7 +174,7 @@ partial class uiSettings
         lblText.BackColor = Color.Transparent;
         lblText.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
         lblText.ForeColor = Color.White;
-        lblText.Location = new Point(128, 0);
+        lblText.Location = new Point(96, 0);
         lblText.Margin = new Padding(4, 0, 4, 0);
         lblText.Name = "lblText";
         lblText.Size = new Size(144, 88);
@@ -222,7 +229,7 @@ partial class uiSettings
         // guna2Panel1
         // 
         guna2Panel1.Anchor = AnchorStyles.Top;
-        guna2Panel1.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel1.BorderColor = Color.Gainsboro;
         guna2Panel1.BorderRadius = 15;
         guna2Panel1.BorderThickness = 2;
         guna2Panel1.Controls.Add(label1);
@@ -251,7 +258,7 @@ partial class uiSettings
         // guna2Panel2
         // 
         guna2Panel2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-        guna2Panel2.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel2.BorderColor = Color.Gainsboro;
         guna2Panel2.BorderRadius = 15;
         guna2Panel2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
         guna2Panel2.BorderThickness = 2;
@@ -266,7 +273,7 @@ partial class uiSettings
         // guna2Panel5
         // 
         guna2Panel5.Anchor = AnchorStyles.Top;
-        guna2Panel5.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel5.BorderColor = Color.Gainsboro;
         guna2Panel5.BorderRadius = 15;
         guna2Panel5.BorderThickness = 2;
         guna2Panel5.Controls.Add(label13);
@@ -306,7 +313,7 @@ partial class uiSettings
         // guna2Panel3
         // 
         guna2Panel3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-        guna2Panel3.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel3.BorderColor = Color.Gainsboro;
         guna2Panel3.BorderRadius = 15;
         guna2Panel3.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
         guna2Panel3.BorderThickness = 2;
@@ -354,7 +361,7 @@ partial class uiSettings
         // guna2Panel6
         // 
         guna2Panel6.Anchor = AnchorStyles.Top;
-        guna2Panel6.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel6.BorderColor = Color.Gainsboro;
         guna2Panel6.BorderRadius = 15;
         guna2Panel6.BorderThickness = 2;
         guna2Panel6.Controls.Add(label6);
@@ -407,7 +414,7 @@ partial class uiSettings
         // guna2Panel4
         // 
         guna2Panel4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-        guna2Panel4.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel4.BorderColor = Color.Gainsboro;
         guna2Panel4.BorderRadius = 15;
         guna2Panel4.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
         guna2Panel4.BorderThickness = 2;
@@ -455,7 +462,7 @@ partial class uiSettings
         // guna2Panel8
         // 
         guna2Panel8.Anchor = AnchorStyles.Top;
-        guna2Panel8.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel8.BorderColor = Color.Gainsboro;
         guna2Panel8.BorderRadius = 15;
         guna2Panel8.BorderThickness = 2;
         guna2Panel8.Controls.Add(label7);
@@ -508,7 +515,7 @@ partial class uiSettings
         // guna2Panel9
         // 
         guna2Panel9.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-        guna2Panel9.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel9.BorderColor = Color.Gainsboro;
         guna2Panel9.BorderRadius = 15;
         guna2Panel9.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
         guna2Panel9.BorderThickness = 2;
@@ -543,7 +550,7 @@ partial class uiSettings
         // guna2Panel10
         // 
         guna2Panel10.Anchor = AnchorStyles.Top;
-        guna2Panel10.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel10.BorderColor = Color.Gainsboro;
         guna2Panel10.BorderRadius = 15;
         guna2Panel10.BorderThickness = 2;
         guna2Panel10.Controls.Add(label10);
@@ -596,7 +603,7 @@ partial class uiSettings
         // guna2Panel11
         // 
         guna2Panel11.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-        guna2Panel11.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel11.BorderColor = Color.Gainsboro;
         guna2Panel11.BorderRadius = 15;
         guna2Panel11.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
         guna2Panel11.BorderThickness = 2;
@@ -631,7 +638,7 @@ partial class uiSettings
         // guna2Panel12
         // 
         guna2Panel12.Anchor = AnchorStyles.Top;
-        guna2Panel12.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel12.BorderColor = Color.Gainsboro;
         guna2Panel12.BorderRadius = 15;
         guna2Panel12.BorderThickness = 2;
         guna2Panel12.Controls.Add(label20);
@@ -697,7 +704,7 @@ partial class uiSettings
         // guna2Panel13
         // 
         guna2Panel13.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-        guna2Panel13.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel13.BorderColor = Color.Gainsboro;
         guna2Panel13.BorderRadius = 15;
         guna2Panel13.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
         guna2Panel13.BorderThickness = 2;
@@ -730,30 +737,6 @@ partial class uiSettings
         chbPlugins.TabIndex = 13;
         chbPlugins.UseVisualStyleBackColor = false;
         chbPlugins.CheckedChanged += chbPlugins_CheckedChanged;
-        // 
-        // guna2Button1
-        // 
-        guna2Button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        guna2Button1.Animated = true;
-        guna2Button1.BackColor = Color.Transparent;
-        guna2Button1.BorderColor = Color.Gainsboro;
-        guna2Button1.BorderRadius = 20;
-        guna2Button1.BorderThickness = 2;
-        guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-        guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-        guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-        guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        guna2Button1.FillColor = Color.Transparent;
-        guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-        guna2Button1.ForeColor = Color.White;
-        guna2Button1.Location = new Point(672, 16);
-        guna2Button1.Margin = new Padding(2);
-        guna2Button1.Name = "guna2Button1";
-        guna2Button1.Size = new Size(128, 58);
-        guna2Button1.TabIndex = 17;
-        guna2Button1.Text = "srvlocal";
-        guna2Button1.Click += bntSrvlocal;
         // 
         // uiSettings
         // 
@@ -817,7 +800,6 @@ partial class uiSettings
     private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
     private Label label3;
     private Sipaa.Framework.SToggleButton chbDebug;
-    private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
     private Label label5;
     private Label label6;
     private Guna.UI2.WinForms.Guna2Button guna2Button5;
@@ -840,5 +822,5 @@ partial class uiSettings
     private Guna.UI2.WinForms.Guna2Panel guna2Panel13;
     private Sipaa.Framework.SToggleButton chbPlugins;
     private Label label20;
-    private Guna.UI2.WinForms.Guna2Button guna2Button1;
+    private Guna.UI2.WinForms.Guna2Button guna2Button2;
 }

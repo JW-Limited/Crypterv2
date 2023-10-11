@@ -103,6 +103,16 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap encLib {
+            get {
+                object obj = ResourceManager.GetObject("encLib", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap errorScreen {
             get {
                 object obj = ResourceManager.GetObject("errorScreen", resourceCulture);
@@ -476,6 +486,16 @@ namespace LILO_Packager.Properties {
         public static System.Drawing.Bitmap pexels_johannes_plenio_1103970 {
             get {
                 object obj = ResourceManager.GetObject("pexels-johannes-plenio-1103970", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap plainLib {
+            get {
+                object obj = ResourceManager.GetObject("plainLib", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

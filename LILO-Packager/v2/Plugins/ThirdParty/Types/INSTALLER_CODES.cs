@@ -1,8 +1,5 @@
-﻿using System.Diagnostics;
+﻿namespace LILO_Packager.v2.Plugins.ThirdParty.Types;
 
-namespace LILO_Packager.v2.Plugins.ThirdParty.Types;
-
-[DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 public struct INSTALLER_CODES
 {
     public static Int32 OLD_WIN_VERSION = 0x100000F5;
@@ -44,9 +41,4 @@ public struct INSTALLER_CODES
     public static Int32 INVALID_CONFIGURATION = 0x10070057;
     public static Int32 BUFFER_OVERFLOW = 0x10070050;
     public static Int32 INVALID_DATA = 0x1007000D;
-
-    private string GetDebuggerDisplay()
-    {
-        return ToString();
-    }
 }

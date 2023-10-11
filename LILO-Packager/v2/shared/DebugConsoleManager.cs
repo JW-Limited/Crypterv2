@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 
 namespace LILO_Packager.v2.Shared
 {
-    using System;
-    using System.IO;
-    using System.Runtime.InteropServices;
 
-    public class ConsoleManager : IConsoleManager
+    public class ConsoleManager : ILILOConsoleManager
     {
         private string _sessionId;
         private static bool _consoleAllocated = false;
@@ -43,6 +35,7 @@ namespace LILO_Packager.v2.Shared
                 Directory.CreateDirectory(Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "log"));
             }
             _sessionId = GenerateSessionId();
+            Program.InstanceCacheContainer.Register<ILILOConsoleManager>(() => _instance);
         }
 
         private string GenerateSessionId()

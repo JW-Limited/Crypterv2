@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LILO_Packager.v2.Core.LILO.Interfaces;
+﻿using LILO_Packager.v2.Core.LILO.Interfaces;
 using LILO_Packager.v2.Shared;
 
 namespace LILO_Packager.v2.Forms;
@@ -58,8 +48,7 @@ public partial class uiLILOAccountLogin : Form
         Task.Run(async () =>
         {
             ConsoleManager.Instance().WriteLineWithColor("WebClient: Started Authorization", ConsoleColor.Blue);
-
-            liloManager = new LILO_Packager.v2.Core.LILO.LicenseManager();
+            liloManager = new Core.LILO.LicenseManager();
             var userAuth = await liloManager.LogInAsync(txtUsr.Texts, txtPsw.Texts);
 
             if (userAuth)

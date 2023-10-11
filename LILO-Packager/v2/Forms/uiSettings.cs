@@ -48,14 +48,16 @@ public partial class uiSettings : Form
 
     private void uiSettings_Load(object sender, EventArgs e)
     {
-        chbPlugins.Checked = FeatureManager.IsFeatureEnabled(FeatureFlags.PluginSupport);
-        chbUpdates.Checked = config.Default.autoUpdates;
-        chbStream.Checked = FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming);
-        chbLibrarys.Checked = FeatureManager.IsFeatureEnabled(FeatureFlags.ThirdPartyPluginSupport);
-        chbDeleteFile.Checked = config.Default.deleteFile;
-        chbDebug.Checked = config.Default.debugMode;
-
-        Thread.Sleep(300);
+        Task.Run(() =>
+        {
+            chbPlugins.Checked = FeatureManager.IsFeatureEnabled(FeatureFlags.PluginSupport);
+            chbUpdates.Checked = config.Default.autoUpdates;
+            chbStream.Checked = FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming);
+            chbLibrarys.Checked = FeatureManager.IsFeatureEnabled(FeatureFlags.ThirdPartyPluginSupport);
+            chbDeleteFile.Checked = config.Default.deleteFile;
+            chbDebug.Checked = config.Default.debugMode;
+        });
+        
     }
 
     private void label5_Click(object sender, EventArgs e)

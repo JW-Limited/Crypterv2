@@ -112,6 +112,8 @@ namespace LILO_Packager.v2.Forms
         {
             if (FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering))
             {
+                pnlLoginLoad.Visible = true;
+
                 Task.Run(() =>
                 {
                     this.listViewHistory.Items.Clear();

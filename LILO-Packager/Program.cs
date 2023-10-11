@@ -12,7 +12,7 @@ namespace LILO_Packager
     {
         public static NotifyIcon noty;
         public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
-        public static string Version = "v0.9.10-beta";
+        public static string Version = "v0.9.11-dev_edition";
         private static IBootManager _bootManager;
 
         private static void InitializeApplication()
@@ -113,9 +113,9 @@ namespace LILO_Packager
 
         private static void RunMainUI()
         {
-            v2.MainHost.Instance().AutoScaleMode = AutoScaleMode.Font;
-            Application.AddMessageFilter(new AdvancedMessageFilter(v2.MainHost.Instance()));
-            Application.Run(v2.MainHost.Instance());
+            MainHost.Instance().AutoScaleMode = AutoScaleMode.Font;
+            Application.AddMessageFilter(new AdvancedMessageFilter(MainHost.Instance()));
+            Application.Run(MainHost.Instance());
         }
 
         private static void RunAgrrement()
