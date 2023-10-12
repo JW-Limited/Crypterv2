@@ -145,11 +145,17 @@
             // 
             plainPlugin.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             plainPlugin.BackColor = Color.White;
-            plainPlugin.ControlBackgroundColor = Color.LightGray;
-            plainPlugin.DownloadButtonBackColor = Color.Transparent;
-            plainPlugin.DownloadButtonForeColor = Color.DimGray;
+            plainPlugin.BorderColor = Color.Gainsboro;
+            plainPlugin.BorderRadius = 20;
+            plainPlugin.BorderThickness = 2;
+            plainPlugin.ButtonVisible = true;
+            plainPlugin.ControlBackgroundColor = Color.White;
+            plainPlugin.DataContext = null;
+            plainPlugin.DownloadButtonBackColor = Color.White;
+            plainPlugin.DownloadButtonForeColor = Color.Black;
             plainPlugin.Location = new Point(32, 184);
             plainPlugin.Name = "plainPlugin";
+            plainPlugin.Plugin_State = v2.Controls.DynamicPluginListItem.PluginState.Available;
             plainPlugin.PluginDescription = "Can view plainbased files.";
             plainPlugin.PluginDescriptionForeColor = Color.DimGray;
             plainPlugin.PluginIcon = Properties.Resources.plainLib;
@@ -165,11 +171,17 @@
             // 
             encryptenPlugin.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             encryptenPlugin.BackColor = Color.White;
-            encryptenPlugin.ControlBackgroundColor = Color.LightGray;
-            encryptenPlugin.DownloadButtonBackColor = Color.Transparent;
-            encryptenPlugin.DownloadButtonForeColor = Color.DimGray;
+            encryptenPlugin.BorderColor = Color.Gainsboro;
+            encryptenPlugin.BorderRadius = 20;
+            encryptenPlugin.BorderThickness = 2;
+            encryptenPlugin.ButtonVisible = true;
+            encryptenPlugin.ControlBackgroundColor = Color.White;
+            encryptenPlugin.DataContext = null;
+            encryptenPlugin.DownloadButtonBackColor = Color.White;
+            encryptenPlugin.DownloadButtonForeColor = Color.Black;
             encryptenPlugin.Location = new Point(32, 48);
             encryptenPlugin.Name = "encryptenPlugin";
+            encryptenPlugin.Plugin_State = v2.Controls.DynamicPluginListItem.PluginState.Available;
             encryptenPlugin.PluginDescription = "Installs encryption Librarys.";
             encryptenPlugin.PluginDescriptionForeColor = Color.DimGray;
             encryptenPlugin.PluginIcon = Properties.Resources.logo_sync;
@@ -207,10 +219,10 @@
             pnlNetworkError.Controls.Add(lblExc);
             pnlNetworkError.Controls.Add(imgImage);
             pnlNetworkError.ForeColor = Color.White;
-            pnlNetworkError.Location = new Point(24, 144);
+            pnlNetworkError.Location = new Point(24, 480);
             pnlNetworkError.Margin = new Padding(4);
             pnlNetworkError.Name = "pnlNetworkError";
-            pnlNetworkError.Size = new Size(920, 776);
+            pnlNetworkError.Size = new Size(920, 448);
             pnlNetworkError.TabIndex = 13;
             // 
             // lblMes
@@ -220,7 +232,7 @@
             lblMes.BackColor = Color.Transparent;
             lblMes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblMes.ForeColor = Color.Black;
-            lblMes.Location = new Point(208, 520);
+            lblMes.Location = new Point(208, 344);
             lblMes.Margin = new Padding(4, 0, 4, 0);
             lblMes.Name = "lblMes";
             lblMes.Size = new Size(496, 56);
@@ -244,7 +256,7 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(296, 600);
+            guna2Button1.Location = new Point(292, 424);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.Size = new Size(328, 40);
@@ -259,7 +271,7 @@
             lblExc.BackColor = Color.Transparent;
             lblExc.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             lblExc.ForeColor = Color.Black;
-            lblExc.Location = new Point(216, 456);
+            lblExc.Location = new Point(212, 280);
             lblExc.Margin = new Padding(4, 0, 4, 0);
             lblExc.Name = "lblExc";
             lblExc.Size = new Size(488, 56);
@@ -277,7 +289,7 @@
             imgImage.BorderRadius = 20;
             imgImage.Controls.Add(guna2Panel2);
             imgImage.FillColor = Color.Transparent;
-            imgImage.Location = new Point(296, 152);
+            imgImage.Location = new Point(296, -24);
             imgImage.Margin = new Padding(2);
             imgImage.Name = "imgImage";
             imgImage.Size = new Size(320, 312);

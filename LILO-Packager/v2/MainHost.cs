@@ -13,6 +13,7 @@ using LILO_Packager.v2.Shared.Api.Core;
 using LILO_Packager.v2.Shared.Types;
 using LILO_Packager.v2.Shared.Streaming.Core;
 using LILO_Packager.v2.Core.Dialogs.Secured;
+using LILO_Packager.v2.Core.LILO.Types;
 
 using System.Collections.ObjectModel;
 using System.Net.Sockets;
@@ -21,11 +22,11 @@ using System.Text;
 using System.Net;
 using Newtonsoft.Json;
 using srvlocal_gui.AppMananger;
-using LILO_Packager.v2.Controls;
-using LILO_Packager.v2.Core.LILO.Types;
 
 
 namespace LILO_Packager.v2;
+
+[DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 {
     #region Variables
@@ -175,6 +176,8 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
         _broadCastChannel = BroadcastChannel.Instance;
 
+        Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Initialized Broadcast Channel.");
+
         _broadCastChannel.Subscribe(new MainHostBroadCast());
 
         _broadCastChannel.BroadcastEvent += (sender, e) =>
@@ -188,12 +191,17 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         };
 
         _thManager = ThemeManager.Initialize();
+        Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Initialized Thememanager.");
+
         _noty = NotifyIconManager.Instance();
+        Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Initialized NotficationManager.");
+
         _pluginManager = new PluginManager(_PluginDirectory);
         _localServer = LILO_WebEngine.Core.Service.LocalServer.Instance;
 
         if (System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
         {
+            Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Logging Registered User in.");
             loggedInUser = UserManager.Instance().LoadUserFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"));
         }
 
@@ -201,6 +209,8 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
         if (FeatureFlagePipeLineConfig.DebugModeEnabled)
         {
+            Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Opend Development-Config Port.");
+
             _listenerThread = new Thread(ListenForConnections);
             _listener = TcpListener.Create(9001);
             _listener.Start();
@@ -254,8 +264,12 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
         if (response.SuccessFull)
         {
+            Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Initialized LILO WebEngine.");
+
             var running = await _localServer.Start();
             Port = response.Port;
+
+            Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Started LILO WebEngine with Port: {response.Port}.");
 
             _localServer.OnLocalServerRequest += async (sender, e) =>
             {
@@ -455,7 +469,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
     public void SetNotification(string Message)
     {
-        pnlNoti.Visible = true;
+        Transition.Show(pnlNoti);
         lblMessage_Noti.Text = Message;
     }
 
@@ -559,7 +573,10 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
     private void lblText_Click(object sender, EventArgs e)
     {
-        pnlSide.Visible = !pnlSide.Visible;
+        if(!pnlSide.Visible)
+            Transition.Show(pnlSide);
+        else
+            pnlSide.Visible = false;
     }
 
     private void sPanel1_Paint(object sender, PaintEventArgs e)
@@ -823,6 +840,11 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         pnlNotifications.Visible = false;
         this.Text = "Updater";
         OpenInApp(new v2.Forms.uiUpdater(Semi));
+    }
+
+    private string GetDebuggerDisplay()
+    {
+        return "MainHost(1/2)";
     }
 
     #endregion

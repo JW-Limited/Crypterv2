@@ -34,6 +34,7 @@
             lblVersion = new Label();
             lblProductName = new Label();
             lblPluginInfo = new Label();
+            pnlInstalled = new Sipaa.Framework.SPanel();
             pnlIcon = new Sipaa.Framework.SPanel();
             bntDownload = new Guna.UI2.WinForms.Guna2Button();
             pnlPluginEntry.SuspendLayout();
@@ -50,6 +51,7 @@
             pnlPluginEntry.BorderRadius = 20;
             pnlPluginEntry.BorderSize = 0;
             pnlPluginEntry.Controls.Add(tableLayoutPanel2);
+            pnlPluginEntry.Controls.Add(pnlInstalled);
             pnlPluginEntry.Controls.Add(pnlIcon);
             pnlPluginEntry.Controls.Add(bntDownload);
             pnlPluginEntry.ForeColor = Color.White;
@@ -58,6 +60,8 @@
             pnlPluginEntry.Name = "pnlPluginEntry";
             pnlPluginEntry.Size = new Size(920, 120);
             pnlPluginEntry.TabIndex = 14;
+            pnlPluginEntry.Paint += pnlPluginEntry_Paint;
+            pnlPluginEntry.MouseEnter += pnlPluginEntry_MouseEnter;
             // 
             // tableLayoutPanel2
             // 
@@ -66,7 +70,7 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(tableLayoutPanel1, 0, 0);
             tableLayoutPanel2.Controls.Add(lblPluginInfo, 0, 1);
-            tableLayoutPanel2.Location = new Point(136, 24);
+            tableLayoutPanel2.Location = new Point(128, 24);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 46.5909081F));
@@ -130,6 +134,23 @@
             lblPluginInfo.TabIndex = 1;
             lblPluginInfo.Text = "Plugininformation";
             // 
+            // pnlInstalled
+            // 
+            pnlInstalled.Anchor = AnchorStyles.Right;
+            pnlInstalled.BackColor = Color.White;
+            pnlInstalled.BackgroundImage = Properties.Resources.icons8_verified_badge_96;
+            pnlInstalled.BackgroundImageLayout = ImageLayout.Zoom;
+            pnlInstalled.BorderColor = Color.Black;
+            pnlInstalled.BorderRadius = 20;
+            pnlInstalled.BorderSize = 0;
+            pnlInstalled.ForeColor = Color.White;
+            pnlInstalled.Location = new Point(736, 32);
+            pnlInstalled.Margin = new Padding(4);
+            pnlInstalled.Name = "pnlInstalled";
+            pnlInstalled.Size = new Size(160, 56);
+            pnlInstalled.TabIndex = 13;
+            pnlInstalled.Visible = false;
+            // 
             // pnlIcon
             // 
             pnlIcon.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
@@ -143,7 +164,7 @@
             pnlIcon.Location = new Point(16, 16);
             pnlIcon.Margin = new Padding(4);
             pnlIcon.Name = "pnlIcon";
-            pnlIcon.Size = new Size(104, 88);
+            pnlIcon.Size = new Size(96, 88);
             pnlIcon.TabIndex = 13;
             // 
             // bntDownload
@@ -161,7 +182,7 @@
             bntDownload.FillColor = Color.White;
             bntDownload.FocusedColor = Color.FromArgb(100, 170, 209);
             bntDownload.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            bntDownload.ForeColor = Color.White;
+            bntDownload.ForeColor = Color.DarkGray;
             bntDownload.Location = new Point(738, 33);
             bntDownload.Margin = new Padding(2);
             bntDownload.Name = "bntDownload";
@@ -195,5 +216,6 @@
         public Label lblPluginInfo;
         public Sipaa.Framework.SPanel pnlIcon;
         public Guna.UI2.WinForms.Guna2Button bntDownload;
+        public Sipaa.Framework.SPanel pnlInstalled;
     }
 }

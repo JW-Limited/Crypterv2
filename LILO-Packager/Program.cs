@@ -34,6 +34,8 @@ namespace LILO_Packager
             {
                 ConsoleManager.Instance().WriteLineWithColor(ex.Message);
             }
+
+            InstanceCacheContainer.Register<ILILOConsoleManager>(() => ConsoleManager.Instance());
         }
 
         [STAThread]
@@ -70,7 +72,11 @@ namespace LILO_Packager
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error - BootManager", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification);
+                    MessageBox.Show(ex.Message, "Error - BootManager", 
+                                    MessageBoxButtons.OK, 
+                                    MessageBoxIcon.Error, 
+                                    MessageBoxDefaultButton.Button2, 
+                                    MessageBoxOptions.ServiceNotification);
                 }
             }
             else

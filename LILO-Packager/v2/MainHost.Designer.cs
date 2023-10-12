@@ -45,7 +45,7 @@ partial class MainHost
         guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
         lblText = new Label();
         bntChoose_File = new Guna.UI2.WinForms.Guna2Button();
-        guna2Transition1 = new Guna.UI2.WinForms.Guna2Transition();
+        Transition = new Guna.UI2.WinForms.Guna2Transition();
         pnlChild = new Panel();
         pnlNoti = new Guna.UI2.WinForms.Guna2Panel();
         guna2Button11 = new Guna.UI2.WinForms.Guna2Button();
@@ -95,7 +95,7 @@ partial class MainHost
         hider.Controls.Add(guna2Button3);
         hider.Controls.Add(bntOpen);
         hider.Controls.Add(sPanel1);
-        guna2Transition1.SetDecoration(hider, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(hider, Guna.UI2.AnimatorNS.DecorationType.None);
         hider.Dock = DockStyle.Left;
         hider.ForeColor = Color.White;
         hider.Location = new Point(0, 0);
@@ -111,7 +111,7 @@ partial class MainHost
         bntAccount.BorderColor = Color.Gainsboro;
         bntAccount.BorderRadius = 20;
         bntAccount.BorderThickness = 2;
-        guna2Transition1.SetDecoration(bntAccount, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(bntAccount, Guna.UI2.AnimatorNS.DecorationType.None);
         bntAccount.DisabledState.BorderColor = Color.Gainsboro;
         bntAccount.DisabledState.CustomBorderColor = Color.Gainsboro;
         bntAccount.DisabledState.FillColor = Color.Transparent;
@@ -145,7 +145,7 @@ partial class MainHost
         pnlMenu.BorderThickness = 2;
         pnlMenu.Controls.Add(guna2Button10);
         pnlMenu.Controls.Add(guna2Button9);
-        guna2Transition1.SetDecoration(pnlMenu, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(pnlMenu, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlMenu.FillColor = Color.White;
         pnlMenu.Location = new Point(24, 792);
         pnlMenu.Margin = new Padding(2);
@@ -166,7 +166,7 @@ partial class MainHost
         guna2Button10.BorderColor = Color.Gainsboro;
         guna2Button10.BorderRadius = 10;
         guna2Button10.BorderThickness = 2;
-        guna2Transition1.SetDecoration(guna2Button10, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(guna2Button10, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button10.DisabledState.BorderColor = Color.DarkGray;
         guna2Button10.DisabledState.CustomBorderColor = Color.DarkGray;
         guna2Button10.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -198,7 +198,7 @@ partial class MainHost
         guna2Button9.BorderColor = Color.Gainsboro;
         guna2Button9.BorderRadius = 10;
         guna2Button9.BorderThickness = 2;
-        guna2Transition1.SetDecoration(guna2Button9, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(guna2Button9, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button9.DisabledState.BorderColor = Color.DarkGray;
         guna2Button9.DisabledState.CustomBorderColor = Color.DarkGray;
         guna2Button9.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -230,7 +230,7 @@ partial class MainHost
         bntMenu_c.BorderColor = Color.Transparent;
         bntMenu_c.BorderRadius = 16;
         bntMenu_c.CheckedState.BorderColor = Color.Transparent;
-        guna2Transition1.SetDecoration(bntMenu_c, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(bntMenu_c, Guna.UI2.AnimatorNS.DecorationType.None);
         bntMenu_c.DisabledState.BorderColor = Color.DarkGray;
         bntMenu_c.DisabledState.CustomBorderColor = Color.DarkGray;
         bntMenu_c.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -255,7 +255,7 @@ partial class MainHost
         guna2Button2.BorderColor = Color.Gainsboro;
         guna2Button2.BorderRadius = 20;
         guna2Button2.BorderThickness = 2;
-        guna2Transition1.SetDecoration(guna2Button2, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(guna2Button2, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button2.DisabledState.BorderColor = Color.Gainsboro;
         guna2Button2.DisabledState.CustomBorderColor = Color.Gainsboro;
         guna2Button2.DisabledState.FillColor = Color.Transparent;
@@ -284,7 +284,7 @@ partial class MainHost
         guna2Button5.BorderColor = Color.Gainsboro;
         guna2Button5.BorderRadius = 20;
         guna2Button5.BorderThickness = 2;
-        guna2Transition1.SetDecoration(guna2Button5, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(guna2Button5, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button5.DisabledState.BorderColor = Color.Gainsboro;
         guna2Button5.DisabledState.CustomBorderColor = Color.Gainsboro;
         guna2Button5.DisabledState.FillColor = Color.Transparent;
@@ -313,7 +313,7 @@ partial class MainHost
         guna2Button4.BorderColor = Color.Gainsboro;
         guna2Button4.BorderRadius = 20;
         guna2Button4.BorderThickness = 2;
-        guna2Transition1.SetDecoration(guna2Button4, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(guna2Button4, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button4.DisabledState.BorderColor = Color.Gainsboro;
         guna2Button4.DisabledState.CustomBorderColor = Color.Gainsboro;
         guna2Button4.DisabledState.FillColor = Color.Transparent;
@@ -342,7 +342,7 @@ partial class MainHost
         guna2Button3.BorderColor = Color.Gainsboro;
         guna2Button3.BorderRadius = 20;
         guna2Button3.BorderThickness = 2;
-        guna2Transition1.SetDecoration(guna2Button3, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(guna2Button3, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button3.DisabledState.BorderColor = Color.Gainsboro;
         guna2Button3.DisabledState.CustomBorderColor = Color.Gainsboro;
         guna2Button3.DisabledState.FillColor = Color.Transparent;
@@ -371,7 +371,7 @@ partial class MainHost
         bntOpen.BorderColor = Color.Gainsboro;
         bntOpen.BorderRadius = 20;
         bntOpen.BorderThickness = 2;
-        guna2Transition1.SetDecoration(bntOpen, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(bntOpen, Guna.UI2.AnimatorNS.DecorationType.None);
         bntOpen.DisabledState.BorderColor = Color.Gainsboro;
         bntOpen.DisabledState.CustomBorderColor = Color.Gainsboro;
         bntOpen.DisabledState.FillColor = Color.Transparent;
@@ -403,7 +403,7 @@ partial class MainHost
         sPanel1.BorderSize = 0;
         sPanel1.Controls.Add(guna2Button1);
         sPanel1.Controls.Add(lblText);
-        guna2Transition1.SetDecoration(sPanel1, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(sPanel1, Guna.UI2.AnimatorNS.DecorationType.None);
         sPanel1.ForeColor = Color.White;
         sPanel1.Location = new Point(24, 32);
         sPanel1.Margin = new Padding(4);
@@ -419,7 +419,7 @@ partial class MainHost
         guna2Button1.BorderColor = Color.Gainsboro;
         guna2Button1.BorderRadius = 20;
         guna2Button1.BorderThickness = 2;
-        guna2Transition1.SetDecoration(guna2Button1, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(guna2Button1, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button1.DisabledState.BorderColor = Color.Gainsboro;
         guna2Button1.DisabledState.CustomBorderColor = Color.Gainsboro;
         guna2Button1.DisabledState.FillColor = Color.Transparent;
@@ -444,7 +444,7 @@ partial class MainHost
         // lblText
         // 
         lblText.BackColor = Color.Transparent;
-        guna2Transition1.SetDecoration(lblText, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(lblText, Guna.UI2.AnimatorNS.DecorationType.None);
         lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
         lblText.ForeColor = Color.White;
         lblText.Location = new Point(24, 0);
@@ -461,7 +461,7 @@ partial class MainHost
         bntChoose_File.Animated = true;
         bntChoose_File.BorderRadius = 17;
         bntChoose_File.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-        guna2Transition1.SetDecoration(bntChoose_File, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(bntChoose_File, Guna.UI2.AnimatorNS.DecorationType.None);
         bntChoose_File.DisabledState.BorderColor = Color.DarkGray;
         bntChoose_File.DisabledState.CustomBorderColor = Color.DarkGray;
         bntChoose_File.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -476,10 +476,10 @@ partial class MainHost
         bntChoose_File.TabIndex = 14;
         bntChoose_File.Text = "Datein Auswählen";
         // 
-        // guna2Transition1
+        // Transition
         // 
-        guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Custom;
-        guna2Transition1.Cursor = null;
+        Transition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent;
+        Transition.Cursor = null;
         animation1.AnimateOnlyDifferences = true;
         animation1.BlindCoeff = (PointF)resources.GetObject("animation1.BlindCoeff");
         animation1.LeafCoeff = 0F;
@@ -488,20 +488,20 @@ partial class MainHost
         animation1.MosaicCoeff = (PointF)resources.GetObject("animation1.MosaicCoeff");
         animation1.MosaicShift = (PointF)resources.GetObject("animation1.MosaicShift");
         animation1.MosaicSize = 0;
-        animation1.Padding = new Padding(0);
+        animation1.Padding = new Padding(0, 0, 0, 0);
         animation1.RotateCoeff = 0F;
         animation1.RotateLimit = 0F;
         animation1.ScaleCoeff = (PointF)resources.GetObject("animation1.ScaleCoeff");
         animation1.SlideCoeff = (PointF)resources.GetObject("animation1.SlideCoeff");
         animation1.TimeCoeff = 0F;
         animation1.TransparencyCoeff = 1F;
-        guna2Transition1.DefaultAnimation = animation1;
-        guna2Transition1.Interval = 1;
+        Transition.DefaultAnimation = animation1;
+        Transition.Interval = 1;
         // 
         // pnlChild
         // 
         pnlChild.Controls.Add(pnlNoti);
-        guna2Transition1.SetDecoration(pnlChild, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(pnlChild, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlChild.Dock = DockStyle.Fill;
         pnlChild.Location = new Point(336, 0);
         pnlChild.Margin = new Padding(2);
@@ -519,7 +519,7 @@ partial class MainHost
         pnlNoti.Controls.Add(guna2Button11);
         pnlNoti.Controls.Add(lblMessage_Noti);
         pnlNoti.Controls.Add(label4);
-        guna2Transition1.SetDecoration(pnlNoti, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(pnlNoti, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlNoti.FillColor = Color.FromArgb(94, 148, 255);
         pnlNoti.Location = new Point(24, 807);
         pnlNoti.Margin = new Padding(2);
@@ -540,7 +540,7 @@ partial class MainHost
         guna2Button11.BackgroundImageLayout = ImageLayout.Zoom;
         guna2Button11.BorderColor = Color.Gainsboro;
         guna2Button11.BorderRadius = 10;
-        guna2Transition1.SetDecoration(guna2Button11, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(guna2Button11, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button11.DisabledState.BorderColor = Color.DarkGray;
         guna2Button11.DisabledState.CustomBorderColor = Color.DarkGray;
         guna2Button11.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -566,7 +566,7 @@ partial class MainHost
         // lblMessage_Noti
         // 
         lblMessage_Noti.BackColor = Color.Transparent;
-        guna2Transition1.SetDecoration(lblMessage_Noti, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(lblMessage_Noti, Guna.UI2.AnimatorNS.DecorationType.None);
         lblMessage_Noti.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
         lblMessage_Noti.ForeColor = Color.White;
         lblMessage_Noti.Location = new Point(24, 0);
@@ -581,7 +581,7 @@ partial class MainHost
         // 
         label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
         label4.BackColor = Color.Transparent;
-        guna2Transition1.SetDecoration(label4, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(label4, Guna.UI2.AnimatorNS.DecorationType.None);
         label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
         label4.ForeColor = Color.LightGray;
         label4.Location = new Point(664, -8);
@@ -607,7 +607,7 @@ partial class MainHost
         pnlSide.Controls.Add(bntCloseSideBoard);
         pnlSide.Controls.Add(pnlNothing);
         pnlSide.Controls.Add(pnlLoading);
-        guna2Transition1.SetDecoration(pnlSide, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(pnlSide, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlSide.Dock = DockStyle.Right;
         pnlSide.ForeColor = Color.White;
         pnlSide.Location = new Point(1258, 0);
@@ -622,7 +622,7 @@ partial class MainHost
         pnlNotifications.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         pnlNotifications.BackColor = Color.White;
         pnlNotifications.Controls.Add(pnlMes1);
-        guna2Transition1.SetDecoration(pnlNotifications, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(pnlNotifications, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlNotifications.Location = new Point(8, 72);
         pnlNotifications.Margin = new Padding(2);
         pnlNotifications.Name = "pnlNotifications";
@@ -639,7 +639,7 @@ partial class MainHost
         pnlMes1.Controls.Add(Mes1_Message);
         pnlMes1.Controls.Add(Mes1_bnt);
         pnlMes1.Controls.Add(Mes1_Title);
-        guna2Transition1.SetDecoration(pnlMes1, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(pnlMes1, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlMes1.FillColor = Color.White;
         pnlMes1.Location = new Point(8, 24);
         pnlMes1.Margin = new Padding(2);
@@ -651,7 +651,7 @@ partial class MainHost
         // Mes1_Message
         // 
         Mes1_Message.BackColor = Color.Transparent;
-        guna2Transition1.SetDecoration(Mes1_Message, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(Mes1_Message, Guna.UI2.AnimatorNS.DecorationType.None);
         Mes1_Message.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
         Mes1_Message.ForeColor = Color.DimGray;
         Mes1_Message.Location = new Point(24, 64);
@@ -669,7 +669,7 @@ partial class MainHost
         Mes1_bnt.BorderColor = Color.Gainsboro;
         Mes1_bnt.BorderRadius = 10;
         Mes1_bnt.BorderThickness = 2;
-        guna2Transition1.SetDecoration(Mes1_bnt, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(Mes1_bnt, Guna.UI2.AnimatorNS.DecorationType.None);
         Mes1_bnt.DisabledState.BorderColor = Color.DarkGray;
         Mes1_bnt.DisabledState.CustomBorderColor = Color.DarkGray;
         Mes1_bnt.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -691,7 +691,7 @@ partial class MainHost
         // Mes1_Title
         // 
         Mes1_Title.BackColor = Color.Transparent;
-        guna2Transition1.SetDecoration(Mes1_Title, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(Mes1_Title, Guna.UI2.AnimatorNS.DecorationType.None);
         Mes1_Title.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
         Mes1_Title.ForeColor = Color.Black;
         Mes1_Title.Location = new Point(24, 16);
@@ -710,7 +710,7 @@ partial class MainHost
         guna2Button6.BorderColor = Color.Gainsboro;
         guna2Button6.BorderRadius = 10;
         guna2Button6.BorderThickness = 2;
-        guna2Transition1.SetDecoration(guna2Button6, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(guna2Button6, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button6.DisabledState.BorderColor = Color.DarkGray;
         guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray;
         guna2Button6.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -733,7 +733,7 @@ partial class MainHost
         // 
         label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
         label1.BackColor = Color.Transparent;
-        guna2Transition1.SetDecoration(label1, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(label1, Guna.UI2.AnimatorNS.DecorationType.None);
         label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
         label1.ForeColor = Color.Gray;
         label1.Location = new Point(24, 847);
@@ -748,7 +748,7 @@ partial class MainHost
         // 
         label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
         label2.BackColor = Color.Transparent;
-        guna2Transition1.SetDecoration(label2, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(label2, Guna.UI2.AnimatorNS.DecorationType.None);
         label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
         label2.ForeColor = Color.Black;
         label2.Location = new Point(24, 871);
@@ -766,7 +766,7 @@ partial class MainHost
         guna2Button7.BorderColor = Color.Gainsboro;
         guna2Button7.BorderRadius = 10;
         guna2Button7.BorderThickness = 2;
-        guna2Transition1.SetDecoration(guna2Button7, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(guna2Button7, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button7.DisabledState.BorderColor = Color.DarkGray;
         guna2Button7.DisabledState.CustomBorderColor = Color.DarkGray;
         guna2Button7.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -791,7 +791,7 @@ partial class MainHost
         bntCloseSideBoard.BorderColor = Color.Gainsboro;
         bntCloseSideBoard.BorderRadius = 10;
         bntCloseSideBoard.BorderThickness = 2;
-        guna2Transition1.SetDecoration(bntCloseSideBoard, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(bntCloseSideBoard, Guna.UI2.AnimatorNS.DecorationType.None);
         bntCloseSideBoard.DisabledState.BorderColor = Color.DarkGray;
         bntCloseSideBoard.DisabledState.CustomBorderColor = Color.DarkGray;
         bntCloseSideBoard.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -819,7 +819,7 @@ partial class MainHost
         pnlNothing.BorderSize = 0;
         pnlNothing.Controls.Add(lblMessage);
         pnlNothing.Controls.Add(sPanel3);
-        guna2Transition1.SetDecoration(pnlNothing, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(pnlNothing, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlNothing.ForeColor = Color.White;
         pnlNothing.Location = new Point(16, 311);
         pnlNothing.Margin = new Padding(4);
@@ -831,7 +831,7 @@ partial class MainHost
         // lblMessage
         // 
         lblMessage.BackColor = Color.Transparent;
-        guna2Transition1.SetDecoration(lblMessage, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(lblMessage, Guna.UI2.AnimatorNS.DecorationType.None);
         lblMessage.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
         lblMessage.ForeColor = Color.DimGray;
         lblMessage.Location = new Point(24, 184);
@@ -851,7 +851,7 @@ partial class MainHost
         sPanel3.BorderColor = Color.Black;
         sPanel3.BorderRadius = 20;
         sPanel3.BorderSize = 0;
-        guna2Transition1.SetDecoration(sPanel3, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(sPanel3, Guna.UI2.AnimatorNS.DecorationType.None);
         sPanel3.ForeColor = Color.White;
         sPanel3.Location = new Point(56, 40);
         sPanel3.Margin = new Padding(4);
@@ -865,7 +865,7 @@ partial class MainHost
         pnlLoading.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         pnlLoading.BackColor = Color.White;
         pnlLoading.Controls.Add(progressSpinner);
-        guna2Transition1.SetDecoration(pnlLoading, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(pnlLoading, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlLoading.Location = new Point(16, 96);
         pnlLoading.Margin = new Padding(2);
         pnlLoading.Name = "pnlLoading";
@@ -878,7 +878,7 @@ partial class MainHost
         progressSpinner.Anchor = AnchorStyles.None;
         progressSpinner.AutoStart = true;
         progressSpinner.BackColor = Color.White;
-        guna2Transition1.SetDecoration(progressSpinner, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(progressSpinner, Guna.UI2.AnimatorNS.DecorationType.None);
         progressSpinner.Location = new Point(80, 299);
         progressSpinner.Margin = new Padding(2);
         progressSpinner.Name = "progressSpinner";
@@ -887,7 +887,7 @@ partial class MainHost
         // 
         // panel1
         // 
-        guna2Transition1.SetDecoration(panel1, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(panel1, Guna.UI2.AnimatorNS.DecorationType.None);
         panel1.Dock = DockStyle.Bottom;
         panel1.Location = new Point(336, 927);
         panel1.Margin = new Padding(2);
@@ -907,7 +907,7 @@ partial class MainHost
         Controls.Add(panel1);
         Controls.Add(hider);
         Controls.Add(bntChoose_File);
-        guna2Transition1.SetDecoration(this, Guna.UI2.AnimatorNS.DecorationType.None);
+        Transition.SetDecoration(this, Guna.UI2.AnimatorNS.DecorationType.None);
         HelpButton = true;
         Icon = (Icon)resources.GetObject("$this.Icon");
         IsMdiContainer = true;
@@ -937,7 +937,6 @@ partial class MainHost
     private Guna.UI2.WinForms.Guna2Button guna2Button3;
     private Guna.UI2.WinForms.Guna2Button bntOpen;
     private Guna.UI2.WinForms.Guna2Button bntAccount;
-    private Guna.UI2.WinForms.Guna2Transition guna2Transition1;
     private Label lblText;
     private Panel pnlChild;
     private Guna.UI2.WinForms.Guna2Button guna2Button1;
@@ -968,4 +967,5 @@ partial class MainHost
     private Label lblMessage_Noti;
     private Label label4;
     private Panel panel1;
+    public Guna.UI2.WinForms.Guna2Transition Transition;
 }

@@ -81,6 +81,7 @@
             bntCancel.DisabledState.CustomBorderColor = Color.DarkGray;
             bntCancel.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            bntCancel.Enabled = false;
             bntCancel.FillColor = Color.Transparent;
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
             bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);

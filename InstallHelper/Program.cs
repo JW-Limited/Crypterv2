@@ -45,7 +45,7 @@ namespace InstallHelper
                         Console.Write("Creating Shortcuts: ");
                         ShortcutOperations.CreateDesktopShortcut(path);
                         ShortcutOperations.CreateStartMenuShortcut(path);
-                        Console.Write("Done!\n");
+                        Console.Write("Done!\n ");
 
                         Console.ReadKey();
                     }
