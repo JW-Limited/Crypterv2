@@ -36,11 +36,17 @@ namespace LILO_Packager.v2.Shared
             }
             _sessionId = GenerateSessionId();
             Program.InstanceCacheContainer.Register<ILILOConsoleManager>(() => _instance);
+
+            WriteLineWithColor("Initialized Logger Instance.");
         }
 
         private string GenerateSessionId()
         {
-            return $"{DateTime.Now:yyyyMMdd_HHmmss}_{Guid.NewGuid():N}";
+            var id = $"{DateTime.Now:yyyyMMdd_HHmmss}_{Guid.NewGuid():N}";
+
+            WriteLineWithColor($"Generated Session ID - {id}.");
+
+            return id;
         }
 
         public void ShowConsoleWindow(string header = "Debug Console")

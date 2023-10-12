@@ -103,6 +103,16 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap debug_win {
+            get {
+                object obj = ResourceManager.GetObject("debug_win", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap encLib {
             get {
                 object obj = ResourceManager.GetObject("encLib", resourceCulture);
@@ -607,6 +617,25 @@ namespace LILO_Packager.Properties {
             get {
                 object obj = ResourceManager.GetObject("syncStatusSyncing", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap theme_manager {
+            get {
+                object obj = ResourceManager.GetObject("theme_manager", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream to_trash {
+            get {
+                return ResourceManager.GetStream("to_trash", resourceCulture);
             }
         }
         

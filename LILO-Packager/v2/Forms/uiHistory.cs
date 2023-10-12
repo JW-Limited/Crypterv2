@@ -5,6 +5,7 @@ using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Shared;
 using LILO_Packager.v2.Shared.Api.Core;
 using System.Diagnostics;
+using System.Media;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -220,6 +221,11 @@ namespace LILO_Packager.v2.Forms
                                                 progress?.Report(20);
                                                 File.Delete(element.outputFileName);
                                                 progress?.Report(100);
+
+                                                var sp = new SoundPlayer();
+                                                sp.Stream = Properties.Resources.to_trash;
+                                                sp.Play();
+                                                bntPlugin_Click(sender, e);
                                             });
 
                                             var uiAsyncTask = new uiCustomProcess(asyncTask);

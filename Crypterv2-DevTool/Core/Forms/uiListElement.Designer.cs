@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            lblFeature = new Label();
             bntChange = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             lblDescription = new Label();
             label1 = new Label();
             lblFeatureState = new Label();
             label3 = new Label();
-            lblFeature = new Label();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel1.SuspendLayout();
             guna2Panel2.SuspendLayout();
@@ -55,11 +55,22 @@
             guna2Panel1.Controls.Add(lblFeatureState);
             guna2Panel1.Controls.Add(label3);
             guna2Panel1.FillColor = SystemColors.Control;
-            guna2Panel1.Location = new Point(81, 65);
+            guna2Panel1.Location = new Point(164, 142);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.Size = new Size(680, 512);
             guna2Panel1.TabIndex = 24;
+            // 
+            // lblFeature
+            // 
+            lblFeature.BackColor = SystemColors.Control;
+            lblFeature.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lblFeature.Location = new Point(184, 56);
+            lblFeature.Name = "lblFeature";
+            lblFeature.Size = new Size(440, 40);
+            lblFeature.TabIndex = 1;
+            lblFeature.Text = "n/a";
+            lblFeature.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // bntChange
             // 
@@ -144,17 +155,6 @@
             label3.Text = "The feature is currently:";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // lblFeature
-            // 
-            lblFeature.BackColor = SystemColors.Control;
-            lblFeature.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            lblFeature.Location = new Point(184, 56);
-            lblFeature.Name = "lblFeature";
-            lblFeature.Size = new Size(440, 40);
-            lblFeature.TabIndex = 1;
-            lblFeature.Text = "n/a";
-            lblFeature.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // guna2Button1
             // 
             guna2Button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -171,12 +171,12 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(802, 16);
+            guna2Button1.Location = new Point(894, 16);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(40, 40);
+            guna2Button1.Size = new Size(114, 40);
             guna2Button1.TabIndex = 15;
-            guna2Button1.Text = "X";
+            guna2Button1.Text = "Cancel";
             guna2Button1.Click += guna2Button1_Click;
             // 
             // uiListElement
@@ -184,12 +184,12 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(858, 634);
+            ClientSize = new Size(1024, 788);
             Controls.Add(guna2Button1);
             Controls.Add(guna2Panel1);
             MinimumSize = new Size(878, 688);
             Name = "uiListElement";
-            Text = "uiListElement";
+            Text = "s";
             Load += uiListElement_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel2.ResumeLayout(false);

@@ -96,10 +96,10 @@ partial class uiSettings
         sPanel1.BorderColor = Color.Black;
         sPanel1.BorderRadius = 20;
         sPanel1.BorderSize = 0;
+        sPanel1.Controls.Add(lblText);
         sPanel1.Controls.Add(guna2Button2);
         sPanel1.Controls.Add(guna2Button5);
         sPanel1.Controls.Add(label5);
-        sPanel1.Controls.Add(lblText);
         sPanel1.ForeColor = Color.White;
         sPanel1.Location = new Point(24, 32);
         sPanel1.Margin = new Padding(4);
@@ -124,7 +124,7 @@ partial class uiSettings
         guna2Button2.ForeColor = Color.White;
         guna2Button2.Image = Properties.Resources.icons8_back_96;
         guna2Button2.ImageSize = new Size(35, 35);
-        guna2Button2.Location = new Point(24, 16);
+        guna2Button2.Location = new Point(16, 16);
         guna2Button2.Margin = new Padding(2);
         guna2Button2.Name = "guna2Button2";
         guna2Button2.Size = new Size(72, 58);
@@ -174,7 +174,7 @@ partial class uiSettings
         lblText.BackColor = Color.Transparent;
         lblText.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
         lblText.ForeColor = Color.White;
-        lblText.Location = new Point(96, 0);
+        lblText.Location = new Point(88, 0);
         lblText.Margin = new Padding(4, 0, 4, 0);
         lblText.Name = "lblText";
         lblText.Size = new Size(144, 88);

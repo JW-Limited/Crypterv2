@@ -12,11 +12,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncryptionLibary", "Encrypt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstallHelper", "InstallHelper\InstallHelper.csproj", "{46F2BC78-73A7-4A05-B7B0-3527926CAB36}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crypterv2-DevTool", "Crypterv2-DevTool\Crypterv2-DevTool.csproj", "{D393A4CB-BF73-48C9-921B-990861EDAC7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crypterv2.DevTool", "Crypterv2-DevTool\Crypterv2.DevTool.csproj", "{D393A4CB-BF73-48C9-921B-990861EDAC7E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextPreviewLibrary", "TextPreviewLibrary\TextPreviewLibrary.csproj", "{EC2A96AF-D33B-4008-B044-F1263BA53919}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LILO-WebEngine", "LILO-WebEngine\LILO-WebEngine.csproj", "{069B93C0-3581-476D-B741-6990918FCC6D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crypterv2.LogAnalyzer", "Crypterv2.LogAnalyzer.Core\Crypterv2.LogAnalyzer.csproj", "{3EBC8ADC-D6EF-4FF3-AB23-5F406C858601}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypterv2.Controls", "Crytperv2.Controls\Crypterv2.Controls.csproj", "{CB0BFC61-0E0D-4D70-9E57-3EB420D2358C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +52,14 @@ Global
 		{069B93C0-3581-476D-B741-6990918FCC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{069B93C0-3581-476D-B741-6990918FCC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{069B93C0-3581-476D-B741-6990918FCC6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EBC8ADC-D6EF-4FF3-AB23-5F406C858601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EBC8ADC-D6EF-4FF3-AB23-5F406C858601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EBC8ADC-D6EF-4FF3-AB23-5F406C858601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EBC8ADC-D6EF-4FF3-AB23-5F406C858601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB0BFC61-0E0D-4D70-9E57-3EB420D2358C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB0BFC61-0E0D-4D70-9E57-3EB420D2358C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB0BFC61-0E0D-4D70-9E57-3EB420D2358C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB0BFC61-0E0D-4D70-9E57-3EB420D2358C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

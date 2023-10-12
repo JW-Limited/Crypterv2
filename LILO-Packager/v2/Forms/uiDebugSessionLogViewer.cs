@@ -1,17 +1,6 @@
 ﻿using Aqua.EnumerableExtensions;
 using LILO_Packager.v2.Core.Debug.Types;
 using LILO_Packager.v2.Core.LILO;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -28,24 +17,28 @@ namespace LILO_Packager.v2.Forms
 
         public List<LogEntry> logEntries;
 
-        private async void uiDebugSessionLogViewer_Load(object sender, EventArgs e)
+        private void uiDebugSessionLogViewer_Load(object sender, EventArgs e)
         {
             lblSessionName.Text = _session.SessionName;
             lblCreated.Text = "Session from: " + _session.CreatedAt;
             lblCrashed.Text = "Crashed: " + _session.Crashed.ToString();
 
             var analyzer = new LogParser(new FileLogReader(_session.FileName));
-            var problems = await analyzer.GetProblemsAsync();
-
-            mainText.Text += problems.ToList().StringJoin("\n");
-
-            _ = Task.Run(() =>
+            Task.Run(() =>
                 {
-                    foreach (var problem in problems)
-                    {
-                        mainText.Text += problem.Message;
+                    var logANA = new Crypterv2.LogAnalyzer.LogAnalyzer();
+                    var summa = logANA.AnalyzeLog(File.ReadAllText(_session.FileName));
 
-                        mainText.Text += analyzer.ExplainProblem(problem);
+                    summa.CategorizeLogEntries();
+                    summa.GenerateDiagnosticSummary();
+
+                    mainText.Text += "LogEntries: " + summa.CategoryCounts.Count + " - " + summa.LogEntries.Count + "\n";
+                    mainText.Text += summa.DiagnosticSummary + "\n\n";
+
+
+                    foreach (var line in File.ReadLines(_session.FileName))
+                    {
+                        mainText.Text += "*- " + line + "\n";
                     }
                     pnlLoading.Visible = false;
                 });

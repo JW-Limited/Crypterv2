@@ -1,15 +1,8 @@
-﻿using LILO_Packager.v2.Plugins.Model;
+﻿using Crypterv2.DevTool.Core;
+using LILO_Packager.v2.Plugins.Model;
 using LILO_Packager.v2.Plugins.PluginCore;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Crypterv2_DevTool.Core.Forms
 {
@@ -22,14 +15,14 @@ namespace Crypterv2_DevTool.Core.Forms
         private static uiTestPlugin _instance;
         public static uiTestPlugin Instance()
         {
-            if (_instance == null)
+            if (_instance == null || _instance.IsDisposed)
             {
                 _instance = new uiTestPlugin();
             }
             return _instance;
         }
 
-        
+
 
         private uiTestPlugin()
         {
@@ -73,6 +66,10 @@ namespace Crypterv2_DevTool.Core.Forms
                                                      $"Version : {item.Version}");
                                 cmbPlugins.Items.Add(item.Name);
                                 cmbPlugins.SelectedItem = item.Name;
+
+                                lblProductName.Text = item.Name;
+                                lblPluginInfo.Text = item.Description;
+                                lblVersion.Text = item.Version;
                             };
                         }
                         else
@@ -119,6 +116,10 @@ namespace Crypterv2_DevTool.Core.Forms
                                 plugins.Add(ent);
                                 cmbPlugins.Items.Add(ent.Name);
                                 cmbPlugins.SelectedItem = ent.Name;
+
+                                lblProductName.Text = ent.Name;
+                                lblPluginInfo.Text = ent.Description;
+                                lblVersion.Text = ent.Version;
                             }
 
                             PluginTestConfig.Default.recentDirectory = ofd.SelectedPath;
@@ -138,7 +139,7 @@ namespace Crypterv2_DevTool.Core.Forms
                         MessageBox.Show(ex.Message);
                     }
                 });
-                
+
             }
         }
 
@@ -158,13 +159,12 @@ namespace Crypterv2_DevTool.Core.Forms
 
                 if (neededPlugin is not null)
                 {
-                    this.Size = new System.Drawing.Size(neededPlugin.form.Size.Width + 10, neededPlugin.form.Size.Height + 10);
-                    OpenInApp(neededPlugin.form, "Test", ChildrenUse.Auth);
+                    neededPlugin.form.Show();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("It seems like the Plugin has a problem: \n\n" + ex.Message,"PluginError",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("It seems like the Plugin has a problem: \n\n" + ex.Message, "PluginError", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -228,6 +228,31 @@ namespace Crypterv2_DevTool.Core.Forms
                 pnlChild.Dock = DockStyle.None;
                 pnlChild.Size = new Size(1, 1);
             };
+        }
+
+        private void cmbPlugins_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PluginEntry neededPlugin = null;
+
+            foreach (var plug in plugins)
+            {
+                if (plug.Name == cmbPlugins.SelectedItem)
+                {
+                    neededPlugin = plug;
+                }
+            }
+
+            if (neededPlugin != null)
+            {
+                lblProductName.Text = neededPlugin.Name;
+                lblPluginInfo.Text = neededPlugin.Description;
+                lblVersion.Text = neededPlugin.Version;
+            }
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

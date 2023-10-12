@@ -1,4 +1,5 @@
 ﻿using LILO_Packager.Properties;
+using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Plugins.Model;
 using LILO_Packager.v2.Plugins.PluginCore;
@@ -17,6 +18,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UIAutomationClient;
 using Windows.Storage;
 
 namespace LILO_Packager.v2.Forms
@@ -69,13 +71,24 @@ namespace LILO_Packager.v2.Forms
             
             if (appName is not null)
             {
-                if (appName.DefaultApp is "LILO secured File") 
+                if (appName.DefaultApp is "LILO Secured File") 
                 { 
                     appName.DefaultApp = "Crypterv2"; pnlImage.BackgroundImage = Resources.Lock;
                 }
-                else
+                else if(appName.DefaultApp is "Crypterv2 Debug Session")
                 {
-                    //lblMoreInfo.Text += "\nFile Type: " + $"{Shared.GetFileType.GetContentType(_file.outputFileName)}";
+                    appName.DefaultApp = "Crypterv2 Debuger"; 
+                    pnlImage.BackgroundImage = Resources.debug_win;
+                }
+                else if(appName.DefaultApp is "LILO Custom Style")
+                {
+                    appName.DefaultApp = "Crypterv2 ThemeManager"; 
+                    pnlImage.BackgroundImage = Resources.theme_manager;
+                }
+                else if(appName.DefaultApp is "LILO Extension")
+                {
+                    appName.DefaultApp = "Crypterv2 PluginInstaller"; 
+                    pnlImage.BackgroundImage = Resources.icons8_bursts_96;
                 }
 
                 lblApp.Text = appName.DefaultApp.Replace(appName.Extension, "");
@@ -219,9 +232,12 @@ namespace LILO_Packager.v2.Forms
 
         private async void bntPreview_Click(object sender, EventArgs e)
         {
-            if (_file.outputFileName.EndsWith(".mp3") || _file.outputFileName.EndsWith(".wav"))
+            if (_file.outputFileName.EndsWith(".mp3") || 
+                _file.outputFileName.EndsWith(".wav") || 
+                _file.outputFileName.EndsWith(".m4a") ||
+                _file.outputFileName.EndsWith(".aac"))
             {
-                pnlWarning.Visible = true;
+                Transition.Show(pnlWarning);
             }
             else
             {
@@ -253,7 +269,7 @@ namespace LILO_Packager.v2.Forms
                      _file.outputFileName.EndsWith(".m4a") || 
                      _file.outputFileName.EndsWith(".aac"))
             {
-                if (config.Default.openMediaIn != "buildIn")
+                if (config.Default.openMediaIn != "buildIn" || !FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming))
                 {
                     MessageBox.Show("You need to enable this feature first because its still in development.", "Activation required", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

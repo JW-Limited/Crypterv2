@@ -1,6 +1,7 @@
 using Crypterv2_DevTool.Core;
 using Crypterv2_DevTool.Core.Forms;
 using LILO_Packager.v2.Core;
+using LILO_Packager.v2.Shared;
 using SharpDX;
 using System.Diagnostics;
 using System.Net;
@@ -28,7 +29,7 @@ namespace Crypterv2_DevTool
         private static MainHost _instance;
         public static MainHost GetInstance()
         {
-            if(_instance is null)
+            if (_instance is null)
             {
                 _instance = new MainHost();
             }
@@ -48,7 +49,66 @@ namespace Crypterv2_DevTool
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Main_Load(sender, e);
+            try
+            {
+                var state = new object();
+
+                Features.Clear();
+
+                Client = new TcpClient();
+
+
+                ConsoleManager.Instance().WriteLineWithColor("Begin Lazy.Async.Connect to Crypter-DevPort.");
+
+                var result = Client.BeginConnect(IPAddress.Loopback, 9001, callback =>
+                {
+                    //ConsoleManager.Instance().WriteLineWithColor("Begin Connect callback: " + Client.+ " Task Completed:" + callback.IsCompleted);
+                }, state);
+
+                ConsoleManager.Instance().WriteLineWithColor("Accomplished Connection.");
+
+
+                this.Text = "DevTool - Bridged";
+                this.button1.Text = "Connected";
+                this.button1.Visible = false;
+
+                var feat = new FeatureFlag();
+
+                listViewHistory.Items.Clear();
+
+                var features = feat.ListFeaturesViaConnectedSocket(Client);
+
+
+                ConsoleManager.Instance().WriteLineWithColor("Feched Featurelist from MainHost.");
+
+                foreach (var kv in features)
+                {
+                    var item = new ListViewItem()
+                    {
+                        Text = $"{kv.Key}",
+                    };
+
+                    item.SubItems.Add(kv.Value.ToString());
+                    listViewHistory.Items.Add(item);
+
+                    Features.TryAdd(kv.Key, kv.Value);
+                }
+
+                lblClient.Text = Client.Client.SocketType.ToString();
+                lblState.Text = $"Available";
+                lblDebug.Text = "True";
+                lblCore.Text = nameof(LILO_Packager.v2.Core.Interfaces.IFeatureFlagSwitcher);
+                lblVersion.Text = Application.ProductVersion.ToString();
+                lblAccess.Text = "Unknown";
+                bntDisconnect.Visible = true;
+            }
+            catch
+            {
+                this.button1.Text = "Retry";
+                this.button1.Visible = true;
+                this.Text = "DevTool - Error";
+                MessageBox.Show("Cant connect to Crypterv2.", "DevConnection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public enum ChildrenUse
@@ -145,10 +205,15 @@ namespace Crypterv2_DevTool
                 Features.Clear();
 
                 Client = new TcpClient();
+
+                ConsoleManager.Instance().WriteLineWithColor("Begin Lazy.Async.Connect to Crypter-DevPort.");
+
                 var result = Client.BeginConnect(IPAddress.Loopback, 9001, callback =>
                 {
-                    Debug.WriteLine("Begin Connect callback: " + callback.ToString() + " Task Completed:" + callback.IsCompleted);
+                    //ConsoleManager.Instance().WriteLineWithColor("Begin Connect callback: " + Client.+ " Task Completed:" + callback.IsCompleted);
                 }, state);
+
+                ConsoleManager.Instance().WriteLineWithColor("Accomplished Connection.");
 
                 this.Text = "DevTool - Bridged";
                 this.button1.Text = "Connected";
@@ -159,6 +224,9 @@ namespace Crypterv2_DevTool
                 listViewHistory.Items.Clear();
 
                 var features = feat.ListFeaturesViaConnectedSocket(Client);
+
+
+                ConsoleManager.Instance().WriteLineWithColor("Feched Featurelist from MainHost.");
 
                 foreach (var kv in features)
                 {
@@ -210,14 +278,15 @@ namespace Crypterv2_DevTool
 
                 };
 
-                var detailViewUi = new Core.Forms.uiListElement(flagInfo,Client);
-               
+                var detailViewUi = new Core.Forms.uiListElement(flagInfo, Client);
+
                 OpenInApp(detailViewUi, "QuickView", ChildrenUse.Auth);
             }
         }
 
         private void bntDisconnect_Click(object sender, EventArgs e)
         {
+            ConsoleManager.Instance().WriteLineWithColor("Closed Stream/Connection to MainHost.");
             Client.Close();
             button1.Visible = true;
             bntDisconnect.Visible = false;
@@ -234,14 +303,12 @@ namespace Crypterv2_DevTool
         {
             uiTestPlugin.Instance().Text = this.Text;
             uiTestPlugin.Instance().Icon = this.Icon;
-            uiTestPlugin.Instance().Show();
+            OpenInApp(uiTestPlugin.Instance(),"Plugin TestKit" ,ChildrenUse.Auth);
+        }
 
-            this.Hide();
+        private void lblName_Click(object sender, EventArgs e)
+        {
 
-            uiTestPlugin.Instance().FormClosing += (s, e) =>
-            {
-                this.Show();
-            };
         }
     }
 }

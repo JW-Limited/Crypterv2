@@ -185,6 +185,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Crypterv2.LogAnalyzer.Core\Crypterv2.LogAnalyzer.csproj" />
+    <ProjectReference Include="..\Crytperv2.Controls\Crypterv2.Controls.csproj" />
     <ProjectReference Include="..\InstallHelper\InstallHelper.csproj">
       <TreatAsUsed>true</TreatAsUsed>
     </ProjectReference>

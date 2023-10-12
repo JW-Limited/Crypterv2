@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Guna.UI2">
+      <HintPath>..\LILO-Packager\bin\Debug\net7.0-windows10.0.22000.0\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="SipaaFramework">
+      <HintPath>..\LILO-Packager\bin\Debug\net7.0-windows10.0.22000.0\SipaaFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
