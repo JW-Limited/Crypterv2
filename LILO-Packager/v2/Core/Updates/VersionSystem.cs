@@ -1,36 +1,9 @@
-﻿using LILO_Packager.v2.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using LILO_Packager.v2.Core.Interfaces;
+using LILO_Packager.v2.Shared;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-    
+
 namespace LILO_Packager.v2.Core.Updates
 {
-    public class SemanticVersion
-    {
-        public int Major { get; set; }
-        public int Minor { get; set; }
-        public int Patch { get; set; }
-        public string Edition { get; set; }
-        public bool IsNewer { get; set; }
-
-        public SemanticVersion(int major, int minor, int patch, string edition, bool isNewer)
-        {
-            Major = major;
-            Minor = minor;
-            Patch = patch;
-            Edition = edition;
-            IsNewer = isNewer;
-        }
-
-        public override string ToString()
-        {
-            return $"{Major}.{Minor}.{Patch}-{Edition}";
-        }
-    }
-
     public class VersionComparer
     {
         private static void LogComparisonResult(int value, string category)
@@ -40,7 +13,7 @@ namespace LILO_Packager.v2.Core.Updates
         }
 
 
-        public static SemanticVersion ParseSemanticVersion(string version)
+        public static ICrypterv2Version ParseSemanticVersion(string version)
         {
             var semverRegex = new Regex(@"^v(\d+)\.(\d+)(?:\.(\d+))?(?:-(\w+))?(?:\+(\w+))?$");
             var match = semverRegex.Match(version);
@@ -59,7 +32,7 @@ namespace LILO_Packager.v2.Core.Updates
             return new SemanticVersion(major, minor, patch, edition, isNewer);
         }
 
-        public static SemanticVersion CompareSemanticVersions(string appVersion, string semanticVersion)
+        public static ICrypterv2Version CompareSemanticVersions(string appVersion, string semanticVersion)
         {
             var appSemanticVersion = ParseSemanticVersion(appVersion);
             var semverSemanticVersion = ParseSemanticVersion(semanticVersion);

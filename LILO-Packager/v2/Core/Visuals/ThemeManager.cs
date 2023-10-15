@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using LILO_Packager.v2.Shared;
+using LILO_Packager.v2.Shared.Streaming.Core;
 using Newtonsoft.Json;
 
 namespace LILO_Packager.v2.Core.Visuals

@@ -39,4 +39,5 @@ namespace LILO_Packager.v2.Shared.Streaming.Core
             return new FileStream(_filename, FileMode.Open, FileAccess.Read);
         }
     }
+
 }
