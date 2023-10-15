@@ -106,5 +106,17 @@ namespace LILO_Packager.v2 {
                 this["experimentsEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string localUserImage {
+            get {
+                return ((string)(this["localUserImage"]));
+            }
+            set {
+                this["localUserImage"] = value;
+            }
+        }
     }
 }

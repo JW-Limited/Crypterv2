@@ -1,6 +1,7 @@
 using Crypterv2_DevTool.Core;
 using Crypterv2_DevTool.Core.Forms;
 using LILO_Packager.v2.Core;
+using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.Shared;
 using SharpDX;
 using System.Diagnostics;
@@ -260,27 +261,55 @@ namespace Crypterv2_DevTool
 
         public void listViewHistory_DoubleClick(object sender, EventArgs e)
         {
-
-            string selectedItem = listViewHistory.SelectedItems[0].Text;
-
-            if (Features.ContainsKey(selectedItem))
+            try
             {
-                var flag = (FeatureFlags)Enum.Parse(typeof(FeatureFlags), selectedItem);
-                descriptions.TryGetValue(flag, out string descriptionValue);
-                Features.TryGetValue(selectedItem, out bool enabled);
+                string selectedItem = listViewHistory.SelectedItems[0].Text;
 
-                var flagInfo = new FlagInfo()
+                if (Features.ContainsKey(selectedItem))
                 {
-                    Name = selectedItem,
-                    Flag = flag,
-                    Description = descriptionValue,
-                    EnabledState = enabled
+                    var flag = (FeatureFlags)Enum.Parse(typeof(FeatureFlags), selectedItem);
+                    descriptions.TryGetValue(flag, out string descriptionValue);
+                    Features.TryGetValue(selectedItem, out bool enabled);
 
-                };
+                    var flagInfo = new FlagInfo()
+                    {
+                        Name = selectedItem,
+                        Flag = flag,
+                        Description = descriptionValue,
+                        EnabledState = enabled
 
-                var detailViewUi = new Core.Forms.uiListElement(flagInfo, Client);
+                    };
 
-                OpenInApp(detailViewUi, "QuickView", ChildrenUse.Auth);
+                    var detailViewUi = new Core.Forms.uiListElement(flagInfo, Client);
+
+                    OpenInApp(detailViewUi, "QuickView", ChildrenUse.Auth);
+                }
+            }
+            catch(System.ArgumentException ex)
+            {
+
+                var dialogtest = new uiCustomDialog(
+                new LILO_Packager.v2.Core.Dialogs.MessageDialogPreference(
+                    "Resolving Error",
+                    "We had trouble to resolve this feature. You need to update this application.\n\nShould we do it now?",
+                    LILO_Packager.v2.Core.Dialogs.Dialog.Authorization,
+                    LILO_Packager.v2.Core.Dialogs.DialogButtons.Authorization,
+                    LILO_Packager.v2.Core.Dialogs.DialogIcon.Question,
+                    result =>
+                    {
+                        if (result == LILO_Packager.v2.Core.Dialogs.DialogResults.Ok)
+                        {
+                            string url = "https://github.com/JW-Limited/Crypterv2/releases";
+
+                            Process.Start(new ProcessStartInfo
+                            {
+                                FileName = url,
+                                UseShellExecute = true
+                            });
+                        }
+                    })
+                );
+                dialogtest.ShowDialog();
             }
         }
 

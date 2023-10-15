@@ -9,5 +9,9 @@
         bool SecuredContainerStreaming { get; set; }
         bool ThirdPartyPluginSupport { get; set; }
         bool WebView2GraphicalContent { get; set; }
+        bool MediaEngineManager { get; set; }
+        bool PluginShop { get; set; } 
+        bool PluginInstaller { get; set; }
+        bool ThirdPartyEncryptenLibrarys { get; set; }
     }
 }

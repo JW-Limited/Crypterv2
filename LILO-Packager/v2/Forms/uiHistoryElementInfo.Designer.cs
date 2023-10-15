@@ -252,7 +252,7 @@
             bntPreview.FocusedColor = Color.FromArgb(100, 170, 209);
             bntPreview.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             bntPreview.ForeColor = Color.DimGray;
-            bntPreview.Image = Properties.Resources.Info;
+            bntPreview.Image = Properties.Resources.icons8_private_lock_96;
             bntPreview.Location = new Point(720, 200);
             bntPreview.Margin = new Padding(2);
             bntPreview.Name = "bntPreview";

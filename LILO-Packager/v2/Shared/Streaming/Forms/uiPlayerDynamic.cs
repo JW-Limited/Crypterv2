@@ -5,6 +5,7 @@ using LILO_Packager.v2.Core.Interfaces;
 using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.Shared;
 using LILO_Packager.v2.Shared.Streaming.Core;
+using Microsoft.Extensions.FileProviders;
 using SharpDX.MediaFoundation;
 using System.Diagnostics;
 
@@ -186,16 +187,13 @@ namespace LILO_Packager.v2.Streaming.MusikPlayer.Forms
 
                 });
 
-                var info = new FileInfo(_Parameters.Source);
                 await dbTasks.InsertSongAsync(
                     new SongEntry(
-                        //new SongID(_Parameters.Source).GetId(), 
-                        FileIdentifier.GenerateIdentifier(_Parameters.Source),
+                        FileIdentifier<IFileInfo>.GenerateIdentifier(
+                            new Shared.Streaming.Core.AudioFile(_Parameters.Source)),
                         _Parameters.Title,
                         string.Join(", ", _Parameters.Artists), 
                         _Parameters.Source));
-
-
                 pnlCover.BackgroundImage = _Parameters.Cover;
                 lblTrack.Text = _Parameters.Title;
                 lblArtist.Text = string.Join(", ", _Parameters.Artists);
@@ -270,4 +268,5 @@ namespace LILO_Packager.v2.Streaming.MusikPlayer.Forms
             throw new NotImplementedException();
         }
     }
+
 }

@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace LILO_Packager.v2.Core
 {
-    [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
     public class FeatureManager
     {
         private static readonly string ConfigFilePath = Path.Combine(Application.CommonAppDataPath ,"FeatureManager.dll");
-        private static FeatureFlagConfig _config;
+        private static IFeatureFlagConfig _config;
         private static readonly Dictionary<FeatureFlags, bool> _featureFlagsDictionary = new Dictionary<FeatureFlags, bool>();
 
         public static event EventHandler<FeatureFlagUpdateEventArgs> FeatureFlagsChanged;
@@ -81,24 +80,9 @@ namespace LILO_Packager.v2.Core
             }
         }
 
-        public override bool Equals(object? obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
         public override string? ToString()
         {
             return "A FeatureManager for Crypterv2 Flags";
-        }
-
-        private string GetDebuggerDisplay()
-        {
-            return ToString();
         }
     }
 }

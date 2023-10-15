@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using LILO_Packager.v2.Shared;
 using Windows.UI.Popups;
 using LILO_Packager.v2.Shared.Streaming.Core;
+using Microsoft.Extensions.FileProviders;
 
 namespace LILO_Packager.v2.Streaming.MusikPlayer.Forms
 {
@@ -62,7 +63,6 @@ namespace LILO_Packager.v2.Streaming.MusikPlayer.Forms
 
             mediaEngineManager = MediaEngineManager.Instance;
             mediaEngineManager.PlaybackStateChanged += OnPlaybackCallback;
-            mediaEngineManager.SetSource(parameters.Source);
 
             this.FormClosing += (sender, e) =>
             {
@@ -152,14 +152,19 @@ namespace LILO_Packager.v2.Streaming.MusikPlayer.Forms
                 {
                     
                 });
-
-                var info = new FileInfo(playerParameters.Source);
-                await dbTasks.InsertSongAsync(new SongEntry(int.Parse(info.Name.Remove(5)), playerParameters.Title, string.Join(", ", playerParameters.Artists), playerParameters.Source));
+                await dbTasks.InsertSongAsync(new SongEntry(
+                        FileIdentifier<IFileInfo>.GenerateIdentifier(new AudioFile(playerParameters.Source)),
+                        playerParameters.Title,
+                        string.Join(", ", playerParameters.Artists),
+                        playerParameters.Source));
                 pnlSplash.Visible = false;
+
+                mediaEngineManager.SetSource(playerParameters.Source);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Loading", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                pnlSplash.Visible = false;
             }
 
 

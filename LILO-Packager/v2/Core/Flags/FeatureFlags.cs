@@ -15,7 +15,11 @@ namespace LILO_Packager.v2.Core
         PluginManager,
         WebView2GraphicalContent,
         SecuredContainerStreaming,
-        HistoryElementQuering
+        HistoryElementQuering,
+        MediaEngineManager,
+        PluginShop,
+        PluginInstaller,
+        ThirdPartyEncryptenLibrarys
     }
 
     public class FeatureFlagConfig : IFeatureFlagConfig
@@ -27,5 +31,9 @@ namespace LILO_Packager.v2.Core
         public bool WebView2GraphicalContent { get; set; } = true;
         public bool SecuredContainerStreaming { get; set; } = true;
         public bool HistoryElementQuering { get; set; } = true;
+        public bool MediaEngineManager { get; set; } = true;
+        public bool PluginShop { get; set; } = true;
+        public bool PluginInstaller { get; set; } = true;
+        public bool ThirdPartyEncryptenLibrarys { get; set; } = false;
     }
 }

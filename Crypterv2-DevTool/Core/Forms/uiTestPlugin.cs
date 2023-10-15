@@ -36,6 +36,12 @@ namespace Crypterv2_DevTool.Core.Forms
             };
         }
 
+        public string GetShortDirectoryName(string value)
+        {
+            var dirinfo = new DirectoryInfo(value);
+            return dirinfo.Name;
+        }
+
         private void uiTestPlugin_Load(object sender, EventArgs e)
         {
             Task.Run(() =>
@@ -45,7 +51,7 @@ namespace Crypterv2_DevTool.Core.Forms
                 if (PluginTestConfig.Default.recentDirectory is not "null")
                 {
                     manager = new PluginManager(PluginTestConfig.Default.recentDirectory);
-                    lblDirectory.Text = PluginTestConfig.Default.recentDirectory;
+                    lblDirectory.Text = "/" + GetShortDirectoryName(PluginTestConfig.Default.recentDirectory);
 
                     try
                     {
@@ -125,7 +131,7 @@ namespace Crypterv2_DevTool.Core.Forms
                             PluginTestConfig.Default.recentDirectory = ofd.SelectedPath;
                             PluginTestConfig.Default.Save();
 
-                            lblDirectory.Text = ofd.SelectedPath;
+                            lblDirectory.Text = "/" + GetShortDirectoryName(ofd.SelectedPath);
 
                         }
                         else

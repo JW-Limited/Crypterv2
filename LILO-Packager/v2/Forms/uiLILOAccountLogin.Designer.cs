@@ -88,7 +88,7 @@ partial class uiLILOAccountLogin
         // label1
         // 
         label1.AutoSize = true;
-        label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+        label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
         label1.ForeColor = SystemColors.Control;
         label1.Location = new Point(392, 28);
         label1.Margin = new Padding(4, 0, 4, 0);
@@ -159,7 +159,7 @@ partial class uiLILOAccountLogin
         txtUsr.BorderFocusColor = Color.DimGray;
         txtUsr.BorderRadius = 20;
         txtUsr.BorderSize = 1;
-        txtUsr.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        txtUsr.Font = new Font("Century Gothic", 12F);
         txtUsr.ForeColor = Color.Black;
         txtUsr.Location = new Point(64, 109);
         txtUsr.Margin = new Padding(5);
@@ -181,7 +181,7 @@ partial class uiLILOAccountLogin
         txtPsw.BorderFocusColor = Color.DimGray;
         txtPsw.BorderRadius = 20;
         txtPsw.BorderSize = 1;
-        txtPsw.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        txtPsw.Font = new Font("Century Gothic", 12F);
         txtPsw.ForeColor = Color.Black;
         txtPsw.Location = new Point(64, 227);
         txtPsw.Margin = new Padding(5);
@@ -200,7 +200,7 @@ partial class uiLILOAccountLogin
         // 
         label2.AutoSize = true;
         label2.BackColor = Color.White;
-        label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+        label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
         label2.ForeColor = SystemColors.ActiveCaptionText;
         label2.Location = new Point(72, 71);
         label2.Margin = new Padding(2, 0, 2, 0);
@@ -213,7 +213,7 @@ partial class uiLILOAccountLogin
         // 
         label3.AutoSize = true;
         label3.BackColor = Color.White;
-        label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+        label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
         label3.ForeColor = SystemColors.ActiveCaptionText;
         label3.Location = new Point(72, 191);
         label3.Margin = new Padding(2, 0, 2, 0);
@@ -224,7 +224,7 @@ partial class uiLILOAccountLogin
         // 
         // label4
         // 
-        label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
         label4.ForeColor = SystemColors.Control;
         label4.Location = new Point(120, 0);
         label4.Margin = new Padding(2, 0, 2, 0);
@@ -254,7 +254,7 @@ partial class uiLILOAccountLogin
         // 
         // label6
         // 
-        label6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        label6.Font = new Font("Segoe UI", 9F);
         label6.ForeColor = SystemColors.ControlDark;
         label6.Location = new Point(240, 0);
         label6.Margin = new Padding(2, 0, 2, 0);
@@ -277,7 +277,7 @@ partial class uiLILOAccountLogin
         showPsw.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         showPsw.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         showPsw.FillColor = Color.Transparent;
-        showPsw.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        showPsw.Font = new Font("Segoe UI", 9F);
         showPsw.ForeColor = Color.White;
         showPsw.Image = (Image)resources.GetObject("showPsw.Image");
         showPsw.Location = new Point(416, 232);
@@ -311,7 +311,7 @@ partial class uiLILOAccountLogin
         pnlPreview.Controls.Add(label3);
         pnlPreview.Controls.Add(txtUsr);
         pnlPreview.FillColor = Color.White;
-        pnlPreview.Location = new Point(176, 192);
+        pnlPreview.Location = new Point(184, 184);
         pnlPreview.Margin = new Padding(2);
         pnlPreview.Name = "pnlPreview";
         pnlPreview.Size = new Size(512, 432);
@@ -347,7 +347,7 @@ partial class uiLILOAccountLogin
         // label5
         // 
         label5.AutoSize = true;
-        label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+        label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
         label5.ForeColor = SystemColors.ActiveCaptionText;
         label5.Location = new Point(184, 296);
         label5.Margin = new Padding(4, 0, 4, 0);
@@ -367,7 +367,7 @@ partial class uiLILOAccountLogin
         bntLogin.DisabledState.CustomBorderColor = Color.DarkGray;
         bntLogin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntLogin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        bntLogin.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        bntLogin.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         bntLogin.ForeColor = Color.White;
         bntLogin.Location = new Point(64, 328);
         bntLogin.Margin = new Padding(4);

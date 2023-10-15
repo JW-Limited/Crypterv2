@@ -1,6 +1,0 @@
-{
-    "dotnet.defaultSolution": "LILO-Packager.sln",
-    "docify.commentService.docstringFormat": "Doxygen",
-    "docify.commentService.sidePanelReviewMode": false,
-    "docify.commentService.programmingLanguage": "c_sharp"
-}

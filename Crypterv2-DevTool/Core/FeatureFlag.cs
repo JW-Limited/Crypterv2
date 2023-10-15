@@ -100,7 +100,9 @@ namespace Crypterv2_DevTool.Core
 
                 using (StreamWriter sw = new StreamWriter(pipeClient))
                 {
+#pragma warning disable SYSLIB0011 // Typ oder Element ist veraltet
                     var formatter = new BinaryFormatter();
+#pragma warning restore SYSLIB0011 // Typ oder Element ist veraltet
                     var featureFlagInfo = new FeatureFlagInfo(feature, isEnabled);
 #pragma warning disable SYSLIB0011
                     formatter.Serialize(sw.BaseStream, featureFlagInfo);

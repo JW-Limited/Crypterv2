@@ -63,6 +63,16 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap aboutme {
+            get {
+                object obj = ResourceManager.GetObject("aboutme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Aqua_Marine {
             get {
                 object obj = ResourceManager.GetObject("Aqua Marine", resourceCulture);
@@ -76,6 +86,16 @@ namespace LILO_Packager.Properties {
         public static System.Drawing.Bitmap Aqua_Marine_180degree {
             get {
                 object obj = ResourceManager.GetObject("Aqua Marine_180degree", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap asterisk {
+            get {
+                object obj = ResourceManager.GetObject("asterisk", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,6 +186,16 @@ namespace LILO_Packager.Properties {
         public static System.Drawing.Bitmap help_96px {
             get {
                 object obj = ResourceManager.GetObject("help_96px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_approved_unlock_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-approved-unlock-96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,6 +303,16 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icons8_no_access_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-no-access-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icons8_notification_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-notification-100", resourceCulture);
@@ -296,6 +336,16 @@ namespace LILO_Packager.Properties {
         public static System.Drawing.Bitmap icons8_pause_button_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-pause-button-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_private_lock_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-private-lock-96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -463,6 +513,16 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap nocon {
+            get {
+                object obj = ResourceManager.GetObject("nocon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap nothing {
             get {
                 object obj = ResourceManager.GetObject("nothing", resourceCulture);
@@ -583,6 +643,16 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Screenshot_2023_08_26_190917 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot 2023-08-26 190917", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Screenshot_2023_09_14_200707 {
             get {
                 object obj = ResourceManager.GetObject("Screenshot 2023-09-14 200707", resourceCulture);
@@ -593,9 +663,39 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Screenshot_2023_10_13_052005 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot 2023-10-13 052005", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Settings {
             get {
                 object obj = ResourceManager.GetObject("Settings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap shiled {
+            get {
+                object obj = ResourceManager.GetObject("shiled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap sub {
+            get {
+                object obj = ResourceManager.GetObject("sub", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

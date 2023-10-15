@@ -93,6 +93,16 @@ namespace Crypterv2.DevTool.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap nothing {
+            get {
+                object obj = ResourceManager.GetObject("nothing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap seüerater {
             get {
                 object obj = ResourceManager.GetObject("seüerater", resourceCulture);

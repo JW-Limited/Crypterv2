@@ -219,10 +219,10 @@
             pnlNetworkError.Controls.Add(lblExc);
             pnlNetworkError.Controls.Add(imgImage);
             pnlNetworkError.ForeColor = Color.White;
-            pnlNetworkError.Location = new Point(24, 480);
+            pnlNetworkError.Location = new Point(24, 144);
             pnlNetworkError.Margin = new Padding(4);
             pnlNetworkError.Name = "pnlNetworkError";
-            pnlNetworkError.Size = new Size(920, 448);
+            pnlNetworkError.Size = new Size(920, 784);
             pnlNetworkError.TabIndex = 13;
             // 
             // lblMes
@@ -232,7 +232,7 @@
             lblMes.BackColor = Color.Transparent;
             lblMes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblMes.ForeColor = Color.Black;
-            lblMes.Location = new Point(208, 344);
+            lblMes.Location = new Point(208, 512);
             lblMes.Margin = new Padding(4, 0, 4, 0);
             lblMes.Name = "lblMes";
             lblMes.Size = new Size(496, 56);
@@ -256,7 +256,7 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(292, 424);
+            guna2Button1.Location = new Point(292, 592);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.Size = new Size(328, 40);
@@ -271,7 +271,7 @@
             lblExc.BackColor = Color.Transparent;
             lblExc.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             lblExc.ForeColor = Color.Black;
-            lblExc.Location = new Point(212, 280);
+            lblExc.Location = new Point(212, 448);
             lblExc.Margin = new Padding(4, 0, 4, 0);
             lblExc.Name = "lblExc";
             lblExc.Size = new Size(488, 56);
@@ -289,7 +289,7 @@
             imgImage.BorderRadius = 20;
             imgImage.Controls.Add(guna2Panel2);
             imgImage.FillColor = Color.Transparent;
-            imgImage.Location = new Point(296, -24);
+            imgImage.Location = new Point(296, 144);
             imgImage.Margin = new Padding(2);
             imgImage.Name = "imgImage";
             imgImage.Size = new Size(320, 312);

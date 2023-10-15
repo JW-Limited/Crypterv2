@@ -38,7 +38,6 @@ namespace TextPreviewLibrary
                     _thManager = ThemeManager.Initialize();
                 }
 
-
                 var file = (string)args.Context[0];
 
                 if (file.EndsWith(".ctv"))

@@ -38,6 +38,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
     private readonly LILO_WebEngine.Core.Service.LocalServer _localServer;
     public readonly NotifyIconManager _noty;
     public readonly PluginManager _pluginManager;
+    public UserAdvanced _userAdvanced;
 
     public readonly string ThemePath = Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "themes");
     public readonly string Owner = "JW-Limited";
@@ -80,10 +81,14 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
             { FeatureFlags.PluginManager.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.PluginManager) },
             { FeatureFlags.WebView2GraphicalContent.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent) },
             { FeatureFlags.SecuredContainerStreaming.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming) },
-            { FeatureFlags.HistoryElementQuering.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering) }
+            { FeatureFlags.HistoryElementQuering.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering) },
+            { FeatureFlags.MediaEngineManager.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.MediaEngineManager) },
+
+            { FeatureFlags.PluginShop.ToString(),FeatureManager.IsFeatureEnabled(FeatureFlags.PluginShop) },
+            { FeatureFlags.ThirdPartyEncryptenLibrarys.ToString(),FeatureManager.IsFeatureEnabled(FeatureFlags.ThirdPartyEncryptenLibrarys) },
+            { FeatureFlags.PluginInstaller.ToString(),FeatureManager.IsFeatureEnabled(FeatureFlags.PluginInstaller) },
         };
 
-        GetHashCode();
         return featureValues;
     }
 
@@ -203,6 +208,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         {
             Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Logging Registered User in.");
             loggedInUser = UserManager.Instance().LoadUserFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json"));
+            _userAdvanced = new UserAdvanced(loggedInUser);
         }
 
         if (!Directory.Exists(ThemePath)) Directory.CreateDirectory(ThemePath);
@@ -348,6 +354,13 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
             OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
         }
 
+
+        if (!File.Exists(UserFile))
+        {
+            OpenInApp(new uiLILOLogin());
+            pnlSide.Visible = false;
+            hider.Visible = false;
+        }
 
         if (config.Default.allowedPlugins)
         {
@@ -646,7 +659,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
     {
         if (loggedInUser is not null)
         {
-            bntAccount.Text = "    " + loggedInUser.Email.Replace("@jwlmt.com", "").ToUpperInvariant();
+            bntAccount.Text = "    " + _userAdvanced.Name;
         }
     }
 

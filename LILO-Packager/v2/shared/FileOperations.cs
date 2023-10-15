@@ -11,6 +11,28 @@ namespace LILO_Packager.v2.Shared;
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 public partial class FileOperations
 {
+    public enum CrypterFileType
+    {
+        EncryptedFile,
+        CustomStyleSheet,
+        CrypterExtension,
+        DebugSession
+    }
+
+    public Dictionary<CrypterFileType, string> _fileExtensions = new Dictionary<CrypterFileType, string>() 
+    {
+        { CrypterFileType.EncryptedFile, ".lsf"},
+        { CrypterFileType.CustomStyleSheet, ".lcs"},
+        { CrypterFileType.CrypterExtension, ".cryptex"},
+        { CrypterFileType.DebugSession, ".dbgsl"},
+    };
+
+    public string GetFileExtensionFromType(CrypterFileType value)
+    {
+        _fileExtensions.TryGetValue(value, out string? returnValue);
+        return returnValue ?? "";
+    }
+
     public string GetFileFromDialog()
     {
         OpenFileDialog ofd = new OpenFileDialog();

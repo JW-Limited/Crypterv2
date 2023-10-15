@@ -61,7 +61,7 @@
             // 
             label1.Anchor = AnchorStyles.Bottom;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             label1.ForeColor = SystemColors.WindowFrame;
             label1.Location = new Point(448, 744);
             label1.Margin = new Padding(4, 0, 4, 0);
@@ -85,7 +85,7 @@
             bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntCancel.FillColor = Color.White;
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            bntCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             bntCancel.ForeColor = Color.DimGray;
             bntCancel.Location = new Point(940, 24);
             bntCancel.Margin = new Padding(2);
@@ -99,7 +99,7 @@
             // 
             lblExc.Anchor = AnchorStyles.None;
             lblExc.BackColor = Color.Transparent;
-            lblExc.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblExc.Font = new Font("Segoe UI", 10F);
             lblExc.ForeColor = Color.Black;
             lblExc.Location = new Point(316, 424);
             lblExc.Margin = new Padding(4, 0, 4, 0);
@@ -129,7 +129,7 @@
             // 
             label2.Anchor = AnchorStyles.Bottom;
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
             label2.ForeColor = Color.Silver;
             label2.Location = new Point(480, 720);
             label2.Margin = new Padding(4, 0, 4, 0);
@@ -142,12 +142,12 @@
             // lblVerison
             // 
             lblVerison.BackColor = Color.Transparent;
-            lblVerison.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
+            lblVerison.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
             lblVerison.ForeColor = Color.Silver;
             lblVerison.Location = new Point(32, 24);
             lblVerison.Margin = new Padding(4, 0, 4, 0);
             lblVerison.Name = "lblVerison";
-            lblVerison.Size = new Size(120, 40);
+            lblVerison.Size = new Size(168, 40);
             lblVerison.TabIndex = 34;
             lblVerison.Text = "v/n";
             lblVerison.TextAlign = ContentAlignment.MiddleCenter;
@@ -166,7 +166,7 @@
             bntRestart.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntRestart.FillColor = Color.White;
             bntRestart.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntRestart.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            bntRestart.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             bntRestart.ForeColor = Color.DimGray;
             bntRestart.Location = new Point(432, 488);
             bntRestart.Margin = new Padding(2);

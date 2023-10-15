@@ -55,7 +55,7 @@ partial class uiPlayer
         // 
         lblCurrentTIme.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
         lblCurrentTIme.BackColor = Color.Transparent;
-        lblCurrentTIme.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        lblCurrentTIme.Font = new Font("Microsoft Sans Serif", 9F);
         lblCurrentTIme.ForeColor = SystemColors.AppWorkspace;
         lblCurrentTIme.Location = new Point(83, 598);
         lblCurrentTIme.Name = "lblCurrentTIme";
@@ -67,7 +67,7 @@ partial class uiPlayer
         // lblArtist
         // 
         lblArtist.BackColor = Color.Transparent;
-        lblArtist.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
+        lblArtist.Font = new Font("Century Gothic", 8F);
         lblArtist.ForeColor = Color.White;
         lblArtist.Location = new Point(66, 209);
         lblArtist.Name = "lblArtist";
@@ -79,7 +79,7 @@ partial class uiPlayer
         // 
         lblTitle.AutoEllipsis = true;
         lblTitle.BackColor = Color.Transparent;
-        lblTitle.Font = new Font("Century Gothic", 14F, FontStyle.Bold, GraphicsUnit.Point);
+        lblTitle.Font = new Font("Century Gothic", 14F, FontStyle.Bold);
         lblTitle.ForeColor = Color.White;
         lblTitle.Location = new Point(64, 136);
         lblTitle.Name = "lblTitle";
@@ -98,7 +98,7 @@ partial class uiPlayer
         bntPlay.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntPlay.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         bntPlay.FillColor = Color.MediumSlateBlue;
-        bntPlay.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        bntPlay.Font = new Font("Segoe UI", 9F);
         bntPlay.ForeColor = Color.White;
         bntPlay.Image = Properties.Resources.icons8_circled_play_96;
         bntPlay.ImageSize = new Size(45, 45);
@@ -119,7 +119,7 @@ partial class uiPlayer
         bntPause.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntPause.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         bntPause.FillColor = Color.MediumSlateBlue;
-        bntPause.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        bntPause.Font = new Font("Segoe UI", 9F);
         bntPause.ForeColor = Color.White;
         bntPause.Image = Properties.Resources.icons8_pause_button_96;
         bntPause.ImageSize = new Size(45, 45);
@@ -159,16 +159,16 @@ partial class uiPlayer
         pnlSplash.Location = new Point(0, 0);
         pnlSplash.Margin = new Padding(2);
         pnlSplash.Name = "pnlSplash";
-        pnlSplash.Size = new Size(1001, 774);
+        pnlSplash.Size = new Size(1001, 776);
         pnlSplash.TabIndex = 9;
         // 
         // label1
         // 
         label1.Anchor = AnchorStyles.Bottom;
         label1.BackColor = Color.Transparent;
-        label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         label1.ForeColor = SystemColors.Window;
-        label1.Location = new Point(400, 686);
+        label1.Location = new Point(400, 688);
         label1.Margin = new Padding(4, 0, 4, 0);
         label1.Name = "label1";
         label1.Size = new Size(200, 40);
@@ -185,7 +185,7 @@ partial class uiPlayer
         imgImage.BorderColor = SystemColors.ActiveBorder;
         imgImage.BorderRadius = 15;
         imgImage.FillColor = Color.Transparent;
-        imgImage.Location = new Point(471, 331);
+        imgImage.Location = new Point(471, 332);
         imgImage.Margin = new Padding(2);
         imgImage.Name = "imgImage";
         imgImage.Size = new Size(56, 56);
@@ -196,7 +196,7 @@ partial class uiPlayer
         progTurner.Anchor = AnchorStyles.None;
         progTurner.AutoStart = true;
         progTurner.BackColor = Color.Transparent;
-        progTurner.Location = new Point(423, 283);
+        progTurner.Location = new Point(423, 284);
         progTurner.Name = "progTurner";
         progTurner.Size = new Size(160, 152);
         progTurner.TabIndex = 6;
@@ -233,7 +233,7 @@ partial class uiPlayer
         // 
         lblAllTime.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
         lblAllTime.BackColor = Color.Transparent;
-        lblAllTime.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        lblAllTime.Font = new Font("Microsoft Sans Serif", 9F);
         lblAllTime.ForeColor = SystemColors.AppWorkspace;
         lblAllTime.Location = new Point(870, 598);
         lblAllTime.Name = "lblAllTime";
@@ -246,7 +246,7 @@ partial class uiPlayer
         // 
         lblMoreInfo.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
         lblMoreInfo.BackColor = Color.Transparent;
-        lblMoreInfo.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
+        lblMoreInfo.Font = new Font("Century Gothic", 8F);
         lblMoreInfo.ForeColor = Color.White;
         lblMoreInfo.Location = new Point(80, 534);
         lblMoreInfo.Name = "lblMoreInfo";
@@ -260,7 +260,7 @@ partial class uiPlayer
         timeSlider.BackColor = Color.Transparent;
         timeSlider.BorderRoundRectSize = new Size(16, 16);
         timeSlider.DrawSemitransparentThumb = false;
-        timeSlider.Font = new Font("Microsoft Sans Serif", 6F, FontStyle.Regular, GraphicsUnit.Point);
+        timeSlider.Font = new Font("Microsoft Sans Serif", 6F);
         timeSlider.ForeColor = Color.White;
         timeSlider.LargeChange = 5U;
         timeSlider.Location = new Point(152, 574);
@@ -286,7 +286,7 @@ partial class uiPlayer
         bntBack.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         bntBack.FillColor = Color.Transparent;
         bntBack.FocusedColor = Color.FromArgb(100, 170, 209);
-        bntBack.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        bntBack.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
         bntBack.ForeColor = Color.White;
         bntBack.Image = Properties.Resources.icons8_back_96;
         bntBack.ImageAlign = HorizontalAlignment.Left;

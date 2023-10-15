@@ -122,7 +122,7 @@
             bntTrouble.Animated = true;
             bntTrouble.BackColor = Color.Transparent;
             bntTrouble.BorderColor = Color.Gainsboro;
-            bntTrouble.BorderRadius = 12;
+            bntTrouble.BorderRadius = 15;
             bntTrouble.BorderThickness = 2;
             bntTrouble.DisabledState.BorderColor = Color.DarkGray;
             bntTrouble.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -132,12 +132,13 @@
             bntTrouble.FocusedColor = Color.FromArgb(100, 170, 209);
             bntTrouble.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             bntTrouble.ForeColor = Color.DimGray;
-            bntTrouble.Location = new Point(928, 24);
+            bntTrouble.Image = Properties.Resources.icons8_synchronize_240;
+            bntTrouble.ImageSize = new Size(30, 30);
+            bntTrouble.Location = new Point(1008, 16);
             bntTrouble.Margin = new Padding(2);
             bntTrouble.Name = "bntTrouble";
-            bntTrouble.Size = new Size(136, 40);
+            bntTrouble.Size = new Size(56, 48);
             bntTrouble.TabIndex = 27;
-            bntTrouble.Text = "Retry";
             bntTrouble.Click += bntRetry;
             // 
             // label1

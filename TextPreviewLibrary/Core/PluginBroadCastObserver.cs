@@ -23,6 +23,7 @@ namespace TextPreviewLibrary.Core
         {
             if(value == null) throw new ArgumentNullException("value");
 
+
             if(value.EndPoint == BroadcastEndPoint.ForAll)
             {
                 PluginInterface.Instance(null, null, null, false).lblTip.Text = value.Payload ?? "New Message in Notifications.";

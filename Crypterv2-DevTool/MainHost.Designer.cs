@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem3 = new ListViewItem(new string[] { "12345", "State", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
+            ListViewItem listViewItem1 = new ListViewItem(new string[] { "12345", "State", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
             button1 = new Button();
             listViewHistory = new HTAlt.WinForms.HTListView();
@@ -44,11 +44,11 @@
             lblDebug = new Label();
             lblVersion = new Label();
             lblState = new Label();
-            bntDisconnect = new Button();
             label10 = new Label();
             label6 = new Label();
             label8 = new Label();
             label4 = new Label();
+            bntDisconnect = new Button();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             pnlChild = new Panel();
             guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
@@ -67,7 +67,8 @@
             // 
             // button1
             // 
-            button1.Location = new Point(656, 24);
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.Location = new Point(750, 24);
             button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(240, 34);
@@ -88,14 +89,14 @@
             listViewHistory.HeaderForeColor = Color.Black;
             listViewHistory.HideSelection = true;
             listViewHistory.HoverSelection = true;
-            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem3 });
+            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem1 });
             listViewHistory.Location = new Point(16, 16);
             listViewHistory.Margin = new Padding(2);
             listViewHistory.MultiSelect = false;
             listViewHistory.Name = "listViewHistory";
             listViewHistory.OverlayColor = Color.DodgerBlue;
             listViewHistory.ShowItemToolTips = true;
-            listViewHistory.Size = new Size(888, 720);
+            listViewHistory.Size = new Size(976, 774);
             listViewHistory.Sorting = SortOrder.Ascending;
             listViewHistory.TabIndex = 2;
             listViewHistory.UseCompatibleStateImageBehavior = false;
@@ -117,7 +118,7 @@
             // label1
             // 
             label1.BackColor = Color.White;
-            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             label1.Location = new Point(24, 24);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
@@ -129,7 +130,7 @@
             // 
             lblCore.AutoEllipsis = true;
             lblCore.BackColor = Color.White;
-            lblCore.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCore.Font = new Font("Segoe UI", 9F);
             lblCore.Location = new Point(104, 24);
             lblCore.Margin = new Padding(2, 0, 2, 0);
             lblCore.Name = "lblCore";
@@ -140,7 +141,7 @@
             // label2
             // 
             label2.BackColor = Color.White;
-            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             label2.Location = new Point(24, 144);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
@@ -151,7 +152,7 @@
             // lblClient
             // 
             lblClient.BackColor = Color.White;
-            lblClient.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblClient.Font = new Font("Segoe UI", 9F);
             lblClient.Location = new Point(104, 144);
             lblClient.Margin = new Padding(2, 0, 2, 0);
             lblClient.Name = "lblClient";
@@ -197,7 +198,7 @@
             // lblAccess
             // 
             lblAccess.BackColor = Color.White;
-            lblAccess.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblAccess.Font = new Font("Segoe UI", 9F);
             lblAccess.Location = new Point(104, 208);
             lblAccess.Margin = new Padding(2, 0, 2, 0);
             lblAccess.Name = "lblAccess";
@@ -209,7 +210,7 @@
             // 
             lblDebug.AutoEllipsis = true;
             lblDebug.BackColor = Color.White;
-            lblDebug.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDebug.Font = new Font("Segoe UI", 9F);
             lblDebug.Location = new Point(104, 88);
             lblDebug.Margin = new Padding(2, 0, 2, 0);
             lblDebug.Name = "lblDebug";
@@ -221,7 +222,7 @@
             // 
             lblVersion.AutoEllipsis = true;
             lblVersion.BackColor = Color.White;
-            lblVersion.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblVersion.Font = new Font("Segoe UI", 9F);
             lblVersion.Location = new Point(104, 56);
             lblVersion.Margin = new Padding(2, 0, 2, 0);
             lblVersion.Name = "lblVersion";
@@ -232,7 +233,7 @@
             // lblState
             // 
             lblState.BackColor = Color.White;
-            lblState.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblState.Font = new Font("Segoe UI", 9F);
             lblState.Location = new Point(104, 176);
             lblState.Margin = new Padding(2, 0, 2, 0);
             lblState.Name = "lblState";
@@ -240,21 +241,10 @@
             lblState.TabIndex = 1;
             lblState.Text = "n/a";
             // 
-            // bntDisconnect
-            // 
-            bntDisconnect.Location = new Point(656, 24);
-            bntDisconnect.Margin = new Padding(2);
-            bntDisconnect.Name = "bntDisconnect";
-            bntDisconnect.Size = new Size(240, 34);
-            bntDisconnect.TabIndex = 26;
-            bntDisconnect.Text = "Disconnect";
-            bntDisconnect.UseVisualStyleBackColor = true;
-            bntDisconnect.Click += bntDisconnect_Click;
-            // 
             // label10
             // 
             label10.BackColor = Color.White;
-            label10.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             label10.Location = new Point(24, 88);
             label10.Margin = new Padding(2, 0, 2, 0);
             label10.Name = "label10";
@@ -265,7 +255,7 @@
             // label6
             // 
             label6.BackColor = Color.White;
-            label6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             label6.Location = new Point(24, 56);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
@@ -276,7 +266,7 @@
             // label8
             // 
             label8.BackColor = Color.White;
-            label8.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             label8.Location = new Point(24, 208);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
@@ -287,13 +277,25 @@
             // label4
             // 
             label4.BackColor = Color.White;
-            label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             label4.Location = new Point(24, 176);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
             label4.Size = new Size(152, 30);
             label4.TabIndex = 1;
             label4.Text = "State";
+            // 
+            // bntDisconnect
+            // 
+            bntDisconnect.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            bntDisconnect.Location = new Point(750, 24);
+            bntDisconnect.Margin = new Padding(2);
+            bntDisconnect.Name = "bntDisconnect";
+            bntDisconnect.Size = new Size(240, 34);
+            bntDisconnect.TabIndex = 26;
+            bntDisconnect.Text = "Disconnect";
+            bntDisconnect.UseVisualStyleBackColor = true;
+            bntDisconnect.Click += bntDisconnect_Click;
             // 
             // guna2Panel2
             // 
@@ -307,7 +309,7 @@
             guna2Panel2.Location = new Point(360, 144);
             guna2Panel2.Margin = new Padding(2);
             guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.Size = new Size(920, 750);
+            guna2Panel2.Size = new Size(1008, 804);
             guna2Panel2.TabIndex = 24;
             // 
             // pnlChild
@@ -332,7 +334,7 @@
             guna2Panel5.Location = new Point(0, 0);
             guna2Panel5.Margin = new Padding(2);
             guna2Panel5.Name = "guna2Panel5";
-            guna2Panel5.Size = new Size(336, 910);
+            guna2Panel5.Size = new Size(336, 964);
             guna2Panel5.TabIndex = 23;
             // 
             // sPanel1
@@ -365,7 +367,7 @@
             guna2Button3.DisabledState.ForeColor = Color.Black;
             guna2Button3.FillColor = Color.Transparent;
             guna2Button3.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2Button3.ForeColor = Color.White;
             guna2Button3.ImageSize = new Size(40, 40);
             guna2Button3.Location = new Point(200, 16);
@@ -382,7 +384,7 @@
             // lblText
             // 
             lblText.BackColor = Color.Transparent;
-            lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblText.ForeColor = Color.White;
             lblText.Location = new Point(24, 0);
             lblText.Margin = new Padding(4, 0, 4, 0);
@@ -406,7 +408,7 @@
             guna2Button5.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button5.FillColor = Color.White;
             guna2Button5.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             guna2Button5.ForeColor = Color.Black;
             guna2Button5.Image = Crypterv2.DevTool.Properties.Resources.icons8_foxit_reader_240;
             guna2Button5.ImageAlign = HorizontalAlignment.Left;
@@ -435,17 +437,17 @@
             pnlControls.Location = new Point(360, 32);
             pnlControls.Margin = new Padding(2);
             pnlControls.Name = "pnlControls";
-            pnlControls.Size = new Size(920, 80);
+            pnlControls.Size = new Size(1008, 80);
             pnlControls.TabIndex = 26;
             // 
             // lblDirectory
             // 
-            lblDirectory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            lblDirectory.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDirectory.Anchor = AnchorStyles.Left;
+            lblDirectory.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             lblDirectory.Location = new Point(24, 16);
             lblDirectory.Margin = new Padding(2, 0, 2, 0);
             lblDirectory.Name = "lblDirectory";
-            lblDirectory.Size = new Size(624, 48);
+            lblDirectory.Size = new Size(552, 48);
             lblDirectory.TabIndex = 28;
             lblDirectory.Text = "Here you can En and Disale features in Crypterv2.";
             lblDirectory.TextAlign = ContentAlignment.MiddleLeft;
@@ -455,7 +457,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(1297, 910);
+            ClientSize = new Size(1385, 964);
             Controls.Add(pnlControls);
             Controls.Add(guna2Panel5);
             Controls.Add(pnlChild);

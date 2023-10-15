@@ -1,11 +1,13 @@
 ﻿using LILO_Packager.Properties;
 using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.History;
+using LILO_Packager.v2.Core.Interfaces;
 using LILO_Packager.v2.Plugins.Model;
 using LILO_Packager.v2.Plugins.PluginCore;
 using LILO_Packager.v2.Shared;
 using LILO_Packager.v2.Shared.Streaming.Core;
 using LILO_Packager.v2.Shared.Types;
+using LILO_Packager.v2.Streaming.MusikPlayer.Forms;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -281,10 +283,18 @@ namespace LILO_Packager.v2.Forms
                     this.Hide();
                 };
 
-                var para = await MusicPlayerParameters.Get(_file.outputFileName);
-                //var mediaInstance = streaming.MusikPlayer.Forms.uiPlayer.Instance(para, true);
-                var mediaInstance = new Streaming.MusikPlayer.Forms.uiPlayerDynamic(para, this);
-                MainHost.Instance().OpenInApp(mediaInstance);
+                if (FeatureManager.IsFeatureEnabled(FeatureFlags.MediaEngineManager))
+                {
+                    var para = await MusicPlayerParameters.Get(_file.outputFileName);
+                    var player = uiPlayer.Instance(para, false);
+                    Program.InstanceCacheContainer.Resolve<ILILOMainHost>().OpenInApp(player);
+                }
+                else
+                {
+                    var para = await MusicPlayerParameters.Get(_file.outputFileName);
+                    var mediaInstance = new Streaming.MusikPlayer.Forms.uiPlayerDynamic(para, this);
+                    MainHost.Instance().OpenInApp(mediaInstance);
+                }
             }
             else
             {

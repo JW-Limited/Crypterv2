@@ -58,8 +58,6 @@ partial class MainHost
         Mes1_bnt = new Guna.UI2.WinForms.Guna2Button();
         Mes1_Title = new Label();
         guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
-        label1 = new Label();
-        label2 = new Label();
         guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
         bntCloseSideBoard = new Guna.UI2.WinForms.Guna2Button();
         pnlNothing = new Sipaa.Framework.SPanel();
@@ -488,7 +486,7 @@ partial class MainHost
         animation1.MosaicCoeff = (PointF)resources.GetObject("animation1.MosaicCoeff");
         animation1.MosaicShift = (PointF)resources.GetObject("animation1.MosaicShift");
         animation1.MosaicSize = 0;
-        animation1.Padding = new Padding(0, 0, 0, 0);
+        animation1.Padding = new Padding(0);
         animation1.RotateCoeff = 0F;
         animation1.RotateLimit = 0F;
         animation1.ScaleCoeff = (PointF)resources.GetObject("animation1.ScaleCoeff");
@@ -601,8 +599,6 @@ partial class MainHost
         pnlSide.BorderSize = 1;
         pnlSide.Controls.Add(pnlNotifications);
         pnlSide.Controls.Add(guna2Button6);
-        pnlSide.Controls.Add(label1);
-        pnlSide.Controls.Add(label2);
         pnlSide.Controls.Add(guna2Button7);
         pnlSide.Controls.Add(bntCloseSideBoard);
         pnlSide.Controls.Add(pnlNothing);
@@ -626,7 +622,7 @@ partial class MainHost
         pnlNotifications.Location = new Point(8, 72);
         pnlNotifications.Margin = new Padding(2);
         pnlNotifications.Name = "pnlNotifications";
-        pnlNotifications.Size = new Size(312, 777);
+        pnlNotifications.Size = new Size(312, 840);
         pnlNotifications.TabIndex = 18;
         pnlNotifications.Visible = false;
         // 
@@ -728,36 +724,6 @@ partial class MainHost
         guna2Button6.TabIndex = 17;
         guna2Button6.Text = " Notifications";
         guna2Button6.TextAlign = HorizontalAlignment.Left;
-        // 
-        // label1
-        // 
-        label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-        label1.BackColor = Color.Transparent;
-        Transition.SetDecoration(label1, Guna.UI2.AnimatorNS.DecorationType.None);
-        label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
-        label1.ForeColor = Color.Gray;
-        label1.Location = new Point(24, 847);
-        label1.Margin = new Padding(4, 0, 4, 0);
-        label1.Name = "label1";
-        label1.Size = new Size(288, 32);
-        label1.TabIndex = 2;
-        label1.Text = "powered by ";
-        label1.TextAlign = ContentAlignment.MiddleLeft;
-        // 
-        // label2
-        // 
-        label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-        label2.BackColor = Color.Transparent;
-        Transition.SetDecoration(label2, Guna.UI2.AnimatorNS.DecorationType.None);
-        label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        label2.ForeColor = Color.Black;
-        label2.Location = new Point(24, 871);
-        label2.Margin = new Padding(4, 0, 4, 0);
-        label2.Name = "label2";
-        label2.Size = new Size(288, 40);
-        label2.TabIndex = 3;
-        label2.Text = "LILO Sync ";
-        label2.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // guna2Button7
         // 
@@ -942,8 +908,6 @@ partial class MainHost
     private Guna.UI2.WinForms.Guna2Button guna2Button1;
     private Guna.UI2.WinForms.Guna2Button guna2Button2;
     private Guna.UI2.WinForms.Guna2Button bntCloseSideBoard;
-    private Label label1;
-    private Label label2;
     private Guna.UI2.WinForms.Guna2Button guna2Button6;
     private Sipaa.Framework.SPanel pnlNothing;
     private Label lblMessage;

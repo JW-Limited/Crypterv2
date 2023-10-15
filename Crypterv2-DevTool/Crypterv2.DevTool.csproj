@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows10.0.22000.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.22000.0</TargetFramework>
     <RootNamespace>Crypterv2.DevTool</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
@@ -16,6 +16,10 @@
     <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/JW-Limited/Crypterv2.git</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="lockView.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\LILO-Packager\favico.png">

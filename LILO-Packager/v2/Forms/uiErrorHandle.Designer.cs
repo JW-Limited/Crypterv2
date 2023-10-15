@@ -175,7 +175,7 @@
             lblAddtional.Location = new Point(32, 32);
             lblAddtional.Margin = new Padding(4, 0, 4, 0);
             lblAddtional.Name = "lblAddtional";
-            lblAddtional.Size = new Size(176, 656);
+            lblAddtional.Size = new Size(224, 656);
             lblAddtional.TabIndex = 1;
             // 
             // uiErrorHandle

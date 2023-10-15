@@ -1,4 +1,6 @@
-﻿using LILO_Packager.v2.Core;
+﻿using LILO_Packager.v2.Controls;
+using LILO_Packager.v2.Core;
+using LILO_Packager.v2.Core.LILO.Interfaces;
 using LILO_Packager.v2.Core.LILO.Types;
 using Microsoft.Win32.SafeHandles;
 using System;
@@ -15,10 +17,10 @@ namespace LILO_Packager.v2.Forms;
 public partial class uiSettings : Form
 {
     private static uiSettings _encrypt;
-    private User _user;
+    private ILILOUser _user;
     public Shared.FileOperations sharedFile = new();
     private static object _lock = new object();
-    public static uiSettings Instance(User user)
+    public static uiSettings Instance(ILILOUser user)
     {
         lock (_lock)
         {
@@ -33,7 +35,7 @@ public partial class uiSettings : Form
 
 
 
-    private uiSettings(User user)
+    private uiSettings(ILILOUser user)
     {
         InitializeComponent();
 
@@ -50,14 +52,14 @@ public partial class uiSettings : Form
     {
         Task.Run(() =>
         {
-            chbPlugins.Checked = FeatureManager.IsFeatureEnabled(FeatureFlags.PluginSupport);
+            chbPlugins.CheckControl(FeatureManager.IsFeatureEnabled(FeatureFlags.PluginSupport));
             chbUpdates.Checked = config.Default.autoUpdates;
             chbStream.Checked = FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming);
             chbLibrarys.Checked = FeatureManager.IsFeatureEnabled(FeatureFlags.ThirdPartyPluginSupport);
             chbDeleteFile.Checked = config.Default.deleteFile;
             chbDebug.Checked = config.Default.debugMode;
         });
-        
+
     }
 
     private void label5_Click(object sender, EventArgs e)
@@ -106,5 +108,10 @@ public partial class uiSettings : Form
     private void bntSrvlocal(object sender, EventArgs e)
     {
         MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080/config/")));
+    }
+
+    private void guna2Panel2_Paint(object sender, PaintEventArgs e)
+    {
+
     }
 }

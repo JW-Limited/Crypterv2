@@ -12,7 +12,7 @@ namespace LILO_Packager
     {
         public static NotifyIcon noty;
         public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
-        public static string Version = "v0.9.11-dev_edition";
+        public static string Version = "v0.10.1-dev_edition";
         private static IBootManager _bootManager;
 
         private static void InitializeApplication()
@@ -42,6 +42,11 @@ namespace LILO_Packager
         public static void Main(string[] args)
         {
             InitializeApplication();
+
+            if(config.Default.debugMode)
+            {
+                ConsoleManager.Instance().ShowConsoleWindow();
+            }
 
             if (config.Default.aggrementAccepted)
             {

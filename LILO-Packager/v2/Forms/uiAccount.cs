@@ -1,5 +1,7 @@
 ﻿using LILO_Packager.Properties;
 using LILO_Packager.v2.Core.Authentication;
+using LILO_Packager.v2.Core.Interfaces;
+using LILO_Packager.v2.Core.LILO.Interfaces;
 using LILO_Packager.v2.Core.LILO.Types;
 using System;
 using System.Collections.Generic;
@@ -18,10 +20,10 @@ namespace LILO_Packager.v2.Forms
 {
     public partial class uiAccount : Form
     {
-        public User _user;
+        public ILILOUser _user;
         private static uiAccount _encrypt;
         private static object _lock = new object();
-        public static uiAccount Instance(User user)
+        public static uiAccount Instance(ILILOUser user)
         {
             lock (_lock)
             {
@@ -34,10 +36,13 @@ namespace LILO_Packager.v2.Forms
             }
         }
 
-        private uiAccount(User user)
+        private readonly UserAdvanced _userAdvanced;
+
+        private uiAccount(ILILOUser user)
         {
             InitializeComponent();
             _user = user;
+            _userAdvanced = new UserAdvanced(user);
         }
 
 
@@ -49,13 +54,10 @@ namespace LILO_Packager.v2.Forms
             };
 
             lblEmail.Text = _user.Email;
-            lblUsername.Text = _user.Email.Replace("@jwlmt.com", "");
+            lblUsername.Text = _user.Name;
             lblUser.Text = _user.Role;
-            videoPanel.BackgroundImage = Resources.icons8_male_user_96;
+            videoPanel.BackgroundImage = _userAdvanced.ProfilePicture;
 
-            Thread.Sleep(300);
-
-            pnlLoading.Visible = false;
         }
 
         private void bntSettings_Click(object sender, EventArgs e)
@@ -65,18 +67,21 @@ namespace LILO_Packager.v2.Forms
 
         private void bntCancel_Click(object sender, EventArgs e)
         {
-            MainHost.Instance().loggedInUser = null;
-            File.Delete(MainHost.Instance().UserFile);
-            uiLILOAccountLogin.SetInstance(null);
-            MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+
         }
 
         private void sPanel11_Paint(object sender, PaintEventArgs e)
         {
         }
 
-        /*
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            MainHost.Instance().OpenInApp(new v2.Forms.uiAccontDetails(_user));
+        }
+
+
         #region GoogleLogin
+        /*
         private void btn_LoginGoogle_Click(object sender, EventArgs e)
         {
             var url = AuthResponse.GetAutenticationURI(clientId, redirectURI).ToString();
@@ -191,7 +196,22 @@ namespace LILO_Packager.v2.Forms
             }
             return true;
         }
-        #endregion
         */
+        #endregion
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            MainHost.Instance().OpenInApp(new v2.Forms.uiLicenseDetails(_user));
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://beta.lilo.com/account/password")));
+        }
+
+        private void videoPanel_Click(object sender, EventArgs e)
+        {
+            Plugins.ThirdParty.PluginIconDialog.ShowPluginIcon((Bitmap)videoPanel.BackgroundImage);
+        }
     }
 }

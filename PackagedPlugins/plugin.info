@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Plugin xmlns="http://schemas.lilo.com/developer/plugins/2021" Name="TextPreviewLibrary" active="true">
+	<PluginDll>TextPreviewLibrary.dll</PluginDll>
+	<Version Number="0.2.12" State="alpha">
+		<ReleaseDate>2023-10-09</ReleaseDate>
+		<Changes>Initial release
+		</Changes>
+	</Version>
+	<Author>
+		<Name>Joey West</Name>
+		<Company>JW Limited</Company>
+	</Author>
+	<Compatibility>
+		<Windows MinVersion="10.0.0.0" />
+	</Compatibility>
+	<Description>A plugin that enables the previewing of plain based Files in Crypterv2.</Description>
+	<Website>https://beta.lilo.com/plugins?enclib</Website>
+	<License isNull="true"></License>
+	<Dependencies>
+		<Dependency Name="Crypter-MainHost">
+			<Version State="beta">0.9.10</Version>
+			<Library>false</Library>
+		</Dependency>
+	</Dependencies>
+	<Capabilities>
+		<Capability Name="Crypterv2-MainHost Broadcasting">
+			<Description>Providing a Multimedia Library.</Description>
+			<Arguments>
+				<Argument Name="FilePath" Type="string"/>
+			</Arguments>
+		</Capability>
+		<Capability Name="En-and Decrypt LSS (LILO Synced Streams)">
+			<Description>Decrypt media streams to use them.</Description>
+		</Capability>
+		<Capability Name="Use Systemresources">
+			<Description>To Provide functionalty</Description>
+		</Capability>
+	</Capabilities>
+</Plugin>
