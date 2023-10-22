@@ -1,25 +1,23 @@
-﻿using System;
-using System.IO;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Drawing;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 using LILO_Packager.v2.Core.Updates;
+using TextPreviewLibrary.Core.Contracts;
 
 namespace TextPreviewLibrary.Core.Formats
 {
-    public class CrypterTextFile
+    public class CrypterTextFile : ILILOCrypterTextFile
     {
         public string FileName { get; set; }
         public Color TextColor { get; set; }
-        public Font TextFont { get; set; }
+        public System.Drawing.Font TextFont { get; set; }
         public bool IsLocked { get; set; }
         public string Author { get; set; }
-        public string RtfContent { get; set; } 
+        public string RtfContent { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime LastModified { get; set; }
         public int WordCount => CountWords();
         public SemanticVersion version { get; set; }
+        private static readonly string key = "crypertextFilev2-239949i634";
 
         private int CountWords()
         {
@@ -31,6 +29,39 @@ namespace TextPreviewLibrary.Core.Formats
             {
                 throw new ArgumentException(RtfContent);
             }
+        }
+
+        public static CrypterTextFile CreateSecuredFile(CrypterTextFile cry)
+        {
+            var securedFile = new CrypterTextFile();
+            securedFile.FileName = cry.FileName;
+            securedFile.TextFont = cry.TextFont;
+            securedFile.Author = cry.Author;
+            securedFile.CreatedAt = cry.CreatedAt;
+            securedFile.IsLocked = cry.IsLocked;
+            securedFile.LastModified = cry.LastModified;
+            securedFile.version = cry.version;
+            securedFile.TextColor = cry.TextColor;
+            securedFile.RtfContent = LILO_Packager.v2.Core.Service.Services.EncryptString(cry.RtfContent, key);
+
+            return securedFile;
+        }
+
+
+        public static CrypterTextFile CreateUnsecuredTextFile(CrypterTextFile cry)
+        {
+            var securedFile = new CrypterTextFile();
+            securedFile.FileName = cry.FileName;
+            securedFile.TextFont = cry.TextFont;
+            securedFile.Author = cry.Author;
+            securedFile.CreatedAt = cry.CreatedAt;
+            securedFile.IsLocked = cry.IsLocked;
+            securedFile.LastModified = cry.LastModified;
+            securedFile.version = cry.version;
+            securedFile.TextColor = cry.TextColor;
+            securedFile.RtfContent = LILO_Packager.v2.Core.Service.Services.DecryptString(cry.RtfContent, key);
+
+            return securedFile;
         }
 
         public bool IsDifferentFrom(CrypterTextFile otherFile)
@@ -64,7 +95,8 @@ namespace TextPreviewLibrary.Core.Formats
                 {
                     return JsonSerializer.Deserialize<CrypterTextFile>(json) ?? new CrypterTextFile();
                 }
-                catch { 
+                catch
+                {
                     throw new ArgumentOutOfRangeException(nameof(json));
                 }
             }

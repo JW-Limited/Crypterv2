@@ -51,7 +51,7 @@
             // lblText
             // 
             lblText.BackColor = Color.Transparent;
-            lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblText.ForeColor = Color.White;
             lblText.Location = new Point(24, 0);
             lblText.Margin = new Padding(4, 0, 4, 0);
@@ -93,7 +93,7 @@
             bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntCancel.FillColor = Color.Transparent;
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntCancel.ForeColor = Color.White;
             bntCancel.Location = new Point(776, 16);
             bntCancel.Margin = new Padding(2);
@@ -196,7 +196,7 @@
             // label1
             // 
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ControlDarkDark;
             label1.Location = new Point(48, 144);
             label1.Margin = new Padding(4, 0, 4, 0);
@@ -230,7 +230,7 @@
             lblMes.Anchor = AnchorStyles.None;
             lblMes.AutoEllipsis = true;
             lblMes.BackColor = Color.Transparent;
-            lblMes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblMes.Font = new Font("Segoe UI", 12F);
             lblMes.ForeColor = Color.Black;
             lblMes.Location = new Point(208, 512);
             lblMes.Margin = new Padding(4, 0, 4, 0);
@@ -254,7 +254,7 @@
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button1.FillColor = Color.White;
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.DimGray;
             guna2Button1.Location = new Point(292, 592);
             guna2Button1.Margin = new Padding(2);
@@ -269,7 +269,7 @@
             lblExc.Anchor = AnchorStyles.None;
             lblExc.AutoEllipsis = true;
             lblExc.BackColor = Color.Transparent;
-            lblExc.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblExc.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblExc.ForeColor = Color.Black;
             lblExc.Location = new Point(212, 448);
             lblExc.Margin = new Padding(4, 0, 4, 0);

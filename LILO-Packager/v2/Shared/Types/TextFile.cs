@@ -1,7 +1,7 @@
 ﻿using LILO_Packager.v2.Shared.Interfaces;
 using Microsoft.Extensions.FileProviders;
 
-namespace LILO_Packager.v2.Shared.Streaming.Core
+namespace LILO_Packager.v2.Shared.Types
 {
     /// <summary>
     /// A class that represents a text file.

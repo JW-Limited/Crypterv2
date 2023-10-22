@@ -33,7 +33,7 @@ public partial class PluginInterface : Form
         _encrypt = (PluginInterface)newInstance;
     }
 
-    public CrypterTextFile _emptyFile = new CrypterTextFile() 
+    public CrypterTextFile _emptyFile = new CrypterTextFile()
     {
         CreatedAt = DateTime.Now,
         Author = "",
@@ -78,14 +78,14 @@ public partial class PluginInterface : Form
     {
         lblVersion.Text = Version;
 
-        foreach(Control c in this.Controls)
+        foreach (Control c in this.Controls)
         {
             try
             {
-                if(PluginBase._thManager is not null)
+                if (PluginBase._thManager is not null)
                     PluginBase._thManager.RegisterControl(c, LILO_Packager.v2.Core.Visuals.ThemeManager.ModeType.Light, Color.White, Color.Black);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -95,7 +95,7 @@ public partial class PluginInterface : Form
         {
             mainTextBox.Text = _file.RtfContent;
             mainTextBox.Enabled = !_file.IsLocked;
-            if(_file.IsLocked)
+            if (_file.IsLocked)
             {
                 lblTip.Text = "You need to safe the file first before you can edit it.";
             }
@@ -132,8 +132,9 @@ public partial class PluginInterface : Form
                 file.TextColor = mainTextBox.ForeColor;
                 file.version = PluginBase._sVersion;
 
+                var securedfile = CrypterTextFile.CreateSecuredFile(file);
 
-                CrypterTextFile.SaveInstanceToFile(file, openedFilePath);
+                CrypterTextFile.SaveInstanceToFile(securedfile, openedFilePath);
 
                 mainTextBox.Text = file.RtfContent;
                 mainTextBox.Enabled = !file.IsLocked;
@@ -168,7 +169,9 @@ public partial class PluginInterface : Form
                     version = PluginBase._sVersion
                 };
 
-                CrypterTextFile.SaveInstanceToFile(file, ofd.FileName);
+                var securedFile = CrypterTextFile.CreateSecuredFile(file);
+
+                CrypterTextFile.SaveInstanceToFile(securedFile, ofd.FileName);
                 _file = file;
                 openedFilePath = ofd.FileName;
 
@@ -191,7 +194,7 @@ public partial class PluginInterface : Form
         {
             var ofd = new OpenFileDialog()
             {
-                Filter = "CrypterTextFile|*.ctv|Alle Datein(.)|*.",
+                Filter = "CrypterTextFile|*.ctv|Alle Datein|*.",
                 AddToRecent = true,
                 ShowPinnedPlaces = true,
                 ShowHiddenFiles = true,
@@ -200,7 +203,8 @@ public partial class PluginInterface : Form
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                var file = CrypterTextFile.LoadInstanceFromFile(ofd.FileName);
+                var securedFile = CrypterTextFile.LoadInstanceFromFile(ofd.FileName);
+                var file = CrypterTextFile.CreateUnsecuredTextFile(securedFile);
 
                 mainTextBox.Text = file.RtfContent;
                 mainTextBox.Enabled = !file.IsLocked;
@@ -217,11 +221,20 @@ public partial class PluginInterface : Form
         }
         catch (ArgumentOutOfRangeException ex)
         {
-            MessageBox.Show("It seems that the file was created with another structure i can not understand. Please be sure you use the same version that the file was created with.\n\n" + ex.Message,"Not Matching Formats",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            PluginBase.channelToMainHost.Broadcast(new LILO_Packager.v2.Shared.Api.Types.BroadcastMessage(
+                                                       LILO_Packager.v2.Shared.Api.Types.BroadcastMessageType.Error,
+                                                       LILO_Packager.v2.Shared.Api.Types.BroadcastEndPoint.MainHost,
+                                                       "Error: " + ex.Message));
+            MessageBox.Show("It seems that the file was created with another structure i can not understand. Please be sure you use the same version that the file was created with.\n\n" + ex.Message, "Not Matching Formats", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         catch (ArgumentException ex)
         {
             MessageBox.Show("It seems that the file is missing on of its main components. Please be sure you use the same version that the file was created with and it is not corrupted.\n\n" + ex.Message, "Not Matching Formats", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            PluginBase.channelToMainHost.Broadcast(new LILO_Packager.v2.Shared.Api.Types.BroadcastMessage(
+                                                       LILO_Packager.v2.Shared.Api.Types.BroadcastMessageType.Error,
+                                                       LILO_Packager.v2.Shared.Api.Types.BroadcastEndPoint.MainHost,
+                                                       "Error: " + ex.Message));
         }
     }
 
@@ -251,10 +264,15 @@ public partial class PluginInterface : Form
     private void bntOpenDesingPop_Click(object sender, EventArgs e)
     {
         bntDesign.Checked = !bntDesign.Checked;
-        if(bntMenu.Checked)
+        if (bntMenu.Checked)
         {
             bntPlugin_Click(sender, e);
         }
         pnlDesing.Visible = !pnlDesing.Visible;
+    }
+
+    private void bntFormating(object sender, EventArgs e)
+    {
+
     }
 }

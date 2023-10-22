@@ -1,4 +1,5 @@
 ﻿using LILO_Packager.v2.Core.AsyncTasks;
+using LILO_Packager.v2.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +37,8 @@ namespace LILO_Packager.v2.Forms
             };
             _Task.TaskFailed += (sender, e) =>
             {
+                ConsoleManager.Instance().WriteLineWithColor(sender + e, ConsoleColor.DarkRed);
+
                 var dialogtest = new uiCustomDialog(
                     new Core.Dialogs.MessageDialogPreference(
                         "Error - " + _Task.Name,
@@ -46,7 +49,10 @@ namespace LILO_Packager.v2.Forms
                         result => { })
                     );
                 dialogtest.ShowDialog();
-                this.Close();
+                this.Invoke(() =>
+                {
+                    base.Close();
+                });
             };
 
             var timer = new System.Windows.Forms.Timer();

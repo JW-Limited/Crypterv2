@@ -1,14 +1,7 @@
-﻿using LILO_Packager.v2.Core.BugBarrier.Types;
-using LILO_Packager.v2.Core.Dialogs;
+﻿using LILO_Packager.v2.Core.BugBarrier.Dump;
+using LILO_Packager.v2.Core.BugBarrier.Types;
 using LILO_Packager.v2.Shared;
-using Paket;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace LILO_Packager.v2.Core.BugBarrier
 {
@@ -60,9 +53,39 @@ namespace LILO_Packager.v2.Core.BugBarrier
             Type[] highImpactExceptionTypes = { typeof(StackOverflowException), typeof(OutOfMemoryException) };
             return highImpactExceptionTypes.Contains(exceptionType);
         }
-        private static void HandleException(Exception ex)
+        private static async void HandleException(Exception ex)
         {
             LogException(ex);
+
+            
+
+            var dumpFileName = $"CrashDump-{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}.dmp";
+            var dumpFilePath = Path.Combine(new FileInfo(Application.ExecutablePath).Directory.ToString() + "\\crash_dumps\\", dumpFileName);
+            Directory.CreateDirectory(new FileInfo(Application.ExecutablePath).Directory.ToString() + "\\crash_dumps");
+
+            ConsoleManager.Instance().WriteLineWithColor(dumpFilePath);
+
+            try
+            {
+                // Unstabel in the Moment
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        //MiniDump.WriteDump(Process.GetCurrentProcess().Id, dumpFilePath, MiniDumpType.Normal);
+                    }
+                    catch (Exception ex1)
+                    {
+                        ConsoleManager.Instance().WriteLineWithColor(ex1.Message);
+                    }
+                });
+            }
+            catch (Exception ex1)
+            {
+                ConsoleManager.Instance().WriteLineWithColor(ex1.Message);
+                MessageBox.Show(ex1.Message,"Dumping Error");
+            }
+
             ErrorRank rank = GetErrorRank(ex);
             CustomError customError = new CustomError(rank, ex, DateTime.Now, "An error occurred.");
             errorList.Add(customError);

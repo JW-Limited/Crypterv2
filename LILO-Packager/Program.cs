@@ -5,6 +5,7 @@ using LILO_Packager.v2.Core.Boot;
 using LILO_Packager.v2.Shared.Types;
 using LILO_Packager.v2.Core.BugBarrier;
 using LILO_Packager.v2.Core.Interfaces;
+using LILO_Packager.v2.Core.Visuals;
 
 namespace LILO_Packager
 {
@@ -45,7 +46,7 @@ namespace LILO_Packager
 
             if(config.Default.debugMode)
             {
-                ConsoleManager.Instance().ShowConsoleWindow();
+                //ConsoleManager.Instance().ShowConsoleWindow();
             }
 
             if (config.Default.aggrementAccepted)
@@ -70,14 +71,15 @@ namespace LILO_Packager
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("An Error Accoured: " + ex.Message, "Error - RunMainUi");
+                            System.Windows.MessageBox.Show("An Error Accoured: " + ex.Message, "Error - RunMainUi");
                             ConsoleManager.Instance().WriteLineWithColor("An Error Acourred: " + ex.Message, ConsoleColor.Red);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error - BootManager", 
+
+                    System.Windows.Forms.MessageBox.Show(ex.Message, "Error - BootManager", 
                                     MessageBoxButtons.OK, 
                                     MessageBoxIcon.Error, 
                                     MessageBoxDefaultButton.Button2, 

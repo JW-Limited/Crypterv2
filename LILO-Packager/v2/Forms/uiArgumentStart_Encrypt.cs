@@ -1,6 +1,8 @@
 ﻿using Guna.UI2.WinForms;
 using LILO_Packager.Properties;
 using LILO_Packager.v2.Core.History;
+using LILO_Packager.v2.Core.Keys;
+using LILO_Packager.v2.Core.LILO.Types;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.Shared.Types;
 using System;
@@ -19,7 +21,8 @@ namespace LILO_Packager.v2.Forms
 {
     public partial class uiArgumentStart_Encrypt : Form
     {
-        private static uiArgumentStart_Encrypt _instance_de;
+        private static uiArgumentStart_Encrypt _instance_de; 
+        private readonly Manager _keyManager;
         private static DecryptedFile deFile = null;
         private string tempFile = Path.Combine(Path.GetTempPath(), new Random().NextInt64(9999, 12345) + "temp_lsf.mp3");
         public Core.History.DatabaseHandling dbHandler = new Core.History.DatabaseHandling();
@@ -37,6 +40,7 @@ namespace LILO_Packager.v2.Forms
         public uiArgumentStart_Encrypt(DecryptedFile defile)
         {
             InitializeComponent();
+            _keyManager = new Manager(new DatabaseHandler(), UserRole.User);
             deFile = defile;
         }
         private async void uiArgumentStart_Encrypt_Load(object sender, EventArgs e)
@@ -86,7 +90,7 @@ namespace LILO_Packager.v2.Forms
                 try
                 {
                     string item = deFile.Path;
-
+                    await _keyManager.AddPasswordEntryAsync(psw, DateTime.Now, item);
                     await dbHandler.InsertEncryptedOperationAsync("Encryption", "libraryBased", "v2", item, item + ".lsf", $"{new Random().NextInt64(11111, 99999)}");
 
                     Task.Run(() =>
@@ -113,8 +117,10 @@ namespace LILO_Packager.v2.Forms
                                 bntEncrypt.Text = "Open";
                                 imgImage.BackgroundImage = Resources.Lock;
                                 lblEncryption.Text = "LILO Secured";
-
-                                ControlEnable(true);
+                                this.Invoke((Action)(() =>
+                                {
+                                    ControlEnable(true);
+                                }));
                             }
                         });
                     });

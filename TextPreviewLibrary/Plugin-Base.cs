@@ -20,6 +20,7 @@ namespace TextPreviewLibrary
         public Form PluginInterface { get; set; } = Core.PluginInterface.Instance("v0.1", PluginID.GetID("tpl", "lbl", "lvl02"), "Text-Preview",true);
         public static ThemeManager _thManager;
         public ObservableCollection<object> DynamicValues { get; set; }
+        public static BroadcastChannel channelToMainHost { get; set; } = null;
 
         public PluginResponse Execute(PluginParameters args)
         {
@@ -57,6 +58,7 @@ namespace TextPreviewLibrary
                 }
                 
                 Channel = args.Channel;
+                channelToMainHost = args.Channel;
                 Channel.Subscribe(new PluginBroadCastObserver(),"TPL - Plugin");
 
                 para.HasError = false;

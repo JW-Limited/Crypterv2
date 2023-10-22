@@ -1,19 +1,16 @@
 ﻿using Microsoft.Extensions.FileProviders;
 
-namespace LILO_Packager.v2.Shared.Streaming.Core
+namespace LILO_Packager.v2.Shared.Types
 {
-    public class AudioFile : IFileInfo
+    public class VideoFile : IFileInfo
     {
         private readonly string _filename;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AudioFile<TFile>"/> class.
-        /// </summary>
-        /// <param name="file">The file to represent.</param>
-        public AudioFile(string filename)
+        public VideoFile(string filename)
         {
             _filename = filename;
         }
+
 
         /// <inheritdoc/>
         public bool Exists => File.Exists(_filename);
@@ -38,6 +35,18 @@ namespace LILO_Packager.v2.Shared.Streaming.Core
         {
             return new FileStream(_filename, FileMode.Open, FileAccess.Read);
         }
+
+        /// <inheritdoc/>
+        public TimeSpan Duration { get; }
+
+        /// <inheritdoc/>
+        public int Width { get; }
+
+        /// <inheritdoc/>
+        public int Height { get; }
+
+        /// <inheritdoc/>
+        public int FrameRate { get; }
     }
 
 }

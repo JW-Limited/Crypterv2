@@ -9,10 +9,10 @@
 
   <ItemGroup>
     <Reference Include="Guna.UI2">
-      <HintPath>..\LILO-Packager\bin\Debug\net7.0-windows10.0.22000.0\Guna.UI2.dll</HintPath>
+      <HintPath>..\LILO-Packager\bin\Debug\net8.0-windows10.0.22000.0\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="SipaaFramework">
-      <HintPath>..\LILO-Packager\bin\Debug\net7.0-windows10.0.22000.0\SipaaFramework.dll</HintPath>
+      <HintPath>..\LILO-Packager\bin\Debug\net8.0-windows10.0.22000.0\SipaaFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
 

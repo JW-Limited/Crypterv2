@@ -19,7 +19,8 @@ namespace LILO_Packager.v2.Core
         MediaEngineManager,
         PluginShop,
         PluginInstaller,
-        ThirdPartyEncryptenLibrarys
+        ThirdPartyEncryptenLibrarys,
+        FilePackerv2
     }
 
     public class FeatureFlagConfig : IFeatureFlagConfig
@@ -35,5 +36,6 @@ namespace LILO_Packager.v2.Core
         public bool PluginShop { get; set; } = true;
         public bool PluginInstaller { get; set; } = true;
         public bool ThirdPartyEncryptenLibrarys { get; set; } = false;
+        public bool FilePackerv2 { get; set; } = true;
     }
 }

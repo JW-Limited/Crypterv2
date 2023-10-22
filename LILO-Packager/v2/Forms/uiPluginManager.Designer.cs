@@ -30,10 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             pluginEntryBindingSource = new BindingSource(components);
-            sPanel2 = new Sipaa.Framework.SPanel();
-            bntPlugin = new Guna.UI2.WinForms.Guna2Button();
-            bntCancel = new Guna.UI2.WinForms.Guna2Button();
-            lblText = new Label();
             pluginEntryBindingSource1 = new BindingSource(components);
             tabControl = new HTAlt.WinForms.HTTabControl();
             tbDefault = new TabPage();
@@ -56,8 +52,11 @@
             imgImage = new Guna.UI2.WinForms.Guna2Panel();
             pnlPreview = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
+            lblText = new Label();
+            bntCancel = new Guna.UI2.WinForms.Guna2Button();
+            bntPlugin = new Guna.UI2.WinForms.Guna2Button();
+            sPanel2 = new Sipaa.Framework.SPanel();
             ((System.ComponentModel.ISupportInitialize)pluginEntryBindingSource).BeginInit();
-            sPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pluginEntryBindingSource1).BeginInit();
             tabControl.SuspendLayout();
             tbDefault.SuspendLayout();
@@ -66,93 +65,13 @@
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             pnlPreview.SuspendLayout();
+            sPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // pluginEntryBindingSource
             // 
             pluginEntryBindingSource.DataSource = typeof(Plugins.Model.PluginEntry);
             pluginEntryBindingSource.CurrentChanged += pluginEntryBindingSource_CurrentChanged;
-            // 
-            // sPanel2
-            // 
-            sPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            sPanel2.BackColor = Color.Black;
-            sPanel2.BackgroundImage = Properties.Resources.Aqua_Marine_180degree;
-            sPanel2.BackgroundImageLayout = ImageLayout.Stretch;
-            sPanel2.BorderColor = Color.Black;
-            sPanel2.BorderRadius = 20;
-            sPanel2.BorderSize = 0;
-            sPanel2.Controls.Add(bntPlugin);
-            sPanel2.Controls.Add(bntCancel);
-            sPanel2.Controls.Add(lblText);
-            sPanel2.ForeColor = Color.White;
-            sPanel2.Location = new Point(24, 32);
-            sPanel2.Margin = new Padding(4);
-            sPanel2.Name = "sPanel2";
-            sPanel2.Size = new Size(920, 88);
-            sPanel2.TabIndex = 12;
-            // 
-            // bntPlugin
-            // 
-            bntPlugin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            bntPlugin.Animated = true;
-            bntPlugin.BackColor = Color.Transparent;
-            bntPlugin.BackgroundImageLayout = ImageLayout.Zoom;
-            bntPlugin.BorderColor = Color.Gainsboro;
-            bntPlugin.BorderRadius = 20;
-            bntPlugin.BorderThickness = 2;
-            bntPlugin.DisabledState.BorderColor = Color.DarkGray;
-            bntPlugin.DisabledState.CustomBorderColor = Color.DarkGray;
-            bntPlugin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            bntPlugin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            bntPlugin.FillColor = Color.Transparent;
-            bntPlugin.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            bntPlugin.ForeColor = Color.White;
-            bntPlugin.Location = new Point(791, 16);
-            bntPlugin.Margin = new Padding(2);
-            bntPlugin.Name = "bntPlugin";
-            bntPlugin.Size = new Size(112, 58);
-            bntPlugin.TabIndex = 15;
-            bntPlugin.Text = "Shop";
-            bntPlugin.Click += bntShop_Clikc;
-            // 
-            // bntCancel
-            // 
-            bntCancel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            bntCancel.Animated = true;
-            bntCancel.BackColor = Color.Transparent;
-            bntCancel.BorderColor = Color.Gainsboro;
-            bntCancel.BorderRadius = 20;
-            bntCancel.BorderThickness = 2;
-            bntCancel.DisabledState.BorderColor = Color.DarkGray;
-            bntCancel.DisabledState.CustomBorderColor = Color.DarkGray;
-            bntCancel.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            bntCancel.FillColor = Color.Transparent;
-            bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            bntCancel.ForeColor = Color.White;
-            bntCancel.Location = new Point(1549, 16);
-            bntCancel.Margin = new Padding(2);
-            bntCancel.Name = "bntCancel";
-            bntCancel.Size = new Size(128, 58);
-            bntCancel.TabIndex = 14;
-            bntCancel.Text = "Cancel";
-            bntCancel.Visible = false;
-            // 
-            // lblText
-            // 
-            lblText.BackColor = Color.Transparent;
-            lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lblText.ForeColor = Color.White;
-            lblText.Location = new Point(24, 0);
-            lblText.Margin = new Padding(4, 0, 4, 0);
-            lblText.Name = "lblText";
-            lblText.Size = new Size(144, 88);
-            lblText.TabIndex = 1;
-            lblText.Text = "Plugins";
-            lblText.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pluginEntryBindingSource1
             // 
@@ -167,7 +86,7 @@
             tabControl.Controls.Add(tbDefault);
             tabControl.DisableClose = true;
             tabControl.DisableDragging = false;
-            tabControl.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            tabControl.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             tabControl.HoverTabButtonColor = Color.FromArgb(82, 176, 239);
             tabControl.HoverTabColor = Color.FromArgb(28, 151, 234);
             tabControl.HoverUnselectedTabButtonColor = Color.WhiteSmoke;
@@ -219,7 +138,7 @@
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button1.FillColor = Color.Transparent;
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.Black;
             guna2Button1.Location = new Point(672, 56);
             guna2Button1.Margin = new Padding(2);
@@ -233,7 +152,7 @@
             // 
             lblName.AutoEllipsis = true;
             lblName.BackColor = Color.Transparent;
-            lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblName.ForeColor = Color.Black;
             lblName.Location = new Point(104, 48);
             lblName.Margin = new Padding(4, 0, 4, 0);
@@ -281,7 +200,7 @@
             // 
             label5.BackColor = Color.Transparent;
             label5.Dock = DockStyle.Fill;
-            label5.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("Segoe UI", 11F);
             label5.ForeColor = Color.Black;
             label5.Location = new Point(4, 0);
             label5.Margin = new Padding(4, 0, 4, 0);
@@ -310,7 +229,7 @@
             // 
             label6.BackColor = Color.Transparent;
             label6.Dock = DockStyle.Fill;
-            label6.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Font = new Font("Segoe UI", 11F);
             label6.ForeColor = Color.Black;
             label6.Location = new Point(411, 0);
             label6.Margin = new Padding(4, 0, 4, 0);
@@ -324,7 +243,7 @@
             // 
             listViewBerechtigungen.BorderStyle = BorderStyle.None;
             listViewBerechtigungen.Dock = DockStyle.Fill;
-            listViewBerechtigungen.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            listViewBerechtigungen.Font = new Font("Segoe UI", 10F);
             listViewBerechtigungen.HeaderBackColor = Color.FromArgb(235, 235, 235);
             listViewBerechtigungen.HeaderBorderThickness = 2;
             listViewBerechtigungen.HeaderForeColor = Color.Black;
@@ -354,19 +273,19 @@
             guna2Panel1.Location = new Point(32, 152);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(624, 208);
+            guna2Panel1.Size = new Size(632, 208);
             guna2Panel1.TabIndex = 13;
             // 
             // lblAuther
             // 
             lblAuther.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblAuther.BackColor = Color.Transparent;
-            lblAuther.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblAuther.Font = new Font("Segoe UI", 11F);
             lblAuther.ForeColor = Color.Black;
             lblAuther.Location = new Point(216, 136);
             lblAuther.Margin = new Padding(4, 0, 4, 0);
             lblAuther.Name = "lblAuther";
-            lblAuther.Size = new Size(243, 56);
+            lblAuther.Size = new Size(251, 56);
             lblAuther.TabIndex = 1;
             lblAuther.Text = "n/a";
             lblAuther.TextAlign = ContentAlignment.MiddleLeft;
@@ -376,12 +295,12 @@
             lblSize.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblSize.AutoEllipsis = true;
             lblSize.BackColor = Color.Transparent;
-            lblSize.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblSize.Font = new Font("Segoe UI", 11F);
             lblSize.ForeColor = Color.Black;
             lblSize.Location = new Point(216, 24);
             lblSize.Margin = new Padding(4, 0, 4, 0);
             lblSize.Name = "lblSize";
-            lblSize.Size = new Size(392, 56);
+            lblSize.Size = new Size(400, 56);
             lblSize.TabIndex = 1;
             lblSize.Text = "n/a";
             lblSize.TextAlign = ContentAlignment.MiddleLeft;
@@ -390,12 +309,12 @@
             // 
             lblVersion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblVersion.BackColor = Color.Transparent;
-            lblVersion.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblVersion.Font = new Font("Segoe UI", 11F);
             lblVersion.ForeColor = Color.Black;
             lblVersion.Location = new Point(216, 80);
             lblVersion.Margin = new Padding(4, 0, 4, 0);
             lblVersion.Name = "lblVersion";
-            lblVersion.Size = new Size(235, 56);
+            lblVersion.Size = new Size(243, 56);
             lblVersion.TabIndex = 1;
             lblVersion.Text = "n/a";
             lblVersion.TextAlign = ContentAlignment.MiddleLeft;
@@ -403,7 +322,7 @@
             // label2
             // 
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
             label2.Location = new Point(24, 24);
             label2.Margin = new Padding(4, 0, 4, 0);
@@ -416,7 +335,7 @@
             // label4
             // 
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
             label4.Location = new Point(24, 136);
             label4.Margin = new Padding(4, 0, 4, 0);
@@ -429,7 +348,7 @@
             // label1
             // 
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label1.ForeColor = Color.Black;
             label1.Location = new Point(24, 80);
             label1.Margin = new Padding(4, 0, 4, 0);
@@ -495,6 +414,87 @@
             guna2Panel4.Size = new Size(168, 160);
             guna2Panel4.TabIndex = 15;
             // 
+            // lblText
+            // 
+            lblText.BackColor = Color.Transparent;
+            lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblText.ForeColor = Color.White;
+            lblText.Location = new Point(24, 0);
+            lblText.Margin = new Padding(4, 0, 4, 0);
+            lblText.Name = "lblText";
+            lblText.Size = new Size(144, 88);
+            lblText.TabIndex = 1;
+            lblText.Text = "Plugins";
+            lblText.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // bntCancel
+            // 
+            bntCancel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            bntCancel.Animated = true;
+            bntCancel.BackColor = Color.Transparent;
+            bntCancel.BorderColor = Color.Gainsboro;
+            bntCancel.BorderRadius = 20;
+            bntCancel.BorderThickness = 2;
+            bntCancel.DisabledState.BorderColor = Color.DarkGray;
+            bntCancel.DisabledState.CustomBorderColor = Color.DarkGray;
+            bntCancel.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            bntCancel.FillColor = Color.Transparent;
+            bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
+            bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            bntCancel.ForeColor = Color.White;
+            bntCancel.Location = new Point(1549, 16);
+            bntCancel.Margin = new Padding(2);
+            bntCancel.Name = "bntCancel";
+            bntCancel.Size = new Size(128, 58);
+            bntCancel.TabIndex = 14;
+            bntCancel.Text = "Cancel";
+            bntCancel.Visible = false;
+            // 
+            // bntPlugin
+            // 
+            bntPlugin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            bntPlugin.Animated = true;
+            bntPlugin.BackColor = Color.Transparent;
+            bntPlugin.BackgroundImageLayout = ImageLayout.Zoom;
+            bntPlugin.BorderColor = Color.Gainsboro;
+            bntPlugin.BorderRadius = 20;
+            bntPlugin.BorderThickness = 2;
+            bntPlugin.DisabledState.BorderColor = Color.DarkGray;
+            bntPlugin.DisabledState.CustomBorderColor = Color.DarkGray;
+            bntPlugin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            bntPlugin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            bntPlugin.FillColor = Color.Transparent;
+            bntPlugin.FocusedColor = Color.FromArgb(100, 170, 209);
+            bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            bntPlugin.ForeColor = Color.White;
+            bntPlugin.Location = new Point(791, 16);
+            bntPlugin.Margin = new Padding(2);
+            bntPlugin.Name = "bntPlugin";
+            bntPlugin.Size = new Size(112, 58);
+            bntPlugin.TabIndex = 15;
+            bntPlugin.Text = "Shop";
+            bntPlugin.Click += bntShop_Clikc;
+            // 
+            // sPanel2
+            // 
+            sPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            sPanel2.BackColor = Color.Black;
+            sPanel2.BackgroundImage = Properties.Resources.Aqua_Marine_180degree;
+            sPanel2.BackgroundImageLayout = ImageLayout.Stretch;
+            sPanel2.BorderColor = Color.Black;
+            sPanel2.BorderRadius = 20;
+            sPanel2.BorderSize = 0;
+            sPanel2.Controls.Add(bntPlugin);
+            sPanel2.Controls.Add(bntCancel);
+            sPanel2.Controls.Add(lblText);
+            sPanel2.ForeColor = Color.White;
+            sPanel2.Location = new Point(24, 32);
+            sPanel2.Margin = new Padding(4);
+            sPanel2.Name = "sPanel2";
+            sPanel2.Size = new Size(920, 88);
+            sPanel2.TabIndex = 12;
+            // 
             // uiPluginManager
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -508,7 +508,6 @@
             Text = "uiPluginManager";
             Load += uiPluginManager_Load;
             ((System.ComponentModel.ISupportInitialize)pluginEntryBindingSource).EndInit();
-            sPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pluginEntryBindingSource1).EndInit();
             tabControl.ResumeLayout(false);
             tbDefault.ResumeLayout(false);
@@ -517,13 +516,11 @@
             guna2Panel1.ResumeLayout(false);
             guna2Panel3.ResumeLayout(false);
             pnlPreview.ResumeLayout(false);
+            sPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private Sipaa.Framework.SPanel sPanel2;
-        private Guna.UI2.WinForms.Guna2Button bntCancel;
-        private Label lblText;
         private BindingSource pluginEntryBindingSource;
         private BindingSource pluginEntryBindingSource1;
         private BindingSource pluginManagerBindingSource;
@@ -548,7 +545,10 @@
         private Guna.UI2.WinForms.Guna2Panel imgImage;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
         private TableLayoutPanel tableLayoutPanel1;
-        private Guna.UI2.WinForms.Guna2Button bntPlugin;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Label lblText;
+        private Guna.UI2.WinForms.Guna2Button bntCancel;
+        private Guna.UI2.WinForms.Guna2Button bntPlugin;
+        private Sipaa.Framework.SPanel sPanel2;
     }
 }

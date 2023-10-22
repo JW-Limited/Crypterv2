@@ -28,6 +28,7 @@ partial class MainHost
     /// </summary>
     private void InitializeComponent()
     {
+        components = new System.ComponentModel.Container();
         Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
         hider = new Sipaa.Framework.SPanel();
@@ -66,6 +67,7 @@ partial class MainHost
         pnlLoading = new Panel();
         progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
         panel1 = new Panel();
+        taskBarProgress = new Guna.UI2.WinForms.Guna2TaskBarProgress(components);
         hider.SuspendLayout();
         pnlMenu.SuspendLayout();
         sPanel1.SuspendLayout();
@@ -116,7 +118,7 @@ partial class MainHost
         bntAccount.DisabledState.ForeColor = Color.Black;
         bntAccount.FillColor = Color.Empty;
         bntAccount.FocusedColor = Color.FromArgb(100, 170, 209);
-        bntAccount.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        bntAccount.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         bntAccount.ForeColor = Color.Black;
         bntAccount.Image = Properties.Resources.icons8_male_user_96;
         bntAccount.ImageAlign = HorizontalAlignment.Left;
@@ -171,7 +173,7 @@ partial class MainHost
         guna2Button10.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         guna2Button10.FillColor = Color.White;
         guna2Button10.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button10.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button10.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button10.ForeColor = Color.Black;
         guna2Button10.ImageAlign = HorizontalAlignment.Left;
         guna2Button10.ImageSize = new Size(35, 35);
@@ -203,7 +205,7 @@ partial class MainHost
         guna2Button9.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         guna2Button9.FillColor = Color.White;
         guna2Button9.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button9.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button9.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button9.ForeColor = Color.Black;
         guna2Button9.ImageAlign = HorizontalAlignment.Left;
         guna2Button9.ImageSize = new Size(35, 35);
@@ -235,7 +237,7 @@ partial class MainHost
         bntMenu_c.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         bntMenu_c.FillColor = Color.Transparent;
         bntMenu_c.FocusedColor = Color.FromArgb(100, 170, 209);
-        bntMenu_c.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        bntMenu_c.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         bntMenu_c.ForeColor = Color.White;
         bntMenu_c.Image = Properties.Resources.icons8_menu_240__1_;
         bntMenu_c.ImageSize = new Size(40, 40);
@@ -260,7 +262,7 @@ partial class MainHost
         guna2Button2.DisabledState.ForeColor = Color.Black;
         guna2Button2.FillColor = Color.Empty;
         guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         guna2Button2.ForeColor = Color.Black;
         guna2Button2.Image = Properties.Resources.icons8_bursts_96;
         guna2Button2.ImageAlign = HorizontalAlignment.Left;
@@ -289,7 +291,7 @@ partial class MainHost
         guna2Button5.DisabledState.ForeColor = Color.Black;
         guna2Button5.FillColor = Color.Empty;
         guna2Button5.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         guna2Button5.ForeColor = Color.Black;
         guna2Button5.Image = Properties.Resources.Info;
         guna2Button5.ImageAlign = HorizontalAlignment.Left;
@@ -318,7 +320,7 @@ partial class MainHost
         guna2Button4.DisabledState.ForeColor = Color.Black;
         guna2Button4.FillColor = Color.Empty;
         guna2Button4.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         guna2Button4.ForeColor = Color.Black;
         guna2Button4.Image = Properties.Resources.Bookmark;
         guna2Button4.ImageAlign = HorizontalAlignment.Left;
@@ -347,7 +349,7 @@ partial class MainHost
         guna2Button3.DisabledState.ForeColor = Color.Black;
         guna2Button3.FillColor = Color.Empty;
         guna2Button3.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         guna2Button3.ForeColor = Color.Black;
         guna2Button3.Image = Properties.Resources.Padlock;
         guna2Button3.ImageAlign = HorizontalAlignment.Left;
@@ -376,7 +378,7 @@ partial class MainHost
         bntOpen.DisabledState.ForeColor = Color.Black;
         bntOpen.FillColor = Color.Empty;
         bntOpen.FocusedColor = Color.FromArgb(100, 170, 209);
-        bntOpen.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        bntOpen.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         bntOpen.ForeColor = Color.Black;
         bntOpen.Image = Properties.Resources.Lock;
         bntOpen.ImageAlign = HorizontalAlignment.Left;
@@ -424,7 +426,7 @@ partial class MainHost
         guna2Button1.DisabledState.ForeColor = Color.Black;
         guna2Button1.FillColor = Color.Transparent;
         guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button1.ForeColor = Color.White;
         guna2Button1.ImageSize = new Size(40, 40);
         guna2Button1.Location = new Point(200, 16);
@@ -443,7 +445,7 @@ partial class MainHost
         // 
         lblText.BackColor = Color.Transparent;
         Transition.SetDecoration(lblText, Guna.UI2.AnimatorNS.DecorationType.None);
-        lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+        lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
         lblText.ForeColor = Color.White;
         lblText.Location = new Point(24, 0);
         lblText.Margin = new Padding(4, 0, 4, 0);
@@ -465,7 +467,7 @@ partial class MainHost
         bntChoose_File.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntChoose_File.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         bntChoose_File.FillColor = Color.DarkGray;
-        bntChoose_File.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        bntChoose_File.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         bntChoose_File.ForeColor = Color.White;
         bntChoose_File.Location = new Point(704, 144);
         bntChoose_File.Margin = new Padding(2);
@@ -545,7 +547,7 @@ partial class MainHost
         guna2Button11.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         guna2Button11.FillColor = Color.Transparent;
         guna2Button11.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button11.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button11.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button11.ForeColor = Color.White;
         guna2Button11.ImageAlign = HorizontalAlignment.Left;
         guna2Button11.ImageSize = new Size(35, 35);
@@ -565,7 +567,7 @@ partial class MainHost
         // 
         lblMessage_Noti.BackColor = Color.Transparent;
         Transition.SetDecoration(lblMessage_Noti, Guna.UI2.AnimatorNS.DecorationType.None);
-        lblMessage_Noti.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        lblMessage_Noti.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         lblMessage_Noti.ForeColor = Color.White;
         lblMessage_Noti.Location = new Point(24, 0);
         lblMessage_Noti.Margin = new Padding(4, 0, 4, 0);
@@ -580,7 +582,7 @@ partial class MainHost
         label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
         label4.BackColor = Color.Transparent;
         Transition.SetDecoration(label4, Guna.UI2.AnimatorNS.DecorationType.None);
-        label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         label4.ForeColor = Color.LightGray;
         label4.Location = new Point(664, -8);
         label4.Margin = new Padding(4, 0, 4, 0);
@@ -648,7 +650,7 @@ partial class MainHost
         // 
         Mes1_Message.BackColor = Color.Transparent;
         Transition.SetDecoration(Mes1_Message, Guna.UI2.AnimatorNS.DecorationType.None);
-        Mes1_Message.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        Mes1_Message.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         Mes1_Message.ForeColor = Color.DimGray;
         Mes1_Message.Location = new Point(24, 64);
         Mes1_Message.Margin = new Padding(4, 0, 4, 0);
@@ -672,7 +674,7 @@ partial class MainHost
         Mes1_bnt.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         Mes1_bnt.FillColor = Color.Transparent;
         Mes1_bnt.FocusedColor = Color.FromArgb(100, 170, 209);
-        Mes1_bnt.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        Mes1_bnt.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         Mes1_bnt.ForeColor = Color.Black;
         Mes1_bnt.ImageAlign = HorizontalAlignment.Left;
         Mes1_bnt.ImageSize = new Size(35, 35);
@@ -688,7 +690,7 @@ partial class MainHost
         // 
         Mes1_Title.BackColor = Color.Transparent;
         Transition.SetDecoration(Mes1_Title, Guna.UI2.AnimatorNS.DecorationType.None);
-        Mes1_Title.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        Mes1_Title.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         Mes1_Title.ForeColor = Color.Black;
         Mes1_Title.Location = new Point(24, 16);
         Mes1_Title.Margin = new Padding(4, 0, 4, 0);
@@ -713,7 +715,7 @@ partial class MainHost
         guna2Button6.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         guna2Button6.FillColor = Color.Transparent;
         guna2Button6.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button6.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button6.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button6.ForeColor = Color.Black;
         guna2Button6.ImageAlign = HorizontalAlignment.Left;
         guna2Button6.ImageSize = new Size(35, 35);
@@ -739,7 +741,7 @@ partial class MainHost
         guna2Button7.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         guna2Button7.FillColor = Color.Transparent;
         guna2Button7.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button7.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button7.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button7.ForeColor = Color.White;
         guna2Button7.Image = Properties.Resources.icons8_synchronize_240;
         guna2Button7.ImageSize = new Size(30, 30);
@@ -764,7 +766,7 @@ partial class MainHost
         bntCloseSideBoard.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         bntCloseSideBoard.FillColor = Color.Transparent;
         bntCloseSideBoard.FocusedColor = Color.FromArgb(100, 170, 209);
-        bntCloseSideBoard.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        bntCloseSideBoard.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         bntCloseSideBoard.ForeColor = Color.White;
         bntCloseSideBoard.Image = Properties.Resources.Close;
         bntCloseSideBoard.ImageSize = new Size(25, 25);
@@ -798,7 +800,7 @@ partial class MainHost
         // 
         lblMessage.BackColor = Color.Transparent;
         Transition.SetDecoration(lblMessage, Guna.UI2.AnimatorNS.DecorationType.None);
-        lblMessage.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        lblMessage.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         lblMessage.ForeColor = Color.DimGray;
         lblMessage.Location = new Point(24, 184);
         lblMessage.Margin = new Padding(4, 0, 4, 0);
@@ -862,6 +864,11 @@ partial class MainHost
         panel1.TabIndex = 18;
         panel1.Visible = false;
         // 
+        // taskBarProgress
+        // 
+        taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
+        taskBarProgress.TargetForm = null;
+        // 
         // MainHost
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
@@ -880,6 +887,7 @@ partial class MainHost
         Margin = new Padding(2);
         MinimumSize = new Size(1400, 1055);
         Name = "MainHost";
+        StartPosition = FormStartPosition.CenterScreen;
         Text = "MainHost";
         Load += MainHost_Load;
         hider.ResumeLayout(false);
@@ -932,4 +940,5 @@ partial class MainHost
     private Label label4;
     private Panel panel1;
     public Guna.UI2.WinForms.Guna2Transition Transition;
+    public Guna.UI2.WinForms.Guna2TaskBarProgress taskBarProgress;
 }

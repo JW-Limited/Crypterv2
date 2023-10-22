@@ -524,13 +524,24 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
     private async void bntOpenDevApp(object sender, EventArgs e)
     {
-        var securedHost = new SecuredDialogHost(SecuredDialogUsecase.EnCryptionKeyFetch);
-        var callback = securedHost.Show();
-        if (callback != null && callback.DialogClosingReason == DialogClosingReason.Success)
+        var ofd = new OpenFileDialog();
+        ofd.ShowDialog();
+
+        if (await new SmartFilePacker().CheckIfFileIsValid(ofd.FileName))
         {
-            OkDialog.Show("ClosingReason: " + callback.DialogClosingReason.ToString() + " DynamikValues: " + string.Join("\n", callback.DynamicCallbackValues), "Callback");
+            var files = await new SmartFilePacker().GetZippedFileInfoAsync(ofd.FileName);
+            Console.WriteLine(files.Package.Name + files.Application.Name + files.Application.Version);
+
+            foreach (var file in files.Files)
+            {
+                Console.WriteLine(file.FilePath + file.Hash + "\n");
+            }
         }
-        //this._broadCastChannel.Broadcast(new Shared.Api.Types.BroadcastMessage(Shared.Api.Types.BroadcastMessageType.Info, Shared.Api.Types.BroadcastEndPoint.TPL, "close"));
+        else
+        {
+            OkDialog.Show("This file was not packaged with this Application.","Error");
+        }
+        
 
         bntMenu(sender, e);
     }

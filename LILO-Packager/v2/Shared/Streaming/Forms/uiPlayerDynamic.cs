@@ -5,6 +5,7 @@ using LILO_Packager.v2.Core.Interfaces;
 using LILO_Packager.v2.Forms;
 using LILO_Packager.v2.Shared;
 using LILO_Packager.v2.Shared.Streaming.Core;
+using LILO_Packager.v2.Shared.Types;
 using Microsoft.Extensions.FileProviders;
 using SharpDX.MediaFoundation;
 using System.Diagnostics;
@@ -190,7 +191,7 @@ namespace LILO_Packager.v2.Streaming.MusikPlayer.Forms
                 await dbTasks.InsertSongAsync(
                     new SongEntry(
                         FileIdentifier<IFileInfo>.GenerateIdentifier(
-                            new Shared.Streaming.Core.AudioFile(_Parameters.Source)),
+                            new AudioFile(_Parameters.Source)),
                         _Parameters.Title,
                         string.Join(", ", _Parameters.Artists), 
                         _Parameters.Source));

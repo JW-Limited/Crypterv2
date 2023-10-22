@@ -1,4 +1,5 @@
 ﻿using LILO_Packager.Properties;
+using LILO_Packager.v2.Core.Interfaces;
 using LILO_Packager.v2.Core.Updates;
 using LILO_Packager.v2.Shared;
 using System;
@@ -29,7 +30,7 @@ namespace LILO_Packager.v2.Forms
         public string repo = "Crypterv2";
         public string zipPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "JW Limited\\Crytpterv2\\temp\\latest_release.zip");
 
-        public uiUpdater(SemanticVersion version)
+        public uiUpdater(ICrypterv2Version version)
         {
             if (!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "JW Limited\\Crytpterv2\\temp"))) Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "JW Limited\\Crytpterv2\\temp"));
 

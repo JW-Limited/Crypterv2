@@ -115,7 +115,7 @@ partial class uiSettings
         // lblText
         // 
         lblText.BackColor = Color.Transparent;
-        lblText.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+        lblText.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
         lblText.ForeColor = Color.White;
         lblText.Location = new Point(88, 0);
         lblText.Margin = new Padding(4, 0, 4, 0);
@@ -138,7 +138,7 @@ partial class uiSettings
         guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         guna2Button2.FillColor = Color.Transparent;
         guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button2.ForeColor = Color.White;
         guna2Button2.Image = Properties.Resources.icons8_back_96;
         guna2Button2.ImageSize = new Size(35, 35);
@@ -163,7 +163,7 @@ partial class uiSettings
         guna2Button5.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         guna2Button5.FillColor = Color.Transparent;
         guna2Button5.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button5.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button5.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button5.ForeColor = Color.White;
         guna2Button5.Location = new Point(814, 16);
         guna2Button5.Margin = new Padding(2);
@@ -171,12 +171,12 @@ partial class uiSettings
         guna2Button5.Size = new Size(144, 58);
         guna2Button5.TabIndex = 17;
         guna2Button5.Text = "Passwords";
-        guna2Button5.Click += guna2Button5_Click;
+        guna2Button5.Click += bntPasswords;
         // 
         // label5
         // 
         label5.BackColor = Color.Transparent;
-        label5.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+        label5.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
         label5.ForeColor = Color.White;
         label5.Location = new Point(0, 0);
         label5.Margin = new Padding(4, 0, 4, 0);
@@ -190,7 +190,7 @@ partial class uiSettings
         // lblProductName
         // 
         lblProductName.BackColor = Color.Transparent;
-        lblProductName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        lblProductName.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         lblProductName.Location = new Point(24, 20);
         lblProductName.Margin = new Padding(2, 0, 2, 0);
         lblProductName.Name = "lblProductName";
@@ -292,7 +292,7 @@ partial class uiSettings
         // label14
         // 
         label14.BackColor = Color.Transparent;
-        label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         label14.Location = new Point(24, 20);
         label14.Margin = new Padding(2, 0, 2, 0);
         label14.Name = "label14";
@@ -362,7 +362,7 @@ partial class uiSettings
         // label17
         // 
         label17.BackColor = Color.Transparent;
-        label17.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        label17.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         label17.Location = new Point(24, 20);
         label17.Margin = new Padding(2, 0, 2, 0);
         label17.Name = "label17";
@@ -419,7 +419,7 @@ partial class uiSettings
         // label9
         // 
         label9.BackColor = Color.Transparent;
-        label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         label9.Location = new Point(24, 20);
         label9.Margin = new Padding(2, 0, 2, 0);
         label9.Name = "label9";
@@ -476,7 +476,7 @@ partial class uiSettings
         // label12
         // 
         label12.BackColor = Color.Transparent;
-        label12.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        label12.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         label12.Location = new Point(24, 20);
         label12.Margin = new Padding(2, 0, 2, 0);
         label12.Name = "label12";
@@ -546,7 +546,7 @@ partial class uiSettings
         // label19
         // 
         label19.BackColor = Color.Transparent;
-        label19.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        label19.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         label19.Location = new Point(24, 20);
         label19.Margin = new Padding(2, 0, 2, 0);
         label19.Name = "label19";
@@ -559,7 +559,7 @@ partial class uiSettings
         // 
         label21.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
         label21.BackColor = Color.Transparent;
-        label21.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
+        label21.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
         label21.ForeColor = Color.Gray;
         label21.Location = new Point(896, 1079);
         label21.Margin = new Padding(4, 0, 4, 0);
@@ -646,7 +646,7 @@ partial class uiSettings
         // label24
         // 
         label24.BackColor = Color.Transparent;
-        label24.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        label24.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         label24.Location = new Point(24, 20);
         label24.Margin = new Padding(2, 0, 2, 0);
         label24.Name = "label24";
@@ -687,7 +687,7 @@ partial class uiSettings
         // label36
         // 
         label36.BackColor = Color.Transparent;
-        label36.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        label36.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         label36.Location = new Point(24, 20);
         label36.Margin = new Padding(2, 0, 2, 0);
         label36.Name = "label36";
@@ -776,7 +776,7 @@ partial class uiSettings
         // label40
         // 
         label40.BackColor = Color.Transparent;
-        label40.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        label40.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         label40.Location = new Point(24, 20);
         label40.Margin = new Padding(2, 0, 2, 0);
         label40.Name = "label40";

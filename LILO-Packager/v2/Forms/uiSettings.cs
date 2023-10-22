@@ -114,4 +114,9 @@ public partial class uiSettings : Form
     {
 
     }
+
+    private void bntPasswords(object sender, EventArgs e)
+    {
+        MainHost.Instance().OpenInApp(v2.Forms.uiKeyManager.Instance());
+    }
 }

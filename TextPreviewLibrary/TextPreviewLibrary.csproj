@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LILO-Packager\LILO-Packager.csproj" />
+    <ProjectReference Include="..\LILO-WebEngine\LILO-WebEngine.csproj" />
   </ItemGroup>
 
   <ItemGroup>

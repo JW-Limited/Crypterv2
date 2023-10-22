@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             ListViewItem listViewItem1 = new ListViewItem(new string[] { "12345", "Encryption", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiHistory));
             tableLayoutPanel1 = new TableLayoutPanel();
             listViewHistory = new HTAlt.WinForms.HTListView();
             ColId = new ColumnHeader();
@@ -46,8 +45,6 @@
             toolStripSeparator2 = new ToolStripSeparator();
             reportToolStripMenuItem = new ToolStripMenuItem();
             sPanel2 = new Sipaa.Framework.SPanel();
-            bntSearch = new Guna.UI2.WinForms.Guna2Button();
-            txtSearchInput = new Sipaa.Framework.STextBox();
             bntPlugin = new Guna.UI2.WinForms.Guna2Button();
             bntCancel = new Guna.UI2.WinForms.Guna2Button();
             lblText = new Label();
@@ -85,6 +82,8 @@
             listViewHistory.Columns.AddRange(new ColumnHeader[] { ColId, ColOperation, ColMode, ColVersion, ColInput, ColOutput });
             listViewHistory.ContextMenuStrip = conmenu;
             listViewHistory.Dock = DockStyle.Fill;
+            listViewHistory.FullRowSelect = true;
+            listViewHistory.GridLines = true;
             listViewHistory.HeaderBackColor = Color.FromArgb(235, 235, 235);
             listViewHistory.HeaderBorderThickness = 2;
             listViewHistory.HeaderForeColor = Color.Black;
@@ -198,8 +197,6 @@
             sPanel2.BorderColor = Color.Black;
             sPanel2.BorderRadius = 20;
             sPanel2.BorderSize = 0;
-            sPanel2.Controls.Add(bntSearch);
-            sPanel2.Controls.Add(txtSearchInput);
             sPanel2.Controls.Add(bntPlugin);
             sPanel2.Controls.Add(bntCancel);
             sPanel2.Controls.Add(lblText);
@@ -209,56 +206,6 @@
             sPanel2.Name = "sPanel2";
             sPanel2.Size = new Size(968, 88);
             sPanel2.TabIndex = 13;
-            // 
-            // bntSearch
-            // 
-            bntSearch.Animated = true;
-            bntSearch.BackColor = Color.Transparent;
-            bntSearch.BorderColor = Color.FromArgb(224, 224, 224);
-            bntSearch.BorderRadius = 15;
-            bntSearch.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            bntSearch.CheckedState.Image = (Image)resources.GetObject("resource.Image");
-            bntSearch.DisabledState.BorderColor = Color.DarkGray;
-            bntSearch.DisabledState.CustomBorderColor = Color.DarkGray;
-            bntSearch.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            bntSearch.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            bntSearch.FillColor = Color.Transparent;
-            bntSearch.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            bntSearch.ForeColor = Color.White;
-            bntSearch.Image = Properties.Resources.icons8_spielen_94;
-            bntSearch.Location = new Point(760, 24);
-            bntSearch.Margin = new Padding(4);
-            bntSearch.Name = "bntSearch";
-            bntSearch.PressedColor = Color.DarkGray;
-            bntSearch.Size = new Size(46, 48);
-            bntSearch.TabIndex = 22;
-            bntSearch.UseTransparentBackground = true;
-            bntSearch.Visible = false;
-            bntSearch.Click += bntSearch_Click;
-            // 
-            // txtSearchInput
-            // 
-            txtSearchInput.Anchor = AnchorStyles.None;
-            txtSearchInput.BackColor = Color.White;
-            txtSearchInput.BorderColor = Color.Silver;
-            txtSearchInput.BorderFocusColor = Color.DimGray;
-            txtSearchInput.BorderRadius = 20;
-            txtSearchInput.BorderSize = 1;
-            txtSearchInput.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            txtSearchInput.ForeColor = Color.Black;
-            txtSearchInput.Location = new Point(568, 24);
-            txtSearchInput.Margin = new Padding(5);
-            txtSearchInput.Multiline = false;
-            txtSearchInput.Name = "txtSearchInput";
-            txtSearchInput.Padding = new Padding(12, 9, 12, 9);
-            txtSearchInput.PasswordChar = true;
-            txtSearchInput.PlaceholderColor = Color.DarkGray;
-            txtSearchInput.PlaceholderText = "Search here";
-            txtSearchInput.Size = new Size(248, 49);
-            txtSearchInput.TabIndex = 21;
-            txtSearchInput.Texts = "";
-            txtSearchInput.UnderlinedStyle = false;
-            txtSearchInput.Visible = false;
             // 
             // bntPlugin
             // 
@@ -275,7 +222,7 @@
             bntPlugin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntPlugin.FillColor = Color.Transparent;
             bntPlugin.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntPlugin.ForeColor = Color.White;
             bntPlugin.Location = new Point(832, 16);
             bntPlugin.Margin = new Padding(2);
@@ -299,7 +246,7 @@
             bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntCancel.FillColor = Color.Transparent;
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntCancel.ForeColor = Color.White;
             bntCancel.Location = new Point(2368, 16);
             bntCancel.Margin = new Padding(2);
@@ -312,7 +259,7 @@
             // lblText
             // 
             lblText.BackColor = Color.Transparent;
-            lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblText.ForeColor = Color.White;
             lblText.Location = new Point(24, 0);
             lblText.Margin = new Padding(4, 0, 4, 0);
@@ -331,10 +278,10 @@
             pnlLoginLoad.Controls.Add(progressSpinner);
             pnlLoginLoad.Controls.Add(label5);
             pnlLoginLoad.FillColor = Color.White;
-            pnlLoginLoad.Location = new Point(32, 152);
+            pnlLoginLoad.Location = new Point(32, 136);
             pnlLoginLoad.Margin = new Padding(2);
             pnlLoginLoad.Name = "pnlLoginLoad";
-            pnlLoginLoad.Size = new Size(960, 776);
+            pnlLoginLoad.Size = new Size(960, 792);
             pnlLoginLoad.TabIndex = 16;
             // 
             // progressSpinner
@@ -342,7 +289,7 @@
             progressSpinner.Anchor = AnchorStyles.None;
             progressSpinner.AutoStart = true;
             progressSpinner.BackColor = Color.White;
-            progressSpinner.Location = new Point(404, 256);
+            progressSpinner.Location = new Point(404, 264);
             progressSpinner.Margin = new Padding(2);
             progressSpinner.Name = "progressSpinner";
             progressSpinner.Size = new Size(135, 135);
@@ -351,9 +298,9 @@
             // label5
             // 
             label5.Anchor = AnchorStyles.None;
-            label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             label5.ForeColor = SystemColors.ActiveCaptionText;
-            label5.Location = new Point(400, 416);
+            label5.Location = new Point(400, 424);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(144, 30);
@@ -405,7 +352,5 @@
         private ToolStripMenuItem compareToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem reportToolStripMenuItem;
-        private Sipaa.Framework.STextBox txtSearchInput;
-        private Guna.UI2.WinForms.Guna2Button bntSearch;
     }
 }

@@ -8,6 +8,8 @@ namespace LILO_Packager.v2.Shared
         private string _sessionId;
         private static bool _consoleAllocated = false;
         private static StreamWriter _writer;
+        private bool SessionIdGenerated = false;
+        private string SessionId = string.Empty;
 
         [DllImport("kernel32.dll")]
         private static extern bool AllocConsole();
@@ -34,19 +36,24 @@ namespace LILO_Packager.v2.Shared
             {
                 Directory.CreateDirectory(Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "log"));
             }
-            _sessionId = GenerateSessionId();
+            _sessionId = GetSessionID();
             Program.InstanceCacheContainer.Register<ILILOConsoleManager>(() => _instance);
 
             WriteLineWithColor("Initialized Logger Instance.");
         }
 
-        private string GenerateSessionId()
+        private string GetSessionID()
         {
-            var id = $"{DateTime.Now:yyyyMMdd_HHmmss}_{Guid.NewGuid():N}";
+            if (!SessionIdGenerated)
+            {
+                var id = $"{DateTime.Now:yyyyMMdd_HHmmss}_{Guid.NewGuid():N}";
 
-            WriteLineWithColor($"Generated Session ID - {id}.");
+                WriteLineWithColor($"Generated Session ID - {id}.");
 
-            return id;
+                SessionId = id;
+                return id;
+            }
+            return SessionId;
         }
 
         public void ShowConsoleWindow(string header = "Debug Console")

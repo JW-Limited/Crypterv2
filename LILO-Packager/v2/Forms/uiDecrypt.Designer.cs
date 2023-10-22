@@ -99,7 +99,7 @@ partial class uiDecrypt
         bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         bntCancel.FillColor = Color.Transparent;
         bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
-        bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         bntCancel.ForeColor = Color.White;
         bntCancel.Location = new Point(832, 16);
         bntCancel.Margin = new Padding(2);
@@ -112,7 +112,7 @@ partial class uiDecrypt
         // lblText
         // 
         lblText.BackColor = Color.Transparent;
-        lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+        lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
         lblText.ForeColor = Color.White;
         lblText.Location = new Point(24, 0);
         lblText.Margin = new Padding(4, 0, 4, 0);
@@ -125,6 +125,7 @@ partial class uiDecrypt
         // guna2Panel1
         // 
         guna2Panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        guna2Panel1.AutoScroll = true;
         guna2Panel1.BackColor = Color.Transparent;
         guna2Panel1.BorderColor = SystemColors.ActiveBorder;
         guna2Panel1.BorderRadius = 20;
@@ -148,7 +149,7 @@ partial class uiDecrypt
         // lblReady
         // 
         lblReady.Anchor = AnchorStyles.None;
-        lblReady.Font = new Font("Open Sans", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        lblReady.Font = new Font("Open Sans", 10F, FontStyle.Bold);
         lblReady.ForeColor = SystemColors.ButtonHighlight;
         lblReady.Location = new Point(784, 128);
         lblReady.Margin = new Padding(2, 0, 2, 0);
@@ -186,7 +187,7 @@ partial class uiDecrypt
         // lblComb
         // 
         lblComb.Anchor = AnchorStyles.None;
-        lblComb.Font = new Font("Open Sans", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        lblComb.Font = new Font("Open Sans", 10F, FontStyle.Bold);
         lblComb.ForeColor = SystemColors.ButtonHighlight;
         lblComb.Location = new Point(544, 128);
         lblComb.Margin = new Padding(2, 0, 2, 0);
@@ -225,7 +226,7 @@ partial class uiDecrypt
         // lblDecrypt
         // 
         lblDecrypt.Anchor = AnchorStyles.None;
-        lblDecrypt.Font = new Font("Open Sans", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        lblDecrypt.Font = new Font("Open Sans", 10F, FontStyle.Bold);
         lblDecrypt.ForeColor = SystemColors.ButtonHighlight;
         lblDecrypt.Location = new Point(296, 128);
         lblDecrypt.Margin = new Padding(2, 0, 2, 0);
@@ -251,7 +252,7 @@ partial class uiDecrypt
         // lblFile
         // 
         lblFile.Anchor = AnchorStyles.None;
-        lblFile.Font = new Font("Open Sans", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        lblFile.Font = new Font("Open Sans", 10F, FontStyle.Bold);
         lblFile.ForeColor = SystemColors.ButtonHighlight;
         lblFile.Location = new Point(56, 128);
         lblFile.Margin = new Padding(2, 0, 2, 0);
@@ -264,7 +265,7 @@ partial class uiDecrypt
         // label4
         // 
         label4.BackColor = Color.Transparent;
-        label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         label4.ForeColor = Color.DimGray;
         label4.Location = new Point(8, 8);
         label4.Margin = new Padding(4, 0, 4, 0);
@@ -296,7 +297,7 @@ partial class uiDecrypt
         chblistFiles.BorderStyle = BorderStyle.None;
         chblistFiles.CheckOnClick = true;
         chblistFiles.ColumnWidth = 35;
-        chblistFiles.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        chblistFiles.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
         chblistFiles.ForeColor = Color.White;
         chblistFiles.FormattingEnabled = true;
         chblistFiles.Location = new Point(28, 64);
@@ -367,7 +368,7 @@ partial class uiDecrypt
         guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         guna2Button1.Dock = DockStyle.Fill;
         guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button1.ForeColor = Color.White;
         guna2Button1.Location = new Point(0, 0);
         guna2Button1.Margin = new Padding(2);
@@ -410,7 +411,7 @@ partial class uiDecrypt
         bntOpen.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntOpen.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         bntOpen.FocusedColor = Color.FromArgb(100, 170, 209);
-        bntOpen.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        bntOpen.Font = new Font("Segoe UI", 9F);
         bntOpen.ForeColor = Color.White;
         bntOpen.Location = new Point(216, 368);
         bntOpen.Margin = new Padding(2);
@@ -441,7 +442,7 @@ partial class uiDecrypt
         // label1
         // 
         label1.Anchor = AnchorStyles.None;
-        label1.Font = new Font("Open Sans", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        label1.Font = new Font("Open Sans", 9F, FontStyle.Bold);
         label1.ForeColor = SystemColors.AppWorkspace;
         label1.Location = new Point(8, 200);
         label1.Margin = new Padding(2, 0, 2, 0);

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.History;
@@ -254,7 +255,7 @@ public partial class uiEncryt : Form
                         logged = true;
                     }
 
-
+                    MainHost.Instance().taskBarProgress.State = Guna2TaskBarProgress.TaskbarStates.Normal;
                     
                     Task.Run(() =>
                     {
@@ -263,6 +264,7 @@ public partial class uiEncryt : Form
                         progress =>
                         {
                             UpdateProgress(progress);
+                            MainHost.Instance().taskBarProgress.Value = (int)progress;
                         },
                         error =>
                         {
@@ -274,7 +276,7 @@ public partial class uiEncryt : Form
                             if (currentTask.StartsWith("Compress") && current is not TaskStatus.Compress)
                             {
                                 MarkStatus(TaskStatus.Compress);
-
+                                
                                 current = TaskStatus.Compress;
                             }
 
@@ -316,34 +318,69 @@ public partial class uiEncryt : Form
         }
         else 
         {
-            FileInfo info = new FileInfo(_arFiles[0]);
-
-            var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
-            var musltifileHandler = new Shared.MultiplefileHandling();
-            var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Refresing, async (progress) =>
+            if(!FeatureManager.IsFeatureEnabled(FeatureFlags.FilePackerv2)) 
             {
-                var zipProgress = new Progress<int>(progressPercentage =>
+                FileInfo info = new FileInfo(_arFiles[0]);
+
+                var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
+                var musltifileHandler = new Shared.MultiplefileHandling();
+                var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Refresing, async (progress) =>
                 {
-                    progress?.Report(progressPercentage);
+                    var zipProgress = new Progress<int>(progressPercentage =>
+                    {
+                        progress?.Report(progressPercentage);
+                    });
+
+                    await musltifileHandler.ZipFilesAsync(tempZip, zipProgress, _arFiles);
                 });
 
-                await musltifileHandler.ZipFilesAsync(tempZip, zipProgress,_arFiles);
-            });
+                var uiAsyncTask = new uiCustomProcess(asyncTask);
+                uiAsyncTask.ShowDialog();
 
-            var uiAsyncTask = new uiCustomProcess(asyncTask);
-            uiAsyncTask.ShowDialog();
+                foreach (var file in _arFiles)
+                {
+                    File.Delete(file);
+                }
 
-            foreach (var file in _arFiles) 
-            {
-                File.Delete(file);
+                chblistFiles.Items.Clear();
+                chblistFiles.Items.Add(Path.GetFileName(tempZip));
+                _arFiles.Clear();
+                fileCounter = 2;
+                _arFiles.Add(tempZip);
+                guna2Button1_Click(sender, e);
             }
+            else
+            {
 
-            chblistFiles.Items.Clear();
-            chblistFiles.Items.Add(Path.GetFileName(tempZip));
-            _arFiles.Clear();
-            fileCounter = 2;
-            _arFiles.Add(tempZip);
-            guna2Button1_Click(sender, e);
+                FileInfo info = new FileInfo(_arFiles[0]);
+
+                var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
+                var musltifileHandler = new Shared.SmartFilePacker();
+                var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Refresing, async (progress) =>
+                {
+                    var zipProgress = new Progress<int>(progressPercentage =>
+                    {
+                        progress?.Report(progressPercentage);
+                    });
+
+                    await musltifileHandler.ZipFilesAsync(tempZip, zipProgress, _arFiles);
+                });
+
+                var uiAsyncTask = new uiCustomProcess(asyncTask);
+                uiAsyncTask.ShowDialog();
+
+                foreach (var file in _arFiles)
+                {
+                    File.Delete(file);
+                }
+
+                chblistFiles.Items.Clear();
+                chblistFiles.Items.Add(Path.GetFileName(tempZip));
+                _arFiles.Clear();
+                fileCounter = 2;
+                _arFiles.Add(tempZip);
+                guna2Button1_Click(sender, e);
+            }
         }
         
     }

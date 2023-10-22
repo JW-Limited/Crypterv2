@@ -107,6 +107,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     <PackageReference Include="microsoft.web.webview2" Version="1.0.2106-prerelease" />
     <PackageReference Include="modern.forms" Version="0.3.0" />
+    <PackageReference Include="ModernWpf.MessageBox.Mica" Version="0.5.5" />
     <PackageReference Include="Octokit" Version="8.0.1" />
     <PackageReference Include="Ookii.Dialogs.WinForms" Version="4.0.0" />
     <PackageReference Include="Paket.Core" Version="7.2.1" />
@@ -115,6 +116,7 @@
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
     <PackageReference Include="TagLibSharp" Version="2.3.0" />
     <PackageReference Include="ui.for.winforms.allcontrols.net70.trial" Version="2023.1.314" />
+    <PackageReference Include="WinBlur" Version="1.0.0" />
     <PackageReference Include="WMPLib" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
