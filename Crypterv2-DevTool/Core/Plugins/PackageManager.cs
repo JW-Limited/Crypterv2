@@ -1,11 +1,16 @@
 ﻿using Crypterv2.DevTool.Core.Exceptions;
+using Crypterv2.DevTool.Core.Plugins.Types;
+using System.IO.Compression;
 using System.Reflection;
 
 namespace Crypterv2.DevTool.Core.Plugins
 {
+
     public class PackageManager
     {
         public PluginPackage _package { get; set; }
+        public IProgress<PackageManagerProgress> Progress { get; set; }
+
         public PackageManager(PluginPackage pack)
         {
             _package = pack;
@@ -23,8 +28,18 @@ namespace Crypterv2.DevTool.Core.Plugins
                 if (!Directory.Exists(tempAssetFolder)) Directory.CreateDirectory(tempAssetFolder);
                 if (File.Exists(tempPluginInfoFile)) File.Delete(tempPluginInfoFile);
 
-                foreach(var item in _package.DependencieList) 
+                var progress = new PackageManagerProgress()
                 {
+                    TotalItems = _package.DependencieList.Count + 1,
+                    CurrentItem = 0
+                };
+
+                foreach (var item in _package.DependencieList) 
+                {
+                    progress.CurrentItem++;
+                    progress.Message = $"Copying dependency {item}...";
+                    Progress?.Report(progress);
+
                     if (!File.Exists(item)) throw DllFileNotFoundException.FromFile(item);
                     File.Copy(item, tempAssetFolder + "\\" + new FileInfo(item).Name, true);
                     var assymblyInfo = GetAssemblyInfo(item);
@@ -40,11 +55,40 @@ namespace Crypterv2.DevTool.Core.Plugins
                     });
                 }
 
+                progress.CurrentItem++;
+                progress.Message = $"Copying plugin file {_package.DllFile}...";
+                Progress?.Report(progress);
+
                 if (!File.Exists(_package.DllFile)) throw new DllFileNotFoundException(_package.DllFile, "The PluginBaseFile was not found!");
 
-                File.Copy(_package.DllFile,tempDirectory + "\\" + new FileInfo(_package.DllFile).Name,true);
+                File.Copy(_package.DllFile, tempDirectory + "\\" + new FileInfo(_package.DllFile).Name, true);
 
+                _package.info.Version = new LILO_Packager.v2.Plugins.ThirdParty.Types.VersionInfo() { Number = _package.Version };
+                _package.info.Description = _package.Description;
+                _package.info.Author = new LILO_Packager.v2.Plugins.ThirdParty.Types.AuthorInfo() { Name = _package.Author };
+                _package.info.PluginDll = new FileInfo(_package.DllFile).Name;
                 _package.info.SerializeToXml(tempPluginInfoFile);
+
+                var assetFiles = Directory.GetFiles(tempAssetFolder);
+                progress.TotalItems = assetFiles.Length;
+                progress.Message = "Creating PluginPackage...";
+                Progress?.Report(progress);
+                ZipFile.CreateFromDirectory(tempDirectory, _package.PluginDirectory + "\\" + _package.Name + ".cryptex");
+                using (var archive = ZipFile.Open(_package.PluginDirectory + "\\" + _package.Name + ".cryptex",ZipArchiveMode.Create))
+                {
+                    archive.CreateEntryFromFile(tempPluginInfoFile, "plugin.info");
+                    archive.CreateEntryFromFile(tempDirectory + "\\" + new FileInfo(_package.DllFile).Name, new FileInfo(_package.DllFile).Name, CompressionLevel.SmallestSize);
+
+                    progress.CurrentItem = 2;
+
+                    for (int i = 0; i < assetFiles.Length; i++)
+                    {
+                        archive.CreateEntryFromFile(assetFiles[i],"assets/" + new FileInfo(assetFiles[i]).Name,CompressionLevel.SmallestSize);
+                    }
+                }
+
+
+                Directory.Delete(tempDirectory, true);
 
                 return PackageManagerResponse.Success();
             }

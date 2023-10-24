@@ -3,11 +3,11 @@ using LILO_Packager.v2.Plugins.ThirdParty.Types;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Crypterv2.DevTool.Core.Plugins
+namespace Crypterv2.DevTool.Core.Plugins.Types
 {
     public class PluginPackage : PluginEntry
     {
-        public PluginPackage(string dllFile,PluginEntry entry,PluginInformation infp, string dir, ObservableCollection<string> Depend) :
+        public PluginPackage(string dllFile, string Author, PluginEntry entry, PluginInformation infp, string dir, ObservableCollection<string> Depend) :
             base(entry.PluginBase)
         {
             if (infp != null)
@@ -15,12 +15,16 @@ namespace Crypterv2.DevTool.Core.Plugins
                 info = infp;
                 PluginDirectory = dir;
                 DependencieList = Depend;
+                this.Author = Author;
+                DllFile = dllFile;
             }
             else
             {
                 throw new ArgumentNullException(nameof(infp));
             }
         }
+
+        public string Author { get; set; }
 
         [Required]
         public string DllFile { get; set; }
