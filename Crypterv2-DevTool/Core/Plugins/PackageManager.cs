@@ -73,6 +73,7 @@ namespace Crypterv2.DevTool.Core.Plugins
                 progress.TotalItems = assetFiles.Length;
                 progress.Message = "Creating PluginPackage...";
                 Progress?.Report(progress);
+
                 ZipFile.CreateFromDirectory(tempDirectory, _package.PluginDirectory + "\\" + _package.Name + ".cryptex");
                 using (var archive = ZipFile.Open(_package.PluginDirectory + "\\" + _package.Name + ".cryptex",ZipArchiveMode.Create))
                 {
@@ -80,9 +81,14 @@ namespace Crypterv2.DevTool.Core.Plugins
                     archive.CreateEntryFromFile(tempDirectory + "\\" + new FileInfo(_package.DllFile).Name, new FileInfo(_package.DllFile).Name, CompressionLevel.SmallestSize);
 
                     progress.CurrentItem = 2;
-
+                    progress.Message = "Binding Assets...";
+                    Progress?.Report(progress);
                     for (int i = 0; i < assetFiles.Length; i++)
                     {
+                        progress.CurrentItem = i;
+                        progress.Message = $"Binding Asset: assets/{new FileInfo(assetFiles[i]).Name}";
+                        Progress?.Report(progress);
+
                         archive.CreateEntryFromFile(assetFiles[i],"assets/" + new FileInfo(assetFiles[i]).Name,CompressionLevel.SmallestSize);
                     }
                 }
