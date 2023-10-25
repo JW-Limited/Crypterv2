@@ -53,16 +53,24 @@
             pnlChild = new Panel();
             guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             sPanel1 = new Sipaa.Framework.SPanel();
-            guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             lblText = new Label();
+            guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            label7 = new Label();
             guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             pnlControls = new Guna.UI2.WinForms.Guna2Panel();
             lblDirectory = new Label();
+            label11 = new Label();
+            pnlErrorConnection = new Panel();
+            label9 = new Label();
+            label5 = new Label();
+            label3 = new Label();
             guna2Panel1.SuspendLayout();
             guna2Panel2.SuspendLayout();
             guna2Panel5.SuspendLayout();
             sPanel1.SuspendLayout();
+            guna2Panel3.SuspendLayout();
             pnlControls.SuspendLayout();
+            pnlErrorConnection.SuspendLayout();
             SuspendLayout();
             // 
             // button1
@@ -84,6 +92,7 @@
             listViewHistory.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             listViewHistory.BorderStyle = BorderStyle.None;
             listViewHistory.Columns.AddRange(new ColumnHeader[] { ColId, ColOperation });
+            listViewHistory.FullRowSelect = true;
             listViewHistory.HeaderBackColor = Color.FromArgb(235, 235, 235);
             listViewHistory.HeaderBorderThickness = 2;
             listViewHistory.HeaderForeColor = Color.Black;
@@ -191,6 +200,7 @@
             panel1.BackgroundImage = Crypterv2.DevTool.Properties.Resources.seüerater;
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
             panel1.Location = new Point(24, 120);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
             panel1.Size = new Size(248, 16);
             panel1.TabIndex = 27;
@@ -327,6 +337,7 @@
             guna2Panel5.BorderRadius = 15;
             guna2Panel5.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             guna2Panel5.Controls.Add(sPanel1);
+            guna2Panel5.Controls.Add(guna2Panel3);
             guna2Panel5.Controls.Add(guna2Panel1);
             guna2Panel5.Controls.Add(guna2Button5);
             guna2Panel5.Dock = DockStyle.Left;
@@ -345,7 +356,6 @@
             sPanel1.BorderColor = Color.Black;
             sPanel1.BorderRadius = 20;
             sPanel1.BorderSize = 0;
-            sPanel1.Controls.Add(guna2Button3);
             sPanel1.Controls.Add(lblText);
             sPanel1.ForeColor = Color.White;
             sPanel1.Location = new Point(24, 32);
@@ -354,45 +364,47 @@
             sPanel1.Size = new Size(288, 88);
             sPanel1.TabIndex = 27;
             // 
-            // guna2Button3
-            // 
-            guna2Button3.Animated = true;
-            guna2Button3.BackColor = Color.Transparent;
-            guna2Button3.BorderColor = Color.Gainsboro;
-            guna2Button3.BorderRadius = 20;
-            guna2Button3.BorderThickness = 2;
-            guna2Button3.DisabledState.BorderColor = Color.Gainsboro;
-            guna2Button3.DisabledState.CustomBorderColor = Color.Gainsboro;
-            guna2Button3.DisabledState.FillColor = Color.Transparent;
-            guna2Button3.DisabledState.ForeColor = Color.Black;
-            guna2Button3.FillColor = Color.Transparent;
-            guna2Button3.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            guna2Button3.ForeColor = Color.White;
-            guna2Button3.ImageSize = new Size(40, 40);
-            guna2Button3.Location = new Point(200, 16);
-            guna2Button3.Margin = new Padding(2);
-            guna2Button3.Name = "guna2Button3";
-            guna2Button3.ShadowDecoration.BorderRadius = 20;
-            guna2Button3.ShadowDecoration.Color = SystemColors.ScrollBar;
-            guna2Button3.ShadowDecoration.Depth = 10;
-            guna2Button3.ShadowDecoration.Enabled = true;
-            guna2Button3.Size = new Size(64, 58);
-            guna2Button3.TabIndex = 1;
-            guna2Button3.Text = "v2";
-            // 
             // lblText
             // 
             lblText.BackColor = Color.Transparent;
             lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblText.ForeColor = Color.White;
-            lblText.Location = new Point(24, 0);
+            lblText.Location = new Point(8, 0);
             lblText.Margin = new Padding(4, 0, 4, 0);
             lblText.Name = "lblText";
-            lblText.Size = new Size(144, 88);
+            lblText.Size = new Size(160, 88);
             lblText.TabIndex = 1;
             lblText.Text = "DevTool";
             lblText.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // guna2Panel3
+            // 
+            guna2Panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            guna2Panel3.BackColor = SystemColors.Control;
+            guna2Panel3.BorderColor = Color.Gainsboro;
+            guna2Panel3.BorderRadius = 15;
+            guna2Panel3.BorderThickness = 2;
+            guna2Panel3.Controls.Add(label7);
+            guna2Panel3.FillColor = Color.White;
+            guna2Panel3.Location = new Point(24, 864);
+            guna2Panel3.Margin = new Padding(2);
+            guna2Panel3.Name = "guna2Panel3";
+            guna2Panel3.Size = new Size(288, 80);
+            guna2Panel3.TabIndex = 23;
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label7.ForeColor = Color.DarkGray;
+            label7.Location = new Point(24, 8);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(280, 64);
+            label7.TabIndex = 1;
+            label7.Text = "Version: 0.11-beta\r\nJW Limited © 2023";
+            label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // guna2Button5
             // 
@@ -410,7 +422,7 @@
             guna2Button5.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             guna2Button5.ForeColor = Color.Black;
-            guna2Button5.Image = Crypterv2.DevTool.Properties.Resources.icons8_foxit_reader_240;
+            guna2Button5.Image = Crypterv2.DevTool.Properties.Resources.icons8_bursts_96;
             guna2Button5.ImageAlign = HorizontalAlignment.Left;
             guna2Button5.ImageOffset = new Point(10, 0);
             guna2Button5.ImageSize = new Size(35, 35);
@@ -419,7 +431,7 @@
             guna2Button5.Name = "guna2Button5";
             guna2Button5.Size = new Size(288, 80);
             guna2Button5.TabIndex = 16;
-            guna2Button5.Text = "  Plugin - Testkit";
+            guna2Button5.Text = "  Plugins";
             guna2Button5.TextAlign = HorizontalAlignment.Left;
             guna2Button5.Click += bntPlugins_Click;
             // 
@@ -431,6 +443,7 @@
             pnlControls.BorderRadius = 20;
             pnlControls.BorderThickness = 2;
             pnlControls.Controls.Add(lblDirectory);
+            pnlControls.Controls.Add(label11);
             pnlControls.Controls.Add(bntDisconnect);
             pnlControls.Controls.Add(button1);
             pnlControls.FillColor = SystemColors.ButtonHighlight;
@@ -443,14 +456,78 @@
             // lblDirectory
             // 
             lblDirectory.Anchor = AnchorStyles.Left;
-            lblDirectory.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            lblDirectory.Location = new Point(24, 16);
+            lblDirectory.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblDirectory.ForeColor = SystemColors.ControlDark;
+            lblDirectory.Location = new Point(264, 16);
             lblDirectory.Margin = new Padding(2, 0, 2, 0);
             lblDirectory.Name = "lblDirectory";
-            lblDirectory.Size = new Size(552, 48);
+            lblDirectory.Size = new Size(344, 48);
             lblDirectory.TabIndex = 28;
-            lblDirectory.Text = "Here you can En and Disale features in Crypterv2.";
+            lblDirectory.Text = "En/Disable features in Crypterv2.";
             lblDirectory.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label11
+            // 
+            label11.BackColor = Color.Transparent;
+            label11.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            label11.ForeColor = Color.Black;
+            label11.Location = new Point(0, 0);
+            label11.Margin = new Padding(4, 0, 4, 0);
+            label11.Name = "label11";
+            label11.Size = new Size(256, 80);
+            label11.TabIndex = 1;
+            label11.Text = "FeatureManager";
+            label11.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnlErrorConnection
+            // 
+            pnlErrorConnection.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlErrorConnection.Controls.Add(label9);
+            pnlErrorConnection.Controls.Add(label5);
+            pnlErrorConnection.Controls.Add(label3);
+            pnlErrorConnection.Location = new Point(350, 120);
+            pnlErrorConnection.Margin = new Padding(2);
+            pnlErrorConnection.Name = "pnlErrorConnection";
+            pnlErrorConnection.Size = new Size(1020, 830);
+            pnlErrorConnection.TabIndex = 25;
+            pnlErrorConnection.Visible = false;
+            // 
+            // label9
+            // 
+            label9.Anchor = AnchorStyles.None;
+            label9.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.ForeColor = SystemColors.AppWorkspace;
+            label9.Location = new Point(152, 368);
+            label9.Margin = new Padding(2, 0, 2, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(776, 240);
+            label9.TabIndex = 28;
+            label9.Text = resources.GetString("label9.Text");
+            // 
+            // label5
+            // 
+            label5.Anchor = AnchorStyles.None;
+            label5.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.IndianRed;
+            label5.Location = new Point(152, 312);
+            label5.Margin = new Padding(2, 0, 2, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(768, 32);
+            label5.TabIndex = 28;
+            label5.Text = "Error: Failed to establish a TCP connection to the Crypter-DevPort service.";
+            label5.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.None;
+            label3.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            label3.Location = new Point(152, 272);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(552, 48);
+            label3.TabIndex = 28;
+            label3.Text = "DevTools Connection Failure";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // MainHost
             // 
@@ -460,19 +537,23 @@
             ClientSize = new Size(1385, 964);
             Controls.Add(pnlControls);
             Controls.Add(guna2Panel5);
+            Controls.Add(pnlErrorConnection);
             Controls.Add(pnlChild);
             Controls.Add(guna2Panel2);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
-            MinimumSize = new Size(877, 686);
+            MinimumSize = new Size(1407, 1020);
             Name = "MainHost";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "DevTool - Crypterv2";
             Load += Main_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel2.ResumeLayout(false);
             guna2Panel5.ResumeLayout(false);
             sPanel1.ResumeLayout(false);
+            guna2Panel3.ResumeLayout(false);
             pnlControls.ResumeLayout(false);
+            pnlErrorConnection.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -500,11 +581,17 @@
         private Button bntDisconnect;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
         private Sipaa.Framework.SPanel sPanel1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private Label lblText;
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
         private Panel panel1;
         private Guna.UI2.WinForms.Guna2Panel pnlControls;
         private Label lblDirectory;
+        private Panel pnlErrorConnection;
+        private Label label5;
+        private Label label3;
+        private Label label9;
+        private Label label7;
+        private Label label11;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
     }
 }

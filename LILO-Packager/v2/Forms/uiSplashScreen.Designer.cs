@@ -33,11 +33,7 @@
             label1 = new Label();
             bntTrouble = new Guna.UI2.WinForms.Guna2Button();
             lblAddtional = new Label();
-            guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
-            imgImage = new Guna.UI2.WinForms.Guna2Panel();
-            lblName = new Label();
-            guna2Panel3.SuspendLayout();
+            sPanel1 = new Sipaa.Framework.SPanel();
             SuspendLayout();
             // 
             // gunaForm1
@@ -54,7 +50,7 @@
             // 
             label1.Anchor = AnchorStyles.Bottom;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             label1.ForeColor = SystemColors.WindowFrame;
             label1.Location = new Point(240, 320);
             label1.Margin = new Padding(4, 0, 4, 0);
@@ -78,7 +74,7 @@
             bntTrouble.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntTrouble.FillColor = Color.White;
             bntTrouble.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntTrouble.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            bntTrouble.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             bntTrouble.ForeColor = Color.DimGray;
             bntTrouble.Location = new Point(544, 24);
             bntTrouble.Margin = new Padding(2);
@@ -90,7 +86,7 @@
             // lblAddtional
             // 
             lblAddtional.BackColor = Color.Transparent;
-            lblAddtional.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblAddtional.Font = new Font("Segoe UI", 10F);
             lblAddtional.ForeColor = Color.Black;
             lblAddtional.Location = new Point(32, 24);
             lblAddtional.Margin = new Padding(4, 0, 4, 0);
@@ -99,65 +95,20 @@
             lblAddtional.TabIndex = 31;
             lblAddtional.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // guna2Panel3
+            // sPanel1
             // 
-            guna2Panel3.Anchor = AnchorStyles.None;
-            guna2Panel3.BorderColor = SystemColors.ActiveBorder;
-            guna2Panel3.BorderRadius = 15;
-            guna2Panel3.BorderThickness = 2;
-            guna2Panel3.Controls.Add(guna2Panel5);
-            guna2Panel3.Controls.Add(imgImage);
-            guna2Panel3.FillColor = Color.Gainsboro;
-            guna2Panel3.Location = new Point(168, 152);
-            guna2Panel3.Margin = new Padding(2);
-            guna2Panel3.Name = "guna2Panel3";
-            guna2Panel3.Size = new Size(80, 80);
-            guna2Panel3.TabIndex = 33;
-            // 
-            // guna2Panel5
-            // 
-            guna2Panel5.Anchor = AnchorStyles.None;
-            guna2Panel5.BackColor = Color.Transparent;
-            guna2Panel5.BackgroundImage = Properties.Resources.favico;
-            guna2Panel5.BackgroundImageLayout = ImageLayout.Zoom;
-            guna2Panel5.BorderColor = SystemColors.ActiveBorder;
-            guna2Panel5.BorderRadius = 15;
-            guna2Panel5.FillColor = Color.Transparent;
-            guna2Panel5.Location = new Point(8, 8);
-            guna2Panel5.Margin = new Padding(2);
-            guna2Panel5.Name = "guna2Panel5";
-            guna2Panel5.Size = new Size(64, 67);
-            guna2Panel5.TabIndex = 16;
-            // 
-            // imgImage
-            // 
-            imgImage.Anchor = AnchorStyles.None;
-            imgImage.BackColor = Color.Transparent;
-            imgImage.BackgroundImage = Properties.Resources.favico;
-            imgImage.BackgroundImageLayout = ImageLayout.Zoom;
-            imgImage.BorderColor = SystemColors.ActiveBorder;
-            imgImage.BorderRadius = 15;
-            imgImage.FillColor = Color.Transparent;
-            imgImage.Location = new Point(-112, -12);
-            imgImage.Margin = new Padding(2);
-            imgImage.Name = "imgImage";
-            imgImage.Size = new Size(40, 40);
-            imgImage.TabIndex = 15;
-            // 
-            // lblName
-            // 
-            lblName.Anchor = AnchorStyles.None;
-            lblName.AutoEllipsis = true;
-            lblName.BackColor = Color.Transparent;
-            lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lblName.ForeColor = Color.Black;
-            lblName.Location = new Point(272, 152);
-            lblName.Margin = new Padding(4, 0, 4, 0);
-            lblName.Name = "lblName";
-            lblName.Size = new Size(248, 80);
-            lblName.TabIndex = 32;
-            lblName.Text = "LILO® Crypterv2";
-            lblName.TextAlign = ContentAlignment.MiddleLeft;
+            sPanel1.BackColor = Color.Black;
+            sPanel1.BackgroundImage = Properties.Resources.Screenshot_2023_10_13_052005;
+            sPanel1.BackgroundImageLayout = ImageLayout.Stretch;
+            sPanel1.BorderColor = Color.Black;
+            sPanel1.BorderRadius = 20;
+            sPanel1.BorderSize = 0;
+            sPanel1.ForeColor = Color.White;
+            sPanel1.Location = new Point(248, 88);
+            sPanel1.Margin = new Padding(4);
+            sPanel1.Name = "sPanel1";
+            sPanel1.Size = new Size(184, 176);
+            sPanel1.TabIndex = 32;
             // 
             // uiSplashScreen
             // 
@@ -165,8 +116,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(689, 394);
-            Controls.Add(guna2Panel3);
-            Controls.Add(lblName);
+            Controls.Add(sPanel1);
             Controls.Add(lblAddtional);
             Controls.Add(label1);
             Controls.Add(bntTrouble);
@@ -175,7 +125,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "uiSplashScreen";
             Load += uiSplashScreen_Load;
-            guna2Panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -186,9 +135,6 @@
         private Label label1;
         private Guna.UI2.WinForms.Guna2Button bntTrouble;
         private Label lblAddtional;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
-        private Guna.UI2.WinForms.Guna2Panel imgImage;
-        private Label lblName;
+        private Sipaa.Framework.SPanel sPanel1;
     }
 }

@@ -102,9 +102,15 @@ namespace Crypterv2_DevTool
                 lblVersion.Text = Application.ProductVersion.ToString();
                 lblAccess.Text = "Unknown";
                 bntDisconnect.Visible = true;
+
+                pnlErrorConnection.Visible = false;
             }
             catch
             {
+
+
+                pnlErrorConnection.Visible = true;
+
                 this.button1.Text = "Retry";
                 this.button1.Visible = true;
                 this.Text = "DevTool - Error";
@@ -201,6 +207,8 @@ namespace Crypterv2_DevTool
 
             try
             {
+
+                pnlErrorConnection.Visible = false;
                 var state = new object();
 
                 Features.Clear();
@@ -219,6 +227,7 @@ namespace Crypterv2_DevTool
                 this.Text = "DevTool - Bridged";
                 this.button1.Text = "Connected";
                 this.button1.Visible = false;
+                this.bntDisconnect.Visible = true;
 
                 var feat = new FeatureFlag();
 
@@ -252,8 +261,10 @@ namespace Crypterv2_DevTool
             }
             catch
             {
+                pnlErrorConnection.Visible = true;
                 this.button1.Text = "Retry";
                 this.button1.Visible = true;
+                this.bntDisconnect.Visible = false;
                 this.Text = "DevTool - Error";
                 MessageBox.Show("Cant connect to Crypterv2.", "DevConnection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

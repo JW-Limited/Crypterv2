@@ -22,13 +22,15 @@ namespace Crypterv2_DevTool
         {
             InitializeApplication();
 
+            // For Checking if the MainApplication is running.
+            /*
             if(Process.GetProcessesByName("crypterv2").Length < 1)
             {
                 MessageBox.Show("Please start the Crypterv2 Application befor using this tool.","Mainhost",MessageBoxButtons.OK,MessageBoxIcon.Error,MessageBoxDefaultButton.Button1,MessageBoxOptions.ServiceNotification);
                 return;
             }
-
-            //ConsoleManager.Instance().ShowConsoleWindow();
+            */
+            
             ConsoleManager.Instance().WriteLineWithColor("Initializing C2DT.");
             ConsoleManager.Instance().WriteLineWithColor("Session Log Located: " + Logger.Instance.logFilePath);
             Application.Run(MainHost.GetInstance());

@@ -12,9 +12,7 @@ using LILO_Packager.v2.Streaming.MusikPlayer.Forms;
 using LILO_Packager.v2.Shared.Api.Core;
 using LILO_Packager.v2.Shared.Types;
 using LILO_Packager.v2.Shared.Streaming.Core;
-using LILO_Packager.v2.Core.Dialogs.Secured;
 using LILO_Packager.v2.Core.LILO.Types;
-
 using System.Collections.ObjectModel;
 using System.Net.Sockets;
 using System.Diagnostics;
@@ -83,7 +81,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
             { FeatureFlags.SecuredContainerStreaming.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming) },
             { FeatureFlags.HistoryElementQuering.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering) },
             { FeatureFlags.MediaEngineManager.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.MediaEngineManager) },
-
+            { FeatureFlags.FilePackerv2.ToString(),FeatureManager.IsFeatureEnabled(FeatureFlags.FilePackerv2) },
             { FeatureFlags.PluginShop.ToString(),FeatureManager.IsFeatureEnabled(FeatureFlags.PluginShop) },
             { FeatureFlags.ThirdPartyEncryptenLibrarys.ToString(),FeatureManager.IsFeatureEnabled(FeatureFlags.ThirdPartyEncryptenLibrarys) },
             { FeatureFlags.PluginInstaller.ToString(),FeatureManager.IsFeatureEnabled(FeatureFlags.PluginInstaller) },
@@ -166,7 +164,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
             if (_hostInstance is null)
             {
                 _hostInstance = new MainHost();
-                Program.InstanceCacheContainer.Register<ILILOMainHost>(() =>  _hostInstance);
+                Program.InstanceCacheContainer.Register<ILILOMainHost>(() => _hostInstance);
             }
 
             return _hostInstance;
@@ -247,158 +245,161 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
     private async void MainHost_Load(object sender, EventArgs e)
     {
-        var updater = Updater.Instance();
-        Program.InstanceCacheContainer.Register<IUpdater>(() => updater);
-
-        foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
+        Task.Run(() => this.Invoke(async() =>
         {
-            procSrv.Kill();
-        }
+            var updater = Updater.Instance();
+            Program.InstanceCacheContainer.Register<IUpdater>(() => updater);
 
-        var response = await _localServer.Initialization(new LILO_WebEngine.Core.Service.LocalServerOptions()
-        {
-            Port = new LILO_WebEngine.Shared.Port()
+            foreach (var procSrv in Process.GetProcessesByName("srvlocal"))
             {
-                Default = 8080,
-                FallBack = 8090
-            },
-            SourceDirectory = ".\\html",
-            ApiKey = "liloDev-420",
-            LogDirectory = ".\\log",
-            ServerName = "Crypterv2",
-        });
-
-        if (response.SuccessFull)
-        {
-            Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Initialized LILO WebEngine.");
-
-            var running = await _localServer.Start();
-            Port = response.Port;
-
-            Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Started LILO WebEngine with Port: {response.Port}.");
-
-            _localServer.OnLocalServerRequest += async (sender, e) =>
-            {
-                ConsoleManager.Instance().WriteLineWithColor($"[LILO-WebEngine(Running: {e.IsRunning})] - {e.Message}");
-
-
-
-                if (e.ListenerContext.Request.Url.LocalPath.TrimStart('/').EndsWith("mp3") || e.Message.EndsWith("mp3"))
-                {
-                    await OpenDynamicPlayer(e.ListenerContext, e.Message);
-                }
-            };
-
-            _localServer.OnError += (sender, e) =>
-            {
-                OkDialog.Show("An internal Server Error happend.", e.ErrorFatality.ToString(), DialogIcon.Error);
-            };
-        }
-        else
-        {
-            OkDialog.Show(response.ErrorMessage, "InternalServerErrror");
-        }
-
-        OpenInApp(v2.Forms.uiWebView.Instance(new Uri($"http://localhost:{Port}")));
-
-        foreach (Control item in this.Controls)
-        {
-            if (item.Name == "pnlSide")
-            {
-                _thManager.RegisterControl(item, ThemeManager.ModeType.Light, Color.LightGray, Color.Black);
+                procSrv.Kill();
             }
 
-            _thManager.RegisterControl(item, ThemeManager.ModeType.Light, Color.White, Color.Black);
-        }
-
-        _thManager.ApplyTheme("White");
-        _thManager.SaveThemesToJson(Path.Combine(ThemePath, "default.lcs"));
-
-        if (config.Default.autoUpdates)
-        {
-            try
+            var response = await _localServer.Initialization(new LILO_WebEngine.Core.Service.LocalServerOptions()
             {
-                pnlNothing.Visible = false;
-                pnlLoading.Visible = true;
-                var currentVersion = Program.Version.ToString();
-                var latestVersion = updater.GetLatestVersion(Owner, Repository);
-                var Semi = VersionComparer.CompareSemanticVersions(currentVersion, latestVersion);
-
-                if (Semi.IsNewer)
+                Port = new LILO_WebEngine.Shared.Port()
                 {
-                    _noty.ShowBubbleNotification(new Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
-                    pnlNotifications.Visible = true;
+                    Default = 8080,
+                    FallBack = 8090
+                },
+                SourceDirectory = ".\\html",
+                ApiKey = "liloDev-420",
+                LogDirectory = ".\\log",
+                ServerName = "Crypterv2",
+            });
 
-                    pnlMes1.Visible = true;
-                    Mes1_Title.Text = "Update";
-                    Mes1_Message.Text = "A new Update is availlable.\nNewest: " + Semi.ToString();
-                    Mes1_bnt.Text = "Update";
-                }
-                else if (!Semi.IsNewer)
+            if (response.SuccessFull)
+            {
+                Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Initialized LILO WebEngine.");
+
+                var running = await _localServer.Start();
+                Port = response.Port;
+
+                Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Started LILO WebEngine with Port: {response.Port}.");
+
+                _localServer.OnLocalServerRequest += async (sender, e) =>
                 {
-                    pnlNothing.Visible = true;
-                }
+                    ConsoleManager.Instance().WriteLineWithColor($"[LILO-WebEngine(Running: {e.IsRunning})] - {e.Message}");
 
 
+
+                    if (e.ListenerContext.Request.Url.LocalPath.TrimStart('/').EndsWith("mp3") || e.Message.EndsWith("mp3"))
+                    {
+                        await OpenDynamicPlayer(e.ListenerContext, e.Message);
+                    }
+                };
+
+                _localServer.OnError += (sender, e) =>
+                {
+                    OkDialog.Show("An internal Server Error happend.", e.ErrorFatality.ToString(), DialogIcon.Error);
+                };
             }
-            catch (System.AggregateException ex)
+            else
             {
-                ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
-                OpenInApp(new uiNetworkError("NetworkError", "The server didnt respond."));
+                OkDialog.Show(response.ErrorMessage, "InternalServerErrror");
+            }
+
+            OpenInApp(v2.Forms.uiWebView.Instance(new Uri($"http://localhost:{Port}")));
+
+            foreach (Control item in this.Controls)
+            {
+                if (item.Name == "pnlSide")
+                {
+                    _thManager.RegisterControl(item, ThemeManager.ModeType.Light, Color.LightGray, Color.Black);
+                }
+
+                _thManager.RegisterControl(item, ThemeManager.ModeType.Light, Color.White, Color.Black);
+            }
+
+            _thManager.ApplyTheme("White");
+            _thManager.SaveThemesToJson(Path.Combine(ThemePath, "default.lcs"));
+
+            if (config.Default.autoUpdates)
+            {
+                try
+                {
+                    pnlNothing.Visible = false;
+                    pnlLoading.Visible = true;
+                    var currentVersion = Program.Version.ToString();
+                    var latestVersion = updater.GetLatestVersion(Owner, Repository);
+                    var Semi = VersionComparer.CompareSemanticVersions(currentVersion, latestVersion);
+
+                    if (Semi.IsNewer)
+                    {
+                        _noty.ShowBubbleNotification(new Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
+                        pnlNotifications.Visible = true;
+
+                        pnlMes1.Visible = true;
+                        Mes1_Title.Text = "Update";
+                        Mes1_Message.Text = "A new Update is availlable.\nNewest: " + Semi.ToString();
+                        Mes1_bnt.Text = "Update";
+                    }
+                    else if (!Semi.IsNewer)
+                    {
+                        pnlNothing.Visible = true;
+                    }
+
+
+                }
+                catch (System.AggregateException ex)
+                {
+                    ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
+                    OpenInApp(new uiNetworkError("NetworkError", "The server didnt respond."));
+                    pnlSide.Visible = false;
+                    hider.Visible = false;
+                }
+            }
+            else
+            {
+                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
+            }
+
+
+            if (!File.Exists(UserFile))
+            {
+                OpenInApp(new uiLILOLogin());
                 pnlSide.Visible = false;
                 hider.Visible = false;
             }
-        }
-        else
-        {
-            OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
-        }
 
-
-        if (!File.Exists(UserFile))
-        {
-            OpenInApp(new uiLILOLogin());
-            pnlSide.Visible = false;
-            hider.Visible = false;
-        }
-
-        if (config.Default.allowedPlugins)
-        {
-            try
+            if (config.Default.allowedPlugins)
             {
-                foreach (var ele in _pluginManager.CurrentPlugins)
+                try
                 {
-                    PluginEntry ent = new PluginEntry(ele);
-                    plugins.Add(ent);
+                    foreach (var ele in _pluginManager.CurrentPlugins)
+                    {
+                        PluginEntry ent = new PluginEntry(ele);
+                        plugins.Add(ent);
+                    }
+
+                    StringBuilder stringBuilder = new StringBuilder();
+
+                    foreach (var item in plugins)
+                    {
+                        stringBuilder.Append($"Plugin : {item.Name}\n" +
+                                             $"Description : {item.Description}\n" +
+                                             $"Version : {item.Version}\n\n");
+                    }
+
+                    //ConsoleManager.Instance().WriteLineWithColor(stringBuilder.ToString(), ConsoleColor.Cyan);
+
+                    ConsoleManager.Instance().WriteLineWithColor($"[PLUGIN-MANAGER] - Plugins Loaded (Count: {plugins.Count} / Errors: 0");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Mainhost: PluginManager", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                StringBuilder stringBuilder = new StringBuilder();
 
-                foreach (var item in plugins)
-                {
-                    stringBuilder.Append($"Plugin : {item.Name}\n" +
-                                         $"Description : {item.Description}\n" +
-                                         $"Version : {item.Version}\n\n");
-                }
+                await dataHandler.InitializeDatabaseAsync(process => { });
 
-                //ConsoleManager.Instance().WriteLineWithColor(stringBuilder.ToString(), ConsoleColor.Cyan);
 
-                ConsoleManager.Instance().WriteLineWithColor($"[PLUGIN-MANAGER] - Plugins Loaded (Count: {plugins.Count} / Errors: 0");
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Mainhost: PluginManager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                await v2.Core.FeatureManager.LoadConfigurationAsync();
             }
 
-
-            await dataHandler.InitializeDatabaseAsync(process => { });
-
-
-            await v2.Core.FeatureManager.LoadConfigurationAsync();
-        }
-
-        uiSplashScreen.Instance.Close();
+        }));
+        
     }
 
     #endregion
@@ -539,9 +540,9 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         }
         else
         {
-            OkDialog.Show("This file was not packaged with this Application.","Error");
+            OkDialog.Show("This file was not packaged with this Application.", "Error");
         }
-        
+
 
         bntMenu(sender, e);
     }
@@ -597,7 +598,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
     private void lblText_Click(object sender, EventArgs e)
     {
-        if(!pnlSide.Visible)
+        if (!pnlSide.Visible)
             Transition.Show(pnlSide);
         else
             pnlSide.Visible = false;
@@ -872,4 +873,9 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
     }
 
     #endregion
+
+    private void hider_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
 }

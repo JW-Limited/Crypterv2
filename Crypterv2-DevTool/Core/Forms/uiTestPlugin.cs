@@ -1,4 +1,5 @@
 ﻿using Crypterv2.DevTool.Core;
+using Crypterv2.DevTool.Core.Plugins;
 using LILO_Packager.v2.Plugins.Model;
 using LILO_Packager.v2.Plugins.PluginCore;
 using System.Collections.ObjectModel;
@@ -11,6 +12,9 @@ namespace Crypterv2_DevTool.Core.Forms
         private PluginManager manager = null;
         public LILO_Packager.v2.Core.History.DatabaseHandling dataHandler = new LILO_Packager.v2.Core.History.DatabaseHandling();
         public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
+        private PackageManager PackageManager { get; set; }
+        public string OpenedDirectory = string.Empty;
+        public ObservableCollection<string> Dependencies = new ObservableCollection<string>();
 
         private static uiTestPlugin _instance;
         public static uiTestPlugin Instance()
@@ -28,7 +32,7 @@ namespace Crypterv2_DevTool.Core.Forms
         {
             InitializeComponent();
 
-
+            
 
             this.FormClosing += (s, e) =>
             {
@@ -166,6 +170,32 @@ namespace Crypterv2_DevTool.Core.Forms
                 if (neededPlugin is not null)
                 {
                     neededPlugin.form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("It seems like the Plugin has a problem: \n\n" + ex.Message, "PluginError", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        private async void Pack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PluginEntry neededPlugin = null;
+
+                foreach (var plug in plugins)
+                {
+                    if (plug.Name == cmbPlugins.SelectedItem)
+                    {
+                        neededPlugin = plug;
+                    }
+                }
+
+                if (neededPlugin is not null)
+                {
+                    PackageManager = new PackageManager(new Crypterv2.DevTool.Core.Plugins.Types.PluginPackage("", "", neededPlugin, new LILO_Packager.v2.Plugins.ThirdParty.Types.PluginInformation(), OpenedDirectory, Dependencies));
+                    
                 }
             }
             catch (Exception ex)

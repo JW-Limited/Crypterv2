@@ -14939,6 +14939,14 @@
         RU5ErkJggg==
 </value>
   </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Possible Reasons:
+     The remote host closed the connection prematurely.
+     The remote host did not initiate a connection within the time-out period.
+     The remote host is refusing connections.
+     No connection could be made because the target machine actively refused it.
+     The DevTools application may be using an outdated or incompatible version of the Crypter-DevPort protocol.</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAAAAAAAEAIABGGAAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAEAAAABAAgEAAAA9ntg7QAAAAFv

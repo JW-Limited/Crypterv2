@@ -6,6 +6,7 @@ using LILO_Packager.v2.Shared.Types;
 using LILO_Packager.v2.Core.BugBarrier;
 using LILO_Packager.v2.Core.Interfaces;
 using LILO_Packager.v2.Core.Visuals;
+using LILO_Packager.v2.Forms;
 
 namespace LILO_Packager
 {
@@ -44,7 +45,7 @@ namespace LILO_Packager
         {
             InitializeApplication();
 
-            if(config.Default.debugMode)
+            if (config.Default.debugMode)
             {
                 //ConsoleManager.Instance().ShowConsoleWindow();
             }

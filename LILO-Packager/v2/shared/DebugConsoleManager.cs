@@ -30,6 +30,7 @@ namespace LILO_Packager.v2.Shared
             return _instance;
         }
 
+        /// <inheritdoc[cref = "link-ref"][select = "filter-expr"] />
         public void InitializeLogger()
         {
             if (!Directory.Exists(Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "log")))
@@ -42,6 +43,7 @@ namespace LILO_Packager.v2.Shared
             WriteLineWithColor("Initialized Logger Instance.");
         }
 
+        /// <inheritdoc/>
         private string GetSessionID()
         {
             if (!SessionIdGenerated)
@@ -56,6 +58,8 @@ namespace LILO_Packager.v2.Shared
             return SessionId;
         }
 
+
+        /// <inheritdoc[cref = "link-ref"][select = "filter-expr"] />
         public void ShowConsoleWindow(string header = "Debug Console")
         {
             if (!_consoleAllocated)
@@ -71,6 +75,7 @@ namespace LILO_Packager.v2.Shared
             Console.Title = header;
         }
 
+        /// <inheritdoc/>
         public void HideConsoleWindow()
         {
             if (_consoleAllocated)
@@ -82,12 +87,14 @@ namespace LILO_Packager.v2.Shared
             }
         }
 
+        /// <inheritdoc/>
         public void SetConsoleColors(ConsoleColor foregroundColor, ConsoleColor backgroundColor)
         {
             Console.ForegroundColor = foregroundColor;
             Console.BackgroundColor = backgroundColor;
         }
 
+        /// <inheritdoc/>
         public void WriteLineWithColor(string text, ConsoleColor color = ConsoleColor.Yellow)
         {
             Console.ForegroundColor = color;

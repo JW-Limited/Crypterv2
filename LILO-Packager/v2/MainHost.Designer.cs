@@ -103,6 +103,7 @@ partial class MainHost
         hider.Name = "hider";
         hider.Size = new Size(336, 1055);
         hider.TabIndex = 10;
+        hider.Paint += hider_Paint;
         // 
         // bntAccount
         // 
