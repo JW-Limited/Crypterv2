@@ -10,6 +10,7 @@ public class PluginManager
 {
     private HashSet<String> DirectoryPaths = new HashSet<string>();
     public HashSet<IPluginBase> CurrentPlugins = new HashSet<IPluginBase>();
+    public Dictionary<IPluginBase,string> pluginPaths = new Dictionary<IPluginBase,string>();
 
     public PluginManager(String DirectoryPath)
     {
@@ -42,6 +43,7 @@ public class PluginManager
                                             BindingFlags.CreateInstance, null, null, null) as IPluginBase;
 
                         CurrentPlugins.Add(b);
+                        pluginPaths.Add(b, file.FullName);
                     }
                 }
 

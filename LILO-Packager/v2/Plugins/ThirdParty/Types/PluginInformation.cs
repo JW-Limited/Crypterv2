@@ -12,12 +12,12 @@ namespace LILO_Packager.v2.Plugins.ThirdParty.Types
     public class PluginInformation : IPluginInformation
     {
         [XmlAttribute("Name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = "Unknown";
 
         [XmlAttribute("active")]
-        public bool Active { get; set; }
+        public bool Active { get; set; } = true;
 
-        public string PluginDll { get; set; }
+        public string PluginDll { get; set; } = "Unknown";
 
         public VersionInfo Version { get; set; }
 
@@ -25,9 +25,9 @@ namespace LILO_Packager.v2.Plugins.ThirdParty.Types
 
         public CompatibilityInfo Compatibility { get; set; }
 
-        public string Description { get; set; }
+        public string Description { get; set; } = "Unknown";
 
-        public string Website { get; set; }
+        public string Website { get; set; } = "Unknown";
 
         [XmlElement("License")]
         public LicenseInfo License { get; set; }
@@ -62,20 +62,20 @@ namespace LILO_Packager.v2.Plugins.ThirdParty.Types
     public class VersionInfo
     {
         [XmlAttribute("Number")]
-        public string Number { get; set; }
+        public string Number { get; set; } = "0.0.0.1";
 
         [XmlAttribute("State")]
-        public string State { get; set; }
+        public string State { get; set; } = "stable";
 
-        public string ReleaseDate { get; set; }
+        public string ReleaseDate { get; set; } = "Unknown";
 
-        public string Changes { get; set; }
+        public string Changes { get; set; } = "Unknown";
     }
 
     public class AuthorInfo
     {
-        public string Name { get; set; }
-        public string Company { get; set; }
+        public string Name { get; set; } = "Unknown";
+        public string Company { get; set; } = "Unknown";
     }
 
     public class CompatibilityInfo
@@ -86,13 +86,13 @@ namespace LILO_Packager.v2.Plugins.ThirdParty.Types
     public class WindowsInfo
     {
         [XmlAttribute("MinVersion")]
-        public string MinVersion { get; set; }
+        public string MinVersion { get; set; } = "10.0.0.0";
     }
 
     public class LicenseInfo
     {
         [XmlAttribute("isNull")]
-        public bool IsNull { get; set; }
+        public bool IsNull { get; set; } = true;
     }
 
     public class DependenciesInfo
@@ -106,7 +106,7 @@ namespace LILO_Packager.v2.Plugins.ThirdParty.Types
         public string Name { get; set; }
 
         public VersionInfo Version { get; set; }
-        public bool Library { get; set; }
+        public bool Library { get; set; } = true;
     }
 
 
@@ -118,9 +118,9 @@ namespace LILO_Packager.v2.Plugins.ThirdParty.Types
     public class CapabilityInfo
     {
         [XmlAttribute("Name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = "Unknown";
 
-        public string Description { get; set; }
+        public string Description { get; set; } = "Unknown";
 
         [XmlArray("Arguments")]
         [XmlArrayItem("Argument")]
@@ -130,9 +130,9 @@ namespace LILO_Packager.v2.Plugins.ThirdParty.Types
     public class ArgumentInfo
     {
         [XmlAttribute("Name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = "Unknown";
 
         [XmlAttribute("Type")]
-        public string Type { get; set; }
+        public string Type { get; set; } = "Unknown";
     }
 }

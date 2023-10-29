@@ -14,7 +14,14 @@ namespace Crypterv2.DevTool.Core.Plugins
         public int TotalItems { get; set; }
         public int CurrentItem { get; set; }
         public string Message { get; set; }
-        public decimal Percentage { get => (decimal)CurrentItem / TotalItems * 100; }
+        public decimal Percentage 
+        {
+            get 
+            {
+                try { return (decimal)CurrentItem / TotalItems * 100; }
+                catch { return 0; }
+            }
+        }
         public TimeSpan EstimatedTimeRemaining
         {
             get 

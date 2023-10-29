@@ -25,6 +25,7 @@ namespace Crypterv2.DevTool.Core.Plugins.Types
         }
 
         public string Author { get; set; }
+        public string IconFile { get; set; }
 
         [Required]
         public string DllFile { get; set; }

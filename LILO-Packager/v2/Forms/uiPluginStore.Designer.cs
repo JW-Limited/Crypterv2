@@ -53,10 +53,9 @@
             lblText.BackColor = Color.Transparent;
             lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblText.ForeColor = Color.White;
-            lblText.Location = new Point(24, 0);
-            lblText.Margin = new Padding(4, 0, 4, 0);
+            lblText.Location = new Point(19, 0);
             lblText.Name = "lblText";
-            lblText.Size = new Size(192, 88);
+            lblText.Size = new Size(154, 70);
             lblText.TabIndex = 1;
             lblText.Text = "Plugin Shop";
             lblText.TextAlign = ContentAlignment.MiddleCenter;
@@ -73,10 +72,9 @@
             sPanel2.Controls.Add(lblText);
             sPanel2.Controls.Add(bntCancel);
             sPanel2.ForeColor = Color.White;
-            sPanel2.Location = new Point(24, 32);
-            sPanel2.Margin = new Padding(4);
+            sPanel2.Location = new Point(19, 26);
             sPanel2.Name = "sPanel2";
-            sPanel2.Size = new Size(920, 88);
+            sPanel2.Size = new Size(736, 70);
             sPanel2.TabIndex = 13;
             // 
             // bntCancel
@@ -95,10 +93,10 @@
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
             bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntCancel.ForeColor = Color.White;
-            bntCancel.Location = new Point(776, 16);
+            bntCancel.Location = new Point(621, 13);
             bntCancel.Margin = new Padding(2);
             bntCancel.Name = "bntCancel";
-            bntCancel.Size = new Size(128, 58);
+            bntCancel.Size = new Size(102, 46);
             bntCancel.TabIndex = 14;
             bntCancel.Text = "Cancel";
             bntCancel.Click += bntCancel_Click;
@@ -115,10 +113,9 @@
             sPanel1.Controls.Add(plainPlugin);
             sPanel1.Controls.Add(encryptenPlugin);
             sPanel1.ForeColor = Color.White;
-            sPanel1.Location = new Point(24, 160);
-            sPanel1.Margin = new Padding(4);
+            sPanel1.Location = new Point(19, 128);
             sPanel1.Name = "sPanel1";
-            sPanel1.Size = new Size(920, 760);
+            sPanel1.Size = new Size(736, 608);
             sPanel1.TabIndex = 13;
             // 
             // progress
@@ -130,12 +127,12 @@
             progress.BorderThickness = 2;
             progress.FillColor = Color.Transparent;
             progress.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            progress.Location = new Point(32, 672);
+            progress.Location = new Point(26, 538);
             progress.Margin = new Padding(2);
             progress.Name = "progress";
             progress.ProgressColor = Color.White;
             progress.ProgressColor2 = Color.SlateGray;
-            progress.Size = new Size(856, 56);
+            progress.Size = new Size(685, 45);
             progress.TabIndex = 16;
             progress.Text = "guna2ProgressBar1";
             progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -153,7 +150,8 @@
             plainPlugin.DataContext = null;
             plainPlugin.DownloadButtonBackColor = Color.White;
             plainPlugin.DownloadButtonForeColor = Color.Black;
-            plainPlugin.Location = new Point(32, 184);
+            plainPlugin.Location = new Point(26, 147);
+            plainPlugin.Margin = new Padding(2, 2, 2, 2);
             plainPlugin.Name = "plainPlugin";
             plainPlugin.Plugin_State = v2.Controls.DynamicPluginListItem.PluginState.Available;
             plainPlugin.PluginDescription = "Can view plainbased files.";
@@ -163,7 +161,7 @@
             plainPlugin.PluginNameForeColor = Color.Black;
             plainPlugin.PluginVersion = "0.2.12-alpha";
             plainPlugin.PluginVersionForeColor = Color.DarkGray;
-            plainPlugin.Size = new Size(864, 120);
+            plainPlugin.Size = new Size(691, 96);
             plainPlugin.TabIndex = 0;
             plainPlugin.ClickedDownload += plainPlugin_ClickedDownload;
             // 
@@ -179,7 +177,8 @@
             encryptenPlugin.DataContext = null;
             encryptenPlugin.DownloadButtonBackColor = Color.White;
             encryptenPlugin.DownloadButtonForeColor = Color.Black;
-            encryptenPlugin.Location = new Point(32, 48);
+            encryptenPlugin.Location = new Point(26, 38);
+            encryptenPlugin.Margin = new Padding(2, 2, 2, 2);
             encryptenPlugin.Name = "encryptenPlugin";
             encryptenPlugin.Plugin_State = v2.Controls.DynamicPluginListItem.PluginState.Available;
             encryptenPlugin.PluginDescription = "Installs encryption Librarys.";
@@ -189,7 +188,7 @@
             encryptenPlugin.PluginNameForeColor = Color.Black;
             encryptenPlugin.PluginVersion = "0.1.11-alpha";
             encryptenPlugin.PluginVersionForeColor = Color.DarkGray;
-            encryptenPlugin.Size = new Size(864, 120);
+            encryptenPlugin.Size = new Size(691, 96);
             encryptenPlugin.TabIndex = 0;
             encryptenPlugin.ClickedDownload += encryptenPlugin_ClickedDownload;
             // 
@@ -198,10 +197,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Location = new Point(48, 144);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(38, 115);
             label1.Name = "label1";
-            label1.Size = new Size(192, 40);
+            label1.Size = new Size(154, 32);
             label1.TabIndex = 1;
             label1.Text = "   Availlabel";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -219,10 +217,9 @@
             pnlNetworkError.Controls.Add(lblExc);
             pnlNetworkError.Controls.Add(imgImage);
             pnlNetworkError.ForeColor = Color.White;
-            pnlNetworkError.Location = new Point(24, 144);
-            pnlNetworkError.Margin = new Padding(4);
+            pnlNetworkError.Location = new Point(19, 112);
             pnlNetworkError.Name = "pnlNetworkError";
-            pnlNetworkError.Size = new Size(920, 784);
+            pnlNetworkError.Size = new Size(736, 640);
             pnlNetworkError.TabIndex = 13;
             // 
             // lblMes
@@ -232,10 +229,9 @@
             lblMes.BackColor = Color.Transparent;
             lblMes.Font = new Font("Segoe UI", 12F);
             lblMes.ForeColor = Color.Black;
-            lblMes.Location = new Point(208, 512);
-            lblMes.Margin = new Padding(4, 0, 4, 0);
+            lblMes.Location = new Point(166, 417);
             lblMes.Name = "lblMes";
-            lblMes.Size = new Size(496, 56);
+            lblMes.Size = new Size(397, 45);
             lblMes.TabIndex = 28;
             lblMes.Text = "Try again with a different Network.";
             lblMes.TextAlign = ContentAlignment.MiddleCenter;
@@ -256,10 +252,10 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(292, 592);
+            guna2Button1.Location = new Point(234, 481);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(328, 40);
+            guna2Button1.Size = new Size(262, 32);
             guna2Button1.TabIndex = 29;
             guna2Button1.Text = "&Retry";
             guna2Button1.Click += guna2Button1_Click;
@@ -271,10 +267,9 @@
             lblExc.BackColor = Color.Transparent;
             lblExc.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblExc.ForeColor = Color.Black;
-            lblExc.Location = new Point(212, 448);
-            lblExc.Margin = new Padding(4, 0, 4, 0);
+            lblExc.Location = new Point(170, 365);
             lblExc.Name = "lblExc";
-            lblExc.Size = new Size(488, 56);
+            lblExc.Size = new Size(390, 45);
             lblExc.TabIndex = 15;
             lblExc.Text = "Huh, strange.";
             lblExc.TextAlign = ContentAlignment.MiddleCenter;
@@ -289,10 +284,10 @@
             imgImage.BorderRadius = 20;
             imgImage.Controls.Add(guna2Panel2);
             imgImage.FillColor = Color.Transparent;
-            imgImage.Location = new Point(296, 144);
+            imgImage.Location = new Point(237, 122);
             imgImage.Margin = new Padding(2);
             imgImage.Name = "imgImage";
-            imgImage.Size = new Size(320, 312);
+            imgImage.Size = new Size(256, 250);
             imgImage.TabIndex = 14;
             // 
             // guna2Panel2
@@ -304,23 +299,24 @@
             guna2Panel2.BorderColor = SystemColors.ActiveBorder;
             guna2Panel2.BorderRadius = 20;
             guna2Panel2.FillColor = Color.Transparent;
-            guna2Panel2.Location = new Point(168, 152);
+            guna2Panel2.Location = new Point(134, 122);
             guna2Panel2.Margin = new Padding(2);
             guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.Size = new Size(120, 136);
+            guna2Panel2.Size = new Size(96, 109);
             guna2Panel2.TabIndex = 11;
             // 
             // uiPluginStore
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(965, 948);
+            ClientSize = new Size(775, 766);
             Controls.Add(pnlNetworkError);
             Controls.Add(label1);
             Controls.Add(sPanel1);
             Controls.Add(sPanel2);
-            MinimumSize = new Size(987, 1004);
+            Margin = new Padding(2, 2, 2, 2);
+            MinimumSize = new Size(793, 813);
             Name = "uiPluginStore";
             Text = "uiPluginStore";
             Load += uiPluginStore_Load;

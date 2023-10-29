@@ -428,3 +428,5 @@ LILO-WebEngine/Core/Service/LocalErrorEventArgs.cs
 LILO-WebEngine/Core/Service/LocalErrorFatality.cs
 LILO-WebEngine/Core/Service/LocalServer.Filter.cs
 LILO-WebEngine/Core/Service/LocalServerEventArgs.cs
+LILO-Packager/v2/plugins/PluginCore/PluginManager.cs
+Crypterv2-DevTool/Core/Plugins/PackageManager.cs
