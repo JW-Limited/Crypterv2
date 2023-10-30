@@ -114,7 +114,6 @@ namespace Crypterv2_DevTool
                 this.button1.Text = "Retry";
                 this.button1.Visible = true;
                 this.Text = "DevTool - Error";
-                MessageBox.Show("Cant connect to Crypterv2.", "DevConnection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

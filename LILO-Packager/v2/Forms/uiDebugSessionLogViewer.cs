@@ -53,7 +53,7 @@ namespace LILO_Packager.v2.Forms
 
         private void bntOPen_Click(object sender, EventArgs e)
         {
-            EmailHelper.OpenDefaultEmailClient("Joey_West@thekingjw.onmicrosoft.com", "Report Session", "An Error Accoured", _session.FileName);
+            EmailHelper.SendEmail("kidjjoe@duck.com", "Report Session: "+_session.CreatedAt, $"Crypterv2.MainHost.ErrorNote: Namespace(BugBarrier)\n\n{_session.Content}", _session.FileName);
             this.Close();
         }
 

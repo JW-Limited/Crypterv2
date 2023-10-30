@@ -4,6 +4,7 @@ using LILO_Packager.v2.Plugins.ThirdParty.Core;
 using LILO_Packager.v2.Plugins.ThirdParty.Forms;
 using LILO_Packager.v2.Plugins.ThirdParty.Interfaces;
 using LILO_Packager.v2.Plugins.ThirdParty.Types;
+using static LILO_Packager.v2.MainHost;
 
 
 namespace LILO_Packager.v2.Plugins.ThirdParty;
@@ -94,7 +95,51 @@ public partial class PluginInstaller : Form
 
     private void guna2Button3_Click(object sender, EventArgs e)
     {
-        MessageBox.Show("LILO Plugin Installer for \"Crypterv2\".\n\nVersion: " + Program.Version, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //MessageBox.Show("LILO Plugin Installer for \"Crypterv2\".\n\nVersion: " + Program.Version, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        try
+        {
+            OpenInApp(new InstallerInfoDialog(), "Info", ChildrenUse.Auth);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+    }
+
+    private Form currentOpenedApp;
+
+    public void OpenInApp(Form children, string FormName = null, ChildrenUse usage = ChildrenUse.WebView)
+    {
+
+        if (children == currentOpenedApp) return;
+
+        if (currentOpenedApp is not null)
+        {
+            currentOpenedApp.Close();
+        }
+
+        pnlChild.Visible = true;
+        this.IsMdiContainer = true;
+        this.BackColor = Color.White;
+
+        children.MdiParent = this;
+        pnlChild.Controls.Add(children);
+        pnlChild.BringToFront();
+        children.Dock = DockStyle.Fill;
+
+        if (FormName is not null or "") children.Text = FormName;
+
+        children.Show();
+        children.BringToFront();
+
+        currentOpenedApp = children;
+
+        currentOpenedApp.FormClosing += (sender, e) =>
+        {
+            this.IsMdiContainer = false;
+            this.BackColor = Color.White;
+            pnlChild.Visible = false;
+        };
     }
 
     private void bntInstall_Click(object sender, EventArgs e)

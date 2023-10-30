@@ -248,7 +248,7 @@ partial class PluginInterface
         // 
         pnlMenu.BackColor = Color.White;
         pnlMenu.BackgroundImageLayout = ImageLayout.Stretch;
-        pnlMenu.BorderColor = Color.DimGray;
+        pnlMenu.BorderColor = Color.Gainsboro;
         pnlMenu.BorderRadius = 15;
         pnlMenu.BorderSize = 1;
         pnlMenu.Controls.Add(guna2Button4);
@@ -446,7 +446,7 @@ partial class PluginInterface
         pnlDesing.AutoScroll = true;
         pnlDesing.BackColor = Color.White;
         pnlDesing.BackgroundImageLayout = ImageLayout.Stretch;
-        pnlDesing.BorderColor = Color.DimGray;
+        pnlDesing.BorderColor = Color.Gainsboro;
         pnlDesing.BorderRadius = 15;
         pnlDesing.BorderSize = 1;
         pnlDesing.ForeColor = Color.White;

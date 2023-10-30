@@ -42,6 +42,12 @@ namespace LILO_Packager.v2.Controls
             lblPluginInfo.DataBindings.Clear();
         }
 
+        public string ButtonText
+        {
+            get => bntDownload.Text;
+            set => bntDownload.Text = value;
+        }
+
         [Category("Color Pallet")]
         public override Color BackColor
         {

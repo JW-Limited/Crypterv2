@@ -2,6 +2,7 @@
 using System.Drawing;
 using LILO_Packager.v2.Core.Updates;
 using TextPreviewLibrary.Core.Contracts;
+using System.Xml;
 
 namespace TextPreviewLibrary.Core.Formats
 {
@@ -85,6 +86,29 @@ namespace TextPreviewLibrary.Core.Formats
 
             File.WriteAllText(filePath, json);
         }
+
+        public static void GenerateXmlFile(CrypterTextFile crypterTextFile, string xmlFilePath)
+        {
+            using (var writer = XmlWriter.Create(xmlFilePath, new XmlWriterSettings { Indent = true }))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("CrypterTextFile");
+
+                writer.WriteElementString("FileName", crypterTextFile.FileName);
+                writer.WriteElementString("TextColor", crypterTextFile.TextColor.ToString());
+                writer.WriteElementString("TextFont", crypterTextFile.TextFont.ToString());
+                writer.WriteElementString("IsLocked", crypterTextFile.IsLocked.ToString());
+                writer.WriteElementString("Author", crypterTextFile.Author);
+                writer.WriteElementString("RtfContent", crypterTextFile.RtfContent);
+                writer.WriteElementString("CreatedAt", crypterTextFile.CreatedAt.ToString("yyyy-MM-ddTHH:mm:ss"));
+                writer.WriteElementString("LastModified", crypterTextFile.LastModified.ToString("yyyy-MM-ddTHH:mm:ss"));
+                writer.WriteElementString("WordCount", crypterTextFile.WordCount.ToString());
+
+                writer.WriteEndElement();
+                writer.WriteEndDocument();
+            }
+        }
+
 
         public static CrypterTextFile LoadInstanceFromFile(string filePath)
         {

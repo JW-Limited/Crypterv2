@@ -56,10 +56,9 @@
             sPanel2.Controls.Add(bntCancel);
             sPanel2.Dock = DockStyle.Bottom;
             sPanel2.ForeColor = Color.White;
-            sPanel2.Location = new Point(0, 580);
-            sPanel2.Margin = new Padding(4, 4, 4, 4);
+            sPanel2.Location = new Point(0, 471);
             sPanel2.Name = "sPanel2";
-            sPanel2.Size = new Size(686, 82);
+            sPanel2.Size = new Size(552, 66);
             sPanel2.TabIndex = 19;
             // 
             // bntOk
@@ -79,10 +78,10 @@
             bntOk.FocusedColor = Color.FromArgb(100, 170, 209);
             bntOk.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             bntOk.ForeColor = Color.Black;
-            bntOk.Location = new Point(555, 20);
+            bntOk.Location = new Point(447, 16);
             bntOk.Margin = new Padding(2);
             bntOk.Name = "bntOk";
-            bntOk.Size = new Size(116, 48);
+            bntOk.Size = new Size(93, 38);
             bntOk.TabIndex = 15;
             bntOk.Text = "Cancel";
             bntOk.Click += bntOk_Click;
@@ -103,10 +102,10 @@
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
             bntCancel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             bntCancel.ForeColor = Color.White;
-            bntCancel.Location = new Point(355, 20);
+            bntCancel.Location = new Point(287, 16);
             bntCancel.Margin = new Padding(2);
             bntCancel.Name = "bntCancel";
-            bntCancel.Size = new Size(180, 48);
+            bntCancel.Size = new Size(144, 38);
             bntCancel.TabIndex = 15;
             bntCancel.Text = "Submit";
             bntCancel.Click += bntCancel_Click;
@@ -124,10 +123,9 @@
             cmbState.ItemHeight = 30;
             cmbState.Items.AddRange(new object[] { "stable", "beta", "alpha", "dev" });
             cmbState.ItemsAppearance.ForeColor = Color.Gray;
-            cmbState.Location = new Point(530, 128);
-            cmbState.Margin = new Padding(4, 4, 4, 4);
+            cmbState.Location = new Point(424, 96);
             cmbState.Name = "cmbState";
-            cmbState.Size = new Size(124, 36);
+            cmbState.Size = new Size(100, 36);
             cmbState.TabIndex = 23;
             // 
             // txtName
@@ -140,15 +138,15 @@
             txtName.BorderSize = 1;
             txtName.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             txtName.ForeColor = Color.Black;
-            txtName.Location = new Point(200, 50);
-            txtName.Margin = new Padding(5, 5, 5, 5);
+            txtName.Location = new Point(160, 40);
+            txtName.Margin = new Padding(4, 4, 4, 4);
             txtName.Multiline = false;
             txtName.Name = "txtName";
-            txtName.Padding = new Padding(12, 9, 12, 9);
+            txtName.Padding = new Padding(10, 7, 10, 7);
             txtName.PasswordChar = false;
             txtName.PlaceholderColor = Color.DarkGray;
             txtName.PlaceholderText = "";
-            txtName.Size = new Size(458, 49);
+            txtName.Size = new Size(366, 38);
             txtName.TabIndex = 16;
             txtName.Texts = "";
             txtName.UnderlinedStyle = false;
@@ -156,10 +154,10 @@
             // label3
             // 
             label3.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label3.Location = new Point(30, 50);
+            label3.Location = new Point(24, 40);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(170, 50);
+            label3.Size = new Size(136, 40);
             label3.TabIndex = 20;
             label3.Text = "Name:";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -167,10 +165,10 @@
             // label1
             // 
             label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label1.Location = new Point(30, 120);
+            label1.Location = new Point(24, 96);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(170, 50);
+            label1.Size = new Size(136, 40);
             label1.TabIndex = 20;
             label1.Text = "Version:";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -185,15 +183,15 @@
             txtVersion.BorderSize = 1;
             txtVersion.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             txtVersion.ForeColor = Color.Black;
-            txtVersion.Location = new Point(200, 120);
-            txtVersion.Margin = new Padding(5, 5, 5, 5);
+            txtVersion.Location = new Point(160, 96);
+            txtVersion.Margin = new Padding(4, 4, 4, 4);
             txtVersion.Multiline = false;
             txtVersion.Name = "txtVersion";
-            txtVersion.Padding = new Padding(12, 9, 12, 9);
+            txtVersion.Padding = new Padding(10, 7, 10, 7);
             txtVersion.PasswordChar = false;
             txtVersion.PlaceholderColor = Color.DarkGray;
             txtVersion.PlaceholderText = "";
-            txtVersion.Size = new Size(320, 49);
+            txtVersion.Size = new Size(256, 38);
             txtVersion.TabIndex = 16;
             txtVersion.Texts = "";
             txtVersion.UnderlinedStyle = false;
@@ -201,10 +199,10 @@
             // label2
             // 
             label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label2.Location = new Point(30, 190);
+            label2.Location = new Point(24, 152);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(170, 50);
+            label2.Size = new Size(136, 40);
             label2.TabIndex = 20;
             label2.Text = "Release Notes:";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -214,10 +212,9 @@
             txtReadMe.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtReadMe.BorderStyle = BorderStyle.None;
             txtReadMe.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            txtReadMe.Location = new Point(20, 20);
-            txtReadMe.Margin = new Padding(4, 4, 4, 4);
+            txtReadMe.Location = new Point(16, 16);
             txtReadMe.Name = "txtReadMe";
-            txtReadMe.Size = new Size(420, 230);
+            txtReadMe.Size = new Size(336, 184);
             txtReadMe.TabIndex = 21;
             txtReadMe.Text = "";
             // 
@@ -230,19 +227,19 @@
             pnlLoad.BorderThickness = 1;
             pnlLoad.Controls.Add(txtReadMe);
             pnlLoad.FillColor = Color.White;
-            pnlLoad.Location = new Point(200, 190);
+            pnlLoad.Location = new Point(160, 152);
             pnlLoad.Margin = new Padding(2);
             pnlLoad.Name = "pnlLoad";
-            pnlLoad.Size = new Size(460, 270);
+            pnlLoad.Size = new Size(368, 216);
             pnlLoad.TabIndex = 22;
             // 
             // label4
             // 
             label4.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label4.Location = new Point(30, 490);
+            label4.Location = new Point(24, 392);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(170, 50);
+            label4.Size = new Size(136, 40);
             label4.TabIndex = 20;
             label4.Text = "Features:";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -264,20 +261,20 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.FromArgb(94, 148, 255);
-            guna2Button1.Location = new Point(200, 491);
+            guna2Button1.Location = new Point(160, 393);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(460, 48);
+            guna2Button1.Size = new Size(368, 38);
             guna2Button1.TabIndex = 15;
             guna2Button1.Text = "Customize";
             guna2Button1.Click += guna2Button1_Click;
             // 
             // uiDialogInfos
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(686, 662);
+            ClientSize = new Size(552, 537);
             ControlBox = false;
             Controls.Add(pnlLoad);
             Controls.Add(guna2Button1);
@@ -290,12 +287,11 @@
             Controls.Add(cmbState);
             Controls.Add(sPanel2);
             HelpButton = true;
-            Margin = new Padding(4, 4, 4, 4);
             MaximizeBox = false;
-            MaximumSize = new Size(708, 718);
+            MaximumSize = new Size(570, 584);
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
-            MinimumSize = new Size(708, 718);
+            MinimumSize = new Size(570, 584);
             Name = "uiDialogInfos";
             Text = "Plugin Information";
             Load += uiDialogInfos_Load;

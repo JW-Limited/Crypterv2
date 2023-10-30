@@ -4,5 +4,6 @@ public enum ProductType
 {
     TorBrowser,
     Uploader,
+    Crypterv2,
     Encrypter
 }

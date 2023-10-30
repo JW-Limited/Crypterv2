@@ -101,11 +101,13 @@
     <PackageReference Include="CoreAudio" Version="1.37.0" />
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.3.5" />
     <PackageReference Include="HTAlt.WinForms" Version="0.1.7.7" />
+    <PackageReference Include="MailKit" Version="4.2.0" />
     <PackageReference Include="Markdig" Version="0.33.0" />
     <PackageReference Include="metromodernui" Version="1.4.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0-preview.6.23329.7" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     <PackageReference Include="microsoft.web.webview2" Version="1.0.2106-prerelease" />
+    <PackageReference Include="MimeKit" Version="4.2.0" />
     <PackageReference Include="modern.forms" Version="0.3.0" />
     <PackageReference Include="ModernWpf.MessageBox.Mica" Version="0.5.5" />
     <PackageReference Include="Octokit" Version="8.0.1" />

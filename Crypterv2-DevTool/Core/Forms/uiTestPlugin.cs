@@ -57,6 +57,7 @@ namespace Crypterv2_DevTool.Core.Forms
 
         private void uiTestPlugin_Load(object sender, EventArgs e)
         {
+
             Task.Run(() =>
             {
                 lblDirectory.Text = "Select Directory";
@@ -83,12 +84,12 @@ namespace Crypterv2_DevTool.Core.Forms
                                 stringBuilder.Append($"Plugin : {item.Name}\n" +
                                                      $"Description : {item.Description}\n" +
                                                      $"Version : {item.Version}");
-                                cmbPlugins.Items.Add(item.Name);
-                                cmbPlugins.SelectedItem = item.Name;
+                                cmbState.Items.Add(item.Name);
+                                cmbState.SelectedItem = item.Name;
 
-                                lblProductName.Text = item.Name;
-                                lblPluginInfo.Text = item.Description;
-                                lblVersion.Text = item.Version;
+                                pluginUi.PluginName = item.Name;
+                                pluginUi.PluginDescription = item.Description;
+                                pluginUi.PluginVersion = item.Version;
                                 this.SelectedPlugin = item;
                             };
                         }
@@ -118,12 +119,16 @@ namespace Crypterv2_DevTool.Core.Forms
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
+                pnlLoading.Visible = true;
+                lblMessageText.Text = "Searching for Plugins...";
+
                 Task.Run(() =>
                 {
+                   
                     plugins.Clear();
                     lblDirectory.Text = "Searching...";
-                    cmbPlugins.Items.Clear();
-                    cmbPlugins.Text = string.Empty;
+                    cmbState.Items.Clear();
+                    cmbState.Text = string.Empty;
                     manager = new PluginManager(ofd.SelectedPath);
 
                     try
@@ -134,12 +139,12 @@ namespace Crypterv2_DevTool.Core.Forms
                             {
                                 PluginEntry ent = new PluginEntry(ele);
                                 plugins.Add(ent);
-                                cmbPlugins.Items.Add(ent.Name);
-                                cmbPlugins.SelectedItem = ent.Name;
+                                cmbState.Items.Add(ent.Name);
+                                cmbState.SelectedItem = ent.Name;
 
-                                lblProductName.Text = ent.Name;
-                                lblPluginInfo.Text = ent.Description;
-                                lblVersion.Text = ent.Version;
+                                pluginUi.PluginName = ent.Name;
+                                pluginUi.PluginDescription = ent.Description;
+                                pluginUi.PluginVersion = ent.Version;
                                 this.SelectedPlugin = ent;
                             }
 
@@ -151,13 +156,23 @@ namespace Crypterv2_DevTool.Core.Forms
                         }
                         else
                         {
-                            MessageBox.Show("We didnt found any Plugins", "Crypterv2-DevTool");
-                            lblDirectory.Text = "Select directory.";
+                            this.Invoke(() =>
+                            {
+                                pnlLoading.Visible = false;
+                                lblMessageText.Text = "Creating youre Plugin...";
+                                MessageBox.Show("We didnt found any Plugins", "Crypterv2-DevTool");
+                                lblDirectory.Text = "Select directory.";
+                            });
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        this.Invoke(() =>
+                        {
+                            MessageBox.Show(ex.Message);
+                            pnlLoading.Visible = false;
+                            lblMessageText.Text = "Creating youre Plugin...";
+                        });
                     }
                 });
 
@@ -168,15 +183,7 @@ namespace Crypterv2_DevTool.Core.Forms
         {
             try
             {
-                PluginEntry neededPlugin = null;
-
-                foreach (var plug in plugins)
-                {
-                    if (plug.Name == cmbPlugins.SelectedItem)
-                    {
-                        neededPlugin = plug;
-                    }
-                }
+                PluginEntry neededPlugin = SelectedPlugin;
 
                 if (neededPlugin is not null)
                 {
@@ -191,6 +198,9 @@ namespace Crypterv2_DevTool.Core.Forms
 
         private async void Pack_Click(object sender, EventArgs e)
         {
+
+            pnlLoading.Visible = true;
+
             _ = Task.Run(async () =>
             {
                 try
@@ -249,102 +259,50 @@ namespace Crypterv2_DevTool.Core.Forms
 
                             if (response.IsSuccess)
                             {
-                                OkDialog.Show(response.Message, response.Status);
-                                this.Invoke(() => { this.progress.Visible = false; });
+                                this.Invoke(() => {
+                                    pnlLoading.Visible = false;
+                                    OkDialog.Show(response.Message, response.Status);
+                                    this.progress.Visible = false; });
                             }
 
                             else if (response.IsError)
                             {
-                                MessageBox.Show("The prozess didnt finished as expected:\n\n" + response.Message + " - Prozess ended with:" + response.EndingCode.ToString("X"), response.Status, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                this.Invoke(() => { this.progress.Visible = false; });
+                                this.Invoke(() => {
+                                    pnlLoading.Visible = false;
+                                    this.progress.Visible = false;
+                                    MessageBox.Show("The prozess didnt finished as expected:\n\n" + response.Message + " - Prozess ended with:" + response.EndingCode.ToString("X"), response.Status, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                });
                             }
                         }
                         catch (Exception ex)
                         {
-                            this.Invoke(() => { this.progress.Visible = false; });
-                            MessageBox.Show("Error while Idle:\n\n" + ex.Message, "Error");
+                            this.Invoke(() => { this.progress.Visible = false;
+                                pnlLoading.Visible = false;
+                                MessageBox.Show("Error while Idle:\n\n" + ex.Message, "Error");
+                            });
                         }
-
-
                     }
 
                     else
                     {
                         this.Invoke(() =>
                         {
-                            this.Invoke(() => { this.progress.Visible = false; });
-                            MessageBox.Show("The plugin entry was null. Please reload the plugin.", "PluginError", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        });
+                            this.Invoke(() => { this.progress.Visible = false;
+
+                                pnlLoading.Visible = false;
+                                MessageBox.Show("The plugin entry was null. Please reload the plugin.", "PluginError", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            });});
                     }
                 }
                 catch (Exception ex)
                 {
-                    this.Invoke(() => { this.progress.Visible = false; });
-                    MessageBox.Show("It seems like the Plugin has a problem: \n\n" + ex.Message, "PluginError", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Invoke(() => { 
+                        this.progress.Visible = false;
+                        pnlLoading.Visible = false;
+                        MessageBox.Show("It seems like the Plugin has a problem: \n\n" + ex.Message, "PluginError", MessageBoxButtons.OK, MessageBoxIcon.Error); });
+                    
                 }
             });
-        }
-
-
-
-        private Form currentOpenedApp;
-
-        public void OpenInApp(Form children, string FormName = null, ChildrenUse usage = ChildrenUse.WebView)
-        {
-
-            if (children == currentOpenedApp) return;
-
-            if (currentOpenedApp is not null)
-            {
-                currentOpenedApp.Close();
-            }
-
-
-            this.IsMdiContainer = true;
-            this.BackColor = Color.White;
-
-            children.MdiParent = this;
-            pnlChild.Controls.Add(children);
-            pnlChild.Dock = DockStyle.Fill;
-            pnlChild.BringToFront();
-
-            if (usage == ChildrenUse.Auth)
-            {
-                children.MaximizeBox = false;
-                children.MinimizeBox = false;
-                children.ControlBox = false;
-                children.FormBorderStyle = FormBorderStyle.None;
-            }
-            else if (usage == ChildrenUse.WebView)
-            {
-                children.FormBorderStyle = FormBorderStyle.Sizable;
-                children.MaximizeBox = false;
-                children.MinimizeBox = false;
-            }
-            else if (usage == ChildrenUse.NormalForm)
-            {
-                children.FormBorderStyle = FormBorderStyle.Sizable;
-                children.MaximizeBox = false;
-                children.MinimizeBox = false;
-                this.Size = children.Size;
-            }
-
-            children.Dock = DockStyle.Fill;
-
-            if (FormName is not null or "") children.Text = FormName;
-
-
-            children.Show();
-
-            currentOpenedApp = children;
-
-            currentOpenedApp.FormClosing += (sender, e) =>
-            {
-                this.IsMdiContainer = false;
-                this.BackColor = Color.White;
-                pnlChild.Dock = DockStyle.None;
-                pnlChild.Size = new Size(1, 1);
-            };
         }
 
         private void cmbPlugins_SelectedIndexChanged(object sender, EventArgs e)
@@ -353,7 +311,7 @@ namespace Crypterv2_DevTool.Core.Forms
 
             foreach (var plug in plugins)
             {
-                if (plug.Name == cmbPlugins.SelectedItem)
+                if (plug.Name == cmbState.SelectedItem)
                 {
                     neededPlugin = plug;
                 }
@@ -361,9 +319,9 @@ namespace Crypterv2_DevTool.Core.Forms
 
             if (neededPlugin != null)
             {
-                lblProductName.Text = neededPlugin.Name;
-                lblPluginInfo.Text = neededPlugin.Description;
-                lblVersion.Text = neededPlugin.Version;
+                pluginUi.PluginName = neededPlugin.Name;
+                pluginUi.PluginDescription = neededPlugin.Description;
+                pluginUi.PluginVersion = neededPlugin.Version;
 
                 this.SelectedPlugin = neededPlugin;
             }
@@ -382,6 +340,9 @@ namespace Crypterv2_DevTool.Core.Forms
         private void guna2Button6_Click(object sender, EventArgs e)
         {
             SelectedPlugin = new uiDialogInfos(SelectedPlugin).GetInfos();
+            pluginUi.PluginName = SelectedPlugin.Name;
+            pluginUi.PluginVersion = SelectedPlugin.Version;
+            
         }
 
         private void guna2Button5_Click(object sender, EventArgs e)
@@ -395,13 +356,8 @@ namespace Crypterv2_DevTool.Core.Forms
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 PluginIcon = ofd.FileName;
-                pnlIcon.BackgroundImage = Bitmap.FromFile(ofd.FileName);
+                pluginUi.PluginIcon = Bitmap.FromFile(ofd.FileName);
             }
-        }
-
-        private void c(object sender, EventArgs e)
-        {
-
         }
 
         private void dynamicToggleButton2_Clicked(object sender, EventArgs e)

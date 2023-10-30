@@ -33,9 +33,11 @@
             pnlMultimedia.Checked = false;
             pnlUI.Checked = false;
             pnlLLSHandle.Checked = false;
-            pnlBroadCasting.Checked = false;
+            pnlBroadCasting.Checked = true;
             pnlFileHandle.Checked = false;
-            pnlOSRes.Checked = false;
+            pnlOSRes.Checked = true;
+            pnlOSRes.EnabledState = true;
+            pnlBroadCasting.EnabledState = true;
 
 
             foreach (var item in CapabilityInfo)

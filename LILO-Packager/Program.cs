@@ -5,8 +5,6 @@ using LILO_Packager.v2.Core.Boot;
 using LILO_Packager.v2.Shared.Types;
 using LILO_Packager.v2.Core.BugBarrier;
 using LILO_Packager.v2.Core.Interfaces;
-using LILO_Packager.v2.Core.Visuals;
-using LILO_Packager.v2.Forms;
 
 namespace LILO_Packager
 {
@@ -14,7 +12,7 @@ namespace LILO_Packager
     {
         public static NotifyIcon noty;
         public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
-        public static string Version = "v0.10.1-dev_edition";
+        public static string Version = "v0.10.2-dev_edition";
         private static IBootManager _bootManager;
 
         private static void InitializeApplication()
@@ -44,11 +42,6 @@ namespace LILO_Packager
         public static void Main(string[] args)
         {
             InitializeApplication();
-
-            if (config.Default.debugMode)
-            {
-                //ConsoleManager.Instance().ShowConsoleWindow();
-            }
 
             if (config.Default.aggrementAccepted)
             {

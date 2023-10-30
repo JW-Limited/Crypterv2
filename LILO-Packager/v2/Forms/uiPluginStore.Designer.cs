@@ -217,9 +217,9 @@
             pnlNetworkError.Controls.Add(lblExc);
             pnlNetworkError.Controls.Add(imgImage);
             pnlNetworkError.ForeColor = Color.White;
-            pnlNetworkError.Location = new Point(19, 112);
+            pnlNetworkError.Location = new Point(19, 104);
             pnlNetworkError.Name = "pnlNetworkError";
-            pnlNetworkError.Size = new Size(736, 640);
+            pnlNetworkError.Size = new Size(736, 648);
             pnlNetworkError.TabIndex = 13;
             // 
             // lblMes
@@ -229,7 +229,7 @@
             lblMes.BackColor = Color.Transparent;
             lblMes.Font = new Font("Segoe UI", 12F);
             lblMes.ForeColor = Color.Black;
-            lblMes.Location = new Point(166, 417);
+            lblMes.Location = new Point(166, 421);
             lblMes.Name = "lblMes";
             lblMes.Size = new Size(397, 45);
             lblMes.TabIndex = 28;
@@ -252,7 +252,7 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(234, 481);
+            guna2Button1.Location = new Point(234, 485);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.Size = new Size(262, 32);
@@ -267,7 +267,7 @@
             lblExc.BackColor = Color.Transparent;
             lblExc.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblExc.ForeColor = Color.Black;
-            lblExc.Location = new Point(170, 365);
+            lblExc.Location = new Point(170, 369);
             lblExc.Name = "lblExc";
             lblExc.Size = new Size(390, 45);
             lblExc.TabIndex = 15;
@@ -284,7 +284,7 @@
             imgImage.BorderRadius = 20;
             imgImage.Controls.Add(guna2Panel2);
             imgImage.FillColor = Color.Transparent;
-            imgImage.Location = new Point(237, 122);
+            imgImage.Location = new Point(237, 126);
             imgImage.Margin = new Padding(2);
             imgImage.Name = "imgImage";
             imgImage.Size = new Size(256, 250);
@@ -315,7 +315,7 @@
             Controls.Add(label1);
             Controls.Add(sPanel1);
             Controls.Add(sPanel2);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             MinimumSize = new Size(793, 813);
             Name = "uiPluginStore";
             Text = "uiPluginStore";
