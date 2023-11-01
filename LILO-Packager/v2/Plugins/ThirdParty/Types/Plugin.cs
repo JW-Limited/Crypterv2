@@ -92,7 +92,7 @@ namespace LILO_Packager.v2.Plugins.ThirdParty.Types
             }
         }
 
-        private static string GetTempDirectoryName(string pluginFile)
+        public static string GetTempDirectoryName(string pluginFile)
         {
             var hashBytes = SHA256.HashData(File.ReadAllBytes(pluginFile));
             var hashString = BitConverter.ToString(hashBytes).Replace("-", "").Substring(0, 16);

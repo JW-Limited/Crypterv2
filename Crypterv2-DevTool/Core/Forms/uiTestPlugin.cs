@@ -12,7 +12,7 @@ namespace Crypterv2_DevTool.Core.Forms
 {
     public partial class uiTestPlugin : Form
     {
-        private PluginManager manager = null;
+        public PluginManager manager = null;
         public LILO_Packager.v2.Core.History.DatabaseHandling dataHandler = new LILO_Packager.v2.Core.History.DatabaseHandling();
         public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
         private PackageManager PackageManager { get; set; }
@@ -20,7 +20,7 @@ namespace Crypterv2_DevTool.Core.Forms
         public static string ChannelLog;
         public static string PluginDevState;
         public static List<PluginFeature> PluginFeatures = new List<PluginFeature>();
-        public static List<LILO_Packager.v2.Plugins.ThirdParty.Types.CapabilityInfo> Features { get; set; }
+        public static List<CapabilityInfo> Features { get; set; }
         public ObservableCollection<string> Dependencies = new ObservableCollection<string>();
         public string PluginIcon { get; set; }
         public PluginEntry SelectedPlugin { get; set; }
@@ -64,6 +64,12 @@ namespace Crypterv2_DevTool.Core.Forms
 
                 if (PluginTestConfig.Default.recentDirectory is not "null")
                 {
+                    this.Invoke(() =>
+                    {
+                        lblMessageText.Text = "Searching for Plugins...";
+                        pnlLoading.Visible = true;
+                    });
+
                     manager = new PluginManager(PluginTestConfig.Default.recentDirectory);
                     lblDirectory.Text = "/" + GetShortDirectoryName(PluginTestConfig.Default.recentDirectory);
 
@@ -92,16 +98,42 @@ namespace Crypterv2_DevTool.Core.Forms
                                 pluginUi.PluginVersion = item.Version;
                                 this.SelectedPlugin = item;
                             };
+
+                            this.Invoke(() =>
+                            {
+                                lblMessageText.Text = "Creating youre Plugin...";
+                                pnlLoading.Visible = false;
+                            });
                         }
                         else
                         {
                             MessageBox.Show("We didnt found any Plugins", "Crypterv2-DevTool");
+
+                            this.Invoke(() =>
+                            {
+                                lblMessageText.Text = "Creating youre Plugin...";
+                                pnlLoading.Visible = false;
+                            });
                         }
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+
+                        this.Invoke(() =>
+                        {
+                            lblMessageText.Text = "Creating youre Plugin...";
+                            pnlLoading.Visible = false;
+                        });
                     }
+                }
+                else
+                {
+                    this.Invoke(() =>
+                    {
+                        lblMessageText.Text = "Creating youre Plugin...";
+                        pnlLoading.Visible = false;
+                    });
                 }
             });
         }
@@ -153,6 +185,7 @@ namespace Crypterv2_DevTool.Core.Forms
 
                             lblDirectory.Text = "/" + GetShortDirectoryName(ofd.SelectedPath);
 
+                            pnlLoading.Visible = false;
                         }
                         else
                         {
@@ -340,6 +373,19 @@ namespace Crypterv2_DevTool.Core.Forms
         private void guna2Button6_Click(object sender, EventArgs e)
         {
             SelectedPlugin = new uiDialogInfos(SelectedPlugin).GetInfos();
+
+            var exConfigManager = new PluginConfigManager(SelectedPlugin.Name, new Crypterv2.DevTool.Core.Plugins.Types.PluginConfig()
+            {
+                Name = SelectedPlugin.Name,
+                Description = SelectedPlugin.Description,
+                Version = SelectedPlugin.Version,
+                State = PluginDevState,
+                Changes = ChannelLog,
+                PluginIcon = PluginIcon
+            });
+
+            exConfigManager.SavePluginConfig();
+
             pluginUi.PluginName = SelectedPlugin.Name;
             pluginUi.PluginVersion = SelectedPlugin.Version;
             

@@ -1,25 +1,57 @@
 ﻿using Crypterv2.DevTool.Core.Plugins.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Crypterv2_DevTool.Core.Forms;
 using System.Xml;
 
 namespace Crypterv2.DevTool.Core.Plugins
 {
     public class PluginConfigManager
     {
-        private readonly string xmlFilePath;
+        public readonly string _pluginConfigsPath = "C:\\ProgramData\\JW Limited\\Cryptex\\Devtool\\pluginConfigs";
+        public string _pluginConfigPath;
+        private readonly string _pluginName;
+        private readonly Dictionary<string, PluginConfig> _plugins;
+        public PluginConfig pluginConfig;
 
-        public PluginConfigManager(string xmlFilePath)
+        public PluginConfigManager(string PluginName, PluginConfig pluginConfig)
         {
-            this.xmlFilePath = xmlFilePath;
+            this._pluginName = PluginName;
+            this.pluginConfig = pluginConfig;
+
+            uiTestPlugin.Instance().manager.pluginPaths.TryGetValue(uiTestPlugin.Instance().SelectedPlugin.PluginBase, out string dllFile);
+
+            _pluginConfigPath = _pluginConfigsPath + "\\" + LILO_Packager.v2.Plugins.ThirdParty.Types.Plugin.GetTempDirectoryName(dllFile);
+
+            CreateDirectoryRecursively(_pluginConfigPath);
         }
 
-        public void SavePluginConfig(PluginConfig pluginConfig)
+        public static void CreateDirectoryRecursively(string path)
         {
-            using (var writer = XmlWriter.Create(this.xmlFilePath, new XmlWriterSettings { Indent = true }))
+            string[] pathComponents = path.Split(Path.DirectorySeparatorChar);
+
+            string currentDirectory = "";
+            foreach (string pathComponent in pathComponents)
+            {
+                currentDirectory = Path.Combine(currentDirectory, pathComponent);
+
+                if (!Directory.Exists(currentDirectory))
+                {
+                    Directory.CreateDirectory(currentDirectory);
+                }
+            }
+        }
+
+        public bool CheckForExistingConfigs()
+        {
+            if (File.Exists(_pluginConfigPath + $"\\{_pluginName}.excfg")) return true;
+            else
+            {
+                return false;
+            }
+        }
+
+        public void SavePluginConfig()
+        {
+            using (var writer = XmlWriter.Create(_pluginConfigPath + $"\\{_pluginName}.excfg" , new XmlWriterSettings { Indent = true }))
             {
                 writer.WriteStartDocument();
                 writer.WriteStartElement("PluginConfig");
@@ -34,15 +66,20 @@ namespace Crypterv2.DevTool.Core.Plugins
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
             }
+
+            if (File.Exists(pluginConfig.PluginIcon))
+            {
+                File.Copy(pluginConfig.PluginIcon, _pluginConfigPath + "\\backup_EX_ICON_" + new FileInfo(pluginConfig.PluginIcon).Name);
+            }
         }
 
         public PluginConfig ReadPluginConfig()
         {
             PluginConfig pluginConfig = null;
 
-            if (File.Exists(this.xmlFilePath))
+            if (File.Exists(this._pluginName))
             {
-                using (var reader = XmlReader.Create(this.xmlFilePath))
+                using (var reader = XmlReader.Create(this._pluginName))
                 {
                     while (reader.Read())
                     {
