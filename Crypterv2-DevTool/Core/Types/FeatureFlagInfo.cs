@@ -1,6 +1,6 @@
 ﻿using LILO_Packager.v2.Core;
 
-namespace Crypterv2_DevTool.Core
+namespace Crypterv2.DevTool.Core.Types
 {
     [Serializable]
     public class FeatureFlagInfo

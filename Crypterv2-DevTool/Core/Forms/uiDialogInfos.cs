@@ -1,4 +1,5 @@
-﻿using Crypterv2_DevTool.Core.Forms;
+﻿using Crypterv2.DevTool.Core.Plugins.Config;
+using Crypterv2_DevTool.Core.Forms;
 using LILO_Packager.v2.Plugins.Model;
 
 namespace Crypterv2.DevTool.Core.Forms
@@ -22,6 +23,24 @@ namespace Crypterv2.DevTool.Core.Forms
             base.StartPosition = FormStartPosition.CenterParent;
             base.ShowDialog();
 
+            if(!Canceled)
+            {
+                var exConfigManager = new PluginConfigManager(uiPluginKit.Instance().SelectedPlugin.Name, new Crypterv2.DevTool.Core.Plugins.Types.PluginConfig()
+                {
+                    Name = uiPluginKit.Instance().SelectedPlugin.Name,
+                    Description = uiPluginKit.Instance().SelectedPlugin.Description,
+                    Version = uiPluginKit.Instance().SelectedPlugin.Version,
+                    State = uiPluginKit.PluginDevState,
+                    Changes = uiPluginKit.ChannelLog,
+                    PluginIcon = uiPluginKit.Instance().PluginIcon
+                });
+
+                exConfigManager.SavePluginConfig();
+
+                uiPluginKit.Instance().pluginUi.PluginName = uiPluginKit.Instance().SelectedPlugin.Name;
+                uiPluginKit.Instance().pluginUi.PluginVersion = uiPluginKit.Instance().SelectedPlugin.Version;
+            }
+
             return _plugin;
         }
 
@@ -29,8 +48,8 @@ namespace Crypterv2.DevTool.Core.Forms
         {
             txtName.Texts = _plugin.Name;
             txtVersion.Texts = _plugin.Version;
-            txtReadMe.Text = uiTestPlugin.ChannelLog;
-            cmbState.Text = uiTestPlugin.PluginDevState;
+            txtReadMe.Text = uiPluginKit.ChannelLog;
+            cmbState.Text = uiPluginKit.PluginDevState;
         }
 
         private void bntOk_Click(object sender, EventArgs e)
@@ -41,8 +60,8 @@ namespace Crypterv2.DevTool.Core.Forms
 
         private void bntCancel_Click(object sender, EventArgs e)
         {
-            uiTestPlugin.ChannelLog = txtReadMe.Text;
-            uiTestPlugin.PluginDevState = cmbState.Text;
+            uiPluginKit.ChannelLog = txtReadMe.Text;
+            uiPluginKit.PluginDevState = cmbState.Text;
             _plugin.Version = txtVersion.Texts;
             _plugin.Name = txtName.Texts;
 
@@ -51,7 +70,7 @@ namespace Crypterv2.DevTool.Core.Forms
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            uiTestPlugin.PluginFeatures = new uiDialogFeatures(uiTestPlugin.PluginFeatures).GetFeatures();
+            uiPluginKit.PluginFeatures = new uiDialogFeatures(uiPluginKit.PluginFeatures).GetFeatures();
         }
     }
 }

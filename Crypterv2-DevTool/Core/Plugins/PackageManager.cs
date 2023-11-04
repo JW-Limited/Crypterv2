@@ -1,6 +1,5 @@
 ﻿using Crypterv2.DevTool.Core.Exceptions;
 using Crypterv2.DevTool.Core.Plugins.Types;
-using Microsoft.VisualBasic.ApplicationServices;
 using System.IO.Compression;
 using System.Reflection;
 
@@ -62,11 +61,11 @@ namespace Crypterv2.DevTool.Core.Plugins
 
                         _package.info.Dependencies.Add(new LILO_Packager.v2.Plugins.ThirdParty.Types.DependencyInfo()
                         {
-                            Name = assymblyInfo.Name ?? new FileInfo(item).Name,
+                            Name = assymblyInfo.LoadedAssymblyName.Name ?? new FileInfo(item).Name,
                             Library = true,
                             Version = new LILO_Packager.v2.Plugins.ThirdParty.Types.VersionInfo()
                             {
-                                Number = assymblyInfo?.Version?.ToString() ?? "1"
+                                Number = assymblyInfo.LoadedAssymblyName?.Version?.ToString() ?? "1"
                             }
                         });
                     }
@@ -133,7 +132,7 @@ namespace Crypterv2.DevTool.Core.Plugins
 
                 Directory.Delete(tempDirectory, true);
 
-                return PackageManagerResponse.Success();
+                return PackageManagerResponse.SuccessFull();
             }
             catch (Exception ex)
             {
@@ -141,12 +140,29 @@ namespace Crypterv2.DevTool.Core.Plugins
             }
         }
 
-        public static AssemblyName GetAssemblyInfo(string filePath)
+        public static AssemblyResponse GetAssemblyInfo(string filePath)
         {
-            Assembly assembly = Assembly.LoadFrom(filePath);
-            AssemblyName assemblyName = assembly.GetName();
+            var response = new AssemblyResponse();
 
-            return assemblyName;
+            try
+            {
+                response.LoadedAssembly = Assembly.LoadFrom(filePath);
+                response.LoadedAssymblyName = response.LoadedAssembly.GetName();
+
+                response.Success = true;
+                response.ErrorCode = DevToolCodes.SuccessfullAllocated;
+
+                return response;
+            }
+            catch(Exception ex)
+            {
+                response.Message = ex.Message;
+                response.Success = false;
+                response.ErrorCode = DevToolCodes.UnknownAllocationError;
+                return response;
+            }
+
+            
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Crypterv2_DevTool.Core;
+using Crypterv2.DevTool.Core.Types;
 
 namespace Crypterv2_DevTool.Core.Forms
 {

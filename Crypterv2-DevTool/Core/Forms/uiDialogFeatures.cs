@@ -1,4 +1,6 @@
-﻿namespace Crypterv2.DevTool.Core.Forms
+﻿using Crypterv2.DevTool.Core.Types;
+
+namespace Crypterv2.DevTool.Core.Forms
 {
     public partial class uiDialogFeatures : Form
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crypterv2.DevTool.Core.Forms
+namespace Crypterv2.DevTool.Core.Types
 {
     public class PluginFeature
     {

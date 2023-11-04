@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crypterv2.DevTool.Core.Plugins
+namespace Crypterv2.DevTool.Core.Plugins.Config
 {
     public unsafe class DependencyManager
     {

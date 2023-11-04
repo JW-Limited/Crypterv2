@@ -1,6 +1,6 @@
 ﻿namespace Crypterv2_DevTool.Core.Forms
 {
-    partial class uiTestPlugin
+    partial class uiPluginKit
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiTestPlugin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiPluginKit));
             pnlControls = new Guna.UI2.WinForms.Guna2Panel();
             cmbState = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
@@ -84,10 +84,10 @@
             pnlControls.Controls.Add(lblDirectory);
             pnlControls.Controls.Add(guna2Button1);
             pnlControls.FillColor = SystemColors.ButtonHighlight;
-            pnlControls.Location = new Point(19, 26);
+            pnlControls.Location = new Point(24, 32);
             pnlControls.Margin = new Padding(2);
             pnlControls.Name = "pnlControls";
-            pnlControls.Size = new Size(715, 70);
+            pnlControls.Size = new Size(894, 88);
             pnlControls.TabIndex = 25;
             // 
             // cmbState
@@ -103,9 +103,10 @@
             cmbState.HoverState.BorderColor = Color.Gray;
             cmbState.ItemHeight = 30;
             cmbState.ItemsAppearance.ForeColor = Color.Gray;
-            cmbState.Location = new Point(464, 19);
+            cmbState.Location = new Point(580, 24);
+            cmbState.Margin = new Padding(4);
             cmbState.Name = "cmbState";
-            cmbState.Size = new Size(236, 36);
+            cmbState.Size = new Size(294, 36);
             cmbState.TabIndex = 28;
             // 
             // guna2Button3
@@ -125,10 +126,10 @@
             guna2Button3.ForeColor = Color.White;
             guna2Button3.Image = (Image)resources.GetObject("guna2Button3.Image");
             guna2Button3.ImageSize = new Size(35, 35);
-            guna2Button3.Location = new Point(13, 13);
+            guna2Button3.Location = new Point(16, 16);
             guna2Button3.Margin = new Padding(2);
             guna2Button3.Name = "guna2Button3";
-            guna2Button3.Size = new Size(58, 46);
+            guna2Button3.Size = new Size(72, 58);
             guna2Button3.TabIndex = 27;
             guna2Button3.Click += guna2Button3_Click;
             // 
@@ -136,10 +137,10 @@
             // 
             lblDirectory.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblDirectory.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDirectory.Location = new Point(243, 19);
+            lblDirectory.Location = new Point(304, 24);
             lblDirectory.Margin = new Padding(2, 0, 2, 0);
             lblDirectory.Name = "lblDirectory";
-            lblDirectory.Size = new Size(222, 32);
+            lblDirectory.Size = new Size(278, 40);
             lblDirectory.TabIndex = 17;
             lblDirectory.Text = "label1";
             lblDirectory.TextAlign = ContentAlignment.MiddleLeft;
@@ -159,10 +160,10 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(77, 19);
+            guna2Button1.Location = new Point(96, 24);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(160, 32);
+            guna2Button1.Size = new Size(200, 40);
             guna2Button1.TabIndex = 16;
             guna2Button1.Text = "Choose Directory";
             guna2Button1.Click += guna2Button1_Click;
@@ -179,10 +180,10 @@
             guna2Panel2.Controls.Add(guna2Panel5);
             guna2Panel2.Controls.Add(guna2Panel7);
             guna2Panel2.FillColor = Color.White;
-            guna2Panel2.Location = new Point(26, 435);
+            guna2Panel2.Location = new Point(32, 544);
             guna2Panel2.Margin = new Padding(2);
             guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.Size = new Size(710, 211);
+            guna2Panel2.Size = new Size(888, 264);
             guna2Panel2.TabIndex = 24;
             // 
             // guna2Panel6
@@ -196,20 +197,20 @@
             guna2Panel6.Controls.Add(guna2Button7);
             guna2Panel6.Controls.Add(label9);
             guna2Panel6.FillColor = Color.White;
-            guna2Panel6.Location = new Point(480, 40);
+            guna2Panel6.Location = new Point(600, 50);
             guna2Panel6.Margin = new Padding(2);
             guna2Panel6.Name = "guna2Panel6";
-            guna2Panel6.Size = new Size(198, 147);
+            guna2Panel6.Size = new Size(248, 184);
             guna2Panel6.TabIndex = 24;
             // 
             // label8
             // 
             label8.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label8.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label8.Location = new Point(19, 19);
+            label8.Location = new Point(24, 24);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(154, 26);
+            label8.Size = new Size(192, 32);
             label8.TabIndex = 17;
             label8.Text = "Dependencies";
             label8.TextAlign = ContentAlignment.MiddleLeft;
@@ -230,10 +231,10 @@
             guna2Button7.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button7.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             guna2Button7.ForeColor = Color.DimGray;
-            guna2Button7.Location = new Point(13, 102);
+            guna2Button7.Location = new Point(16, 128);
             guna2Button7.Margin = new Padding(2);
             guna2Button7.Name = "guna2Button7";
-            guna2Button7.Size = new Size(173, 32);
+            guna2Button7.Size = new Size(216, 40);
             guna2Button7.TabIndex = 16;
             guna2Button7.Text = "Choose";
             guna2Button7.Click += bntDependiecies;
@@ -243,10 +244,10 @@
             label9.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label9.Font = new Font("Segoe UI", 9F);
             label9.ForeColor = SystemColors.ControlDarkDark;
-            label9.Location = new Point(19, 45);
+            label9.Location = new Point(24, 56);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(154, 51);
+            label9.Size = new Size(192, 64);
             label9.TabIndex = 17;
             label9.Text = "Choose .ddls, Icons or Audio Files needed.";
             label9.TextAlign = ContentAlignment.MiddleLeft;
@@ -262,20 +263,20 @@
             guna2Panel5.Controls.Add(guna2Button6);
             guna2Panel5.Controls.Add(label7);
             guna2Panel5.FillColor = Color.White;
-            guna2Panel5.Location = new Point(256, 40);
+            guna2Panel5.Location = new Point(320, 50);
             guna2Panel5.Margin = new Padding(2);
             guna2Panel5.Name = "guna2Panel5";
-            guna2Panel5.Size = new Size(198, 147);
+            guna2Panel5.Size = new Size(248, 184);
             guna2Panel5.TabIndex = 24;
             // 
             // label6
             // 
             label6.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label6.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label6.Location = new Point(19, 19);
+            label6.Location = new Point(24, 24);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(154, 26);
+            label6.Size = new Size(192, 32);
             label6.TabIndex = 17;
             label6.Text = "Informations";
             label6.TextAlign = ContentAlignment.MiddleLeft;
@@ -296,10 +297,10 @@
             guna2Button6.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button6.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             guna2Button6.ForeColor = Color.DimGray;
-            guna2Button6.Location = new Point(13, 102);
+            guna2Button6.Location = new Point(16, 128);
             guna2Button6.Margin = new Padding(2);
             guna2Button6.Name = "guna2Button6";
-            guna2Button6.Size = new Size(173, 32);
+            guna2Button6.Size = new Size(216, 40);
             guna2Button6.TabIndex = 16;
             guna2Button6.Text = "Add";
             guna2Button6.Click += guna2Button6_Click;
@@ -309,10 +310,10 @@
             label7.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label7.Font = new Font("Segoe UI", 9F);
             label7.ForeColor = SystemColors.ControlDarkDark;
-            label7.Location = new Point(19, 45);
+            label7.Location = new Point(24, 56);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(154, 51);
+            label7.Size = new Size(192, 64);
             label7.TabIndex = 17;
             label7.Text = "Provide information about you/the plugin.";
             label7.TextAlign = ContentAlignment.MiddleLeft;
@@ -328,20 +329,20 @@
             guna2Panel7.Controls.Add(guna2Button5);
             guna2Panel7.Controls.Add(label5);
             guna2Panel7.FillColor = Color.White;
-            guna2Panel7.Location = new Point(32, 40);
+            guna2Panel7.Location = new Point(40, 50);
             guna2Panel7.Margin = new Padding(2);
             guna2Panel7.Name = "guna2Panel7";
-            guna2Panel7.Size = new Size(198, 147);
+            guna2Panel7.Size = new Size(248, 184);
             guna2Panel7.TabIndex = 24;
             // 
             // label4
             // 
             label4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label4.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label4.Location = new Point(19, 19);
+            label4.Location = new Point(24, 24);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(154, 26);
+            label4.Size = new Size(192, 32);
             label4.TabIndex = 17;
             label4.Text = "Icon\r\n";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -362,10 +363,10 @@
             guna2Button5.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button5.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             guna2Button5.ForeColor = Color.DimGray;
-            guna2Button5.Location = new Point(13, 102);
+            guna2Button5.Location = new Point(16, 128);
             guna2Button5.Margin = new Padding(2);
             guna2Button5.Name = "guna2Button5";
-            guna2Button5.Size = new Size(173, 32);
+            guna2Button5.Size = new Size(216, 40);
             guna2Button5.TabIndex = 16;
             guna2Button5.Text = "Choose";
             guna2Button5.Click += guna2Button5_Click;
@@ -375,10 +376,10 @@
             label5.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label5.Font = new Font("Segoe UI", 9F);
             label5.ForeColor = SystemColors.ControlDarkDark;
-            label5.Location = new Point(19, 45);
+            label5.Location = new Point(24, 56);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(154, 51);
+            label5.Size = new Size(192, 64);
             label5.TabIndex = 17;
             label5.Text = "Choose an Icon for the plugin.";
             label5.TextAlign = ContentAlignment.MiddleLeft;
@@ -392,10 +393,10 @@
             guna2Panel4.Controls.Add(togglePirate);
             guna2Panel4.Controls.Add(label3);
             guna2Panel4.FillColor = Color.White;
-            guna2Panel4.Location = new Point(19, 282);
+            guna2Panel4.Location = new Point(24, 352);
             guna2Panel4.Margin = new Padding(2);
             guna2Panel4.Name = "guna2Panel4";
-            guna2Panel4.Size = new Size(717, 51);
+            guna2Panel4.Size = new Size(896, 64);
             guna2Panel4.TabIndex = 24;
             // 
             // togglePirate
@@ -408,10 +409,10 @@
             togglePirate.CheckedText = "Agreed";
             togglePirate.DisabledText = "Not Changable";
             togglePirate.EnabledState = true;
-            togglePirate.Location = new Point(544, 6);
-            togglePirate.Margin = new Padding(2, 2, 2, 2);
+            togglePirate.Location = new Point(680, 8);
+            togglePirate.Margin = new Padding(2);
             togglePirate.Name = "togglePirate";
-            togglePirate.Size = new Size(160, 38);
+            togglePirate.Size = new Size(208, 48);
             togglePirate.TabIndex = 0;
             togglePirate.UnCheckedText = "Disagreed";
             togglePirate.Clicked += dynamicToggleButton2_Clicked;
@@ -420,10 +421,10 @@
             // 
             label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label3.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label3.Location = new Point(13, 10);
+            label3.Location = new Point(16, 12);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(550, 32);
+            label3.Size = new Size(688, 40);
             label3.TabIndex = 17;
             label3.Text = " I dont use code thats pirated or copyright protected.";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -436,20 +437,20 @@
             guna2Panel3.BorderRadius = 25;
             guna2Panel3.Controls.Add(label2);
             guna2Panel3.FillColor = Color.White;
-            guna2Panel3.Location = new Point(19, 326);
+            guna2Panel3.Location = new Point(24, 408);
             guna2Panel3.Margin = new Padding(2);
             guna2Panel3.Name = "guna2Panel3";
-            guna2Panel3.Size = new Size(717, 51);
+            guna2Panel3.Size = new Size(896, 64);
             guna2Panel3.TabIndex = 24;
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label2.Location = new Point(13, 10);
+            label2.Location = new Point(16, 12);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(557, 32);
+            label2.Size = new Size(696, 40);
             label2.TabIndex = 17;
             label2.Text = " I am authorised to distribute and publish this plugin as creator.";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -464,10 +465,10 @@
             togglePublish.CheckedText = "Agreed";
             togglePublish.DisabledText = "Not Changable";
             togglePublish.EnabledState = true;
-            togglePublish.Location = new Point(563, 336);
-            togglePublish.Margin = new Padding(2, 2, 2, 2);
+            togglePublish.Location = new Point(704, 420);
+            togglePublish.Margin = new Padding(2);
             togglePublish.Name = "togglePublish";
-            togglePublish.Size = new Size(160, 42);
+            togglePublish.Size = new Size(208, 52);
             togglePublish.TabIndex = 0;
             togglePublish.UnCheckedText = "Disagreed";
             togglePublish.Clicked += togglePublish_Clicked;
@@ -489,10 +490,10 @@
             bntBuild.FocusedColor = Color.FromArgb(100, 170, 209);
             bntBuild.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             bntBuild.ForeColor = Color.DimGray;
-            bntBuild.Location = new Point(608, 416);
+            bntBuild.Location = new Point(760, 520);
             bntBuild.Margin = new Padding(2);
             bntBuild.Name = "bntBuild";
-            bntBuild.Size = new Size(117, 40);
+            bntBuild.Size = new Size(146, 50);
             bntBuild.TabIndex = 16;
             bntBuild.Text = "Build";
             bntBuild.Click += Pack_Click;
@@ -503,9 +504,10 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Location = new Point(45, 416);
+            label1.Location = new Point(56, 520);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(141, 32);
+            label1.Size = new Size(176, 40);
             label1.TabIndex = 2;
             label1.Text = "   Packager";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -519,12 +521,12 @@
             progress.BorderThickness = 2;
             progress.FillColor = Color.Transparent;
             progress.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            progress.Location = new Point(192, 424);
+            progress.Location = new Point(240, 530);
             progress.Margin = new Padding(2);
             progress.Name = "progress";
             progress.ProgressColor = Color.White;
             progress.ProgressColor2 = Color.SlateGray;
-            progress.Size = new Size(408, 24);
+            progress.Size = new Size(510, 30);
             progress.TabIndex = 27;
             progress.Text = "guna2ProgressBar1";
             progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -544,7 +546,7 @@
             pnlLoading.Location = new Point(0, 0);
             pnlLoading.Margin = new Padding(2);
             pnlLoading.Name = "pnlLoading";
-            pnlLoading.Size = new Size(756, 682);
+            pnlLoading.Size = new Size(945, 852);
             pnlLoading.TabIndex = 24;
             // 
             // label10
@@ -553,9 +555,10 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
             label10.ForeColor = Color.Silver;
-            label10.Location = new Point(324, 594);
+            label10.Location = new Point(405, 742);
+            label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(109, 24);
+            label10.Size = new Size(136, 30);
             label10.TabIndex = 40;
             label10.Text = "powered by ";
             label10.TextAlign = ContentAlignment.MiddleCenter;
@@ -566,9 +569,10 @@
             label11.BackColor = Color.Transparent;
             label11.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             label11.ForeColor = SystemColors.WindowFrame;
-            label11.Location = new Point(298, 613);
+            label11.Location = new Point(372, 766);
+            label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
-            label11.Size = new Size(160, 32);
+            label11.Size = new Size(200, 40);
             label11.TabIndex = 39;
             label11.Text = "JW Limited ©️ 2023";
             label11.TextAlign = ContentAlignment.MiddleCenter;
@@ -579,9 +583,10 @@
             lblMessageText.BackColor = Color.Transparent;
             lblMessageText.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMessageText.ForeColor = Color.Black;
-            lblMessageText.Location = new Point(94, 397);
+            lblMessageText.Location = new Point(118, 496);
+            lblMessageText.Margin = new Padding(4, 0, 4, 0);
             lblMessageText.Name = "lblMessageText";
-            lblMessageText.Size = new Size(568, 40);
+            lblMessageText.Size = new Size(710, 50);
             lblMessageText.TabIndex = 19;
             lblMessageText.Text = "Creating youre Plugin...";
             lblMessageText.TextAlign = ContentAlignment.MiddleCenter;
@@ -592,10 +597,10 @@
             progressSpinner.AutoStart = true;
             progressSpinner.BackColor = Color.White;
             progressSpinner.CircleSize = 2F;
-            progressSpinner.Location = new Point(310, 237);
+            progressSpinner.Location = new Point(388, 296);
             progressSpinner.Margin = new Padding(2);
             progressSpinner.Name = "progressSpinner";
-            progressSpinner.Size = new Size(136, 128);
+            progressSpinner.Size = new Size(170, 160);
             progressSpinner.TabIndex = 18;
             // 
             // pluginUi
@@ -611,8 +616,8 @@
             pluginUi.DataContext = null;
             pluginUi.DownloadButtonBackColor = Color.White;
             pluginUi.DownloadButtonForeColor = Color.Black;
-            pluginUi.Location = new Point(24, 128);
-            pluginUi.Margin = new Padding(2, 2, 2, 2);
+            pluginUi.Location = new Point(30, 160);
+            pluginUi.Margin = new Padding(2);
             pluginUi.Name = "pluginUi";
             pluginUi.Plugin_State = LILO_Packager.v2.Controls.DynamicPluginListItem.PluginState.Available;
             pluginUi.PluginDescription = "Installs encryption Librarys.";
@@ -622,16 +627,16 @@
             pluginUi.PluginNameForeColor = Color.Black;
             pluginUi.PluginVersion = "0.1.11-alpha";
             pluginUi.PluginVersionForeColor = Color.DarkGray;
-            pluginUi.Size = new Size(706, 112);
+            pluginUi.Size = new Size(890, 140);
             pluginUi.TabIndex = 28;
             pluginUi.ClickedDownload += guna2Button2_Click;
             // 
-            // uiTestPlugin
+            // uiPluginKit
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(756, 682);
+            ClientSize = new Size(945, 852);
             Controls.Add(pnlLoading);
             Controls.Add(pluginUi);
             Controls.Add(bntBuild);
@@ -643,8 +648,8 @@
             Controls.Add(guna2Panel2);
             Controls.Add(pnlControls);
             Margin = new Padding(2);
-            MinimumSize = new Size(703, 555);
-            Name = "uiTestPlugin";
+            MinimumSize = new Size(872, 677);
+            Name = "uiPluginKit";
             Text = "uiTestPlugin";
             Load += uiTestPlugin_Load;
             pnlControls.ResumeLayout(false);
@@ -690,7 +695,7 @@
         private Guna.UI2.WinForms.Guna2WinProgressIndicator progressSpinner;
         private Label label10;
         private Label label11;
-        private LILO_Packager.v2.Controls.DynamicPluginListItem pluginUi;
         private Guna.UI2.WinForms.Guna2ComboBox cmbState;
+        public LILO_Packager.v2.Controls.DynamicPluginListItem pluginUi;
     }
 }

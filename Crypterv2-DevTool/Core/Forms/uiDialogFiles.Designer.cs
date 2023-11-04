@@ -39,19 +39,21 @@
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             pnlLoad = new Guna.UI2.WinForms.Guna2Panel();
             progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
+            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             sPanel2.SuspendLayout();
             pnlLoad.SuspendLayout();
             SuspendLayout();
             // 
             // lblMessageText
             // 
-            lblMessageText.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblMessageText.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblMessageText.BackColor = Color.Transparent;
             lblMessageText.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMessageText.ForeColor = Color.Black;
-            lblMessageText.Location = new Point(16, 8);
+            lblMessageText.Location = new Point(20, 10);
+            lblMessageText.Margin = new Padding(4, 0, 4, 0);
             lblMessageText.Name = "lblMessageText";
-            lblMessageText.Size = new Size(568, 56);
+            lblMessageText.Size = new Size(710, 70);
             lblMessageText.TabIndex = 17;
             lblMessageText.Text = "Dependencie Manager";
             lblMessageText.TextAlign = ContentAlignment.MiddleLeft;
@@ -73,10 +75,10 @@
             bntOk.FocusedColor = Color.FromArgb(100, 170, 209);
             bntOk.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             bntOk.ForeColor = Color.Black;
-            bntOk.Location = new Point(488, 12);
+            bntOk.Location = new Point(610, 15);
             bntOk.Margin = new Padding(2);
             bntOk.Name = "bntOk";
-            bntOk.Size = new Size(93, 38);
+            bntOk.Size = new Size(116, 48);
             bntOk.TabIndex = 15;
             bntOk.Text = "Cancel";
             bntOk.Click += bntOk_Click;
@@ -92,9 +94,10 @@
             sPanel2.Controls.Add(bntCancel);
             sPanel2.Dock = DockStyle.Bottom;
             sPanel2.ForeColor = Color.White;
-            sPanel2.Location = new Point(0, 548);
+            sPanel2.Location = new Point(0, 686);
+            sPanel2.Margin = new Padding(4, 4, 4, 4);
             sPanel2.Name = "sPanel2";
-            sPanel2.Size = new Size(601, 66);
+            sPanel2.Size = new Size(751, 82);
             sPanel2.TabIndex = 18;
             // 
             // bntCancel
@@ -113,10 +116,10 @@
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
             bntCancel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             bntCancel.ForeColor = Color.White;
-            bntCancel.Location = new Point(328, 12);
+            bntCancel.Location = new Point(410, 15);
             bntCancel.Margin = new Padding(2);
             bntCancel.Name = "bntCancel";
-            bntCancel.Size = new Size(144, 38);
+            bntCancel.Size = new Size(180, 48);
             bntCancel.TabIndex = 15;
             bntCancel.Text = "Submit";
             bntCancel.Click += bntCancel_Click;
@@ -136,14 +139,14 @@
             listViewHistory.HeaderForeColor = Color.Black;
             listViewHistory.HideSelection = true;
             listViewHistory.HoverSelection = true;
-            listViewHistory.Location = new Point(16, 72);
+            listViewHistory.Location = new Point(20, 90);
             listViewHistory.Margin = new Padding(2);
             listViewHistory.MultiSelect = false;
             listViewHistory.Name = "listViewHistory";
             listViewHistory.OverlayColor = Color.DodgerBlue;
             listViewHistory.ShowGroups = false;
             listViewHistory.ShowItemToolTips = true;
-            listViewHistory.Size = new Size(568, 464);
+            listViewHistory.Size = new Size(710, 580);
             listViewHistory.TabIndex = 19;
             listViewHistory.UseCompatibleStateImageBehavior = false;
             listViewHistory.View = View.Details;
@@ -182,10 +185,10 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.Black;
-            guna2Button1.Location = new Point(496, 16);
+            guna2Button1.Location = new Point(620, 20);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(88, 38);
+            guna2Button1.Size = new Size(110, 48);
             guna2Button1.TabIndex = 15;
             guna2Button1.Text = "Add";
             guna2Button1.Click += guna2Button1_Click;
@@ -198,10 +201,10 @@
             pnlLoad.BorderRadius = 15;
             pnlLoad.Controls.Add(progressSpinner);
             pnlLoad.FillColor = Color.White;
-            pnlLoad.Location = new Point(8, 64);
+            pnlLoad.Location = new Point(10, 80);
             pnlLoad.Margin = new Padding(2);
             pnlLoad.Name = "pnlLoad";
-            pnlLoad.Size = new Size(584, 472);
+            pnlLoad.Size = new Size(730, 590);
             pnlLoad.TabIndex = 20;
             pnlLoad.Visible = false;
             // 
@@ -211,24 +214,51 @@
             progressSpinner.AutoStart = true;
             progressSpinner.BackColor = Color.White;
             progressSpinner.CircleSize = 2F;
-            progressSpinner.Location = new Point(232, 160);
+            progressSpinner.Location = new Point(290, 200);
             progressSpinner.Margin = new Padding(2);
             progressSpinner.Name = "progressSpinner";
-            progressSpinner.Size = new Size(136, 128);
+            progressSpinner.Size = new Size(170, 160);
             progressSpinner.TabIndex = 8;
+            // 
+            // guna2Button2
+            // 
+            guna2Button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            guna2Button2.Animated = true;
+            guna2Button2.BackColor = Color.Transparent;
+            guna2Button2.BackgroundImageLayout = ImageLayout.Zoom;
+            guna2Button2.BorderColor = Color.Gainsboro;
+            guna2Button2.BorderRadius = 14;
+            guna2Button2.BorderThickness = 2;
+            guna2Button2.DisabledState.BorderColor = Color.Gainsboro;
+            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button2.DisabledState.FillColor = Color.White;
+            guna2Button2.DisabledState.ForeColor = Color.Gray;
+            guna2Button2.FillColor = Color.Transparent;
+            guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            guna2Button2.ForeColor = Color.Black;
+            guna2Button2.Location = new Point(480, 20);
+            guna2Button2.Margin = new Padding(2);
+            guna2Button2.Name = "guna2Button2";
+            guna2Button2.Size = new Size(120, 48);
+            guna2Button2.TabIndex = 21;
+            guna2Button2.Text = "Clear";
+            guna2Button2.Click += guna2Button2_Click;
             // 
             // uiDialogFiles
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(601, 614);
+            ClientSize = new Size(751, 768);
             ControlBox = false;
+            Controls.Add(guna2Button2);
             Controls.Add(pnlLoad);
             Controls.Add(listViewHistory);
             Controls.Add(guna2Button1);
             Controls.Add(lblMessageText);
             Controls.Add(sPanel2);
+            Margin = new Padding(4, 4, 4, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "uiDialogFiles";
@@ -252,5 +282,6 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Panel pnlLoad;
         private Guna.UI2.WinForms.Guna2WinProgressIndicator progressSpinner;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
     }
 }

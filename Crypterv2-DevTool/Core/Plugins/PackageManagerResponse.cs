@@ -1,14 +1,17 @@
-﻿namespace Crypterv2.DevTool.Core.Plugins
+﻿using Crypterv2.DevTool.Core.Contracts;
+
+namespace Crypterv2.DevTool.Core.Plugins
 {
-    public class PackageManagerResponse
+    public class PackageManagerResponse : ILILOResponse
     {
         public static PackageManagerResponse Error(Exception ex) => new PackageManagerResponse(ex);
 
-        public bool IsSuccess { get; set; }
+        public bool Success { get; set; }
         public bool IsError { get; set; }
         public string Message { get; set; }
         public string Status { get; set; }
-        public uint EndingCode { get; set; }
+        public uint EndCode { get; set; }
+        public uint ErrorCode { get; set; }
 
         private PackageManagerResponse()
         {
@@ -16,22 +19,22 @@
 
         public PackageManagerResponse(Exception ex)
         {
-            IsSuccess = false;
+            Success = false;
             IsError = true;
             Message = ex.Message;
             Status = ex.GetType().Name;
-            EndingCode = (uint)ex.HResult;
+            EndCode = (uint)ex.HResult;
         }
 
-        public static PackageManagerResponse Success()
+        public static PackageManagerResponse SuccessFull()
         {
             return new PackageManagerResponse
             {
-                IsSuccess = true,
+                Success = true,
                 IsError = false,
                 Message = "Operation successful.",
                 Status = "Success",
-                EndingCode = 0
+                EndCode = DevToolCodes.SuccessfullCreatedPackage
             };
         }
 
@@ -39,11 +42,11 @@
         {
             return new PackageManagerResponse
             {
-                IsSuccess = false,
+                Success = false,
                 IsError = true,
                 Message = message,
                 Status = "Failure",
-                EndingCode = 1
+                EndCode = DevToolCodes.UnknownPackageCreationError
             };
         }
 

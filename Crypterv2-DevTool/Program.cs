@@ -3,12 +3,14 @@ using LILO_Packager.v2.Shared;
 
 namespace Crypterv2_DevTool
 {
-    internal static class Program
+    internal class Program
     {
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         /// 
+
+        public static string Version = "2.0.11-dev_build";
 
         private static void InitializeApplication()
         {

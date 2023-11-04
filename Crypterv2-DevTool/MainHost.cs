@@ -1,13 +1,16 @@
+using Crypterv2.DevTool.Core;
+using Crypterv2.DevTool.Core.Forms;
+using Crypterv2.DevTool.Core.Types;
 using Crypterv2_DevTool.Core;
 using Crypterv2_DevTool.Core.Forms;
 using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Forms;
+using LILO_Packager.v2.Plugins.ThirdParty.Types;
 using LILO_Packager.v2.Shared;
-using SharpDX;
+using Paket;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
-using System.ServiceModel;
 
 namespace Crypterv2_DevTool
 {
@@ -253,7 +256,7 @@ namespace Crypterv2_DevTool
                 lblClient.Text = Client.Client.SocketType.ToString();
                 lblState.Text = $"Available";
                 lblDebug.Text = "True";
-                lblCore.Text = nameof(LILO_Packager.v2.Core.Interfaces.IFeatureFlagSwitcher);
+                lblCore.Text = "HyperCFTP";
                 lblVersion.Text = Application.ProductVersion.ToString();
                 lblAccess.Text = "Unknown";
                 bntDisconnect.Visible = true;
@@ -295,7 +298,7 @@ namespace Crypterv2_DevTool
                     OpenInApp(detailViewUi, "QuickView", ChildrenUse.Auth);
                 }
             }
-            catch(System.ArgumentException ex)
+            catch (System.ArgumentException ex)
             {
 
                 var dialogtest = new uiCustomDialog(
@@ -340,14 +343,19 @@ namespace Crypterv2_DevTool
 
         private void bntPlugins_Click(object sender, EventArgs e)
         {
-            uiTestPlugin.Instance().Text = this.Text;
-            uiTestPlugin.Instance().Icon = this.Icon;
-            OpenInApp(uiTestPlugin.Instance(),"Plugin TestKit" ,ChildrenUse.Auth);
+            uiPluginKit.Instance().Text = this.Text;
+            uiPluginKit.Instance().Icon = this.Icon;
+            OpenInApp(uiPluginKit.Instance(), "Plugin TestKit", ChildrenUse.Auth);
         }
 
         private void lblName_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void bntPackages_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

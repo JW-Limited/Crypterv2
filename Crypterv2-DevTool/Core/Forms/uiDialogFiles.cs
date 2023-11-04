@@ -1,7 +1,6 @@
 ﻿using Crypterv2.DevTool.Core.Plugins;
+using Crypterv2.DevTool.Core.Plugins.Config;
 using Crypterv2_DevTool.Core.Forms;
-using LILO_Packager.v2.Core.Keys;
-using Sipaa.Framework;
 using System.Collections.ObjectModel;
 using System.Data;
 
@@ -154,7 +153,7 @@ namespace Crypterv2.DevTool.Core.Forms
                 {
                     return fileTypes[type];
                 }
-                catch (Exception) 
+                catch (Exception)
                 {
                     return "Unknown";
                 }
@@ -162,14 +161,25 @@ namespace Crypterv2.DevTool.Core.Forms
 
             return "Unknown";
         }
-        
+
 
         private void bntOk_Click(object sender, EventArgs e)
         {
             DialogCanceled = true;
 
-            _Dependencies.Clear();
-            this.Close();
+            pnlLoad.Visible = true;
+
+            Task.Factory.StartNew(() =>
+            {
+                this.Invoke(new Action(() =>
+                {
+                    _Dependencies.Clear();
+
+                    pnlLoad.Visible = false;
+
+                    this.Close();
+                }));
+            });
         }
 
         private void bntCancel_Click(object sender, EventArgs e)
@@ -188,7 +198,7 @@ namespace Crypterv2.DevTool.Core.Forms
             ofd.RestoreDirectory = true;
             ofd.AutoUpgradeEnabled = true;
 
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Task.Run(async () =>
                 {
@@ -211,7 +221,7 @@ namespace Crypterv2.DevTool.Core.Forms
                         pnlLoad.Visible = false;
                     });
                 });
-                
+
             }
         }
 
@@ -228,6 +238,15 @@ namespace Crypterv2.DevTool.Core.Forms
             });
 
             await Task.WhenAll(tasks);
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            var config = new PluginConfigManager(uiPluginKit.Instance().SelectedPlugin.Name, null);
+            config.TryDeleteDependencies();
+
+            listViewHistory.Items.Clear();
+            _Dependencies.Clear();
         }
     }
 }

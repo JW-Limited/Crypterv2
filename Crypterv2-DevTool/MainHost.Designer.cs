@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem(new string[] { "12345", "State", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
+            ListViewItem listViewItem2 = new ListViewItem(new string[] { "12345", "State", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
             button1 = new Button();
             listViewHistory = new HTAlt.WinForms.HTListView();
@@ -64,6 +64,7 @@
             label9 = new Label();
             label5 = new Label();
             label3 = new Label();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel1.SuspendLayout();
             guna2Panel2.SuspendLayout();
             guna2Panel5.SuspendLayout();
@@ -98,7 +99,7 @@
             listViewHistory.HeaderForeColor = Color.Black;
             listViewHistory.HideSelection = true;
             listViewHistory.HoverSelection = true;
-            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem1 });
+            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem2 });
             listViewHistory.Location = new Point(16, 16);
             listViewHistory.Margin = new Padding(2);
             listViewHistory.MultiSelect = false;
@@ -339,13 +340,14 @@
             guna2Panel5.Controls.Add(sPanel1);
             guna2Panel5.Controls.Add(guna2Panel3);
             guna2Panel5.Controls.Add(guna2Panel1);
+            guna2Panel5.Controls.Add(guna2Button1);
             guna2Panel5.Controls.Add(guna2Button5);
             guna2Panel5.Dock = DockStyle.Left;
             guna2Panel5.FillColor = Color.Transparent;
             guna2Panel5.Location = new Point(0, 0);
             guna2Panel5.Margin = new Padding(2);
             guna2Panel5.Name = "guna2Panel5";
-            guna2Panel5.Size = new Size(336, 964);
+            guna2Panel5.Size = new Size(336, 972);
             guna2Panel5.TabIndex = 23;
             // 
             // sPanel1
@@ -359,7 +361,7 @@
             sPanel1.Controls.Add(lblText);
             sPanel1.ForeColor = Color.White;
             sPanel1.Location = new Point(24, 32);
-            sPanel1.Margin = new Padding(4);
+            sPanel1.Margin = new Padding(4, 4, 4, 4);
             sPanel1.Name = "sPanel1";
             sPanel1.Size = new Size(288, 88);
             sPanel1.TabIndex = 27;
@@ -386,7 +388,7 @@
             guna2Panel3.BorderThickness = 2;
             guna2Panel3.Controls.Add(label7);
             guna2Panel3.FillColor = Color.White;
-            guna2Panel3.Location = new Point(24, 864);
+            guna2Panel3.Location = new Point(24, 872);
             guna2Panel3.Margin = new Padding(2);
             guna2Panel3.Name = "guna2Panel3";
             guna2Panel3.Size = new Size(288, 80);
@@ -403,7 +405,7 @@
             label7.Name = "label7";
             label7.Size = new Size(280, 64);
             label7.TabIndex = 1;
-            label7.Text = "Version: 0.11-beta\r\nJW Limited © 2023";
+            label7.Text = "Version: 0.11-dev_build\r\nJW Limited © 2023";
             label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // guna2Button5
@@ -529,12 +531,41 @@
             label3.Text = "DevTools Connection Failure";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // guna2Button1
+            // 
+            guna2Button1.Anchor = AnchorStyles.Top;
+            guna2Button1.Animated = true;
+            guna2Button1.BackColor = Color.Transparent;
+            guna2Button1.BorderColor = Color.Gainsboro;
+            guna2Button1.BorderRadius = 20;
+            guna2Button1.BorderThickness = 2;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = Color.White;
+            guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            guna2Button1.ForeColor = Color.Black;
+            guna2Button1.Image = Crypterv2.DevTool.Properties.Resources.icons8_u_shaped_style_96;
+            guna2Button1.ImageAlign = HorizontalAlignment.Left;
+            guna2Button1.ImageOffset = new Point(10, 0);
+            guna2Button1.ImageSize = new Size(35, 35);
+            guna2Button1.Location = new Point(24, 520);
+            guna2Button1.Margin = new Padding(2);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.Size = new Size(288, 80);
+            guna2Button1.TabIndex = 16;
+            guna2Button1.Text = "  Packages";
+            guna2Button1.TextAlign = HorizontalAlignment.Left;
+            guna2Button1.Click += bntPackages_Click;
+            // 
             // MainHost
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(1385, 964);
+            ClientSize = new Size(1389, 972);
             Controls.Add(pnlControls);
             Controls.Add(guna2Panel5);
             Controls.Add(pnlErrorConnection);
@@ -542,7 +573,7 @@
             Controls.Add(guna2Panel2);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
-            MinimumSize = new Size(1407, 1020);
+            MinimumSize = new Size(1406, 1017);
             Name = "MainHost";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "DevTool - Crypterv2";
@@ -593,5 +624,6 @@
         private Label label7;
         private Label label11;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }
