@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Bcpg.OpenPgp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -39,7 +40,7 @@ public class PluginManager
                 {
                     if ((t.IsSubclassOf(typeof(IPluginBase)) || t.GetInterfaces().Contains(typeof(IPluginBase))) && t.IsAbstract == false)
                     {
-                        IPluginBase b = t.InvokeMember(null,
+                        IPluginBase? b = t.InvokeMember(null,
                                             BindingFlags.CreateInstance, null, null, null) as IPluginBase;
 
                         CurrentPlugins.Add(b);
@@ -52,3 +53,6 @@ public class PluginManager
         }
     }
 }
+
+
+

@@ -49,29 +49,5 @@ namespace LILO_Packager.v2.Plugins.ThirdParty.Core
                 return false;
             }
         }
-
-        public class DownloadResult
-        {
-            public string Filename { get; set; }
-            public long FileSize { get; set; }
-            public TimeSpan DownloadTime { get; set; }
-        }
-
-        public class DownloadProgressEventArgs : EventArgs
-        {
-            public long BytesReceived { get; private set; }
-            public long TotalBytesToReceive { get; private set; }
-
-            public DownloadProgressEventArgs(long bytesReceived, long totalBytesToReceive)
-            {
-                BytesReceived = bytesReceived;
-                TotalBytesToReceive = totalBytesToReceive;
-            }
-
-            public double Percentage
-            {
-                get { return (double)BytesReceived * 100 / TotalBytesToReceive; }
-            }
-        }
     }
 }

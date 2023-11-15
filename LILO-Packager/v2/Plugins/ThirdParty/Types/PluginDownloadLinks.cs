@@ -13,7 +13,7 @@ namespace LILO_Packager.v2.Plugins.ThirdParty.Types
         }
 
         public enum Plugin
-        {
+        { 
             EncLib,
             PlainLib,
             VlcLib,

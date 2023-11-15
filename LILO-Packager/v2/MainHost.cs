@@ -33,9 +33,9 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
     private readonly BroadcastChannel _broadCastChannel;
     private readonly TcpListener _listener;
     private readonly Thread _listenerThread;
-    private readonly LILO_WebEngine.Core.Service.LocalServer _localServer;
+    private readonly LILO_WebEngine.Service.LocalServer _localServer;
     public readonly NotifyIconManager _noty;
-    public readonly PluginManager _pluginManager;
+    public readonly PluginManagerv2 _pluginManager;
     public UserAdvanced _userAdvanced;
 
     public readonly string ThemePath = Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "themes");
@@ -199,8 +199,8 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         _noty = NotifyIconManager.Instance();
         Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Initialized NotficationManager.");
 
-        _pluginManager = new PluginManager(_PluginDirectory);
-        _localServer = LILO_WebEngine.Core.Service.LocalServer.Instance;
+        _pluginManager = new PluginManagerv2(_PluginDirectory);
+        _localServer = LILO_WebEngine.Service.LocalServer.Instance;
 
         if (System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.json")))
         {
@@ -255,7 +255,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
                 procSrv.Kill();
             }
 
-            var response = await _localServer.Initialization(new LILO_WebEngine.Core.Service.LocalServerOptions()
+            var response = await _localServer.Initialization(new LILO_WebEngine.Service.LocalServerOptions()
             {
                 Port = new LILO_WebEngine.Shared.Port()
                 {
@@ -366,6 +366,8 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
             {
                 try
                 {
+                    var responseScan = await _pluginManager.Scan();
+
                     foreach (var ele in _pluginManager.CurrentPlugins)
                     {
                         PluginEntry ent = new PluginEntry(ele);
@@ -379,6 +381,11 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
                         stringBuilder.Append($"Plugin : {item.Name}\n" +
                                              $"Description : {item.Description}\n" +
                                              $"Version : {item.Version}\n\n");
+                    }
+
+                    if (responseScan.PluginsChanged)
+                    {
+                        MessageBox.Show(responseScan.ChangedPlugins.ToString());
                     }
 
                     //ConsoleManager.Instance().WriteLineWithColor(stringBuilder.ToString(), ConsoleColor.Cyan);

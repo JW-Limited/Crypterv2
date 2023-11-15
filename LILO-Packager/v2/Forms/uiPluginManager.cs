@@ -10,9 +10,9 @@ namespace LILO_Packager.v2.Forms
         private static uiPluginManager _encrypt;
         private static object _lock = new object();
         public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
-        private PluginManager manager = null;
+        private PluginManagerv2 manager = null;
 
-        public static uiPluginManager Instance(ObservableCollection<PluginEntry> pluginEntries, PluginManager plgMng)
+        public static uiPluginManager Instance(ObservableCollection<PluginEntry> pluginEntries, PluginManagerv2 plgMng)
         {
             lock (_lock)
             {
@@ -26,7 +26,7 @@ namespace LILO_Packager.v2.Forms
         }
 
 
-        private uiPluginManager(ObservableCollection<PluginEntry> pluginEntries, PluginManager plgMng)
+        private uiPluginManager(ObservableCollection<PluginEntry> pluginEntries, PluginManagerv2 plgMng)
         {
             InitializeComponent();
 

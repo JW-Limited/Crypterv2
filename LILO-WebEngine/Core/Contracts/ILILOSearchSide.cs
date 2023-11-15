@@ -1,4 +1,4 @@
-﻿namespace LILO_WebEngine.Core.Interfaces
+﻿namespace LILO_WebEngine.Core.Contracts
 {
     public interface ILILOSearchSide
     {

@@ -89,7 +89,14 @@ namespace LILO_Packager.v2.Core.BugBarrier
             ErrorRank rank = GetErrorRank(ex);
             CustomError customError = new CustomError(rank, ex, DateTime.Now, "An error occurred.");
             errorList.Add(customError);
-            MainHost.Instance().OpenInApp(new Forms.uiErrorHandle(customError));
+            try
+            {
+                MainHost.Instance().OpenInApp(new Forms.uiErrorHandle(customError));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(ex.Message,"BugBarrier Shell",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
 
 

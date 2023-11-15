@@ -13,7 +13,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
         public String Name { get; set; }
 
         public String Type { get; set; }
-
+        
         public static PluginID GetID(String name, String type,String Lvl)
         {
             var id = new PluginID();
