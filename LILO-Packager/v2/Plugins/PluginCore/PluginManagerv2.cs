@@ -166,7 +166,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
 
                     }
 
-                    var plugins = new List<PluginIndexEntry>();
+                    var plugins = new HashSet<PluginIndexEntry>();
 
                     foreach (var plugin in CurrentPlugins)
                     {
@@ -206,7 +206,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
         public string IndexFileVersion { get; set; }
         public string Directory { get; set; }
         public DateTime LastChecked { get; set; }
-        public List<PluginIndexEntry> Plugins { get; set; }
+        public HashSet<PluginIndexEntry> Plugins { get; set; }
 
         public void SerializeToXml(string filePath)
         {
