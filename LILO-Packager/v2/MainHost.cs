@@ -385,17 +385,22 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
                     if (responseScan.PluginsChanged)
                     {
-                        MessageBox.Show(responseScan.ChangedPlugins.ToString());
+                        var str = new StringBuilder();
+
+                        foreach(var plug in responseScan.ChangedPlugins)
+                        {
+                            str.AppendLine(plug.Plugin.Name + plug.Plugin.Version + plug.Plugin.Identifier + "\n");
+                        }
+
+                        MessageBox.Show(str.ToString());
                     }
 
-                    //ConsoleManager.Instance().WriteLineWithColor(stringBuilder.ToString(), ConsoleColor.Cyan);
-
-                    ConsoleManager.Instance().WriteLineWithColor($"[PLUGIN-MANAGER] - Plugins Loaded (Count: {plugins.Count} / Errors: 0");
+                    ConsoleManager.Instance().WriteLineWithColor($"[PLUGIN-MANAGER] - Plugins Loaded (Count: {plugins.Count} / Errors: 0)");
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Mainhost: PluginManager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message + ex.Source + ex.StackTrace, "Mainhost: PluginManager", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
 

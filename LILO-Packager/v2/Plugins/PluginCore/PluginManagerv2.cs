@@ -2,6 +2,7 @@
 using LILO_WebEngine.Core.Handler;
 using System.Reflection;
 using System.Security.Cryptography;
+using System.Xml;
 using System.Xml.Serialization;
 using Telerik.WinControls;
 using WinRT;
@@ -48,91 +49,112 @@ namespace LILO_Packager.v2.Plugins.PluginCore
 
         public string GetPluginHash(string pluginFile)
         {
+            if (string.IsNullOrEmpty(pluginFile))
+            {
+                throw new ArgumentNullException(nameof(pluginFile));
+            }
+
             var hashBytes = SHA256.HashData(File.ReadAllBytes(pluginFile));
             var hashString = BitConverter.ToString(hashBytes).Replace("-", "").Substring(0, 16);
             var fileName = Path.GetFileNameWithoutExtension(pluginFile);
             return hashString + fileName;
         }
 
-        private bool CheckForExistingConfigs()
+        public bool CheckForExistingConfigs()
         {
-            if (File.Exists(PluginManagerIndexFile)) return true;
-            else
+            if (string.IsNullOrEmpty(PluginManagerIndexFile))
             {
-                return false;
+                throw new InvalidOperationException("PluginManagerIndexFile property is not set.");
             }
+
+            return File.Exists(PluginManagerIndexFile);
         }
+
 
         public async Task<PluginScannerResponse> Scan()
         {
             var response = new PluginScannerResponse();
-            
+            response.ChangedPlugins = new List<ChangedPluginEntry>();
 
             if (CheckForExistingConfigs())
             {
                 await Task.Run(() =>
                 {
-                    var indexFile = PluginManagerIndex.DeserializeFromXml(PluginManagerIndexFile);
-                    if (VersionComparer.CompareSemanticVersions(Program.Version, indexFile.PluginManagerVersion).IsNewer)
+                    try
                     {
-                        throw new NotSupportedException();
-                    }
+                        var indexFile = PluginManagerIndex.DeserializeFromXml(PluginManagerIndexFile);
 
-                    if (new FileInfo(PluginManagerIndexFile).Directory.FullName != indexFile.Directory)
-                    {
-                        throw new InvalidDataException();
-                    }
-
-                    foreach (var dirE in DirectoryPaths)
-                    {
-                        DirectoryInfo dir = new DirectoryInfo(dirE);
-
-                        foreach (FileInfo file in dir.GetFiles("*.dll"))
+                        if (VersionComparer.CompareSemanticVersions(Program.Version, indexFile.PluginManagerVersion).IsNewer)
                         {
-                            Assembly ass = Assembly.LoadFrom(file.FullName);
-                            foreach (Type t in ass.GetTypes())
+                            throw new NotSupportedException();
+                        }
+
+                        if (new FileInfo(PluginManagerIndexFile).Directory.FullName != indexFile.Directory)
+                        {
+                            throw new InvalidDataException();
+                        }
+
+                        if (!indexFile.Validate())
+                        {
+                            throw new IndexFileInvalidException(PluginManagerIndexFile);
+                        }
+
+                        foreach (var dirE in DirectoryPaths)
+                        {
+                            DirectoryInfo dir = new DirectoryInfo(dirE);
+
+                            foreach (FileInfo file in dir.GetFiles("*.dll"))
                             {
-                                if ((t.IsSubclassOf(typeof(IPluginBase)) || t.GetInterfaces().Contains(typeof(IPluginBase))) && t.IsAbstract == false)
+                                Assembly ass = Assembly.LoadFrom(file.FullName);
+                                foreach (Type t in ass.GetTypes())
                                 {
-                                    IPluginBase? b = t.InvokeMember(null,
-                                                        BindingFlags.CreateInstance, null, null, null) as IPluginBase;
-
-
-                                    CurrentPlugins.Add(b);
-                                    pluginPaths.Add(b, file.FullName);
-
-                                    if (b != null)
+                                    if ((t.IsSubclassOf(typeof(IPluginBase)) || t.GetInterfaces().Contains(typeof(IPluginBase))) && t.IsAbstract == false)
                                     {
-                                        foreach (var plugin in indexFile.Plugins)
+                                        IPluginBase? b = t.InvokeMember(null,
+                                                            BindingFlags.CreateInstance, null, null, null) as IPluginBase;
+
+
+                                        CurrentPlugins.Add(b);
+                                        pluginPaths.Add(b, file.FullName);
+
+                                        if (b != null)
                                         {
-                                            if (b.Name == plugin.Name)
+                                            foreach (var plugin in indexFile.Plugins)
                                             {
-                                                if (b.Version != plugin.Version || GetPluginHash(file.FullName) != plugin.Identifier)
+                                                if (b.Name == plugin.Name)
                                                 {
-                                                    response.PluginsChanged = true;
-
-                                                    response.ChangedPlugins.Add(new ChangedPluginEntry()
+                                                    if (b.Version != plugin.Version || GetPluginHash(file.FullName) != plugin.Identifier)
                                                     {
-                                                        Plugin = new PluginIndexEntry()
+                                                        response.PluginsChanged = true;
+
+                                                        response.ChangedPlugins.Add(new ChangedPluginEntry()
                                                         {
-                                                            DllFile = file.FullName,
-                                                            Identifier = GetPluginHash(file.FullName),
-                                                            Name = plugin.Name,
-                                                            Version = plugin.Version,
-                                                        },
-                                                        State = ChangedState.Updated
-                                                    });
+                                                            Plugin = new PluginIndexEntry()
+                                                            {
+                                                                DllFile = file.FullName,
+                                                                Identifier = GetPluginHash(file.FullName),
+                                                                Name = plugin.Name,
+                                                                Version = plugin.Version,
+                                                            },
+                                                            State = ChangedState.Updated
+                                                        });
+                                                    }
                                                 }
+
                                             }
-
                                         }
+
                                     }
-
                                 }
-                            }
 
+                            }
                         }
                     }
+                    catch (XmlException)
+                    {
+                        throw new IndexFileInvalidException(PluginManagerIndexFile);
+                    }
+                    
                 });
 
                 return response;
@@ -159,6 +181,25 @@ namespace LILO_Packager.v2.Plugins.PluginCore
 
                                     CurrentPlugins.Add(b);
                                     pluginPaths.Add(b, file.FullName);
+                                    try
+                                    {
+                                        response.ChangedPlugins.Add(new ChangedPluginEntry()
+                                        {
+                                            Plugin = new PluginIndexEntry()
+                                            {
+                                                Name = b.Name,
+                                                Version = b.Version,
+                                                DllFile = file.FullName,
+                                                Identifier = GetPluginHash(file.FullName)
+                                            },
+                                            State = ChangedState.Added
+                                        });
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.Message + ex.Source + ex.InnerException);
+                                    }
+
                                 }
                             }
 
@@ -185,19 +226,21 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                     {
                         PluginManagerVersion = Program.Version,
                         LastChecked = DateTime.Now.ToLocalTime(),
-                        Directory = Application.ExecutablePath.Replace("crypterv2.exe","") + "pluginManager",
+                        Directory = Application.ExecutablePath.Replace("crypterv2.exe", "") + "pluginManager",
                         IndexFileVersion = "1",
                         Plugins = plugins
                     };
 
                     indexFile.SerializeToXml(PluginManagerIndexFile);
 
-                    return null;
+                    response.PluginsChanged = true;
+
+                    return response;
                 });
 
+                return response;
             }
 
-            return null;
         }
     }
     public class PluginManagerIndex
@@ -225,34 +268,55 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                 return (PluginManagerIndex)serializer.Deserialize(reader);
             }
         }
-    }
 
-    public class PluginIndexEntry
-    {
-        public string Name { get; set; }
-        public string Version { get; set; }
-        public string DllFile { get; set; }
-        public string Identifier { get; set; }
-    }
 
-    public class ChangedPluginEntry
-    {
-        public PluginIndexEntry Plugin { get; set; } 
-        public ChangedState State { get; set; }
-    }
+        public bool Validate()
+        {
+            if (string.IsNullOrEmpty(PluginManagerVersion))
+            {
+                return false;
+            }
 
-    public enum ChangedState
-    {
-        Removed,
-        Updated,
-        Added,
-        Chnaged
-    }
+            if (string.IsNullOrEmpty(IndexFileVersion))
+            {
+                return false;
+            }
 
-    public class PluginScannerResponse
-    {
-        public bool PluginsChanged { get; set; }
-        public List<ChangedPluginEntry> ChangedPlugins { get; set; } = new List<ChangedPluginEntry> { };
+            if (string.IsNullOrEmpty(Directory))
+            {
+                return false;
+            }
+
+            if (Plugins == null || Plugins.Count == 0)
+            {
+                return false;
+            }
+
+            foreach (var pluginEntry in Plugins)
+            {
+                if (string.IsNullOrEmpty(pluginEntry.Name))
+                {
+                    return false;
+                }
+
+                if (string.IsNullOrEmpty(pluginEntry.Version))
+                {
+                    return false;
+                }
+
+                if (string.IsNullOrEmpty(pluginEntry.DllFile))
+                {
+                    return false;
+                }
+
+                if (string.IsNullOrEmpty(pluginEntry.Identifier))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
 

@@ -95,5 +95,10 @@ namespace LILO_Packager.v2.Forms
             MainHost.Instance().OpenInApp(Forms.uiWebView.Instance(new Uri("http://localhost:" + MainHost.Instance().Port)));
             MainHost.Instance().hider.Visible = true;
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }
