@@ -2,16 +2,6 @@
 using LILO_Packager.v2.Core.LILO.Interfaces;
 using LILO_Packager.v2.Core.LILO.Types;
 using LILO_Packager.v2.Shared;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Telerik.WinForms.Documents.Lists;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -98,7 +88,12 @@ namespace LILO_Packager.v2.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            liloManager = new Core.LILO.LicenseManager();
+            liloManager.SaveUserToUser(new string[] { "gast@jwlmt.com", "guest", "guest" });
+            this.Invoke(new Action(() =>
+            {
+                pnlSucces.Visible = true;
+            }));
         }
     }
 }

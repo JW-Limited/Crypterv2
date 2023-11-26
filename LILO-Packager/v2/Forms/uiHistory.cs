@@ -84,7 +84,7 @@ namespace LILO_Packager.v2.Forms
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "FileError", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                        MessageBox.Show(ex.Message, "FileError", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     }
                 }
@@ -325,6 +325,14 @@ namespace LILO_Packager.v2.Forms
         private void bntSearch_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void bntSync_Click(object sender, EventArgs e)
+        {
+            pnlLoginLoad.Visible = true;
+            label5.Text = "Fetching...";
+            uiCloudSyncronization.Instance.ShowDialog();
+            pnlLoginLoad.Visible = false;
         }
     }
 }

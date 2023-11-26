@@ -44,5 +44,15 @@ namespace LILO_Packager.v2.Forms
             ConsoleManager.Instance().WriteLineWithColor("Starting App \"FeatureManager\" - (https://beta.lilo.com/featureManagment#coutryRestriction)", ConsoleColor.Yellow);
             MainHost.Instance().OpenInApp(uiWebView.Instance(new Uri("https://beta.lilo.com/featureManagment#coutryRestriction")));
         }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("Type: " + _error.ParsedMessage.ExceptionType.ToString() + "(Risk: " + _error.Rank.ToString() + ")");
+            sb.AppendLine("Library: " + _error.ParsedMessage.Library.ToString());
+            sb.AppendLine("Method: " + _error.ParsedMessage.Method.ToString());
+
+            MessageBox.Show(_error.Message + _error.Source +_error.ParsedMessage + _error.StackTrace,"BugBarrier",MessageBoxButtons.OK);
+        }
     }
 }

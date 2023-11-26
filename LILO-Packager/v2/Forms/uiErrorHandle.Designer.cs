@@ -37,6 +37,7 @@
             bntTrouble = new Guna.UI2.WinForms.Guna2Button();
             label1 = new Label();
             lblAddtional = new Label();
+            guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             pnlPreview.SuspendLayout();
             guna2Panel1.SuspendLayout();
             SuspendLayout();
@@ -76,7 +77,7 @@
             lblName.Anchor = AnchorStyles.None;
             lblName.AutoEllipsis = true;
             lblName.BackColor = Color.Transparent;
-            lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblName.ForeColor = Color.Black;
             lblName.Location = new Point(-8, 304);
             lblName.Margin = new Padding(4, 0, 4, 0);
@@ -88,29 +89,30 @@
             // 
             // guna2Panel1
             // 
-            guna2Panel1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            guna2Panel1.Anchor = AnchorStyles.None;
             guna2Panel1.BorderColor = SystemColors.ActiveBorder;
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.BorderThickness = 2;
+            guna2Panel1.Controls.Add(guna2Button3);
             guna2Panel1.Controls.Add(lblMes);
             guna2Panel1.FillColor = Color.Transparent;
-            guna2Panel1.Location = new Point(280, 528);
+            guna2Panel1.Location = new Point(192, 528);
             guna2Panel1.Margin = new Padding(2);
+            guna2Panel1.MaximumSize = new Size(800, 160);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(496, 160);
+            guna2Panel1.Size = new Size(656, 160);
             guna2Panel1.TabIndex = 14;
             // 
             // lblMes
             // 
             lblMes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblMes.AutoEllipsis = true;
             lblMes.BackColor = Color.Transparent;
-            lblMes.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            lblMes.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             lblMes.ForeColor = Color.Black;
             lblMes.Location = new Point(8, 16);
             lblMes.Margin = new Padding(4, 0, 4, 0);
             lblMes.Name = "lblMes";
-            lblMes.Size = new Size(480, 128);
+            lblMes.Size = new Size(636, 128);
             lblMes.TabIndex = 13;
             lblMes.Text = "This Feature is not availlabel.";
             lblMes.TextAlign = ContentAlignment.MiddleCenter;
@@ -119,7 +121,7 @@
             // 
             lblExc.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblExc.BackColor = Color.Transparent;
-            lblExc.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblExc.Font = new Font("Segoe UI", 11F);
             lblExc.ForeColor = Color.Black;
             lblExc.Location = new Point(216, 32);
             lblExc.Margin = new Padding(4, 0, 4, 0);
@@ -143,7 +145,7 @@
             bntTrouble.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntTrouble.FillColor = Color.White;
             bntTrouble.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntTrouble.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            bntTrouble.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             bntTrouble.ForeColor = Color.DimGray;
             bntTrouble.Location = new Point(904, 24);
             bntTrouble.Margin = new Padding(2);
@@ -157,7 +159,7 @@
             // 
             label1.Anchor = AnchorStyles.Bottom;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             label1.ForeColor = SystemColors.WindowFrame;
             label1.Location = new Point(432, 752);
             label1.Margin = new Padding(4, 0, 4, 0);
@@ -170,7 +172,7 @@
             // lblAddtional
             // 
             lblAddtional.BackColor = Color.Transparent;
-            lblAddtional.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblAddtional.Font = new Font("Segoe UI", 10F);
             lblAddtional.ForeColor = Color.Black;
             lblAddtional.Location = new Point(32, 32);
             lblAddtional.Margin = new Padding(4, 0, 4, 0);
@@ -178,17 +180,42 @@
             lblAddtional.Size = new Size(224, 656);
             lblAddtional.TabIndex = 1;
             // 
+            // guna2Button3
+            // 
+            guna2Button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            guna2Button3.Animated = true;
+            guna2Button3.BackColor = Color.Transparent;
+            guna2Button3.BorderColor = Color.Gainsboro;
+            guna2Button3.BorderRadius = 12;
+            guna2Button3.BorderThickness = 2;
+            guna2Button3.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button3.FillColor = Color.White;
+            guna2Button3.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            guna2Button3.ForeColor = Color.DimGray;
+            guna2Button3.Image = Properties.Resources.Info;
+            guna2Button3.ImageSize = new Size(25, 25);
+            guna2Button3.Location = new Point(592, 16);
+            guna2Button3.Margin = new Padding(2);
+            guna2Button3.Name = "guna2Button3";
+            guna2Button3.Size = new Size(48, 48);
+            guna2Button3.TabIndex = 29;
+            guna2Button3.Click += guna2Button3_Click;
+            // 
             // uiErrorHandle
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1083, 826);
+            Controls.Add(guna2Panel1);
             Controls.Add(label1);
             Controls.Add(lblExc);
             Controls.Add(lblAddtional);
             Controls.Add(bntTrouble);
-            Controls.Add(guna2Panel1);
             Controls.Add(pnlPreview);
             Name = "uiErrorHandle";
             Text = "uiFeatureNullException";
@@ -209,5 +236,6 @@
         private Label label1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Label lblAddtional;
+        private Guna.UI2.WinForms.Guna2Button guna2Button3;
     }
 }

@@ -316,7 +316,7 @@
             sPanel1.BorderRadius = 20;
             sPanel1.BorderSize = 0;
             sPanel1.ForeColor = Color.White;
-            sPanel1.Location = new Point(152, 120);
+            sPanel1.Location = new Point(152, 104);
             sPanel1.Margin = new Padding(4);
             sPanel1.Name = "sPanel1";
             sPanel1.Size = new Size(224, 144);
@@ -328,7 +328,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             label3.ForeColor = SystemColors.WindowFrame;
-            label3.Location = new Point(144, 272);
+            label3.Location = new Point(144, 256);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(232, 40);
@@ -355,6 +355,10 @@
             guna2Button1.Location = new Point(184, 336);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
+            guna2Button1.ShadowDecoration.BorderRadius = 15;
+            guna2Button1.ShadowDecoration.Color = Color.LightGray;
+            guna2Button1.ShadowDecoration.Depth = 20;
+            guna2Button1.ShadowDecoration.Enabled = true;
             guna2Button1.Size = new Size(160, 40);
             guna2Button1.TabIndex = 35;
             guna2Button1.Text = "Start Now";
