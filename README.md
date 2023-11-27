@@ -8,8 +8,11 @@
 
 ## 📜 Cloning 
 
-  <p style="color: white;"></p>
-  <a href="https://sourceforge.net/projects/crypterv2/files/latest/download"><img alt="Download Crypterv2" src="https://img.shields.io/sourceforge/dt/crypterv2.svg" ></a>
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=JW-Limited_Crypterv2&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=JW-Limited_Crypterv2)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=JW-Limited_Crypterv2&metric=bugs)](https://sonarcloud.io/summary/new_code?id=JW-Limited_Crypterv2)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=JW-Limited_Crypterv2&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=JW-Limited_Crypterv2)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=JW-Limited_Crypterv2&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=JW-Limited_Crypterv2)
 
 
 
