@@ -22,6 +22,7 @@
 ## 🚀 Features
 
 - **Strong Encryption**: Utilizes state-of-the-art encryption techniques to safeguard your data.
+- **JW Limited© - LILO®-Cloud**: Our [Free] Cloud Service to store youre encrypted files. [More Info](https://github.com/JW-Limited/Crypterv2/blob/main/CloudReadme.md)
 - **User-Friendly Interface**: Intuitive and easy-to-use interface for both beginners and experts.
 - **Cross-Platform**: Runs on Windows, macOS, and Linux.
 - **Customizable**: Tailor encryption settings to your specific needs.
