@@ -48,6 +48,71 @@ namespace LILO_Packager.v2.Cloud.Services
             }
         }
 
+        public class PixelDrainThumbnail
+        {
+            public static async Task<Bitmap> GetThumbnailAsync(string id, int width = 128, int height = 128)
+            {
+                using var httpClient = new HttpClient();
+
+                var request = new HttpRequestMessage(HttpMethod.Get, $"https://pixeldrain.com/api/file/{id}/thumbnail?width={width}&height={height}");
+                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("image/png"));
+
+                var response = await httpClient.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var imageBytes = await response.Content.ReadAsByteArrayAsync();
+                    using var memoryStream = new MemoryStream(imageBytes);
+                    return new Bitmap(memoryStream); ;
+                }
+                else
+                {
+                    throw new Exception("Unable to get file thumbnail");
+                }
+            }
+
+        }
+
+        public static async Task DownloadFileAsync(string id, string outputPath, Action<long, long> progressCallback, bool downloadAsAttachment = false)
+        {
+            HttpClient httpClient = new HttpClient();
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"https://pixeldrain.com/api/file/{id}");
+
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/octet-stream"));
+
+            HttpResponseMessage response = await httpClient.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                long totalLength = response.Content.Headers.ContentLength ?? 0;
+                long bytesDownloaded = 0;
+
+                using (FileStream fileStream = new FileStream(outputPath, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    using (Stream contentStream = await response.Content.ReadAsStreamAsync())
+                    {
+                        var buffer = new byte[4096];
+                        int bytesRead;
+
+                        while ((bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                        {
+                            await fileStream.WriteAsync(buffer, 0, bytesRead);
+                            bytesDownloaded += bytesRead;
+
+                            if (progressCallback != null)
+                            {
+                                progressCallback(bytesDownloaded, totalLength);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                throw new Exception("Unable to download file");
+            }
+        }
 
         public Task DownloadFiles(string[] files)
         {

@@ -524,7 +524,7 @@
             guna2Panel2.BorderThickness = 2;
             guna2Panel2.Controls.Add(lblAllInCloud);
             guna2Panel2.FillColor = Color.RoyalBlue;
-            guna2Panel2.Location = new Point(555, 32);
+            guna2Panel2.Location = new Point(552, 32);
             guna2Panel2.Margin = new Padding(2);
             guna2Panel2.Name = "guna2Panel2";
             guna2Panel2.ShadowDecoration.BorderRadius = 10;

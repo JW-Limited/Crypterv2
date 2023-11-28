@@ -55,6 +55,11 @@ namespace LILO_Packager.v2.Forms
                 }
             }
 
+            foreach (var path in LocalFilesListPath)
+            {
+                if(path.Contains(message)) LocalFilesListPath.Remove(path);
+            }
+
             lblStatus.Text = message;
 
             if (message == "Everything Done!")

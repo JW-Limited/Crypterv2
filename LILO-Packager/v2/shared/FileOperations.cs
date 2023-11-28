@@ -27,6 +27,18 @@ public partial class FileOperations
         { CrypterFileType.DebugSession, ".dbgsl"},
     };
 
+    public static string GetSizeString(long size)
+    {
+        string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+        int order = 0;
+        while (size >= 1024 && order < sizes.Length - 1)
+        {
+            order++;
+            size /= 1024;
+        }
+        return $"{size} {sizes[order]}";
+    }
+
     public string GetFileExtensionFromType(CrypterFileType value)
     {
         _fileExtensions.TryGetValue(value, out string? returnValue);

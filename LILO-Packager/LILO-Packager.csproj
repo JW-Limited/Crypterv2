@@ -94,6 +94,7 @@
 
   <ItemGroup>
     <PackageReference Include="AudioSwitcher.AudioApi.CoreAudio" Version="4.0.0-alpha5" />
+    <PackageReference Include="Bunifu.Dataviz.WinForms" Version="2.2.1" />
     <PackageReference Include="bunifu.ui.winforms" Version="6.1.0" />
     <PackageReference Include="bunifu.ui.winforms.1.5.3" Version="1.0.0" />
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
