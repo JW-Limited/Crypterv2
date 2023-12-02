@@ -90,7 +90,7 @@ namespace Crypterv2_DevTool.Core
             }
         }
 
-        //------------------------------ OLD and USED (only for compatibilty)--------------------------------------
+        //------------------------------ OLD and UNUSED (only for compatibilty)--------------------------------------
 
         public void ToggleFeature(FeatureFlags feature, bool isEnabled)
         {

@@ -103,6 +103,7 @@ partial class MainHost
         hider.Name = "hider";
         hider.Size = new Size(336, 1055);
         hider.TabIndex = 10;
+        hider.Visible = false;
         hider.Paint += hider_Paint;
         // 
         // bntAccount
@@ -501,6 +502,8 @@ partial class MainHost
         // 
         // pnlChild
         // 
+        pnlChild.BackgroundImage = Properties.Resources.Screenshot_2023_11_06_213239;
+        pnlChild.BackgroundImageLayout = ImageLayout.Stretch;
         pnlChild.Controls.Add(pnlNoti);
         Transition.SetDecoration(pnlChild, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlChild.Dock = DockStyle.Fill;

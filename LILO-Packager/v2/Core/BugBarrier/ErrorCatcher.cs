@@ -57,52 +57,53 @@ namespace LILO_Packager.v2.Core.BugBarrier
         {
             LogException(ex);
 
-            
 
-            var dumpFileName = $"CrashDump-{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}.dmp";
-            var dumpFilePath = Path.Combine(new FileInfo(Application.ExecutablePath).Directory.ToString() + "\\crash_dumps\\", dumpFileName);
-            Directory.CreateDirectory(new FileInfo(Application.ExecutablePath).Directory.ToString() + "\\crash_dumps");
+            // Unstabel in the Moment - default [FALSE]
 
-            ConsoleManager.Instance().WriteLineWithColor(dumpFilePath);
-
-            try
+            if (FeatureManager.IsFeatureEnabled(FeatureFlags.BugBarrierMiniDumpService))
             {
-                // Unstabel in the Moment
-                Task.Run(() =>
+                try
                 {
-                    try
+                    _ = Task.Run(() =>
                     {
-                        //MiniDump.WriteDump(Process.GetCurrentProcess().Id, dumpFilePath, MiniDumpType.Normal);
-                    }
-                    catch (Exception ex1)
-                    {
-                        ConsoleManager.Instance().WriteLineWithColor(ex1.Message);
-                    }
-                });
+                        try
+                        {
+
+                            var dumpFileName = $"CrashDump-{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}.dmp";
+                            var dumpFilePath = Path.Combine(new FileInfo(Application.ExecutablePath).Directory.ToString() + "\\crash_dumps\\", dumpFileName);
+                            Directory.CreateDirectory(new FileInfo(Application.ExecutablePath).Directory.ToString() + "\\crash_dumps");
+
+                            ConsoleManager.Instance().WriteLineWithColor(dumpFilePath);
+
+                            MiniDump.WriteDump(Process.GetCurrentProcess().Id, dumpFilePath, MiniDumpType.Normal);
+                        }
+                        catch (Exception ex1)
+                        {
+                            ConsoleManager.Instance().WriteLineWithColor(ex1.Message);
+                        }
+                    });
+                }
+                catch (Exception ex1)
+                {
+                    ConsoleManager.Instance().WriteLineWithColor(ex1.Message);
+                    MessageBox.Show(ex1.Message, "Dumping Error");
+                }
             }
-            catch (Exception ex1)
-            {
-                ConsoleManager.Instance().WriteLineWithColor(ex1.Message);
-                MessageBox.Show(ex1.Message,"Dumping Error");
-            }
+
+            
 
             ErrorRank rank = GetErrorRank(ex);
             CustomError customError = new CustomError(rank, ex, DateTime.Now, "An error occurred.");
             errorList.Add(customError);
-            try
-            {
-                MainHost.Instance().OpenInApp(new Forms.uiErrorHandle(customError));
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(ex.Message,"BugBarrier Shell",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
+
+            MainHost.Instance().OpenInApp(new Forms.uiErrorHandle(customError));
+
         }
 
 
         private static void LogException(Exception ex)
         {
-            ConsoleManager.Instance().WriteLineWithColor("Unhandled Exception:\n\n" + ex.ToString(), ConsoleColor.DarkRed);
+            ConsoleManager.Instance().WriteLineWithColor("[BUG BARRIER (SHELL)] Unhandled Exception:\n\n" + ex.ToString(), ConsoleColor.DarkRed);
         }
     }
 }

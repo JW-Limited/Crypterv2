@@ -116,12 +116,12 @@ public partial class uiDecrypt : Form
 
         foreach (var item in pnlList)
         {
-            item.FillColor = Color.White;
+            item.FillColor = Color.Gray;
         }
 
         foreach (var item in lblList)
         {
-            item.ForeColor = Color.White;
+            item.ForeColor = Color.Gray;
         }
 
         switch (status)

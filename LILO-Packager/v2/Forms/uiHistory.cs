@@ -329,10 +329,18 @@ namespace LILO_Packager.v2.Forms
 
         private void bntSync_Click(object sender, EventArgs e)
         {
-            pnlLoginLoad.Visible = true;
-            label5.Text = "Fetching...";
-            uiCloudSyncronization.Instance.ShowDialog();
-            pnlLoginLoad.Visible = false;
+            if(FeatureManager.IsFeatureEnabled(FeatureFlags.ShellMasterAll))
+            {
+                MainHost.Instance().OpenInApp(uiCloudSyncronization.Instance);
+            }
+            else
+            {
+                pnlLoginLoad.Visible = true;
+                label5.Text = "Fetching...";
+                uiCloudSyncronization.Instance.ShowDialog();
+                pnlLoginLoad.Visible = false;
+            }
+            
         }
     }
 }

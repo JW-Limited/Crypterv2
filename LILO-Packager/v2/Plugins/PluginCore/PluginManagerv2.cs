@@ -1,11 +1,8 @@
 ﻿using LILO_Packager.v2.Core.Updates;
-using LILO_WebEngine.Core.Handler;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Xml;
 using System.Xml.Serialization;
-using Telerik.WinControls;
-using WinRT;
 
 namespace LILO_Packager.v2.Plugins.PluginCore
 {
@@ -13,7 +10,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
     {
         public string PluginManagerIndexFile;
         private HashSet<String> DirectoryPaths = new HashSet<string>();
-        public string PluginManagerIndexDirectory = ".\\pluginManager";
+        public string PluginManagerIndexDirectory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Crypterv2\\Extensions\\";
         public string PluginManagerIndexFileName = "Crypterv2PluginIndex.cif";
         public HashSet<IPluginBase> CurrentPlugins = new HashSet<IPluginBase>();
         public Dictionary<IPluginBase, string> pluginPaths = new Dictionary<IPluginBase, string>();
@@ -89,9 +86,9 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                             throw new NotSupportedException();
                         }
 
-                        if (new FileInfo(PluginManagerIndexFile).Directory.FullName != indexFile.Directory)
+                        if (new FileInfo(PluginManagerIndexFile).Directory.FullName + "\\" != indexFile.Directory)
                         {
-                            throw new InvalidDataException();
+                            throw new InvalidDataException($"Corrupt File.\n{new FileInfo(PluginManagerIndexFile).Directory.FullName} != {indexFile.Directory} --- ");
                         }
 
                         if (!indexFile.Validate())
@@ -226,7 +223,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                     {
                         PluginManagerVersion = Program.Version,
                         LastChecked = DateTime.Now.ToLocalTime(),
-                        Directory = Application.ExecutablePath.Replace("crypterv2.exe", "") + "pluginManager",
+                        Directory = PluginManagerIndexDirectory,
                         IndexFileVersion = "1",
                         Plugins = plugins
                     };

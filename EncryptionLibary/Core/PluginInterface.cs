@@ -67,4 +67,9 @@ public partial class PluginInterface : Form
     {
         progress.Visible = true;
     }
+
+    private void lblText_Click(object sender, EventArgs e)
+    {
+
+    }
 }

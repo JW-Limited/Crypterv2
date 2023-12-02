@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem(new string[] { "12345", "State", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
+            ListViewItem listViewItem2 = new ListViewItem(new string[] { "12345", "State", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHost));
             button1 = new Button();
             listViewHistory = new HTAlt.WinForms.HTListView();
@@ -55,7 +55,7 @@
             sPanel1 = new Sipaa.Framework.SPanel();
             lblText = new Label();
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            label7 = new Label();
+            lblBottom = new Label();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             pnlControls = new Guna.UI2.WinForms.Guna2Panel();
@@ -99,7 +99,7 @@
             listViewHistory.HeaderForeColor = Color.Black;
             listViewHistory.HideSelection = true;
             listViewHistory.HoverSelection = true;
-            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem1 });
+            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem2 });
             listViewHistory.Location = new Point(16, 16);
             listViewHistory.Margin = new Padding(2);
             listViewHistory.MultiSelect = false;
@@ -386,7 +386,7 @@
             guna2Panel3.BorderColor = Color.Gainsboro;
             guna2Panel3.BorderRadius = 15;
             guna2Panel3.BorderThickness = 2;
-            guna2Panel3.Controls.Add(label7);
+            guna2Panel3.Controls.Add(lblBottom);
             guna2Panel3.FillColor = Color.White;
             guna2Panel3.Location = new Point(24, 872);
             guna2Panel3.Margin = new Padding(2);
@@ -394,19 +394,19 @@
             guna2Panel3.Size = new Size(288, 80);
             guna2Panel3.TabIndex = 23;
             // 
-            // label7
+            // lblBottom
             // 
-            label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label7.BackColor = Color.Transparent;
-            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label7.ForeColor = Color.DarkGray;
-            label7.Location = new Point(24, 8);
-            label7.Margin = new Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(280, 64);
-            label7.TabIndex = 1;
-            label7.Text = "Version: 0.11-dev_build\r\nJW Limited © 2023";
-            label7.TextAlign = ContentAlignment.MiddleLeft;
+            lblBottom.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblBottom.BackColor = Color.Transparent;
+            lblBottom.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblBottom.ForeColor = Color.DarkGray;
+            lblBottom.Location = new Point(24, 8);
+            lblBottom.Margin = new Padding(4, 0, 4, 0);
+            lblBottom.Name = "lblBottom";
+            lblBottom.Size = new Size(280, 64);
+            lblBottom.TabIndex = 1;
+            lblBottom.Text = "Version: 0.11-dev_build\r\nJW Limited © 2023";
+            lblBottom.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // guna2Button1
             // 
@@ -621,7 +621,7 @@
         private Label label5;
         private Label label3;
         private Label label9;
-        private Label label7;
+        private Label lblBottom;
         private Label label11;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;

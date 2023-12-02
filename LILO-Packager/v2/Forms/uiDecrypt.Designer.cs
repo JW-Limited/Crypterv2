@@ -127,7 +127,7 @@ partial class uiDecrypt
         guna2Panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         guna2Panel1.AutoScroll = true;
         guna2Panel1.BackColor = Color.Transparent;
-        guna2Panel1.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel1.BorderColor = Color.Gainsboro;
         guna2Panel1.BorderRadius = 20;
         guna2Panel1.BorderThickness = 2;
         guna2Panel1.Controls.Add(lblReady);
@@ -139,7 +139,7 @@ partial class uiDecrypt
         guna2Panel1.Controls.Add(lblDecrypt);
         guna2Panel1.Controls.Add(pnlDecrypt);
         guna2Panel1.Controls.Add(lblFile);
-        guna2Panel1.FillColor = Color.Gainsboro;
+        guna2Panel1.FillColor = Color.WhiteSmoke;
         guna2Panel1.Location = new Point(24, 160);
         guna2Panel1.Margin = new Padding(2);
         guna2Panel1.Name = "guna2Panel1";
@@ -278,12 +278,12 @@ partial class uiDecrypt
         // pnlFiles
         // 
         pnlFiles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-        pnlFiles.BorderColor = SystemColors.ActiveBorder;
+        pnlFiles.BorderColor = Color.Gainsboro;
         pnlFiles.BorderRadius = 15;
         pnlFiles.BorderThickness = 2;
         pnlFiles.Controls.Add(chblistFiles);
         pnlFiles.Controls.Add(label4);
-        pnlFiles.FillColor = Color.Gainsboro;
+        pnlFiles.FillColor = Color.WhiteSmoke;
         pnlFiles.Location = new Point(24, 384);
         pnlFiles.Margin = new Padding(2);
         pnlFiles.Name = "pnlFiles";
@@ -293,7 +293,7 @@ partial class uiDecrypt
         // chblistFiles
         // 
         chblistFiles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-        chblistFiles.BackColor = Color.Gainsboro;
+        chblistFiles.BackColor = Color.WhiteSmoke;
         chblistFiles.BorderStyle = BorderStyle.None;
         chblistFiles.CheckOnClick = true;
         chblistFiles.ColumnWidth = 35;
@@ -348,7 +348,7 @@ partial class uiDecrypt
         progress1.Location = new Point(0, 0);
         progress1.Name = "progress1";
         progress1.ProgressColor = Color.DeepSkyBlue;
-        progress1.ProgressColor2 = Color.Navy;
+        progress1.ProgressColor2 = Color.RoyalBlue;
         progress1.ShowText = true;
         progress1.Size = new Size(600, 56);
         progress1.TabIndex = 16;
@@ -410,10 +410,11 @@ partial class uiDecrypt
         bntOpen.DisabledState.CustomBorderColor = Color.DarkGray;
         bntOpen.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntOpen.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        bntOpen.FillColor = Color.WhiteSmoke;
         bntOpen.FocusedColor = Color.FromArgb(100, 170, 209);
         bntOpen.Font = new Font("Segoe UI", 9F);
-        bntOpen.ForeColor = Color.White;
-        bntOpen.Location = new Point(216, 368);
+        bntOpen.ForeColor = Color.RoyalBlue;
+        bntOpen.Location = new Point(216, 352);
         bntOpen.Margin = new Padding(2);
         bntOpen.Name = "bntOpen";
         bntOpen.Size = new Size(176, 40);
@@ -431,7 +432,7 @@ partial class uiDecrypt
         pnlChild.BorderRadius = 15;
         pnlChild.Controls.Add(label1);
         pnlChild.FillColor = Color.Transparent;
-        pnlChild.Location = new Point(224, 96);
+        pnlChild.Location = new Point(224, 80);
         pnlChild.Margin = new Padding(2);
         pnlChild.Name = "pnlChild";
         pnlChild.Size = new Size(160, 240);

@@ -20,7 +20,9 @@ namespace LILO_Packager.v2.Core
         PluginShop,
         PluginInstaller,
         ThirdPartyEncryptenLibrarys,
-        FilePackerv2
+        FilePackerv2,
+        BugBarrierMiniDumpService,
+        ShellMasterAll
     }
 
     public class FeatureFlagConfig : IFeatureFlagConfig
@@ -32,10 +34,12 @@ namespace LILO_Packager.v2.Core
         public bool WebView2GraphicalContent { get; set; } = true;
         public bool SecuredContainerStreaming { get; set; } = true;
         public bool HistoryElementQuering { get; set; } = true;
-        public bool MediaEngineManager { get; set; } = true;
+        public bool MediaEngineManager { get; set; } = false;
         public bool PluginShop { get; set; } = true;
         public bool PluginInstaller { get; set; } = true;
         public bool ThirdPartyEncryptenLibrarys { get; set; } = false;
         public bool FilePackerv2 { get; set; } = true;
+        public bool BugBarrierMiniDumpService { get; set; } = false;
+        public bool ShellMasterAll { get; set; } = true;
     }
 }

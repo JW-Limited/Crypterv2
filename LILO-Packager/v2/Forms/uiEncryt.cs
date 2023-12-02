@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Guna.UI2.WinForms;
+﻿using Guna.UI2.WinForms;
 using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.Dialogs;
@@ -18,7 +8,6 @@ using LILO_Packager.v2.Core.LILO.Types;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.Plugins.Model;
 using LILO_Packager.v2.Shared;
-using LILO_Packager.v2.Shared.Api.Core;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiEncryt : Form
@@ -96,12 +85,12 @@ public partial class uiEncryt : Form
 
         foreach (var item in pnlList)
         {
-            item.FillColor = Color.White;
+            item.FillColor = Color.Gray;
         }
 
         foreach (var item in lblList)
         {
-            item.ForeColor = Color.White;
+            item.ForeColor = Color.Gray;
         }
 
         switch (status)
@@ -397,6 +386,14 @@ public partial class uiEncryt : Form
 
     private void bntOpenPlugin_Clicj(object sender, EventArgs e)
     {
-        Extension.form.Show();
+        Extension.form.StartPosition = FormStartPosition.CenterScreen;
+        if (FeatureManager.IsFeatureEnabled(FeatureFlags.ShellMasterAll)) 
+        {
+            MainHost.Instance().OpenInApp(Extension.form);
+        }
+        else
+        {
+            Extension.form.Show();
+        }
     }
 }

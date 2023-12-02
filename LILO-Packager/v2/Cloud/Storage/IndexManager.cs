@@ -87,8 +87,8 @@ namespace LILO_Packager.v2.Cloud.Storage
             CreateDirectoryRecursively(DefaultIndexPath);
         }
 
-        private string DefaultIndexPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\CCS_Service\\";
-        private string DefaultIndexFilePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\CCS_Service\\Registry";
+        private string DefaultIndexPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Crypterv2\\CCS_Service\\";
+        private string DefaultIndexFilePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Crypterv2\\CCS_Service\\Registry";
 
         public static void CreateDirectoryRecursively(string path)
         {
@@ -116,6 +116,33 @@ namespace LILO_Packager.v2.Cloud.Storage
             {
                 return null;
             }
+        }
+
+        public void CreateMatrixFile()
+        {
+            if (File.Exists(DefaultIndexFilePath))
+            {
+                File.Move(DefaultIndexFilePath, DefaultIndexPath + "_old");
+            }
+
+
+            LocalCloudMatrixFile matrixFile;
+            matrixFile = new LocalCloudMatrixFile();
+            matrixFile.MatrixDetail = new Matrix()
+            {
+                CreationDate = DateTime.Now.ToLocalTime(),
+                SchemeVersion = "1-alpha-app/x",
+                MatrixVerifier = new MatrixIdentifier()
+                {
+                    Name = "CloudFiles",
+                    PublicKey = "F4-F0-DE-65-A2-D1-DE-EF-1F-FE-A2-5E-93-70-67-C9",
+                    MatrixHash = "null"
+                }
+            };
+
+            matrixFile.MatrixEntrys = new List<MatrixEntry>();
+
+            matrixFile.SerializeToXml(DefaultIndexFilePath);
         }
 
         public void AddMatrixEntry(MatrixEntry entry)

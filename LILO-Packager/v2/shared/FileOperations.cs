@@ -27,6 +27,22 @@ public partial class FileOperations
         { CrypterFileType.DebugSession, ".dbgsl"},
     };
 
+    public static void CreateDirectoryRecursively(string path)
+    {
+        string[] pathComponents = path.Split(Path.DirectorySeparatorChar);
+
+        string currentDirectory = "";
+        foreach (string pathComponent in pathComponents)
+        {
+            currentDirectory = Path.Combine(currentDirectory, pathComponent);
+
+            if (!Directory.Exists(currentDirectory))
+            {
+                Directory.CreateDirectory(currentDirectory);
+            }
+        }
+    }
+
     public static string GetSizeString(long size)
     {
         string[] sizes = { "B", "KB", "MB", "GB", "TB" };

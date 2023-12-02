@@ -1,6 +1,6 @@
 ﻿namespace LILO_Packager.v2.Forms
 {
-    partial class CloudFilesViewer
+    partial class uiCloudFilesViewer
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CloudFilesViewer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiCloudFilesViewer));
             lblVersion = new Label();
             label5 = new Label();
             label4 = new Label();
@@ -57,7 +57,7 @@
             colUploadDate = new ColumnHeader();
             colPlace = new ColumnHeader();
             conmenu = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
-            deleteToolStripMenuItem = new ToolStripMenuItem();
+            detailToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             downloadToolStripMenuItem = new ToolStripMenuItem();
             toCrypterv2StorageToolStripMenuItem = new ToolStripMenuItem();
@@ -66,6 +66,7 @@
             compareToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
             reportToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             lblAllInCloud = new Label();
             pnlSpaceTrim = new Panel();
@@ -347,7 +348,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             label1.ForeColor = SystemColors.WindowFrame;
-            label1.Location = new Point(23, 32);
+            label1.Location = new Point(22, 32);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(200, 40);
@@ -382,6 +383,7 @@
             listView1.ContextMenuStrip = conmenu;
             listView1.FullRowSelect = true;
             listView1.Location = new Point(40, 120);
+            listView1.Margin = new Padding(2);
             listView1.Name = "listView1";
             listView1.Size = new Size(904, 640);
             listView1.TabIndex = 50;
@@ -417,7 +419,7 @@
             // 
             conmenu.BackColor = Color.White;
             conmenu.ImageScalingSize = new Size(24, 24);
-            conmenu.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem, toolStripSeparator1, downloadToolStripMenuItem, viewToolStripMenuItem, compareToolStripMenuItem, toolStripSeparator2, reportToolStripMenuItem });
+            conmenu.Items.AddRange(new ToolStripItem[] { detailToolStripMenuItem, toolStripSeparator1, downloadToolStripMenuItem, viewToolStripMenuItem, compareToolStripMenuItem, toolStripSeparator2, reportToolStripMenuItem, deleteToolStripMenuItem });
             conmenu.Name = "ConMenu";
             conmenu.RenderStyle.ArrowColor = Color.FromArgb(125, 100, 255);
             conmenu.RenderStyle.BorderColor = Color.Black;
@@ -428,14 +430,14 @@
             conmenu.RenderStyle.SelectionForeColor = Color.White;
             conmenu.RenderStyle.SeparatorColor = Color.LightGray;
             conmenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            conmenu.Size = new Size(167, 176);
+            conmenu.Size = new Size(167, 208);
             // 
-            // deleteToolStripMenuItem
+            // detailToolStripMenuItem
             // 
-            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(166, 32);
-            deleteToolStripMenuItem.Text = "Delete";
-            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
+            detailToolStripMenuItem.Name = "detailToolStripMenuItem";
+            detailToolStripMenuItem.Size = new Size(166, 32);
+            detailToolStripMenuItem.Text = "Details";
+            detailToolStripMenuItem.Click += detailToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
@@ -494,6 +496,13 @@
             reportToolStripMenuItem.Text = "Report";
             reportToolStripMenuItem.Click += reportToolStripMenuItem_Click;
             // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(166, 32);
+            deleteToolStripMenuItem.Text = "Delete";
+            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
+            // 
             // guna2Panel2
             // 
             guna2Panel2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -527,6 +536,7 @@
             // 
             // pnlSpaceTrim
             // 
+            pnlSpaceTrim.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlSpaceTrim.BackgroundImage = Properties.Resources.Screenshot_2023_10_12_222907;
             pnlSpaceTrim.BackgroundImageLayout = ImageLayout.Stretch;
             pnlSpaceTrim.Location = new Point(32, 88);
@@ -619,6 +629,7 @@
             // 
             SubOp_pnlIco.BackgroundImageLayout = ImageLayout.Zoom;
             SubOp_pnlIco.Location = new Point(24, 24);
+            SubOp_pnlIco.Margin = new Padding(2);
             SubOp_pnlIco.Name = "SubOp_pnlIco";
             SubOp_pnlIco.Size = new Size(32, 32);
             SubOp_pnlIco.TabIndex = 48;
@@ -671,7 +682,7 @@
             SubOp_lblFileName.Text = "n/a";
             SubOp_lblFileName.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // CloudFilesViewer
+            // uiCloudFilesViewer
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -688,7 +699,8 @@
             Controls.Add(guna2Panel1);
             Controls.Add(guna2Panel3);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "CloudFilesViewer";
+            Margin = new Padding(2);
+            Name = "uiCloudFilesViewer";
             StartPosition = FormStartPosition.CenterParent;
             Text = "MainHost - Cloud";
             Load += CloudFilesViewer_Load;
@@ -752,5 +764,6 @@
         private Label SubOp_lblOperationType;
         private Panel SubOp_pnlIco;
         private Label label3;
+        private ToolStripMenuItem detailToolStripMenuItem;
     }
 }

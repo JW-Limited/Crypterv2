@@ -101,7 +101,7 @@ namespace Crypterv2_DevTool
                 lblClient.Text = Client.Client.SocketType.ToString();
                 lblState.Text = $"Available";
                 lblDebug.Text = "True";
-                lblCore.Text = nameof(LILO_Packager.v2.Core.Interfaces.IFeatureFlagSwitcher);
+                lblCore.Text = "HyperCFTP";
                 lblVersion.Text = Application.ProductVersion.ToString();
                 lblAccess.Text = "Unknown";
                 bntDisconnect.Visible = true;
@@ -206,7 +206,7 @@ namespace Crypterv2_DevTool
 
         public async void Main_Load(object sender, EventArgs e)
         {
-
+            lblBottom.Text = $"{LILO_Packager.Program.Version} - (0.11)\r\nJW Limited © 2023\r\n";
             try
             {
 

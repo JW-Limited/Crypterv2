@@ -1,4 +1,5 @@
-﻿using LILO_Packager.v2.Core.LILO;
+﻿using LILO_Packager.v2.Cloud.Storage;
+using LILO_Packager.v2.Core.LILO;
 using LILO_Packager.v2.Core.LILO.Interfaces;
 using LILO_Packager.v2.Core.LILO.Types;
 using LILO_Packager.v2.Shared;
@@ -56,6 +57,7 @@ namespace LILO_Packager.v2.Forms
                     ConsoleManager.Instance().WriteLineWithColor("WebClient: All done.", ConsoleColor.Blue);
                     this.Invoke(new Action(() =>
                     {
+                        FileIndexStorage.Instance.CreateMatrixFile();
                         pnlSucces.Visible = true;
                     }));
                 }
@@ -92,6 +94,7 @@ namespace LILO_Packager.v2.Forms
             liloManager.SaveUserToUser(new string[] { "gast@jwlmt.com", "guest", "guest" });
             this.Invoke(new Action(() =>
             {
+                FileIndexStorage.Instance.CreateMatrixFile();
                 pnlSucces.Visible = true;
             }));
         }

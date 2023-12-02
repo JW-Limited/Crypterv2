@@ -12,8 +12,8 @@ namespace LILO_Packager
     {
         public static NotifyIcon noty;
         public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
-        public static string Version = "v0.11.1-beta";
-        public static string CloudVersion = "0.9.2-preview";
+        public static string Version = "v0.17.3-alpha";
+        public static string CloudVersion = "0.9.3-preview";
         private static IBootManager _bootManager;
 
         private static void InitializeApplication()

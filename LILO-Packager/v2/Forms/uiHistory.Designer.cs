@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem2 = new ListViewItem(new string[] { "12345", "Encryption", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
+            ListViewItem listViewItem1 = new ListViewItem(new string[] { "12345", "Encryption", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
             tableLayoutPanel1 = new TableLayoutPanel();
             listViewHistory = new HTAlt.WinForms.HTListView();
             ColId = new ColumnHeader();
@@ -45,13 +45,13 @@
             toolStripSeparator2 = new ToolStripSeparator();
             reportToolStripMenuItem = new ToolStripMenuItem();
             sPanel2 = new Sipaa.Framework.SPanel();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             bntPlugin = new Guna.UI2.WinForms.Guna2Button();
             bntCancel = new Guna.UI2.WinForms.Guna2Button();
             lblText = new Label();
             pnlLoginLoad = new Guna.UI2.WinForms.Guna2Panel();
             progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
             label5 = new Label();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             tableLayoutPanel1.SuspendLayout();
             conmenu.SuspendLayout();
             sPanel2.SuspendLayout();
@@ -90,7 +90,7 @@
             listViewHistory.HeaderForeColor = Color.Black;
             listViewHistory.HideSelection = true;
             listViewHistory.HoverSelection = true;
-            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem2 });
+            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem1 });
             listViewHistory.Location = new Point(2, 52);
             listViewHistory.Margin = new Padding(2);
             listViewHistory.MultiSelect = false;
@@ -113,7 +113,7 @@
             // ColOperation
             // 
             ColOperation.Tag = "Opration";
-            ColOperation.Text = "Opration";
+            ColOperation.Text = "Operation";
             ColOperation.Width = 160;
             // 
             // ColMode
@@ -204,10 +204,35 @@
             sPanel2.Controls.Add(lblText);
             sPanel2.ForeColor = Color.White;
             sPanel2.Location = new Point(24, 32);
-            sPanel2.Margin = new Padding(4, 4, 4, 4);
+            sPanel2.Margin = new Padding(4);
             sPanel2.Name = "sPanel2";
             sPanel2.Size = new Size(968, 88);
             sPanel2.TabIndex = 13;
+            // 
+            // guna2Button1
+            // 
+            guna2Button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            guna2Button1.Animated = true;
+            guna2Button1.BackColor = Color.Transparent;
+            guna2Button1.BackgroundImageLayout = ImageLayout.Zoom;
+            guna2Button1.BorderColor = Color.Gainsboro;
+            guna2Button1.BorderRadius = 20;
+            guna2Button1.BorderThickness = 2;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = Color.Transparent;
+            guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            guna2Button1.ForeColor = Color.White;
+            guna2Button1.Location = new Point(696, 16);
+            guna2Button1.Margin = new Padding(2);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.Size = new Size(120, 58);
+            guna2Button1.TabIndex = 15;
+            guna2Button1.Text = "Sync";
+            guna2Button1.Click += bntSync_Click;
             // 
             // bntPlugin
             // 
@@ -280,10 +305,10 @@
             pnlLoginLoad.Controls.Add(progressSpinner);
             pnlLoginLoad.Controls.Add(label5);
             pnlLoginLoad.FillColor = Color.White;
-            pnlLoginLoad.Location = new Point(32, 150);
+            pnlLoginLoad.Location = new Point(32, 144);
             pnlLoginLoad.Margin = new Padding(2);
             pnlLoginLoad.Name = "pnlLoginLoad";
-            pnlLoginLoad.Size = new Size(960, 779);
+            pnlLoginLoad.Size = new Size(960, 785);
             pnlLoginLoad.TabIndex = 16;
             // 
             // progressSpinner
@@ -291,7 +316,7 @@
             progressSpinner.Anchor = AnchorStyles.None;
             progressSpinner.AutoStart = true;
             progressSpinner.BackColor = Color.White;
-            progressSpinner.Location = new Point(404, 256);
+            progressSpinner.Location = new Point(404, 259);
             progressSpinner.Margin = new Padding(2);
             progressSpinner.Name = "progressSpinner";
             progressSpinner.Size = new Size(135, 135);
@@ -302,38 +327,13 @@
             label5.Anchor = AnchorStyles.None;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             label5.ForeColor = SystemColors.ActiveCaptionText;
-            label5.Location = new Point(400, 416);
+            label5.Location = new Point(400, 419);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(144, 30);
             label5.TabIndex = 6;
             label5.Text = "Loading...";
             label5.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // guna2Button1
-            // 
-            guna2Button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            guna2Button1.Animated = true;
-            guna2Button1.BackColor = Color.Transparent;
-            guna2Button1.BackgroundImageLayout = ImageLayout.Zoom;
-            guna2Button1.BorderColor = Color.Gainsboro;
-            guna2Button1.BorderRadius = 20;
-            guna2Button1.BorderThickness = 2;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = Color.Transparent;
-            guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(696, 16);
-            guna2Button1.Margin = new Padding(2);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(120, 58);
-            guna2Button1.TabIndex = 15;
-            guna2Button1.Text = "Sync";
-            guna2Button1.Click += bntSync_Click;
             // 
             // uiHistory
             // 

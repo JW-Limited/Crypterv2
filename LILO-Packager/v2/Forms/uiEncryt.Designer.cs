@@ -161,9 +161,10 @@ partial class uiEncryt
         bntOpen.DisabledState.CustomBorderColor = Color.DarkGray;
         bntOpen.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntOpen.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        bntOpen.FillColor = Color.WhiteSmoke;
         bntOpen.FocusedColor = Color.FromArgb(100, 170, 209);
         bntOpen.Font = new Font("Segoe UI", 9F);
-        bntOpen.ForeColor = Color.White;
+        bntOpen.ForeColor = Color.RoyalBlue;
         bntOpen.Location = new Point(216, 344);
         bntOpen.Margin = new Padding(2);
         bntOpen.Name = "bntOpen";
@@ -190,7 +191,7 @@ partial class uiEncryt
         guna2Panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         guna2Panel1.AutoScroll = true;
         guna2Panel1.BackColor = Color.Transparent;
-        guna2Panel1.BorderColor = SystemColors.ActiveBorder;
+        guna2Panel1.BorderColor = Color.Gainsboro;
         guna2Panel1.BorderRadius = 20;
         guna2Panel1.BorderThickness = 2;
         guna2Panel1.Controls.Add(lblReady);
@@ -202,7 +203,7 @@ partial class uiEncryt
         guna2Panel1.Controls.Add(pnlEncrypt);
         guna2Panel1.Controls.Add(pnlComb);
         guna2Panel1.Controls.Add(pnlFile);
-        guna2Panel1.FillColor = Color.Gainsboro;
+        guna2Panel1.FillColor = Color.WhiteSmoke;
         guna2Panel1.Location = new Point(24, 160);
         guna2Panel1.Margin = new Padding(2);
         guna2Panel1.Name = "guna2Panel1";
@@ -252,7 +253,7 @@ partial class uiEncryt
         // 
         lblFile.Anchor = AnchorStyles.None;
         lblFile.Font = new Font("Open Sans", 10F, FontStyle.Bold);
-        lblFile.ForeColor = SystemColors.ButtonHighlight;
+        lblFile.ForeColor = Color.White;
         lblFile.Location = new Point(56, 128);
         lblFile.Margin = new Padding(2, 0, 2, 0);
         lblFile.Name = "lblFile";
@@ -337,7 +338,7 @@ partial class uiEncryt
         progress.Margin = new Padding(2);
         progress.Name = "progress";
         progress.ProgressColor = Color.DeepSkyBlue;
-        progress.ProgressColor2 = Color.Navy;
+        progress.ProgressColor2 = Color.RoyalBlue;
         progress.ShowText = true;
         progress.Size = new Size(600, 56);
         progress.TabIndex = 15;
@@ -370,12 +371,12 @@ partial class uiEncryt
         // pnlFiles
         // 
         pnlFiles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-        pnlFiles.BorderColor = SystemColors.ActiveBorder;
+        pnlFiles.BorderColor = Color.Gainsboro;
         pnlFiles.BorderRadius = 15;
         pnlFiles.BorderThickness = 2;
         pnlFiles.Controls.Add(chblistFiles);
         pnlFiles.Controls.Add(label4);
-        pnlFiles.FillColor = Color.Gainsboro;
+        pnlFiles.FillColor = Color.WhiteSmoke;
         pnlFiles.Location = new Point(24, 384);
         pnlFiles.Margin = new Padding(2);
         pnlFiles.Name = "pnlFiles";
@@ -385,17 +386,17 @@ partial class uiEncryt
         // chblistFiles
         // 
         chblistFiles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-        chblistFiles.BackColor = Color.Gainsboro;
+        chblistFiles.BackColor = Color.WhiteSmoke;
         chblistFiles.BorderStyle = BorderStyle.None;
         chblistFiles.CheckOnClick = true;
         chblistFiles.ColumnWidth = 35;
         chblistFiles.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        chblistFiles.ForeColor = Color.White;
+        chblistFiles.ForeColor = Color.Gray;
         chblistFiles.FormattingEnabled = true;
         chblistFiles.Location = new Point(32, 64);
         chblistFiles.Margin = new Padding(2);
         chblistFiles.Name = "chblistFiles";
-        chblistFiles.Size = new Size(296, 420);
+        chblistFiles.Size = new Size(296, 448);
         chblistFiles.TabIndex = 2;
         chblistFiles.ThreeDCheckBoxes = true;
         // 

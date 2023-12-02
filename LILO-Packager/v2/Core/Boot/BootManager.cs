@@ -114,7 +114,7 @@ namespace LILO_Packager.v2.Core.Boot
         private void HandleArgumentParsingErrors(IEnumerable<Error> errors, ParserResult<CommandLineOptions> result)
         {
             var helpText = new StringBuilder();
-            helpText.AppendLine("Usage: YourApp.exe [options] <FilePath>");
+            helpText.AppendLine("Usage: crypterv2.exe [options] <FilePath>");
             helpText.AppendLine("Options:");
             helpText.AppendLine("-v, --view    File view mode (Encrypted, DebugSessionLog, TextFile).");
 
@@ -131,7 +131,7 @@ namespace LILO_Packager.v2.Core.Boot
             Console.ReadKey();
         }
 
-        public static void ExecuteBatchScript(int waitTimeInSeconds, string applicationPath)
+        public static void BatchRestart(int waitTimeInSeconds, string applicationPath)
         {
             try
             {

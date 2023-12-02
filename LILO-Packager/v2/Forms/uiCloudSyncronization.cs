@@ -27,6 +27,12 @@ namespace LILO_Packager.v2.Forms
             MatrixHandler = FileIndexStorage.Instance;
 
             InitializeComponent();
+
+            this.FormClosing += (s,e) =>
+            {
+                e.Cancel = true;
+                this.Hide();
+            };
         }
 
         private async void LoadData()
@@ -274,7 +280,7 @@ namespace LILO_Packager.v2.Forms
 
         private void myFiles(object sender, EventArgs e)
         {
-            var cloud = new CloudFilesViewer(CloudServiceManager).ShowDialog();
+            var cloud = new uiCloudFilesViewer(CloudServiceManager).ShowDialog();
         }
     }
 }

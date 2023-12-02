@@ -71,21 +71,8 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
     private Dictionary<string, bool> GetFeaturesAndValues()
     {
-        Dictionary<string, bool> featureValues = new Dictionary<string, bool>
-        {
-            { FeatureFlags.NewEncryptionCore.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.NewEncryptionCore) },
-            { FeatureFlags.PluginSupport.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.PluginSupport) },
-            { FeatureFlags.ThirdPartyPluginSupport.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.ThirdPartyPluginSupport) },
-            { FeatureFlags.PluginManager.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.PluginManager) },
-            { FeatureFlags.WebView2GraphicalContent.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.WebView2GraphicalContent) },
-            { FeatureFlags.SecuredContainerStreaming.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming) },
-            { FeatureFlags.HistoryElementQuering.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementQuering) },
-            { FeatureFlags.MediaEngineManager.ToString(), FeatureManager.IsFeatureEnabled(FeatureFlags.MediaEngineManager) },
-            { FeatureFlags.FilePackerv2.ToString(),FeatureManager.IsFeatureEnabled(FeatureFlags.FilePackerv2) },
-            { FeatureFlags.PluginShop.ToString(),FeatureManager.IsFeatureEnabled(FeatureFlags.PluginShop) },
-            { FeatureFlags.ThirdPartyEncryptenLibrarys.ToString(),FeatureManager.IsFeatureEnabled(FeatureFlags.ThirdPartyEncryptenLibrarys) },
-            { FeatureFlags.PluginInstaller.ToString(),FeatureManager.IsFeatureEnabled(FeatureFlags.PluginInstaller) },
-        };
+        var featureValues = Enum.GetValues(typeof(FeatureFlags)).Cast<FeatureFlags>()
+                               .ToDictionary(feature => feature.ToString(), feature => FeatureManager.IsFeatureEnabled(feature));
 
         return featureValues;
     }
@@ -233,9 +220,6 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
         }
 
-        var memo = new System.Buffers.MemoryHandle();
-        var mP = memo.Pointer;
-
         this.FormClosing += (sender, e) =>
         {
             e.Cancel = true;
@@ -245,7 +229,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
     private async void MainHost_Load(object sender, EventArgs e)
     {
-        Task.Run(() => this.Invoke(async() =>
+        Task.Run(() => this.Invoke(async () =>
         {
             var updater = Updater.Instance();
             Program.InstanceCacheContainer.Register<IUpdater>(() => updater);
@@ -254,6 +238,8 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
             {
                 procSrv.Kill();
             }
+
+            FileOperations.CreateDirectoryRecursively(".\\log");
 
             var response = await _localServer.Initialization(new LILO_WebEngine.Service.LocalServerOptions()
             {
@@ -298,8 +284,6 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
             {
                 OkDialog.Show(response.ErrorMessage, "InternalServerErrror");
             }
-
-            OpenInApp(v2.Forms.uiWebView.Instance(new Uri($"http://localhost:{Port}")));
 
             foreach (Control item in this.Controls)
             {
@@ -349,18 +333,6 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
                     hider.Visible = false;
                 }
             }
-            else
-            {
-                OpenInApp(v2.Forms.uiWebView.Instance(new Uri("http://localhost:8080")));
-            }
-
-
-            if (!File.Exists(UserFile))
-            {
-                OpenInApp(new uiLILOLogin());
-                pnlSide.Visible = false;
-                hider.Visible = false;
-            }
 
             if (config.Default.allowedPlugins)
             {
@@ -408,6 +380,26 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
 
                 await v2.Core.FeatureManager.LoadConfigurationAsync();
+
+                
+            }
+
+            pnlChild.BackgroundImage = null;
+
+            this.Invoke(() =>
+            {
+                hider.Visible = true;
+            });
+
+            if (!File.Exists(UserFile))
+            {
+                OpenInApp(new uiLILOLogin());
+                pnlSide.Visible = false;
+                hider.Visible = false;
+            }
+            else
+            {
+                OpenInApp(v2.Forms.uiWebView.Instance(new Uri($"http://localhost:{Port}")));
             }
 
         }));
