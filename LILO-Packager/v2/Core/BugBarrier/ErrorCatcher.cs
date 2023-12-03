@@ -53,7 +53,7 @@ namespace LILO_Packager.v2.Core.BugBarrier
             Type[] highImpactExceptionTypes = { typeof(StackOverflowException), typeof(OutOfMemoryException) };
             return highImpactExceptionTypes.Contains(exceptionType);
         }
-        private static async void HandleException(Exception ex)
+        public static async void HandleException(Exception ex)
         {
             LogException(ex);
 

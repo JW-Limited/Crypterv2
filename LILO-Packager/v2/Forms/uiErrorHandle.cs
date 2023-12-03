@@ -52,7 +52,26 @@ namespace LILO_Packager.v2.Forms
             sb.AppendLine("Library: " + _error.ParsedMessage.Library.ToString());
             sb.AppendLine("Method: " + _error.ParsedMessage.Method.ToString());
 
-            MessageBox.Show(_error.Message + _error.Source +_error.ParsedMessage + _error.StackTrace,"BugBarrier",MessageBoxButtons.OK);
+            MessageBox.Show(_error.Message + _error.Source + _error.ParsedMessage + _error.StackTrace, "BugBarrier", MessageBoxButtons.OK);
+        }
+
+        private void bntReport_Clicked(object sender, EventArgs e)
+        {
+            var errorReport = ErrorReportManager.GenerateErrorReportFromException(_error.Exception);
+            var sfd = new SaveFileDialog()
+            {
+                CheckWriteAccess = true,
+                DefaultExt = ".cbr",
+                ExpandedMode = true,
+                OkRequiresInteraction = true,
+                ShowHelp = true,
+                Title = "Error Report"
+            };
+            if(sfd.ShowDialog() == DialogResult.OK)
+            {
+                var report = ErrorReportManager.SerializeErrorReport(errorReport);
+                File.WriteAllText(sfd.FileName, report);
+            }
         }
     }
 }

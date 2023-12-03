@@ -20,6 +20,7 @@ using System.Text;
 using System.Net;
 using Newtonsoft.Json;
 using srvlocal_gui.AppMananger;
+using LILO_Packager.v2.Core.BugBarrier;
 
 
 namespace LILO_Packager.v2;
@@ -37,6 +38,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
     public readonly NotifyIconManager _noty;
     public readonly PluginManagerv2 _pluginManager;
     public UserAdvanced _userAdvanced;
+    public bool PresedExit = false;
 
     public readonly string ThemePath = Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "themes");
     public readonly string Owner = "JW-Limited";
@@ -62,26 +64,21 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
     public Core.History.DatabaseHandling dataHandler = new Core.History.DatabaseHandling();
     public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
 
-    public enum ChildrenUse
-    {
-        Auth,
-        WebView,
-        NormalForm
-    }
+    
 
     private Dictionary<string, bool> GetFeaturesAndValues()
     {
-        var featureValues = Enum.GetValues(typeof(FeatureFlags)).Cast<FeatureFlags>()
-                               .ToDictionary(feature => feature.ToString(), feature => FeatureManager.IsFeatureEnabled(feature));
-
-        return featureValues;
+        return Enum.GetValues(typeof(FeatureFlags)).Cast<FeatureFlags>()
+            .Select(feature => new KeyValuePair<string, bool>(feature.ToString(), FeatureManager.IsFeatureEnabled(feature)))
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
     }
+
 
     #endregion
 
     #region Debug Socket
 
-    private async void HandleClient(object clientObj)
+    private async Task HandleClientAsync(object clientObj)
     {
         using (TcpClient client = (TcpClient)clientObj)
         using (NetworkStream stream = client.GetStream())
@@ -89,44 +86,65 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         using (StreamWriter writer = new StreamWriter(stream))
         {
             string command = reader.ReadLine();
-
-            if (command.ToLower() == "list")
+            
+            if(command is not null)
             {
-                Dictionary<string, bool> featureValues = GetFeaturesAndValues();
-
-                string featureValuesJson = JsonConvert.SerializeObject(featureValues);
-                writer.WriteLine(featureValuesJson);
-                writer.Flush();
+                if (command.ToLower() == "list")
+                {
+                    writer.WriteLine(JsonConvert.SerializeObject(GetFeaturesAndValues()));
+                    await writer.FlushAsync();
+                }
+                else if (command.ToLower() == "closeThread")
+                {
+                    Application.ExitThread();
+                }
+                else
+                {
+                    if (Enum.TryParse(command, true, out FeatureFlags feature))
+                    {
+                        writer.WriteLine($"Toggled:{command}");
+                        await FeatureManager.ToggleFeatureAsync(feature);
+                    }
+                    else
+                    {
+                        writer.WriteLine($"CommandNotFound:{command}");
+                        await writer.FlushAsync();
+                        Console.WriteLine($"Invalid command received: {command}");
+                    }
+                }
             }
-            else if (command.ToLower() == "closeThread")
-            {
-                Application.ExitThread();
-            }
-            else
-            {
-
-                var feature = (FeatureFlags)Enum.Parse(typeof(FeatureFlags), command);
-
-                await FeatureManager.ToggleFeatureAsync(feature);
-            }
-
-
         }
     }
 
-    private void ListenForConnections()
+    private async void ListenForConnections()
     {
-        while (true)
+        while (true && !MainHost.Instance().PresedExit)
         {
             try
             {
-                TcpClient client = _listener.AcceptTcpClient();
-                ThreadPool.QueueUserWorkItem(HandleClient, client);
+                TcpClient client = await _listener.AcceptTcpClientAsync();
+                ThreadPool.QueueUserWorkItem(async (obj) =>
+                {
+                    try
+                    {
+                        await HandleClientAsync(obj);
+                    }
+                    catch(Exception ex)
+                    {
+                        BugBarrier.HandleException(ex);
+                    }
+                }
+                , client);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ConsoleManager.Instance().WriteLineWithColor($"Error accepting client connection: {ex.Message}",ConsoleColor.DarkRed);
             }
+        }
+
+        if (MainHost.Instance().PresedExit)
+        {
+            Application.ExitThread();
         }
     }
 
@@ -410,37 +428,46 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
     #region Important Host Functions 
 
+    public enum ChildrenUse
+    {
+        Auth,
+        WebView,
+        NormalForm
+    }
+
     public void OpenInApp(Form children, string FormName = null, ChildrenUse usage = ChildrenUse.WebView)
     {
-
-        if (children == _currentOpenedApp) return;
-
-        if (_currentOpenedApp is not null)
+        if (!MainHost.Instance().IsDisposed)
         {
-            _currentOpenedApp.Close();
+            if (children == _currentOpenedApp) return;
+
+            if (_currentOpenedApp is not null)
+            {
+                _currentOpenedApp.Close();
+            }
+
+
+            this.IsMdiContainer = true;
+            this.BackColor = Color.White;
+
+            children.MdiParent = this;
+            pnlChild.Controls.Add(children);
+            pnlChild.Dock = DockStyle.Fill;
+            pnlChild.BringToFront();
+
+            children.MaximizeBox = false;
+            children.MinimizeBox = false;
+            children.ControlBox = false;
+            children.FormBorderStyle = FormBorderStyle.None;
+
+            children.Dock = DockStyle.Fill;
+
+            if (FormName is not null or "") children.Text = FormName;
+
+            children.Show();
+
+            _currentOpenedApp = children;
         }
-
-
-        this.IsMdiContainer = true;
-        this.BackColor = Color.White;
-
-        children.MdiParent = this;
-        pnlChild.Controls.Add(children);
-        pnlChild.Dock = DockStyle.Fill;
-        pnlChild.BringToFront();
-
-        children.MaximizeBox = false;
-        children.MinimizeBox = false;
-        children.ControlBox = false;
-        children.FormBorderStyle = FormBorderStyle.None;
-
-        children.Dock = DockStyle.Fill;
-
-        if (FormName is not null or "") children.Text = FormName;
-
-        children.Show();
-
-        _currentOpenedApp = children;
     }
 
     public async Task OpenDynamicPlayer(HttpListenerContext con, string fallbackFile)
@@ -688,45 +715,32 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
     #region Updater
 
-    public Task CheckForUpdates(UpdateMode mode = UpdateMode.Manual)
+    public async Task CheckForUpdates(UpdateMode mode = UpdateMode.Manual)
     {
         try
         {
+            pnlNothing.Visible = false;
+            pnlLoading.Visible = true;
             var updater = Updater.Instance();
-
+            var currentVersion = Program.Version.ToString();
             var latestVersion = updater.GetLatestVersion(Owner, Repository);
-            var latestChanges = updater.GetLatestChanges(Owner, Repository);
-            var currentVersion = System.Windows.Forms.Application.ProductVersion;
+            var Semi = VersionComparer.CompareSemanticVersions(currentVersion, latestVersion);
 
-            Task.Run(() =>
+            if (Semi.IsNewer)
             {
-                this.Invoke((MethodInvoker)delegate
-                {
-                    if (updater.HasNewRelease(Owner, Repository))
-                    {
-                        Console.WriteLine("A new release is available.");
-
-                        _noty.ShowBubbleNotification(new Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {latestVersion}"));
-
-                        //string html = Markdig.Markdown.ToHtml(latestChanges);
-
-                    }
-                    else
-                    {
-                        Console.WriteLine("No new release available.");
-
-                        _noty.ShowBubbleNotification(new Notification("Updater", $"No new release available.\nYou are perfect."));
-                    }
-                });
-
-            });
-
-            return Task.CompletedTask;
+                _noty.ShowBubbleNotification(new Notification("Updater", $"A new release is available. \nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
+                pnlNotifications.Visible = true;
+            }
+            else if (!Semi.IsNewer)
+            {
+                _noty.ShowBubbleNotification(new Notification("Updater", $"Youre on the latest Version ;)\nYour Version : {currentVersion}\nLatest Version : {Semi.ToString()}"));
+            }
         }
-        catch (Exception ex)
+        catch (System.AggregateException ex)
         {
-            _noty.ShowBubbleNotification(new Notification("Updater", ex.Message));
-            return Task.CompletedTask;
+            ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
+
+            _noty.ShowBubbleNotification(new Notification("Updater", $"Network Error :("));
         }
     }
 

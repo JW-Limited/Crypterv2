@@ -62,14 +62,12 @@ namespace LILO_Packager.v2.Cloud
             try
             {
                 var ping = new Ping();
-                var pingTask = ping.SendPingAsync("pixeldrain.com");
-                pingTask.Wait();
-                var pingReply = pingTask.Result;
-
-                return pingReply.Status == IPStatus.Success;
+                var pingTask = ping.Send("www.pixeldrain.com");
+                return pingTask.Status == IPStatus.Success;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message + ex.Source + ex.StackTrace + ex.InnerException,"MainHost - Connection Service",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return false;
             }
         }

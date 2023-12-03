@@ -16,6 +16,7 @@ namespace LILO_Packager.v2.Shared
         private readonly ConcurrentQueue<string> logQueue = new ConcurrentQueue<string>();
         private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
         public static Logger Instance => lazyInstance.Value;
+        public string SessionId { get; set; }
 
         string ILILOLogger.logFilePath => this.logFilePath;
 
@@ -23,6 +24,7 @@ namespace LILO_Packager.v2.Shared
         {
             var _sessionId = GenerateSessionId();
             logFilePath = Path.Combine(Application.ExecutablePath.Replace("crypterv2.exe", ""), "log") + "\\" + $"log_session_{_sessionId}.dbgsl";
+            SessionId = _sessionId;
         }
 
 

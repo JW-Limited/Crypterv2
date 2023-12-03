@@ -66,6 +66,7 @@
             label11 = new Label();
             prgMiniProgress = new Guna.UI2.WinForms.Guna2ProgressBar();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel3.SuspendLayout();
             guna2Panel1.SuspendLayout();
             pnlCounter.SuspendLayout();
@@ -164,6 +165,7 @@
             guna2Panel1.BorderColor = Color.Gainsboro;
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.BorderThickness = 2;
+            guna2Panel1.Controls.Add(guna2Button2);
             guna2Panel1.Controls.Add(lblCloud);
             guna2Panel1.Controls.Add(lblNetwork);
             guna2Panel1.Controls.Add(panel1);
@@ -173,7 +175,7 @@
             guna2Panel1.Location = new Point(24, 168);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(304, 144);
+            guna2Panel1.Size = new Size(304, 192);
             guna2Panel1.TabIndex = 37;
             // 
             // lblCloud
@@ -608,7 +610,7 @@
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(24, 336);
+            guna2Button1.Location = new Point(24, 384);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.BorderRadius = 15;
@@ -618,6 +620,32 @@
             guna2Button1.TabIndex = 35;
             guna2Button1.Text = "My Files";
             guna2Button1.Click += myFiles;
+            // 
+            // guna2Button2
+            // 
+            guna2Button2.Animated = true;
+            guna2Button2.BackColor = Color.Transparent;
+            guna2Button2.BorderColor = Color.Gainsboro;
+            guna2Button2.BorderRadius = 10;
+            guna2Button2.BorderThickness = 2;
+            guna2Button2.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button2.FillColor = Color.White;
+            guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            guna2Button2.ForeColor = Color.DimGray;
+            guna2Button2.Location = new Point(16, 136);
+            guna2Button2.Margin = new Padding(2);
+            guna2Button2.Name = "guna2Button2";
+            guna2Button2.ShadowDecoration.BorderRadius = 15;
+            guna2Button2.ShadowDecoration.Color = Color.LightGray;
+            guna2Button2.ShadowDecoration.Depth = 20;
+            guna2Button2.Size = new Size(272, 40);
+            guna2Button2.TabIndex = 35;
+            guna2Button2.Text = "Check Status";
+            guna2Button2.Click += bntClick_Chekc;
             // 
             // uiCloudSyncronization
             // 
@@ -683,5 +711,6 @@
         private Guna.UI2.WinForms.Guna2ProgressBar prgMiniProgress;
         private Label lblStatus;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
     }
 }

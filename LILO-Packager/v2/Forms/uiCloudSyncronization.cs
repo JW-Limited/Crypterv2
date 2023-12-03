@@ -4,6 +4,7 @@ using LILO_Packager.v2.Cloud.Storage;
 using LILO_Packager.v2.Contracts;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Shared;
+using System.Diagnostics;
 using Telerik.Windows.Documents.Flow.FormatProviders.Html;
 
 namespace LILO_Packager.v2.Forms
@@ -28,7 +29,7 @@ namespace LILO_Packager.v2.Forms
 
             InitializeComponent();
 
-            this.FormClosing += (s,e) =>
+            this.FormClosing += (s, e) =>
             {
                 e.Cancel = true;
                 this.Hide();
@@ -63,7 +64,7 @@ namespace LILO_Packager.v2.Forms
 
             foreach (var path in LocalFilesListPath)
             {
-                if(path.Contains(message)) LocalFilesListPath.Remove(path);
+                if (path.Contains(message)) LocalFilesListPath.Remove(path);
             }
 
             lblStatus.Text = message;
@@ -281,6 +282,20 @@ namespace LILO_Packager.v2.Forms
         private void myFiles(object sender, EventArgs e)
         {
             var cloud = new uiCloudFilesViewer(CloudServiceManager).ShowDialog();
+        }
+
+        private void bntClick_Chekc(object sender, EventArgs e)
+        {
+            var proc = new Process()
+            {
+                StartInfo = new ProcessStartInfo()
+                {
+                    UseShellExecute = true,
+                    FileName = "https://stats.uptimerobot.com/vB2rASO4Y4"
+                }
+            };
+
+            proc.Start(); 
         }
     }
 }
