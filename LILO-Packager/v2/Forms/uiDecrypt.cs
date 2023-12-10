@@ -4,6 +4,7 @@ using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.Shared;
+using Telerik.Windows.Documents.Model.Drawing.Charts;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiDecrypt : Form
@@ -14,7 +15,8 @@ public partial class uiDecrypt : Form
     public static List<string> _arFiles = new List<string>();
     public int fileCounter = 1;
     public Shared.FileOperations sharedFile = new();
-    private DatabaseHandling dbHandler;
+    private DatabaseHandling dbHandler; 
+    private TaskStatus CurrentTask = new();
 
     public static uiDecrypt Instance(DatabaseHandling handler)
     {
@@ -243,63 +245,65 @@ public partial class uiDecrypt : Form
 
                 foreach (string item in _arFiles)
                 {
-                    if (item != previousFile)
+                    await Task.Run(async() =>
                     {
-                        previousFile = item;
-                        logged = false;
-                    }
-
-                    if (!logged)
-                    {
-                        await dbHandler.InsertEncryptedOperationAsync("Decryption", "libraryBased", "v2", item, item.Replace(".lsf", ""), $"{new Random().NextInt64(11111, 99999)}");
-                        logged = true;
-                    }
-
-
-                    await Task.Run(() =>
-                    {
-
-                        _ = Services.DecryptAndDecompressFileAsync(item, item.Replace(".lsf", ""), psw,
-                        progress =>
+                        if (item != previousFile)
                         {
-                            UpdateProgress(progress);
-                        },
-                        error =>
+                            previousFile = item;
+                            logged = false;
+                        }
+
+                        if (!logged)
                         {
-                            ShowError("Encryption Error", error.Message);
-                        },
-                        async currentTask =>
+                            await dbHandler.InsertEncryptedOperationAsync("Decryption", "libraryBased", "v2", item, item.Replace(".lsf", ""), $"{new Random().NextInt64(11111, 99999)}");
+                            logged = true;
+                        }
+
+                        var values = new ServiceValues()
                         {
-
-                            if (currentTask.StartsWith("Decompress") && current is not TaskStatus.DeCompress)
-                            {
-                                MarkStatus(TaskStatus.DeCompress);
-
-                                current = TaskStatus.DeCompress;
-                            }
-
-                            if (currentTask.StartsWith("Decrypting") && current is not TaskStatus.Decrypting)
-                            {
-                                MarkStatus(TaskStatus.Decrypting);
-
-                                current = TaskStatus.Decrypting;
-                            }
-
-
-                            if (currentTask == "success")
+                            CurrentWorkingTask = async currentTask =>
                             {
 
-                                var info = new FileInfo(item);
-                                MarkStatus(TaskStatus.Ready);
-                                taskBarProgress.Value = 0;
-                                taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
+                                if (currentTask.StartsWith("Decompress") && current is not TaskStatus.DeCompress)
+                                {
+                                    MarkStatus(TaskStatus.DeCompress);
 
-                                ControlEnable(true, item);
-                                _arFiles.Remove(item);
-                                chblistFiles.Items.Remove("  " + info.Name);
-                                fileCounter--;
-                            }
-                        });
+                                    current = TaskStatus.DeCompress;
+                                }
+
+                                if (currentTask.StartsWith("Decrypting") && current is not TaskStatus.Decrypting)
+                                {
+                                    MarkStatus(TaskStatus.Decrypting);
+
+                                    current = TaskStatus.Decrypting;
+                                }
+
+
+                                if (currentTask == "success")
+                                {
+
+                                    var info = new FileInfo(item);
+                                    MarkStatus(TaskStatus.Ready);
+                                    taskBarProgress.Value = 0;
+                                    taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
+
+                                    ControlEnable(true, item);
+                                    _arFiles.Remove(item);
+                                    chblistFiles.Items.Remove("  " + info.Name);
+                                    fileCounter--;
+                                }
+                            },
+                            FileInput = item,
+                            FileOutput = item.Replace(".lsf", ""),
+                            Password = psw,
+                            FileType = FileType.File,
+                            ErrorCallback = HandleError,
+                            ProgressCallback = HandleProgessChange,
+                        };
+
+                        var serviceHandler = new Services(values);
+                        var response = await serviceHandler.DecryptAndDecompressFileAsync();
+
                     });
                 }
 
@@ -329,6 +333,33 @@ public partial class uiDecrypt : Form
         {
             MessageBox.Show(message + "\n\n" + ex.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+    }
+
+    public void HandleError(Exception error)
+    {
+        MessageBox.Show("Encryption Error", error.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        ConsoleManager.Instance().WriteLineWithColor($"(Encryption Error) - {error.Message}");
+
+        try
+        {
+            OkDialog.Show(error.Message, "Encryption Error", DialogIcon.Error);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(error.Message + "\n\n" + ex.Message, "Encryption Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    public void HandleProgessChange(ProgressCallBackValues values)
+    {
+        MainHost.Instance().taskBarProgress.TargetForm = MainHost.Instance();
+        MainHost.Instance().taskBarProgress.State = Guna2TaskBarProgress.TaskbarStates.Normal;
+
+        progress.Maximum = (int)values.TotalBytes;
+        progress.Value = (int)values.BytesRead;
+
+        MainHost.Instance().taskBarProgress.Value = values.Procentage;
     }
 
     private void bntOpen_Click(object sender, EventArgs e)

@@ -1,4 +1,7 @@
-﻿using LILO_Packager.v2.Core;
+﻿using LILO_Packager.Properties;
+using LILO_Packager.v2.Cloud;
+using LILO_Packager.v2.Cloud.Storage;
+using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.History;
@@ -6,6 +9,7 @@ using LILO_Packager.v2.Shared;
 using LILO_Packager.v2.Shared.Api.Core;
 using System.Diagnostics;
 using System.Media;
+using System.Runtime.InteropServices;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -26,6 +30,26 @@ namespace LILO_Packager.v2.Forms
 
             return _instance;
         }
+
+        [DllImport("shell32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr ExtractAssociatedIcon(IntPtr hInst,
+                                                            string lpIconPath, out ushort lpiIcon);
+
+        static Icon GetFileIcon(string filePath)
+        {
+            ushort iconIndex;
+            IntPtr hIcon = ExtractAssociatedIcon(IntPtr.Zero, filePath, out iconIndex);
+            if (hIcon != IntPtr.Zero)
+            {
+                Icon icon = (Icon)Icon.FromHandle(hIcon).Clone();
+                DestroyIcon(hIcon);
+                return icon;
+            }
+            return null;
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern bool DestroyIcon(IntPtr handle);
 
 
         private uiHistory()
@@ -78,8 +102,40 @@ namespace LILO_Packager.v2.Forms
                         }
                         else
                         {
-                            OkDialog.Show("The Output of this Operation is not existing anymore.", "File Not Found");
-                            break;
+                            var matrixFile = FileIndexStorage.Instance.GetMatrixFile();
+                            MatrixEntry entryCheck = null;
+
+
+                            foreach(var entry in matrixFile.MatrixEntrys)
+                            {
+                                if(entry.File.RealPath == element.outputFileName)
+                                {
+                                    File.WriteAllText(entry.File.RealPath + ".llcp", "__placeholder__");
+
+                                    var hisEntry = new HistoryElement()
+                                    {
+                                        algorithmVersion = element.algorithmVersion,
+                                        id = element.id,
+                                        inputFileName = element.inputFileName,
+                                        outputFileName = entry.File.RealPath + ".llcp",
+                                        mode = element.mode,
+                                        operationType = element.operationType,
+                                    };
+
+                                    entryCheck = entry;
+
+                                    MainHost.Instance().OpenInApp(new uiHistoryElementInfo(hisEntry));
+                                    break;
+                                }
+                            }
+
+                           if(entryCheck is null)
+                           {
+                                OkDialog.Show("The Output of this Operation is not existing anymore.", "File Not Found");
+                                break;
+                           }
+
+                            
                         }
                     }
                     catch (Exception ex)
@@ -115,6 +171,16 @@ namespace LILO_Packager.v2.Forms
             {
                 pnlLoginLoad.Visible = true;
 
+                var imagelist = new ImageList();
+                imagelist.Images.Add("close", Resources.Close);
+                imagelist.Images.Add("cloud", Resources.icons8_earth_planet_96);
+                imagelist.Images.Add("lsf_lock", Resources.Lock);
+
+                listViewHistory.GroupImageList = imagelist;
+                listViewHistory.LargeImageList = imagelist;
+                listViewHistory.SmallImageList = imagelist;
+                listViewHistory.StateImageList = imagelist;
+
                 Task.Run(() =>
                 {
                     this.listViewHistory.Items.Clear();
@@ -142,10 +208,39 @@ namespace LILO_Packager.v2.Forms
 
                         if (!File.Exists(element.outputFileName))
                         {
-                            item.ForeColor = Color.DarkGray;
+                            var cloudMatrixFile = FileIndexStorage.Instance.GetMatrixFile();
+
+                            foreach (var itemInMatrix in cloudMatrixFile.MatrixEntrys)
+                            {
+                                if (itemInMatrix.File.RealPath == element.outputFileName)
+                                {
+                                    item.ForeColor = Color.RoyalBlue;
+                                    item.ImageKey = "cloud";
+                                    break;
+                                }
+                                else
+                                {
+                                    item.ImageKey = "close";
+                                    item.ForeColor = Color.DarkGray;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (element.outputFileName.EndsWith(".lsf"))
+                            {
+                                item.ImageKey = "lsf_lock";
+                            }
+                            else
+                            {
+                                var Hash = Cloud.CloudSyncroniztationBase.GetFileHash(element.outputFileName);
+                                imagelist.Images.Add(Hash, GetFileIcon(element.outputFileName));
+                                item.ImageKey = Hash;
+                            }
+                            
                         }
 
-                        ConsoleManager.Instance().WriteLineWithColor("Loading: (ID)" + element.id + " (OPM)" + element.operationType + " (CORE)" + element.algorithmVersion, GetConsoleColorFromOperation(element.operationType));
+                        //ConsoleManager.Instance().WriteLineWithColor("Loading: (ID)" + element.id + " (OPM)" + element.operationType + " (CORE)" + element.algorithmVersion, GetConsoleColorFromOperation(element.operationType));
 
 
                         listViewHistory.Items.Add(item);

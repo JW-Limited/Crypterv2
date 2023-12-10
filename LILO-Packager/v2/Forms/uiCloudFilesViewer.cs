@@ -1,4 +1,5 @@
-﻿using LILO_Packager.v2.Cloud;
+﻿using LILO_Packager.Properties;
+using LILO_Packager.v2.Cloud;
 using LILO_Packager.v2.Cloud.Services;
 using LILO_Packager.v2.Cloud.Storage;
 using LILO_Packager.v2.Contracts;
@@ -14,6 +15,20 @@ namespace LILO_Packager.v2.Forms
         private FileIndexStorage MatrixHandler { get; set; }
         public List<MatrixEntry> MatrixEntries { get; set; }
         public LocalCloudMatrixFile _MatrixFile { get; set; }
+        public Dictionary<string, (Bitmap, PixelDrainService.CloudFileInfo)> FetchedMatrixEntries = new Dictionary<string, (Bitmap, PixelDrainService.CloudFileInfo)>();
+        public static bool fetchinEntries = false;
+
+        private static uiCloudFilesViewer _privateInstance;
+
+        public static uiCloudFilesViewer Instance(ICloudServiceManager CloudServiceManager)
+        {
+            if(_privateInstance is null)
+            {
+                _privateInstance = new uiCloudFilesViewer(CloudServiceManager);
+            }
+
+            return _privateInstance;
+        }
 
         public uiCloudFilesViewer(ICloudServiceManager manager)
         {
@@ -21,6 +36,12 @@ namespace LILO_Packager.v2.Forms
 
             CloudServiceManager = manager;
             MatrixHandler = new FileIndexStorage();
+
+            this.FormClosing += (s, e) =>
+            {
+                e.Cancel = true;
+                this.Hide();
+            };
 
             var matrixFile = MatrixHandler.GetMatrixFile();
             if (matrixFile != null)
@@ -74,109 +95,139 @@ namespace LILO_Packager.v2.Forms
                 lblMatrix.Text = MatrixHandler.GetMatrixFile().MatrixDetail.MatrixVerifier.Name;
                 lblMatrixVersion.Text = MatrixHandler.GetMatrixFile().MatrixDetail.SchemeVersion;
 
-                this.Invoke((Action)(async () =>
+                if (!fetchinEntries)
                 {
-                    var imageList = new ImageList();
-                    listView1.StateImageList = imageList;
-                    listView1.SmallImageList = imageList;
-                    listView1.LargeImageList = imageList;
-                    listView1.GroupImageList = imageList;
+                    fetchinEntries = true;
 
-                    foreach (var item in MatrixEntries)
+                    this.Invoke((Action)(async () =>
                     {
-                        var listViewItem = new ListViewItem()
+                        var imageList = new ImageList();
+                        var syncItem = 0;
+                        listView1.StateImageList = imageList;
+                        listView1.SmallImageList = imageList;
+                        listView1.LargeImageList = imageList;
+                        listView1.GroupImageList = imageList;
+
+                        SubOp.Visible = true;
+                        SubOp_lblFileName.Text = "Syncing...";
+                        SubOp_ProgressBar.Maximum = MatrixEntries.Count + 1;
+
+                        foreach (var item in MatrixEntries)
                         {
-                            Text = item.File.FileName,
-                            Tag = item.Identity.FileHash,
-                        };
+                            syncItem++;
+                            SubOp_ProgressBar.Value = syncItem;
 
-                        imageList.Images.Add(item.Identity.FileHash, await PixelDrainService.PixelDrainThumbnail.GetThumbnailAsync(item.CloudEntry.PublicFileId));
-                        listViewItem.ImageKey = item.Identity.FileHash;
-                        var itemInfo = await PixelDrainService.CloudFileInfo.GetFileInfoAsync(item.CloudEntry.PublicFileId);
 
-                        listViewItem.SubItems.Add(itemInfo.MimeType);
-                        listViewItem.SubItems.Add($"{FileOperations.GetSizeString((int)itemInfo.Size)}");
-                        listViewItem.SubItems.Add(item.Identity.Timestamp.ToShortDateString() + " - " + item.Identity.Timestamp.ToShortTimeString());
 
-                        if (File.Exists(item.File.RealPath))
-                        {
-                            listViewItem.SubItems.Add("Local/Cloud");
+                            var listViewItem = new ListViewItem()
+                            {
+                                Text = item.File.FileName,
+                                Tag = item.Identity.FileHash,
+                            };
+
+                            SubOp_lblOperationType.Text = "Fetching";
+                            SubOp_lblToLocation.Text = item.File.FileName;
+                            SubOp_pnlIco.BackgroundImage = Resources.icons8_synchronize_240;
+
+                            var picture = await PixelDrainService.PixelDrainThumbnail.GetThumbnailAsync(item.CloudEntry.PublicFileId);
+
+                            imageList.Images.Add(item.Identity.FileHash, picture);
+                            listViewItem.ImageKey = item.Identity.FileHash;
+                            var itemInfo = await PixelDrainService.CloudFileInfo.GetFileInfoAsync(item.CloudEntry.PublicFileId);
+
+                            listViewItem.SubItems.Add(itemInfo.MimeType);
+                            listViewItem.SubItems.Add($"{FileOperations.GetSizeString((int)itemInfo.Size)}");
+                            listViewItem.SubItems.Add(item.Identity.Timestamp.ToShortDateString() + " - " + item.Identity.Timestamp.ToShortTimeString());
+
+                            FetchedMatrixEntries.Add(item.Identity.FileHash, (picture, itemInfo));
+
+                            if (File.Exists(item.File.RealPath))
+                            {
+                                listViewItem.SubItems.Add("Local/Cloud");
+                            }
+                            else
+                            {
+                                listViewItem.SubItems.Add("Cloud");
+                            }
+
+                            listView1.Items.Add(listViewItem);
                         }
-                        else
-                        {
-                            listViewItem.SubItems.Add("Cloud");
-                        }
 
-                        listView1.Items.Add(listViewItem);
-                    }
+                        SubOp.Visible = false;
+                        fetchinEntries = false;
+                        prgMiniProgress.Visible = false;
+                    }));
+                }
 
-                    prgMiniProgress.Visible = false;
-                }));
+                
             });
         }
 
-        private async void DownloadFile(MatrixEntry entry, bool toCrypterv2 = true, string dir = null)
+        private async Task DownloadFile(MatrixEntry entry, bool toCrypterv2 = true, string dir = null)
         {
-            string placedDirectory = dir;
-
-            if (entry is null)
+            if(entry is not null)
             {
-                throw new MatrixEntryNullException();
-            }
+                string placedDirectory = dir;
 
-            var pic = await PixelDrainService.PixelDrainThumbnail.GetThumbnailAsync(entry.CloudEntry.PublicFileId);
-
-            if (toCrypterv2)
-            {
-                placedDirectory = entry.File.RealPath;
-                SubOp_lblToLocation.Text = "Crypterv2 DB";
-            }
-            else
-            {
-                SubOp_lblToLocation.Text = "Custom Dir";
-            }
-
-            SubOp_lblFileName.Text = entry.File.FileName;
-            SubOp_lblOperationType.Text = "Requesting...";
-            SubOp_pnlIco.BackgroundImage = pic;
-            SubOp_ProgressBar.Value = 0;
-
-            SubOp.Visible = true;
-
-            await Task.Run(async () =>
-            {
-                try
+                if (entry is null)
                 {
-                    await PixelDrainService.DownloadFileAsync(entry.CloudEntry.PublicFileId, placedDirectory,
-                    (e, s) =>
+                    throw new MatrixEntryNullException();
+                }
+
+                var pic = await PixelDrainService.PixelDrainThumbnail.GetThumbnailAsync(entry.CloudEntry.PublicFileId);
+
+                if (toCrypterv2)
+                {
+                    placedDirectory = entry.File.RealPath;
+                    SubOp_lblToLocation.Text = "Crypterv2 DB";
+                }
+                else
+                {
+                    SubOp_lblToLocation.Text = "Custom Dir";
+                }
+
+                SubOp_lblFileName.Text = entry.File.FileName;
+                SubOp_lblOperationType.Text = "Requesting...";
+                SubOp_pnlIco.BackgroundImage = pic;
+                SubOp_ProgressBar.Value = 0;
+
+                SubOp.Visible = true;
+
+                await Task.Run(async () =>
+                {
+                    try
+                    {
+                        await PixelDrainService.DownloadFileAsync(entry.CloudEntry.PublicFileId, placedDirectory,
+                        (e, s) =>
+                        {
+                            this.Invoke(() =>
+                            {
+                                SubOp_lblOperationType.Text = "Downloading...";
+                                SubOp_ProgressBar.Maximum = (int)s;
+                                SubOp_ProgressBar.Value = (int)e;
+
+                                if (e == s)
+                                {
+                                    Process.Start("explorer.exe", placedDirectory);
+
+                                    this.Invoke(() =>
+                                    {
+                                        SubOp.Visible = false;
+                                    });
+                                }
+                            });
+                        });
+                    }
+                    catch (Exception ex)
                     {
                         this.Invoke(() =>
                         {
-                            SubOp_lblOperationType.Text = "Downloading...";
-                            SubOp_ProgressBar.Maximum = (int)s;
-                            SubOp_ProgressBar.Value = (int)e;
-
-                            if (e == s)
-                            {
-                                Process.Start("explorer.exe", placedDirectory);
-
-                                this.Invoke(() =>
-                                {
-                                    SubOp.Visible = false;
-                                });
-                            }
+                            MessageBox.Show(ex.Message, "MainHost - Cloud", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         });
-                    });
-                }
-                catch (Exception ex)
-                {
-                    this.Invoke(() =>
-                    {
-                        MessageBox.Show(ex.Message, "MainHost - Cloud", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    });
-                }
+                    }
 
-            });
+                });
+            }
         }
 
         private MatrixEntry SelectedMatrixEntry

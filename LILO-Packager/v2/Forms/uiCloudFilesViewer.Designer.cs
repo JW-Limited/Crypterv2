@@ -79,11 +79,14 @@
             SubOp_ProgressBar = new Guna.UI2.WinForms.Guna2ProgressBar();
             SubOp_lblOperationType = new Label();
             SubOp_lblFileName = new Label();
+            sPanel2 = new Sipaa.Framework.SPanel();
+            label9 = new Label();
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             pnlSide.SuspendLayout();
             conmenu.SuspendLayout();
             guna2Panel2.SuspendLayout();
+            guna2Panel4.SuspendLayout();
             SubOp.SuspendLayout();
             SuspendLayout();
             // 
@@ -585,6 +588,9 @@
             guna2Panel4.BorderColor = Color.Gainsboro;
             guna2Panel4.BorderRadius = 15;
             guna2Panel4.BorderThickness = 2;
+            guna2Panel4.Controls.Add(SubOp);
+            guna2Panel4.Controls.Add(sPanel2);
+            guna2Panel4.Controls.Add(label9);
             guna2Panel4.FillColor = Color.White;
             guna2Panel4.Location = new Point(24, 432);
             guna2Panel4.Margin = new Padding(2);
@@ -618,7 +624,7 @@
             SubOp.Controls.Add(SubOp_lblFileName);
             SubOp.Controls.Add(SubOp_lblToLocation);
             SubOp.FillColor = Color.White;
-            SubOp.Location = new Point(48, 472);
+            SubOp.Location = new Point(24, 40);
             SubOp.Margin = new Padding(2);
             SubOp.Name = "SubOp";
             SubOp.Size = new Size(256, 192);
@@ -682,6 +688,34 @@
             SubOp_lblFileName.Text = "n/a";
             SubOp_lblFileName.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // sPanel2
+            // 
+            sPanel2.BackColor = Color.White;
+            sPanel2.BackgroundImage = Properties.Resources.icons8_verified_badge_96;
+            sPanel2.BackgroundImageLayout = ImageLayout.Zoom;
+            sPanel2.BorderColor = Color.Gainsboro;
+            sPanel2.BorderRadius = 20;
+            sPanel2.BorderSize = 0;
+            sPanel2.ForeColor = Color.White;
+            sPanel2.Location = new Point(96, 72);
+            sPanel2.Margin = new Padding(4);
+            sPanel2.Name = "sPanel2";
+            sPanel2.Size = new Size(96, 88);
+            sPanel2.TabIndex = 47;
+            // 
+            // label9
+            // 
+            label9.BackColor = Color.Transparent;
+            label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label9.ForeColor = Color.Silver;
+            label9.Location = new Point(56, 176);
+            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(184, 22);
+            label9.TabIndex = 50;
+            label9.Text = "All done!";
+            label9.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // uiCloudFilesViewer
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -694,7 +728,6 @@
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(sPanel1);
-            Controls.Add(SubOp);
             Controls.Add(guna2Panel4);
             Controls.Add(guna2Panel1);
             Controls.Add(guna2Panel3);
@@ -709,6 +742,7 @@
             pnlSide.ResumeLayout(false);
             conmenu.ResumeLayout(false);
             guna2Panel2.ResumeLayout(false);
+            guna2Panel4.ResumeLayout(false);
             SubOp.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -765,5 +799,7 @@
         private Panel SubOp_pnlIco;
         private Label label3;
         private ToolStripMenuItem detailToolStripMenuItem;
+        private Sipaa.Framework.SPanel sPanel2;
+        private Label label9;
     }
 }

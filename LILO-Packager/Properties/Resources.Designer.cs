@@ -233,6 +233,36 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icons8_collapse_arrow_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-collapse-arrow-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_collapse_arrow_641 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-collapse-arrow-641", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_copy_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-copy-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icons8_earth_planet_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-earth-planet-96", resourceCulture);
@@ -686,6 +716,16 @@ namespace LILO_Packager.Properties {
         public static System.Drawing.Bitmap Screenshot_2023_11_06_213239 {
             get {
                 object obj = ResourceManager.GetObject("Screenshot 2023-11-06 213239", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Screenshot_2023_12_03_151605 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot 2023-12-03 151605", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

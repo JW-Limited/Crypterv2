@@ -32,28 +32,61 @@ namespace LILO_Packager.v2.Forms
         {
             await Task.Run(async () =>
             {
-                CloudFileInfo = await PixelDrainService.CloudFileInfo.GetFileInfoAsync(ID);
-                var image = await PixelDrainService.PixelDrainThumbnail.GetThumbnailAsync(ID);
 
-                this.Invoke(() =>
+                if (uiCloudFilesViewer.Instance(null).FetchedMatrixEntries.ContainsKey(entry.Identity.FileHash))
                 {
-                    pnlImage.BackgroundImage = image;
+                    uiCloudFilesViewer.Instance(null).FetchedMatrixEntries.TryGetValue(entry.Identity.FileHash, out var info);
 
-                    lblCanBeEdited.Text = CloudFileInfo.CanEdit.ToString();
-                    lblDateUploaded.Text = entry.Identity.Timestamp.ToLocalTime().ToString();
-                    lblDownloads.Text = CloudFileInfo.Downloads.ToString();
-                    lblHash.Text = entry.Identity.FileHash;
-                    lblID.Text = CloudFileInfo.Id;
-                    lblMimeType.Text = "(.lca) LILO Cloud Anchor";
-                    lblSize.Text = FileOperations.GetSizeString(CloudFileInfo.Size);
-                    lblFileName.Text = CloudFileInfo.Name;
-                    lblDescription.Text = entry.File.DirectoryPath.ToString();
+                    this.Invoke(() =>
+                    {
+                        pnlImage.BackgroundImage = info.Item1;
 
-                    pnlLoading.Visible = false;
-                });
-                
+                        CloudFileInfo = info.Item2;
+
+                        lblCanBeEdited.Text = CloudFileInfo.CanEdit.ToString();
+                        lblDateUploaded.Text = entry.Identity.Timestamp.ToLocalTime().ToString();
+                        lblDownloads.Text = CloudFileInfo.Downloads.ToString();
+                        lblHash.Text = entry.Identity.FileHash;
+                        lblID.Text = CloudFileInfo.Id;
+                        lblMimeType.Text = "(.lca) LILO Cloud Anchor";
+                        lblSize.Text = FileOperations.GetSizeString(CloudFileInfo.Size);
+                        lblFileName.Text = CloudFileInfo.Name;
+                        lblDescription.Text = entry.File.DirectoryPath.ToString();
+
+                        pnlLoading.Visible = false;
+                    });
+                }
+                else
+                {
+                    CloudFileInfo = await PixelDrainService.CloudFileInfo.GetFileInfoAsync(ID);
+                    var image = await PixelDrainService.PixelDrainThumbnail.GetThumbnailAsync(ID);
+
+                    this.Invoke(() =>
+                    {
+                        pnlImage.BackgroundImage = image;
+
+                        lblCanBeEdited.Text = CloudFileInfo.CanEdit.ToString();
+                        lblDateUploaded.Text = entry.Identity.Timestamp.ToLocalTime().ToString();
+                        lblDownloads.Text = CloudFileInfo.Downloads.ToString();
+                        lblHash.Text = entry.Identity.FileHash;
+                        lblID.Text = CloudFileInfo.Id;
+                        lblMimeType.Text = "(.lca) LILO Cloud Anchor";
+                        lblSize.Text = FileOperations.GetSizeString(CloudFileInfo.Size);
+                        lblFileName.Text = CloudFileInfo.Name;
+                        lblDescription.Text = entry.File.DirectoryPath.ToString();
+
+                        pnlLoading.Visible = false;
+                    });
+                }
+
+
             });
-            
+
+        }
+
+        private void bntCopy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(CloudFileInfo.Id);
         }
     }
 }

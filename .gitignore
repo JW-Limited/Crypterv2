@@ -430,3 +430,11 @@ LILO-WebEngine/Core/Service/LocalServer.Filter.cs
 LILO-WebEngine/Core/Service/LocalServerEventArgs.cs
 LILO-Packager/v2/plugins/PluginCore/PluginManager.cs
 Crypterv2-DevTool/Core/Plugins/PackageManager.cs
+LILO-Packager/v2/Core/Service/FileType.cs
+LILO-Packager/v2/Core/Service/IServiceValues.cs
+LILO-Packager/v2/Core/Service/ProgressCallBackValues.cs
+LILO-Packager/v2/Core/Service/Services.Base.cs
+LILO-Packager/v2/Core/Service/Services.LfsFileOperations.cs
+LILO-Packager/v2/Core/Service/ServiceValues.cs
+LILO-Packager/v2/Core/Service/Services.LfsCryptography.cs
+LILO-Packager/v2/Core/Service/TaskResponse.cs

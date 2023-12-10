@@ -93,36 +93,23 @@ namespace LILO_Packager.v2.Forms
                     await _keyManager.AddPasswordEntryAsync(psw, DateTime.Now, item);
                     await dbHandler.InsertEncryptedOperationAsync("Encryption", "libraryBased", "v2", item, item + ".lsf", $"{new Random().NextInt64(11111, 99999)}");
 
-                    Task.Run(() =>
+                    _ = Task.Run(async () =>
                     {
-
-                        Services.CompressAndEncryptFileAsync(item, item + ".lsf", psw,
-                        progress =>
+                        var values = new ServiceValues()
                         {
-                            UpdateProgress(progress);
-                        },
-                        error =>
-                        {
-                            ShowError("Encryption Error", error.Message);
-                        },
-                        currentTask =>
-                        {
+                            FileInput = item,
+                            FileOutput = item + ".lsf",
+                            Password = psw,
+                            FileType = FileType.File,
+                            CurrentWorkingTask = HandleTaskChange,
+                            ErrorCallback = HandleError,
+                            ProgressCallback = HandleProgessChange
+                        };
 
-                            if (currentTask == "success")
-                            {
+                        var serviceHandler = new Services(values);
+                        var response = await serviceHandler.CompressAndEncryptFileAsync();
 
-                                taskBarProgress.Value = 0;
-                                taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
 
-                                bntEncrypt.Text = "Open";
-                                imgImage.BackgroundImage = Resources.Lock;
-                                lblEncryption.Text = "LILO Secured";
-                                this.Invoke((Action)(() =>
-                                {
-                                    ControlEnable(true);
-                                }));
-                            }
-                        });
                     });
 
                 }
@@ -139,18 +126,44 @@ namespace LILO_Packager.v2.Forms
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        public void HandleTaskChange(string currentTask)
+        {
+            if (currentTask == "success")
+            {
+
+                taskBarProgress.Value = 0;
+                taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
+
+                bntEncrypt.Text = "Open";
+                imgImage.BackgroundImage = Resources.Lock;
+                lblEncryption.Text = "LILO Secured";
+                this.Invoke((Action)(() =>
+                {
+                    ControlEnable(true);
+                }));
+            }
+        }
+
+        public void HandleError(Exception error)
+        {
+            MessageBox.Show("Encryption Error", error.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public void HandleProgessChange(ProgressCallBackValues values)
+        {
+            MainHost.Instance().taskBarProgress.TargetForm = MainHost.Instance();
+            MainHost.Instance().taskBarProgress.State = Guna2TaskBarProgress.TaskbarStates.Normal;
+
+            MainHost.Instance().taskBarProgress.Value = values.Procentage;
+            progress1.Maximum = (int)values.TotalBytes;
+            progress1.Value = (int)values.BytesRead;
+        }
+
         public void ControlEnable(bool disable)
         {
             bntEncrypt.Visible = disable;
             progress1.Visible = !disable;
             pnlSuccess.Visible = disable;
-        }
-
-        private void UpdateProgress(double progres)
-        {
-            progress1.Value = Convert.ToInt32(progres);
-            taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.Normal;
-            taskBarProgress.Value = Convert.ToInt32(progres);
         }
 
         private void bntCrypter_Click(object sender, EventArgs e)

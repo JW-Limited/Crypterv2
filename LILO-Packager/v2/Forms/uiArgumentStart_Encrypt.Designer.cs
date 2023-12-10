@@ -250,7 +250,7 @@
             pnlSuccess.Controls.Add(guna2Panel2);
             pnlSuccess.Controls.Add(label3);
             pnlSuccess.Location = new Point(0, 0);
-            pnlSuccess.Margin = new Padding(4, 4, 4, 4);
+            pnlSuccess.Margin = new Padding(4);
             pnlSuccess.Name = "pnlSuccess";
             pnlSuccess.Size = new Size(900, 470);
             pnlSuccess.TabIndex = 24;
@@ -318,6 +318,7 @@
             MinimizeBox = false;
             MinimumSize = new Size(910, 506);
             Name = "uiArgumentStart_Encrypt";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Encrypt";
             Load += uiArgumentStart_Encrypt_Load;
             pnlPreview.ResumeLayout(false);

@@ -8,6 +8,7 @@ using LILO_Packager.v2.Core.LILO.Types;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.Plugins.Model;
 using LILO_Packager.v2.Shared;
+using Telerik.Windows.Documents.Model.Drawing.Charts;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiEncryt : Form
@@ -21,6 +22,7 @@ public partial class uiEncryt : Form
     public int fileCounter = 1;
     private PluginEntry Extension;
     private DatabaseHandling dbHandler;
+    private TaskStatus CurrentTask = new ();
 
     public static uiEncryt Instance(PluginEntry extension,DatabaseHandling handler)
     {
@@ -244,52 +246,28 @@ public partial class uiEncryt : Form
                         logged = true;
                     }
 
-                    MainHost.Instance().taskBarProgress.State = Guna2TaskBarProgress.TaskbarStates.Normal;
                     
-                    Task.Run(() =>
+
+                    _ = Task.Run(async() =>
                     {
-
-                        Services.CompressAndEncryptFileAsync(item, item + ".lsf", psw,
-                        progress =>
+                        var values = new ServiceValues()
                         {
-                            UpdateProgress(progress);
-                            MainHost.Instance().taskBarProgress.Value = (int)progress;
-                        },
-                        error =>
+                            FileInput = item,
+                            FileOutput = item + ".lsf",
+                            Password = psw,
+                            FileType = FileType.File,
+                            CurrentWorkingTask = HandleTaskChange,
+                            ErrorCallback = HandleError,
+                            ProgressCallback = HandleProgessChange
+                        };
+
+                        var serviceHandle = new Services(values);
+                        var response = await serviceHandle.CompressAndEncryptFileAsync();
+
+                        if (response.Item1)
                         {
-                            //ShowError("Encryption Error", error.Message);
-                        },
-                        currentTask =>
-                        {
-
-                            if (currentTask.StartsWith("Compress") && current is not TaskStatus.Compress)
-                            {
-                                MarkStatus(TaskStatus.Compress);
-                                
-                                current = TaskStatus.Compress;
-                            }
-
-                            if (currentTask.StartsWith("Encyrpting") && current is not TaskStatus.Encrypting)
-                            {
-                                MarkStatus(TaskStatus.Encrypting);
-
-                                current = TaskStatus.Encrypting;
-                            }
-
-
-                            if (currentTask == "success")
-                            {
-                                MarkStatus(TaskStatus.Ready);
-
-                                taskBarProgress.Value = 0;
-                                taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
-
-                                ControlEnable(true);
-                                _arFiles.Clear();
-                                chblistFiles.Items.Clear();
-                                fileCounter = 0;
-                            }
-                        });
+                            MessageBox.Show("All Clear!");
+                        }
                     });
 
                 }
@@ -297,12 +275,12 @@ public partial class uiEncryt : Form
                 {
                     ControlEnable(true);
 
-                    ShowError("Error", ey.Message);
+                    HandleError(ey);
                 }
             }
             else
             {
-                ShowError("Error", "Please Insert a valid Key.");
+                MessageBox.Show("Error", "Please insert a Valid - Key.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         else 
@@ -374,9 +352,53 @@ public partial class uiEncryt : Form
         
     }
 
-    private void ShowError(string title, string message)
+    public void HandleTaskChange(string currentTask)
     {
-        MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        
+
+        if (currentTask.StartsWith("Compress") && CurrentTask is not TaskStatus.Compress)
+        {
+            MarkStatus(TaskStatus.Compress);
+
+            CurrentTask = TaskStatus.Compress;
+        }
+
+        if (currentTask.StartsWith("Encyrpting") && CurrentTask is not TaskStatus.Encrypting)
+        {
+            MarkStatus(TaskStatus.Encrypting);
+
+            CurrentTask = TaskStatus.Encrypting;
+        }
+
+
+        if (currentTask == "success")
+        {
+            MarkStatus(TaskStatus.Ready);
+
+            taskBarProgress.Value = 0;
+            taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.Error;
+
+            ControlEnable(true);
+            _arFiles.Clear();
+            chblistFiles.Items.Clear();
+            fileCounter = 0;
+        }
+    }
+
+    public void HandleError(Exception error)
+    {
+        MessageBox.Show("Encryption Error", error.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+
+    public void HandleProgessChange(ProgressCallBackValues values)
+    {
+        MainHost.Instance().taskBarProgress.TargetForm = MainHost.Instance();
+        MainHost.Instance().taskBarProgress.State = Guna2TaskBarProgress.TaskbarStates.Normal;
+
+        progress.Maximum = (int)values.TotalBytes;
+        progress.Value = (int)values.BytesRead;
+
+        MainHost.Instance().taskBarProgress.Value = values.Procentage;
     }
 
     private void bntCancel_Click(object sender, EventArgs e)

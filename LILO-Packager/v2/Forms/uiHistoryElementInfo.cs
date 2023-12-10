@@ -1,4 +1,6 @@
 ﻿using LILO_Packager.Properties;
+using LILO_Packager.v2.Cloud;
+using LILO_Packager.v2.Cloud.Storage;
 using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Core.Interfaces;
@@ -70,31 +72,56 @@ namespace LILO_Packager.v2.Forms
 
             var appName = await GetDefaultApplication(_file.outputFileName);
 
-            
+            var cloudMatrixFile = FileIndexStorage.Instance.GetMatrixFile();
+
+            foreach (var item in cloudMatrixFile.MatrixEntrys)
+            {
+                if (item.Identity.FileHash == CloudSyncroniztationBase.GetFileHash(_file.outputFileName))
+                {
+                    lblID.Text = item.CloudEntry.PublicFileId;
+                    lblHash.Text = item.Identity.FileHash;
+                    lblDateUploaded.Text = item.Identity.Timestamp.ToLocalTime().ToString();
+                }
+            }
+
             if (appName is not null)
             {
-                if (appName.DefaultApp is "LILO Secured File") 
-                { 
+                if (appName.DefaultApp is "LILO Secured File")
+                {
                     appName.DefaultApp = "Crypterv2"; pnlImage.BackgroundImage = Resources.Lock;
                 }
-                else if(appName.DefaultApp is "Crypterv2 Debug Session")
+                else if (appName.DefaultApp is "Crypterv2 Debug Session")
                 {
-                    appName.DefaultApp = "Crypterv2 Debuger"; 
+                    appName.DefaultApp = "Crypterv2 Debuger";
                     pnlImage.BackgroundImage = Resources.debug_win;
                 }
-                else if(appName.DefaultApp is "LILO Custom Style")
+                else if (appName.DefaultApp is "LILO Custom Style")
                 {
-                    appName.DefaultApp = "Crypterv2 ThemeManager"; 
+                    appName.DefaultApp = "Crypterv2 ThemeManager";
                     pnlImage.BackgroundImage = Resources.theme_manager;
                 }
-                else if(appName.DefaultApp is "LILO Extension")
+                else if (appName.DefaultApp is "LILO Extension")
                 {
-                    appName.DefaultApp = "Crypterv2 PluginInstaller"; 
+                    appName.DefaultApp = "Crypterv2 PluginInstaller";
                     pnlImage.BackgroundImage = Resources.icons8_bursts_96;
                 }
 
                 lblApp.Text = appName.DefaultApp.Replace(appName.Extension, "");
 
+                if (_file.outputFileName.EndsWith(".llcp"))
+                {
+                    pnlImage.BackgroundImage = Resources.icons8_earth_planet_96;
+
+                    foreach (var item in cloudMatrixFile.MatrixEntrys)
+                    {
+                        if (item.File.RealPath == _file.outputFileName.Replace(".llcp",""))
+                        {
+                            lblID.Text = item.CloudEntry.PublicFileId;
+                            lblHash.Text = item.Identity.FileHash;
+                            lblDateUploaded.Text = item.Identity.Timestamp.ToLocalTime().ToString();
+                        }
+                    }
+                }
             }
             else
             {
@@ -234,17 +261,7 @@ namespace LILO_Packager.v2.Forms
 
         private async void bntPreview_Click(object sender, EventArgs e)
         {
-            if (_file.outputFileName.EndsWith(".mp3") || 
-                _file.outputFileName.EndsWith(".wav") || 
-                _file.outputFileName.EndsWith(".m4a") ||
-                _file.outputFileName.EndsWith(".aac"))
-            {
-                Transition.Show(pnlWarning);
-            }
-            else
-            {
-                bntPreview_C(sender, e);
-            }
+            bntPreview_C(sender, e);
         }
 
         private async void bntShareFIle(object sender, EventArgs e)
@@ -253,22 +270,16 @@ namespace LILO_Packager.v2.Forms
             await shareManager.OpenShareDialogAsync(_file.outputFileName);
         }
 
-        private void bntCloseWarning(object sender, EventArgs e)
-        {
-            pnlWarning.Visible = false;
-        }
 
         private async void bntPreview_C(object sender, EventArgs e)
         {
-            pnlWarning.Visible = false;
-
             if (_file.outputFileName.EndsWith(".pdf"))
             {
                 MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri(_file.outputFileName)));
             }
-            else if (_file.outputFileName.EndsWith(".mp3") || 
-                     _file.outputFileName.EndsWith(".wav") || 
-                     _file.outputFileName.EndsWith(".m4a") || 
+            else if (_file.outputFileName.EndsWith(".mp3") ||
+                     _file.outputFileName.EndsWith(".wav") ||
+                     _file.outputFileName.EndsWith(".m4a") ||
                      _file.outputFileName.EndsWith(".aac"))
             {
                 if (config.Default.openMediaIn != "buildIn" || !FeatureManager.IsFeatureEnabled(FeatureFlags.SecuredContainerStreaming))
@@ -322,7 +333,7 @@ namespace LILO_Packager.v2.Forms
 
                         if (responseEx.HasError)
                         {
-                            ConsoleManager.Instance().WriteLineWithColor(responseEx.Message + responseEx.MESSAGE_UINT,ConsoleColor.DarkRed);
+                            ConsoleManager.Instance().WriteLineWithColor(responseEx.Message + responseEx.MESSAGE_UINT, ConsoleColor.DarkRed);
                         }
 
                         MainHost.Instance().OpenInApp(plugin.PluginInterface);
@@ -334,6 +345,16 @@ namespace LILO_Packager.v2.Forms
         private void bntPreviewInfo_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bntCopy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lblID.Text);
         }
     }
 }

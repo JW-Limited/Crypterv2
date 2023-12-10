@@ -32,6 +32,7 @@
             lblFileName = new Label();
             pnlImage = new Sipaa.Framework.SPanel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            bntCopy = new Guna.UI2.WinForms.Guna2Button();
             lblMimeType = new Label();
             lblDateUploaded = new Label();
             lblCanBeEdited = new Label();
@@ -105,6 +106,7 @@
             guna2Panel1.BorderColor = Color.Gainsboro;
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.BorderThickness = 2;
+            guna2Panel1.Controls.Add(bntCopy);
             guna2Panel1.Controls.Add(lblMimeType);
             guna2Panel1.Controls.Add(lblDateUploaded);
             guna2Panel1.Controls.Add(lblCanBeEdited);
@@ -131,6 +133,34 @@
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.Size = new Size(496, 392);
             guna2Panel1.TabIndex = 51;
+            // 
+            // bntCopy
+            // 
+            bntCopy.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            bntCopy.Animated = true;
+            bntCopy.BackColor = Color.Transparent;
+            bntCopy.BorderColor = Color.Gainsboro;
+            bntCopy.BorderRadius = 12;
+            bntCopy.BorderThickness = 2;
+            bntCopy.DisabledState.BorderColor = Color.DarkGray;
+            bntCopy.DisabledState.CustomBorderColor = Color.DarkGray;
+            bntCopy.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            bntCopy.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            bntCopy.FillColor = Color.White;
+            bntCopy.FocusedColor = Color.FromArgb(100, 170, 209);
+            bntCopy.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            bntCopy.ForeColor = Color.DimGray;
+            bntCopy.Image = Properties.Resources.icons8_copy_96;
+            bntCopy.ImageSize = new Size(24, 24);
+            bntCopy.Location = new Point(424, 24);
+            bntCopy.Margin = new Padding(2);
+            bntCopy.Name = "bntCopy";
+            bntCopy.ShadowDecoration.BorderRadius = 15;
+            bntCopy.ShadowDecoration.Color = Color.LightGray;
+            bntCopy.ShadowDecoration.Depth = 20;
+            bntCopy.Size = new Size(40, 40);
+            bntCopy.TabIndex = 36;
+            bntCopy.Click += bntCopy_Click;
             // 
             // lblMimeType
             // 
@@ -449,5 +479,6 @@
         private Label label1;
         private Sipaa.Framework.SPanel pnlLoading;
         private Label label2;
+        private Guna.UI2.WinForms.Guna2Button bntCopy;
     }
 }

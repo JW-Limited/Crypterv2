@@ -108,7 +108,7 @@
             // 
             ColId.Tag = "ID";
             ColId.Text = "ID";
-            ColId.Width = 90;
+            ColId.Width = 140;
             // 
             // ColOperation
             // 

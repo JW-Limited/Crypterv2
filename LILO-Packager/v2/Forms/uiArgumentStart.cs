@@ -1,22 +1,17 @@
-﻿using LILO_Packager.v2.Forms;
+﻿
 using LILO_Packager.Properties;
 using LILO_Packager.v2.Streaming.MusikPlayer.Forms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Formats.Tar;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using LILO_Packager.v2.Core;
 using LILO_Packager.v2.Core.AsyncTasks;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.Shared.Types;
 using LILO_Packager.v2.Shared.Streaming.Core;
+using System.Formats.Tar;
+using Guna.UI2.WinForms;
+using LILO_Packager.v2.Core.Dialogs;
+using LILO_Packager.v2.Shared;
+using System;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -77,13 +72,6 @@ namespace LILO_Packager.v2.Forms
             
         }
 
-        private void UpdateProgress(double progres)
-        {
-            progress1.Value = Convert.ToInt32(progres);
-            taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.Normal;
-            taskBarProgress.Value = Convert.ToInt32(progres);
-        }
-
         public string GetPasswordFrromUser()
         {
             if (pswDialog.ShowDialog() == DialogResult.OK)
@@ -119,34 +107,50 @@ namespace LILO_Packager.v2.Forms
                         }
                         else
                         {
-                            await Services.DecryptAndDecompressFileAsync(file.Path, tempFile, psw,
-                            progress =>
+                            _ = Task.Run(async () =>
                             {
-                                //UpdateProgress(progress);
-                            },
-                            error =>
-                            {
-                                errorHappend = true;
+                                var values = new ServiceValues()
+                                {
+                                    CurrentWorkingTask = async currentTask =>
+                                    {
+                                        if (currentTask == "success")
+                                        {
 
-                                ShowError("Encryption Error", error.Message);
-                            },
-                            async currentTask =>
-                            {
+                                            taskBarProgress.Value = 0;
+                                            taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
+                                            ControlEnable(true, file.Path.Replace(".lsf", ""));
+                                            istreamingReady = true;
+                                            bntDecrypt.Text = "Open";
+                                            imgImage.BackgroundImage = Resources.Padlock;
+                                            lblEncryption.Text = "None";
 
-                            },
-                            false
-                          );
+                                        }
+                                    },
+                                    FileInput = file.Path,
+                                    FileOutput = file.Path.Replace(".lsf", ""),
+                                    Password = psw,
+                                    FileType = FileType.File,
+                                    ErrorCallback = error =>
+                                    {
+                                        HandleError(error);
+                                        errorHappend = true;
+                                    },
+                                    ProgressCallback = HandleProgessChange,
+                                };
 
-                            if (!errorHappend)
-                            {
-                                istreamingReady = true;
+                                var serviceHandler = new Services(values);
+                                var response = await serviceHandler.DecryptAndDecompressFileAsync();
 
-                                var para = await MusicPlayerParameters.Get(tempFile);
+                                if (response.Item1)
+                                {
+                                    istreamingReady = true;
 
-                                var player = uiPlayer.Instance(para,false);
-                                player.ShowDialog();
-                            }
+                                    var para = await MusicPlayerParameters.Get(tempFile);
 
+                                    var player = uiPlayer.Instance(para, false);
+                                    player.ShowDialog();
+                                }
+                            });
                             
                         }
                         
@@ -160,7 +164,7 @@ namespace LILO_Packager.v2.Forms
                 }
                 else
                 {
-
+                    MessageBox.Show("Error", "Please insert a Valid - Key.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -238,37 +242,42 @@ namespace LILO_Packager.v2.Forms
 
                     try
                     {
+
+                        MainHost.Instance().taskBarProgress.TargetForm = MainHost.Instance();
+                        MainHost.Instance().taskBarProgress.State = Guna2TaskBarProgress.TaskbarStates.Normal;
+
                         await dbHandler.InsertEncryptedOperationAsync("Decryption", "AppCore", "v1", file.Path, file.Path.Replace(".lsf", ""), $"{new Random().NextInt64(11111, 99999)}");
 
-                        Task.Run(() =>
+                        _ = Task.Run(async () =>
                         {
 
-                            Services.DecryptAndDecompressFileAsync(file.Path, file.Path.Replace(".lsf", ""), psw,
-                            progress =>
+                            var values = new ServiceValues()
                             {
-                                UpdateProgress(progress);
-                            },
-                            error =>
-                            {
-                                ShowError("Encryption Error", error.Message);
-                            },
-                            currentTask =>
-                            {
-
-
-                                if (currentTask == "success")
+                                CurrentWorkingTask = async currentTask =>
                                 {
+                                    if (currentTask == "success")
+                                    {
 
-                                    taskBarProgress.Value = 0;
-                                    taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
-                                    ControlEnable(true, file.Path.Replace(".lsf", ""));
-                                    istreamingReady = true;
-                                    bntDecrypt.Text = "Open";
-                                    imgImage.BackgroundImage = Resources.Padlock;
-                                    lblEncryption.Text = "None";
+                                        taskBarProgress.Value = 0;
+                                        taskBarProgress.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
+                                        ControlEnable(true, file.Path.Replace(".lsf", ""));
+                                        istreamingReady = true;
+                                        bntDecrypt.Text = "Open";
+                                        imgImage.BackgroundImage = Resources.Padlock;
+                                        lblEncryption.Text = "None";
 
-                                }
-                            });
+                                    }
+                                },
+                                FileInput = file.Path,
+                                FileOutput = file.Path.Replace(".lsf", ""),
+                                Password = psw,
+                                FileType = FileType.File,
+                                ErrorCallback = HandleError,
+                                ProgressCallback = HandleProgessChange,
+                            };
+
+                            var serviceHandler = new Services(values);
+                            var response = await serviceHandler.DecryptAndDecompressFileAsync();
                         });
                     }
                     catch (Exception ey)
@@ -280,7 +289,7 @@ namespace LILO_Packager.v2.Forms
                 }
                 else
                 {
-
+                    MessageBox.Show("Error", "Please insert a Valid - Key.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -289,6 +298,21 @@ namespace LILO_Packager.v2.Forms
                 this.Close();
             }
 
+        }
+
+        public void HandleError(Exception error)
+        {
+            MessageBox.Show(error.Message, "Encryption Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            ConsoleManager.Instance().WriteLineWithColor($"(Encryption Error) - {error.Message}");
+        }
+
+        public void HandleProgessChange(ProgressCallBackValues values)
+        {
+            progress1.Maximum = (int)values.TotalBytes;
+            progress1.Value = (int)values.BytesRead;
+
+            MainHost.Instance().taskBarProgress.Value = values.Procentage;
         }
 
         private void ShowError(string title, string message)

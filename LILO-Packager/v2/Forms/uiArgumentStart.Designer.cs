@@ -61,7 +61,7 @@
             bntCrypter.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntCrypter.FillColor = Color.Transparent;
             bntCrypter.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntCrypter.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            bntCrypter.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntCrypter.ForeColor = Color.Black;
             bntCrypter.Location = new Point(624, 368);
             bntCrypter.Margin = new Padding(2);
@@ -74,11 +74,11 @@
             // pnlPreview
             // 
             pnlPreview.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            pnlPreview.BorderColor = SystemColors.ActiveBorder;
+            pnlPreview.BorderColor = Color.Gainsboro;
             pnlPreview.BorderRadius = 15;
             pnlPreview.BorderThickness = 2;
             pnlPreview.Controls.Add(imgImage);
-            pnlPreview.FillColor = Color.Gainsboro;
+            pnlPreview.FillColor = Color.WhiteSmoke;
             pnlPreview.Location = new Point(32, 32);
             pnlPreview.Margin = new Padding(2);
             pnlPreview.Name = "pnlPreview";
@@ -104,7 +104,7 @@
             // 
             lblName.AutoEllipsis = true;
             lblName.BackColor = Color.Transparent;
-            lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblName.ForeColor = Color.Black;
             lblName.Location = new Point(424, 96);
             lblName.Margin = new Padding(4, 0, 4, 0);
@@ -127,7 +127,7 @@
             bntDecrypt.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             bntDecrypt.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntDecrypt.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntDecrypt.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            bntDecrypt.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntDecrypt.ForeColor = Color.White;
             bntDecrypt.Location = new Point(24, 368);
             bntDecrypt.Margin = new Padding(2);
@@ -140,7 +140,7 @@
             // lblSize
             // 
             lblSize.BackColor = Color.Transparent;
-            lblSize.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblSize.Font = new Font("Segoe UI", 11F);
             lblSize.ForeColor = Color.Black;
             lblSize.Location = new Point(216, 8);
             lblSize.Margin = new Padding(4, 0, 4, 0);
@@ -153,7 +153,7 @@
             // lblEncryption
             // 
             lblEncryption.BackColor = Color.Transparent;
-            lblEncryption.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblEncryption.Font = new Font("Segoe UI", 11F);
             lblEncryption.ForeColor = Color.Black;
             lblEncryption.Location = new Point(216, 56);
             lblEncryption.Margin = new Padding(4, 0, 4, 0);
@@ -166,7 +166,7 @@
             // guna2Panel1
             // 
             guna2Panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            guna2Panel1.BorderColor = SystemColors.ActiveBorder;
+            guna2Panel1.BorderColor = Color.Gainsboro;
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             guna2Panel1.BorderThickness = 2;
@@ -184,8 +184,8 @@
             // label2
             // 
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = Color.Black;
+            label2.Font = new Font("Segoe UI", 11F);
+            label2.ForeColor = Color.Gray;
             label2.Location = new Point(16, 8);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
@@ -197,8 +197,8 @@
             // label1
             // 
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.Black;
+            label1.Font = new Font("Segoe UI", 11F);
+            label1.ForeColor = Color.Gray;
             label1.Location = new Point(16, 56);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
@@ -218,7 +218,7 @@
             progress1.Location = new Point(24, 368);
             progress1.Name = "progress1";
             progress1.ProgressColor = Color.DeepSkyBlue;
-            progress1.ProgressColor2 = Color.Navy;
+            progress1.ProgressColor2 = Color.RoyalBlue;
             progress1.ShowText = true;
             progress1.Size = new Size(592, 56);
             progress1.TabIndex = 17;
@@ -255,6 +255,7 @@
             MinimizeBox = false;
             MinimumSize = new Size(910, 508);
             Name = "uiArgumentStart";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Decrypt";
             Load += uiArgumentStart_Load;
             pnlPreview.ResumeLayout(false);

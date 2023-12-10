@@ -281,7 +281,7 @@ namespace LILO_Packager.v2.Forms
 
         private void myFiles(object sender, EventArgs e)
         {
-            var cloud = new uiCloudFilesViewer(CloudServiceManager).ShowDialog();
+            uiCloudFilesViewer.Instance(CloudServiceManager).ShowDialog();
         }
 
         private void bntClick_Chekc(object sender, EventArgs e)
