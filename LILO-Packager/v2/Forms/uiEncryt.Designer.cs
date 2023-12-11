@@ -29,6 +29,8 @@ partial class uiEncryt
     private void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
+        Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiEncryt));
         sPanel1 = new Sipaa.Framework.SPanel();
         bntPlugin = new Guna.UI2.WinForms.Guna2Button();
         bntCancel = new Guna.UI2.WinForms.Guna2Button();
@@ -48,14 +50,17 @@ partial class uiEncryt
         progress = new Guna.UI2.WinForms.Guna2ProgressBar();
         guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
         pnlFiles = new Guna.UI2.WinForms.Guna2Panel();
+        chbFolders = new CheckedListBox();
+        bntChangeToFolders = new Guna.UI2.WinForms.Guna2Button();
+        bntChangeToFiles = new Guna.UI2.WinForms.Guna2Button();
         chblistFiles = new CheckedListBox();
-        label4 = new Label();
         pnlChild = new Guna.UI2.WinForms.Guna2Panel();
         label1 = new Label();
         guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
         pswDialog = new Ookii.Dialogs.WinForms.InputDialog(components);
         taskBarProgress = new Guna.UI2.WinForms.Guna2TaskBarProgress(components);
         asyncTask = new Ookii.Dialogs.WinForms.ProgressDialog(components);
+        Transition = new Guna.UI2.WinForms.Guna2Transition();
         sPanel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pnlFile).BeginInit();
         guna2Panel1.SuspendLayout();
@@ -80,6 +85,7 @@ partial class uiEncryt
         sPanel1.Controls.Add(bntPlugin);
         sPanel1.Controls.Add(bntCancel);
         sPanel1.Controls.Add(lblText);
+        Transition.SetDecoration(sPanel1, Guna.UI2.AnimatorNS.DecorationType.None);
         sPanel1.ForeColor = Color.White;
         sPanel1.Location = new Point(24, 32);
         sPanel1.Margin = new Padding(4);
@@ -96,6 +102,7 @@ partial class uiEncryt
         bntPlugin.BorderColor = Color.Gainsboro;
         bntPlugin.BorderRadius = 20;
         bntPlugin.BorderThickness = 2;
+        Transition.SetDecoration(bntPlugin, Guna.UI2.AnimatorNS.DecorationType.None);
         bntPlugin.DisabledState.BorderColor = Color.DarkGray;
         bntPlugin.DisabledState.CustomBorderColor = Color.DarkGray;
         bntPlugin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -120,6 +127,7 @@ partial class uiEncryt
         bntCancel.BorderColor = Color.Gainsboro;
         bntCancel.BorderRadius = 20;
         bntCancel.BorderThickness = 2;
+        Transition.SetDecoration(bntCancel, Guna.UI2.AnimatorNS.DecorationType.None);
         bntCancel.DisabledState.BorderColor = Color.DarkGray;
         bntCancel.DisabledState.CustomBorderColor = Color.DarkGray;
         bntCancel.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -140,6 +148,7 @@ partial class uiEncryt
         // lblText
         // 
         lblText.BackColor = Color.Transparent;
+        Transition.SetDecoration(lblText, Guna.UI2.AnimatorNS.DecorationType.None);
         lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
         lblText.ForeColor = Color.White;
         lblText.Location = new Point(24, 0);
@@ -157,13 +166,14 @@ partial class uiEncryt
         bntOpen.BorderColor = Color.Gainsboro;
         bntOpen.BorderRadius = 15;
         bntOpen.BorderThickness = 2;
+        Transition.SetDecoration(bntOpen, Guna.UI2.AnimatorNS.DecorationType.None);
         bntOpen.DisabledState.BorderColor = Color.DarkGray;
         bntOpen.DisabledState.CustomBorderColor = Color.DarkGray;
         bntOpen.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntOpen.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         bntOpen.FillColor = Color.WhiteSmoke;
         bntOpen.FocusedColor = Color.FromArgb(100, 170, 209);
-        bntOpen.Font = new Font("Segoe UI", 9F);
+        bntOpen.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
         bntOpen.ForeColor = Color.RoyalBlue;
         bntOpen.Location = new Point(216, 344);
         bntOpen.Margin = new Padding(2);
@@ -177,6 +187,7 @@ partial class uiEncryt
         // 
         pnlFile.Anchor = AnchorStyles.None;
         pnlFile.BackColor = Color.Transparent;
+        Transition.SetDecoration(pnlFile, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlFile.ImageRotate = 0F;
         pnlFile.Location = new Point(104, 72);
         pnlFile.Margin = new Padding(2);
@@ -203,6 +214,7 @@ partial class uiEncryt
         guna2Panel1.Controls.Add(pnlEncrypt);
         guna2Panel1.Controls.Add(pnlComb);
         guna2Panel1.Controls.Add(pnlFile);
+        Transition.SetDecoration(guna2Panel1, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Panel1.FillColor = Color.WhiteSmoke;
         guna2Panel1.Location = new Point(24, 160);
         guna2Panel1.Margin = new Padding(2);
@@ -213,6 +225,7 @@ partial class uiEncryt
         // lblReady
         // 
         lblReady.Anchor = AnchorStyles.None;
+        Transition.SetDecoration(lblReady, Guna.UI2.AnimatorNS.DecorationType.None);
         lblReady.Font = new Font("Open Sans", 10F, FontStyle.Bold);
         lblReady.ForeColor = SystemColors.ButtonHighlight;
         lblReady.Location = new Point(792, 128);
@@ -226,6 +239,7 @@ partial class uiEncryt
         // lblEnrcypt
         // 
         lblEnrcypt.Anchor = AnchorStyles.None;
+        Transition.SetDecoration(lblEnrcypt, Guna.UI2.AnimatorNS.DecorationType.None);
         lblEnrcypt.Font = new Font("Open Sans", 10F, FontStyle.Bold);
         lblEnrcypt.ForeColor = SystemColors.ButtonHighlight;
         lblEnrcypt.Location = new Point(544, 128);
@@ -239,6 +253,7 @@ partial class uiEncryt
         // lblComb
         // 
         lblComb.Anchor = AnchorStyles.None;
+        Transition.SetDecoration(lblComb, Guna.UI2.AnimatorNS.DecorationType.None);
         lblComb.Font = new Font("Open Sans", 10F, FontStyle.Bold);
         lblComb.ForeColor = SystemColors.ButtonHighlight;
         lblComb.Location = new Point(304, 128);
@@ -252,6 +267,7 @@ partial class uiEncryt
         // lblFile
         // 
         lblFile.Anchor = AnchorStyles.None;
+        Transition.SetDecoration(lblFile, Guna.UI2.AnimatorNS.DecorationType.None);
         lblFile.Font = new Font("Open Sans", 10F, FontStyle.Bold);
         lblFile.ForeColor = Color.White;
         lblFile.Location = new Point(56, 128);
@@ -266,6 +282,7 @@ partial class uiEncryt
         // 
         linkAccountOnline.Anchor = AnchorStyles.None;
         linkAccountOnline.AutoSize = true;
+        Transition.SetDecoration(linkAccountOnline, Guna.UI2.AnimatorNS.DecorationType.None);
         linkAccountOnline.Location = new Point(508, 535);
         linkAccountOnline.Margin = new Padding(2, 0, 2, 0);
         linkAccountOnline.Name = "linkAccountOnline";
@@ -278,6 +295,7 @@ partial class uiEncryt
         // 
         pnlReady.Anchor = AnchorStyles.None;
         pnlReady.BackColor = Color.Transparent;
+        Transition.SetDecoration(pnlReady, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlReady.ImageRotate = 0F;
         pnlReady.Location = new Point(840, 72);
         pnlReady.Margin = new Padding(2);
@@ -291,6 +309,7 @@ partial class uiEncryt
         // 
         pnlEncrypt.Anchor = AnchorStyles.None;
         pnlEncrypt.BackColor = Color.Transparent;
+        Transition.SetDecoration(pnlEncrypt, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlEncrypt.ImageRotate = 0F;
         pnlEncrypt.Location = new Point(592, 72);
         pnlEncrypt.Margin = new Padding(2);
@@ -304,6 +323,7 @@ partial class uiEncryt
         // 
         pnlComb.Anchor = AnchorStyles.None;
         pnlComb.BackColor = Color.Transparent;
+        Transition.SetDecoration(pnlComb, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlComb.ImageRotate = 0F;
         pnlComb.Location = new Point(352, 72);
         pnlComb.Margin = new Padding(2);
@@ -319,6 +339,7 @@ partial class uiEncryt
         guna2Panel3.BorderRadius = 15;
         guna2Panel3.Controls.Add(progress);
         guna2Panel3.Controls.Add(guna2Button1);
+        Transition.SetDecoration(guna2Panel3, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Panel3.FillColor = Color.White;
         guna2Panel3.Location = new Point(400, 864);
         guna2Panel3.Margin = new Padding(2);
@@ -333,6 +354,7 @@ partial class uiEncryt
         progress.BorderColor = Color.Gainsboro;
         progress.BorderRadius = 20;
         progress.BorderThickness = 2;
+        Transition.SetDecoration(progress, Guna.UI2.AnimatorNS.DecorationType.None);
         progress.FillColor = Color.Transparent;
         progress.Location = new Point(0, 0);
         progress.Margin = new Padding(2);
@@ -352,6 +374,7 @@ partial class uiEncryt
         guna2Button1.BorderColor = Color.Gainsboro;
         guna2Button1.BorderRadius = 20;
         guna2Button1.BorderThickness = 2;
+        Transition.SetDecoration(guna2Button1, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button1.DisabledState.BorderColor = Color.DarkGray;
         guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
         guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -374,8 +397,11 @@ partial class uiEncryt
         pnlFiles.BorderColor = Color.Gainsboro;
         pnlFiles.BorderRadius = 15;
         pnlFiles.BorderThickness = 2;
+        pnlFiles.Controls.Add(chbFolders);
+        pnlFiles.Controls.Add(bntChangeToFolders);
+        pnlFiles.Controls.Add(bntChangeToFiles);
         pnlFiles.Controls.Add(chblistFiles);
-        pnlFiles.Controls.Add(label4);
+        Transition.SetDecoration(pnlFiles, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlFiles.FillColor = Color.WhiteSmoke;
         pnlFiles.Location = new Point(24, 384);
         pnlFiles.Margin = new Padding(2);
@@ -383,35 +409,103 @@ partial class uiEncryt
         pnlFiles.Size = new Size(352, 544);
         pnlFiles.TabIndex = 3;
         // 
+        // chbFolders
+        // 
+        chbFolders.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+        chbFolders.BackColor = Color.WhiteSmoke;
+        chbFolders.BorderStyle = BorderStyle.None;
+        chbFolders.ColumnWidth = 35;
+        Transition.SetDecoration(chbFolders, Guna.UI2.AnimatorNS.DecorationType.None);
+        chbFolders.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        chbFolders.ForeColor = Color.Gray;
+        chbFolders.FormattingEnabled = true;
+        chbFolders.Location = new Point(32, 112);
+        chbFolders.Margin = new Padding(2);
+        chbFolders.Name = "chbFolders";
+        chbFolders.Size = new Size(296, 392);
+        chbFolders.TabIndex = 4;
+        chbFolders.UseCompatibleTextRendering = true;
+        chbFolders.Visible = false;
+        // 
+        // bntChangeToFolders
+        // 
+        bntChangeToFolders.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        bntChangeToFolders.Animated = true;
+        bntChangeToFolders.BackColor = Color.Transparent;
+        bntChangeToFolders.BorderColor = Color.Gainsboro;
+        bntChangeToFolders.BorderRadius = 20;
+        bntChangeToFolders.BorderThickness = 2;
+        bntChangeToFolders.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+        bntChangeToFolders.CheckedState.ForeColor = Color.White;
+        bntChangeToFolders.CustomizableEdges.BottomLeft = false;
+        bntChangeToFolders.CustomizableEdges.TopLeft = false;
+        Transition.SetDecoration(bntChangeToFolders, Guna.UI2.AnimatorNS.DecorationType.None);
+        bntChangeToFolders.DisabledState.BorderColor = Color.DarkGray;
+        bntChangeToFolders.DisabledState.CustomBorderColor = Color.DarkGray;
+        bntChangeToFolders.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        bntChangeToFolders.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        bntChangeToFolders.FillColor = Color.WhiteSmoke;
+        bntChangeToFolders.FocusedColor = Color.FromArgb(100, 170, 209);
+        bntChangeToFolders.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+        bntChangeToFolders.ForeColor = Color.Gray;
+        bntChangeToFolders.HoverState.FillColor = Color.RoyalBlue;
+        bntChangeToFolders.HoverState.ForeColor = Color.White;
+        bntChangeToFolders.ImageSize = new Size(25, 25);
+        bntChangeToFolders.Location = new Point(176, 40);
+        bntChangeToFolders.Margin = new Padding(2);
+        bntChangeToFolders.Name = "bntChangeToFolders";
+        bntChangeToFolders.Size = new Size(144, 48);
+        bntChangeToFolders.TabIndex = 16;
+        bntChangeToFolders.Text = "Folders";
+        bntChangeToFolders.Click += guna2Button7_Click;
+        // 
+        // bntChangeToFiles
+        // 
+        bntChangeToFiles.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        bntChangeToFiles.Animated = true;
+        bntChangeToFiles.BackColor = Color.Transparent;
+        bntChangeToFiles.BorderColor = Color.Gainsboro;
+        bntChangeToFiles.BorderRadius = 20;
+        bntChangeToFiles.BorderThickness = 2;
+        bntChangeToFiles.Checked = true;
+        bntChangeToFiles.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+        bntChangeToFiles.CheckedState.ForeColor = Color.White;
+        bntChangeToFiles.CustomizableEdges.BottomRight = false;
+        bntChangeToFiles.CustomizableEdges.TopRight = false;
+        Transition.SetDecoration(bntChangeToFiles, Guna.UI2.AnimatorNS.DecorationType.None);
+        bntChangeToFiles.DisabledState.BorderColor = Color.DarkGray;
+        bntChangeToFiles.DisabledState.CustomBorderColor = Color.DarkGray;
+        bntChangeToFiles.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        bntChangeToFiles.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        bntChangeToFiles.FillColor = Color.WhiteSmoke;
+        bntChangeToFiles.FocusedColor = Color.FromArgb(100, 170, 209);
+        bntChangeToFiles.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+        bntChangeToFiles.ForeColor = Color.Gray;
+        bntChangeToFiles.HoverState.FillColor = Color.RoyalBlue;
+        bntChangeToFiles.HoverState.ForeColor = Color.White;
+        bntChangeToFiles.Location = new Point(32, 40);
+        bntChangeToFiles.Margin = new Padding(2);
+        bntChangeToFiles.Name = "bntChangeToFiles";
+        bntChangeToFiles.Size = new Size(152, 48);
+        bntChangeToFiles.TabIndex = 17;
+        bntChangeToFiles.Text = "Files";
+        bntChangeToFiles.Click += guna2Button2_Click;
+        // 
         // chblistFiles
         // 
         chblistFiles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
         chblistFiles.BackColor = Color.WhiteSmoke;
         chblistFiles.BorderStyle = BorderStyle.None;
-        chblistFiles.CheckOnClick = true;
         chblistFiles.ColumnWidth = 35;
+        Transition.SetDecoration(chblistFiles, Guna.UI2.AnimatorNS.DecorationType.None);
         chblistFiles.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
         chblistFiles.ForeColor = Color.Gray;
         chblistFiles.FormattingEnabled = true;
-        chblistFiles.Location = new Point(32, 64);
+        chblistFiles.Location = new Point(32, 112);
         chblistFiles.Margin = new Padding(2);
         chblistFiles.Name = "chblistFiles";
-        chblistFiles.Size = new Size(296, 448);
+        chblistFiles.Size = new Size(296, 392);
         chblistFiles.TabIndex = 2;
-        chblistFiles.ThreeDCheckBoxes = true;
-        // 
-        // label4
-        // 
-        label4.BackColor = Color.Transparent;
-        label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-        label4.ForeColor = Color.DimGray;
-        label4.Location = new Point(8, 8);
-        label4.Margin = new Padding(4, 0, 4, 0);
-        label4.Name = "label4";
-        label4.Size = new Size(96, 56);
-        label4.TabIndex = 1;
-        label4.Text = "Files";
-        label4.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // pnlChild
         // 
@@ -422,6 +516,7 @@ partial class uiEncryt
         pnlChild.BackgroundImageLayout = ImageLayout.Zoom;
         pnlChild.BorderRadius = 15;
         pnlChild.Controls.Add(label1);
+        Transition.SetDecoration(pnlChild, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlChild.FillColor = Color.Transparent;
         pnlChild.Location = new Point(224, 72);
         pnlChild.Margin = new Padding(2);
@@ -434,6 +529,7 @@ partial class uiEncryt
         // label1
         // 
         label1.Anchor = AnchorStyles.None;
+        Transition.SetDecoration(label1, Guna.UI2.AnimatorNS.DecorationType.None);
         label1.Font = new Font("Open Sans", 9F, FontStyle.Bold);
         label1.ForeColor = SystemColors.AppWorkspace;
         label1.Location = new Point(8, 200);
@@ -456,6 +552,7 @@ partial class uiEncryt
         guna2Panel2.BorderThickness = 2;
         guna2Panel2.Controls.Add(bntOpen);
         guna2Panel2.Controls.Add(pnlChild);
+        Transition.SetDecoration(guna2Panel2, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Panel2.FillColor = Color.Transparent;
         guna2Panel2.Location = new Point(400, 384);
         guna2Panel2.Margin = new Padding(2);
@@ -483,6 +580,28 @@ partial class uiEncryt
         asyncTask.Text = "Please hold on";
         asyncTask.WindowTitle = "MainHost";
         // 
+        // Transition
+        // 
+        Transition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent;
+        Transition.Cursor = null;
+        animation1.AnimateOnlyDifferences = true;
+        animation1.BlindCoeff = (PointF)resources.GetObject("animation1.BlindCoeff");
+        animation1.LeafCoeff = 0F;
+        animation1.MaxTime = 1F;
+        animation1.MinTime = 0F;
+        animation1.MosaicCoeff = (PointF)resources.GetObject("animation1.MosaicCoeff");
+        animation1.MosaicShift = (PointF)resources.GetObject("animation1.MosaicShift");
+        animation1.MosaicSize = 0;
+        animation1.Padding = new Padding(0, 0, 0, 0);
+        animation1.RotateCoeff = 0F;
+        animation1.RotateLimit = 0F;
+        animation1.ScaleCoeff = (PointF)resources.GetObject("animation1.ScaleCoeff");
+        animation1.SlideCoeff = (PointF)resources.GetObject("animation1.SlideCoeff");
+        animation1.TimeCoeff = 0F;
+        animation1.TransparencyCoeff = 1F;
+        Transition.DefaultAnimation = animation1;
+        Transition.Interval = 1;
+        // 
         // uiEncryt
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
@@ -495,6 +614,7 @@ partial class uiEncryt
         Controls.Add(pnlFiles);
         Controls.Add(guna2Panel3);
         Controls.Add(sPanel1);
+        Transition.SetDecoration(this, Guna.UI2.AnimatorNS.DecorationType.None);
         DoubleBuffered = true;
         Margin = new Padding(2);
         Name = "uiEncryt";
@@ -533,7 +653,6 @@ partial class uiEncryt
     private Label lblFile;
     private Guna.UI2.WinForms.Guna2ProgressBar progress;
     private Guna.UI2.WinForms.Guna2Button guna2Button1;
-    private Label label4;
     private Guna.UI2.WinForms.Guna2Panel pnlChild;
     private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
     private Label label1;
@@ -543,4 +662,8 @@ partial class uiEncryt
     private Guna.UI2.WinForms.Guna2Button bntCancel;
     private Guna.UI2.WinForms.Guna2Button bntPlugin;
     private Ookii.Dialogs.WinForms.ProgressDialog asyncTask;
+    private Guna.UI2.WinForms.Guna2Button bntChangeToFolders;
+    private Guna.UI2.WinForms.Guna2Button bntChangeToFiles;
+    public Guna.UI2.WinForms.Guna2Transition Transition;
+    private CheckedListBox chbFolders;
 }
