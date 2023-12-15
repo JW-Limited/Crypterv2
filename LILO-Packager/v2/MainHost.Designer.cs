@@ -48,6 +48,7 @@ partial class MainHost
         bntChoose_File = new Guna.UI2.WinForms.Guna2Button();
         Transition = new Guna.UI2.WinForms.Guna2Transition();
         pnlChild = new Panel();
+        splash_Panel = new Sipaa.Framework.SPanel();
         pnlNoti = new Guna.UI2.WinForms.Guna2Panel();
         guna2Button11 = new Guna.UI2.WinForms.Guna2Button();
         lblMessage_Noti = new Label();
@@ -502,8 +503,8 @@ partial class MainHost
         // 
         // pnlChild
         // 
-        pnlChild.BackgroundImage = Properties.Resources.Screenshot_2023_11_06_213239;
         pnlChild.BackgroundImageLayout = ImageLayout.Stretch;
+        pnlChild.Controls.Add(splash_Panel);
         pnlChild.Controls.Add(pnlNoti);
         Transition.SetDecoration(pnlChild, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlChild.Dock = DockStyle.Fill;
@@ -512,6 +513,23 @@ partial class MainHost
         pnlChild.Name = "pnlChild";
         pnlChild.Size = new Size(922, 927);
         pnlChild.TabIndex = 15;
+        // 
+        // splash_Panel
+        // 
+        splash_Panel.Anchor = AnchorStyles.None;
+        splash_Panel.BackColor = Color.White;
+        splash_Panel.BackgroundImage = Properties.Resources.Screenshot_2023_10_13_052005;
+        splash_Panel.BackgroundImageLayout = ImageLayout.Zoom;
+        splash_Panel.BorderColor = Color.Black;
+        splash_Panel.BorderRadius = 45;
+        splash_Panel.BorderSize = 0;
+        Transition.SetDecoration(splash_Panel, Guna.UI2.AnimatorNS.DecorationType.None);
+        splash_Panel.ForeColor = Color.White;
+        splash_Panel.Location = new Point(360, 368);
+        splash_Panel.Margin = new Padding(4);
+        splash_Panel.Name = "splash_Panel";
+        splash_Panel.Size = new Size(192, 176);
+        splash_Panel.TabIndex = 34;
         // 
         // pnlNoti
         // 
@@ -945,4 +963,5 @@ partial class MainHost
     private Panel panel1;
     public Guna.UI2.WinForms.Guna2Transition Transition;
     public Guna.UI2.WinForms.Guna2TaskBarProgress taskBarProgress;
+    private Sipaa.Framework.SPanel splash_Panel;
 }

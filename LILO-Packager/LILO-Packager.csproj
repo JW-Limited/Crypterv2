@@ -191,10 +191,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Crypterv2.LogAnalyzer.Core\Crypterv2.LogAnalyzer.csproj" />
+    <ProjectReference Include="..\Crypterv2.WatchdogUtilty\Crypterv2.WatchdogUtilty.csproj" />
     <ProjectReference Include="..\Crytperv2.Controls\Crypterv2.Controls.csproj" />
     <ProjectReference Include="..\InstallHelper\InstallHelper.csproj">
       <TreatAsUsed>true</TreatAsUsed>
     </ProjectReference>
+    <ProjectReference Include="..\JWLimited.Licensing\JWLimited.Licensing.csproj" />
     <ProjectReference Include="..\LILO-WebEngine\LILO-WebEngine.csproj" />
   </ItemGroup>
 

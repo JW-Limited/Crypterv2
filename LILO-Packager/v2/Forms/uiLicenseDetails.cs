@@ -1,4 +1,5 @@
 ﻿using LILO_Packager.v2.Core.LILO.Interfaces;
+using LILO_Packager.v2.Core.LILO.Types;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -20,6 +21,12 @@ namespace LILO_Packager.v2.Forms
 
         private void label3_Click(object sender, EventArgs e)
         {
-                    }
+        }
+
+        private void uiLicenseDetails_Load(object sender, EventArgs e)
+        {
+            lblProductname.Text = "Crypterv2";
+            lblUserName.Text = Program.ProductVersion;
+        }
     }
 }

@@ -12,10 +12,13 @@ namespace LILO_Packager
     {
         public static NotifyIcon noty;
         public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
-        public static string Version = "v0.17.3-alpha";
+        public static string Version = "v0.20.1-beta";
+        public static string ProductVersion = "Professional-sub";
+        public static string LibraryName = "JWLimited.Crypter.Windows";
         public static int BuildNumber = 20030;
         public static string CloudVersion = "0.9.3-preview";
         private static IBootManager _bootManager;
+        public static JWLimited.AuthAgent _AuthAgent;
 
         private static void InitializeApplication()
         {
@@ -23,6 +26,14 @@ namespace LILO_Packager
             BugBarrier.Initialize();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
+
+            _AuthAgent = JWLimited.AuthAgent.CreateAgent(new JWLimited.Application()
+            {
+                Executable = Application.ExecutablePath,
+                Name = "Crypterv2",
+                RealName = LibraryName,
+                ProjectLink = "https://github.com/JW-Limited/Crypterv2"
+            });
 
             InstanceCacheContainer.Register<IBootManager>(() => new BootManager());
             _bootManager = InstanceCacheContainer.Resolve<IBootManager>();

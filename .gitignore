@@ -438,3 +438,24 @@ LILO-Packager/v2/Core/Service/Services.LfsFileOperations.cs
 LILO-Packager/v2/Core/Service/ServiceValues.cs
 LILO-Packager/v2/Core/Service/Services.LfsCryptography.cs
 LILO-Packager/v2/Core/Service/TaskResponse.cs
+JWLimited.Licensing/Schemes/Structs/User.cs
+JWLimited.Licensing/Schemes/Structs/ProductVersion.cs
+JWLimited.Licensing/Schemes/ProductLicense.cs
+JWLimited.Licensing/Schemes/Contracts/IProductLicense.cs
+JWLimited.Licensing/Schemes/Contracts/IProductFeature.cs
+JWLimited.Licensing/Schemes/Contracts/IProduct.cs
+JWLimited.Licensing/JWLimited.Licensing.csproj
+JWLimited.Licensing/JW Limited/Structs/Application.cs
+JWLimited.Licensing/JW Limited/InvalidPlattformException.cs
+JWLimited.Licensing/JW Limited/InvalidAccessException.cs
+JWLimited.Licensing/JW Limited/IAccessAgent.cs
+JWLimited.Licensing/JW Limited/Exceptions/ApplicationNotFoundException.cs
+JWLimited.Licensing/JW Limited/AuthAgent.cs
+JWLimited.Licensing/JW Limited/ApplicationID.cs
+JWLimited.Licensing/Core/LicenseWriter.cs
+JWLimited.Licensing/Core/LicenseReader.cs
+JWLimited.Licensing/Core/LicenseManager.cs
+Crypterv2.WatchdogUtilty/Watchdogs/BehaviourWatchDog.cs
+Crypterv2.WatchdogUtilty/ServiceEngine.cs
+JWLimited.Licensing/Services/GitHubApi.cs
+JWLimited.Licensing/Schemes/IJWLimitedLicense.cs

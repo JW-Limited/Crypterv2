@@ -9,45 +9,65 @@ namespace Crypterv2.WatchdogUtilty
 {
     public class ServiceEngine
     {
+        private static readonly HttpClient client = new HttpClient();
+        private int _id = 0;
         public static ServiceEngine Instance => serviceEngine.Value;
         private static Lazy<ServiceEngine> serviceEngine = new Lazy<ServiceEngine>(() => new ServiceEngine());
-        private int _id = 0;
         private int _listeningPort = 0;
-        private WebRequest _request;
 
-        public ServiceEngine() 
-        {
-
-        }
-
-        public async Task<bool> Initialize(int port)
+        public async Task<bool> InitializeAsync(int port)
         {
             _listeningPort = port;
-            _request = WebRequest.Create(new Uri($"http://localhost:{port}/api/state"));
+            var uri = new Uri($"http://localhost:{port}/api/state");
+            try
+            {
+                await client.GetAsync(uri);
+            }
+            catch (Exception ex)
+            {
+                
+                return false;
+            }
             return true;
         }
 
-        public async Task Start(int port, int waitCallBackInSeconds)
+        public async Task StartAsync(int port, int waitCallBackInSeconds)
         {
-            if(await Initialize(port))
+            if (await InitializeAsync(port))
             {
                 while (true)
                 {
-                    Thread.Sleep(waitCallBackInSeconds * 1000);
-
-                    var response = _request.GetResponse();
-                    var stream = response.GetResponseStream();
-                    var state = new XmlSerializer(typeof(WEB_ENGINE_STATE)).Deserialize(stream);
-
-                    if(state is null)
+                    try
                     {
-                        throw new WebEngineError();
+                        await GetStateAsync();
                     }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());   
+                    }
+                    await Task.Delay(waitCallBackInSeconds * 1000);
                 }
             }
+            else
+            {
+                throw new WebEngineError();
+            }
         }
+
+        private async Task<WEB_ENGINE_STATE> GetStateAsync()
+        {
+            var uri = new Uri($"http://localhost:{_listeningPort}/api/state");
+            var response = await client.GetAsync(uri);
+            var stream = await response.Content.ReadAsStreamAsync();
+            var state = new XmlSerializer(typeof(WEB_ENGINE_STATE)).Deserialize(stream);
+            if (state is null)
+            {
+                throw new WebEngineError();
+            }
+            return (WEB_ENGINE_STATE)state;
+        }
+
+        public class WebEngineError : Exception { }
     }
 
-    public class WebEngineError : Exception { } 
 }
-    

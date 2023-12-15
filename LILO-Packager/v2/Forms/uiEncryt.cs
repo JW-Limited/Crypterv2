@@ -160,6 +160,7 @@ public partial class uiEncryt : Form
                     }
                     else if (Directory.Exists(file))
                     {
+                        Directories.Add(file);
                         var info = new DirectoryInfo(file);
                         chbFolders.Items.Add("  " + info.Name);
                     }
@@ -399,15 +400,61 @@ public partial class uiEncryt : Form
             var currentTask = new TaskStatus();
             var logged = false;
             var usedArchieve = "";
-            if (psw != null) throw new PasswordNotSufficientException();
+            if (psw is null) throw new PasswordNotSufficientException();
 
             ControlEnable(false);
 
-            Task.Run(() =>
+            await Task.Run(async() =>
             {
-                
+                var directorysEncrypted = new List<string>();
+                var erros = new List<string>();
+
+                HandleTaskChange("Compress");
+
+                foreach (var direc in Directories)
+                {
+                    await Invoke(async() =>
+                    {
+                        await Services.CompressDirectoryAsync(direc, direc + ".cdex", __progres =>
+                        {
+                            progress.Value = (int)__progres;
+                        },
+                        error =>
+                        {
+                            erros.Add(error.Message);
+                        });
+
+                        directorysEncrypted.Add(direc + ".cdex");
+
+                    }).ConfigureAwait(false);
+                }
+
+                var info = new DirectoryInfo(Directories[0]);
+                var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
+                var musltifileHandler = new Shared.SmartFilePacker();
+                var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Refresing, async (progress) =>
+                {
+                    var zipProgress = new Progress<int>(progressPercentage =>
+                    {
+                        progress?.Report(progressPercentage);
+                    });
+
+                    await musltifileHandler.ZipFilesAsync(tempZip, zipProgress, directorysEncrypted);
+                });
+
+                var uiAsyncTask = new uiCustomProcess(asyncTask);
+                uiAsyncTask.ShowDialog();
+
+                foreach (var file in directorysEncrypted)
+                {
+                    File.Delete(file);
+                }
+
+
             });
 
+
+            ControlEnable(true);
         }
 
         

@@ -13,6 +13,7 @@ using LILO_Packager.v2.Shared.Api.Core;
 using LILO_Packager.v2.Shared.Types;
 using LILO_Packager.v2.Shared.Streaming.Core;
 using LILO_Packager.v2.Core.LILO.Types;
+using LILO_Packager.v2.Core.BugBarrier;
 using System.Collections.ObjectModel;
 using System.Net.Sockets;
 using System.Diagnostics;
@@ -20,7 +21,6 @@ using System.Text;
 using System.Net;
 using Newtonsoft.Json;
 using srvlocal_gui.AppMananger;
-using LILO_Packager.v2.Core.BugBarrier;
 
 
 namespace LILO_Packager.v2;
@@ -176,10 +176,12 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         }
     }
 
-
+    public Stopwatch InitTimer = new Stopwatch();
 
     private unsafe MainHost()
     {
+        InitTimer.Start();
+
         InitializeComponent();
 
         _broadCastChannel = BroadcastChannel.Instance;
@@ -247,7 +249,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
     private async void MainHost_Load(object sender, EventArgs e)
     {
-        Task.Run(() => this.Invoke(async () =>
+        _ = Task.Run(() => this.Invoke(async () =>
         {
             var updater = Updater.Instance();
             Program.InstanceCacheContainer.Register<IUpdater>(() => updater);
@@ -377,7 +379,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
                     {
                         var str = new StringBuilder();
 
-                        foreach(var plug in responseScan.ChangedPlugins)
+                        foreach (var plug in responseScan.ChangedPlugins)
                         {
                             str.AppendLine(plug.Plugin.Name + plug.Plugin.Version + plug.Plugin.Identifier + "\n");
                         }
@@ -399,15 +401,23 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
                 await v2.Core.FeatureManager.LoadConfigurationAsync();
 
-                
+
             }
 
             pnlChild.BackgroundImage = null;
+            await Task.Delay(500);
+
+
+            InitTimer.Stop();
+
+            ConsoleManager.Instance().WriteLineWithColor($"Init Time: {InitTimer.Elapsed.TotalSeconds}sec");
 
             this.Invoke(() =>
             {
+                splash_Panel.Visible = false;
                 hider.Visible = true;
             });
+
 
             if (!File.Exists(UserFile))
             {
@@ -419,6 +429,13 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
             {
                 OpenInApp(v2.Forms.uiWebView.Instance(new Uri($"http://localhost:{Port}")));
             }
+
+            await Task.Run(async () =>
+            {
+                await Crypterv2.WatchdogUtilty.ServiceEngine.Instance.StartAsync(Port, 30);
+            }).ConfigureAwait(false);
+
+
 
         }));
         

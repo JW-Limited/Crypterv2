@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiLicenseDetails));
             sPanel1 = new Sipaa.Framework.SPanel();
             lblText = new Label();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
@@ -35,16 +36,28 @@
             label1 = new Label();
             sPanel11 = new Sipaa.Framework.SPanel();
             sPanel3 = new Sipaa.Framework.SPanel();
-            label13 = new Label();
-            label14 = new Label();
+            sPanel5 = new Sipaa.Framework.SPanel();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
+            label4 = new Label();
+            label6 = new Label();
+            lblUserName = new Label();
+            sPanel4 = new Sipaa.Framework.SPanel();
+            guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            label3 = new Label();
+            label2 = new Label();
             sPanel2 = new Sipaa.Framework.SPanel();
+            lblProductname = new Label();
             sPanel1.SuspendLayout();
             sPanel3.SuspendLayout();
+            sPanel5.SuspendLayout();
+            guna2Panel1.SuspendLayout();
+            sPanel4.SuspendLayout();
             SuspendLayout();
             // 
             // sPanel1
             // 
-            sPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             sPanel1.BackColor = Color.Black;
             sPanel1.BackgroundImage = Properties.Resources.Royal_Blue;
             sPanel1.BackgroundImageLayout = ImageLayout.Stretch;
@@ -58,13 +71,13 @@
             sPanel1.Location = new Point(24, 32);
             sPanel1.Margin = new Padding(4);
             sPanel1.Name = "sPanel1";
-            sPanel1.Size = new Size(974, 88);
+            sPanel1.Size = new Size(312, 88);
             sPanel1.TabIndex = 13;
             // 
             // lblText
             // 
             lblText.BackColor = Color.Transparent;
-            lblText.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblText.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
             lblText.ForeColor = Color.White;
             lblText.Location = new Point(88, 0);
             lblText.Margin = new Padding(4, 0, 4, 0);
@@ -87,7 +100,7 @@
             guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button2.FillColor = Color.Transparent;
             guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2Button2.ForeColor = Color.White;
             guna2Button2.Image = Properties.Resources.icons8_back_96;
             guna2Button2.ImageSize = new Size(35, 35);
@@ -101,7 +114,7 @@
             // label5
             // 
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
             label5.ForeColor = Color.White;
             label5.Location = new Point(0, 0);
             label5.Margin = new Padding(4, 0, 4, 0);
@@ -115,7 +128,7 @@
             // 
             label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
             label1.ForeColor = Color.Gray;
             label1.Location = new Point(896, 864);
             label1.Margin = new Padding(4, 0, 4, 0);
@@ -149,43 +162,185 @@
             sPanel3.BackgroundImageLayout = ImageLayout.Zoom;
             sPanel3.BorderColor = Color.Gainsboro;
             sPanel3.BorderRadius = 20;
-            sPanel3.BorderSize = 0;
-            sPanel3.Controls.Add(label13);
-            sPanel3.Controls.Add(label14);
+            sPanel3.BorderSize = 2;
+            sPanel3.Controls.Add(sPanel5);
+            sPanel3.Controls.Add(lblUserName);
+            sPanel3.Controls.Add(sPanel4);
             sPanel3.Controls.Add(sPanel2);
+            sPanel3.Controls.Add(lblProductname);
             sPanel3.ForeColor = Color.White;
-            sPanel3.Location = new Point(264, 296);
+            sPanel3.Location = new Point(264, 272);
             sPanel3.Margin = new Padding(4);
             sPanel3.Name = "sPanel3";
             sPanel3.Size = new Size(488, 464);
             sPanel3.TabIndex = 23;
             // 
-            // label13
+            // sPanel5
             // 
-            label13.Anchor = AnchorStyles.None;
-            label13.BackColor = Color.Transparent;
-            label13.ForeColor = Color.DimGray;
-            label13.Location = new Point(0, 328);
-            label13.Margin = new Padding(2, 0, 2, 0);
-            label13.Name = "label13";
-            label13.Size = new Size(488, 64);
-            label13.TabIndex = 26;
-            label13.Text = "This Application is still in alpha so it\r\ndont cost anything.";
-            label13.TextAlign = ContentAlignment.MiddleCenter;
+            sPanel5.Anchor = AnchorStyles.None;
+            sPanel5.AutoScroll = true;
+            sPanel5.BackColor = Color.White;
+            sPanel5.BackgroundImageLayout = ImageLayout.Zoom;
+            sPanel5.BorderColor = Color.Gainsboro;
+            sPanel5.BorderRadius = 15;
+            sPanel5.BorderSize = 2;
+            sPanel5.Controls.Add(guna2Panel1);
+            sPanel5.Controls.Add(label4);
+            sPanel5.Controls.Add(label6);
+            sPanel5.ForeColor = Color.White;
+            sPanel5.Location = new Point(24, 320);
+            sPanel5.Margin = new Padding(4);
+            sPanel5.Name = "sPanel5";
+            sPanel5.Size = new Size(440, 112);
+            sPanel5.TabIndex = 23;
             // 
-            // label14
+            // guna2Panel1
             // 
-            label14.Anchor = AnchorStyles.None;
-            label14.BackColor = Color.Transparent;
-            label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.ForeColor = SystemColors.Desktop;
-            label14.Location = new Point(0, 296);
-            label14.Margin = new Padding(2, 0, 2, 0);
-            label14.Name = "label14";
-            label14.Size = new Size(488, 39);
-            label14.TabIndex = 27;
-            label14.Text = "Test License\r\n";
-            label14.TextAlign = ContentAlignment.MiddleCenter;
+            guna2Panel1.Anchor = AnchorStyles.None;
+            guna2Panel1.BackColor = Color.Transparent;
+            guna2Panel1.BorderColor = Color.Gainsboro;
+            guna2Panel1.BorderRadius = 15;
+            guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            guna2Panel1.BorderThickness = 2;
+            guna2Panel1.Controls.Add(guna2Panel4);
+            guna2Panel1.FillColor = Color.White;
+            guna2Panel1.Location = new Point(32, 24);
+            guna2Panel1.Margin = new Padding(2);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.Size = new Size(64, 64);
+            guna2Panel1.TabIndex = 28;
+            // 
+            // guna2Panel4
+            // 
+            guna2Panel4.Anchor = AnchorStyles.None;
+            guna2Panel4.BackColor = Color.Transparent;
+            guna2Panel4.BackgroundImage = Properties.Resources.icons8_key_security_96;
+            guna2Panel4.BackgroundImageLayout = ImageLayout.Stretch;
+            guna2Panel4.BorderColor = Color.Gainsboro;
+            guna2Panel4.BorderRadius = 15;
+            guna2Panel4.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            guna2Panel4.FillColor = Color.Transparent;
+            guna2Panel4.Location = new Point(8, 8);
+            guna2Panel4.Margin = new Padding(2);
+            guna2Panel4.Name = "guna2Panel4";
+            guna2Panel4.Size = new Size(48, 48);
+            guna2Panel4.TabIndex = 29;
+            // 
+            // label4
+            // 
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Segoe UI", 9F);
+            label4.ForeColor = Color.DarkGray;
+            label4.Location = new Point(112, 56);
+            label4.Margin = new Padding(2, 0, 2, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(296, 24);
+            label4.TabIndex = 27;
+            label4.Text = "Change youre Version (Key)";
+            label4.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            label6.ForeColor = Color.DimGray;
+            label6.Location = new Point(112, 32);
+            label6.Margin = new Padding(2, 0, 2, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(184, 24);
+            label6.TabIndex = 27;
+            label6.Text = "Versions";
+            label6.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblUserName
+            // 
+            lblUserName.BackColor = Color.Transparent;
+            lblUserName.Font = new Font("Segoe UI", 9F);
+            lblUserName.ForeColor = Color.DarkGray;
+            lblUserName.Location = new Point(192, 112);
+            lblUserName.Margin = new Padding(2, 0, 2, 0);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(192, 24);
+            lblUserName.TabIndex = 27;
+            lblUserName.Text = "Test License";
+            lblUserName.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // sPanel4
+            // 
+            sPanel4.Anchor = AnchorStyles.None;
+            sPanel4.AutoScroll = true;
+            sPanel4.BackColor = Color.White;
+            sPanel4.BackgroundImageLayout = ImageLayout.Zoom;
+            sPanel4.BorderColor = Color.Gainsboro;
+            sPanel4.BorderRadius = 15;
+            sPanel4.BorderSize = 2;
+            sPanel4.Controls.Add(guna2Panel2);
+            sPanel4.Controls.Add(guna2Panel3);
+            sPanel4.Controls.Add(label3);
+            sPanel4.Controls.Add(label2);
+            sPanel4.ForeColor = Color.White;
+            sPanel4.Location = new Point(24, 192);
+            sPanel4.Margin = new Padding(4);
+            sPanel4.Name = "sPanel4";
+            sPanel4.Size = new Size(440, 112);
+            sPanel4.TabIndex = 23;
+            // 
+            // guna2Panel2
+            // 
+            guna2Panel2.Anchor = AnchorStyles.None;
+            guna2Panel2.BackColor = Color.Transparent;
+            guna2Panel2.BackgroundImage = (Image)resources.GetObject("guna2Panel2.BackgroundImage");
+            guna2Panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            guna2Panel2.BorderColor = Color.Gainsboro;
+            guna2Panel2.BorderRadius = 15;
+            guna2Panel2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            guna2Panel2.FillColor = Color.Transparent;
+            guna2Panel2.Location = new Point(40, 32);
+            guna2Panel2.Margin = new Padding(2);
+            guna2Panel2.Name = "guna2Panel2";
+            guna2Panel2.Size = new Size(48, 48);
+            guna2Panel2.TabIndex = 28;
+            // 
+            // guna2Panel3
+            // 
+            guna2Panel3.Anchor = AnchorStyles.None;
+            guna2Panel3.BackColor = Color.Transparent;
+            guna2Panel3.BorderColor = Color.Gainsboro;
+            guna2Panel3.BorderRadius = 15;
+            guna2Panel3.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            guna2Panel3.BorderThickness = 2;
+            guna2Panel3.FillColor = Color.White;
+            guna2Panel3.Location = new Point(32, 24);
+            guna2Panel3.Margin = new Padding(2);
+            guna2Panel3.Name = "guna2Panel3";
+            guna2Panel3.Size = new Size(64, 64);
+            guna2Panel3.TabIndex = 28;
+            // 
+            // label3
+            // 
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI", 9F);
+            label3.ForeColor = Color.DarkGray;
+            label3.Location = new Point(112, 56);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(192, 24);
+            label3.TabIndex = 27;
+            label3.Text = "Test License";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            label2.ForeColor = Color.DimGray;
+            label2.Location = new Point(112, 32);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(184, 24);
+            label2.TabIndex = 27;
+            label2.Text = "Test License";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // sPanel2
             // 
@@ -197,11 +352,25 @@
             sPanel2.BorderRadius = 20;
             sPanel2.BorderSize = 0;
             sPanel2.ForeColor = Color.White;
-            sPanel2.Location = new Point(108, 8);
+            sPanel2.Location = new Point(40, 40);
             sPanel2.Margin = new Padding(4);
             sPanel2.Name = "sPanel2";
-            sPanel2.Size = new Size(272, 248);
+            sPanel2.Size = new Size(128, 120);
             sPanel2.TabIndex = 13;
+            // 
+            // lblProductname
+            // 
+            lblProductname.Anchor = AnchorStyles.None;
+            lblProductname.BackColor = Color.Transparent;
+            lblProductname.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblProductname.ForeColor = SystemColors.Desktop;
+            lblProductname.Location = new Point(192, 40);
+            lblProductname.Margin = new Padding(2, 0, 2, 0);
+            lblProductname.Name = "lblProductname";
+            lblProductname.Size = new Size(280, 104);
+            lblProductname.TabIndex = 27;
+            lblProductname.Text = "Test License";
+            lblProductname.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // uiLicenseDetails
             // 
@@ -215,8 +384,12 @@
             Controls.Add(sPanel1);
             Name = "uiLicenseDetails";
             Text = "uiLicenseDetails";
+            Load += uiLicenseDetails_Load;
             sPanel1.ResumeLayout(false);
             sPanel3.ResumeLayout(false);
+            sPanel5.ResumeLayout(false);
+            guna2Panel1.ResumeLayout(false);
+            sPanel4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -229,8 +402,18 @@
         private Label label1;
         private Sipaa.Framework.SPanel sPanel11;
         private Sipaa.Framework.SPanel sPanel3;
-        private Label label13;
-        private Label label14;
+        private Label lblProductname;
         private Sipaa.Framework.SPanel sPanel2;
+        private Sipaa.Framework.SPanel sPanel4;
+        private Label label3;
+        private Label label2;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
+        private Sipaa.Framework.SPanel sPanel5;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Label label4;
+        private Label label6;
+        private Label lblUserName;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
     }
 }

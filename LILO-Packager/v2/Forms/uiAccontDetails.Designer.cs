@@ -57,7 +57,6 @@
             // 
             // sPanel1
             // 
-            sPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             sPanel1.BackColor = Color.Black;
             sPanel1.BackgroundImage = Properties.Resources.Royal_Blue;
             sPanel1.BackgroundImageLayout = ImageLayout.Stretch;
@@ -71,13 +70,13 @@
             sPanel1.Location = new Point(24, 32);
             sPanel1.Margin = new Padding(4);
             sPanel1.Name = "sPanel1";
-            sPanel1.Size = new Size(968, 88);
+            sPanel1.Size = new Size(224, 88);
             sPanel1.TabIndex = 14;
             // 
             // lblText
             // 
             lblText.BackColor = Color.Transparent;
-            lblText.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblText.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
             lblText.ForeColor = Color.White;
             lblText.Location = new Point(88, 0);
             lblText.Margin = new Padding(4, 0, 4, 0);
@@ -100,7 +99,7 @@
             guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button2.FillColor = Color.Transparent;
             guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2Button2.ForeColor = Color.White;
             guna2Button2.Image = Properties.Resources.icons8_back_96;
             guna2Button2.ImageSize = new Size(35, 35);
@@ -114,7 +113,7 @@
             // label5
             // 
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
             label5.ForeColor = Color.White;
             label5.Location = new Point(0, 0);
             label5.Margin = new Padding(4, 0, 4, 0);
@@ -128,7 +127,7 @@
             // 
             label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
             label1.ForeColor = Color.Gray;
             label1.Location = new Point(896, 864);
             label1.Margin = new Padding(4, 0, 4, 0);
@@ -157,7 +156,7 @@
             // lblUserRole
             // 
             lblUserRole.Anchor = AnchorStyles.Top;
-            lblUserRole.Font = new Font("Open Sans", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblUserRole.Font = new Font("Open Sans", 9F);
             lblUserRole.ForeColor = SystemColors.ControlDarkDark;
             lblUserRole.Location = new Point(320, 320);
             lblUserRole.Margin = new Padding(2, 0, 2, 0);
@@ -170,7 +169,7 @@
             // lblEmail
             // 
             lblEmail.Anchor = AnchorStyles.Top;
-            lblEmail.Font = new Font("Open Sans", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblEmail.Font = new Font("Open Sans", 9F);
             lblEmail.ForeColor = SystemColors.ControlDarkDark;
             lblEmail.Location = new Point(320, 288);
             lblEmail.Margin = new Padding(2, 0, 2, 0);
@@ -183,7 +182,7 @@
             // lblUsername
             // 
             lblUsername.Anchor = AnchorStyles.Top;
-            lblUsername.Font = new Font("Open Sans", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblUsername.Font = new Font("Open Sans", 14F, FontStyle.Bold);
             lblUsername.Location = new Point(312, 240);
             lblUsername.Margin = new Padding(2, 0, 2, 0);
             lblUsername.Name = "lblUsername";
@@ -235,7 +234,7 @@
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button1.FillColor = Color.Transparent;
-            guna2Button1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.DimGray;
             guna2Button1.Location = new Point(768, 272);
             guna2Button1.Margin = new Padding(2);
@@ -277,7 +276,7 @@
             guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button4.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button4.FillColor = Color.Transparent;
-            guna2Button4.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button4.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             guna2Button4.ForeColor = Color.DimGray;
             guna2Button4.Image = Properties.Resources.Close;
             guna2Button4.ImageSize = new Size(30, 30);
@@ -300,7 +299,7 @@
             guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button3.FillColor = Color.Transparent;
-            guna2Button3.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button3.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             guna2Button3.ForeColor = Color.DimGray;
             guna2Button3.Location = new Point(24, 152);
             guna2Button3.Margin = new Padding(2);
@@ -326,7 +325,7 @@
             // label14
             // 
             label14.BackColor = Color.Transparent;
-            label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label14.ForeColor = SystemColors.Desktop;
             label14.Location = new Point(24, 24);
             label14.Margin = new Padding(2, 0, 2, 0);
@@ -367,7 +366,7 @@
             guna2Button6.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button6.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button6.FillColor = Color.Transparent;
-            guna2Button6.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button6.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             guna2Button6.ForeColor = Color.DimGray;
             guna2Button6.Location = new Point(24, 152);
             guna2Button6.Margin = new Padding(2);
@@ -375,7 +374,6 @@
             guna2Button6.Size = new Size(344, 48);
             guna2Button6.TabIndex = 25;
             guna2Button6.Text = "Open Dialog";
-            guna2Button6.Click += guna2Button1_Click;
             // 
             // label2
             // 
@@ -393,7 +391,7 @@
             // label3
             // 
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label3.ForeColor = SystemColors.Desktop;
             label3.Location = new Point(24, 24);
             label3.Margin = new Padding(2, 0, 2, 0);
