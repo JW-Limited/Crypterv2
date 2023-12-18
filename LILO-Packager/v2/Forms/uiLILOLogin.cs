@@ -57,8 +57,9 @@ namespace LILO_Packager.v2.Forms
                     ConsoleManager.Instance().WriteLineWithColor("WebClient: All done.", ConsoleColor.Blue);
                     this.Invoke(new Action(() =>
                     {
-                        FileIndexStorage.Instance.CreateMatrixFile();
                         pnlSucces.Visible = true;
+
+                        FileIndexStorage.Instance.CreateMatrixFile();
                     }));
                 }
 
@@ -94,8 +95,9 @@ namespace LILO_Packager.v2.Forms
             liloManager.SaveUserToUser(new string[] { "gast@jwlmt.com", "guest", "guest" });
             this.Invoke(new Action(() =>
             {
-                FileIndexStorage.Instance.CreateMatrixFile();
                 pnlSucces.Visible = true;
+
+                FileIndexStorage.Instance.CreateMatrixFile();
             }));
         }
     }

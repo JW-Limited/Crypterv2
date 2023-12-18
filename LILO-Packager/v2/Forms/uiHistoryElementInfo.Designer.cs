@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.AnimatorNS.Animation animation3 = new Guna.UI2.AnimatorNS.Animation();
+            Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiHistoryElementInfo));
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -204,10 +204,10 @@
             guna2Button7.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button7.Font = new Font("Work Sans ExtraBold", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button7.ForeColor = Color.Black;
-            guna2Button7.HoverState.FillColor = Color.LightSteelBlue;
-            guna2Button7.HoverState.ForeColor = Color.White;
-            guna2Button7.Image = Properties.Resources.icons8_collapse_arrow_641;
-            guna2Button7.ImageSize = new Size(25, 25);
+            guna2Button7.HoverState.FillColor = SystemColors.ButtonHighlight;
+            guna2Button7.HoverState.ForeColor = Color.DarkGray;
+            guna2Button7.Image = Properties.Resources.icons8_bursts_96;
+            guna2Button7.ImageSize = new Size(30, 30);
             guna2Button7.Location = new Point(736, 656);
             guna2Button7.Margin = new Padding(2);
             guna2Button7.Name = "guna2Button7";
@@ -658,22 +658,22 @@
             // 
             Transition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent;
             Transition.Cursor = null;
-            animation3.AnimateOnlyDifferences = true;
-            animation3.BlindCoeff = (PointF)resources.GetObject("animation3.BlindCoeff");
-            animation3.LeafCoeff = 0F;
-            animation3.MaxTime = 1F;
-            animation3.MinTime = 0F;
-            animation3.MosaicCoeff = (PointF)resources.GetObject("animation3.MosaicCoeff");
-            animation3.MosaicShift = (PointF)resources.GetObject("animation3.MosaicShift");
-            animation3.MosaicSize = 0;
-            animation3.Padding = new Padding(0);
-            animation3.RotateCoeff = 0F;
-            animation3.RotateLimit = 0F;
-            animation3.ScaleCoeff = (PointF)resources.GetObject("animation3.ScaleCoeff");
-            animation3.SlideCoeff = (PointF)resources.GetObject("animation3.SlideCoeff");
-            animation3.TimeCoeff = 0F;
-            animation3.TransparencyCoeff = 1F;
-            Transition.DefaultAnimation = animation3;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = (PointF)resources.GetObject("animation1.BlindCoeff");
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = (PointF)resources.GetObject("animation1.MosaicCoeff");
+            animation1.MosaicShift = (PointF)resources.GetObject("animation1.MosaicShift");
+            animation1.MosaicSize = 0;
+            animation1.Padding = new Padding(0);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = (PointF)resources.GetObject("animation1.ScaleCoeff");
+            animation1.SlideCoeff = (PointF)resources.GetObject("animation1.SlideCoeff");
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 1F;
+            Transition.DefaultAnimation = animation1;
             Transition.Interval = 1;
             // 
             // uiHistoryElementInfo

@@ -8,11 +8,17 @@ namespace LILO_Packager.v2.Plugins.PluginCore
 {
     public class PluginManagerv2
     {
+        // --- Plugins ---
+
+        public HashSet<IPluginBase> Pluginsv1 = new HashSet<IPluginBase>();
+        public HashSet<IPluginBasev2> PluginsV2 = new HashSet<IPluginBasev2>();
+
+        // --- Other Variables ---
+
         public string PluginManagerIndexFile;
         private HashSet<String> DirectoryPaths = new HashSet<string>();
         public string PluginManagerIndexDirectory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Crypterv2\\Extensions\\";
         public string PluginManagerIndexFileName = "Crypterv2PluginIndex.cif";
-        public HashSet<IPluginBase> CurrentPlugins = new HashSet<IPluginBase>();
         public Dictionary<IPluginBase, string> pluginPaths = new Dictionary<IPluginBase, string>();
 
         public PluginManagerv2(String DirectoryPath)
@@ -111,7 +117,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                                                             BindingFlags.CreateInstance, null, null, null) as IPluginBase;
 
 
-                                        CurrentPlugins.Add(b);
+                                        Pluginsv1.Add(b);
                                         pluginPaths.Add(b, file.FullName);
 
                                         if (b != null)
@@ -135,6 +141,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                                                             },
                                                             State = ChangedState.Updated
                                                         });
+
                                                     }
                                                 }
 
@@ -142,9 +149,41 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                                         }
 
                                     }
+
+                                    if ((t.IsSubclassOf(typeof(IPluginBasev2)) || t.GetInterfaces().Contains(typeof(IPluginBasev2))) && t.IsAbstract == false)
+                                    {
+                                        IPluginBasev2? b = t.InvokeMember(null,
+                                                            BindingFlags.CreateInstance, null, null, null) as IPluginBasev2;
+
+
+                                        PluginsV2.Add(b);
+
+                                    }
                                 }
 
                             }
+                        }
+
+                        if (response.PluginsChanged)
+                        {
+                            //foreach(var plugin in response.ChangedPlugins)
+                            //{
+                            //    try
+                            //    {
+                            //        var entry = indexFile.Plugins.FirstOrDefault(x => x.Name == plugin.Plugin.Name);
+                            //        indexFile.Plugins.Remove(entry);
+                            //    }
+                            //    catch(Exception ex)
+                            //    {
+
+                            //    }
+
+                            //    indexFile.Plugins.Add(plugin.Plugin);
+                            //}
+
+                            //File.Delete(PluginManagerIndexFile);
+
+                            //indexFile.SerializeToXml(PluginManagerIndexFile);
                         }
                     }
                     catch (XmlException)
@@ -160,7 +199,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
             {
                 await Task.Run(() =>
                 {
-                    CurrentPlugins = new HashSet<IPluginBase>();
+                    Pluginsv1 = new HashSet<IPluginBase>();
 
                     foreach (var ele in DirectoryPaths)
                     {
@@ -176,7 +215,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                                     IPluginBase? b = t.InvokeMember(null,
                                                         BindingFlags.CreateInstance, null, null, null) as IPluginBase;
 
-                                    CurrentPlugins.Add(b);
+                                    Pluginsv1.Add(b);
                                     pluginPaths.Add(b, file.FullName);
                                     try
                                     {
@@ -196,6 +235,15 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                                     {
                                         MessageBox.Show(ex.Message + ex.Source + ex.InnerException);
                                     }
+                                }
+
+                                if ((t.IsSubclassOf(typeof(IPluginBasev2)) || t.GetInterfaces().Contains(typeof(IPluginBasev2))) && t.IsAbstract == false)
+                                {
+                                    IPluginBasev2? b = t.InvokeMember(null,
+                                                        BindingFlags.CreateInstance, null, null, null) as IPluginBasev2;
+
+
+                                    PluginsV2.Add(b);
 
                                 }
                             }
@@ -206,7 +254,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
 
                     var plugins = new HashSet<PluginIndexEntry>();
 
-                    foreach (var plugin in CurrentPlugins)
+                    foreach (var plugin in Pluginsv1)
                     {
                         pluginPaths.TryGetValue(plugin, out string path);
 

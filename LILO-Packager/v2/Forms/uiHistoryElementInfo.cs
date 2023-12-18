@@ -309,7 +309,7 @@ namespace LILO_Packager.v2.Forms
             }
             else
             {
-                foreach (var plugin in MainHost.Instance()._pluginManager.CurrentPlugins)
+                foreach (var plugin in MainHost.Instance()._pluginManager.Pluginsv1)
                 {
                     if (PluginID.IDtoString(plugin.ID) == PluginID.IDtoString(PluginID.GetID("tpl", "lbl", "lvl02")))
                     {

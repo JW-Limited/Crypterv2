@@ -35,6 +35,7 @@ namespace LILO_Packager.v2.Forms
             lblUsername.Text = _user.Name;
             lblUserRole.Text = _userAdvanced.Role;
             pnlPicture.BackgroundImage = _userAdvanced.ProfilePicture;
+            pnlBackGround.BackgroundImage = _userAdvanced.ProfilePicture;
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
@@ -87,6 +88,11 @@ namespace LILO_Packager.v2.Forms
             config.Default.localUserImage = "";
             config.Default.Save();
             pnlPicture.BackgroundImage = Properties.Resources.icons8_male_user_96;
+        }
+
+        private void sPanel6_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

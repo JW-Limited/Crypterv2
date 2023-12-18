@@ -42,7 +42,6 @@ partial class uiLILOAccountLogin
         label3 = new Label();
         label4 = new Label();
         pnlTop = new Sipaa.Framework.SPanel();
-        label6 = new Label();
         showPsw = new Guna.UI2.WinForms.Guna2Button();
         Drager = new Guna.UI2.WinForms.Guna2DragControl(components);
         pnlPreview = new Guna.UI2.WinForms.Guna2Panel();
@@ -242,7 +241,6 @@ partial class uiLILOAccountLogin
         pnlTop.BorderSize = 0;
         pnlTop.Controls.Add(sPanel4);
         pnlTop.Controls.Add(conClose);
-        pnlTop.Controls.Add(label6);
         pnlTop.Controls.Add(label4);
         pnlTop.Dock = DockStyle.Top;
         pnlTop.ForeColor = Color.White;
@@ -251,18 +249,6 @@ partial class uiLILOAccountLogin
         pnlTop.Name = "pnlTop";
         pnlTop.Size = new Size(881, 60);
         pnlTop.TabIndex = 19;
-        // 
-        // label6
-        // 
-        label6.Font = new Font("Segoe UI", 9F);
-        label6.ForeColor = SystemColors.ControlDark;
-        label6.Location = new Point(240, 0);
-        label6.Margin = new Padding(2, 0, 2, 0);
-        label6.Name = "label6";
-        label6.Size = new Size(126, 64);
-        label6.TabIndex = 17;
-        label6.Text = "(Preview)";
-        label6.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // showPsw
         // 
@@ -447,5 +433,4 @@ partial class uiLILOAccountLogin
     private Guna.UI2.WinForms.Guna2Panel pnlLoginLoad;
     private Guna.UI2.WinForms.Guna2WinProgressIndicator progressSpinner;
     private Label label5;
-    private Label label6;
 }

@@ -58,12 +58,11 @@
             // 
             // sPanel1
             // 
-            sPanel1.BackColor = Color.Black;
-            sPanel1.BackgroundImage = Properties.Resources.Royal_Blue;
+            sPanel1.BackColor = Color.WhiteSmoke;
             sPanel1.BackgroundImageLayout = ImageLayout.Stretch;
-            sPanel1.BorderColor = Color.Black;
+            sPanel1.BorderColor = Color.Gainsboro;
             sPanel1.BorderRadius = 20;
-            sPanel1.BorderSize = 0;
+            sPanel1.BorderSize = 2;
             sPanel1.Controls.Add(lblText);
             sPanel1.Controls.Add(guna2Button2);
             sPanel1.Controls.Add(label5);
@@ -78,11 +77,11 @@
             // 
             lblText.BackColor = Color.Transparent;
             lblText.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
-            lblText.ForeColor = Color.White;
-            lblText.Location = new Point(88, 0);
+            lblText.ForeColor = Color.DimGray;
+            lblText.Location = new Point(80, 0);
             lblText.Margin = new Padding(4, 0, 4, 0);
             lblText.Name = "lblText";
-            lblText.Size = new Size(224, 88);
+            lblText.Size = new Size(232, 88);
             lblText.TabIndex = 1;
             lblText.Text = "Abonnoments";
             lblText.TextAlign = ContentAlignment.MiddleCenter;
@@ -107,7 +106,7 @@
             guna2Button2.Location = new Point(16, 16);
             guna2Button2.Margin = new Padding(2);
             guna2Button2.Name = "guna2Button2";
-            guna2Button2.Size = new Size(72, 58);
+            guna2Button2.Size = new Size(64, 58);
             guna2Button2.TabIndex = 17;
             guna2Button2.Click += guna2Button2_Click;
             // 
@@ -158,8 +157,8 @@
             // 
             sPanel3.Anchor = AnchorStyles.None;
             sPanel3.AutoScroll = true;
-            sPanel3.BackColor = Color.White;
-            sPanel3.BackgroundImageLayout = ImageLayout.Zoom;
+            sPanel3.BackColor = Color.WhiteSmoke;
+            sPanel3.BackgroundImageLayout = ImageLayout.Stretch;
             sPanel3.BorderColor = Color.Gainsboro;
             sPanel3.BorderRadius = 20;
             sPanel3.BorderSize = 2;
@@ -180,7 +179,7 @@
             sPanel5.Anchor = AnchorStyles.None;
             sPanel5.AutoScroll = true;
             sPanel5.BackColor = Color.White;
-            sPanel5.BackgroundImageLayout = ImageLayout.Zoom;
+            sPanel5.BackgroundImageLayout = ImageLayout.Stretch;
             sPanel5.BorderColor = Color.Gainsboro;
             sPanel5.BorderRadius = 15;
             sPanel5.BorderSize = 2;
@@ -270,7 +269,7 @@
             sPanel4.Anchor = AnchorStyles.None;
             sPanel4.AutoScroll = true;
             sPanel4.BackColor = Color.White;
-            sPanel4.BackgroundImageLayout = ImageLayout.Zoom;
+            sPanel4.BackgroundImageLayout = ImageLayout.Stretch;
             sPanel4.BorderColor = Color.Gainsboro;
             sPanel4.BorderRadius = 15;
             sPanel4.BorderSize = 2;
@@ -288,7 +287,7 @@
             // guna2Panel2
             // 
             guna2Panel2.Anchor = AnchorStyles.None;
-            guna2Panel2.BackColor = Color.Transparent;
+            guna2Panel2.BackColor = Color.White;
             guna2Panel2.BackgroundImage = (Image)resources.GetObject("guna2Panel2.BackgroundImage");
             guna2Panel2.BackgroundImageLayout = ImageLayout.Stretch;
             guna2Panel2.BorderColor = Color.Gainsboro;

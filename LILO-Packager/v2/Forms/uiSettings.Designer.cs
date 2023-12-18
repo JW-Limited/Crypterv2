@@ -31,7 +31,6 @@ partial class uiSettings
         sPanel1 = new Sipaa.Framework.SPanel();
         lblText = new Label();
         guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-        guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
         label5 = new Label();
         lblProductName = new Label();
         label4 = new Label();
@@ -94,33 +93,30 @@ partial class uiSettings
         // 
         // sPanel1
         // 
-        sPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        sPanel1.BackColor = Color.Black;
-        sPanel1.BackgroundImage = Properties.Resources.Royal_Blue;
+        sPanel1.BackColor = Color.WhiteSmoke;
         sPanel1.BackgroundImageLayout = ImageLayout.Stretch;
-        sPanel1.BorderColor = Color.Black;
+        sPanel1.BorderColor = Color.Gainsboro;
         sPanel1.BorderRadius = 20;
-        sPanel1.BorderSize = 0;
+        sPanel1.BorderSize = 2;
         sPanel1.Controls.Add(lblText);
         sPanel1.Controls.Add(guna2Button2);
-        sPanel1.Controls.Add(guna2Button5);
         sPanel1.Controls.Add(label5);
         sPanel1.ForeColor = Color.White;
         sPanel1.Location = new Point(24, 32);
         sPanel1.Margin = new Padding(4);
         sPanel1.Name = "sPanel1";
-        sPanel1.Size = new Size(974, 88);
+        sPanel1.Size = new Size(232, 88);
         sPanel1.TabIndex = 12;
         // 
         // lblText
         // 
         lblText.BackColor = Color.Transparent;
         lblText.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
-        lblText.ForeColor = Color.White;
-        lblText.Location = new Point(88, 0);
+        lblText.ForeColor = Color.DimGray;
+        lblText.Location = new Point(80, 0);
         lblText.Margin = new Padding(4, 0, 4, 0);
         lblText.Name = "lblText";
-        lblText.Size = new Size(144, 88);
+        lblText.Size = new Size(152, 88);
         lblText.TabIndex = 1;
         lblText.Text = "Settings";
         lblText.TextAlign = ContentAlignment.MiddleCenter;
@@ -145,33 +141,9 @@ partial class uiSettings
         guna2Button2.Location = new Point(16, 16);
         guna2Button2.Margin = new Padding(2);
         guna2Button2.Name = "guna2Button2";
-        guna2Button2.Size = new Size(72, 58);
+        guna2Button2.Size = new Size(64, 58);
         guna2Button2.TabIndex = 17;
         guna2Button2.Click += label5_Click;
-        // 
-        // guna2Button5
-        // 
-        guna2Button5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        guna2Button5.Animated = true;
-        guna2Button5.BackColor = Color.Transparent;
-        guna2Button5.BorderColor = Color.Gainsboro;
-        guna2Button5.BorderRadius = 20;
-        guna2Button5.BorderThickness = 2;
-        guna2Button5.DisabledState.BorderColor = Color.DarkGray;
-        guna2Button5.DisabledState.CustomBorderColor = Color.DarkGray;
-        guna2Button5.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-        guna2Button5.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        guna2Button5.FillColor = Color.Transparent;
-        guna2Button5.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button5.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-        guna2Button5.ForeColor = Color.White;
-        guna2Button5.Location = new Point(814, 16);
-        guna2Button5.Margin = new Padding(2);
-        guna2Button5.Name = "guna2Button5";
-        guna2Button5.Size = new Size(144, 58);
-        guna2Button5.TabIndex = 17;
-        guna2Button5.Text = "Passwords";
-        guna2Button5.Click += bntPasswords;
         // 
         // label5
         // 
@@ -887,7 +859,6 @@ partial class uiSettings
     private Label label17;
     private Label label5;
     private Label label6;
-    private Guna.UI2.WinForms.Guna2Button guna2Button5;
     private Guna.UI2.WinForms.Guna2Panel guna2Panel8;
     private Label label8;
     private Label label9;

@@ -360,7 +360,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
                 {
                     var responseScan = await _pluginManager.Scan();
 
-                    foreach (var ele in _pluginManager.CurrentPlugins)
+                    foreach (var ele in _pluginManager.Pluginsv1)
                     {
                         PluginEntry ent = new PluginEntry(ele);
                         plugins.Add(ent);
@@ -377,14 +377,12 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
                     if (responseScan.PluginsChanged)
                     {
-                        var str = new StringBuilder();
-
                         foreach (var plug in responseScan.ChangedPlugins)
                         {
-                            str.AppendLine(plug.Plugin.Name + plug.Plugin.Version + plug.Plugin.Identifier + "\n");
+                           var pluginEntry = plugins.First(t => t.Name == plug.Plugin.Name);
+                           var pluginFormShow = new uiPluginInformation(pluginEntry).ShowDialog(); 
                         }
 
-                        MessageBox.Show(str.ToString());
                     }
 
                     ConsoleManager.Instance().WriteLineWithColor($"[PLUGIN-MANAGER] - Plugins Loaded (Count: {plugins.Count} / Errors: 0)");

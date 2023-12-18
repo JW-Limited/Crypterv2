@@ -213,5 +213,10 @@ namespace LILO_Packager.v2.Forms
         {
             Plugins.ThirdParty.PluginIconDialog.ShowPluginIcon((Bitmap)videoPanel.BackgroundImage);
         }
+
+        private void keypsw_click(object sender, EventArgs e)
+        {
+            MainHost.Instance().OpenInApp(v2.Forms.uiKeyManager.Instance());
+        }
     }
 }
