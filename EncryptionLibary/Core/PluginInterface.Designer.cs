@@ -35,27 +35,21 @@ partial class PluginInterface
         lblVersion = new Label();
         lblText = new Label();
         sPanel2 = new Sipaa.Framework.SPanel();
-        sPanel5 = new Sipaa.Framework.SPanel();
-        sPanel8 = new Sipaa.Framework.SPanel();
+        guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
+        label13 = new Label();
         guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
         label2 = new Label();
         label1 = new Label();
         sPanel3 = new Sipaa.Framework.SPanel();
-        sPanel6 = new Sipaa.Framework.SPanel();
-        sPanel7 = new Sipaa.Framework.SPanel();
         guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
         label3 = new Label();
         label4 = new Label();
         sPanel4 = new Sipaa.Framework.SPanel();
-        sPanel9 = new Sipaa.Framework.SPanel();
-        sPanel10 = new Sipaa.Framework.SPanel();
         guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
         label5 = new Label();
         label6 = new Label();
         pnlFiles = new Guna.UI2.WinForms.Guna2Panel();
         progress = new Guna.UI2.WinForms.Guna2ProgressBar();
-        groupBox2 = new GroupBox();
-        groupBox1 = new GroupBox();
         sPanel11 = new Sipaa.Framework.SPanel();
         label7 = new Label();
         guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -65,18 +59,20 @@ partial class PluginInterface
         label8 = new Label();
         label9 = new Label();
         label10 = new Label();
-        guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
         guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
+        guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+        label11 = new Label();
+        guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+        label12 = new Label();
+        label14 = new Label();
         sPanel2.SuspendLayout();
-        sPanel5.SuspendLayout();
+        guna2Panel4.SuspendLayout();
         sPanel3.SuspendLayout();
-        sPanel6.SuspendLayout();
         sPanel4.SuspendLayout();
-        sPanel9.SuspendLayout();
         pnlFiles.SuspendLayout();
-        groupBox2.SuspendLayout();
-        groupBox1.SuspendLayout();
         guna2Panel1.SuspendLayout();
+        guna2Panel2.SuspendLayout();
+        guna2Panel3.SuspendLayout();
         SuspendLayout();
         // 
         // lblVersion
@@ -100,7 +96,7 @@ partial class PluginInterface
         lblText.Location = new Point(144, 56);
         lblText.Margin = new Padding(4, 0, 4, 0);
         lblText.Name = "lblText";
-        lblText.Size = new Size(256, 40);
+        lblText.Size = new Size(256, 32);
         lblText.TabIndex = 1;
         lblText.Text = "Encryption Models";
         lblText.TextAlign = ContentAlignment.MiddleLeft;
@@ -114,46 +110,43 @@ partial class PluginInterface
         sPanel2.BorderColor = Color.Gainsboro;
         sPanel2.BorderRadius = 20;
         sPanel2.BorderSize = 2;
-        sPanel2.Controls.Add(sPanel5);
+        sPanel2.Controls.Add(guna2Panel4);
         sPanel2.Controls.Add(guna2Button1);
         sPanel2.Controls.Add(label2);
         sPanel2.Controls.Add(label1);
         sPanel2.ForeColor = Color.White;
-        sPanel2.Location = new Point(16, 40);
+        sPanel2.Location = new Point(24, 24);
         sPanel2.Margin = new Padding(4);
         sPanel2.Name = "sPanel2";
-        sPanel2.Size = new Size(562, 88);
+        sPanel2.Size = new Size(552, 88);
         sPanel2.TabIndex = 12;
         // 
-        // sPanel5
+        // guna2Panel4
         // 
-        sPanel5.BackColor = Color.White;
-        sPanel5.BackgroundImageLayout = ImageLayout.Zoom;
-        sPanel5.BorderColor = Color.WhiteSmoke;
-        sPanel5.BorderRadius = 10;
-        sPanel5.BorderSize = 2;
-        sPanel5.Controls.Add(sPanel8);
-        sPanel5.ForeColor = Color.White;
-        sPanel5.Location = new Point(16, 16);
-        sPanel5.Margin = new Padding(4);
-        sPanel5.Name = "sPanel5";
-        sPanel5.Size = new Size(56, 56);
-        sPanel5.TabIndex = 17;
+        guna2Panel4.BackColor = Color.Transparent;
+        guna2Panel4.BorderColor = Color.Gainsboro;
+        guna2Panel4.BorderRadius = 15;
+        guna2Panel4.BorderThickness = 2;
+        guna2Panel4.Controls.Add(label13);
+        guna2Panel4.FillColor = Color.ForestGreen;
+        guna2Panel4.Location = new Point(192, 16);
+        guna2Panel4.Margin = new Padding(2);
+        guna2Panel4.Name = "guna2Panel4";
+        guna2Panel4.Size = new Size(96, 32);
+        guna2Panel4.TabIndex = 44;
         // 
-        // sPanel8
+        // label13
         // 
-        sPanel8.BackColor = Color.White;
-        sPanel8.BackgroundImage = Properties.Resources.lockView;
-        sPanel8.BackgroundImageLayout = ImageLayout.Zoom;
-        sPanel8.BorderColor = Color.Transparent;
-        sPanel8.BorderRadius = 0;
-        sPanel8.BorderSize = 0;
-        sPanel8.ForeColor = Color.White;
-        sPanel8.Location = new Point(8, 8);
-        sPanel8.Margin = new Padding(4);
-        sPanel8.Name = "sPanel8";
-        sPanel8.Size = new Size(40, 40);
-        sPanel8.TabIndex = 14;
+        label13.BackColor = Color.Transparent;
+        label13.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        label13.ForeColor = Color.White;
+        label13.Location = new Point(0, 0);
+        label13.Margin = new Padding(4, 0, 4, 0);
+        label13.Name = "label13";
+        label13.Size = new Size(96, 32);
+        label13.TabIndex = 44;
+        label13.Text = "Selected";
+        label13.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // guna2Button1
         // 
@@ -171,7 +164,7 @@ partial class PluginInterface
         guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
         guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button1.ForeColor = Color.SlateGray;
-        guna2Button1.Location = new Point(386, 16);
+        guna2Button1.Location = new Point(376, 16);
         guna2Button1.Margin = new Padding(2);
         guna2Button1.Name = "guna2Button1";
         guna2Button1.Size = new Size(160, 58);
@@ -184,7 +177,7 @@ partial class PluginInterface
         label2.BackColor = Color.Transparent;
         label2.Font = new Font("Segoe UI", 8F);
         label2.ForeColor = Color.DarkGray;
-        label2.Location = new Point(88, 48);
+        label2.Location = new Point(32, 48);
         label2.Margin = new Padding(4, 0, 4, 0);
         label2.Name = "label2";
         label2.Size = new Size(312, 32);
@@ -197,7 +190,7 @@ partial class PluginInterface
         label1.BackColor = Color.Transparent;
         label1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
         label1.ForeColor = Color.Gray;
-        label1.Location = new Point(56, 0);
+        label1.Location = new Point(0, 0);
         label1.Margin = new Padding(4, 0, 4, 0);
         label1.Name = "label1";
         label1.Size = new Size(216, 64);
@@ -213,46 +206,15 @@ partial class PluginInterface
         sPanel3.BorderColor = Color.Gainsboro;
         sPanel3.BorderRadius = 20;
         sPanel3.BorderSize = 2;
-        sPanel3.Controls.Add(sPanel6);
         sPanel3.Controls.Add(guna2Button2);
         sPanel3.Controls.Add(label3);
         sPanel3.Controls.Add(label4);
         sPanel3.ForeColor = Color.White;
-        sPanel3.Location = new Point(16, 40);
+        sPanel3.Location = new Point(24, 32);
         sPanel3.Margin = new Padding(4);
         sPanel3.Name = "sPanel3";
-        sPanel3.Size = new Size(562, 88);
+        sPanel3.Size = new Size(552, 88);
         sPanel3.TabIndex = 12;
-        // 
-        // sPanel6
-        // 
-        sPanel6.BackColor = Color.White;
-        sPanel6.BackgroundImageLayout = ImageLayout.Zoom;
-        sPanel6.BorderColor = Color.WhiteSmoke;
-        sPanel6.BorderRadius = 10;
-        sPanel6.BorderSize = 2;
-        sPanel6.Controls.Add(sPanel7);
-        sPanel6.ForeColor = Color.White;
-        sPanel6.Location = new Point(16, 16);
-        sPanel6.Margin = new Padding(4);
-        sPanel6.Name = "sPanel6";
-        sPanel6.Size = new Size(56, 56);
-        sPanel6.TabIndex = 17;
-        // 
-        // sPanel7
-        // 
-        sPanel7.BackColor = Color.White;
-        sPanel7.BackgroundImage = Properties.Resources.icons8_mind_map_32;
-        sPanel7.BackgroundImageLayout = ImageLayout.Zoom;
-        sPanel7.BorderColor = Color.Transparent;
-        sPanel7.BorderRadius = 0;
-        sPanel7.BorderSize = 0;
-        sPanel7.ForeColor = Color.White;
-        sPanel7.Location = new Point(8, 8);
-        sPanel7.Margin = new Padding(4);
-        sPanel7.Name = "sPanel7";
-        sPanel7.Size = new Size(40, 40);
-        sPanel7.TabIndex = 14;
         // 
         // guna2Button2
         // 
@@ -270,7 +232,7 @@ partial class PluginInterface
         guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
         guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button2.ForeColor = Color.SlateGray;
-        guna2Button2.Location = new Point(386, 16);
+        guna2Button2.Location = new Point(376, 16);
         guna2Button2.Margin = new Padding(2);
         guna2Button2.Name = "guna2Button2";
         guna2Button2.Size = new Size(160, 58);
@@ -283,7 +245,7 @@ partial class PluginInterface
         label3.BackColor = Color.Transparent;
         label3.Font = new Font("Segoe UI", 8F);
         label3.ForeColor = Color.DarkGray;
-        label3.Location = new Point(88, 48);
+        label3.Location = new Point(32, 48);
         label3.Margin = new Padding(4, 0, 4, 0);
         label3.Name = "label3";
         label3.Size = new Size(312, 32);
@@ -296,7 +258,7 @@ partial class PluginInterface
         label4.BackColor = Color.Transparent;
         label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
         label4.ForeColor = Color.Gray;
-        label4.Location = new Point(56, 0);
+        label4.Location = new Point(0, 0);
         label4.Margin = new Padding(4, 0, 4, 0);
         label4.Name = "label4";
         label4.Size = new Size(216, 64);
@@ -312,46 +274,15 @@ partial class PluginInterface
         sPanel4.BorderColor = Color.Gainsboro;
         sPanel4.BorderRadius = 20;
         sPanel4.BorderSize = 2;
-        sPanel4.Controls.Add(sPanel9);
         sPanel4.Controls.Add(guna2Button3);
         sPanel4.Controls.Add(label5);
         sPanel4.Controls.Add(label6);
         sPanel4.ForeColor = Color.White;
-        sPanel4.Location = new Point(16, 144);
+        sPanel4.Location = new Point(24, 136);
         sPanel4.Margin = new Padding(4);
         sPanel4.Name = "sPanel4";
-        sPanel4.Size = new Size(562, 88);
+        sPanel4.Size = new Size(552, 88);
         sPanel4.TabIndex = 12;
-        // 
-        // sPanel9
-        // 
-        sPanel9.BackColor = Color.White;
-        sPanel9.BackgroundImageLayout = ImageLayout.Zoom;
-        sPanel9.BorderColor = Color.WhiteSmoke;
-        sPanel9.BorderRadius = 10;
-        sPanel9.BorderSize = 2;
-        sPanel9.Controls.Add(sPanel10);
-        sPanel9.ForeColor = Color.White;
-        sPanel9.Location = new Point(16, 16);
-        sPanel9.Margin = new Padding(4);
-        sPanel9.Name = "sPanel9";
-        sPanel9.Size = new Size(56, 56);
-        sPanel9.TabIndex = 17;
-        // 
-        // sPanel10
-        // 
-        sPanel10.BackColor = Color.White;
-        sPanel10.BackgroundImage = Properties.Resources.icons8_external_link_240;
-        sPanel10.BackgroundImageLayout = ImageLayout.Zoom;
-        sPanel10.BorderColor = Color.Transparent;
-        sPanel10.BorderRadius = 0;
-        sPanel10.BorderSize = 0;
-        sPanel10.ForeColor = Color.White;
-        sPanel10.Location = new Point(8, 8);
-        sPanel10.Margin = new Padding(4);
-        sPanel10.Name = "sPanel10";
-        sPanel10.Size = new Size(40, 40);
-        sPanel10.TabIndex = 14;
         // 
         // guna2Button3
         // 
@@ -369,7 +300,7 @@ partial class PluginInterface
         guna2Button3.FocusedColor = Color.FromArgb(100, 170, 209);
         guna2Button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button3.ForeColor = Color.SlateGray;
-        guna2Button3.Location = new Point(386, 16);
+        guna2Button3.Location = new Point(376, 16);
         guna2Button3.Margin = new Padding(2);
         guna2Button3.Name = "guna2Button3";
         guna2Button3.Size = new Size(160, 58);
@@ -382,7 +313,7 @@ partial class PluginInterface
         label5.BackColor = Color.Transparent;
         label5.Font = new Font("Segoe UI", 8F);
         label5.ForeColor = Color.DarkGray;
-        label5.Location = new Point(88, 48);
+        label5.Location = new Point(32, 48);
         label5.Margin = new Padding(4, 0, 4, 0);
         label5.Name = "label5";
         label5.Size = new Size(328, 32);
@@ -395,7 +326,7 @@ partial class PluginInterface
         label6.BackColor = Color.Transparent;
         label6.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
         label6.ForeColor = Color.Gray;
-        label6.Location = new Point(80, 0);
+        label6.Location = new Point(24, 0);
         label6.Margin = new Padding(4, 0, 4, 0);
         label6.Name = "label6";
         label6.Size = new Size(192, 64);
@@ -435,31 +366,6 @@ partial class PluginInterface
         progress.Text = "guna2ProgressBar1";
         progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
         progress.Visible = false;
-        // 
-        // groupBox2
-        // 
-        groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        groupBox2.Controls.Add(sPanel3);
-        groupBox2.Controls.Add(sPanel4);
-        groupBox2.Font = new Font("Segoe UI", 10F);
-        groupBox2.Location = new Point(384, 328);
-        groupBox2.Name = "groupBox2";
-        groupBox2.Size = new Size(597, 256);
-        groupBox2.TabIndex = 14;
-        groupBox2.TabStop = false;
-        groupBox2.Text = "Availabel";
-        // 
-        // groupBox1
-        // 
-        groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        groupBox1.Controls.Add(sPanel2);
-        groupBox1.Font = new Font("Segoe UI", 10F);
-        groupBox1.Location = new Point(384, 160);
-        groupBox1.Name = "groupBox1";
-        groupBox1.Size = new Size(597, 150);
-        groupBox1.TabIndex = 13;
-        groupBox1.TabStop = false;
-        groupBox1.Text = "Installed";
         // 
         // sPanel11
         // 
@@ -583,31 +489,6 @@ partial class PluginInterface
         label10.Text = "    Prozess";
         label10.TextAlign = ContentAlignment.MiddleLeft;
         // 
-        // guna2Button5
-        // 
-        guna2Button5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        guna2Button5.Animated = true;
-        guna2Button5.BackColor = Color.Transparent;
-        guna2Button5.BorderColor = Color.Gainsboro;
-        guna2Button5.BorderRadius = 15;
-        guna2Button5.BorderThickness = 2;
-        guna2Button5.DisabledState.BorderColor = Color.DarkGray;
-        guna2Button5.DisabledState.CustomBorderColor = Color.DarkGray;
-        guna2Button5.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-        guna2Button5.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        guna2Button5.FillColor = Color.White;
-        guna2Button5.FocusedColor = Color.FromArgb(100, 170, 209);
-        guna2Button5.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-        guna2Button5.ForeColor = Color.SlateGray;
-        guna2Button5.Image = Properties.Resources.icons8_external_link_240;
-        guna2Button5.ImageSize = new Size(25, 25);
-        guna2Button5.Location = new Point(840, 56);
-        guna2Button5.Margin = new Padding(2);
-        guna2Button5.Name = "guna2Button5";
-        guna2Button5.Size = new Size(56, 50);
-        guna2Button5.TabIndex = 14;
-        guna2Button5.Click += guna2Button1_Click;
-        // 
         // guna2Button4
         // 
         guna2Button4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -624,14 +505,82 @@ partial class PluginInterface
         guna2Button4.FocusedColor = Color.FromArgb(100, 170, 209);
         guna2Button4.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button4.ForeColor = Color.SlateGray;
-        guna2Button4.Image = Properties.Resources.icons8_synchronize_240;
         guna2Button4.ImageSize = new Size(25, 25);
-        guna2Button4.Location = new Point(912, 56);
+        guna2Button4.Location = new Point(864, 56);
         guna2Button4.Margin = new Padding(2);
         guna2Button4.Name = "guna2Button4";
-        guna2Button4.Size = new Size(56, 50);
+        guna2Button4.Size = new Size(104, 50);
         guna2Button4.TabIndex = 14;
-        guna2Button4.Click += guna2Button1_Click;
+        guna2Button4.Text = "Sync";
+        guna2Button4.Click += Sync_Click;
+        // 
+        // guna2Panel2
+        // 
+        guna2Panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        guna2Panel2.BorderColor = Color.Gainsboro;
+        guna2Panel2.BorderRadius = 15;
+        guna2Panel2.BorderThickness = 2;
+        guna2Panel2.Controls.Add(sPanel3);
+        guna2Panel2.Controls.Add(sPanel4);
+        guna2Panel2.FillColor = Color.White;
+        guna2Panel2.Location = new Point(384, 336);
+        guna2Panel2.Margin = new Padding(2);
+        guna2Panel2.Name = "guna2Panel2";
+        guna2Panel2.Size = new Size(600, 248);
+        guna2Panel2.TabIndex = 16;
+        // 
+        // label11
+        // 
+        label11.BackColor = Color.Transparent;
+        label11.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+        label11.ForeColor = SystemColors.ControlDark;
+        label11.Location = new Point(408, 320);
+        label11.Margin = new Padding(4, 0, 4, 0);
+        label11.Name = "label11";
+        label11.Size = new Size(144, 40);
+        label11.TabIndex = 45;
+        label11.Text = "    Availlabel";
+        label11.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // guna2Panel3
+        // 
+        guna2Panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        guna2Panel3.BorderColor = Color.Gainsboro;
+        guna2Panel3.BorderRadius = 15;
+        guna2Panel3.BorderThickness = 2;
+        guna2Panel3.Controls.Add(sPanel2);
+        guna2Panel3.FillColor = Color.White;
+        guna2Panel3.Location = new Point(384, 160);
+        guna2Panel3.Margin = new Padding(2);
+        guna2Panel3.Name = "guna2Panel3";
+        guna2Panel3.Size = new Size(600, 144);
+        guna2Panel3.TabIndex = 16;
+        // 
+        // label12
+        // 
+        label12.BackColor = Color.Transparent;
+        label12.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+        label12.ForeColor = SystemColors.ControlDark;
+        label12.Location = new Point(416, 136);
+        label12.Margin = new Padding(4, 0, 4, 0);
+        label12.Name = "label12";
+        label12.Size = new Size(136, 40);
+        label12.TabIndex = 45;
+        label12.Text = "    Installed";
+        label12.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // label14
+        // 
+        label14.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        label14.BackColor = Color.Transparent;
+        label14.ForeColor = Color.Gray;
+        label14.Location = new Point(760, 64);
+        label14.Name = "label14";
+        label14.Size = new Size(93, 33);
+        label14.TabIndex = 46;
+        label14.Text = "All Synced";
+        label14.TextAlign = ContentAlignment.MiddleLeft;
+        label14.Visible = false;
         // 
         // PluginInterface
         // 
@@ -639,16 +588,18 @@ partial class PluginInterface
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.White;
         ClientSize = new Size(1008, 796);
-        Controls.Add(guna2Button5);
-        Controls.Add(groupBox2);
-        Controls.Add(groupBox1);
+        Controls.Add(label14);
         Controls.Add(guna2Button4);
+        Controls.Add(label12);
+        Controls.Add(label11);
         Controls.Add(label10);
         Controls.Add(label7);
         Controls.Add(guna2Panel1);
         Controls.Add(lblText);
         Controls.Add(sPanel11);
         Controls.Add(lblVersion);
+        Controls.Add(guna2Panel3);
+        Controls.Add(guna2Panel2);
         Controls.Add(pnlFiles);
         MinimumSize = new Size(300, 500);
         Name = "PluginInterface";
@@ -657,15 +608,13 @@ partial class PluginInterface
         Text = "Plugin: Encryption Models";
         Load += uiSettings_Load;
         sPanel2.ResumeLayout(false);
-        sPanel5.ResumeLayout(false);
+        guna2Panel4.ResumeLayout(false);
         sPanel3.ResumeLayout(false);
-        sPanel6.ResumeLayout(false);
         sPanel4.ResumeLayout(false);
-        sPanel9.ResumeLayout(false);
         pnlFiles.ResumeLayout(false);
-        groupBox2.ResumeLayout(false);
-        groupBox1.ResumeLayout(false);
         guna2Panel1.ResumeLayout(false);
+        guna2Panel2.ResumeLayout(false);
+        guna2Panel3.ResumeLayout(false);
         ResumeLayout(false);
     }
 
@@ -685,15 +634,7 @@ partial class PluginInterface
     private Guna.UI2.WinForms.Guna2Button guna2Button3;
     private Guna.UI2.WinForms.Guna2Panel pnlFiles;
     private Guna.UI2.WinForms.Guna2ProgressBar progress;
-    private GroupBox groupBox2;
-    private GroupBox groupBox1;
     private Label lblVersion;
-    private Sipaa.Framework.SPanel sPanel5;
-    private Sipaa.Framework.SPanel sPanel8;
-    private Sipaa.Framework.SPanel sPanel6;
-    private Sipaa.Framework.SPanel sPanel7;
-    private Sipaa.Framework.SPanel sPanel9;
-    private Sipaa.Framework.SPanel sPanel10;
     private Sipaa.Framework.SPanel sPanel11;
     private Label label7;
     private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
@@ -703,6 +644,12 @@ partial class PluginInterface
     private Label label8;
     private Label label9;
     private Label label10;
-    private Guna.UI2.WinForms.Guna2Button guna2Button5;
     private Guna.UI2.WinForms.Guna2Button guna2Button4;
+    private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+    private Label label11;
+    private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
+    private Label label12;
+    private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
+    private Label label13;
+    private Label label14;
 }

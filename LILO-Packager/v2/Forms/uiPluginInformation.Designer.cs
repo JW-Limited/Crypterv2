@@ -37,6 +37,7 @@
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             label1 = new Label();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             pnlSide.SuspendLayout();
             guna2Panel1.SuspendLayout();
             SuspendLayout();
@@ -153,6 +154,7 @@
             guna2Button2.Size = new Size(168, 58);
             guna2Button2.TabIndex = 56;
             guna2Button2.Text = "Deny";
+            guna2Button2.Click += guna2Button2_Click;
             // 
             // label1
             // 
@@ -173,6 +175,7 @@
             guna2Panel1.BorderColor = Color.Gainsboro;
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.BorderThickness = 2;
+            guna2Panel1.Controls.Add(guna2Button1);
             guna2Panel1.Controls.Add(lblPluginName);
             guna2Panel1.Controls.Add(lblDescription);
             guna2Panel1.Controls.Add(pnlPluginIcon);
@@ -182,6 +185,31 @@
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.Size = new Size(568, 120);
             guna2Panel1.TabIndex = 55;
+            // 
+            // guna2Button1
+            // 
+            guna2Button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            guna2Button1.Animated = true;
+            guna2Button1.BackColor = Color.Transparent;
+            guna2Button1.BorderColor = Color.WhiteSmoke;
+            guna2Button1.BorderRadius = 20;
+            guna2Button1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            guna2Button1.BorderThickness = 2;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = Color.Transparent;
+            guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            guna2Button1.ForeColor = Color.DimGray;
+            guna2Button1.Location = new Point(464, 16);
+            guna2Button1.Margin = new Padding(2);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.Size = new Size(88, 88);
+            guna2Button1.TabIndex = 57;
+            guna2Button1.Text = "Docs";
+            guna2Button1.Click += guna2Button1_Click;
             // 
             // uiPluginInformation
             // 
@@ -217,5 +245,6 @@
         private Label label1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Panel pnlPermissions;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

@@ -9,8 +9,10 @@ namespace LILO_Packager.v2.Plugins.PluginCore
         public HashSet<Permission> Permissions { get; set; }
         public HashSet<DependencyInfo> Dependencies { get; set; }
         public string RepoLink { get; set; }
+        public string DocumentationLink { get; set; }
         public ShellIntegration ShellIntegration { get; set; }
-
+        public JWLimited.Licensing.Schemes.IJWLimitedLicense License { get; set; }
+        public MainHost MainHostInstance { get; set; }
 
         public bool Responding();
     }
@@ -34,7 +36,10 @@ namespace LILO_Packager.v2.Plugins.PluginCore
         Histroy,
         PasswordManager,
         Encrypten,
-        Decrypten
+        Decrypten, 
+        Settings,
+        Help,
+        Feedback,
     }
 
     public enum PermissionType : uint
@@ -55,6 +60,13 @@ namespace LILO_Packager.v2.Plugins.PluginCore
         AccessHistoryDatabase = 0x14,
         AccessWebEngineInterface = 0x15,
         AccessWebEngineHistory = 0x16,
-        LocalApi = 0x20,
+        AccessExternalStorage = 0x17,
+        AccessContactList = 0x18,
+        AccessCalendarEvents = 0x19,
+        LocalApi = 0x20, 
+        AccessCamera = 0x30,
+        AccessMicrophone = 0x40,
+        AccessAccessibilityFeatures = 0xa0,
+        AccessApplicationFeatures = 0xb0,
     }
 }

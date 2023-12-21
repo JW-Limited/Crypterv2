@@ -43,7 +43,7 @@ namespace TextPreviewLibrary.Core.Formats
             securedFile.LastModified = cry.LastModified;
             securedFile.version = cry.version;
             securedFile.TextColor = cry.TextColor;
-            securedFile.RtfContent = LILO_Packager.v2.Core.Service.Services.EncryptString(cry.RtfContent, key);
+            securedFile.RtfContent = LILO_Packager.v2.Core.Service.Services.Base.EncryptString(cry.RtfContent, key);
 
             return securedFile;
         }
@@ -60,7 +60,7 @@ namespace TextPreviewLibrary.Core.Formats
             securedFile.LastModified = cry.LastModified;
             securedFile.version = cry.version;
             securedFile.TextColor = cry.TextColor;
-            securedFile.RtfContent = LILO_Packager.v2.Core.Service.Services.DecryptString(cry.RtfContent, key);
+            securedFile.RtfContent = LILO_Packager.v2.Core.Service.Services.Base.DecryptString(cry.RtfContent, key);
 
             return securedFile;
         }

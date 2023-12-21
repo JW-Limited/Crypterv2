@@ -15,7 +15,9 @@ namespace LILO_Packager.v2.Forms
 
         public int Height = 0;
 
+        public bool AcceptedPermissions = true;
         public readonly PluginEntry entry;
+        public IPluginBasev2 PluginBasev2;
 
         private async void uiPluginInformation_Load(object sender, EventArgs e)
         {
@@ -24,16 +26,17 @@ namespace LILO_Packager.v2.Forms
 
             try
             {
-                var pluginInterface = MainHost.Instance()._pluginManager.PluginsV2.First(k => k.Name == entry.Name);
+                PluginBasev2 = MainHost.Instance()._pluginManager.PluginsV2.First(k => k.Name == entry.Name);
 
-                foreach (var per in pluginInterface.Permissions)
+                foreach (var per in PluginBasev2.Permissions)
                 {
                     await AddPermission(per);
                 }
 
-                if(pluginInterface.ShellIntegration is not null)
+                if (PluginBasev2.ShellIntegration is not null)
                 {
-                    await AddPermission(new Permission()
+                    await AddPermission(
+                    new Permission()
                     {
                         Type = PermissionType.AccessToMainHostAPI,
                         Description = "Shell Integration."
@@ -41,17 +44,33 @@ namespace LILO_Packager.v2.Forms
                     });
                 }
 
-                pnlPluginIcon.BackgroundImage = pluginInterface.PluginIcon;
+                pnlPluginIcon.BackgroundImage = PluginBasev2.PluginIcon;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("This plugin does not support the latest Manfiest.","Pluginmanager",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("This plugin does not support the latest Manfiest.", "Pluginmanager", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            
+
+        }
+
+        public static DialogResult ShowDialog(PluginEntry entry)
+        {
+            var uiInstance = new uiPluginInformation(entry);
+            uiInstance.ShowDialog();
+
+            if (uiInstance.AcceptedPermissions)
+            {
+                return DialogResult.OK;
+            }
+            else
+            {
+                return DialogResult.Abort;
+            }
         }
 
         private void guna2Button5_Click(object sender, EventArgs e)
         {
+            AcceptedPermissions = true;
             this.Close();
         }
 
@@ -73,10 +92,24 @@ namespace LILO_Packager.v2.Forms
             uiPermissionElement.Show();
 
             uiPermissionElement.Location = new Point(20, Height);
-            uiPermissionElement.Width = pnlPermissions.Width -50;
+            uiPermissionElement.Width = pnlPermissions.Width - 50;
             Height += uiPermissionElement.Height + 25;
 
             return Task.CompletedTask;
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            var web = uiWebView.Instance(new Uri(PluginBasev2.DocumentationLink));
+            web.Text = PluginBasev2.Name;
+            web.StartPosition = FormStartPosition.CenterParent;
+            web.ControlBox = true;
+            web.ShowDialog();
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

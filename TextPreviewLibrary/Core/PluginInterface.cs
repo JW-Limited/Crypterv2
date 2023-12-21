@@ -1,4 +1,5 @@
-﻿using LILO_Packager.v2.Plugins.PluginCore;
+﻿using LILO_Packager.v2.Controls;
+using LILO_Packager.v2.Plugins.PluginCore;
 using System.Drawing;
 using System.Windows.Forms;
 using TextPreviewLibrary.Core.Formats;
@@ -66,11 +67,12 @@ public partial class PluginInterface : Form
         {
             _file = file;
             mainTextBox.Text = file.RtfContent;
-            mainTextBox.Enabled = !file.IsLocked;
             mainTextBox.ForeColor = file.TextColor;
             lblWordCounts.Text = "Words: " + file.WordCount;
             lblLanguage.Text = file.FileName;
             lblVersion.Text += " - " + file.version;
+
+            AddTextTab(file.FileName);
         }
     }
 
@@ -94,14 +96,11 @@ public partial class PluginInterface : Form
         if (_file is not null)
         {
             mainTextBox.Text = _file.RtfContent;
-            mainTextBox.Enabled = !_file.IsLocked;
-            if (_file.IsLocked)
-            {
-                lblTip.Text = "You need to safe the file first before you can edit it.";
-            }
             mainTextBox.ForeColor = _file.TextColor;
             lblWordCounts.Text = "Words: " + _file.WordCount;
             lblLanguage.Text = _file.FileName;
+
+            AddTextTab(_file.FileName);
         }
     }
 
@@ -137,7 +136,6 @@ public partial class PluginInterface : Form
                 CrypterTextFile.SaveInstanceToFile(securedfile, openedFilePath);
 
                 mainTextBox.Text = file.RtfContent;
-                mainTextBox.Enabled = !file.IsLocked;
                 mainTextBox.ForeColor = file.TextColor;
                 lblWordCounts.Text = "Words: " + file.WordCount;
                 lblLanguage.Text = file.FileName;
@@ -145,7 +143,7 @@ public partial class PluginInterface : Form
         }
         else
         {
-            lblTip.Text = "";
+            //lblTip.Text = "";
 
             var ofd = new SaveFileDialog()
             {
@@ -176,7 +174,6 @@ public partial class PluginInterface : Form
                 openedFilePath = ofd.FileName;
 
                 mainTextBox.Text = file.RtfContent;
-                mainTextBox.Enabled = !file.IsLocked;
                 mainTextBox.ForeColor = file.TextColor;
                 lblWordCounts.Text = "Words: " + file.WordCount;
                 lblLanguage.Text = file.FileName;
@@ -207,7 +204,6 @@ public partial class PluginInterface : Form
                 var file = CrypterTextFile.CreateUnsecuredTextFile(securedFile);
 
                 mainTextBox.Text = file.RtfContent;
-                mainTextBox.Enabled = !file.IsLocked;
                 mainTextBox.ForeColor = file.TextColor;
                 lblWordCounts.Text = "Words: " + file.WordCount;
                 lblLanguage.Text = file.FileName;
@@ -215,6 +211,8 @@ public partial class PluginInterface : Form
 
                 _file = file;
                 openedFilePath = ofd.FileName;
+
+                AddTextTab(_file.FileName);
             }
 
             bntPlugin_Click(sender, e);
@@ -243,7 +241,6 @@ public partial class PluginInterface : Form
         _file = null;
         openedFilePath = null;
         mainTextBox.Text = _emptyFile.RtfContent;
-        mainTextBox.Enabled = !_emptyFile.IsLocked;
         mainTextBox.ForeColor = _emptyFile.TextColor;
         lblWordCounts.Text = "Words: " + _emptyFile.WordCount;
         lblLanguage.Text = _emptyFile.FileName;
@@ -263,16 +260,39 @@ public partial class PluginInterface : Form
 
     private void bntOpenDesingPop_Click(object sender, EventArgs e)
     {
-        bntDesign.Checked = !bntDesign.Checked;
-        if (bntMenu.Checked)
-        {
-            bntPlugin_Click(sender, e);
-        }
-        pnlDesing.Visible = !pnlDesing.Visible;
+        pnlDesing.Visible = true;
     }
 
     private void bntFormating(object sender, EventArgs e)
     {
 
+    }
+
+    public int Widht = 0;
+    public HashSet<string> FilesOpen = new HashSet<string>();
+
+    public void AddTextTab(string text)
+    {
+        if (text != null && !FilesOpen.Contains(text))
+        {
+            var uiElement = new TextPreviewLibrary.Controls.DynamikPluginListItem();
+            uiElement.TabName = text;
+            uiElement.Content = mainTextBox.Rtf;
+
+            pnlTabs.Controls.Add(uiElement);
+
+            uiElement.Show();
+            uiElement.Location = new Point(Widht, 0);
+            uiElement.Height = pnlTabs.Height -2;
+
+            Widht += uiElement.Width + 20;
+
+            FilesOpen.Add(text);
+        }
+    }
+
+    private void bntCloseDesign(object sender, EventArgs e)
+    {
+        pnlDesing.Visible = false; 
     }
 }

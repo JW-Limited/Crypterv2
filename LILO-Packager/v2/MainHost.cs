@@ -354,6 +354,12 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
                 }
             }
 
+
+            await dataHandler.InitializeDatabaseAsync(process => { });
+
+
+            await v2.Core.FeatureManager.LoadConfigurationAsync();
+
             if (config.Default.allowedPlugins)
             {
                 try
@@ -380,7 +386,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
                         foreach (var plug in responseScan.ChangedPlugins)
                         {
                            var pluginEntry = plugins.First(t => t.Name == plug.Plugin.Name);
-                           var pluginFormShow = new uiPluginInformation(pluginEntry).ShowDialog(); 
+                           uiPluginInformation.ShowDialog(pluginEntry);
                         }
 
                     }
@@ -394,10 +400,6 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
                 }
 
 
-                await dataHandler.InitializeDatabaseAsync(process => { });
-
-
-                await v2.Core.FeatureManager.LoadConfigurationAsync();
 
 
             }
@@ -703,7 +705,8 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         }
         else
         {
-            OpenInApp(v2.Forms.uiPluginManager.Instance(plugins, _pluginManager));
+            //OpenInApp(v2.Forms.uiPluginManager.Instance(plugins, _pluginManager));
+            OpenInApp(v2.Forms.uiPluginManagerv2.Instance);
         }
 
     }

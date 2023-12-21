@@ -116,9 +116,10 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                                         IPluginBase? b = t.InvokeMember(null,
                                                             BindingFlags.CreateInstance, null, null, null) as IPluginBase;
 
-
                                         Pluginsv1.Add(b);
                                         pluginPaths.Add(b, file.FullName);
+
+                                        
 
                                         if (b != null)
                                         {
@@ -155,7 +156,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                                         IPluginBasev2? b = t.InvokeMember(null,
                                                             BindingFlags.CreateInstance, null, null, null) as IPluginBasev2;
 
-
+                                        b.MainHostInstance = MainHost.Instance();
                                         PluginsV2.Add(b);
 
                                     }
@@ -166,24 +167,24 @@ namespace LILO_Packager.v2.Plugins.PluginCore
 
                         if (response.PluginsChanged)
                         {
-                            //foreach(var plugin in response.ChangedPlugins)
-                            //{
-                            //    try
-                            //    {
-                            //        var entry = indexFile.Plugins.FirstOrDefault(x => x.Name == plugin.Plugin.Name);
-                            //        indexFile.Plugins.Remove(entry);
-                            //    }
-                            //    catch(Exception ex)
-                            //    {
+                            foreach(var plugin in response.ChangedPlugins)
+                            {
+                                try
+                                {
+                                    var entry = indexFile.Plugins.FirstOrDefault(x => x.Name == plugin.Plugin.Name);
+                                    indexFile.Plugins.Remove(entry);
+                                }
+                                catch(Exception ex)
+                                {
 
-                            //    }
+                                }
 
-                            //    indexFile.Plugins.Add(plugin.Plugin);
-                            //}
+                                indexFile.Plugins.Add(plugin.Plugin);
+                            }
 
-                            //File.Delete(PluginManagerIndexFile);
+                            File.Delete(PluginManagerIndexFile);
 
-                            //indexFile.SerializeToXml(PluginManagerIndexFile);
+                            indexFile.SerializeToXml(PluginManagerIndexFile);
                         }
                     }
                     catch (XmlException)

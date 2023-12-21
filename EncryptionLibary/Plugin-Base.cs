@@ -1,4 +1,6 @@
-﻿using LILO_Packager.v2.Plugins.PluginCore;
+﻿using JWLimited.Licensing.Schemes;
+using LILO_Packager.v2;
+using LILO_Packager.v2.Plugins.PluginCore;
 using LILO_Packager.v2.Plugins.ThirdParty.Types;
 using System.Collections.ObjectModel;
 using System.Drawing;
@@ -13,6 +15,7 @@ namespace EncryptionLibary
         public string Description { get; set; } = "A Library for more Encryption Models";
         public string Version { get; set; } = "v0.20.1-beta";
         public Form PluginInterface { get; set; } = Core.PluginInterface.Instance("v0.20.1-beta", PluginID.GetID("enc", "lbl", "lvl01"), "EncryptionLibary Installer");
+        public MainHost MainHostInstance { get; set; } = null;
 
         public ObservableCollection<object> DynamicValues { get; set; }
         public string Company { get; set; } = "JW Limited © 2023";
@@ -51,13 +54,21 @@ namespace EncryptionLibary
         };
 
         public HashSet<DependencyInfo> Dependencies { get; set; }
-        public string RepoLink { get; set; } = "https://github.com/JW-Limited/Crypterv2/raw/main/PackagedPlugins/CrypterLibrary.cryptex";
+        public Bitmap PluginIcon { get; set; } = Properties.Resources.lockView; 
         public ShellIntegration ShellIntegration { get; set; } = new ShellIntegration()
         {
             ShellNameKey = "Change Model",
             ShellPage = ShellPage.Encrypten,
         };
-        public Bitmap PluginIcon { get; set; } = Properties.Resources.lockView;
+        public string DocumentationLink { get; set; } = "https://github.com/JW-Limited/Crypterv2/blob/main/README.md";
+        public string RepoLink { get; set; } = "https://github.com/JW-Limited/Crypterv2/raw/main/PackagedPlugins/CrypterLibrary.cryptex";
+        public IJWLimitedLicense License { get; set; } = new ProductLicense()
+        {
+            OwnedUser = new JWLimited.Licensing.Schemes.Structs.User(),
+            License = new PluginLicense(),
+        };
+
+        
 
         public PluginResponse Execute(PluginParameters args)
         {

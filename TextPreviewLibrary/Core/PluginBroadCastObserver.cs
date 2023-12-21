@@ -26,7 +26,7 @@ namespace TextPreviewLibrary.Core
 
             if(value.EndPoint == BroadcastEndPoint.ForAll)
             {
-                PluginInterface.Instance(null, null, null, false).lblTip.Text = value.Payload ?? "New Message in Notifications.";
+                //PluginInterface.Instance(null, null, null, false).lblTip.Text = value.Payload ?? "New Message in Notifications.";
             }
 
             if(value.EndPoint == BroadcastEndPoint.TPL)

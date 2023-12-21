@@ -12,8 +12,8 @@ namespace LILO_Packager
     {
         public static NotifyIcon noty;
         public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
-        public static string Version = "v0.20.1-beta";
-        public static string ProductVersion = "Professional-sub";
+        public static string Version = "v0.20.2-beta";
+        public static string ProductVersion = "Professional Developer Editions";
         public static string LibraryName = "JWLimited.Crypter.Windows";
         public static int BuildNumber = 20030;
         public static string CloudVersion = "0.9.3-preview";

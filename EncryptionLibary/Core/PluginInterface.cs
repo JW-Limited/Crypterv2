@@ -1,12 +1,6 @@
-﻿using LILO_Packager.v2.Plugins.PluginCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using LILO_Packager.v2.Cloud;
+using LILO_Packager.v2.Plugins.PluginCore;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EncryptionLibary.Core;
@@ -56,6 +50,33 @@ public partial class PluginInterface : Form
     {
         lblVersion.Text = Version;
         this.Text = "Plugin: " + Name;
+
+        Task.Run(() =>
+        {
+            if (CloudSyncroniztationBase.HasNetworkConnection())
+            {
+                lblNetwork.Text = "Connected";
+                lblNetwork.ForeColor = Color.Green;
+
+                if (CloudSyncroniztationBase.CloudAvailable())
+                {
+                    lblCloud.Text = "Connected";
+                    lblCloud.ForeColor = Color.Green;
+                }
+                else
+                {
+                    lblCloud.Text = "Offline";
+                    lblCloud.ForeColor = Color.Red;
+                }
+            }
+            else
+            {
+                lblNetwork.Text = "Offline";
+                lblNetwork.ForeColor = Color.Red;
+                lblCloud.Text = "Offline";
+                lblCloud.ForeColor = Color.Red;
+            }
+        });
     }
 
     private void guna2Button1_Click(object sender, EventArgs e)
@@ -71,5 +92,11 @@ public partial class PluginInterface : Form
     private void lblText_Click(object sender, EventArgs e)
     {
 
+    }
+
+    private void Sync_Click(object sender, EventArgs e)
+    {
+        Thread.Sleep(1000);
+        label14.Visible = true;
     }
 }
