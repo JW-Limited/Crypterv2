@@ -9,11 +9,11 @@
 ## 📜 Cloning 
 
 
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=JW-Limited_Crypterv2)](https://sonarcloud.io/summary/new_code?id=JW-Limited_Crypterv2)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=JW-Limited_Crypterv2&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=JW-Limited_Crypterv2)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=JW-Limited_Crypterv2&metric=bugs)](https://sonarcloud.io/summary/new_code?id=JW-Limited_Crypterv2)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=JW-Limited_Crypterv2&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=JW-Limited_Crypterv2)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=JW-Limited_Crypterv2&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=JW-Limited_Crypterv2)
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=JW-Limited_Crypterv2)](https://sonarcloud.io/summary/new_code?id=JW-Limited_Crypterv2)
 
 
 
