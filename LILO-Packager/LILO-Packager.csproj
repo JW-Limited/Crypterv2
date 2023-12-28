@@ -40,6 +40,24 @@
     <ApplicationIcon>favico.ico</ApplicationIcon>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>
+    <AssemblyOriginatorKeyFile>C:\Users\joeva\Downloads\JW_Limited.crt</AssemblyOriginatorKeyFile>
+    <DelaySign>True</DelaySign>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
 
   <ItemGroup>
@@ -52,6 +70,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="icons8_plus_math.ico" />
     <None Remove="open_external.ico" />
     <None Remove="sync.ico" />
   </ItemGroup>
@@ -87,6 +106,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="icons8_plus_math.ico" />
     <Content Include="open_external.ico" />
     <Content Include="favico.ico" />
     <Content Include="sync.ico" />
@@ -204,10 +224,6 @@
     <Reference Include="Interop.IWshRuntimeLibrary">
       <HintPath>..\InstallHelper\obj\Debug\net7.0\Interop.IWshRuntimeLibrary.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="v2\Plugins\Inter\" />
   </ItemGroup>
 
 </Project>

@@ -70,12 +70,11 @@ partial class uiDecrypt
         // sPanel1
         // 
         sPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        sPanel1.BackColor = Color.Black;
-        sPanel1.BackgroundImage = Properties.Resources.Aqua_Marine_180degree;
+        sPanel1.BackColor = Color.WhiteSmoke;
         sPanel1.BackgroundImageLayout = ImageLayout.Stretch;
-        sPanel1.BorderColor = Color.Black;
+        sPanel1.BorderColor = Color.Gainsboro;
         sPanel1.BorderRadius = 20;
-        sPanel1.BorderSize = 0;
+        sPanel1.BorderSize = 2;
         sPanel1.Controls.Add(bntCancel);
         sPanel1.Controls.Add(lblText);
         sPanel1.ForeColor = Color.White;
@@ -100,7 +99,7 @@ partial class uiDecrypt
         bntCancel.FillColor = Color.Transparent;
         bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
         bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-        bntCancel.ForeColor = Color.White;
+        bntCancel.ForeColor = Color.DimGray;
         bntCancel.Location = new Point(832, 16);
         bntCancel.Margin = new Padding(2);
         bntCancel.Name = "bntCancel";
@@ -113,7 +112,7 @@ partial class uiDecrypt
         // 
         lblText.BackColor = Color.Transparent;
         lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-        lblText.ForeColor = Color.White;
+        lblText.ForeColor = Color.DimGray;
         lblText.Location = new Point(24, 0);
         lblText.Margin = new Padding(4, 0, 4, 0);
         lblText.Name = "lblText";

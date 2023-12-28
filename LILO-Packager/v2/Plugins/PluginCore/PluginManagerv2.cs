@@ -1,4 +1,5 @@
 ﻿using LILO_Packager.v2.Core.Updates;
+using LILO_Packager.v2.Plugins.Internal;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Xml;
@@ -81,130 +82,28 @@ namespace LILO_Packager.v2.Plugins.PluginCore
 
             if (CheckForExistingConfigs())
             {
-                await Task.Run(() =>
+                try
                 {
-                    try
+                    var indexFile = PluginManagerIndex.DeserializeFromXml(PluginManagerIndexFile);
+
+                    if (VersionComparer.CompareSemanticVersions(Program.Version, indexFile.PluginManagerVersion).IsNewer)
                     {
-                        var indexFile = PluginManagerIndex.DeserializeFromXml(PluginManagerIndexFile);
-
-                        if (VersionComparer.CompareSemanticVersions(Program.Version, indexFile.PluginManagerVersion).IsNewer)
-                        {
-                            throw new NotSupportedException();
-                        }
-
-                        if (new FileInfo(PluginManagerIndexFile).Directory.FullName + "\\" != indexFile.Directory)
-                        {
-                            throw new InvalidDataException($"Corrupt File.\n{new FileInfo(PluginManagerIndexFile).Directory.FullName} != {indexFile.Directory} --- ");
-                        }
-
-                        if (!indexFile.Validate())
-                        {
-                            throw new IndexFileInvalidException(PluginManagerIndexFile);
-                        }
-
-                        foreach (var dirE in DirectoryPaths)
-                        {
-                            DirectoryInfo dir = new DirectoryInfo(dirE);
-
-                            foreach (FileInfo file in dir.GetFiles("*.dll"))
-                            {
-                                Assembly ass = Assembly.LoadFrom(file.FullName);
-                                foreach (Type t in ass.GetTypes())
-                                {
-                                    if ((t.IsSubclassOf(typeof(IPluginBase)) || t.GetInterfaces().Contains(typeof(IPluginBase))) && t.IsAbstract == false)
-                                    {
-                                        IPluginBase? b = t.InvokeMember(null,
-                                                            BindingFlags.CreateInstance, null, null, null) as IPluginBase;
-
-                                        Pluginsv1.Add(b);
-                                        pluginPaths.Add(b, file.FullName);
-
-                                        
-
-                                        if (b != null)
-                                        {
-                                            foreach (var plugin in indexFile.Plugins)
-                                            {
-                                                if (b.Name == plugin.Name)
-                                                {
-                                                    if (b.Version != plugin.Version || GetPluginHash(file.FullName) != plugin.Identifier)
-                                                    {
-                                                        response.PluginsChanged = true;
-
-                                                        response.ChangedPlugins.Add(new ChangedPluginEntry()
-                                                        {
-                                                            Plugin = new PluginIndexEntry()
-                                                            {
-                                                                DllFile = file.FullName,
-                                                                Identifier = GetPluginHash(file.FullName),
-                                                                Name = plugin.Name,
-                                                                Version = plugin.Version,
-                                                            },
-                                                            State = ChangedState.Updated
-                                                        });
-
-                                                    }
-                                                }
-
-                                            }
-                                        }
-
-                                    }
-
-                                    if ((t.IsSubclassOf(typeof(IPluginBasev2)) || t.GetInterfaces().Contains(typeof(IPluginBasev2))) && t.IsAbstract == false)
-                                    {
-                                        IPluginBasev2? b = t.InvokeMember(null,
-                                                            BindingFlags.CreateInstance, null, null, null) as IPluginBasev2;
-
-                                        b.MainHostInstance = MainHost.Instance();
-                                        PluginsV2.Add(b);
-
-                                    }
-                                }
-
-                            }
-                        }
-
-                        if (response.PluginsChanged)
-                        {
-                            foreach(var plugin in response.ChangedPlugins)
-                            {
-                                try
-                                {
-                                    var entry = indexFile.Plugins.FirstOrDefault(x => x.Name == plugin.Plugin.Name);
-                                    indexFile.Plugins.Remove(entry);
-                                }
-                                catch(Exception ex)
-                                {
-
-                                }
-
-                                indexFile.Plugins.Add(plugin.Plugin);
-                            }
-
-                            File.Delete(PluginManagerIndexFile);
-
-                            indexFile.SerializeToXml(PluginManagerIndexFile);
-                        }
+                        throw new NotSupportedException();
                     }
-                    catch (XmlException)
+
+                    if (new FileInfo(PluginManagerIndexFile).Directory.FullName + "\\" != indexFile.Directory)
+                    {
+                        throw new InvalidDataException($"Corrupt File.\n{new FileInfo(PluginManagerIndexFile).Directory.FullName} != {indexFile.Directory} --- ");
+                    }
+
+                    if (!indexFile.Validate())
                     {
                         throw new IndexFileInvalidException(PluginManagerIndexFile);
                     }
-                    
-                });
 
-                return response;
-            }
-            else
-            {
-                await Task.Run(() =>
-                {
-                    Pluginsv1 = new HashSet<IPluginBase>();
-
-                    foreach (var ele in DirectoryPaths)
+                    foreach (var dirE in DirectoryPaths)
                     {
-                        DirectoryInfo dir = new DirectoryInfo(ele);
+                        DirectoryInfo dir = new DirectoryInfo(dirE);
 
                         foreach (FileInfo file in dir.GetFiles("*.dll"))
                         {
@@ -218,24 +117,37 @@ namespace LILO_Packager.v2.Plugins.PluginCore
 
                                     Pluginsv1.Add(b);
                                     pluginPaths.Add(b, file.FullName);
-                                    try
+
+
+
+                                    if (b != null)
                                     {
-                                        response.ChangedPlugins.Add(new ChangedPluginEntry()
+                                        foreach (var plugin in indexFile.Plugins)
                                         {
-                                            Plugin = new PluginIndexEntry()
+                                            if (b.Name == plugin.Name)
                                             {
-                                                Name = b.Name,
-                                                Version = b.Version,
-                                                DllFile = file.FullName,
-                                                Identifier = GetPluginHash(file.FullName)
-                                            },
-                                            State = ChangedState.Added
-                                        });
+                                                if (b.Version != plugin.Version || GetPluginHash(file.FullName) != plugin.Identifier)
+                                                {
+                                                    response.PluginsChanged = true;
+
+                                                    response.ChangedPlugins.Add(new ChangedPluginEntry()
+                                                    {
+                                                        Plugin = new PluginIndexEntry()
+                                                        {
+                                                            DllFile = file.FullName,
+                                                            Identifier = GetPluginHash(file.FullName),
+                                                            Name = plugin.Name,
+                                                            Version = plugin.Version,
+                                                        },
+                                                        State = ChangedState.Updated
+                                                    });
+
+                                                }
+                                            }
+
+                                        }
                                     }
-                                    catch (Exception ex)
-                                    {
-                                        MessageBox.Show(ex.Message + ex.Source + ex.InnerException);
-                                    }
+
                                 }
 
                                 if ((t.IsSubclassOf(typeof(IPluginBasev2)) || t.GetInterfaces().Contains(typeof(IPluginBasev2))) && t.IsAbstract == false)
@@ -243,46 +155,127 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                                     IPluginBasev2? b = t.InvokeMember(null,
                                                         BindingFlags.CreateInstance, null, null, null) as IPluginBasev2;
 
-
+                                    b.MainHostInstance = MainHost.Instance();
                                     PluginsV2.Add(b);
+                                    await PluginSystemManagement.Instance.RegisterPlugin(b);
 
                                 }
                             }
 
                         }
-
                     }
 
-                    var plugins = new HashSet<PluginIndexEntry>();
-
-                    foreach (var plugin in Pluginsv1)
+                    if (response.PluginsChanged)
                     {
-                        pluginPaths.TryGetValue(plugin, out string path);
-
-                        plugins.Add(new PluginIndexEntry()
+                        foreach (var plugin in response.ChangedPlugins)
                         {
-                            Name = plugin.Name,
-                            Version = plugin.Version,
-                            DllFile = path,
-                            Identifier = GetPluginHash(path)
-                        });
+                            try
+                            {
+                                var entry = indexFile.Plugins.FirstOrDefault(x => x.Name == plugin.Plugin.Name);
+                                indexFile.Plugins.Remove(entry);
+                            }
+                            catch (Exception ex)
+                            {
+
+                            }
+
+                            indexFile.Plugins.Add(plugin.Plugin);
+                        }
+
+                        File.Delete(PluginManagerIndexFile);
+
+                        await indexFile.SerializeToXml(PluginManagerIndexFile);
+                    }
+                }
+                catch (XmlException)
+                {
+                    throw new IndexFileInvalidException(PluginManagerIndexFile);
+                }
+
+                return response;
+            }
+            else
+            {
+                Pluginsv1 = new HashSet<IPluginBase>();
+
+                foreach (var ele in DirectoryPaths)
+                {
+                    DirectoryInfo dir = new DirectoryInfo(ele);
+
+                    foreach (FileInfo file in dir.GetFiles("*.dll"))
+                    {
+                        Assembly ass = Assembly.LoadFrom(file.FullName);
+                        foreach (Type t in ass.GetTypes())
+                        {
+                            if ((t.IsSubclassOf(typeof(IPluginBase)) || t.GetInterfaces().Contains(typeof(IPluginBase))) && t.IsAbstract == false)
+                            {
+                                IPluginBase? b = t.InvokeMember(null,
+                                                    BindingFlags.CreateInstance, null, null, null) as IPluginBase;
+
+                                Pluginsv1.Add(b);
+                                pluginPaths.Add(b, file.FullName);
+                                try
+                                {
+                                    response.ChangedPlugins.Add(new ChangedPluginEntry()
+                                    {
+                                        Plugin = new PluginIndexEntry()
+                                        {
+                                            Name = b.Name,
+                                            Version = b.Version,
+                                            DllFile = file.FullName,
+                                            Identifier = GetPluginHash(file.FullName)
+                                        },
+                                        State = ChangedState.Added
+                                    });
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message + ex.Source + ex.InnerException);
+                                }
+                            }
+
+                            if ((t.IsSubclassOf(typeof(IPluginBasev2)) || t.GetInterfaces().Contains(typeof(IPluginBasev2))) && t.IsAbstract == false)
+                            {
+                                IPluginBasev2? b = t.InvokeMember(null,
+                                                    BindingFlags.CreateInstance, null, null, null) as IPluginBasev2;
+
+
+                                PluginsV2.Add(b);
+                                await PluginSystemManagement.Instance.RegisterPlugin(b);
+                            }
+                        }
+
                     }
 
-                    var indexFile = new PluginManagerIndex()
+                }
+
+                var plugins = new HashSet<PluginIndexEntry>();
+
+                foreach (var plugin in Pluginsv1)
+                {
+                    pluginPaths.TryGetValue(plugin, out string path);
+
+                    plugins.Add(new PluginIndexEntry()
                     {
-                        PluginManagerVersion = Program.Version,
-                        LastChecked = DateTime.Now.ToLocalTime(),
-                        Directory = PluginManagerIndexDirectory,
-                        IndexFileVersion = "1",
-                        Plugins = plugins
-                    };
+                        Name = plugin.Name,
+                        Version = plugin.Version,
+                        DllFile = path,
+                        Identifier = GetPluginHash(path)
+                    });
+                }
 
-                    indexFile.SerializeToXml(PluginManagerIndexFile);
+                var indexFile = new PluginManagerIndex()
+                {
+                    PluginManagerVersion = Program.Version,
+                    LastChecked = DateTime.Now.ToLocalTime(),
+                    Directory = PluginManagerIndexDirectory,
+                    IndexFileVersion = "1",
+                    Plugins = plugins
+                };
 
-                    response.PluginsChanged = true;
+                await indexFile.SerializeToXml(PluginManagerIndexFile);
 
-                    return response;
-                });
+                response.PluginsChanged = true;
 
                 return response;
             }
@@ -297,13 +290,15 @@ namespace LILO_Packager.v2.Plugins.PluginCore
         public DateTime LastChecked { get; set; }
         public HashSet<PluginIndexEntry> Plugins { get; set; }
 
-        public void SerializeToXml(string filePath)
+        public Task SerializeToXml(string filePath)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(PluginManagerIndex));
             using (TextWriter writer = new StreamWriter(filePath))
             {
                 serializer.Serialize(writer, this);
             }
+
+            return Task.CompletedTask;
         }
 
         public static PluginManagerIndex DeserializeFromXml(string filePath)

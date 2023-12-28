@@ -416,7 +416,7 @@
             pnlLoading.Location = new Point(0, 0);
             pnlLoading.Margin = new Padding(4);
             pnlLoading.Name = "pnlLoading";
-            pnlLoading.Size = new Size(573, 609);
+            pnlLoading.Size = new Size(576, 609);
             pnlLoading.TabIndex = 52;
             // 
             // label2

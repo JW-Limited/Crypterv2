@@ -6,21 +6,86 @@ using System.Windows.Forms;
 using TextPreviewLibrary.Core.Formats;
 using LILO_Packager.v2.Shared.Api.Core;
 using TextPreviewLibrary.Core;
+using System.Drawing;
+using LILO_Packager.v2.Plugins.ThirdParty.Types;
+using JWLimited.Licensing.Schemes;
+using LILO_Packager.v2;
+using TextPreviewLibrary.Properties;
 
 namespace TextPreviewLibrary
 {
-    public class PluginBase : IPluginBase
+    public class PluginBase : IPluginBasev2
     {
         public string Name { get; set; } = "TextPreviewLibrary";
         public BroadcastChannel Channel { get; set; }
         public PluginID ID { get; set; } = PluginID.GetID("tpl", "lbl", "lvl02");
         public string Description { get; set; } = "A Library for previewing plain based Files";
-        public string Version { get; set; } = "v0.1";
+        public string Version { get; set; } = "v0.12.3-beta";
+        public Bitmap PluginIcon { get; set; } = Resources.icons8_foxit_reader_240;
         public static SemanticVersion _sVersion = new SemanticVersion(0, 1, 2, "alpha", false);
         public Form PluginInterface { get; set; } = Core.PluginInterface.Instance("v0.1", PluginID.GetID("tpl", "lbl", "lvl02"), "Text-Preview",true);
+        public string Company { get; set; } = "JW Limited © 2023";
+
         public static ThemeManager _thManager;
-        public ObservableCollection<object> DynamicValues { get; set; }
         public static BroadcastChannel channelToMainHost { get; set; } = null;
+        public ObservableCollection<object> DynamicValues { get; set; }
+        public MainHost MainHostInstance { get; set; }
+
+        private bool disposedValue;
+
+
+        public HashSet<Permission> Permissions { get; set; } = new HashSet<Permission>()
+        {
+            new()
+            {
+                Type = PermissionType.AccessStorage,
+                Description = "To access files for preview.",
+                UseCase = "Runtime"
+            },
+            new()
+            {
+                Type = PermissionType.AccessCacheContainer,
+                Description = "To store the plugin Instance.",
+                UseCase = "Runtime"
+            },
+            new()
+            {
+                Type = PermissionType.BroadCastMessage,
+                Description = "Submit State.",
+                UseCase = "Runtime"
+            },
+            new()
+            {
+                Type = PermissionType.AccessBroadCast,
+                Description = "Retrieve Messages.",
+                UseCase = "Runtime"
+            },
+            new()
+            {
+                Type = PermissionType.AccessExternalStorage,
+                Description = "To access files for preview.",
+                UseCase = "Runtime"
+            },
+            new()
+            {
+                Type = PermissionType.AccessHistoryDatabase, 
+                Description = "Get Exact File-State Information.",
+                UseCase = "BuildEncryptenInterface"
+            }
+        };
+        public HashSet<DependencyInfo> Dependencies { get; set; }
+        public string RepoLink { get; set; } = "https://github.com/JW-Limited/Crypterv2/raw/main/PackagedPlugins/TextPreviewLibrary.cryptex";
+        public string DocumentationLink { get; set; } = "https://github.com/JW-Limited/Crypterv2/blob/main/README.md";
+        public ShellIntegration ShellIntegration { get; set; } = new ShellIntegration()
+        {
+            ShellNameKey = "View Content",
+            ShellPage = ShellPage.Histroy,
+        };
+        public IJWLimitedLicense License { get; set; } = new ProductLicense()
+        {
+            OwnedUser = new JWLimited.Licensing.Schemes.Structs.User(),
+            License = new PluginLicense(),
+        };
 
         public PluginResponse Execute(PluginParameters args)
         {
@@ -106,6 +171,30 @@ namespace TextPreviewLibrary
             var para = new PluginResponse();
             PluginInterface.Dispose();
             return para;
+        }
+
+        public bool Responding()
+        {
+            return !PluginInterface.IsDisposed && PluginInterface.IsHandleCreated;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    PluginInterface.Dispose();
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

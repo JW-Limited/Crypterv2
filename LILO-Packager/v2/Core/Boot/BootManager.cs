@@ -43,6 +43,10 @@ namespace LILO_Packager.v2.Core.Boot
                     {
                         HandleDebugSessionLogFile(options.FilePath);
                     }
+                    else if (options.FilePath.EndsWith(".llcp"))
+                    {
+                        HandleCloudPlaceholder(options.FilePath);
+                    }
                     else
                     {
                         HandleUnknownFile(options.FilePath);
@@ -52,6 +56,11 @@ namespace LILO_Packager.v2.Core.Boot
                 {
                     HandleArgumentParsingErrors(errors, result);
                 });
+        }
+
+        private void HandleCloudPlaceholder(string filePath)
+        {
+            Application.Run(new uiDownloadFileFromArguments(filePath));
         }
 
         private void HandleFileNotFound(string filePath)

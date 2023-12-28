@@ -12,11 +12,11 @@ namespace LILO_Packager
     {
         public static NotifyIcon noty;
         public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
-        public static string Version = "v0.20.2-beta";
+        public static string Version = "v0.20.3-beta";
         public static string ProductVersion = "Professional Developer Editions";
         public static string LibraryName = "JWLimited.Crypter.Windows";
         public static int BuildNumber = 20030;
-        public static string CloudVersion = "0.9.3-preview";
+        public static string CloudVersion = "0.9.4-preview";
         private static IBootManager _bootManager;
         public static JWLimited.AuthAgent _AuthAgent;
 
@@ -49,13 +49,15 @@ namespace LILO_Packager
             }
 
             InstanceCacheContainer.Register<ILILOConsoleManager>(() => ConsoleManager.Instance());
+
+            //ConsoleManager.Instance().ShowConsoleWindow();
         }
 
         [STAThread]
         public static void Main(string[] args)
         {
             InitializeApplication();
-
+            
             if (config.Default.aggrementAccepted)
             {
                 try
@@ -131,10 +133,10 @@ namespace LILO_Packager
             Environment.Exit(0);
         }
 
-        private static void RunMainUI()
+        private static async void RunMainUI()
         {
             MainHost.Instance().AutoScaleMode = AutoScaleMode.Font;
-            Application.AddMessageFilter(new AdvancedMessageFilter(MainHost.Instance()));
+            //Application.AddMessageFilter(new AdvancedMessageFilter(MainHost.Instance()));
             Application.Run(MainHost.Instance());
         }
 

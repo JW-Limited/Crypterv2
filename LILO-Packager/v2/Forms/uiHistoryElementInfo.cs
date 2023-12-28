@@ -22,7 +22,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UIAutomationClient;
 using Windows.Storage;
 
 namespace LILO_Packager.v2.Forms

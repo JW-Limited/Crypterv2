@@ -14,6 +14,10 @@ namespace LILO_Packager.v2.Core.LILO.Types
         public string? Theme { get; set; }
         public UserRole UserRole { get; set; }
 
+        public UserAdvanced()
+        {
+
+        }
         public UserAdvanced(ILILOUser user)
         {
             base.Email = user.Email;

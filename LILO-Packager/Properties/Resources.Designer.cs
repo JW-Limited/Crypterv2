@@ -223,6 +223,16 @@ namespace LILO_Packager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icons8_checkmark_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-checkmark-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icons8_circled_play_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-circled-play-96", resourceCulture);

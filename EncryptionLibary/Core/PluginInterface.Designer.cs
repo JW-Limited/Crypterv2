@@ -65,6 +65,8 @@ partial class PluginInterface
         guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
         label12 = new Label();
         label14 = new Label();
+        label15 = new Label();
+        label16 = new Label();
         sPanel2.SuspendLayout();
         guna2Panel4.SuspendLayout();
         sPanel3.SuspendLayout();
@@ -341,11 +343,13 @@ partial class PluginInterface
         pnlFiles.BorderRadius = 15;
         pnlFiles.BorderThickness = 2;
         pnlFiles.Controls.Add(progress);
+        pnlFiles.Controls.Add(label16);
+        pnlFiles.Controls.Add(label15);
         pnlFiles.FillColor = Color.White;
-        pnlFiles.Location = new Point(24, 668);
+        pnlFiles.Location = new Point(32, 344);
         pnlFiles.Margin = new Padding(2);
         pnlFiles.Name = "pnlFiles";
-        pnlFiles.Size = new Size(964, 104);
+        pnlFiles.Size = new Size(304, 176);
         pnlFiles.TabIndex = 16;
         // 
         // progress
@@ -353,15 +357,15 @@ partial class PluginInterface
         progress.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         progress.BackColor = Color.Transparent;
         progress.BorderColor = Color.Gainsboro;
-        progress.BorderRadius = 20;
+        progress.BorderRadius = 10;
         progress.BorderThickness = 2;
         progress.FillColor = Color.White;
-        progress.Location = new Point(24, 24);
+        progress.Location = new Point(24, 112);
         progress.Name = "progress";
         progress.ProgressColor = Color.DeepSkyBlue;
         progress.ProgressColor2 = Color.Navy;
         progress.ShowText = true;
-        progress.Size = new Size(916, 56);
+        progress.Size = new Size(256, 40);
         progress.TabIndex = 17;
         progress.Text = "guna2ProgressBar1";
         progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -481,7 +485,7 @@ partial class PluginInterface
         label10.BackColor = Color.Transparent;
         label10.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         label10.ForeColor = SystemColors.ControlDark;
-        label10.Location = new Point(48, 643);
+        label10.Location = new Point(56, 320);
         label10.Margin = new Padding(4, 0, 4, 0);
         label10.Name = "label10";
         label10.Size = new Size(128, 40);
@@ -582,6 +586,32 @@ partial class PluginInterface
         label14.TextAlign = ContentAlignment.MiddleLeft;
         label14.Visible = false;
         // 
+        // label15
+        // 
+        label15.BackColor = Color.Transparent;
+        label15.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        label15.ForeColor = Color.Gray;
+        label15.Location = new Point(32, 32);
+        label15.Margin = new Padding(4, 0, 4, 0);
+        label15.Name = "label15";
+        label15.Size = new Size(184, 40);
+        label15.TabIndex = 1;
+        label15.Text = "Model";
+        label15.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // label16
+        // 
+        label16.BackColor = Color.Transparent;
+        label16.Font = new Font("Segoe UI", 8F);
+        label16.ForeColor = Color.DarkGray;
+        label16.Location = new Point(32, 80);
+        label16.Margin = new Padding(4, 0, 4, 0);
+        label16.Name = "label16";
+        label16.Size = new Size(232, 32);
+        label16.TabIndex = 1;
+        label16.Text = "details\r\n\r\n";
+        label16.TextAlign = ContentAlignment.MiddleLeft;
+        // 
         // PluginInterface
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
@@ -589,10 +619,10 @@ partial class PluginInterface
         BackColor = Color.White;
         ClientSize = new Size(1008, 796);
         Controls.Add(label14);
+        Controls.Add(label10);
         Controls.Add(guna2Button4);
         Controls.Add(label12);
         Controls.Add(label11);
-        Controls.Add(label10);
         Controls.Add(label7);
         Controls.Add(guna2Panel1);
         Controls.Add(lblText);
@@ -652,4 +682,6 @@ partial class PluginInterface
     private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
     private Label label13;
     private Label label14;
+    private Label label16;
+    private Label label15;
 }

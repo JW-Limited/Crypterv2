@@ -261,6 +261,10 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
             FileOperations.CreateDirectoryRecursively(".\\log");
 
+            var storageProvider = await StorageProvider.Create(".\\");
+            if(storageProvider is not null) Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Initialized StorageProvider.");
+
+
             var response = await _localServer.Initialization(new LILO_WebEngine.Service.LocalServerOptions()
             {
                 Port = new LILO_WebEngine.Shared.Port()
@@ -434,9 +438,6 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
             {
                 await Crypterv2.WatchdogUtilty.ServiceEngine.Instance.StartAsync(Port, 30);
             }).ConfigureAwait(false);
-
-
-
         }));
         
     }

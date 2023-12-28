@@ -73,7 +73,6 @@
             prgMiniProgress = new Guna.UI2.WinForms.Guna2ProgressBar();
             label7 = new Label();
             guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
-            label18 = new Label();
             SubOp = new Guna.UI2.WinForms.Guna2Panel();
             SubOp_pnlIco = new Panel();
             SubOp_ProgressBar = new Guna.UI2.WinForms.Guna2ProgressBar();
@@ -81,6 +80,8 @@
             SubOp_lblFileName = new Label();
             sPanel2 = new Sipaa.Framework.SPanel();
             label9 = new Label();
+            label18 = new Label();
+            toolStripMenuItem1 = new ToolStripMenuItem();
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             pnlSide.SuspendLayout();
@@ -422,7 +423,7 @@
             // 
             conmenu.BackColor = Color.White;
             conmenu.ImageScalingSize = new Size(24, 24);
-            conmenu.Items.AddRange(new ToolStripItem[] { detailToolStripMenuItem, toolStripSeparator1, downloadToolStripMenuItem, viewToolStripMenuItem, compareToolStripMenuItem, toolStripSeparator2, reportToolStripMenuItem, deleteToolStripMenuItem });
+            conmenu.Items.AddRange(new ToolStripItem[] { detailToolStripMenuItem, toolStripMenuItem1, toolStripSeparator1, downloadToolStripMenuItem, viewToolStripMenuItem, compareToolStripMenuItem, toolStripSeparator2, reportToolStripMenuItem, deleteToolStripMenuItem });
             conmenu.Name = "ConMenu";
             conmenu.RenderStyle.ArrowColor = Color.FromArgb(125, 100, 255);
             conmenu.RenderStyle.BorderColor = Color.Black;
@@ -433,25 +434,25 @@
             conmenu.RenderStyle.SelectionForeColor = Color.White;
             conmenu.RenderStyle.SeparatorColor = Color.LightGray;
             conmenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            conmenu.Size = new Size(167, 208);
+            conmenu.Size = new Size(241, 273);
             // 
             // detailToolStripMenuItem
             // 
             detailToolStripMenuItem.Name = "detailToolStripMenuItem";
-            detailToolStripMenuItem.Size = new Size(166, 32);
+            detailToolStripMenuItem.Size = new Size(240, 32);
             detailToolStripMenuItem.Text = "Details";
             detailToolStripMenuItem.Click += detailToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(163, 6);
+            toolStripSeparator1.Size = new Size(237, 6);
             // 
             // downloadToolStripMenuItem
             // 
             downloadToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toCrypterv2StorageToolStripMenuItem, toDownloadsToolStripMenuItem });
             downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
-            downloadToolStripMenuItem.Size = new Size(166, 32);
+            downloadToolStripMenuItem.Size = new Size(240, 32);
             downloadToolStripMenuItem.Text = "Download";
             // 
             // toCrypterv2StorageToolStripMenuItem
@@ -476,33 +477,33 @@
             // viewToolStripMenuItem
             // 
             viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            viewToolStripMenuItem.Size = new Size(166, 32);
+            viewToolStripMenuItem.Size = new Size(240, 32);
             viewToolStripMenuItem.Text = "View";
             viewToolStripMenuItem.Click += viewToolStripMenuItem_Click;
             // 
             // compareToolStripMenuItem
             // 
             compareToolStripMenuItem.Name = "compareToolStripMenuItem";
-            compareToolStripMenuItem.Size = new Size(166, 32);
+            compareToolStripMenuItem.Size = new Size(240, 32);
             compareToolStripMenuItem.Text = "Compare";
             compareToolStripMenuItem.Click += compareToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(163, 6);
+            toolStripSeparator2.Size = new Size(237, 6);
             // 
             // reportToolStripMenuItem
             // 
             reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            reportToolStripMenuItem.Size = new Size(166, 32);
+            reportToolStripMenuItem.Size = new Size(240, 32);
             reportToolStripMenuItem.Text = "Report";
             reportToolStripMenuItem.Click += reportToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(166, 32);
+            deleteToolStripMenuItem.Size = new Size(240, 32);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
@@ -597,19 +598,6 @@
             guna2Panel4.Name = "guna2Panel4";
             guna2Panel4.Size = new Size(304, 256);
             guna2Panel4.TabIndex = 45;
-            // 
-            // label18
-            // 
-            label18.BackColor = Color.Transparent;
-            label18.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label18.ForeColor = SystemColors.ControlDark;
-            label18.Location = new Point(40, 416);
-            label18.Margin = new Padding(4, 0, 4, 0);
-            label18.Name = "label18";
-            label18.Size = new Size(152, 40);
-            label18.TabIndex = 48;
-            label18.Text = "    Operations";
-            label18.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // SubOp
             // 
@@ -716,6 +704,26 @@
             label9.Text = "All done!";
             label9.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // label18
+            // 
+            label18.BackColor = Color.Transparent;
+            label18.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            label18.ForeColor = SystemColors.ControlDark;
+            label18.Location = new Point(40, 416);
+            label18.Margin = new Padding(4, 0, 4, 0);
+            label18.Name = "label18";
+            label18.Size = new Size(152, 40);
+            label18.TabIndex = 48;
+            label18.Text = "    Operations";
+            label18.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(240, 32);
+            toolStripMenuItem1.Text = "Share";
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
+            // 
             // uiCloudFilesViewer
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -801,5 +809,6 @@
         private ToolStripMenuItem detailToolStripMenuItem;
         private Sipaa.Framework.SPanel sPanel2;
         private Label label9;
+        private ToolStripMenuItem toolStripMenuItem1;
     }
 }

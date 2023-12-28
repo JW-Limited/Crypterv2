@@ -295,7 +295,12 @@ namespace LILO_Packager.v2.Forms
                 }
             };
 
-            proc.Start(); 
+            proc.Start();
+        }
+
+        private void ShareManager_Click(object sender, EventArgs e)
+        {
+            var show = new uiShareManager().ShowDialog();
         }
     }
 }

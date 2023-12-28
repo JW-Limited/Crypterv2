@@ -110,7 +110,7 @@ namespace LILO_Packager.v2.Forms
                             {
                                 if(entry.File.RealPath == element.outputFileName)
                                 {
-                                    File.WriteAllText(entry.File.RealPath + ".llcp", "__placeholder__");
+                                    File.WriteAllText(entry.File.RealPath + ".llcp", entry.CloudEntry.PublicFileId);
 
                                     var hisEntry = new HistoryElement()
                                     {

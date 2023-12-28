@@ -3,6 +3,7 @@ using LILO_Packager.v2.Cloud;
 using LILO_Packager.v2.Cloud.Services;
 using LILO_Packager.v2.Cloud.Storage;
 using LILO_Packager.v2.Contracts;
+using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Shared;
 using System.Diagnostics;
 using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
@@ -22,7 +23,7 @@ namespace LILO_Packager.v2.Forms
 
         public static uiCloudFilesViewer Instance(ICloudServiceManager CloudServiceManager)
         {
-            if(_privateInstance is null)
+            if (_privateInstance is null)
             {
                 _privateInstance = new uiCloudFilesViewer(CloudServiceManager);
             }
@@ -130,8 +131,12 @@ namespace LILO_Packager.v2.Forms
                             SubOp_pnlIco.BackgroundImage = Resources.icons8_synchronize_240;
 
                             var picture = await PixelDrainService.PixelDrainThumbnail.GetThumbnailAsync(item.CloudEntry.PublicFileId);
+                            try
+                            {
+                                imageList.Images.Add(item.Identity.FileHash, picture);
+                            }
+                            catch(Exception ex) { }
 
-                            imageList.Images.Add(item.Identity.FileHash, picture);
                             listViewItem.ImageKey = item.Identity.FileHash;
                             var itemInfo = await PixelDrainService.CloudFileInfo.GetFileInfoAsync(item.CloudEntry.PublicFileId);
 
@@ -139,7 +144,14 @@ namespace LILO_Packager.v2.Forms
                             listViewItem.SubItems.Add($"{FileOperations.GetSizeString((int)itemInfo.Size)}");
                             listViewItem.SubItems.Add(item.Identity.Timestamp.ToShortDateString() + " - " + item.Identity.Timestamp.ToShortTimeString());
 
-                            FetchedMatrixEntries.Add(item.Identity.FileHash, (picture, itemInfo));
+                            try
+                            {
+                                FetchedMatrixEntries.Add(item.Identity.FileHash, (picture, itemInfo));
+                            }
+                            catch(Exception ex)
+                            {
+
+                            }
 
                             if (File.Exists(item.File.RealPath))
                             {
@@ -159,13 +171,13 @@ namespace LILO_Packager.v2.Forms
                     }));
                 }
 
-                
+
             });
         }
 
         private async Task DownloadFile(MatrixEntry entry, bool toCrypterv2 = true, string dir = null)
         {
-            if(entry is not null)
+            if (entry is not null)
             {
                 string placedDirectory = dir;
 
@@ -273,19 +285,25 @@ namespace LILO_Packager.v2.Forms
 
         private async void toCrypterv2StorageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DownloadFile(SelectedMatrixEntry);
+            await DownloadFile(SelectedMatrixEntry);
         }
 
-        private void toDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void toDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FileOperations.CreateDirectoryRecursively(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LILO Cloud");
-            DownloadFile(SelectedMatrixEntry, false, (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LILO Cloud"));
+            ConsoleManager.Instance().WriteLineWithColor("[LILO Cloud] - Downloading: " + Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\LILO Cloud" + SelectedMatrixEntry.File.FileName);
+            FileOperations.CreateDirectoryRecursively(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\LILO Cloud");
+            await DownloadFile(SelectedMatrixEntry, false, (Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\LILO Cloud\\" + SelectedMatrixEntry.File.FileName));
         }
 
         private void detailToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var infoDialog = new uiCloudFileDetails(SelectedMatrixEntry);
             infoDialog.ShowDialog();
+        }
+
+        private async void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MatrixShareManager.ExportMatrixEntry(SelectedMatrixEntry, MainHost.Instance().loggedInUser, await PixelDrainService.PixelDrainThumbnail.GetThumbnailAsync(SelectedMatrixEntry.CloudEntry.PublicFileId));
         }
     }
 }

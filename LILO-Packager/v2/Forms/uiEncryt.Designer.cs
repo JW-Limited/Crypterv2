@@ -29,7 +29,7 @@ partial class uiEncryt
     private void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
-        Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
+        Guna.UI2.AnimatorNS.Animation animation2 = new Guna.UI2.AnimatorNS.Animation();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiEncryt));
         sPanel1 = new Sipaa.Framework.SPanel();
         bntPlugin = new Guna.UI2.WinForms.Guna2Button();
@@ -76,12 +76,11 @@ partial class uiEncryt
         // sPanel1
         // 
         sPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        sPanel1.BackColor = Color.Black;
-        sPanel1.BackgroundImage = Properties.Resources.Aqua_Marine_180degree;
+        sPanel1.BackColor = Color.WhiteSmoke;
         sPanel1.BackgroundImageLayout = ImageLayout.Stretch;
-        sPanel1.BorderColor = Color.Black;
+        sPanel1.BorderColor = Color.Gainsboro;
         sPanel1.BorderRadius = 20;
-        sPanel1.BorderSize = 0;
+        sPanel1.BorderSize = 2;
         sPanel1.Controls.Add(bntPlugin);
         sPanel1.Controls.Add(bntCancel);
         sPanel1.Controls.Add(lblText);
@@ -110,7 +109,7 @@ partial class uiEncryt
         bntPlugin.FillColor = Color.Transparent;
         bntPlugin.FocusedColor = Color.FromArgb(100, 170, 209);
         bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-        bntPlugin.ForeColor = Color.White;
+        bntPlugin.ForeColor = Color.DimGray;
         bntPlugin.Location = new Point(864, 16);
         bntPlugin.Margin = new Padding(2);
         bntPlugin.Name = "bntPlugin";
@@ -135,7 +134,7 @@ partial class uiEncryt
         bntCancel.FillColor = Color.Transparent;
         bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
         bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-        bntCancel.ForeColor = Color.White;
+        bntCancel.ForeColor = Color.DimGray;
         bntCancel.Location = new Point(832, 16);
         bntCancel.Margin = new Padding(2);
         bntCancel.Name = "bntCancel";
@@ -150,7 +149,7 @@ partial class uiEncryt
         lblText.BackColor = Color.Transparent;
         Transition.SetDecoration(lblText, Guna.UI2.AnimatorNS.DecorationType.None);
         lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-        lblText.ForeColor = Color.White;
+        lblText.ForeColor = Color.DimGray;
         lblText.Location = new Point(24, 0);
         lblText.Margin = new Padding(4, 0, 4, 0);
         lblText.Name = "lblText";
@@ -584,22 +583,22 @@ partial class uiEncryt
         // 
         Transition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent;
         Transition.Cursor = null;
-        animation1.AnimateOnlyDifferences = true;
-        animation1.BlindCoeff = (PointF)resources.GetObject("animation1.BlindCoeff");
-        animation1.LeafCoeff = 0F;
-        animation1.MaxTime = 1F;
-        animation1.MinTime = 0F;
-        animation1.MosaicCoeff = (PointF)resources.GetObject("animation1.MosaicCoeff");
-        animation1.MosaicShift = (PointF)resources.GetObject("animation1.MosaicShift");
-        animation1.MosaicSize = 0;
-        animation1.Padding = new Padding(0, 0, 0, 0);
-        animation1.RotateCoeff = 0F;
-        animation1.RotateLimit = 0F;
-        animation1.ScaleCoeff = (PointF)resources.GetObject("animation1.ScaleCoeff");
-        animation1.SlideCoeff = (PointF)resources.GetObject("animation1.SlideCoeff");
-        animation1.TimeCoeff = 0F;
-        animation1.TransparencyCoeff = 1F;
-        Transition.DefaultAnimation = animation1;
+        animation2.AnimateOnlyDifferences = true;
+        animation2.BlindCoeff = (PointF)resources.GetObject("animation2.BlindCoeff");
+        animation2.LeafCoeff = 0F;
+        animation2.MaxTime = 1F;
+        animation2.MinTime = 0F;
+        animation2.MosaicCoeff = (PointF)resources.GetObject("animation2.MosaicCoeff");
+        animation2.MosaicShift = (PointF)resources.GetObject("animation2.MosaicShift");
+        animation2.MosaicSize = 0;
+        animation2.Padding = new Padding(0);
+        animation2.RotateCoeff = 0F;
+        animation2.RotateLimit = 0F;
+        animation2.ScaleCoeff = (PointF)resources.GetObject("animation2.ScaleCoeff");
+        animation2.SlideCoeff = (PointF)resources.GetObject("animation2.SlideCoeff");
+        animation2.TimeCoeff = 0F;
+        animation2.TransparencyCoeff = 1F;
+        Transition.DefaultAnimation = animation2;
         Transition.Interval = 1;
         // 
         // uiEncryt
