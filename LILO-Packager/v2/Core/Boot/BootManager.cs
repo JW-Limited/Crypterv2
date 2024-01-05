@@ -115,11 +115,6 @@ namespace LILO_Packager.v2.Core.Boot
             Application.Run(decryptionUI);
         }
 
-        private void HandleUnknownViewMode(string filePath)
-        {
-            ConsoleManager.Instance().WriteLineWithColor($"Unknown view mode for file: {filePath}", ConsoleColor.Yellow);
-        }
-
         private void HandleArgumentParsingErrors(IEnumerable<Error> errors, ParserResult<CommandLineOptions> result)
         {
             var helpText = new StringBuilder();

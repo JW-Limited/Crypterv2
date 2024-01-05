@@ -371,7 +371,7 @@
             Name = "uiDownloadFileFromArguments";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "null";
+            Text = "Data Fetching";
             Load += uiDownloadFileFromArguments_Load;
             pnlImage.ResumeLayout(false);
             pnlProgess.ResumeLayout(false);

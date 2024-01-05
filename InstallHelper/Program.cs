@@ -5,6 +5,7 @@ using System.IO;
 using static System.Net.Mime.MediaTypeNames;
 using IWshRuntimeLibrary;
 using Microsoft.Win32;
+using System.Drawing;
 
 namespace InstallHelper
 {
@@ -40,13 +41,22 @@ namespace InstallHelper
                         Console.Write("Updating Registry: ");
                         ExtensionBinder.SetCustomFileHandlerAsync(path);
                         ExtensionBinder.RegisterContextMenuEntry(path);
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("Done!\n");
+                        Console.ResetColor();
 
                         Console.Write("Creating Shortcuts: ");
                         ShortcutOperations.CreateDesktopShortcut(path);
                         ShortcutOperations.CreateStartMenuShortcut(path);
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("Done!\n ");
+                        Console.ResetColor();
 
+                        Console.Write("Register Product: ");
+                        ProductRegistration.RegisterProduct("Crypterv2 - Professional", "2.0.0.0", AppDomain.CurrentDomain.BaseDirectory + "\\crypterv2.exe");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("Done!\n ");
+                        Console.ResetColor();
                         Console.ReadKey();
                     }
                 }

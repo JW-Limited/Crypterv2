@@ -197,6 +197,7 @@ namespace LILO_Packager.v2.Forms
         private void uiCloudSyncronization_Load(object sender, EventArgs e)
         {
             lblVersion.Text = Program.CloudVersion;
+
             Task.Run(() =>
             {
                 if (CloudSyncroniztationBase.HasNetworkConnection())
@@ -222,32 +223,34 @@ namespace LILO_Packager.v2.Forms
                     lblCloud.Text = "Offline";
                     lblCloud.ForeColor = Color.Red;
                 }
+
+                this.Invoke(() =>
+                {
+                    UploadedFiles = 0;
+                    LocalFiles = 0;
+                    IndexedFiles = 0;
+                    listViewFiles.Clear();
+
+                    try
+                    {
+                        LoadData();
+                        CheckSynchronizedFiles();
+                    }
+                    catch (MatrixNotInitializedException ex)
+                    {
+                        MessageBox.Show(ex.Message, "MainHost - Matrix Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (InvalidMatrixFileExcepion ex)
+                    {
+                        MessageBox.Show(ex.Message, "MainHost - Matrix Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        ConsoleManager.Instance().WriteLineWithColor(ex.Message);
+                    }
+                });
             });
-            UploadedFiles = 0;
-            LocalFiles = 0;
-            IndexedFiles = 0;
-            listViewFiles.Clear();
-
-            try
-            {
-                LoadData();
-                CheckSynchronizedFiles();
-            }
-            catch (MatrixNotInitializedException ex)
-            {
-                MessageBox.Show(ex.Message, "MainHost - Matrix Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (InvalidMatrixFileExcepion ex)
-            {
-                MessageBox.Show(ex.Message, "MainHost - Matrix Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                ConsoleManager.Instance().WriteLineWithColor(ex.Message);
-            }
-
-
-
+            
 
         }
 
@@ -300,7 +303,7 @@ namespace LILO_Packager.v2.Forms
 
         private void ShareManager_Click(object sender, EventArgs e)
         {
-            var show = new uiShareManager().ShowDialog();
+            MainHost.Instance().OpenInApp(new uiShareManager());
         }
     }
 }

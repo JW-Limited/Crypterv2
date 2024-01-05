@@ -1,45 +1,55 @@
-﻿using HTAlt;
-using LILO_Packager.v2.Core.LILO.Types;
-using LILO_Packager.v2.Shared;
-using System.ComponentModel;
+﻿using LILO_Packager.v2.Core.LILO.Types;
 using System.IO.Compression;
-using System.Security.Cryptography;
 using System.Xml.Serialization;
 
 namespace LILO_Packager.v2.Cloud.Storage
 {
-    public class MatrixShareManager
+    public partial class MatrixShareManager
     {
-        public class CDEX_FILE_DECLARATION
+        public static byte CheckIfEntryExist(string file,string hash)
         {
-            public string Hash256;
-            public bool PasswordSecured = false;
-            public string PasswordEnc = null;
-            public bool Encrypted = false;
-
-            public FileFormatClearifier FileFormatClearifier { get; set; } = new FileFormatClearifier()
+            using (var zipFile = ZipFile.Open(file, ZipArchiveMode.Read))
             {
-                ExtensionPrefix = ".cdex.info",
-                FriendlyName = "Cloud Shareble Object Information Provider",
-                Description = "An file with information about the CDex package.",
-                SchemeUri = "https://beta.lilo.com/schemes/cdexinfo/1",
-                FormatVersion = "1.0"
-            };
-
-            public List<MatrixEntry> MatrixEntries { get; set; } = new List<MatrixEntry>();
-            public List<string> ArchieveEntries { get; set; } = new List<string>();
+                var zz = zipFile.GetEntry(hash);
+                if (zz is not null) return 1;
+                else return 0;
+            }
         }
 
-        public class CDEX_DECLARATION
+        public static CDEX_FILE_DECLARATION GetPackageDeclaration(string file)
         {
-            public FileFormatClearifier FileFormatClearifier { get; set; } = new FileFormatClearifier()
+            using(var zipFile = ZipFile.Open(file, ZipArchiveMode.Read))
             {
-                ExtensionPrefix = ".cdex",
-                FriendlyName = "Cloud Shareble Object Package",
-                Description = "An package filled with Shareble Objects.",
-                SchemeUri = "https://beta.lilo.com/schemes/cdexinfo/1",
-                FormatVersion = "1.0"
-            };
+                var zz = zipFile.GetEntry("CDEX_FILE_DECLARATION.cdex.info");
+
+                XmlSerializer serializer = new XmlSerializer(typeof(CDEX_FILE_DECLARATION));
+                using (Stream reader = zz.Open())
+                {
+                    return (CDEX_FILE_DECLARATION)serializer.Deserialize(reader);
+                }
+            }
+        }
+
+        public static User GetFileOwner(CDEX_FILE_DECLARATION file, string zipFile,string Hash)
+        {
+            foreach(var item in file.ArchieveEntries)
+            {
+                if (item.StartsWith(Hash) && item.EndsWith("user.laex"))
+                {
+                    using (var zFile = ZipFile.Open(zipFile, ZipArchiveMode.Read))
+                    {
+                        var zz = zFile.GetEntry(item);
+
+                        XmlSerializer serializer = new XmlSerializer(typeof(User));
+                        using (Stream reader = zz.Open())
+                        {
+                            return (User)serializer.Deserialize(reader);
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
 
         public static byte ExportMatrixEntry(MatrixEntry entry, User user,Bitmap preview,bool secure = false,bool encrypt = false, string password = "")
@@ -233,7 +243,7 @@ namespace LILO_Packager.v2.Cloud.Storage
                         if (secure)
                         {
                             indexCDEX.PasswordSecured = true;
-                            indexCDEX.PasswordEnc = Core.Service.Services.Base.EncryptString(password,"lilo--dd--dd--sfsf--crypter-89862387346785238||@");
+                            indexCDEX.PasswordEnc = Core.Service.Services.Base.EncryptString(password,password);
                         }
 
                         SerializeToXml(indexCDEX, sfd.FileName + "~cdex_index");
@@ -260,15 +270,6 @@ namespace LILO_Packager.v2.Cloud.Storage
             using (TextWriter writer = new StreamWriter(filePath))
             {
                 serializer.Serialize(writer, data);
-            }
-        }
-
-        private static T DeserializeFromXml<T>(string filePath)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
-            using (TextReader reader = new StreamReader(filePath))
-            {
-                return (T)serializer.Deserialize(reader);
             }
         }
     }

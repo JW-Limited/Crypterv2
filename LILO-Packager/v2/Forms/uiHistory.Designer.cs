@@ -45,6 +45,8 @@
             toolStripSeparator2 = new ToolStripSeparator();
             reportToolStripMenuItem = new ToolStripMenuItem();
             sPanel2 = new Sipaa.Framework.SPanel();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            textBox1 = new TextBox();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             bntPlugin = new Guna.UI2.WinForms.Guna2Button();
             bntCancel = new Guna.UI2.WinForms.Guna2Button();
@@ -55,6 +57,7 @@
             tableLayoutPanel1.SuspendLayout();
             conmenu.SuspendLayout();
             sPanel2.SuspendLayout();
+            guna2Panel1.SuspendLayout();
             pnlLoginLoad.SuspendLayout();
             SuspendLayout();
             // 
@@ -197,6 +200,7 @@
             sPanel2.BorderColor = Color.Gainsboro;
             sPanel2.BorderRadius = 20;
             sPanel2.BorderSize = 2;
+            sPanel2.Controls.Add(guna2Panel1);
             sPanel2.Controls.Add(guna2Button1);
             sPanel2.Controls.Add(bntPlugin);
             sPanel2.Controls.Add(bntCancel);
@@ -207,6 +211,31 @@
             sPanel2.Name = "sPanel2";
             sPanel2.Size = new Size(968, 88);
             sPanel2.TabIndex = 13;
+            // 
+            // guna2Panel1
+            // 
+            guna2Panel1.BackColor = Color.Transparent;
+            guna2Panel1.BorderColor = Color.Gainsboro;
+            guna2Panel1.BorderRadius = 10;
+            guna2Panel1.BorderThickness = 2;
+            guna2Panel1.Controls.Add(textBox1);
+            guna2Panel1.FillColor = Color.White;
+            guna2Panel1.Location = new Point(168, 19);
+            guna2Panel1.Margin = new Padding(2);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.Size = new Size(280, 50);
+            guna2Panel1.TabIndex = 59;
+            // 
+            // textBox1
+            // 
+            textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Font = new Font("Segoe UI", 10F);
+            textBox1.Location = new Point(16, 8);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Search...";
+            textBox1.Size = new Size(248, 27);
+            textBox1.TabIndex = 0;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // guna2Button1
             // 
@@ -221,11 +250,11 @@
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = Color.Transparent;
+            guna2Button1.FillColor = Color.White;
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
             guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(696, 16);
+            guna2Button1.Location = new Point(752, 16);
             guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.Size = new Size(120, 58);
@@ -246,16 +275,17 @@
             bntPlugin.DisabledState.CustomBorderColor = Color.DarkGray;
             bntPlugin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             bntPlugin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            bntPlugin.FillColor = Color.Transparent;
+            bntPlugin.FillColor = Color.White;
             bntPlugin.FocusedColor = Color.FromArgb(100, 170, 209);
             bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntPlugin.ForeColor = Color.DimGray;
-            bntPlugin.Location = new Point(832, 16);
+            bntPlugin.Image = Properties.Resources.icons8_synchronize_240;
+            bntPlugin.ImageSize = new Size(30, 30);
+            bntPlugin.Location = new Point(888, 16);
             bntPlugin.Margin = new Padding(2);
             bntPlugin.Name = "bntPlugin";
-            bntPlugin.Size = new Size(120, 58);
+            bntPlugin.Size = new Size(64, 58);
             bntPlugin.TabIndex = 15;
-            bntPlugin.Text = "Refresh";
             bntPlugin.Click += bntPlugin_Click;
             // 
             // bntCancel
@@ -350,6 +380,8 @@
             tableLayoutPanel1.ResumeLayout(false);
             conmenu.ResumeLayout(false);
             sPanel2.ResumeLayout(false);
+            guna2Panel1.ResumeLayout(false);
+            guna2Panel1.PerformLayout();
             pnlLoginLoad.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -379,5 +411,7 @@
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem reportToolStripMenuItem;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private TextBox textBox1;
     }
 }

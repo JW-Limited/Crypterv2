@@ -5,6 +5,9 @@ using LILO_Packager.v2.Core.Boot;
 using LILO_Packager.v2.Shared.Types;
 using LILO_Packager.v2.Core.BugBarrier;
 using LILO_Packager.v2.Core.Interfaces;
+using JWLimited.Licensing.Core;
+using LILO_Packager.v2.Forms;
+using JWLimited.Licensing.Schemes;
 
 namespace LILO_Packager
 {
@@ -12,12 +15,14 @@ namespace LILO_Packager
     {
         public static NotifyIcon noty;
         public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
+        public static readonly string AppPath = Application.ExecutablePath.Replace("crypterv2.exe", "");
         public static string Version = "v0.20.3-beta";
-        public static string ProductVersion = "Professional Developer Editions";
+        public static string ProductVersion = "Professional Developer Edition";
         public static string LibraryName = "JWLimited.Crypter.Windows";
         public static int BuildNumber = 20030;
         public static string CloudVersion = "0.9.4-preview";
         private static IBootManager _bootManager;
+        public static LicenseManager LicMng;
         public static JWLimited.AuthAgent _AuthAgent;
 
         private static void InitializeApplication()
@@ -50,7 +55,7 @@ namespace LILO_Packager
 
             InstanceCacheContainer.Register<ILILOConsoleManager>(() => ConsoleManager.Instance());
 
-            //ConsoleManager.Instance().ShowConsoleWindow();
+            ConsoleManager.Instance().ShowConsoleWindow();
         }
 
         [STAThread]
@@ -62,28 +67,45 @@ namespace LILO_Packager
             {
                 try
                 {
-                    if (args.Length > 0)
+                    LicMng = LicenseManager.Initialize(_AuthAgent);
+                    if(LicMng.CheckLicenseAsync<CrypterLicense,CrypterLicenseTrail>(AppPath, new CrypterLicense(), new CrypterLicenseTrail()) == 1)
                     {
-                        _bootManager.Run(args);
+                        if (args.Length > 0)
+                        {
+                            _bootManager.Run(args);
+                        }
+                        else
+                        {
+                            try
+                            {
+                                if (IsApplicationAlreadyRunning())
+                                {
+                                    BringRunningInstanceToFront();
+                                    return;
+                                }
+
+                                RunMainUI();
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Windows.MessageBox.Show("An Error Accoured: " + ex.Message, "Error - RunMainUi");
+                                ConsoleManager.Instance().WriteLineWithColor("An Error Acourred: " + ex.Message, ConsoleColor.Red);
+                            }
+                        }
                     }
                     else
                     {
-                        try
-                        {
-                            if (IsApplicationAlreadyRunning())
-                            {
-                                BringRunningInstanceToFront();
-                                return;
-                            }
-
-                            RunMainUI();
-                        }
-                        catch (Exception ex)
-                        {
-                            System.Windows.MessageBox.Show("An Error Accoured: " + ex.Message, "Error - RunMainUi");
-                            ConsoleManager.Instance().WriteLineWithColor("An Error Acourred: " + ex.Message, ConsoleColor.Red);
-                        }
+                        var licUI = new uiLicenseDetails(null);
+                        licUI.Text = "License Expired.";
+                        licUI.StartPosition = FormStartPosition.CenterScreen;
+                        licUI.ShowIcon = false;
+                        licUI.MinimizeBox = false;
+                        licUI.MaximizeBox = false;
+                        licUI.TopMost = true;
+                        Application.Run(licUI);
                     }
+
+                    
                 }
                 catch (Exception ex)
                 {

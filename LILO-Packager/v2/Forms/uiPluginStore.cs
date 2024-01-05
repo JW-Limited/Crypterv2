@@ -40,7 +40,7 @@ namespace LILO_Packager.v2.Forms
 
         private void bntCancel_Click(object sender, EventArgs e)
         {
-            Program.InstanceCacheContainer.Resolve<ILILOMainHost>().OpenInApp(uiPluginManager.Instance(null, null));
+            Program.InstanceCacheContainer.Resolve<ILILOMainHost>().OpenInApp(uiPluginManagerv2.Instance);
         }
 
         private void uiPluginStore_Load(object sender, EventArgs e)

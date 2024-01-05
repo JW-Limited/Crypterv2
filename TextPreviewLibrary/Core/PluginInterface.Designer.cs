@@ -31,7 +31,7 @@ partial class PluginInterface
     /// </summary>
     private void InitializeComponent()
     {
-        Guna.UI2.AnimatorNS.Animation animation4 = new Guna.UI2.AnimatorNS.Animation();
+        Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PluginInterface));
         sPanel1 = new Sipaa.Framework.SPanel();
         pnlTabs = new Panel();
@@ -48,6 +48,7 @@ partial class PluginInterface
         guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
         lblBottom = new Label();
         pnlDesing = new Sipaa.Framework.SPanel();
+        dynamikPermissionView1 = new LILO_Packager.v2.Controls.DynamikPermissionView();
         guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
         label1 = new Label();
         panel3 = new Panel();
@@ -101,6 +102,7 @@ partial class PluginInterface
         bntMenu.BackgroundImageLayout = ImageLayout.Zoom;
         bntMenu.BorderColor = Color.Gainsboro;
         bntMenu.BorderRadius = 10;
+        bntMenu.CheckedState.Image = Properties.Resources.icons8_close_96;
         Transition.SetDecoration(bntMenu, Guna.UI2.AnimatorNS.DecorationType.None);
         bntMenu.DisabledState.BorderColor = Color.DarkGray;
         bntMenu.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -198,7 +200,7 @@ partial class PluginInterface
         mainTextBox.Location = new Point(40, 32);
         mainTextBox.Margin = new Padding(2);
         mainTextBox.Name = "mainTextBox";
-        mainTextBox.Size = new Size(1222, 816);
+        mainTextBox.Size = new Size(1216, 808);
         mainTextBox.TabIndex = 13;
         mainTextBox.Text = "";
         // 
@@ -329,6 +331,7 @@ partial class PluginInterface
         pnlDesing.BorderColor = Color.Gainsboro;
         pnlDesing.BorderRadius = 15;
         pnlDesing.BorderSize = 1;
+        pnlDesing.Controls.Add(dynamikPermissionView1);
         pnlDesing.Controls.Add(guna2Button4);
         pnlDesing.Controls.Add(label1);
         pnlDesing.Controls.Add(panel3);
@@ -340,6 +343,16 @@ partial class PluginInterface
         pnlDesing.Size = new Size(328, 568);
         pnlDesing.TabIndex = 15;
         pnlDesing.Visible = false;
+        // 
+        // dynamikPermissionView1
+        // 
+        Transition.SetDecoration(dynamikPermissionView1, Guna.UI2.AnimatorNS.DecorationType.None);
+        dynamikPermissionView1.Location = new Point(24, 136);
+        dynamikPermissionView1.Name = "dynamikPermissionView1";
+        dynamikPermissionView1.PermissionDescription = "Manager";
+        dynamikPermissionView1.PermissionName = "Color";
+        dynamikPermissionView1.Size = new Size(280, 96);
+        dynamikPermissionView1.TabIndex = 39;
         // 
         // guna2Button4
         // 
@@ -545,17 +558,17 @@ partial class PluginInterface
         // Transition
         // 
         Transition.Cursor = null;
-        animation4.AnimateOnlyDifferences = true;
-        animation4.LeafCoeff = 0F;
-        animation4.MaxTime = 1F;
-        animation4.MinTime = 0F;
-        animation4.MosaicSize = 0;
-        animation4.Padding = new Padding(0);
-        animation4.RotateCoeff = 0F;
-        animation4.RotateLimit = 0F;
-        animation4.TimeCoeff = 0F;
-        animation4.TransparencyCoeff = 0F;
-        Transition.DefaultAnimation = animation4;
+        animation1.AnimateOnlyDifferences = true;
+        animation1.LeafCoeff = 0F;
+        animation1.MaxTime = 1F;
+        animation1.MinTime = 0F;
+        animation1.MosaicSize = 0;
+        animation1.Padding = new Padding(0);
+        animation1.RotateCoeff = 0F;
+        animation1.RotateLimit = 0F;
+        animation1.TimeCoeff = 0F;
+        animation1.TransparencyCoeff = 0F;
+        Transition.DefaultAnimation = animation1;
         Transition.Interval = 1;
         // 
         // PluginInterface
@@ -614,4 +627,5 @@ partial class PluginInterface
     private Panel panel3;
     private Panel pnlTabs;
     public RichTextBox mainTextBox;
+    private LILO_Packager.v2.Controls.DynamikPermissionView dynamikPermissionView1;
 }

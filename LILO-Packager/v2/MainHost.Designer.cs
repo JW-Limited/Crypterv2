@@ -48,6 +48,7 @@ partial class MainHost
         bntChoose_File = new Guna.UI2.WinForms.Guna2Button();
         Transition = new Guna.UI2.WinForms.Guna2Transition();
         pnlChild = new Panel();
+        prgMiniProgress = new Guna.UI2.WinForms.Guna2ProgressBar();
         splash_Panel = new Sipaa.Framework.SPanel();
         pnlNoti = new Guna.UI2.WinForms.Guna2Panel();
         guna2Button11 = new Guna.UI2.WinForms.Guna2Button();
@@ -102,7 +103,7 @@ partial class MainHost
         hider.Location = new Point(0, 0);
         hider.Margin = new Padding(4);
         hider.Name = "hider";
-        hider.Size = new Size(336, 1055);
+        hider.Size = new Size(336, 1052);
         hider.TabIndex = 10;
         hider.Visible = false;
         hider.Paint += hider_Paint;
@@ -127,7 +128,7 @@ partial class MainHost
         bntAccount.ImageAlign = HorizontalAlignment.Left;
         bntAccount.ImageOffset = new Point(15, 0);
         bntAccount.ImageSize = new Size(40, 40);
-        bntAccount.Location = new Point(24, 946);
+        bntAccount.Location = new Point(24, 944);
         bntAccount.Margin = new Padding(2);
         bntAccount.Name = "bntAccount";
         bntAccount.Size = new Size(272, 80);
@@ -150,7 +151,7 @@ partial class MainHost
         pnlMenu.Controls.Add(guna2Button9);
         Transition.SetDecoration(pnlMenu, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlMenu.FillColor = Color.White;
-        pnlMenu.Location = new Point(24, 792);
+        pnlMenu.Location = new Point(24, 790);
         pnlMenu.Margin = new Padding(2);
         pnlMenu.Name = "pnlMenu";
         pnlMenu.ShadowDecoration.BorderRadius = 20;
@@ -244,7 +245,7 @@ partial class MainHost
         bntMenu_c.ForeColor = Color.White;
         bntMenu_c.Image = Properties.Resources.icons8_menu_240__1_;
         bntMenu_c.ImageSize = new Size(40, 40);
-        bntMenu_c.Location = new Point(224, 960);
+        bntMenu_c.Location = new Point(224, 958);
         bntMenu_c.Margin = new Padding(2);
         bntMenu_c.Name = "bntMenu_c";
         bntMenu_c.Size = new Size(56, 56);
@@ -271,7 +272,7 @@ partial class MainHost
         guna2Button2.ImageAlign = HorizontalAlignment.Left;
         guna2Button2.ImageOffset = new Point(15, 0);
         guna2Button2.ImageSize = new Size(40, 40);
-        guna2Button2.Location = new Point(24, 595);
+        guna2Button2.Location = new Point(24, 594);
         guna2Button2.Margin = new Padding(2);
         guna2Button2.Name = "guna2Button2";
         guna2Button2.Size = new Size(272, 80);
@@ -300,7 +301,7 @@ partial class MainHost
         guna2Button5.ImageAlign = HorizontalAlignment.Left;
         guna2Button5.ImageOffset = new Point(15, 0);
         guna2Button5.ImageSize = new Size(40, 40);
-        guna2Button5.Location = new Point(24, 691);
+        guna2Button5.Location = new Point(24, 690);
         guna2Button5.Margin = new Padding(2);
         guna2Button5.Name = "guna2Button5";
         guna2Button5.Size = new Size(272, 80);
@@ -329,7 +330,7 @@ partial class MainHost
         guna2Button4.ImageAlign = HorizontalAlignment.Left;
         guna2Button4.ImageOffset = new Point(15, 0);
         guna2Button4.ImageSize = new Size(40, 40);
-        guna2Button4.Location = new Point(24, 496);
+        guna2Button4.Location = new Point(24, 495);
         guna2Button4.Margin = new Padding(2);
         guna2Button4.Name = "guna2Button4";
         guna2Button4.Size = new Size(272, 80);
@@ -358,7 +359,7 @@ partial class MainHost
         guna2Button3.ImageAlign = HorizontalAlignment.Left;
         guna2Button3.ImageOffset = new Point(15, 0);
         guna2Button3.ImageSize = new Size(40, 40);
-        guna2Button3.Location = new Point(24, 401);
+        guna2Button3.Location = new Point(24, 400);
         guna2Button3.Margin = new Padding(2);
         guna2Button3.Name = "guna2Button3";
         guna2Button3.Size = new Size(272, 80);
@@ -387,7 +388,7 @@ partial class MainHost
         bntOpen.ImageAlign = HorizontalAlignment.Left;
         bntOpen.ImageOffset = new Point(15, 0);
         bntOpen.ImageSize = new Size(40, 40);
-        bntOpen.Location = new Point(24, 305);
+        bntOpen.Location = new Point(24, 304);
         bntOpen.Margin = new Padding(2);
         bntOpen.Name = "bntOpen";
         bntOpen.Size = new Size(272, 80);
@@ -504,6 +505,7 @@ partial class MainHost
         // pnlChild
         // 
         pnlChild.BackgroundImageLayout = ImageLayout.Stretch;
+        pnlChild.Controls.Add(prgMiniProgress);
         pnlChild.Controls.Add(splash_Panel);
         pnlChild.Controls.Add(pnlNoti);
         Transition.SetDecoration(pnlChild, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -511,8 +513,30 @@ partial class MainHost
         pnlChild.Location = new Point(336, 0);
         pnlChild.Margin = new Padding(2);
         pnlChild.Name = "pnlChild";
-        pnlChild.Size = new Size(922, 927);
+        pnlChild.Size = new Size(922, 924);
         pnlChild.TabIndex = 15;
+        // 
+        // prgMiniProgress
+        // 
+        prgMiniProgress.Anchor = AnchorStyles.Bottom;
+        prgMiniProgress.BackColor = Color.Transparent;
+        prgMiniProgress.BorderColor = Color.Gainsboro;
+        prgMiniProgress.BorderRadius = 1;
+        prgMiniProgress.BorderThickness = 2;
+        Transition.SetDecoration(prgMiniProgress, Guna.UI2.AnimatorNS.DecorationType.None);
+        prgMiniProgress.FillColor = Color.White;
+        prgMiniProgress.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+        prgMiniProgress.Location = new Point(376, 576);
+        prgMiniProgress.Margin = new Padding(2);
+        prgMiniProgress.Name = "prgMiniProgress";
+        prgMiniProgress.ProgressColor = Color.SteelBlue;
+        prgMiniProgress.ProgressColor2 = Color.RoyalBlue;
+        prgMiniProgress.ShadowDecoration.Depth = 20;
+        prgMiniProgress.Size = new Size(155, 8);
+        prgMiniProgress.Style = ProgressBarStyle.Marquee;
+        prgMiniProgress.TabIndex = 61;
+        prgMiniProgress.Text = "guna2ProgressBar1";
+        prgMiniProgress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
         // 
         // splash_Panel
         // 
@@ -525,7 +549,7 @@ partial class MainHost
         splash_Panel.BorderSize = 0;
         Transition.SetDecoration(splash_Panel, Guna.UI2.AnimatorNS.DecorationType.None);
         splash_Panel.ForeColor = Color.White;
-        splash_Panel.Location = new Point(360, 368);
+        splash_Panel.Location = new Point(360, 366);
         splash_Panel.Margin = new Padding(4);
         splash_Panel.Name = "splash_Panel";
         splash_Panel.Size = new Size(192, 176);
@@ -543,7 +567,7 @@ partial class MainHost
         pnlNoti.Controls.Add(label4);
         Transition.SetDecoration(pnlNoti, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlNoti.FillColor = Color.FromArgb(94, 148, 255);
-        pnlNoti.Location = new Point(24, 807);
+        pnlNoti.Location = new Point(24, 804);
         pnlNoti.Margin = new Padding(2);
         pnlNoti.Name = "pnlNoti";
         pnlNoti.ShadowDecoration.BorderRadius = 20;
@@ -633,7 +657,7 @@ partial class MainHost
         pnlSide.Location = new Point(1258, 0);
         pnlSide.Margin = new Padding(4);
         pnlSide.Name = "pnlSide";
-        pnlSide.Size = new Size(328, 927);
+        pnlSide.Size = new Size(328, 924);
         pnlSide.TabIndex = 16;
         pnlSide.Visible = false;
         // 
@@ -646,7 +670,7 @@ partial class MainHost
         pnlNotifications.Location = new Point(8, 72);
         pnlNotifications.Margin = new Padding(2);
         pnlNotifications.Name = "pnlNotifications";
-        pnlNotifications.Size = new Size(312, 840);
+        pnlNotifications.Size = new Size(312, 837);
         pnlNotifications.TabIndex = 18;
         pnlNotifications.Visible = false;
         // 
@@ -811,7 +835,7 @@ partial class MainHost
         pnlNothing.Controls.Add(sPanel3);
         Transition.SetDecoration(pnlNothing, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlNothing.ForeColor = Color.White;
-        pnlNothing.Location = new Point(16, 311);
+        pnlNothing.Location = new Point(16, 310);
         pnlNothing.Margin = new Padding(4);
         pnlNothing.Name = "pnlNothing";
         pnlNothing.Size = new Size(296, 288);
@@ -859,7 +883,7 @@ partial class MainHost
         pnlLoading.Location = new Point(16, 96);
         pnlLoading.Margin = new Padding(2);
         pnlLoading.Name = "pnlLoading";
-        pnlLoading.Size = new Size(296, 751);
+        pnlLoading.Size = new Size(296, 748);
         pnlLoading.TabIndex = 18;
         pnlLoading.Visible = false;
         // 
@@ -869,7 +893,7 @@ partial class MainHost
         progressSpinner.AutoStart = true;
         progressSpinner.BackColor = Color.White;
         Transition.SetDecoration(progressSpinner, Guna.UI2.AnimatorNS.DecorationType.None);
-        progressSpinner.Location = new Point(80, 299);
+        progressSpinner.Location = new Point(80, 298);
         progressSpinner.Margin = new Padding(2);
         progressSpinner.Name = "progressSpinner";
         progressSpinner.Size = new Size(135, 142);
@@ -879,7 +903,7 @@ partial class MainHost
         // 
         Transition.SetDecoration(panel1, Guna.UI2.AnimatorNS.DecorationType.None);
         panel1.Dock = DockStyle.Bottom;
-        panel1.Location = new Point(336, 927);
+        panel1.Location = new Point(336, 924);
         panel1.Margin = new Padding(2);
         panel1.Name = "panel1";
         panel1.Size = new Size(1250, 128);
@@ -896,7 +920,7 @@ partial class MainHost
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.White;
-        ClientSize = new Size(1586, 1055);
+        ClientSize = new Size(1586, 1052);
         Controls.Add(pnlChild);
         Controls.Add(pnlSide);
         Controls.Add(panel1);
@@ -907,7 +931,7 @@ partial class MainHost
         Icon = (Icon)resources.GetObject("$this.Icon");
         IsMdiContainer = true;
         Margin = new Padding(2);
-        MinimumSize = new Size(1400, 1055);
+        MinimumSize = new Size(1399, 1053);
         Name = "MainHost";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "MainHost";
@@ -964,4 +988,5 @@ partial class MainHost
     public Guna.UI2.WinForms.Guna2Transition Transition;
     public Guna.UI2.WinForms.Guna2TaskBarProgress taskBarProgress;
     private Sipaa.Framework.SPanel splash_Panel;
+    private Guna.UI2.WinForms.Guna2ProgressBar prgMiniProgress;
 }

@@ -62,7 +62,7 @@
             lblName.Anchor = AnchorStyles.None;
             lblName.AutoEllipsis = true;
             lblName.BackColor = Color.Transparent;
-            lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblName.ForeColor = Color.Black;
             lblName.Location = new Point(-8, 352);
             lblName.Margin = new Padding(4, 0, 4, 0);
@@ -106,12 +106,12 @@
             // guna2Panel1
             // 
             guna2Panel1.Anchor = AnchorStyles.None;
-            guna2Panel1.BorderColor = SystemColors.ActiveBorder;
+            guna2Panel1.BorderColor = Color.Gainsboro;
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.BorderThickness = 2;
             guna2Panel1.Controls.Add(lblMes);
             guna2Panel1.Controls.Add(lblExc);
-            guna2Panel1.FillColor = Color.Transparent;
+            guna2Panel1.FillColor = Color.WhiteSmoke;
             guna2Panel1.Location = new Point(280, 560);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
@@ -122,7 +122,7 @@
             // 
             lblMes.AutoEllipsis = true;
             lblMes.BackColor = Color.Transparent;
-            lblMes.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblMes.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             lblMes.ForeColor = Color.Black;
             lblMes.Location = new Point(0, 48);
             lblMes.Margin = new Padding(4, 0, 4, 0);
@@ -135,7 +135,7 @@
             // lblExc
             // 
             lblExc.BackColor = Color.Transparent;
-            lblExc.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblExc.Font = new Font("Segoe UI", 11F);
             lblExc.ForeColor = Color.Black;
             lblExc.Location = new Point(16, 16);
             lblExc.Margin = new Padding(4, 0, 4, 0);
@@ -159,7 +159,7 @@
             bntTrouble.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntTrouble.FillColor = Color.White;
             bntTrouble.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntTrouble.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            bntTrouble.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             bntTrouble.ForeColor = Color.DimGray;
             bntTrouble.Location = new Point(904, 24);
             bntTrouble.Margin = new Padding(2);
@@ -173,7 +173,7 @@
             // 
             label1.Anchor = AnchorStyles.Bottom;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             label1.ForeColor = SystemColors.WindowFrame;
             label1.Location = new Point(432, 752);
             label1.Margin = new Padding(4, 0, 4, 0);

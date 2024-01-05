@@ -62,11 +62,10 @@ public partial class uiDecrypt : Form
 
     private async void panel2_DragEnter(object sender, DragEventArgs e)
     {
-        if (e.Data.GetDataPresent(DataFormats.FileDrop))
-        {
-            e.Effect = DragDropEffects.All;
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-        }
+        e.Effect = DragDropEffects.All;
+        e.Message = "Add to Query";
+        string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+        e.DropImageType = DropImageType.Move;
     }
 
     private async void panel2_DragDrop(object sender, DragEventArgs e)

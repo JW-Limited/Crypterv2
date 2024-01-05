@@ -34,10 +34,10 @@
             label1 = new Label();
             sPanel1 = new Sipaa.Framework.SPanel();
             htListView1 = new HTAlt.WinForms.HTListView();
-            progress = new Guna.UI2.WinForms.Guna2ProgressBar();
-            bntCancel = new Guna.UI2.WinForms.Guna2Button();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
+            progress = new Guna.UI2.WinForms.Guna2ProgressBar();
+            bntCancel = new Guna.UI2.WinForms.Guna2Button();
             sPanel2.SuspendLayout();
             sPanel1.SuspendLayout();
             SuspendLayout();
@@ -46,7 +46,7 @@
             // 
             lblText.BackColor = Color.Transparent;
             lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblText.ForeColor = Color.White;
+            lblText.ForeColor = Color.DimGray;
             lblText.Location = new Point(24, 0);
             lblText.Margin = new Padding(4, 0, 4, 0);
             lblText.Name = "lblText";
@@ -58,12 +58,11 @@
             // sPanel2
             // 
             sPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            sPanel2.BackColor = Color.Black;
-            sPanel2.BackgroundImage = Properties.Resources.Aqua_Marine_180degree;
+            sPanel2.BackColor = Color.WhiteSmoke;
             sPanel2.BackgroundImageLayout = ImageLayout.Stretch;
-            sPanel2.BorderColor = Color.Black;
+            sPanel2.BorderColor = Color.Gainsboro;
             sPanel2.BorderRadius = 20;
-            sPanel2.BorderSize = 0;
+            sPanel2.BorderSize = 2;
             sPanel2.Controls.Add(lblText);
             sPanel2.ForeColor = Color.White;
             sPanel2.Location = new Point(24, 32);
@@ -88,7 +87,7 @@
             comboBox1.HoverState.FillColor = Color.FromArgb(224, 224, 224);
             comboBox1.ItemHeight = 30;
             comboBox1.Items.AddRange(new object[] { "password_history.db" });
-            comboBox1.Location = new Point(312, 176);
+            comboBox1.Location = new Point(200, 176);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(256, 36);
             comboBox1.TabIndex = 15;
@@ -105,7 +104,7 @@
             label1.Name = "label1";
             label1.Size = new Size(292, 72);
             label1.TabIndex = 1;
-            label1.Text = "  Password Database:";
+            label1.Text = "  Database:";
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // sPanel1
@@ -142,6 +141,16 @@
             htListView1.TabIndex = 17;
             htListView1.UseCompatibleStateImageBehavior = false;
             htListView1.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Source";
+            columnHeader1.Width = 700;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Encrypted Key";
+            columnHeader2.Width = 250;
             // 
             // progress
             // 
@@ -186,16 +195,6 @@
             bntCancel.TabIndex = 17;
             bntCancel.Text = "Decrypt";
             bntCancel.Click += bntCancel_Click;
-            // 
-            // columnHeader1
-            // 
-            columnHeader1.Text = "Source";
-            columnHeader1.Width = 700;
-            // 
-            // columnHeader2
-            // 
-            columnHeader2.Text = "Encrypted Key";
-            columnHeader2.Width = 250;
             // 
             // uiKeyManager
             // 

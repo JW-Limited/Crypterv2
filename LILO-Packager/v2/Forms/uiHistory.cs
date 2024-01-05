@@ -31,6 +31,36 @@ namespace LILO_Packager.v2.Forms
             return _instance;
         }
 
+        private uiHistory()
+        {
+            dbHandler = new DatabaseHandling();
+
+            BroadCastChannelInstance = BroadcastChannel.Instance;
+            BroadCastChannelInstance.Subscribe(HistoryBroadCastObserver.Instance, "LocalHistoryProvider");
+
+            LoadData();
+
+            this.FormClosing += (sender, e) =>
+            {
+                BroadCastChannelInstance.Unsubscribe(HistoryBroadCastObserver.Instance, "LocalHistoryProvider");
+                _instance = null;
+                MainHost.Instance().hider.Enabled = true;
+
+                loadingAbort.Register(() =>
+                {
+                    this.Invoke(delegate
+                    {
+                        lblText.Text = "Canceling";
+                    });
+                });
+            };
+
+            InitializeComponent();
+
+            listViewHistory.DoubleClick += ListViewHistory_DoubleClick;
+            loadingAbort = new CancellationToken();
+        }
+
         [DllImport("shell32.dll", CharSet = CharSet.Auto)]
         private static extern IntPtr ExtractAssociatedIcon(IntPtr hInst,
                                                             string lpIconPath, out ushort lpiIcon);
@@ -52,32 +82,7 @@ namespace LILO_Packager.v2.Forms
         private static extern bool DestroyIcon(IntPtr handle);
 
 
-        private uiHistory()
-        {
-            dbHandler = new DatabaseHandling();
-            BroadCastChannelInstance = BroadcastChannel.Instance;
-            BroadCastChannelInstance.Subscribe(HistoryBroadCastObserver.Instance, "LocalHistoryProvider");
-
-            LoadData();
-
-            this.FormClosing += (sender, e) =>
-            {
-                BroadCastChannelInstance.Unsubscribe(HistoryBroadCastObserver.Instance, "LocalHistoryProvider");
-                loadingAbort.Register(() =>
-                {
-                    this.Invoke(delegate
-                    {
-                        lblText.Text = "Canceling";
-                    });
-                });
-
-                _instance = null;
-            };
-
-            InitializeComponent();
-
-            loadingAbort = new CancellationToken();
-        }
+        
 
         private void ListViewHistory_DoubleClick(object? sender, EventArgs e)
         {
@@ -106,9 +111,9 @@ namespace LILO_Packager.v2.Forms
                             MatrixEntry entryCheck = null;
 
 
-                            foreach(var entry in matrixFile.MatrixEntrys)
+                            foreach (var entry in matrixFile.MatrixEntrys)
                             {
-                                if(entry.File.RealPath == element.outputFileName)
+                                if (entry.File.RealPath == element.outputFileName)
                                 {
                                     File.WriteAllText(entry.File.RealPath + ".llcp", entry.CloudEntry.PublicFileId);
 
@@ -129,13 +134,13 @@ namespace LILO_Packager.v2.Forms
                                 }
                             }
 
-                           if(entryCheck is null)
-                           {
+                            if (entryCheck is null)
+                            {
                                 OkDialog.Show("The Output of this Operation is not existing anymore.", "File Not Found");
                                 break;
-                           }
+                            }
 
-                            
+
                         }
                     }
                     catch (Exception ex)
@@ -184,75 +189,36 @@ namespace LILO_Packager.v2.Forms
                 Task.Run(() =>
                 {
                     this.listViewHistory.Items.Clear();
-                    listViewHistory.DoubleClick += ListViewHistory_DoubleClick;
                     int stepps = historyElements.Count;
                     int doneStepps = 0;
 
-                    if (stepps >= 1000)
+                    try
                     {
-                        MainHost.Instance().hider.Enabled = false;
-                    }
-
-                    foreach (HistoryElement element in historyElements)
-                    {
-                        var item = new ListViewItem()
+                        if (stepps >= 100)
                         {
-                            Text = $"{element.id}",
-                        };
-
-                        item.SubItems.Add(element.operationType);
-                        item.SubItems.Add(element.mode);
-                        item.SubItems.Add(element.algorithmVersion);
-                        item.SubItems.Add(element.inputFileName);
-                        item.SubItems.Add(element.outputFileName);
-
-                        if (!File.Exists(element.outputFileName))
-                        {
-                            var cloudMatrixFile = FileIndexStorage.Instance.GetMatrixFile();
-
-                            foreach (var itemInMatrix in cloudMatrixFile.MatrixEntrys)
-                            {
-                                if (itemInMatrix.File.RealPath == element.outputFileName)
-                                {
-                                    item.ForeColor = Color.RoyalBlue;
-                                    item.ImageKey = "cloud";
-                                    break;
-                                }
-                                else
-                                {
-                                    item.ImageKey = "close";
-                                    item.ForeColor = Color.DarkGray;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (element.outputFileName.EndsWith(".lsf"))
-                            {
-                                item.ImageKey = "lsf_lock";
-                            }
-                            else
-                            {
-                                var Hash = Cloud.CloudSyncroniztationBase.GetFileHash(element.outputFileName);
-                                imagelist.Images.Add(Hash, GetFileIcon(element.outputFileName));
-                                item.ImageKey = Hash;
-                            }
-                            
+                            MainHost.Instance().hider.Enabled = false;
                         }
 
-                        //ConsoleManager.Instance().WriteLineWithColor("Loading: (ID)" + element.id + " (OPM)" + element.operationType + " (CORE)" + element.algorithmVersion, GetConsoleColorFromOperation(element.operationType));
+                        foreach (HistoryElement element in historyElements)
+                        {
+                            var item = ListItemFactory(element, imagelist);
+                            if (item is null) continue;
+                            listViewHistory.Items.Add(item);
 
+                            doneStepps++;
 
-                        listViewHistory.Items.Add(item);
+                            label5.Text = $"{doneStepps * 100 / stepps}%";
+                        }
 
-                        doneStepps++;
+                        pnlLoginLoad.Visible = false;
 
-                        label5.Text = $"{doneStepps * 100 / stepps}%";
+                        MainHost.Instance().hider.Enabled = true;
                     }
-
-                    pnlLoginLoad.Visible = false;
-
-                    MainHost.Instance().hider.Enabled = true;
+                    catch (Exception ex)
+                    {
+                        ConsoleManager.Instance().WriteLineWithColor(ex.Message);
+                    }
+                    
                 }, loadingAbort);
             }
             else
@@ -260,6 +226,69 @@ namespace LILO_Packager.v2.Forms
                 MainHost.Instance().OpenInApp(new uiFeatureNullException("FeatureNullException", "This feature isnt enabled yet."));
             }
 
+        }
+
+        public ListViewItem ListItemFactory(HistoryElement element, ImageList imagelist)
+        {
+            if(element.id == 0)
+            {
+                return null;
+            }
+
+            var item = new ListViewItem()
+            {
+                Text = $"{element.id}",
+            };
+
+            item.SubItems.Add(element.operationType);
+            item.SubItems.Add(element.mode);
+            item.SubItems.Add(element.algorithmVersion);
+            item.SubItems.Add(element.inputFileName);
+            item.SubItems.Add(element.outputFileName);
+
+            if (!File.Exists(element.outputFileName))
+            {
+                var cloudMatrixFile = FileIndexStorage.Instance.GetMatrixFile();
+
+                foreach (var itemInMatrix in cloudMatrixFile.MatrixEntrys)
+                {
+                    if (itemInMatrix.File.RealPath == element.outputFileName)
+                    {
+                        item.ForeColor = Color.RoyalBlue;
+                        item.ImageKey = "cloud";
+                        break;
+                    }
+                    else
+                    {
+                        item.ImageKey = "close";
+                        item.ForeColor = Color.DarkGray;
+                    }
+                }
+
+                if (item.ForeColor == Color.DarkGray)
+                {
+                    if (FeatureManager.IsFeatureEnabled(FeatureFlags.HistoryElementOnlyIfFileExist))
+                    {
+                        return null;
+                    }
+                }
+            }
+            else
+            {
+                if (element.outputFileName.EndsWith(".lsf"))
+                {
+                    item.ImageKey = "lsf_lock";
+                }
+                else
+                {
+                    var Hash = Cloud.CloudSyncroniztationBase.GetFileHash(element.outputFileName);
+                    imagelist.Images.Add(Hash, GetFileIcon(element.outputFileName));
+                    item.ImageKey = Hash;
+                }
+
+            }
+
+            return item;
         }
 
         private ConsoleColor GetConsoleColorFromOperation(string operationType)
@@ -424,7 +453,7 @@ namespace LILO_Packager.v2.Forms
 
         private void bntSync_Click(object sender, EventArgs e)
         {
-            if(FeatureManager.IsFeatureEnabled(FeatureFlags.ShellMasterAll))
+            if (FeatureManager.IsFeatureEnabled(FeatureFlags.ShellMasterAll))
             {
                 MainHost.Instance().OpenInApp(uiCloudSyncronization.Instance);
             }
@@ -435,7 +464,14 @@ namespace LILO_Packager.v2.Forms
                 uiCloudSyncronization.Instance.ShowDialog();
                 pnlLoginLoad.Visible = false;
             }
-            
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            var items = listViewHistory.Items.Find(textBox1.Text, true);
+            listViewHistory.Items.Clear();
+            listViewHistory.Items.AddRange(items);
         }
     }
 }

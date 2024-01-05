@@ -45,7 +45,7 @@
             // 
             guna2Panel1.Anchor = AnchorStyles.None;
             guna2Panel1.BackColor = SystemColors.ButtonHighlight;
-            guna2Panel1.BorderColor = SystemColors.ActiveBorder;
+            guna2Panel1.BorderColor = Color.Gainsboro;
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.BorderThickness = 2;
             guna2Panel1.Controls.Add(lblFeature);
@@ -54,7 +54,7 @@
             guna2Panel1.Controls.Add(label1);
             guna2Panel1.Controls.Add(lblFeatureState);
             guna2Panel1.Controls.Add(label3);
-            guna2Panel1.FillColor = SystemColors.Control;
+            guna2Panel1.FillColor = Color.WhiteSmoke;
             guna2Panel1.Location = new Point(164, 142);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
@@ -63,8 +63,8 @@
             // 
             // lblFeature
             // 
-            lblFeature.BackColor = SystemColors.Control;
-            lblFeature.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lblFeature.BackColor = Color.Transparent;
+            lblFeature.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
             lblFeature.Location = new Point(184, 56);
             lblFeature.Name = "lblFeature";
             lblFeature.Size = new Size(440, 40);
@@ -86,7 +86,7 @@
             bntChange.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntChange.FillColor = Color.White;
             bntChange.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntChange.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            bntChange.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntChange.ForeColor = Color.Black;
             bntChange.Location = new Point(45, 424);
             bntChange.Margin = new Padding(2);
@@ -100,7 +100,7 @@
             // 
             guna2Panel2.Anchor = AnchorStyles.None;
             guna2Panel2.BackColor = SystemColors.Control;
-            guna2Panel2.BorderColor = SystemColors.ActiveBorder;
+            guna2Panel2.BorderColor = Color.Gainsboro;
             guna2Panel2.BorderRadius = 15;
             guna2Panel2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             guna2Panel2.BorderThickness = 2;
@@ -115,7 +115,8 @@
             // lblDescription
             // 
             lblDescription.BackColor = Color.White;
-            lblDescription.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDescription.Font = new Font("Segoe UI", 10F);
+            lblDescription.ForeColor = Color.DimGray;
             lblDescription.Location = new Point(24, 24);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(536, 144);
@@ -124,8 +125,8 @@
             // 
             // label1
             // 
-            label1.BackColor = SystemColors.Control;
-            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label1.Location = new Point(64, 56);
             label1.Name = "label1";
             label1.Size = new Size(128, 40);
@@ -135,8 +136,8 @@
             // 
             // lblFeatureState
             // 
-            lblFeatureState.BackColor = SystemColors.Control;
-            lblFeatureState.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblFeatureState.BackColor = Color.Transparent;
+            lblFeatureState.Font = new Font("Segoe UI", 10F);
             lblFeatureState.Location = new Point(272, 112);
             lblFeatureState.Name = "lblFeatureState";
             lblFeatureState.Size = new Size(248, 40);
@@ -146,8 +147,9 @@
             // 
             // label3
             // 
-            label3.BackColor = SystemColors.Control;
-            label3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI", 10F);
+            label3.ForeColor = Color.DimGray;
             label3.Location = new Point(64, 112);
             label3.Name = "label3";
             label3.Size = new Size(560, 40);
@@ -169,7 +171,7 @@
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button1.FillColor = Color.White;
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.DimGray;
             guna2Button1.Location = new Point(894, 16);
             guna2Button1.Margin = new Padding(2);

@@ -1,6 +1,5 @@
-﻿using LILO_Packager.v2.Forms;
-using LILO_Packager.v2.Plugins.Model;
-using LILO_Packager.v2.Plugins.PluginCore;
+﻿using LILO_Packager.v2.Cloud.Storage;
+using LILO_Packager.v2.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +12,9 @@ using System.Windows.Forms;
 
 namespace LILO_Packager.v2.Controls
 {
-    public partial class DynamikPluginListItem : UserControl
+    public partial class DynamikFileListItem : UserControl
     {
-        public DynamikPluginListItem()
+        public DynamikFileListItem()
         {
             InitializeComponent();
         }
@@ -32,26 +31,17 @@ namespace LILO_Packager.v2.Controls
             set => lblDescription.Text = value;
         }
 
-        public IPluginBase Plugin { get; set; }
+        public MatrixEntry Entry { get; set; }
+        public uiImportSharedFiles ShowedInstance { get; set; }
 
-        private void DynamikPluginListItem_Load(object sender, EventArgs e)
+        private void guna2Panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
         private void guna2Button4_Click(object sender, EventArgs e)
         {
-            uiPluginManagerv2.Instance.SetPlugin(Plugin);
-        }
-
-        private void lblDescription_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            ShowedInstance.SetFile(Entry);
         }
     }
 }

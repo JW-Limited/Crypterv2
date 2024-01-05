@@ -140,6 +140,8 @@ namespace Crypterv2.DevTool.Core.Plugins
             }
         }
 
+
+
         public static AssemblyResponse GetAssemblyInfo(string filePath)
         {
             var response = new AssemblyResponse();

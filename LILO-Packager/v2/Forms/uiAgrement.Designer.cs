@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiAgrement));
             pnlMes1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            sPanel1 = new Sipaa.Framework.SPanel();
             Mes1_Message = new Label();
             Mes1_Title = new Label();
             Mes1_bnt = new Guna.UI2.WinForms.Guna2Button();
@@ -41,6 +42,7 @@
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             richText = new RichTextBox();
             pnlMes1.SuspendLayout();
+            guna2Panel2.SuspendLayout();
             guna2Panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -63,25 +65,40 @@
             // 
             // guna2Panel2
             // 
-            guna2Panel2.BackColor = Color.White;
-            guna2Panel2.BackgroundImage = Properties.Resources.Screenshot_2023_09_14_200707;
+            guna2Panel2.BackColor = Color.FromArgb(32, 32, 32);
             guna2Panel2.BackgroundImageLayout = ImageLayout.Stretch;
             guna2Panel2.BorderColor = SystemColors.ControlDark;
             guna2Panel2.BorderRadius = 15;
             guna2Panel2.BorderThickness = 2;
+            guna2Panel2.Controls.Add(sPanel1);
             guna2Panel2.FillColor = Color.Transparent;
             guna2Panel2.Location = new Point(24, 24);
             guna2Panel2.Margin = new Padding(2);
             guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.Size = new Size(232, 144);
+            guna2Panel2.Size = new Size(152, 144);
             guna2Panel2.TabIndex = 4;
+            // 
+            // sPanel1
+            // 
+            sPanel1.BackColor = Color.Black;
+            sPanel1.BackgroundImage = Properties.Resources.Screenshot_2023_10_13_052005;
+            sPanel1.BackgroundImageLayout = ImageLayout.Stretch;
+            sPanel1.BorderColor = Color.Black;
+            sPanel1.BorderRadius = 15;
+            sPanel1.BorderSize = 0;
+            sPanel1.ForeColor = Color.White;
+            sPanel1.Location = new Point(16, 16);
+            sPanel1.Margin = new Padding(4);
+            sPanel1.Name = "sPanel1";
+            sPanel1.Size = new Size(120, 112);
+            sPanel1.TabIndex = 33;
             // 
             // Mes1_Message
             // 
             Mes1_Message.BackColor = Color.Transparent;
-            Mes1_Message.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            Mes1_Message.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             Mes1_Message.ForeColor = Color.Silver;
-            Mes1_Message.Location = new Point(280, 96);
+            Mes1_Message.Location = new Point(200, 88);
             Mes1_Message.Margin = new Padding(4, 0, 4, 0);
             Mes1_Message.Name = "Mes1_Message";
             Mes1_Message.Size = new Size(584, 48);
@@ -91,9 +108,9 @@
             // Mes1_Title
             // 
             Mes1_Title.BackColor = Color.Transparent;
-            Mes1_Title.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            Mes1_Title.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             Mes1_Title.ForeColor = Color.White;
-            Mes1_Title.Location = new Point(280, 48);
+            Mes1_Title.Location = new Point(200, 48);
             Mes1_Title.Margin = new Padding(4, 0, 4, 0);
             Mes1_Title.Name = "Mes1_Title";
             Mes1_Title.Size = new Size(400, 40);
@@ -115,7 +132,7 @@
             Mes1_bnt.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             Mes1_bnt.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             Mes1_bnt.FocusedColor = Color.FromArgb(100, 170, 209);
-            Mes1_bnt.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            Mes1_bnt.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             Mes1_bnt.ForeColor = Color.White;
             Mes1_bnt.ImageAlign = HorizontalAlignment.Left;
             Mes1_bnt.ImageSize = new Size(35, 35);
@@ -141,7 +158,7 @@
             guna2Button6.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button6.FillColor = Color.Transparent;
             guna2Button6.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button6.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button6.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2Button6.ForeColor = Color.Black;
             guna2Button6.ImageAlign = HorizontalAlignment.Left;
             guna2Button6.ImageSize = new Size(35, 35);
@@ -166,7 +183,7 @@
             guna2Button7.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button7.FillColor = Color.Transparent;
             guna2Button7.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button7.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button7.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2Button7.ForeColor = Color.White;
             guna2Button7.Image = Properties.Resources.icons8_synchronize_240;
             guna2Button7.ImageSize = new Size(30, 30);
@@ -189,7 +206,7 @@
             bntCloseSideBoard.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntCloseSideBoard.FillColor = Color.Transparent;
             bntCloseSideBoard.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntCloseSideBoard.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            bntCloseSideBoard.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntCloseSideBoard.ForeColor = Color.White;
             bntCloseSideBoard.Image = Properties.Resources.Close;
             bntCloseSideBoard.ImageSize = new Size(25, 25);
@@ -214,7 +231,7 @@
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button1.FillColor = Color.Transparent;
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.White;
             guna2Button1.ImageAlign = HorizontalAlignment.Left;
             guna2Button1.ImageSize = new Size(35, 35);
@@ -274,6 +291,7 @@
             FormClosing += uiAgrement_FormClosing;
             Load += uiAgrement_Load;
             pnlMes1.ResumeLayout(false);
+            guna2Panel2.ResumeLayout(false);
             guna2Panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -290,5 +308,6 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private RichTextBox richText;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private Sipaa.Framework.SPanel sPanel1;
     }
 }

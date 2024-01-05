@@ -459,3 +459,5 @@ Crypterv2.WatchdogUtilty/Watchdogs/BehaviourWatchDog.cs
 Crypterv2.WatchdogUtilty/ServiceEngine.cs
 JWLimited.Licensing/Services/GitHubApi.cs
 JWLimited.Licensing/Schemes/IJWLimitedLicense.cs
+JWLimited.Licensing/Schemes/LicenseConverter.cs
+JWLimited.Licensing/Core/AwaitableExtensions.cs

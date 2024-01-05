@@ -578,16 +578,17 @@ partial class uiSettings
         // 
         dynamicToggleButton1.BorderColor = Color.Gainsboro;
         dynamicToggleButton1.BorderRadius = 15;
-        dynamicToggleButton1.Checked = false;
+        dynamicToggleButton1.Checked = true;
         dynamicToggleButton1.CheckedColor = Color.FromArgb(94, 148, 255);
         dynamicToggleButton1.CheckedText = "Enabled";
         dynamicToggleButton1.DisabledText = "Not Changable";
-        dynamicToggleButton1.EnabledState = false;
+        dynamicToggleButton1.EnabledState = true;
         dynamicToggleButton1.Location = new Point(16, 152);
         dynamicToggleButton1.Name = "dynamicToggleButton1";
         dynamicToggleButton1.Size = new Size(256, 56);
         dynamicToggleButton1.TabIndex = 16;
         dynamicToggleButton1.UnCheckedText = "Disabled";
+        dynamicToggleButton1.Clicked += dynamicToggleButton1_Clicked;
         // 
         // label42
         // 
@@ -599,7 +600,7 @@ partial class uiSettings
         label42.Name = "label42";
         label42.Size = new Size(152, 48);
         label42.TabIndex = 14;
-        label42.Text = "(Still Unstable)";
+        label42.Text = "(Recommended)";
         label42.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // label23
@@ -612,7 +613,7 @@ partial class uiSettings
         label23.Name = "label23";
         label23.Size = new Size(232, 68);
         label23.TabIndex = 14;
-        label23.Text = "Enable OpenGL and DirectX rendering.";
+        label23.Text = "Enables the AvFilter for the Items in the List.";
         label23.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // label24
@@ -624,7 +625,7 @@ partial class uiSettings
         label24.Name = "label24";
         label24.Size = new Size(176, 39);
         label24.TabIndex = 15;
-        label24.Text = "OpenGl";
+        label24.Text = "History";
         label24.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // guna2Panel21

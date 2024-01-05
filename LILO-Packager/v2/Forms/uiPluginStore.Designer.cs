@@ -52,7 +52,7 @@
             // 
             lblText.BackColor = Color.Transparent;
             lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblText.ForeColor = Color.White;
+            lblText.ForeColor = Color.DimGray;
             lblText.Location = new Point(24, 0);
             lblText.Margin = new Padding(4, 0, 4, 0);
             lblText.Name = "lblText";
@@ -64,12 +64,11 @@
             // sPanel2
             // 
             sPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            sPanel2.BackColor = Color.Black;
-            sPanel2.BackgroundImage = Properties.Resources.Aqua_Marine_180degree;
+            sPanel2.BackColor = Color.WhiteSmoke;
             sPanel2.BackgroundImageLayout = ImageLayout.Stretch;
-            sPanel2.BorderColor = Color.Black;
+            sPanel2.BorderColor = Color.Gainsboro;
             sPanel2.BorderRadius = 20;
-            sPanel2.BorderSize = 0;
+            sPanel2.BorderSize = 2;
             sPanel2.Controls.Add(lblText);
             sPanel2.Controls.Add(bntCancel);
             sPanel2.ForeColor = Color.White;
@@ -91,10 +90,10 @@
             bntCancel.DisabledState.CustomBorderColor = Color.DarkGray;
             bntCancel.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            bntCancel.FillColor = Color.Transparent;
+            bntCancel.FillColor = Color.White;
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
             bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            bntCancel.ForeColor = Color.White;
+            bntCancel.ForeColor = Color.DimGray;
             bntCancel.Location = new Point(776, 16);
             bntCancel.Margin = new Padding(2);
             bntCancel.Name = "bntCancel";
@@ -235,7 +234,7 @@
             lblMes.AutoEllipsis = true;
             lblMes.BackColor = Color.Transparent;
             lblMes.Font = new Font("Segoe UI", 12F);
-            lblMes.ForeColor = Color.Black;
+            lblMes.ForeColor = Color.Gray;
             lblMes.Location = new Point(208, 521);
             lblMes.Margin = new Padding(4, 0, 4, 0);
             lblMes.Name = "lblMes";
@@ -274,7 +273,7 @@
             lblExc.AutoEllipsis = true;
             lblExc.BackColor = Color.Transparent;
             lblExc.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblExc.ForeColor = Color.Black;
+            lblExc.ForeColor = Color.DimGray;
             lblExc.Location = new Point(212, 456);
             lblExc.Margin = new Padding(4, 0, 4, 0);
             lblExc.Name = "lblExc";

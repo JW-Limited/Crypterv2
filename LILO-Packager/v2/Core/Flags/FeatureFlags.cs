@@ -22,7 +22,8 @@ namespace LILO_Packager.v2.Core
         ThirdPartyEncryptenLibrarys,
         FilePackerv2,
         BugBarrierMiniDumpService,
-        ShellMasterAll
+        ShellMasterAll,
+        HistoryElementOnlyIfFileExist
     }
 
     public class FeatureFlagConfig : IFeatureFlagConfig
@@ -41,5 +42,6 @@ namespace LILO_Packager.v2.Core
         public bool FilePackerv2 { get; set; } = true;
         public bool BugBarrierMiniDumpService { get; set; } = false;
         public bool ShellMasterAll { get; set; } = true;
+        public bool HistoryElementOnlyIfFileExist { get; set; } = true;
     }
 }

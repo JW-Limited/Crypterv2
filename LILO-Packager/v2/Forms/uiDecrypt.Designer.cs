@@ -96,7 +96,7 @@ partial class uiDecrypt
         bntCancel.DisabledState.CustomBorderColor = Color.DarkGray;
         bntCancel.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        bntCancel.FillColor = Color.Transparent;
+        bntCancel.FillColor = Color.White;
         bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
         bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         bntCancel.ForeColor = Color.DimGray;
@@ -286,7 +286,7 @@ partial class uiDecrypt
         pnlFiles.Location = new Point(24, 384);
         pnlFiles.Margin = new Padding(2);
         pnlFiles.Name = "pnlFiles";
-        pnlFiles.Size = new Size(352, 544);
+        pnlFiles.Size = new Size(352, 469);
         pnlFiles.TabIndex = 13;
         // 
         // chblistFiles
@@ -300,8 +300,9 @@ partial class uiDecrypt
         chblistFiles.ForeColor = Color.White;
         chblistFiles.FormattingEnabled = true;
         chblistFiles.Location = new Point(28, 64);
+        chblistFiles.Margin = new Padding(2);
         chblistFiles.Name = "chblistFiles";
-        chblistFiles.Size = new Size(296, 448);
+        chblistFiles.Size = new Size(296, 336);
         chblistFiles.TabIndex = 3;
         chblistFiles.ThreeDCheckBoxes = true;
         // 
@@ -312,6 +313,7 @@ partial class uiDecrypt
         progress.BorderRadius = 20;
         progress.FillColor = Color.Transparent;
         progress.Location = new Point(0, -66);
+        progress.Margin = new Padding(2);
         progress.Name = "progress";
         progress.ProgressColor = Color.DeepSkyBlue;
         progress.ProgressColor2 = Color.Navy;
@@ -330,7 +332,7 @@ partial class uiDecrypt
         guna2Panel3.Controls.Add(progress);
         guna2Panel3.Controls.Add(guna2Button1);
         guna2Panel3.FillColor = Color.White;
-        guna2Panel3.Location = new Point(400, 864);
+        guna2Panel3.Location = new Point(400, 789);
         guna2Panel3.Margin = new Padding(2);
         guna2Panel3.Name = "guna2Panel3";
         guna2Panel3.Size = new Size(600, 58);
@@ -345,6 +347,7 @@ partial class uiDecrypt
         progress1.BorderThickness = 2;
         progress1.FillColor = Color.Transparent;
         progress1.Location = new Point(0, 0);
+        progress1.Margin = new Padding(2);
         progress1.Name = "progress1";
         progress1.ProgressColor = Color.DeepSkyBlue;
         progress1.ProgressColor2 = Color.RoyalBlue;
@@ -393,7 +396,7 @@ partial class uiDecrypt
         guna2Panel2.Location = new Point(400, 392);
         guna2Panel2.Margin = new Padding(2);
         guna2Panel2.Name = "guna2Panel2";
-        guna2Panel2.Size = new Size(600, 456);
+        guna2Panel2.Size = new Size(600, 376);
         guna2Panel2.TabIndex = 16;
         guna2Panel2.DragDrop += panel2_DragDrop;
         guna2Panel2.DragEnter += panel2_DragEnter;
@@ -413,7 +416,7 @@ partial class uiDecrypt
         bntOpen.FocusedColor = Color.FromArgb(100, 170, 209);
         bntOpen.Font = new Font("Segoe UI", 9F);
         bntOpen.ForeColor = Color.RoyalBlue;
-        bntOpen.Location = new Point(216, 352);
+        bntOpen.Location = new Point(216, 312);
         bntOpen.Margin = new Padding(2);
         bntOpen.Name = "bntOpen";
         bntOpen.Size = new Size(176, 40);
@@ -431,7 +434,7 @@ partial class uiDecrypt
         pnlChild.BorderRadius = 15;
         pnlChild.Controls.Add(label1);
         pnlChild.FillColor = Color.Transparent;
-        pnlChild.Location = new Point(224, 80);
+        pnlChild.Location = new Point(224, 40);
         pnlChild.Margin = new Padding(2);
         pnlChild.Name = "pnlChild";
         pnlChild.Size = new Size(160, 240);
@@ -468,12 +471,13 @@ partial class uiDecrypt
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.White;
-        ClientSize = new Size(1020, 948);
+        ClientSize = new Size(1020, 872);
         Controls.Add(guna2Panel2);
         Controls.Add(guna2Panel3);
         Controls.Add(guna2Panel1);
         Controls.Add(pnlFiles);
         Controls.Add(sPanel1);
+        Margin = new Padding(2);
         Name = "uiDecrypt";
         Text = "uiDecrypt";
         Load += uiDecrypt_Load;

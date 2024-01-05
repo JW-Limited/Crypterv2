@@ -419,6 +419,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
             this.Invoke(() =>
             {
                 splash_Panel.Visible = false;
+                prgMiniProgress.Visible = false;
                 hider.Visible = true;
             });
 
@@ -574,24 +575,32 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
 
     private async void bntOpenDevApp(object sender, EventArgs e)
     {
-        var ofd = new OpenFileDialog();
-        ofd.ShowDialog();
+        //var ofd = new OpenFileDialog();
+        //ofd.ShowDialog();
 
-        if (await new SmartFilePacker().CheckIfFileIsValid(ofd.FileName))
-        {
-            var files = await new SmartFilePacker().GetZippedFileInfoAsync(ofd.FileName);
-            Console.WriteLine(files.Package.Name + files.Application.Name + files.Application.Version);
+        //if (await new SmartFilePacker().CheckIfFileIsValid(ofd.FileName))
+        //{
+        //    var files = await new SmartFilePacker().GetZippedFileInfoAsync(ofd.FileName);
+        //    Console.WriteLine(files.Package.Name + files.Application.Name + files.Application.Version);
 
-            foreach (var file in files.Files)
+        //    foreach (var file in files.Files)
+        //    {
+        //        Console.WriteLine(file.FilePath + file.Hash + "\n");
+        //    }
+        //}
+        //else
+        //{
+        //    OkDialog.Show("This file was not packaged with this Application.", "Error");
+        //}
+
+
+        var sec = new uiSecureInputHandler(
+            new Core.Dialogs.Secured.SecuredDialogPreferences(
+                "AxcDialog", "AxKey", "Please Input youre wanted Encrypten Key")
             {
-                Console.WriteLine(file.FilePath + file.Hash + "\n");
-            }
-        }
-        else
-        {
-            OkDialog.Show("This file was not packaged with this Application.", "Error");
-        }
-
+                Channel = BroadcastChannel.Instance
+            });
+        sec.ShowDialog();
 
         bntMenu(sender, e);
     }

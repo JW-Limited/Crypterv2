@@ -29,7 +29,7 @@ partial class uiEncryt
     private void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
-        Guna.UI2.AnimatorNS.Animation animation2 = new Guna.UI2.AnimatorNS.Animation();
+        Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiEncryt));
         sPanel1 = new Sipaa.Framework.SPanel();
         bntPlugin = new Guna.UI2.WinForms.Guna2Button();
@@ -106,7 +106,7 @@ partial class uiEncryt
         bntPlugin.DisabledState.CustomBorderColor = Color.DarkGray;
         bntPlugin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntPlugin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        bntPlugin.FillColor = Color.Transparent;
+        bntPlugin.FillColor = Color.White;
         bntPlugin.FocusedColor = Color.FromArgb(100, 170, 209);
         bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         bntPlugin.ForeColor = Color.DimGray;
@@ -131,7 +131,7 @@ partial class uiEncryt
         bntCancel.DisabledState.CustomBorderColor = Color.DarkGray;
         bntCancel.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        bntCancel.FillColor = Color.Transparent;
+        bntCancel.FillColor = Color.White;
         bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
         bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         bntCancel.ForeColor = Color.DimGray;
@@ -174,7 +174,7 @@ partial class uiEncryt
         bntOpen.FocusedColor = Color.FromArgb(100, 170, 209);
         bntOpen.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
         bntOpen.ForeColor = Color.RoyalBlue;
-        bntOpen.Location = new Point(216, 344);
+        bntOpen.Location = new Point(216, 308);
         bntOpen.Margin = new Padding(2);
         bntOpen.Name = "bntOpen";
         bntOpen.Size = new Size(176, 40);
@@ -340,7 +340,7 @@ partial class uiEncryt
         guna2Panel3.Controls.Add(guna2Button1);
         Transition.SetDecoration(guna2Panel3, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Panel3.FillColor = Color.White;
-        guna2Panel3.Location = new Point(400, 864);
+        guna2Panel3.Location = new Point(400, 789);
         guna2Panel3.Margin = new Padding(2);
         guna2Panel3.Name = "guna2Panel3";
         guna2Panel3.Size = new Size(600, 58);
@@ -405,7 +405,7 @@ partial class uiEncryt
         pnlFiles.Location = new Point(24, 384);
         pnlFiles.Margin = new Padding(2);
         pnlFiles.Name = "pnlFiles";
-        pnlFiles.Size = new Size(352, 544);
+        pnlFiles.Size = new Size(352, 469);
         pnlFiles.TabIndex = 3;
         // 
         // chbFolders
@@ -421,7 +421,7 @@ partial class uiEncryt
         chbFolders.Location = new Point(32, 112);
         chbFolders.Margin = new Padding(2);
         chbFolders.Name = "chbFolders";
-        chbFolders.Size = new Size(296, 392);
+        chbFolders.Size = new Size(296, 280);
         chbFolders.TabIndex = 4;
         chbFolders.UseCompatibleTextRendering = true;
         chbFolders.Visible = false;
@@ -503,7 +503,7 @@ partial class uiEncryt
         chblistFiles.Location = new Point(32, 112);
         chblistFiles.Margin = new Padding(2);
         chblistFiles.Name = "chblistFiles";
-        chblistFiles.Size = new Size(296, 392);
+        chblistFiles.Size = new Size(296, 280);
         chblistFiles.TabIndex = 2;
         // 
         // pnlChild
@@ -517,7 +517,7 @@ partial class uiEncryt
         pnlChild.Controls.Add(label1);
         Transition.SetDecoration(pnlChild, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlChild.FillColor = Color.Transparent;
-        pnlChild.Location = new Point(224, 72);
+        pnlChild.Location = new Point(224, 36);
         pnlChild.Margin = new Padding(2);
         pnlChild.Name = "pnlChild";
         pnlChild.Size = new Size(160, 240);
@@ -556,7 +556,7 @@ partial class uiEncryt
         guna2Panel2.Location = new Point(400, 384);
         guna2Panel2.Margin = new Padding(2);
         guna2Panel2.Name = "guna2Panel2";
-        guna2Panel2.Size = new Size(600, 456);
+        guna2Panel2.Size = new Size(600, 384);
         guna2Panel2.TabIndex = 3;
         guna2Panel2.DragDrop += panel2_DragDrop;
         guna2Panel2.DragEnter += panel2_DragEnter;
@@ -583,22 +583,22 @@ partial class uiEncryt
         // 
         Transition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent;
         Transition.Cursor = null;
-        animation2.AnimateOnlyDifferences = true;
-        animation2.BlindCoeff = (PointF)resources.GetObject("animation2.BlindCoeff");
-        animation2.LeafCoeff = 0F;
-        animation2.MaxTime = 1F;
-        animation2.MinTime = 0F;
-        animation2.MosaicCoeff = (PointF)resources.GetObject("animation2.MosaicCoeff");
-        animation2.MosaicShift = (PointF)resources.GetObject("animation2.MosaicShift");
-        animation2.MosaicSize = 0;
-        animation2.Padding = new Padding(0);
-        animation2.RotateCoeff = 0F;
-        animation2.RotateLimit = 0F;
-        animation2.ScaleCoeff = (PointF)resources.GetObject("animation2.ScaleCoeff");
-        animation2.SlideCoeff = (PointF)resources.GetObject("animation2.SlideCoeff");
-        animation2.TimeCoeff = 0F;
-        animation2.TransparencyCoeff = 1F;
-        Transition.DefaultAnimation = animation2;
+        animation1.AnimateOnlyDifferences = true;
+        animation1.BlindCoeff = (PointF)resources.GetObject("animation1.BlindCoeff");
+        animation1.LeafCoeff = 0F;
+        animation1.MaxTime = 1F;
+        animation1.MinTime = 0F;
+        animation1.MosaicCoeff = (PointF)resources.GetObject("animation1.MosaicCoeff");
+        animation1.MosaicShift = (PointF)resources.GetObject("animation1.MosaicShift");
+        animation1.MosaicSize = 0;
+        animation1.Padding = new Padding(0);
+        animation1.RotateCoeff = 0F;
+        animation1.RotateLimit = 0F;
+        animation1.ScaleCoeff = (PointF)resources.GetObject("animation1.ScaleCoeff");
+        animation1.SlideCoeff = (PointF)resources.GetObject("animation1.SlideCoeff");
+        animation1.TimeCoeff = 0F;
+        animation1.TransparencyCoeff = 1F;
+        Transition.DefaultAnimation = animation1;
         Transition.Interval = 1;
         // 
         // uiEncryt
@@ -607,7 +607,7 @@ partial class uiEncryt
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = SystemColors.ButtonHighlight;
         BackgroundImageLayout = ImageLayout.Stretch;
-        ClientSize = new Size(1020, 948);
+        ClientSize = new Size(1020, 872);
         Controls.Add(guna2Panel1);
         Controls.Add(guna2Panel2);
         Controls.Add(pnlFiles);

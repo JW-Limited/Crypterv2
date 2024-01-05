@@ -1,6 +1,6 @@
 ﻿namespace LILO_Packager.v2.Controls
 {
-    partial class DynamikPluginListItem
+    partial class DynamikFileListItem
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -49,8 +49,8 @@
             guna2Panel1.Location = new Point(0, 0);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(255, 60);
-            guna2Panel1.TabIndex = 57;
+            guna2Panel1.Size = new Size(242, 60);
+            guna2Panel1.TabIndex = 58;
             guna2Panel1.Paint += guna2Panel1_Paint;
             // 
             // lblDescription
@@ -59,12 +59,11 @@
             lblDescription.BackColor = Color.Transparent;
             lblDescription.Font = new Font("Segoe UI", 8F);
             lblDescription.ForeColor = Color.Silver;
-            lblDescription.Location = new Point(19, 32);
+            lblDescription.Location = new Point(16, 32);
             lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(90, 19);
+            lblDescription.Size = new Size(160, 19);
             lblDescription.TabIndex = 54;
             lblDescription.Text = "Manager";
-            lblDescription.Click += lblDescription_Click;
             // 
             // lblPluginName
             // 
@@ -73,7 +72,7 @@
             lblPluginName.BackColor = Color.Transparent;
             lblPluginName.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             lblPluginName.ForeColor = SystemColors.WindowFrame;
-            lblPluginName.Location = new Point(19, 6);
+            lblPluginName.Location = new Point(16, 6);
             lblPluginName.Name = "lblPluginName";
             lblPluginName.Size = new Size(160, 32);
             lblPluginName.TabIndex = 53;
@@ -98,22 +97,20 @@
             guna2Button4.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2Button4.ForeColor = Color.White;
             guna2Button4.ImageSize = new Size(25, 25);
-            guna2Button4.Location = new Point(192, 15);
+            guna2Button4.Location = new Point(183, 16);
             guna2Button4.Margin = new Padding(2);
             guna2Button4.Name = "guna2Button4";
             guna2Button4.Size = new Size(46, 27);
             guna2Button4.TabIndex = 55;
             guna2Button4.Click += guna2Button4_Click;
             // 
-            // DynamikPluginListItem
+            // DynamikFileListItem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(guna2Panel1);
-            Margin = new Padding(2, 2, 2, 2);
-            Name = "DynamikPluginListItem";
-            Size = new Size(255, 60);
-            Load += DynamikPluginListItem_Load;
+            Name = "DynamikFileListItem";
+            Size = new Size(242, 60);
             guna2Panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -121,8 +118,8 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Label lblPluginName;
         private Label lblDescription;
+        private Label lblPluginName;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
     }
 }

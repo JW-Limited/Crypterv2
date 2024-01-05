@@ -50,6 +50,8 @@ partial class PluginInterface
         label6 = new Label();
         pnlFiles = new Guna.UI2.WinForms.Guna2Panel();
         progress = new Guna.UI2.WinForms.Guna2ProgressBar();
+        label16 = new Label();
+        label15 = new Label();
         sPanel11 = new Sipaa.Framework.SPanel();
         label7 = new Label();
         guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -65,8 +67,6 @@ partial class PluginInterface
         guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
         label12 = new Label();
         label14 = new Label();
-        label15 = new Label();
-        label16 = new Label();
         sPanel2.SuspendLayout();
         guna2Panel4.SuspendLayout();
         sPanel3.SuspendLayout();
@@ -338,7 +338,6 @@ partial class PluginInterface
         // 
         // pnlFiles
         // 
-        pnlFiles.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         pnlFiles.BorderColor = Color.Gainsboro;
         pnlFiles.BorderRadius = 15;
         pnlFiles.BorderThickness = 2;
@@ -354,7 +353,6 @@ partial class PluginInterface
         // 
         // progress
         // 
-        progress.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         progress.BackColor = Color.Transparent;
         progress.BorderColor = Color.Gainsboro;
         progress.BorderRadius = 10;
@@ -370,6 +368,34 @@ partial class PluginInterface
         progress.Text = "guna2ProgressBar1";
         progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
         progress.Visible = false;
+        // 
+        // label16
+        // 
+        label16.BackColor = Color.Transparent;
+        label16.Font = new Font("Segoe UI", 8F);
+        label16.ForeColor = Color.DarkGray;
+        label16.Location = new Point(32, 80);
+        label16.Margin = new Padding(4, 0, 4, 0);
+        label16.Name = "label16";
+        label16.Size = new Size(232, 32);
+        label16.TabIndex = 1;
+        label16.Text = "details\r\n\r\n";
+        label16.TextAlign = ContentAlignment.MiddleLeft;
+        label16.Visible = false;
+        // 
+        // label15
+        // 
+        label15.BackColor = Color.Transparent;
+        label15.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        label15.ForeColor = Color.Gray;
+        label15.Location = new Point(32, 32);
+        label15.Margin = new Padding(4, 0, 4, 0);
+        label15.Name = "label15";
+        label15.Size = new Size(184, 40);
+        label15.TabIndex = 1;
+        label15.Text = "Model";
+        label15.TextAlign = ContentAlignment.MiddleLeft;
+        label15.Visible = false;
         // 
         // sPanel11
         // 
@@ -481,7 +507,6 @@ partial class PluginInterface
         // 
         // label10
         // 
-        label10.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
         label10.BackColor = Color.Transparent;
         label10.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         label10.ForeColor = SystemColors.ControlDark;
@@ -585,32 +610,6 @@ partial class PluginInterface
         label14.Text = "All Synced";
         label14.TextAlign = ContentAlignment.MiddleLeft;
         label14.Visible = false;
-        // 
-        // label15
-        // 
-        label15.BackColor = Color.Transparent;
-        label15.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-        label15.ForeColor = Color.Gray;
-        label15.Location = new Point(32, 32);
-        label15.Margin = new Padding(4, 0, 4, 0);
-        label15.Name = "label15";
-        label15.Size = new Size(184, 40);
-        label15.TabIndex = 1;
-        label15.Text = "Model";
-        label15.TextAlign = ContentAlignment.MiddleLeft;
-        // 
-        // label16
-        // 
-        label16.BackColor = Color.Transparent;
-        label16.Font = new Font("Segoe UI", 8F);
-        label16.ForeColor = Color.DarkGray;
-        label16.Location = new Point(32, 80);
-        label16.Margin = new Padding(4, 0, 4, 0);
-        label16.Name = "label16";
-        label16.Size = new Size(232, 32);
-        label16.TabIndex = 1;
-        label16.Text = "details\r\n\r\n";
-        label16.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // PluginInterface
         // 

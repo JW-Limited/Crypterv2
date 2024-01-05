@@ -119,4 +119,9 @@ public partial class uiSettings : Form
     {
         MainHost.Instance().OpenInApp(v2.Forms.uiKeyManager.Instance());
     }
+
+    private async void dynamicToggleButton1_Clicked(object sender, EventArgs e)
+    {
+        await FeatureManager.ToggleFeatureAsync(FeatureFlags.HistoryElementOnlyIfFileExist);
+    }
 }

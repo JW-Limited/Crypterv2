@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static LILO_Packager.v2.Shared.FileOperations.FileDialogFilter;
+﻿using System.Runtime.InteropServices;
 
 namespace LILO_Packager.v2.Shared;
 
-[DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 public partial class FileOperations
 {
     public enum CrypterFileType
@@ -16,16 +9,47 @@ public partial class FileOperations
         EncryptedFile,
         CustomStyleSheet,
         CrypterExtension,
-        DebugSession
+        DebugSession,
+        CloudEntry,
+        CloudClearifingEntry,
+        CloudEntryDeclaration
     }
 
-    public Dictionary<CrypterFileType, string> _fileExtensions = new Dictionary<CrypterFileType, string>() 
+    private static  Dictionary<CrypterFileType, string> _fileExtensions = new Dictionary<CrypterFileType, string>() 
     {
         { CrypterFileType.EncryptedFile, ".lsf"},
         { CrypterFileType.CustomStyleSheet, ".lcs"},
         { CrypterFileType.CrypterExtension, ".cryptex"},
         { CrypterFileType.DebugSession, ".dbgsl"},
+        { CrypterFileType.CloudEntry, ".cdex" },
+        { CrypterFileType.CloudClearifingEntry, ".cdcex" },
+        { CrypterFileType.CloudEntryDeclaration,".cdex.info" }
     };
+
+    public static string GetFileExtension(CrypterFileType type)
+    {
+        return _fileExtensions.First(k => k.Key == type).Value;
+    }
+
+    [DllImport("shell32.dll", CharSet = CharSet.Auto)]
+    private static extern IntPtr ExtractAssociatedIcon(IntPtr hInst,
+                                                            string lpIconPath, out ushort lpiIcon);
+
+    public static Icon GetFileIcon(string filePath)
+    {
+        ushort iconIndex;
+        IntPtr hIcon = ExtractAssociatedIcon(IntPtr.Zero, filePath, out iconIndex);
+        if (hIcon != IntPtr.Zero)
+        {
+            Icon icon = (Icon)Icon.FromHandle(hIcon).Clone();
+            DestroyIcon(hIcon);
+            return icon;
+        }
+        return null;
+    }
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto)]
+    private static extern bool DestroyIcon(IntPtr handle);
 
     public static void CreateDirectoryRecursively(string path)
     {
@@ -114,10 +138,5 @@ public partial class FileOperations
         }
 
         else { return null; }
-    }
-
-    public string GetDebuggerDisplay()
-    {
-        return ToString();
     }
 }

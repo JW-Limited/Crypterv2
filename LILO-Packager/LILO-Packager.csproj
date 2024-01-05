@@ -113,6 +113,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AnimOfDots" Version="1.0.5.1" />
     <PackageReference Include="AudioSwitcher.AudioApi.CoreAudio" Version="4.0.0-alpha5" />
     <PackageReference Include="Bunifu.Dataviz.WinForms" Version="2.2.1" />
     <PackageReference Include="bunifu.ui.winforms" Version="6.1.0" />
@@ -122,8 +123,10 @@
     <PackageReference Include="CoreAudio" Version="1.37.0" />
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.3.5" />
     <PackageReference Include="HTAlt.WinForms" Version="0.1.7.7" />
+    <PackageReference Include="LoadingIndicator.WinForms" Version="1.1.0" />
     <PackageReference Include="MailKit" Version="4.2.0" />
     <PackageReference Include="Markdig" Version="0.33.0" />
+    <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
     <PackageReference Include="metromodernui" Version="1.4.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0-preview.6.23329.7" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />

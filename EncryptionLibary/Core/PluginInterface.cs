@@ -86,7 +86,7 @@ public partial class PluginInterface : Form
 
     private void guna2Button2_Click(object sender, EventArgs e)
     {
-        progress.Visible = true;
+        //progress.Visible = true;
     }
 
     private void lblText_Click(object sender, EventArgs e)

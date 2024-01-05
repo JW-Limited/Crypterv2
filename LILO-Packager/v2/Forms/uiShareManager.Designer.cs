@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             sPanel2 = new Sipaa.Framework.SPanel();
             listView1 = new ListView();
             colFileName = new ColumnHeader();
             colUploadDate = new ColumnHeader();
+            bntAdvanced = new Guna.UI2.WinForms.Guna2Button();
             bntShare = new Guna.UI2.WinForms.Guna2Button();
             bntPlugin = new Guna.UI2.WinForms.Guna2Button();
             lblText = new Label();
@@ -45,6 +47,7 @@
             listView2 = new ListView();
             columnHeader1 = new ColumnHeader();
             lblVersion = new Label();
+            pswDialog = new Ookii.Dialogs.WinForms.InputDialog(components);
             sPanel2.SuspendLayout();
             guna2Panel3.SuspendLayout();
             guna2Panel1.SuspendLayout();
@@ -59,6 +62,7 @@
             sPanel2.BorderRadius = 20;
             sPanel2.BorderSize = 2;
             sPanel2.Controls.Add(listView1);
+            sPanel2.Controls.Add(bntAdvanced);
             sPanel2.Controls.Add(bntShare);
             sPanel2.Controls.Add(bntPlugin);
             sPanel2.Controls.Add(lblText);
@@ -72,7 +76,7 @@
             // listView1
             // 
             listView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            listView1.BackColor = Color.WhiteSmoke;
+            listView1.BackColor = Color.White;
             listView1.BorderStyle = BorderStyle.None;
             listView1.Columns.AddRange(new ColumnHeader[] { colFileName, colUploadDate });
             listView1.ForeColor = Color.DimGray;
@@ -96,6 +100,35 @@
             colUploadDate.Text = "Uploaded";
             colUploadDate.Width = 180;
             // 
+            // bntAdvanced
+            // 
+            bntAdvanced.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            bntAdvanced.Animated = true;
+            bntAdvanced.BackColor = Color.Transparent;
+            bntAdvanced.BackgroundImageLayout = ImageLayout.Zoom;
+            bntAdvanced.BorderColor = Color.Gainsboro;
+            bntAdvanced.BorderRadius = 10;
+            bntAdvanced.BorderThickness = 2;
+            bntAdvanced.CheckedState.FillColor = Color.White;
+            bntAdvanced.CustomizableEdges.BottomLeft = false;
+            bntAdvanced.CustomizableEdges.TopLeft = false;
+            bntAdvanced.DisabledState.BorderColor = Color.Gainsboro;
+            bntAdvanced.DisabledState.CustomBorderColor = Color.Gainsboro;
+            bntAdvanced.DisabledState.FillColor = Color.WhiteSmoke;
+            bntAdvanced.DisabledState.ForeColor = Color.DimGray;
+            bntAdvanced.Enabled = false;
+            bntAdvanced.FillColor = Color.White;
+            bntAdvanced.FocusedColor = Color.FromArgb(100, 170, 209);
+            bntAdvanced.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            bntAdvanced.ForeColor = Color.DarkGray;
+            bntAdvanced.Location = new Point(664, 696);
+            bntAdvanced.Margin = new Padding(2);
+            bntAdvanced.Name = "bntAdvanced";
+            bntAdvanced.Size = new Size(168, 48);
+            bntAdvanced.TabIndex = 15;
+            bntAdvanced.Text = "Advanced";
+            bntAdvanced.Click += bntAdvanced_Click;
+            // 
             // bntShare
             // 
             bntShare.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -118,7 +151,7 @@
             bntShare.Location = new Point(40, 696);
             bntShare.Margin = new Padding(2);
             bntShare.Name = "bntShare";
-            bntShare.Size = new Size(792, 48);
+            bntShare.Size = new Size(632, 48);
             bntShare.TabIndex = 15;
             bntShare.Text = "Export";
             bntShare.Click += bntShare_Click;
@@ -136,7 +169,7 @@
             bntPlugin.DisabledState.CustomBorderColor = Color.DarkGray;
             bntPlugin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             bntPlugin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            bntPlugin.FillColor = Color.Transparent;
+            bntPlugin.FillColor = Color.White;
             bntPlugin.FocusedColor = Color.FromArgb(100, 170, 209);
             bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntPlugin.ForeColor = Color.DimGray;
@@ -225,12 +258,12 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             label1.ForeColor = SystemColors.WindowFrame;
-            label1.Location = new Point(23, 32);
+            label1.Location = new Point(22, 32);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(200, 40);
             label1.TabIndex = 43;
-            label1.Text = "JW Limited ©️ 2023";
+            label1.Text = "JW Limited ©️ 2024";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label5
@@ -268,7 +301,7 @@
             listView2.Columns.AddRange(new ColumnHeader[] { columnHeader1 });
             listView2.ForeColor = Color.DimGray;
             listView2.FullRowSelect = true;
-            listView2.Location = new Point(24, 0);
+            listView2.Location = new Point(24, 8);
             listView2.Margin = new Padding(2);
             listView2.Name = "listView2";
             listView2.Size = new Size(264, 216);
@@ -294,6 +327,12 @@
             lblVersion.Text = "VERSION\r\n";
             lblVersion.TextAlign = ContentAlignment.BottomLeft;
             // 
+            // pswDialog
+            // 
+            pswDialog.Content = "The file was encrypted using an Electric Passkey.";
+            pswDialog.MainInstruction = "E.key";
+            pswDialog.WindowTitle = "MainHost";
+            // 
             // uiShareManager
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -307,6 +346,7 @@
             Controls.Add(sPanel1);
             Controls.Add(guna2Panel3);
             Controls.Add(sPanel2);
+            Margin = new Padding(2);
             Name = "uiShareManager";
             StartPosition = FormStartPosition.CenterParent;
             Text = "uiShareManager";
@@ -336,5 +376,7 @@
         private ListView listView2;
         private ColumnHeader columnHeader1;
         private Label lblVersion;
+        private Ookii.Dialogs.WinForms.InputDialog pswDialog;
+        private Guna.UI2.WinForms.Guna2Button bntAdvanced;
     }
 }
