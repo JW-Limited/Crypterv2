@@ -10,6 +10,7 @@ using LILO_Packager.v2.Shared.Api.Core;
 using System.Diagnostics;
 using System.Media;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -82,7 +83,7 @@ namespace LILO_Packager.v2.Forms
         private static extern bool DestroyIcon(IntPtr handle);
 
 
-        
+
 
         private void ListViewHistory_DoubleClick(object? sender, EventArgs e)
         {
@@ -189,12 +190,9 @@ namespace LILO_Packager.v2.Forms
                 Task.Run(() =>
                 {
                     this.listViewHistory.Items.Clear();
-                    int stepps = historyElements.Count;
-                    int doneStepps = 0;
-
                     try
                     {
-                        if (stepps >= 100)
+                        if (historyElements.Count >= 100)
                         {
                             MainHost.Instance().hider.Enabled = false;
                         }
@@ -204,10 +202,6 @@ namespace LILO_Packager.v2.Forms
                             var item = ListItemFactory(element, imagelist);
                             if (item is null) continue;
                             listViewHistory.Items.Add(item);
-
-                            doneStepps++;
-
-                            label5.Text = $"{doneStepps * 100 / stepps}%";
                         }
 
                         pnlLoginLoad.Visible = false;
@@ -218,7 +212,7 @@ namespace LILO_Packager.v2.Forms
                     {
                         ConsoleManager.Instance().WriteLineWithColor(ex.Message);
                     }
-                    
+
                 }, loadingAbort);
             }
             else
@@ -230,7 +224,7 @@ namespace LILO_Packager.v2.Forms
 
         public ListViewItem ListItemFactory(HistoryElement element, ImageList imagelist)
         {
-            if(element.id == 0)
+            if (element.id == 0)
             {
                 return null;
             }
@@ -377,47 +371,54 @@ namespace LILO_Packager.v2.Forms
 
         private void viewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            Task.Run(() =>
             {
-                if (listViewHistory.SelectedItems.Count > 0)
+                this.Invoke(() =>
                 {
-                    var item = listViewHistory.SelectedItems[0];
-
-                    foreach (var element in historyElements)
+                    try
                     {
-                        if (item.Text == $"{element.id}")
+                        if (listViewHistory.SelectedItems.Count > 0)
                         {
-                            if (element.id == 0)
-                            {
-                                OkDialog.Show("This Operation had no output.", "No Output");
-                                break;
-                            }
+                            var item = listViewHistory.SelectedItems[0];
 
-                            try
+                            foreach (var element in historyElements)
                             {
-                                if (File.Exists(element.outputFileName))
+                                if (item.Text == $"{element.id}")
                                 {
-                                    MainHost.Instance().OpenInApp(new uiHistoryElementInfo(element));
+                                    if (element.id == 0)
+                                    {
+                                        OkDialog.Show("This Operation had no output.", "No Output");
+                                        break;
+                                    }
+
+                                    try
+                                    {
+                                        if (File.Exists(element.outputFileName))
+                                        {
+                                            MainHost.Instance().OpenInApp(new uiHistoryElementInfo(element));
+                                        }
+                                        else
+                                        {
+                                            OkDialog.Show("The Output of this Operation is not existing anymore.", "File Not Found", DialogIcon.Error);
+                                            break;
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.Message, "FileError", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
-                                else
-                                {
-                                    OkDialog.Show("The Output of this Operation is not existing anymore.", "File Not Found", DialogIcon.Error);
-                                    break;
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message, "FileError", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
-                }
+                    catch (Exception ex)
+                    {
+                        ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
+                    }
+                });
+            });
 
-            }
-            catch (Exception ex)
-            {
-                ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
-            }
+
         }
 
         private void reportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -460,7 +461,6 @@ namespace LILO_Packager.v2.Forms
             else
             {
                 pnlLoginLoad.Visible = true;
-                label5.Text = "Fetching...";
                 uiCloudSyncronization.Instance.ShowDialog();
                 pnlLoginLoad.Visible = false;
             }
@@ -469,9 +469,81 @@ namespace LILO_Packager.v2.Forms
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            var items = listViewHistory.Items.Find(textBox1.Text, true);
-            listViewHistory.Items.Clear();
-            listViewHistory.Items.AddRange(items);
+            pnlLoginLoad.Visible = true;
+
+            Task.Run(() =>
+            {
+                this.Invoke(() =>
+                {
+                    if (textBox1.Text == "")
+                    {
+                        uiHistory_Load(sender, e);
+                        return;
+                    }
+
+                    var SearchedÍtems = new List<HistoryElement>();
+                    foreach (var item in historyElements)
+                    {
+                        if (item.outputFileName.Contains(textBox1.Text))
+                        {
+                            SearchedÍtems.Add(item);
+                        }
+                    }
+
+                    listViewHistory.Items.Clear();
+
+                    var imagelist = new ImageList();
+                    listViewHistory.GroupImageList = imagelist;
+                    listViewHistory.LargeImageList = imagelist;
+                    listViewHistory.SmallImageList = imagelist;
+                    listViewHistory.StateImageList = imagelist;
+
+                    foreach (var sItem in SearchedÍtems)
+                    {
+                        var item = ListItemFactory(sItem, imagelist);
+                        if (item is null) continue;
+                        listViewHistory.Items.Add(item);
+                    }
+
+                    pnlLoginLoad.Visible = false;
+                });
+
+            });
+
+        }
+
+        private void showInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void explorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var item = listViewHistory.SelectedItems[0];
+
+            foreach (var element in historyElements)
+            {
+                if (item.Text == $"{element.id}")
+                {
+                    Process.Start("explorer.exe", element.outputFileName.Replace(new FileInfo(element.outputFileName).Name, ""));
+                }
+            }
+
+        }
+
+        private void lILOWebEngineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var item = listViewHistory.SelectedItems[0];
+
+            foreach (var element in historyElements)
+            {
+                if (item.Text == $"{element.id}")
+                {
+                    MainHost.Instance().OpenInApp(v2.Forms.uiWebView.Instance(new Uri($"http://localhost:{MainHost.Instance().Port}/" + element.outputFileName.Replace(new FileInfo(element.outputFileName).Name, ""))));
+                }
+            }
+
+            
         }
     }
 }

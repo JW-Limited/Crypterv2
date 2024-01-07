@@ -95,28 +95,19 @@ namespace TextPreviewLibrary
             try
             {
 
-                if(args.themeManager != null)
-                {
-                    _thManager = (ThemeManager)args.themeManager;
-                }
-                else
-                {
-                    _thManager = ThemeManager.Initialize();
-                }
-
                 var file = (string)args.Context[0];
 
                 if (file.EndsWith(".ctv"))
                 {
                     var content = CrypterTextFile.LoadInstanceFromFile(file);
-                    Core.PluginInterface.Instance(null, null, null, false).SetContent(content);
+                    Core.PluginInterface.Instance(null, null, null, args.needNewInstance).SetContent(content);
                 }
                 else
                 {
-                    Core.PluginInterface.Instance(null, null, null, false).SetContent(new CrypterTextFile()
+                    Core.PluginInterface.Instance(null, null, null, args.needNewInstance).SetContent(new CrypterTextFile()
                     {
                         RtfContent = File.ReadAllText(file),
-                        IsLocked = true,
+                        IsLocked = false,
                         FileName = Path.GetFileName(file),
                         Author = "n/a"
                     });

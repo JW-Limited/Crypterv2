@@ -1,5 +1,4 @@
-﻿using CommandLine;
-using JWLimited.Licensing.Schemes;
+﻿using JWLimited.Licensing.Schemes;
 using JWLimited.Licensing.Schemes.Contracts;
 using JWLimited.Licensing.Schemes.Structs;
 using LILO_Packager.v2.Core.LILO;
@@ -10,7 +9,7 @@ namespace LILO_Packager
     public class CrypterLicense : IJWLimitedLicense
     {
         public IProductLicense License { get; set; } = new ProductLicense();
-        public JWLimited.Licensing.Schemes.Structs.User OwnedUser
+        public User OwnedUser
         {
             get
             {

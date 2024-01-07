@@ -41,6 +41,9 @@
             deleteToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             viewToolStripMenuItem = new ToolStripMenuItem();
+            showInExplorerToolStripMenuItem = new ToolStripMenuItem();
+            explorerToolStripMenuItem = new ToolStripMenuItem();
+            lILOWebEngineToolStripMenuItem = new ToolStripMenuItem();
             compareToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
             reportToolStripMenuItem = new ToolStripMenuItem();
@@ -53,7 +56,6 @@
             lblText = new Label();
             pnlLoginLoad = new Guna.UI2.WinForms.Guna2Panel();
             progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
-            label5 = new Label();
             tableLayoutPanel1.SuspendLayout();
             conmenu.SuspendLayout();
             sPanel2.SuspendLayout();
@@ -142,7 +144,7 @@
             // 
             conmenu.BackColor = Color.White;
             conmenu.ImageScalingSize = new Size(24, 24);
-            conmenu.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem, toolStripSeparator1, viewToolStripMenuItem, compareToolStripMenuItem, toolStripSeparator2, reportToolStripMenuItem });
+            conmenu.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem, toolStripSeparator1, viewToolStripMenuItem, showInExplorerToolStripMenuItem, compareToolStripMenuItem, toolStripSeparator2, reportToolStripMenuItem });
             conmenu.Name = "ConMenu";
             conmenu.RenderStyle.ArrowColor = Color.FromArgb(125, 100, 255);
             conmenu.RenderStyle.BorderColor = Color.Black;
@@ -153,7 +155,7 @@
             conmenu.RenderStyle.SelectionForeColor = Color.White;
             conmenu.RenderStyle.SeparatorColor = Color.LightGray;
             conmenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            conmenu.Size = new Size(158, 144);
+            conmenu.Size = new Size(158, 176);
             // 
             // deleteToolStripMenuItem
             // 
@@ -173,6 +175,30 @@
             viewToolStripMenuItem.Size = new Size(157, 32);
             viewToolStripMenuItem.Text = "View";
             viewToolStripMenuItem.Click += viewToolStripMenuItem_Click;
+            // 
+            // showInExplorerToolStripMenuItem
+            // 
+            showInExplorerToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { explorerToolStripMenuItem, lILOWebEngineToolStripMenuItem });
+            showInExplorerToolStripMenuItem.Name = "showInExplorerToolStripMenuItem";
+            showInExplorerToolStripMenuItem.Size = new Size(157, 32);
+            showInExplorerToolStripMenuItem.Text = "Show in";
+            showInExplorerToolStripMenuItem.Click += showInExplorerToolStripMenuItem_Click;
+            // 
+            // explorerToolStripMenuItem
+            // 
+            explorerToolStripMenuItem.BackColor = SystemColors.ButtonHighlight;
+            explorerToolStripMenuItem.Name = "explorerToolStripMenuItem";
+            explorerToolStripMenuItem.Size = new Size(254, 34);
+            explorerToolStripMenuItem.Text = "Explorer";
+            explorerToolStripMenuItem.Click += explorerToolStripMenuItem_Click;
+            // 
+            // lILOWebEngineToolStripMenuItem
+            // 
+            lILOWebEngineToolStripMenuItem.BackColor = SystemColors.ButtonHighlight;
+            lILOWebEngineToolStripMenuItem.Name = "lILOWebEngineToolStripMenuItem";
+            lILOWebEngineToolStripMenuItem.Size = new Size(254, 34);
+            lILOWebEngineToolStripMenuItem.Text = "LILO - WebEngine";
+            lILOWebEngineToolStripMenuItem.Click += lILOWebEngineToolStripMenuItem_Click;
             // 
             // compareToolStripMenuItem
             // 
@@ -220,7 +246,7 @@
             guna2Panel1.BorderThickness = 2;
             guna2Panel1.Controls.Add(textBox1);
             guna2Panel1.FillColor = Color.White;
-            guna2Panel1.Location = new Point(168, 19);
+            guna2Panel1.Location = new Point(160, 19);
             guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.Size = new Size(280, 50);
@@ -332,7 +358,6 @@
             pnlLoginLoad.BorderColor = Color.Silver;
             pnlLoginLoad.BorderRadius = 15;
             pnlLoginLoad.Controls.Add(progressSpinner);
-            pnlLoginLoad.Controls.Add(label5);
             pnlLoginLoad.FillColor = Color.White;
             pnlLoginLoad.Location = new Point(32, 144);
             pnlLoginLoad.Margin = new Padding(2);
@@ -345,24 +370,11 @@
             progressSpinner.Anchor = AnchorStyles.None;
             progressSpinner.AutoStart = true;
             progressSpinner.BackColor = Color.White;
-            progressSpinner.Location = new Point(404, 259);
+            progressSpinner.Location = new Point(404, 312);
             progressSpinner.Margin = new Padding(2);
             progressSpinner.Name = "progressSpinner";
             progressSpinner.Size = new Size(135, 135);
             progressSpinner.TabIndex = 8;
-            // 
-            // label5
-            // 
-            label5.Anchor = AnchorStyles.None;
-            label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label5.ForeColor = SystemColors.ActiveCaptionText;
-            label5.Location = new Point(400, 419);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(144, 30);
-            label5.TabIndex = 6;
-            label5.Text = "Loading...";
-            label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // uiHistory
             // 
@@ -403,7 +415,6 @@
         private Guna.UI2.WinForms.Guna2Button bntPlugin;
         private Guna.UI2.WinForms.Guna2Panel pnlLoginLoad;
         private Guna.UI2.WinForms.Guna2WinProgressIndicator progressSpinner;
-        private Label label5;
         private ToolStripMenuItem deleteToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem viewToolStripMenuItem;
@@ -413,5 +424,8 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private TextBox textBox1;
+        private ToolStripMenuItem showInExplorerToolStripMenuItem;
+        private ToolStripMenuItem explorerToolStripMenuItem;
+        private ToolStripMenuItem lILOWebEngineToolStripMenuItem;
     }
 }

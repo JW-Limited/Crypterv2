@@ -1,7 +1,5 @@
-﻿using JWLimited.Licensing.Schemes;
-using LILO_Packager.Properties;
+﻿using LILO_Packager.Properties;
 using LILO_Packager.v2.Core.LILO.Interfaces;
-using LILO_Packager.v2.Core.LILO.Types;
 using System.Diagnostics;
 
 namespace LILO_Packager.v2.Forms
@@ -37,7 +35,7 @@ namespace LILO_Packager.v2.Forms
         {
             lblProductname.Text = "Crypterv2";
 
-            if (Program.LicMng.CheckLicenseAsync<CrypterLicense, CrypterLicenseTrail>(Program.AppPath, new CrypterLicense(), new CrypterLicenseTrail()) == 0)
+            if (Program.LicMng.CheckLicx<CrypterLicense, CrypterLicenseTrail>(Program.AppPath, new CrypterLicense(), new CrypterLicenseTrail()) == 0)
             {
                 pnlLicense.BackgroundImage = Resources.Close;
                 lblActivationState.Text = "Product needs Activation.";
@@ -46,7 +44,6 @@ namespace LILO_Packager.v2.Forms
                 lblLicenseName.ForeColor = Color.White;
                 lblActivationState.ForeColor = Color.White;
                 bntOpenLicenseFile.FillColor = Color.WhiteSmoke;
-                lblLicenseNameTop.ForeColor = Color.Red;
                 lblLicenseNameTop.Text = "Unlicensed";
 
                 return;
@@ -69,11 +66,16 @@ namespace LILO_Packager.v2.Forms
             {
                 Filter = "JW Limited License Object |*.licx|Alle Datein|*.*",
                 FilterIndex = 0,
+                Multiselect = false
             };
-            
-            if(openFileDialog.ShowDialog() == DialogResult.OK)
-            {
 
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (Program.LicMng.CheckLicxDynamic(openFileDialog.FileName, new CrypterLicense()) == 1)
+                {
+                    File.Copy(openFileDialog.FileName, Program.AppPath + "\\objdt\\license.licx");
+                    Application.Restart();
+                }
             }
         }
 
@@ -83,7 +85,19 @@ namespace LILO_Packager.v2.Forms
             proc.StartInfo = new ProcessStartInfo()
             {
                 UseShellExecute = true,
-                FileName = "https://paypal.me/joeywest"
+                FileName = "https://paypal.me/joeyweest"
+            };
+
+            proc.Start();
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        { 
+            var proc = new Process();
+            proc.StartInfo = new ProcessStartInfo()
+            {
+                UseShellExecute = true,
+                FileName = "https://github.com/JW-Limited/Crypterv2/releases/"
             };
 
             proc.Start();

@@ -331,6 +331,7 @@
             guna2Button1.Name = "guna2Button1";
             guna2Button1.Size = new Size(58, 34);
             guna2Button1.TabIndex = 56;
+            guna2Button1.Click += guna2Button1_Click;
             // 
             // guna2Panel1
             // 

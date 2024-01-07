@@ -49,73 +49,88 @@ namespace LILO_Packager.v2.Forms
 
         private async void uiHistoryElementInfo_Load(object sender, EventArgs e)
         {
-            lblFile.Text = new FileInfo(_file.outputFileName).Name;
-            lblDirectory.Text = _file.outputFileName.Replace(new FileInfo(_file.outputFileName).Name, "");
-            lblDescription.Text = "Library: " + _file.mode;
-            lblDes2.Text = $"Mode: " + _file.operationType;
-            lbl3.Text = "Algorythemversion: " + _file.algorithmVersion;
-            lblMoreInfo.Text = "InputFile: " + _file.inputFileName;
-
-            var fileIcon = GetFileIcon(_file.outputFileName);
-            pnlImage.BackgroundImage = fileIcon.ToBitmap();
-
-            var appName = await GetDefaultApplication(_file.outputFileName);
-
-            var cloudMatrixFile = FileIndexStorage.Instance.GetMatrixFile();
-
-            foreach (var item in cloudMatrixFile.MatrixEntrys)
+            Task.Run(async() =>
             {
-                if (item.Identity.FileHash == CloudSyncroniztationBase.GetFileHash(_file.outputFileName))
-                {
-                    lblID.Text = item.CloudEntry.PublicFileId;
-                    lblHash.Text = item.Identity.FileHash;
-                    lblDateUploaded.Text = item.Identity.Timestamp.ToLocalTime().ToString();
-                }
-            }
+                lblFile.Text = new FileInfo(_file.outputFileName).Name;
+                lblDirectory.Text = _file.outputFileName.Replace(new FileInfo(_file.outputFileName).Name, "");
+                lblDescription.Text = "Library: " + _file.mode;
+                lblDes2.Text = $"Mode: " + _file.operationType;
+                lbl3.Text = "Algorythemversion: " + _file.algorithmVersion;
+                lblMoreInfo.Text = "InputFile: " + _file.inputFileName;
 
-            if (appName is not null)
-            {
-                if (appName.DefaultApp is "LILO Secured File")
-                {
-                    appName.DefaultApp = "Crypterv2"; pnlImage.BackgroundImage = Resources.Lock;
-                }
-                else if (appName.DefaultApp is "Crypterv2 Debug Session")
-                {
-                    appName.DefaultApp = "Crypterv2 Debuger";
-                    pnlImage.BackgroundImage = Resources.debug_win;
-                }
-                else if (appName.DefaultApp is "LILO Custom Style")
-                {
-                    appName.DefaultApp = "Crypterv2 ThemeManager";
-                    pnlImage.BackgroundImage = Resources.theme_manager;
-                }
-                else if (appName.DefaultApp is "LILO Extension")
-                {
-                    appName.DefaultApp = "Crypterv2 PluginInstaller";
-                    pnlImage.BackgroundImage = Resources.icons8_bursts_96;
-                }
+                var fileIcon = GetFileIcon(_file.outputFileName);
+                pnlImage.BackgroundImage = fileIcon.ToBitmap();
 
-                lblApp.Text = appName.DefaultApp.Replace(appName.Extension, "");
+                var appName = await GetDefaultApplication(_file.outputFileName);
 
-                if (_file.outputFileName.EndsWith(".llcp"))
+                var cloudMatrixFile = FileIndexStorage.Instance.GetMatrixFile();
+
+                foreach (var item in cloudMatrixFile.MatrixEntrys)
                 {
-                    pnlImage.BackgroundImage = Resources.icons8_earth_planet_96;
-
-                    foreach (var item in cloudMatrixFile.MatrixEntrys)
+                    if (item.Identity.FileHash == CloudSyncroniztationBase.GetFileHash(_file.outputFileName))
                     {
-                        if (item.File.RealPath == _file.outputFileName.Replace(".llcp",""))
+                        lblID.Text = item.CloudEntry.PublicFileId;
+                        lblHash.Text = item.Identity.FileHash;
+                        lblDateUploaded.Text = item.Identity.Timestamp.ToLocalTime().ToString();
+                        this.Invoke(() =>
                         {
-                            lblID.Text = item.CloudEntry.PublicFileId;
-                            lblHash.Text = item.Identity.FileHash;
-                            lblDateUploaded.Text = item.Identity.Timestamp.ToLocalTime().ToString();
+                            bntShare.Visible = true;
+                        });
+                    }
+                }
+
+                if (appName is not null)
+                {
+                    if (appName.DefaultApp is "LILO Secured File")
+                    {
+                        appName.DefaultApp = "Crypterv2"; pnlImage.BackgroundImage = Resources.Lock;
+                    }
+                    else if (appName.DefaultApp is "Crypterv2 Debug Session")
+                    {
+                        appName.DefaultApp = "Crypterv2 Debuger";
+                        pnlImage.BackgroundImage = Resources.debug_win;
+                    }
+                    else if (appName.DefaultApp is "LILO Custom Style")
+                    {
+                        appName.DefaultApp = "Crypterv2 ThemeManager";
+                        pnlImage.BackgroundImage = Resources.theme_manager;
+                    }
+                    else if (appName.DefaultApp is "LILO Extension")
+                    {
+                        appName.DefaultApp = "Crypterv2 PluginInstaller";
+                        pnlImage.BackgroundImage = Resources.icons8_bursts_96;
+                    }
+
+                    lblApp.Text = appName.DefaultApp.Replace(appName.Extension, "");
+
+                    if (_file.outputFileName.EndsWith(".llcp"))
+                    {
+                        pnlImage.BackgroundImage = Resources.icons8_earth_planet_96;
+
+                        foreach (var item in cloudMatrixFile.MatrixEntrys)
+                        {
+                            if (item.File.RealPath == _file.outputFileName.Replace(".llcp", ""))
+                            {
+                                lblID.Text = item.CloudEntry.PublicFileId;
+                                lblHash.Text = item.Identity.FileHash;
+                                lblDateUploaded.Text = item.Identity.Timestamp.ToLocalTime().ToString();
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                lblApp.Text = "default - " + $" ({new FileInfo(_file.outputFileName).Extension})";
-            }
+                else
+                {
+                    lblApp.Text = "default - " + $" ({new FileInfo(_file.outputFileName).Extension})";
+                }
+
+
+                this.Invoke(async() =>
+                {
+                    
+                    pnlLoginLoad.Visible = false;
+                });
+            });
+            
         }
 
         private async void bntOpen_Click(object sender, EventArgs e)
@@ -318,6 +333,7 @@ namespace LILO_Packager.v2.Forms
                         {
                             Context = list,
                             themeManager = MainHost.Instance()._thManager,
+                            needNewInstance = false
                         });
 
                         if (responseEx.HasError)

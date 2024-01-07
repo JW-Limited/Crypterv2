@@ -115,6 +115,9 @@ partial class MainHost
         bntAccount.BorderColor = Color.Gainsboro;
         bntAccount.BorderRadius = 20;
         bntAccount.BorderThickness = 2;
+        bntAccount.CheckedState.BorderColor = Color.Gainsboro;
+        bntAccount.CheckedState.FillColor = Color.WhiteSmoke;
+        bntAccount.CheckedState.ForeColor = Color.DimGray;
         Transition.SetDecoration(bntAccount, Guna.UI2.AnimatorNS.DecorationType.None);
         bntAccount.DisabledState.BorderColor = Color.Gainsboro;
         bntAccount.DisabledState.CustomBorderColor = Color.Gainsboro;
@@ -259,6 +262,9 @@ partial class MainHost
         guna2Button2.BorderColor = Color.Gainsboro;
         guna2Button2.BorderRadius = 20;
         guna2Button2.BorderThickness = 2;
+        guna2Button2.CheckedState.BorderColor = Color.Gainsboro;
+        guna2Button2.CheckedState.FillColor = Color.WhiteSmoke;
+        guna2Button2.CheckedState.ForeColor = Color.DimGray;
         Transition.SetDecoration(guna2Button2, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button2.DisabledState.BorderColor = Color.Gainsboro;
         guna2Button2.DisabledState.CustomBorderColor = Color.Gainsboro;
@@ -288,6 +294,9 @@ partial class MainHost
         guna2Button5.BorderColor = Color.Gainsboro;
         guna2Button5.BorderRadius = 20;
         guna2Button5.BorderThickness = 2;
+        guna2Button5.CheckedState.BorderColor = Color.Gainsboro;
+        guna2Button5.CheckedState.FillColor = Color.WhiteSmoke;
+        guna2Button5.CheckedState.ForeColor = Color.DimGray;
         Transition.SetDecoration(guna2Button5, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button5.DisabledState.BorderColor = Color.Gainsboro;
         guna2Button5.DisabledState.CustomBorderColor = Color.Gainsboro;
@@ -317,6 +326,9 @@ partial class MainHost
         guna2Button4.BorderColor = Color.Gainsboro;
         guna2Button4.BorderRadius = 20;
         guna2Button4.BorderThickness = 2;
+        guna2Button4.CheckedState.BorderColor = Color.Gainsboro;
+        guna2Button4.CheckedState.FillColor = Color.WhiteSmoke;
+        guna2Button4.CheckedState.ForeColor = Color.DimGray;
         Transition.SetDecoration(guna2Button4, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button4.DisabledState.BorderColor = Color.Gainsboro;
         guna2Button4.DisabledState.CustomBorderColor = Color.Gainsboro;
@@ -346,6 +358,9 @@ partial class MainHost
         guna2Button3.BorderColor = Color.Gainsboro;
         guna2Button3.BorderRadius = 20;
         guna2Button3.BorderThickness = 2;
+        guna2Button3.CheckedState.BorderColor = Color.Gainsboro;
+        guna2Button3.CheckedState.FillColor = Color.WhiteSmoke;
+        guna2Button3.CheckedState.ForeColor = Color.DimGray;
         Transition.SetDecoration(guna2Button3, Guna.UI2.AnimatorNS.DecorationType.None);
         guna2Button3.DisabledState.BorderColor = Color.Gainsboro;
         guna2Button3.DisabledState.CustomBorderColor = Color.Gainsboro;
@@ -375,12 +390,15 @@ partial class MainHost
         bntOpen.BorderColor = Color.Gainsboro;
         bntOpen.BorderRadius = 20;
         bntOpen.BorderThickness = 2;
+        bntOpen.CheckedState.BorderColor = Color.Gainsboro;
+        bntOpen.CheckedState.FillColor = Color.WhiteSmoke;
+        bntOpen.CheckedState.ForeColor = Color.DimGray;
         Transition.SetDecoration(bntOpen, Guna.UI2.AnimatorNS.DecorationType.None);
         bntOpen.DisabledState.BorderColor = Color.Gainsboro;
         bntOpen.DisabledState.CustomBorderColor = Color.Gainsboro;
         bntOpen.DisabledState.FillColor = Color.Transparent;
         bntOpen.DisabledState.ForeColor = Color.Black;
-        bntOpen.FillColor = Color.Empty;
+        bntOpen.FillColor = Color.Transparent;
         bntOpen.FocusedColor = Color.FromArgb(100, 170, 209);
         bntOpen.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         bntOpen.ForeColor = Color.Black;
@@ -759,10 +777,10 @@ partial class MainHost
         guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray;
         guna2Button6.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         guna2Button6.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        guna2Button6.FillColor = Color.Transparent;
+        guna2Button6.FillColor = Color.WhiteSmoke;
         guna2Button6.FocusedColor = Color.FromArgb(100, 170, 209);
         guna2Button6.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-        guna2Button6.ForeColor = Color.Black;
+        guna2Button6.ForeColor = Color.DimGray;
         guna2Button6.ImageAlign = HorizontalAlignment.Left;
         guna2Button6.ImageSize = new Size(35, 35);
         guna2Button6.Location = new Point(16, 16);
@@ -770,7 +788,7 @@ partial class MainHost
         guna2Button6.Name = "guna2Button6";
         guna2Button6.Size = new Size(184, 48);
         guna2Button6.TabIndex = 17;
-        guna2Button6.Text = " Notifications";
+        guna2Button6.Text = "Updates";
         guna2Button6.TextAlign = HorizontalAlignment.Left;
         // 
         // guna2Button7
@@ -785,7 +803,7 @@ partial class MainHost
         guna2Button7.DisabledState.CustomBorderColor = Color.DarkGray;
         guna2Button7.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         guna2Button7.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        guna2Button7.FillColor = Color.Transparent;
+        guna2Button7.FillColor = Color.WhiteSmoke;
         guna2Button7.FocusedColor = Color.FromArgb(100, 170, 209);
         guna2Button7.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         guna2Button7.ForeColor = Color.White;
@@ -810,7 +828,7 @@ partial class MainHost
         bntCloseSideBoard.DisabledState.CustomBorderColor = Color.DarkGray;
         bntCloseSideBoard.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         bntCloseSideBoard.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-        bntCloseSideBoard.FillColor = Color.Transparent;
+        bntCloseSideBoard.FillColor = Color.WhiteSmoke;
         bntCloseSideBoard.FocusedColor = Color.FromArgb(100, 170, 209);
         bntCloseSideBoard.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         bntCloseSideBoard.ForeColor = Color.White;

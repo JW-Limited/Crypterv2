@@ -593,15 +593,6 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         //    OkDialog.Show("This file was not packaged with this Application.", "Error");
         //}
 
-
-        var sec = new uiSecureInputHandler(
-            new Core.Dialogs.Secured.SecuredDialogPreferences(
-                "AxcDialog", "AxKey", "Please Input youre wanted Encrypten Key")
-            {
-                Channel = BroadcastChannel.Instance
-            });
-        sec.ShowDialog();
-
         bntMenu(sender, e);
     }
 

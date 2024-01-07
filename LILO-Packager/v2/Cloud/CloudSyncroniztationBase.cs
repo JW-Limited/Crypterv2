@@ -31,7 +31,7 @@ namespace LILO_Packager.v2.Cloud
             }
             catch (Exception)
             {
-                return false;
+                return false; 
             }
         }
 

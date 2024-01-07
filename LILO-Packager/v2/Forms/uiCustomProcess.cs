@@ -80,5 +80,10 @@ namespace LILO_Packager.v2.Forms
         {
 
         }
+
+        private void bntOk_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

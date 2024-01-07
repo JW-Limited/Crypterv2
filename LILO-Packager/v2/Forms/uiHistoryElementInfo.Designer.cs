@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
+            Guna.UI2.AnimatorNS.Animation animation2 = new Guna.UI2.AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiHistoryElementInfo));
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -62,12 +62,15 @@
             lblDirectory = new Label();
             label2 = new Label();
             label3 = new Label();
-            guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            bntShare = new Guna.UI2.WinForms.Guna2Button();
             Transition = new Guna.UI2.WinForms.Guna2Transition();
+            pnlLoginLoad = new Guna.UI2.WinForms.Guna2Panel();
+            progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             guna2Panel2.SuspendLayout();
             guna2Panel5.SuspendLayout();
+            pnlLoginLoad.SuspendLayout();
             SuspendLayout();
             // 
             // guna2Button1
@@ -628,53 +631,81 @@
             label3.Text = "Directory:";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // guna2Button3
+            // bntShare
             // 
-            guna2Button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            guna2Button3.Animated = true;
-            guna2Button3.BackColor = Color.Transparent;
-            guna2Button3.BorderColor = Color.Gainsboro;
-            guna2Button3.BorderRadius = 12;
-            guna2Button3.BorderThickness = 2;
-            Transition.SetDecoration(guna2Button3, Guna.UI2.AnimatorNS.DecorationType.None);
-            guna2Button3.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button3.FillColor = Color.White;
-            guna2Button3.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            guna2Button3.ForeColor = Color.DimGray;
-            guna2Button3.Image = Properties.Resources.icons8_share_240;
-            guna2Button3.ImageSize = new Size(25, 25);
-            guna2Button3.Location = new Point(1016, 24);
-            guna2Button3.Margin = new Padding(2);
-            guna2Button3.Name = "guna2Button3";
-            guna2Button3.Size = new Size(40, 40);
-            guna2Button3.TabIndex = 25;
-            guna2Button3.Click += bntShareFIle;
+            bntShare.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            bntShare.Animated = true;
+            bntShare.BackColor = Color.Transparent;
+            bntShare.BorderColor = Color.Gainsboro;
+            bntShare.BorderRadius = 12;
+            bntShare.BorderThickness = 2;
+            Transition.SetDecoration(bntShare, Guna.UI2.AnimatorNS.DecorationType.None);
+            bntShare.DisabledState.BorderColor = Color.DarkGray;
+            bntShare.DisabledState.CustomBorderColor = Color.DarkGray;
+            bntShare.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            bntShare.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            bntShare.FillColor = Color.White;
+            bntShare.FocusedColor = Color.FromArgb(100, 170, 209);
+            bntShare.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            bntShare.ForeColor = Color.DimGray;
+            bntShare.Image = Properties.Resources.icons8_share_240;
+            bntShare.ImageSize = new Size(25, 25);
+            bntShare.Location = new Point(1016, 24);
+            bntShare.Margin = new Padding(2);
+            bntShare.Name = "bntShare";
+            bntShare.Size = new Size(40, 40);
+            bntShare.TabIndex = 25;
+            bntShare.Visible = false;
+            bntShare.Click += bntShareFIle;
             // 
             // Transition
             // 
             Transition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent;
             Transition.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = (PointF)resources.GetObject("animation1.BlindCoeff");
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = (PointF)resources.GetObject("animation1.MosaicCoeff");
-            animation1.MosaicShift = (PointF)resources.GetObject("animation1.MosaicShift");
-            animation1.MosaicSize = 0;
-            animation1.Padding = new Padding(0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = (PointF)resources.GetObject("animation1.ScaleCoeff");
-            animation1.SlideCoeff = (PointF)resources.GetObject("animation1.SlideCoeff");
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 1F;
-            Transition.DefaultAnimation = animation1;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = (PointF)resources.GetObject("animation2.BlindCoeff");
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = (PointF)resources.GetObject("animation2.MosaicCoeff");
+            animation2.MosaicShift = (PointF)resources.GetObject("animation2.MosaicShift");
+            animation2.MosaicSize = 0;
+            animation2.Padding = new Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = (PointF)resources.GetObject("animation2.ScaleCoeff");
+            animation2.SlideCoeff = (PointF)resources.GetObject("animation2.SlideCoeff");
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 1F;
+            Transition.DefaultAnimation = animation2;
             Transition.Interval = 1;
+            // 
+            // pnlLoginLoad
+            // 
+            pnlLoginLoad.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlLoginLoad.BackColor = Color.Transparent;
+            pnlLoginLoad.BorderColor = Color.Silver;
+            pnlLoginLoad.BorderRadius = 15;
+            pnlLoginLoad.Controls.Add(progressSpinner);
+            Transition.SetDecoration(pnlLoginLoad, Guna.UI2.AnimatorNS.DecorationType.None);
+            pnlLoginLoad.FillColor = Color.White;
+            pnlLoginLoad.Location = new Point(0, 0);
+            pnlLoginLoad.Margin = new Padding(2);
+            pnlLoginLoad.Name = "pnlLoginLoad";
+            pnlLoginLoad.Size = new Size(1216, 1000);
+            pnlLoginLoad.TabIndex = 27;
+            // 
+            // progressSpinner
+            // 
+            progressSpinner.Anchor = AnchorStyles.None;
+            progressSpinner.AutoStart = true;
+            progressSpinner.BackColor = Color.White;
+            Transition.SetDecoration(progressSpinner, Guna.UI2.AnimatorNS.DecorationType.None);
+            progressSpinner.Location = new Point(536, 424);
+            progressSpinner.Margin = new Padding(2);
+            progressSpinner.Name = "progressSpinner";
+            progressSpinner.Size = new Size(135, 135);
+            progressSpinner.TabIndex = 8;
             // 
             // uiHistoryElementInfo
             // 
@@ -683,7 +714,8 @@
             BackColor = SystemColors.ButtonHighlight;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1221, 1006);
-            Controls.Add(guna2Button3);
+            Controls.Add(pnlLoginLoad);
+            Controls.Add(bntShare);
             Controls.Add(guna2Button1);
             Controls.Add(guna2Panel1);
             Transition.SetDecoration(this, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -695,6 +727,7 @@
             guna2Panel3.ResumeLayout(false);
             guna2Panel2.ResumeLayout(false);
             guna2Panel5.ResumeLayout(false);
+            pnlLoginLoad.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -716,7 +749,7 @@
         private Label lblApp;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button bntPreview;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI2.WinForms.Guna2Button bntShare;
         private Label lblMoreInfo;
         public Guna.UI2.WinForms.Guna2Transition Transition;
         private Guna.UI2.WinForms.Guna2Button guna2Button7;
@@ -734,5 +767,7 @@
         private Label label10;
         private Controls.DynamicToggleButton dynamicToggleButton1;
         private Guna.UI2.WinForms.Guna2Button bntCopy;
+        private Guna.UI2.WinForms.Guna2Panel pnlLoginLoad;
+        private Guna.UI2.WinForms.Guna2WinProgressIndicator progressSpinner;
     }
 }

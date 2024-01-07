@@ -218,5 +218,10 @@ namespace LILO_Packager.v2.Forms
         {
             MainHost.Instance().OpenInApp(v2.Forms.uiKeyManager.Instance());
         }
+
+        private void bntAbout(object sender, EventArgs e)
+        {
+            MainHost.Instance().OpenInApp(new uiNews());
+        }
     }
 }

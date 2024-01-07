@@ -68,6 +68,12 @@
             guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             sPanel16 = new Sipaa.Framework.SPanel();
             sPanel17 = new Sipaa.Framework.SPanel();
+            sPanel18 = new Sipaa.Framework.SPanel();
+            label12 = new Label();
+            label13 = new Label();
+            guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
+            sPanel19 = new Sipaa.Framework.SPanel();
+            sPanel20 = new Sipaa.Framework.SPanel();
             sPanel2.SuspendLayout();
             sPanel1.SuspendLayout();
             sPanel5.SuspendLayout();
@@ -80,6 +86,8 @@
             SubOp.SuspendLayout();
             sPanel15.SuspendLayout();
             sPanel16.SuspendLayout();
+            sPanel18.SuspendLayout();
+            sPanel19.SuspendLayout();
             SuspendLayout();
             // 
             // sPanel2
@@ -619,6 +627,7 @@
             SubOp.BackColor = SystemColors.HighlightText;
             SubOp.BorderColor = Color.Gainsboro;
             SubOp.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            SubOp.Controls.Add(sPanel18);
             SubOp.Controls.Add(sPanel15);
             SubOp.Controls.Add(sPanel1);
             SubOp.Controls.Add(sPanel3);
@@ -730,6 +739,105 @@
             sPanel17.Size = new Size(64, 56);
             sPanel17.TabIndex = 14;
             // 
+            // sPanel18
+            // 
+            sPanel18.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            sPanel18.BackColor = Color.White;
+            sPanel18.BackgroundImageLayout = ImageLayout.Stretch;
+            sPanel18.BorderColor = Color.Gainsboro;
+            sPanel18.BorderRadius = 20;
+            sPanel18.BorderSize = 2;
+            sPanel18.Controls.Add(label12);
+            sPanel18.Controls.Add(label13);
+            sPanel18.Controls.Add(guna2Button6);
+            sPanel18.Controls.Add(sPanel19);
+            sPanel18.ForeColor = Color.White;
+            sPanel18.Location = new Point(24, 624);
+            sPanel18.Margin = new Padding(4);
+            sPanel18.Name = "sPanel18";
+            sPanel18.Size = new Size(960, 104);
+            sPanel18.TabIndex = 14;
+            // 
+            // label12
+            // 
+            label12.BackColor = Color.Transparent;
+            label12.Font = new Font("Segoe UI", 9F);
+            label12.ForeColor = Color.DimGray;
+            label12.Location = new Point(120, 48);
+            label12.Margin = new Padding(4, 0, 4, 0);
+            label12.Name = "label12";
+            label12.Size = new Size(448, 40);
+            label12.TabIndex = 1;
+            label12.Text = "Information about the Application.";
+            label12.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label13
+            // 
+            label13.BackColor = Color.Transparent;
+            label13.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label13.ForeColor = Color.Black;
+            label13.Location = new Point(120, -8);
+            label13.Margin = new Padding(4, 0, 4, 0);
+            label13.Name = "label13";
+            label13.Size = new Size(232, 88);
+            label13.TabIndex = 1;
+            label13.Text = "About";
+            label13.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // guna2Button6
+            // 
+            guna2Button6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            guna2Button6.Animated = true;
+            guna2Button6.BackColor = Color.Transparent;
+            guna2Button6.BorderColor = Color.WhiteSmoke;
+            guna2Button6.BorderRadius = 20;
+            guna2Button6.BorderThickness = 2;
+            guna2Button6.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button6.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button6.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button6.FillColor = Color.Transparent;
+            guna2Button6.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button6.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            guna2Button6.ForeColor = Color.Black;
+            guna2Button6.Location = new Point(824, 24);
+            guna2Button6.Margin = new Padding(2);
+            guna2Button6.Name = "guna2Button6";
+            guna2Button6.Size = new Size(120, 58);
+            guna2Button6.TabIndex = 14;
+            guna2Button6.Text = "More";
+            guna2Button6.Click += bntAbout;
+            // 
+            // sPanel19
+            // 
+            sPanel19.BackColor = Color.White;
+            sPanel19.BackgroundImageLayout = ImageLayout.Zoom;
+            sPanel19.BorderColor = Color.WhiteSmoke;
+            sPanel19.BorderRadius = 20;
+            sPanel19.BorderSize = 2;
+            sPanel19.Controls.Add(sPanel20);
+            sPanel19.ForeColor = Color.White;
+            sPanel19.Location = new Point(16, 16);
+            sPanel19.Margin = new Padding(4);
+            sPanel19.Name = "sPanel19";
+            sPanel19.Size = new Size(80, 72);
+            sPanel19.TabIndex = 14;
+            // 
+            // sPanel20
+            // 
+            sPanel20.BackColor = Color.White;
+            sPanel20.BackgroundImage = Properties.Resources.help_96px;
+            sPanel20.BackgroundImageLayout = ImageLayout.Zoom;
+            sPanel20.BorderColor = Color.Transparent;
+            sPanel20.BorderRadius = 0;
+            sPanel20.BorderSize = 0;
+            sPanel20.ForeColor = Color.White;
+            sPanel20.Location = new Point(8, 8);
+            sPanel20.Margin = new Padding(4);
+            sPanel20.Name = "sPanel20";
+            sPanel20.Size = new Size(64, 56);
+            sPanel20.TabIndex = 14;
+            // 
             // uiAccount
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -760,6 +868,8 @@
             SubOp.ResumeLayout(false);
             sPanel15.ResumeLayout(false);
             sPanel16.ResumeLayout(false);
+            sPanel18.ResumeLayout(false);
+            sPanel19.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -805,5 +915,11 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
         private Sipaa.Framework.SPanel sPanel16;
         private Sipaa.Framework.SPanel sPanel17;
+        private Sipaa.Framework.SPanel sPanel18;
+        private Label label12;
+        private Label label13;
+        private Guna.UI2.WinForms.Guna2Button guna2Button6;
+        private Sipaa.Framework.SPanel sPanel19;
+        private Sipaa.Framework.SPanel sPanel20;
     }
 }

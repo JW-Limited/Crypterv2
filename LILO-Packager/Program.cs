@@ -55,7 +55,7 @@ namespace LILO_Packager
 
             InstanceCacheContainer.Register<ILILOConsoleManager>(() => ConsoleManager.Instance());
 
-            ConsoleManager.Instance().ShowConsoleWindow();
+            //ConsoleManager.Instance().ShowConsoleWindow();
         }
 
         [STAThread]
@@ -68,7 +68,7 @@ namespace LILO_Packager
                 try
                 {
                     LicMng = LicenseManager.Initialize(_AuthAgent);
-                    if(LicMng.CheckLicenseAsync<CrypterLicense,CrypterLicenseTrail>(AppPath, new CrypterLicense(), new CrypterLicenseTrail()) == 1)
+                    if(LicMng.CheckLicx<CrypterLicense,CrypterLicenseTrail>(AppPath, new CrypterLicense(), new CrypterLicenseTrail()) == 1)
                     {
                         if (args.Length > 0)
                         {

@@ -39,7 +39,7 @@
             // 
             lblMessage.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblMessage.BackColor = Color.Transparent;
-            lblMessage.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblMessage.Font = new Font("Segoe UI", 10F);
             lblMessage.ForeColor = Color.Black;
             lblMessage.Location = new Point(32, 32);
             lblMessage.Margin = new Padding(4, 0, 4, 0);
@@ -77,9 +77,9 @@
             bntOk.DisabledState.CustomBorderColor = Color.DarkGray;
             bntOk.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             bntOk.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            bntOk.FillColor = Color.Transparent;
+            bntOk.FillColor = Color.White;
             bntOk.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntOk.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            bntOk.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             bntOk.ForeColor = Color.Black;
             bntOk.Location = new Point(440, 16);
             bntOk.Margin = new Padding(2);
@@ -87,13 +87,14 @@
             bntOk.Size = new Size(216, 40);
             bntOk.TabIndex = 15;
             bntOk.Text = "Cancel";
+            bntOk.Click += bntOk_Click;
             // 
             // progress
             // 
             progress.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             progress.BackColor = Color.Transparent;
             progress.BorderColor = Color.Gainsboro;
-            progress.BorderRadius = 16;
+            progress.BorderRadius = 10;
             progress.BorderThickness = 2;
             progress.FillColor = Color.Transparent;
             progress.Location = new Point(32, 80);
