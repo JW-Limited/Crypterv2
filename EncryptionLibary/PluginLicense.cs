@@ -1,5 +1,5 @@
 ﻿using JWLimited.Licensing.Schemes.Contracts;
-
+namespace EncryptionLibary;
 public class PluginLicense : IProductLicense
 {
     public string LicenseName { get; set; } = "JW Limited - Encryption Library (Cryptex)";

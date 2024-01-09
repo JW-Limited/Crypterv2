@@ -1,5 +1,5 @@
 ﻿using JWLimited.Licensing.Schemes.Contracts;
-
+namespace EncryptionLibary;
 public class ProductFeature : IProductFeature
 {
     public string FeatureName { get; set; } = "EncryptenExtender";

@@ -40,7 +40,7 @@ namespace LILO_Packager.v2.Forms
             });
         }
 
-        public async void SetFile(MatrixEntry entry)
+        public async Task SetFile(MatrixEntry entry)
         {
             var fileInfo = MatrixShareManager.GetPackageDeclaration(CDEXFile);
             var user = MatrixShareManager.GetFileOwner(fileInfo, CDEXFile, entry.Identity.FileHash);

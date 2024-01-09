@@ -592,6 +592,8 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         //{
         //    OkDialog.Show("This file was not packaged with this Application.", "Error");
         //}
+        //var dialog = new uiDialogCreateCdex(null);
+        //DialogManager.Instance.ShowDialog(dialog, dialog);
 
         bntMenu(sender, e);
     }

@@ -7,27 +7,38 @@ using System.Diagnostics;
 
 namespace LILO_Packager.v2.Forms.Dialogs
 {
-    public partial class uiDialogCreateCdex : Form
+    public class CdexArgs
     {
+        public string Name { get; set; } = "";
+        public string Directory { get; set; } = "";
+        public string EncryptenKey { get; set; } = "";
+        public List<MatrixEntry> MatrixEntries { get; set; } = null;
+
+        // Not Essential
+        public List<User> AllowedUsers { get; set; } = null;
+    }
+
+    public interface ICDEXDialog : IManagableDialog
+    {
+
+    }
+
+    public partial class uiDialogCreateCdex : Form, ICDEXDialog
+    {
+        
+
         public uiDialogCreateCdex(List<MatrixEntry> MatrixEntries)
         {
             InitializeComponent();
-
-            Entrys = MatrixEntries;
+            CdexArguments.MatrixEntries = MatrixEntries;
         }
 
-        List<MatrixEntry> Entrys { get; set; }
         public CdexArgs CdexArguments { get; set; } = new CdexArgs();
+        public byte CanBeAccessed { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        bool IManagableDialog.CanBeAccessed { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsAccessed { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public class CdexArgs
-        {
-            public string Name { get; set; } = "";
-            public string Directory { get; set; } = "";
-            public string EncryptenKey { get; set; } = "";
-
-            // Not Essential
-            public List<User> AllowedUsers { get; set; } = null;
-        }
+        public int DialogId => throw new NotImplementedException();
 
         private void uiDialogCreateCdex_Load(object sender, EventArgs e)
         {
@@ -97,9 +108,29 @@ namespace LILO_Packager.v2.Forms.Dialogs
 
         private void bntShare_Click(object sender, EventArgs e)
         {
-            MatrixShareManager.Advanced.ExportMatrixEntries(MainHost.Instance().loggedInUser, Resources.Close, Entrys, CdexArguments.Directory + "\\" + CdexArguments.Name + FileOperations.GetFileExtension(FileOperations.CrypterFileType.CloudEntry),true, CdexArguments.EncryptenKey);
+            MatrixShareManager.Advanced.ExportMatrixEntries(MainHost.Instance().loggedInUser, Resources.Close, CdexArguments.MatrixEntries, CdexArguments.Directory + "\\" + CdexArguments.Name + FileOperations.GetFileExtension(FileOperations.CrypterFileType.CloudEntry),true, CdexArguments.EncryptenKey);
             Process.Start("explorer.exe", CdexArguments.Directory);
             this.Close();
+        }
+
+        public void ShowDialog(object sender)
+        {   
+            this.ShowDialog();
+        }
+
+        public void LoadData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ProcessDialog()
+        {
+            throw new NotImplementedException();
         }
     }
 }

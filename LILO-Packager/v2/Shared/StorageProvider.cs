@@ -23,9 +23,9 @@ namespace LILO_Packager.v2.Shared
 
                 var instance = value as StorageProvider;
 
-                if(Instance != instance)
+                if(_instance != instance)
                 {
-                    Instance = value;
+                    _instance = value;
                 }
             } 
         }
