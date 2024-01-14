@@ -62,6 +62,7 @@
             lblMessageText = new Label();
             progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
             pluginUi = new LILO_Packager.v2.Controls.DynamicPluginListItem();
+            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             pnlControls.SuspendLayout();
             guna2Panel2.SuspendLayout();
             guna2Panel6.SuspendLayout();
@@ -80,6 +81,7 @@
             pnlControls.BorderRadius = 20;
             pnlControls.BorderThickness = 2;
             pnlControls.Controls.Add(cmbState);
+            pnlControls.Controls.Add(guna2Button2);
             pnlControls.Controls.Add(guna2Button3);
             pnlControls.Controls.Add(lblDirectory);
             pnlControls.Controls.Add(guna2Button1);
@@ -541,12 +543,11 @@
             pnlLoading.Controls.Add(label11);
             pnlLoading.Controls.Add(lblMessageText);
             pnlLoading.Controls.Add(progressSpinner);
-            pnlLoading.Dock = DockStyle.Fill;
             pnlLoading.FillColor = Color.White;
-            pnlLoading.Location = new Point(0, 0);
+            pnlLoading.Location = new Point(0, 248);
             pnlLoading.Margin = new Padding(2);
             pnlLoading.Name = "pnlLoading";
-            pnlLoading.Size = new Size(945, 852);
+            pnlLoading.Size = new Size(945, 604);
             pnlLoading.TabIndex = 24;
             // 
             // label10
@@ -555,7 +556,7 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
             label10.ForeColor = Color.Silver;
-            label10.Location = new Point(405, 742);
+            label10.Location = new Point(405, 494);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(136, 30);
@@ -569,7 +570,7 @@
             label11.BackColor = Color.Transparent;
             label11.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             label11.ForeColor = SystemColors.WindowFrame;
-            label11.Location = new Point(372, 766);
+            label11.Location = new Point(372, 518);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(200, 40);
@@ -583,7 +584,7 @@
             lblMessageText.BackColor = Color.Transparent;
             lblMessageText.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMessageText.ForeColor = Color.Black;
-            lblMessageText.Location = new Point(118, 496);
+            lblMessageText.Location = new Point(118, 372);
             lblMessageText.Margin = new Padding(4, 0, 4, 0);
             lblMessageText.Name = "lblMessageText";
             lblMessageText.Size = new Size(710, 50);
@@ -597,7 +598,7 @@
             progressSpinner.AutoStart = true;
             progressSpinner.BackColor = Color.White;
             progressSpinner.CircleSize = 2F;
-            progressSpinner.Location = new Point(388, 296);
+            progressSpinner.Location = new Point(388, 172);
             progressSpinner.Margin = new Padding(2);
             progressSpinner.Name = "progressSpinner";
             progressSpinner.Size = new Size(170, 160);
@@ -630,6 +631,30 @@
             pluginUi.Size = new Size(890, 140);
             pluginUi.TabIndex = 28;
             pluginUi.ClickedDownload += guna2Button2_Click;
+            // 
+            // guna2Button2
+            // 
+            guna2Button2.Animated = true;
+            guna2Button2.BackColor = Color.Transparent;
+            guna2Button2.BorderColor = Color.Gainsboro;
+            guna2Button2.BorderRadius = 20;
+            guna2Button2.BorderThickness = 2;
+            guna2Button2.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button2.FillColor = Color.Transparent;
+            guna2Button2.FocusedColor = Color.FromArgb(100, 170, 209);
+            guna2Button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            guna2Button2.ForeColor = Color.White;
+            guna2Button2.Image = (Image)resources.GetObject("guna2Button2.Image");
+            guna2Button2.ImageSize = new Size(35, 35);
+            guna2Button2.Location = new Point(488, 16);
+            guna2Button2.Margin = new Padding(2);
+            guna2Button2.Name = "guna2Button2";
+            guna2Button2.Size = new Size(72, 58);
+            guna2Button2.TabIndex = 27;
+            guna2Button2.Click += guna2Button2_Click_1;
             // 
             // uiPluginKit
             // 
@@ -697,5 +722,6 @@
         private Label label11;
         private Guna.UI2.WinForms.Guna2ComboBox cmbState;
         public LILO_Packager.v2.Controls.DynamicPluginListItem pluginUi;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
     }
 }

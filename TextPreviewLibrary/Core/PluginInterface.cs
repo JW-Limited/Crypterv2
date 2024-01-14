@@ -7,22 +7,32 @@ using TextPreviewLibrary.Core.Formats;
 namespace TextPreviewLibrary.Core;
 public partial class PluginInterface : Form
 {
-    public string Version;
-    public PluginID id;
-    public string Name;
-    public PluginID Id => throw new NotImplementedException();
+    private CrypterTextFile _emptyFile = new()
+    {
+        CreatedAt = DateTime.Now,
+        Author = "",
+        IsLocked = false,
+        FileName = "",
+        RtfContent = "",
+        TextColor = Color.Black,
+        LastModified = DateTime.Now,
+    };
+
+    private string Version => new PluginBase().Version;
+    public string Name => new PluginBase().Name;
+    public PluginID Id => new PluginBase().ID;
     public CrypterTextFile _file;
     public string openedFilePath;
     private static object _lock = new object();
-    private static PluginInterface _encrypt;
+    private static PluginInterface? _encrypt;
 
-    public static PluginInterface Instance(string Version, PluginID id, string Name, bool needNewInstance)
+    public static PluginInterface Instance(bool needNewInstance)
     {
         lock (_lock)
         {
             if (_encrypt is null || _encrypt.IsDisposed || needNewInstance)
             {
-                _encrypt = new PluginInterface(Version, id, Name);
+                _encrypt = new PluginInterface();
             }
 
             return _encrypt;
@@ -34,25 +44,9 @@ public partial class PluginInterface : Form
         _encrypt = (PluginInterface)newInstance;
     }
 
-    public CrypterTextFile _emptyFile = new CrypterTextFile()
-    {
-        CreatedAt = DateTime.Now,
-        Author = "",
-        IsLocked = false,
-        FileName = "",
-        RtfContent = "",
-        TextColor = Color.Black,
-        LastModified = DateTime.Now,
-    };
-
-
-    public PluginInterface(string Version, PluginID id, string Name)
+    public PluginInterface()
     {
         InitializeComponent();
-
-        this.id = id;
-        this.Version = Version;
-        this.Name = Name;
 
         this.FormClosing += (sender, e) =>
         {
@@ -89,7 +83,7 @@ public partial class PluginInterface : Form
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"LILO Shell",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 
@@ -288,6 +282,10 @@ public partial class PluginInterface : Form
             Widht += uiElement.Width + 20;
 
             FilesOpen.Add(text);
+        }
+        else if (FilesOpen.Contains(text))
+        {
+
         }
     }
 

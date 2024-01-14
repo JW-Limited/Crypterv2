@@ -23,7 +23,7 @@ namespace TextPreviewLibrary
         public string Version { get; set; } = "v0.12.3-beta";
         public Bitmap PluginIcon { get; set; } = Resources.icons8_foxit_reader_240;
         public static SemanticVersion _sVersion = new SemanticVersion(0, 1, 2, "alpha", false);
-        public Form PluginInterface { get; set; } = Core.PluginInterface.Instance("v0.1", PluginID.GetID("tpl", "lbl", "lvl02"), "Text-Preview",true);
+        public Form PluginInterface { get; set; } = Core.PluginInterface.Instance(true);
         public string Company { get; set; } = "JW Limited © 2023";
 
         public static ThemeManager _thManager;
@@ -100,11 +100,11 @@ namespace TextPreviewLibrary
                 if (file.EndsWith(".ctv"))
                 {
                     var content = CrypterTextFile.LoadInstanceFromFile(file);
-                    Core.PluginInterface.Instance(null, null, null, args.needNewInstance).SetContent(content);
+                    Core.PluginInterface.Instance(args.needNewInstance).SetContent(content);
                 }
                 else
                 {
-                    Core.PluginInterface.Instance(null, null, null, args.needNewInstance).SetContent(new CrypterTextFile()
+                    Core.PluginInterface.Instance(args.needNewInstance).SetContent(new CrypterTextFile()
                     {
                         RtfContent = File.ReadAllText(file),
                         IsLocked = false,

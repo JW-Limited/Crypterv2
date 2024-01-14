@@ -1,16 +1,18 @@
 ﻿using Crypterv2.DevTool.Core.Plugins.Config;
 using Crypterv2_DevTool.Core.Forms;
 using LILO_Packager.v2.Plugins.Model;
+using LILO_Packager.v2.Plugins.PluginCore;
+using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
 
 namespace Crypterv2.DevTool.Core.Forms
 {
     public partial class uiDialogInfos : Form
     {
-        public PluginEntry _plugin { get; set; }
-        public PluginEntry _backup { get; set; }
+        public IPluginBase _plugin { get; set; }
+        public IPluginBase _backup { get; set; }
         public bool Canceled { get; set; }
 
-        public uiDialogInfos(PluginEntry plugin)
+        public uiDialogInfos(IPluginBase plugin)
         {
             InitializeComponent();
 
@@ -18,18 +20,20 @@ namespace Crypterv2.DevTool.Core.Forms
             this._plugin = plugin;
         }
 
-        public PluginEntry GetInfos()
+        public IPluginBase GetInfos()
         {
             base.StartPosition = FormStartPosition.CenterParent;
             base.ShowDialog();
 
+
+
             if(!Canceled)
             {
-                var exConfigManager = new PluginConfigManager(uiPluginKit.Instance().SelectedPlugin.Name, new Crypterv2.DevTool.Core.Plugins.Types.PluginConfig()
+                var exConfigManager = new PluginConfigManager(_plugin.Name, new Crypterv2.DevTool.Core.Plugins.Types.PluginConfig()
                 {
-                    Name = uiPluginKit.Instance().SelectedPlugin.Name,
-                    Description = uiPluginKit.Instance().SelectedPlugin.Description,
-                    Version = uiPluginKit.Instance().SelectedPlugin.Version,
+                    Name = _plugin.Name,
+                    Description = _plugin.Description,
+                    Version = _plugin.Version,
                     State = uiPluginKit.PluginDevState,
                     Changes = uiPluginKit.ChannelLog,
                     PluginIcon = uiPluginKit.Instance().PluginIcon
@@ -37,8 +41,8 @@ namespace Crypterv2.DevTool.Core.Forms
 
                 exConfigManager.SavePluginConfig();
 
-                uiPluginKit.Instance().pluginUi.PluginName = uiPluginKit.Instance().SelectedPlugin.Name;
-                uiPluginKit.Instance().pluginUi.PluginVersion = uiPluginKit.Instance().SelectedPlugin.Version;
+                uiPluginKit.Instance().pluginUi.PluginName = ((IPluginBase)uiPluginKit.Instance().SelectedPlugin).Name;
+                uiPluginKit.Instance().pluginUi.PluginVersion = ((IPluginBase)uiPluginKit.Instance().SelectedPlugin).Version;
             }
 
             return _plugin;

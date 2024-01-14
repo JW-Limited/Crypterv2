@@ -1,6 +1,7 @@
 ﻿using Crypterv2.DevTool.Core.Plugins;
 using Crypterv2.DevTool.Core.Plugins.Config;
 using Crypterv2_DevTool.Core.Forms;
+using LILO_Packager.v2.Plugins.PluginCore;
 using System.Collections.ObjectModel;
 using System.Data;
 
@@ -242,7 +243,7 @@ namespace Crypterv2.DevTool.Core.Forms
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            var config = new PluginConfigManager(uiPluginKit.Instance().SelectedPlugin.Name, null);
+            var config = new PluginConfigManager(((IPluginBase)uiPluginKit.Instance().SelectedPlugin).Name, null);
             config.TryDeleteDependencies();
 
             listViewHistory.Items.Clear();

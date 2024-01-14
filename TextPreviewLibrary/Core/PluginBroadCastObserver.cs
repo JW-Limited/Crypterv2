@@ -33,8 +33,8 @@ namespace TextPreviewLibrary.Core
             {
                 if(value.Payload is "close" or "shutdown")
                 {
-                    PluginInterface.Instance(null, null, null, false).Close();
-                    PluginInterface.Instance(null, null, null, false).Dispose();
+                    PluginInterface.Instance(false).Close();
+                    PluginInterface.Instance(false).Dispose();
                 }
             }
         }

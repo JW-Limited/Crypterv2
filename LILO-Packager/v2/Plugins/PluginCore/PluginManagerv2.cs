@@ -11,16 +11,17 @@ namespace LILO_Packager.v2.Plugins.PluginCore
     {
         // --- Plugins ---
 
-        public HashSet<IPluginBase> Pluginsv1 = new HashSet<IPluginBase>();
-        public HashSet<IPluginBasev2> PluginsV2 = new HashSet<IPluginBasev2>();
+        public readonly HashSet<IPluginBase> Pluginsv1 = new HashSet<IPluginBase>();
+        public readonly HashSet<IPluginBasev2> PluginsV2 = new HashSet<IPluginBasev2>();
+        private HashSet<IPluginBasev3> PluginsV3 = new HashSet<IPluginBasev3>();
 
         // --- Other Variables ---
 
-        public string PluginManagerIndexFile;
-        private HashSet<String> DirectoryPaths = new HashSet<string>();
-        public string PluginManagerIndexDirectory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Crypterv2\\Extensions\\";
-        public string PluginManagerIndexFileName = "Crypterv2PluginIndex.cif";
-        public Dictionary<IPluginBase, string> pluginPaths = new Dictionary<IPluginBase, string>();
+        private readonly string PluginManagerIndexFile;
+        private readonly HashSet<String> DirectoryPaths = new HashSet<string>();
+        public readonly string PluginManagerIndexDirectory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Crypterv2\\Extensions\\";
+        public readonly string PluginManagerIndexFileName = "Crypterv2PluginIndex.cif";
+        public readonly Dictionary<IPluginBase, string> pluginPaths = new Dictionary<IPluginBase, string>();
 
         public PluginManagerv2(String DirectoryPath)
         {
@@ -196,8 +197,6 @@ namespace LILO_Packager.v2.Plugins.PluginCore
             }
             else
             {
-                Pluginsv1 = new HashSet<IPluginBase>();
-
                 foreach (var ele in DirectoryPaths)
                 {
                     DirectoryInfo dir = new DirectoryInfo(ele);

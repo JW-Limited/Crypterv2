@@ -3,7 +3,6 @@ using Crypterv2.DevTool.Core.Forms;
 using Crypterv2.DevTool.Core.Plugins;
 using Crypterv2.DevTool.Core.Plugins.Config;
 using Crypterv2.DevTool.Core.Types;
-using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Plugins.Model;
 using LILO_Packager.v2.Plugins.PluginCore;
 using LILO_Packager.v2.Plugins.ThirdParty.Types;
@@ -19,12 +18,13 @@ namespace Crypterv2_DevTool.Core.Forms
         public static List<PluginFeature> PluginFeatures = new List<PluginFeature>();
         public static List<CapabilityInfo> Features { get; set; }
 
+        public PluginManagerv2 PluginBaseManager = null;
+
         public LILO_Packager.v2.Core.History.DatabaseHandling dataHandler = new LILO_Packager.v2.Core.History.DatabaseHandling();
-        public ObservableCollection<PluginEntry> plugins { get; set; } = new ObservableCollection<PluginEntry>();
         public ObservableCollection<string> Dependencies = new ObservableCollection<string>();
         private PackageManager PackageManager { get; set; }
-        public PluginManager PluginBaseManager = null;
-        public PluginEntry SelectedPlugin { get; set; }
+
+        public object SelectedPlugin { get; set; }
         public string PluginIcon { get; set; }
         public string OpenedDirectory = string.Empty;
 
@@ -59,112 +59,128 @@ namespace Crypterv2_DevTool.Core.Forms
         private void uiTestPlugin_Load(object sender, EventArgs e)
         {
             lblDirectory.Text = "Select Directory";
-
-            Task.Run(() =>
+            if (PluginTestConfig.Default.recentDirectory is not null)
             {
-                if (PluginTestConfig.Default.recentDirectory is not "null")
+                Task.Run(async () =>
                 {
+
                     this.Invoke(() =>
                     {
                         lblMessageText.Text = "Searching for Plugins...";
                         pnlLoading.Visible = true;
                     });
 
-                    PluginBaseManager = new PluginManager(PluginTestConfig.Default.recentDirectory);
+                    PluginBaseManager = new PluginManagerv2(PluginTestConfig.Default.recentDirectory);
+                    await PluginBaseManager.Scan();
                     lblDirectory.Text = "/" + GetShortDirectoryName(PluginTestConfig.Default.recentDirectory);
 
                     try
                     {
-                        if (PluginBaseManager.CurrentPlugins.Count > 0)
+                        if (PluginBaseManager.Pluginsv1.Count > 0 || PluginBaseManager.PluginsV2.Count > 0)
                         {
-                            foreach (var ele in PluginBaseManager.CurrentPlugins)
+                            foreach (var item in PluginBaseManager.PluginsV2.Where(x => x is not null))
                             {
-                                PluginEntry ent = new PluginEntry(ele);
-                                plugins.Add(ent);
-                            }
-
-                            StringBuilder stringBuilder = new StringBuilder();
-
-                            foreach (var item in plugins)
-                            {
-                                stringBuilder.Append($"Plugin : {item.Name}\n" +
-                                                     $"Description : {item.Description}\n" +
-                                                     $"Version : {item.Version}");
                                 cmbState.Items.Add(item.Name);
-                                cmbState.SelectedItem = item.Name;
-
-                                pluginUi.PluginName = item.Name;
-                                pluginUi.PluginDescription = item.Description;
-                                pluginUi.PluginVersion = item.Version;
-                                this.SelectedPlugin = item;
-                            };
-
-                            var configManager = new PluginConfigManager(SelectedPlugin.Name, null);
-                            var configs = configManager.TryGetExistingConfigs();
-
-                            if (configs.Success)
-                            {
-                                if (File.Exists(configs.PluginIcon))
-                                {
-                                    using(var fileStream = new StreamReader(configs.PluginIcon))
-                                    {
-                                        var icon = Bitmap.FromStream(fileStream.BaseStream);
-                                        PluginIcon = configs.PluginIcon;
-                                        pluginUi.PluginIcon = icon;
-                                    };
-                                }
-
-                                pluginUi.PluginName = configs.PluginConfig.Name;
-                                pluginUi.PluginDescription = configs.PluginConfig.Description;
-                                pluginUi.PluginVersion = configs.PluginConfig.Version;
-
-                                SelectedPlugin.Version = configs.PluginConfig.Version;
-                                SelectedPlugin.Name = configs.PluginConfig.Name;
-                                ChannelLog = configs.PluginConfig.Changes;
-                                PluginDevState = configs.PluginConfig.State;
-
-                                foreach(var item in configs.Dependencies)
-                                {
-                                    this.Dependencies.Add(item.FilePath);
-                                }
                             }
 
-                            this.Invoke(() =>
+                            foreach (var item in PluginBaseManager.Pluginsv1.Where(x => !cmbState.Items.Contains(x.Name)))
                             {
-                                lblMessageText.Text = "Creating youre Plugin...";
-                                pnlLoading.Visible = false;
-                            });
+                                cmbState.Items.Add(item.Name);
+                            }
+
+                            cmbState.SelectedItem = cmbState.Items[0];
+
+                            var plugin = PluginBaseManager.PluginsV2.FirstOrDefault(x => x?.Name == cmbState.Items[0] as string, null);
+                            if (plugin is not null)
+                            {
+                                pluginUi.PluginName = plugin.Name;
+                                pluginUi.PluginDescription = plugin.Description;
+                                pluginUi.PluginVersion = plugin.Version;
+                                this.SelectedPlugin = plugin;
+
+                                SetPluginConfigs(plugin.Name);
+                                ResetMessageText();
+                            }
+                            else
+                            {
+                                var pluginv1 = PluginBaseManager.Pluginsv1.First(x => x?.Name == cmbState.Items[0] as string);
+                                pluginUi.PluginName = pluginv1.Name;
+                                pluginUi.PluginDescription = pluginv1.Description;
+                                pluginUi.PluginVersion = pluginv1.Version;
+                                this.SelectedPlugin = pluginv1;
+
+                                SetPluginConfigs(pluginv1.Name);
+                                ResetMessageText();
+                            }
+
                         }
                         else
                         {
-                            MessageBox.Show("We didnt found any Plugins", "Crypterv2-DevTool");
-
                             this.Invoke(() =>
                             {
-                                lblMessageText.Text = "Creating youre Plugin...";
-                                pnlLoading.Visible = false;
+                                MessageBox.Show("We didnt found any Plugins", "Crypterv2-DevTool");
                             });
+
+                            ResetMessageText();
                         }
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message + ex.InnerException + ex.StackTrace + ex.Source + DevToolCodes.ToString(DevToolCodes.UnknownError), "PluginManager");
-
-                        this.Invoke(() =>
-                        {
-                            lblMessageText.Text = "Creating youre Plugin...";
-                            pnlLoading.Visible = false;
-                        });
+                        ResetMessageText();
                     }
-                }
+                });
+            }
+                
                 else
                 {
                     this.Invoke(() =>
                     {
-                        lblMessageText.Text = "Creating youre Plugin...";
-                        pnlLoading.Visible = false;
+                        ResetMessageText();
                     });
                 }
+        }
+
+        private void SetPluginConfigs(string name)
+        {
+            var configManager = new PluginConfigManager(name, null);
+            var configs = configManager.TryGetExistingConfigs();
+
+            if (configs.Success)
+            {
+                if (File.Exists(configs.PluginIcon))
+                {
+                    using (var fileStream = new StreamReader(configs.PluginIcon))
+                    {
+                        var icon = Bitmap.FromStream(fileStream.BaseStream);
+                        PluginIcon = configs.PluginIcon;
+                        pluginUi.PluginIcon = icon;
+                    };
+                }
+
+                pluginUi.PluginName = configs.PluginConfig.Name;
+                pluginUi.PluginDescription = configs.PluginConfig.Description;
+                pluginUi.PluginVersion = configs.PluginConfig.Version;
+
+                ((IPluginBase)SelectedPlugin).Version = configs.PluginConfig.Version;
+                ((IPluginBase)SelectedPlugin).Name = configs.PluginConfig.Name;
+
+                ChannelLog = configs.PluginConfig.Changes;
+                PluginDevState = configs.PluginConfig.State;
+
+                foreach (var item in configs.Dependencies)
+                {
+                    this.Dependencies.Add(item.FilePath);
+                }
+            }
+        }
+
+        public void ResetMessageText()
+        {
+            this.Invoke(() =>
+            {
+                lblMessageText.Text = "Creating youre Plugin...";
+                pnlLoading.Visible = false;
             });
         }
 
@@ -181,62 +197,75 @@ namespace Crypterv2_DevTool.Core.Forms
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                pnlLoading.Visible = true;
-                lblMessageText.Text = "Searching for Plugins...";
-
                 Task.Run(() =>
                 {
-                   
-                    plugins.Clear();
-                    lblDirectory.Text = "Searching...";
-                    cmbState.Items.Clear();
-                    cmbState.Text = string.Empty;
-                    PluginBaseManager = new PluginManager(ofd.SelectedPath);
-
-                    try
+                    this.Invoke(async() =>
                     {
-                        if (PluginBaseManager.CurrentPlugins.Count > 0)
-                        {
-                            foreach (var ele in PluginBaseManager.CurrentPlugins)
-                            {
-                                PluginEntry ent = new PluginEntry(ele);
-                                plugins.Add(ent);
-                                cmbState.Items.Add(ent.Name);
-                                cmbState.SelectedItem = ent.Name;
+                        lblMessageText.Text = "Searching for Plugins...";
+                        pnlLoading.Visible = true;
 
-                                pluginUi.PluginName = ent.Name;
-                                pluginUi.PluginDescription = ent.Description;
-                                pluginUi.PluginVersion = ent.Version;
-                                this.SelectedPlugin = ent;
+                        PluginBaseManager = new PluginManagerv2(ofd.SelectedPath);
+                        await PluginBaseManager.Scan();
+                        lblDirectory.Text = "/" + GetShortDirectoryName(ofd.SelectedPath);
+
+                        try
+                        {
+                            if (PluginBaseManager.Pluginsv1.Count > 0 || PluginBaseManager.PluginsV2.Count > 0)
+                            {
+                                foreach (var item in PluginBaseManager.PluginsV2.Where(x => x is not null))
+                                {
+                                    cmbState.Items.Add(item.Name);
+                                }
+
+                                foreach (var item in PluginBaseManager.Pluginsv1.Where(x => !cmbState.Items.Contains(x.Name)))
+                                {
+                                    cmbState.Items.Add(item.Name);
+                                }
+
+                                cmbState.SelectedItem = cmbState.Items[0];
+
+                                var plugin = PluginBaseManager.PluginsV2.FirstOrDefault(x => x?.Name == cmbState.Items[0] as string, null);
+                                if (plugin is not null)
+                                {
+                                    pluginUi.PluginName = plugin.Name;
+                                    pluginUi.PluginDescription = plugin.Description;
+                                    pluginUi.PluginVersion = plugin.Version;
+                                    this.SelectedPlugin = plugin;
+
+                                    SetPluginConfigs(plugin.Name);
+                                    ResetMessageText();
+                                }
+                                else
+                                {
+                                    var pluginv1 = PluginBaseManager.Pluginsv1.First(x => x?.Name == cmbState.Items[0] as string);
+                                    pluginUi.PluginName = pluginv1.Name;
+                                    pluginUi.PluginDescription = pluginv1.Description;
+                                    pluginUi.PluginVersion = pluginv1.Version;
+                                    this.SelectedPlugin = pluginv1;
+
+                                    SetPluginConfigs(pluginv1.Name);
+                                    ResetMessageText();
+                                }
+
+                                PluginTestConfig.Default.recentDirectory = ofd.SelectedPath;
+                                PluginTestConfig.Default.Save();
                             }
-
-                            PluginTestConfig.Default.recentDirectory = ofd.SelectedPath;
-                            PluginTestConfig.Default.Save();
-
-                            lblDirectory.Text = "/" + GetShortDirectoryName(ofd.SelectedPath);
-
-                            pnlLoading.Visible = false;
-                        }
-                        else
-                        {
-                            this.Invoke(() =>
+                            else
                             {
-                                pnlLoading.Visible = false;
-                                lblMessageText.Text = "Creating youre Plugin...";
-                                MessageBox.Show("We didnt found any Plugins", "Crypterv2-DevTool");
-                                lblDirectory.Text = "Select directory.";
-                            });
+                                this.Invoke(() =>
+                                {
+                                    MessageBox.Show("We didnt found any Plugins", "Crypterv2-DevTool");
+                                });
+
+                                ResetMessageText();
+                            }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        this.Invoke(() =>
+                        catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message);
-                            pnlLoading.Visible = false;
-                            lblMessageText.Text = "Creating youre Plugin...";
-                        });
-                    }
+                            MessageBox.Show(ex.Message + ex.InnerException + ex.StackTrace + ex.Source + DevToolCodes.ToString(DevToolCodes.UnknownError), "PluginManager");
+                            ResetMessageText();
+                        }
+                    });
                 });
 
             }
@@ -246,11 +275,11 @@ namespace Crypterv2_DevTool.Core.Forms
         {
             try
             {
-                PluginEntry neededPlugin = SelectedPlugin;
+                IPluginBase neededPlugin = ((IPluginBase)SelectedPlugin);
 
                 if (neededPlugin is not null)
                 {
-                    neededPlugin.form.Show();
+                    neededPlugin.PluginInterface.Show();
                 }
             }
             catch (Exception ex)
@@ -268,11 +297,11 @@ namespace Crypterv2_DevTool.Core.Forms
             {
                 try
                 {
-                    PluginEntry neededPlugin = SelectedPlugin;
+                    IPluginBase neededPlugin = ((IPluginBase)SelectedPlugin);
 
                     if (neededPlugin is not null)
                     {
-                        PluginBaseManager.pluginPaths.TryGetValue(neededPlugin.PluginBase, out string dllFile);
+                        PluginBaseManager.pluginPaths.TryGetValue(neededPlugin, out string dllFile);
                         var featureList = new List<CapabilityInfo>();
 
                         foreach (var feature in PluginFeatures)
@@ -322,7 +351,8 @@ namespace Crypterv2_DevTool.Core.Forms
 
                             if (response.Success)
                             {
-                                this.Invoke(() => {
+                                this.Invoke(() =>
+                                {
                                     pnlLoading.Visible = false;
 
                                     MainHost.GetInstance().OpenInApp(new uiPluginPackageView(new Crypterv2.DevTool.Core.Plugins.Types.PluginPackage(
@@ -336,9 +366,10 @@ namespace Crypterv2_DevTool.Core.Forms
                                 Version = new VersionInfo() { Number = neededPlugin.Version, ReleaseDate = DateTime.UtcNow.ToShortDateString(), Changes = ChannelLog, State = PluginDevState },
                             },
                             PluginTestConfig.Default.recentDirectory,
-                            Dependencies)),"Success",MainHost.ChildrenUse.Auth);
+                            Dependencies)), "Success", MainHost.ChildrenUse.Auth);
 
-                                    this.progress.Visible = false; });
+                                    this.progress.Visible = false;
+                                });
                             }
 
                             else if (response.IsError)
@@ -370,21 +401,13 @@ namespace Crypterv2_DevTool.Core.Forms
             {
                 this.progress.Visible = false;
                 this.pnlLoading.Visible = false;
-                MessageBox.Show(Message,header, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Message, header, MessageBoxButtons.OK, MessageBoxIcon.Error);
             });
         }
 
         private void cmbPlugins_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PluginEntry neededPlugin = null;
-
-            foreach (var plug in plugins)
-            {
-                if (plug.Name == cmbState.SelectedItem)
-                {
-                    neededPlugin = plug;
-                }
-            }
+            IPluginBase neededPlugin = PluginBaseManager.Pluginsv1.First(x => x.Name == cmbState.SelectedItem as string);
 
             if (neededPlugin != null)
             {
@@ -408,7 +431,7 @@ namespace Crypterv2_DevTool.Core.Forms
 
         private void guna2Button6_Click(object sender, EventArgs e)
         {
-            SelectedPlugin = new uiDialogInfos(SelectedPlugin).GetInfos();
+            SelectedPlugin = new uiDialogInfos(((IPluginBase)SelectedPlugin)).GetInfos();
         }
 
         private void guna2Button5_Click(object sender, EventArgs e)
@@ -423,16 +446,16 @@ namespace Crypterv2_DevTool.Core.Forms
             {
                 PluginIcon = ofd.FileName;
 
-                using(var stream = new StreamReader(ofd.FileName))
+                using (var stream = new StreamReader(ofd.FileName))
                 {
                     pluginUi.PluginIcon = Bitmap.FromStream(stream.BaseStream);
                 }
 
-                var exConfigManager = new PluginConfigManager(SelectedPlugin.Name, new Crypterv2.DevTool.Core.Plugins.Types.PluginConfig()
+                var exConfigManager = new PluginConfigManager(((IPluginBase)SelectedPlugin).Name, new Crypterv2.DevTool.Core.Plugins.Types.PluginConfig()
                 {
-                    Name = SelectedPlugin.Name,
-                    Description = SelectedPlugin.Description,
-                    Version = SelectedPlugin.Version,
+                    Name = ((IPluginBase)SelectedPlugin).Name,
+                    Description = ((IPluginBase)SelectedPlugin).Description,
+                    Version = ((IPluginBase)SelectedPlugin).Version,
                     State = PluginDevState,
                     Changes = ChannelLog,
                     PluginIcon = PluginIcon
@@ -440,11 +463,11 @@ namespace Crypterv2_DevTool.Core.Forms
 
                 exConfigManager.SavePluginConfig();
 
-                pluginUi.PluginName = SelectedPlugin.Name;
-                pluginUi.PluginVersion = SelectedPlugin.Version;
+                pluginUi.PluginName = ((IPluginBase)SelectedPlugin).Name;
+                pluginUi.PluginVersion = ((IPluginBase)SelectedPlugin).Version;
             }
 
-            
+
         }
 
         private void dynamicToggleButton2_Clicked(object sender, EventArgs e)
@@ -455,6 +478,12 @@ namespace Crypterv2_DevTool.Core.Forms
         private void togglePublish_Clicked(object sender, EventArgs e)
         {
             bntBuild.Enabled = togglePirate.Checked && togglePublish.Checked;
+        }
+
+        private void guna2Button2_Click_1(object sender, EventArgs e)
+        {
+            PluginTestConfig.Default.recentDirectory = null;
+            PluginTestConfig.Default.Save();
         }
     }
 }

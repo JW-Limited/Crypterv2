@@ -1,5 +1,6 @@
 ﻿using Crypterv2.DevTool.Core.Plugins.Types;
 using Crypterv2_DevTool.Core.Forms;
+using LILO_Packager.v2.Plugins.PluginCore;
 using System.Reflection;
 using System.Xml;
 
@@ -20,7 +21,7 @@ namespace Crypterv2.DevTool.Core.Plugins.Config
             _pluginName = PluginName;
             this.pluginConfig = pluginConfig ?? new PluginConfig();
 
-            uiPluginKit.Instance().PluginBaseManager.pluginPaths.TryGetValue(uiPluginKit.Instance().SelectedPlugin.PluginBase, out string dllFile);
+            uiPluginKit.Instance().PluginBaseManager.pluginPaths.TryGetValue(((IPluginBase)uiPluginKit.Instance().SelectedPlugin), out string dllFile);
 
             _pluginConfigPath = _pluginConfigsPath + "\\" + LILO_Packager.v2.Plugins.ThirdParty.Types.Plugin.GetTempDirectoryName(dllFile);
             _pluginDependencieConfigs = _pluginConfigPath + "\\dependencieAlloc";

@@ -584,9 +584,9 @@ partial class PluginInterface
         Transition.SetDecoration(this, Guna.UI2.AnimatorNS.DecorationType.None);
         Margin = new Padding(2);
         MinimumSize = new Size(300, 496);
-        Name = "PluginInterface";
         ShowIcon = false;
         ShowInTaskbar = false;
+        StartPosition = FormStartPosition.CenterScreen;
         Text = "TextPreview";
         Load += ui_Load;
         Shown += PluginInterface_Shown;

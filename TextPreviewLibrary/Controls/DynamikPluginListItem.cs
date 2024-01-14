@@ -33,7 +33,7 @@ namespace TextPreviewLibrary.Controls
 
         private void guna2Button4_Click(object sender, EventArgs e)
         {
-            PluginInterface.Instance(null, null, null, false).mainTextBox.Rtf = Content;
+            PluginInterface.Instance(false).mainTextBox.Rtf = Content;
         }
     }
 }
