@@ -212,10 +212,14 @@ namespace Crypterv2_DevTool.Core.Forms
                         {
                             if (PluginBaseManager.Pluginsv1.Count > 0 || PluginBaseManager.PluginsV2.Count > 0)
                             {
+                                Console.WriteLine("Filling in v2");
+
                                 foreach (var item in PluginBaseManager.PluginsV2.Where(x => x is not null))
                                 {
                                     cmbState.Items.Add(item.Name);
                                 }
+
+                                Console.WriteLine("Filling in v1");
 
                                 foreach (var item in PluginBaseManager.Pluginsv1.Where(x => !cmbState.Items.Contains(x.Name)))
                                 {
