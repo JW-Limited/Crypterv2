@@ -35,7 +35,7 @@
             pnlProgess = new Guna.UI2.WinForms.Guna2Panel();
             lblPrgDesc = new Label();
             progress = new Guna.UI2.WinForms.Guna2ProgressBar();
-            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            pnlInfos = new Guna.UI2.WinForms.Guna2Panel();
             lblDateUploaded = new Label();
             lblSize = new Label();
             panel2 = new Panel();
@@ -49,7 +49,7 @@
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             pnlImage.SuspendLayout();
             pnlProgess.SuspendLayout();
-            guna2Panel1.SuspendLayout();
+            pnlInfos.SuspendLayout();
             pnlLoading.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -180,23 +180,23 @@
             progress.TextMode = Guna.UI2.WinForms.Enums.ProgressBarTextMode.Value;
             progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             // 
-            // guna2Panel1
+            // pnlInfos
             // 
-            guna2Panel1.BackColor = SystemColors.HighlightText;
-            guna2Panel1.BorderColor = Color.Gainsboro;
-            guna2Panel1.BorderRadius = 15;
-            guna2Panel1.BorderThickness = 2;
-            guna2Panel1.Controls.Add(lblDateUploaded);
-            guna2Panel1.Controls.Add(lblSize);
-            guna2Panel1.Controls.Add(panel2);
-            guna2Panel1.Controls.Add(label10);
-            guna2Panel1.Controls.Add(label6);
-            guna2Panel1.FillColor = Color.White;
-            guna2Panel1.Location = new Point(32, 144);
-            guna2Panel1.Margin = new Padding(2);
-            guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(480, 128);
-            guna2Panel1.TabIndex = 60;
+            pnlInfos.BackColor = SystemColors.HighlightText;
+            pnlInfos.BorderColor = Color.Gainsboro;
+            pnlInfos.BorderRadius = 15;
+            pnlInfos.BorderThickness = 2;
+            pnlInfos.Controls.Add(lblDateUploaded);
+            pnlInfos.Controls.Add(lblSize);
+            pnlInfos.Controls.Add(panel2);
+            pnlInfos.Controls.Add(label10);
+            pnlInfos.Controls.Add(label6);
+            pnlInfos.FillColor = Color.White;
+            pnlInfos.Location = new Point(32, 144);
+            pnlInfos.Margin = new Padding(2);
+            pnlInfos.Name = "pnlInfos";
+            pnlInfos.Size = new Size(480, 128);
+            pnlInfos.TabIndex = 60;
             // 
             // lblDateUploaded
             // 
@@ -361,7 +361,7 @@
             Controls.Add(pnlProgess);
             Controls.Add(guna2Button1);
             Controls.Add(panel1);
-            Controls.Add(guna2Panel1);
+            Controls.Add(pnlInfos);
             Controls.Add(bntCopy);
             Controls.Add(lblFileName);
             Controls.Add(pnlImage);
@@ -375,7 +375,7 @@
             Load += uiDownloadFileFromArguments_Load;
             pnlImage.ResumeLayout(false);
             pnlProgess.ResumeLayout(false);
-            guna2Panel1.ResumeLayout(false);
+            pnlInfos.ResumeLayout(false);
             pnlLoading.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ResumeLayout(false);
@@ -388,7 +388,7 @@
         private Guna.UI2.WinForms.Guna2Panel pnlProgess;
         private Label lblPrgDesc;
         private Guna.UI2.WinForms.Guna2ProgressBar progress;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Panel pnlInfos;
         private Label lblDateUploaded;
         private Label lblSize;
         private Panel panel2;

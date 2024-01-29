@@ -89,6 +89,8 @@
             toggleGrantPermission.UncheckedState.BorderThickness = 2;
             toggleGrantPermission.UncheckedState.InnerBorderColor = Color.Gainsboro;
             toggleGrantPermission.UncheckedState.InnerBorderThickness = 2;
+            toggleGrantPermission.CheckedChanged += toggleGrantPermission_CheckedChanged;
+            toggleGrantPermission.Click += toggleGrantPermission_Click;
             // 
             // lblDescription
             // 

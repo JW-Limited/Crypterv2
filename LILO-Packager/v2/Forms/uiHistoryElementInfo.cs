@@ -324,16 +324,10 @@ namespace LILO_Packager.v2.Forms
                             _file.outputFileName
                         };
 
-                        plugin.Initialize(new PluginParameters()
-                        {
-                            needNewInstance = true,
-                        });
-
                         var responseEx = plugin.Execute(new PluginParameters()
                         {
                             Context = list,
                             themeManager = MainHost.Instance()._thManager,
-                            needNewInstance = false
                         });
 
                         if (responseEx.HasError)

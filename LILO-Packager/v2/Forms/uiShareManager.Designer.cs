@@ -33,8 +33,6 @@
             listView1 = new ListView();
             colFileName = new ColumnHeader();
             colUploadDate = new ColumnHeader();
-            bntAdvanced = new Guna.UI2.WinForms.Guna2Button();
-            bntShare = new Guna.UI2.WinForms.Guna2Button();
             bntPlugin = new Guna.UI2.WinForms.Guna2Button();
             lblText = new Label();
             label4 = new Label();
@@ -48,6 +46,8 @@
             columnHeader1 = new ColumnHeader();
             lblVersion = new Label();
             pswDialog = new Ookii.Dialogs.WinForms.InputDialog(components);
+            bntAdvanced = new Guna.UI2.WinForms.Guna2Button();
+            bntShare = new Guna.UI2.WinForms.Guna2Button();
             sPanel2.SuspendLayout();
             guna2Panel3.SuspendLayout();
             guna2Panel1.SuspendLayout();
@@ -99,62 +99,6 @@
             // 
             colUploadDate.Text = "Uploaded";
             colUploadDate.Width = 180;
-            // 
-            // bntAdvanced
-            // 
-            bntAdvanced.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            bntAdvanced.Animated = true;
-            bntAdvanced.BackColor = Color.Transparent;
-            bntAdvanced.BackgroundImageLayout = ImageLayout.Zoom;
-            bntAdvanced.BorderColor = Color.Gainsboro;
-            bntAdvanced.BorderRadius = 10;
-            bntAdvanced.BorderThickness = 2;
-            bntAdvanced.CheckedState.FillColor = Color.White;
-            bntAdvanced.CustomizableEdges.BottomLeft = false;
-            bntAdvanced.CustomizableEdges.TopLeft = false;
-            bntAdvanced.DisabledState.BorderColor = Color.Gainsboro;
-            bntAdvanced.DisabledState.CustomBorderColor = Color.Gainsboro;
-            bntAdvanced.DisabledState.FillColor = Color.WhiteSmoke;
-            bntAdvanced.DisabledState.ForeColor = Color.DimGray;
-            bntAdvanced.Enabled = false;
-            bntAdvanced.FillColor = Color.White;
-            bntAdvanced.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntAdvanced.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            bntAdvanced.ForeColor = Color.DarkGray;
-            bntAdvanced.Location = new Point(664, 696);
-            bntAdvanced.Margin = new Padding(2);
-            bntAdvanced.Name = "bntAdvanced";
-            bntAdvanced.Size = new Size(168, 48);
-            bntAdvanced.TabIndex = 15;
-            bntAdvanced.Text = "Advanced";
-            bntAdvanced.Click += bntAdvanced_Click;
-            // 
-            // bntShare
-            // 
-            bntShare.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            bntShare.Animated = true;
-            bntShare.BackColor = Color.Transparent;
-            bntShare.BackgroundImageLayout = ImageLayout.Zoom;
-            bntShare.BorderColor = Color.Gainsboro;
-            bntShare.BorderRadius = 10;
-            bntShare.BorderThickness = 2;
-            bntShare.CheckedState.FillColor = Color.White;
-            bntShare.DisabledState.BorderColor = Color.Gainsboro;
-            bntShare.DisabledState.CustomBorderColor = Color.Gainsboro;
-            bntShare.DisabledState.FillColor = Color.WhiteSmoke;
-            bntShare.DisabledState.ForeColor = Color.DimGray;
-            bntShare.Enabled = false;
-            bntShare.FillColor = Color.White;
-            bntShare.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntShare.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            bntShare.ForeColor = Color.SteelBlue;
-            bntShare.Location = new Point(40, 696);
-            bntShare.Margin = new Padding(2);
-            bntShare.Name = "bntShare";
-            bntShare.Size = new Size(632, 48);
-            bntShare.TabIndex = 15;
-            bntShare.Text = "Export";
-            bntShare.Click += bntShare_Click;
             // 
             // bntPlugin
             // 
@@ -333,6 +277,62 @@
             pswDialog.MainInstruction = "E.key";
             pswDialog.WindowTitle = "MainHost";
             // 
+            // bntAdvanced
+            // 
+            bntAdvanced.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            bntAdvanced.Animated = true;
+            bntAdvanced.BackColor = Color.Transparent;
+            bntAdvanced.BackgroundImageLayout = ImageLayout.Zoom;
+            bntAdvanced.BorderColor = Color.Gainsboro;
+            bntAdvanced.BorderRadius = 10;
+            bntAdvanced.BorderThickness = 2;
+            bntAdvanced.CheckedState.FillColor = Color.White;
+            bntAdvanced.CustomizableEdges.BottomLeft = false;
+            bntAdvanced.CustomizableEdges.TopLeft = false;
+            bntAdvanced.DisabledState.BorderColor = Color.Gainsboro;
+            bntAdvanced.DisabledState.CustomBorderColor = Color.Gainsboro;
+            bntAdvanced.DisabledState.FillColor = Color.WhiteSmoke;
+            bntAdvanced.DisabledState.ForeColor = Color.DimGray;
+            bntAdvanced.Enabled = false;
+            bntAdvanced.FillColor = Color.White;
+            bntAdvanced.FocusedColor = Color.FromArgb(100, 170, 209);
+            bntAdvanced.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            bntAdvanced.ForeColor = Color.DarkGray;
+            bntAdvanced.Location = new Point(664, 696);
+            bntAdvanced.Margin = new Padding(2);
+            bntAdvanced.Name = "bntAdvanced";
+            bntAdvanced.Size = new Size(168, 48);
+            bntAdvanced.TabIndex = 15;
+            bntAdvanced.Text = "Advanced";
+            bntAdvanced.Click += bntAdvanced_Click;
+            // 
+            // bntShare
+            // 
+            bntShare.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            bntShare.Animated = true;
+            bntShare.BackColor = Color.Transparent;
+            bntShare.BackgroundImageLayout = ImageLayout.Zoom;
+            bntShare.BorderColor = Color.Gainsboro;
+            bntShare.BorderRadius = 10;
+            bntShare.BorderThickness = 2;
+            bntShare.CheckedState.FillColor = Color.White;
+            bntShare.DisabledState.BorderColor = Color.Gainsboro;
+            bntShare.DisabledState.CustomBorderColor = Color.Gainsboro;
+            bntShare.DisabledState.FillColor = Color.WhiteSmoke;
+            bntShare.DisabledState.ForeColor = Color.DimGray;
+            bntShare.Enabled = false;
+            bntShare.FillColor = Color.White;
+            bntShare.FocusedColor = Color.FromArgb(100, 170, 209);
+            bntShare.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            bntShare.ForeColor = Color.SteelBlue;
+            bntShare.Location = new Point(40, 696);
+            bntShare.Margin = new Padding(2);
+            bntShare.Name = "bntShare";
+            bntShare.Size = new Size(632, 48);
+            bntShare.TabIndex = 15;
+            bntShare.Text = "Export";
+            bntShare.Click += bntShare_Click;
+            // 
             // uiShareManager
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -367,7 +367,6 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Label label2;
         private Label label1;
-        private Guna.UI2.WinForms.Guna2Button bntShare;
         private ListView listView1;
         private ColumnHeader colFileName;
         private ColumnHeader colUploadDate;
@@ -378,5 +377,6 @@
         private Label lblVersion;
         private Ookii.Dialogs.WinForms.InputDialog pswDialog;
         private Guna.UI2.WinForms.Guna2Button bntAdvanced;
+        private Guna.UI2.WinForms.Guna2Button bntShare;
     }
 }

@@ -32,6 +32,17 @@ namespace TextPreviewLibrary.Core.Formats
             }
         }
 
+        public static CrypterTextFile _emptyFile = new()
+        {
+            CreatedAt = DateTime.Now,
+            Author = "",
+            IsLocked = false,
+            FileName = "",
+            RtfContent = "",
+            TextColor = Color.Black,
+            LastModified = DateTime.Now,
+        };
+
         public static CrypterTextFile CreateSecuredFile(CrypterTextFile cry)
         {
             var securedFile = new CrypterTextFile();

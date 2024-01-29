@@ -12,14 +12,14 @@ namespace LILO_Packager.v2.Plugins.PluginCore.UI
     [ToolboxItemFilter("System.Windows.Forms.Control.TopLevel")]
     public class HostControllableGraphicInterface : Form
     {
-        public HostControllableGraphicInterface()
+        public HostControllableGraphicInterface(HostControllableGraphicInterface _form)
         {
-
+            //ActiveInterface = _form;
         }
 
         public Color PreviousBackgroundColor { get; set; }
         public bool UserControlActive = true;
-        public static HostControllableGraphicInterface? ActiveInterface { get; }
+        public static HostControllableGraphicInterface? ActiveInterface { get; set; }
         public EventHandler<ErrorEventArgs> ErrorHandler { get; set; }
         public Dictionary<string,ErrorEventArgs> Errors { get; set; } = new Dictionary<string, ErrorEventArgs>();
 

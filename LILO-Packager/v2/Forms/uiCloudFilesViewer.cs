@@ -84,6 +84,84 @@ namespace LILO_Packager.v2.Forms
                         lblCloud.Text = "Offline";
                         lblCloud.ForeColor = Color.Red;
                     }
+
+                    lblMatrix.Text = MatrixHandler.GetMatrixFile().MatrixDetail.MatrixVerifier.Name;
+                    lblMatrixVersion.Text = MatrixHandler.GetMatrixFile().MatrixDetail.SchemeVersion;
+
+                    if (!fetchinEntries)
+                    {
+                        fetchinEntries = true;
+
+                        this.Invoke((Action)(async () =>
+                        {
+                            var imageList = new ImageList();
+                            var syncItem = 0;
+                            listView1.StateImageList = imageList;
+                            listView1.SmallImageList = imageList;
+                            listView1.LargeImageList = imageList;
+                            listView1.GroupImageList = imageList;
+
+                            SubOp.Visible = true;
+                            SubOp_lblFileName.Text = "Syncing...";
+                            SubOp_ProgressBar.Maximum = MatrixEntries.Count + 1;
+
+                            foreach (var item in MatrixEntries)
+                            {
+                                syncItem++;
+                                SubOp_ProgressBar.Value = syncItem;
+
+
+
+                                var listViewItem = new ListViewItem()
+                                {
+                                    Text = item.File.FileName,
+                                    Tag = item.Identity.FileHash,
+                                };
+
+                                SubOp_lblOperationType.Text = "Fetching";
+                                SubOp_lblToLocation.Text = item.File.FileName;
+                                SubOp_pnlIco.BackgroundImage = Resources.icons8_synchronize_240;
+
+                                var picture = await PixelDrainService.PixelDrainThumbnail.GetThumbnailAsync(item.CloudEntry.PublicFileId);
+                                try
+                                {
+                                    imageList.Images.Add(item.Identity.FileHash, picture);
+                                }
+                                catch (Exception ex) { }
+
+                                listViewItem.ImageKey = item.Identity.FileHash;
+                                var itemInfo = await PixelDrainService.CloudFileInfo.GetFileInfoAsync(item.CloudEntry.PublicFileId);
+
+                                listViewItem.SubItems.Add(itemInfo.MimeType);
+                                listViewItem.SubItems.Add($"{FileOperations.GetSizeString((int)itemInfo.Size)}");
+                                listViewItem.SubItems.Add(item.Identity.Timestamp.ToShortDateString() + " - " + item.Identity.Timestamp.ToShortTimeString());
+
+                                try
+                                {
+                                    FetchedMatrixEntries.Add(item.Identity.FileHash, (picture, itemInfo));
+                                }
+                                catch (Exception ex)
+                                {
+
+                                }
+
+                                if (File.Exists(item.File.RealPath))
+                                {
+                                    listViewItem.SubItems.Add("Local/Cloud");
+                                }
+                                else
+                                {
+                                    listViewItem.SubItems.Add("Cloud");
+                                }
+
+                                listView1.Items.Add(listViewItem);
+                            }
+
+                            SubOp.Visible = false;
+                            fetchinEntries = false;
+                            prgMiniProgress.Visible = false;
+                        }));
+                    }
                 }
                 else
                 {
@@ -93,83 +171,7 @@ namespace LILO_Packager.v2.Forms
                     lblCloud.ForeColor = Color.Red;
                 }
 
-                lblMatrix.Text = MatrixHandler.GetMatrixFile().MatrixDetail.MatrixVerifier.Name;
-                lblMatrixVersion.Text = MatrixHandler.GetMatrixFile().MatrixDetail.SchemeVersion;
-
-                if (!fetchinEntries)
-                {
-                    fetchinEntries = true;
-
-                    this.Invoke((Action)(async () =>
-                    {
-                        var imageList = new ImageList();
-                        var syncItem = 0;
-                        listView1.StateImageList = imageList;
-                        listView1.SmallImageList = imageList;
-                        listView1.LargeImageList = imageList;
-                        listView1.GroupImageList = imageList;
-
-                        SubOp.Visible = true;
-                        SubOp_lblFileName.Text = "Syncing...";
-                        SubOp_ProgressBar.Maximum = MatrixEntries.Count + 1;
-
-                        foreach (var item in MatrixEntries)
-                        {
-                            syncItem++;
-                            SubOp_ProgressBar.Value = syncItem;
-
-
-
-                            var listViewItem = new ListViewItem()
-                            {
-                                Text = item.File.FileName,
-                                Tag = item.Identity.FileHash,
-                            };
-
-                            SubOp_lblOperationType.Text = "Fetching";
-                            SubOp_lblToLocation.Text = item.File.FileName;
-                            SubOp_pnlIco.BackgroundImage = Resources.icons8_synchronize_240;
-
-                            var picture = await PixelDrainService.PixelDrainThumbnail.GetThumbnailAsync(item.CloudEntry.PublicFileId);
-                            try
-                            {
-                                imageList.Images.Add(item.Identity.FileHash, picture);
-                            }
-                            catch(Exception ex) { }
-
-                            listViewItem.ImageKey = item.Identity.FileHash;
-                            var itemInfo = await PixelDrainService.CloudFileInfo.GetFileInfoAsync(item.CloudEntry.PublicFileId);
-
-                            listViewItem.SubItems.Add(itemInfo.MimeType);
-                            listViewItem.SubItems.Add($"{FileOperations.GetSizeString((int)itemInfo.Size)}");
-                            listViewItem.SubItems.Add(item.Identity.Timestamp.ToShortDateString() + " - " + item.Identity.Timestamp.ToShortTimeString());
-
-                            try
-                            {
-                                FetchedMatrixEntries.Add(item.Identity.FileHash, (picture, itemInfo));
-                            }
-                            catch(Exception ex)
-                            {
-
-                            }
-
-                            if (File.Exists(item.File.RealPath))
-                            {
-                                listViewItem.SubItems.Add("Local/Cloud");
-                            }
-                            else
-                            {
-                                listViewItem.SubItems.Add("Cloud");
-                            }
-
-                            listView1.Items.Add(listViewItem);
-                        }
-
-                        SubOp.Visible = false;
-                        fetchinEntries = false;
-                        prgMiniProgress.Visible = false;
-                    }));
-                }
+                
 
 
             });

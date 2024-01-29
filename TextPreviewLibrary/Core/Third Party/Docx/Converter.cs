@@ -1,68 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Xml.Linq;
+using ICSharpCode.SharpZipLib.Zip;
+using System.Windows.Forms;
 using System.Text;
-using System.Threading.Tasks;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Xml.Linq;
+using System.IO.Compression;
 
 namespace TextPreviewLibrary.Core.Third_Party.Docx
 {
-    public class Converter
+    public static class Converter
     {
-        public static string ConvertToPlainText(string inputPath)
+        public static void ConvertToRichTextBox(string inputPath, RichTextBox output)
         {
-            // Open the input DOCX file.
-            XDocument inputDocument = XDocument.Load(inputPath);
-
-            // Create a new output string.
-            StringBuilder output = new StringBuilder();
-
-            // Iterate over the body element of the input document.
-            foreach (XElement element in inputDocument.Root.ElementsAfterSelf("body"))
+            try
             {
-                // Process the element based on its type.
-                switch (element.Name.LocalName)
+                using (ICSharpCode.SharpZipLib.Zip.ZipInputStream zip = new ICSharpCode.SharpZipLib.Zip.ZipInputStream(File.OpenRead(inputPath)))
                 {
-                    case "p": // Paragraph
-                        output.AppendLine(element.Value.Trim());
-                        break;
-                    case "h1": // Heading 1
-                        output.AppendLine(element.Value.Trim());
-                        break;
-                    case "h2": // Heading 2
-                        output.AppendLine(element.Value.Trim());
-                        break;
-                    case "h3": // Heading 3
-                        output.AppendLine(element.Value.Trim());
-                        break;
-                    case "ul": // Unordered list
-                        output.AppendLine();
-                        foreach (XElement childElement in element.Elements("li"))
+                    ZipEntry entry;
+                    while ((entry = zip.GetNextEntry()) != null)
+                    {
+                        if (entry.Name.EndsWith("document.xml"))
                         {
-                            output.AppendLine("- " + childElement.Value.Trim());
+                            XDocument doc = XDocument.Load(zip);
+                            output.Text = doc.Root.Value;
                         }
-                        break;
-                    case "ol": // Ordered list
-                        output.AppendLine();
-                        foreach (XElement childElement in element.Elements("li"))
-                        {
-                            output.AppendLine(childElement.Attribute("value")?.Value + ". " + childElement.Value.Trim());
-                        }
-                        break;
-                    case "img": // Image
-                        output.AppendLine("[Image omitted]");
-                        break;
-                    default: // Ignore other elements
-                        break;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                output.Text = "Error converting document: " + ex.Message;
+            }
+        }
 
-            // Return the output string.
-            return output.ToString();
+        public static string ConvertToPlainText(string inputPath)
+        {
+            try
+            {
+                StringBuilder text = new StringBuilder();
+
+                using (FileStream fileToDecompress = File.OpenRead(inputPath))
+                using (ZipArchive archive = new ZipArchive(fileToDecompress, ZipArchiveMode.Read))
+                {
+                    foreach (ZipArchiveEntry entry in archive.Entries)
+                    {
+                        if (entry.FullName.EndsWith("document.xml"))
+                        {
+                            using (Stream stream = entry.Open())
+                            {
+                                XDocument doc = XDocument.Load(stream);
+                                text.Append(doc.Root.Value);
+                            }
+                        }
+                    }
+                }
+
+                return text.ToString();
+            }
+            catch(Exception ex)
+            {
+                return "Error happend while reading the file: " + ex.Message;
+            }
         }
     }
 }

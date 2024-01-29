@@ -51,11 +51,14 @@
             label5 = new Label();
             lblAuthor = new Label();
             label4 = new Label();
+            pnlPluginSplash = new Guna.UI2.WinForms.Guna2Panel();
+            label7 = new Label();
             sPanel2.SuspendLayout();
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             pnlSide.SuspendLayout();
             guna2Panel2.SuspendLayout();
+            pnlPluginSplash.SuspendLayout();
             SuspendLayout();
             // 
             // sPanel2
@@ -261,7 +264,7 @@
             // 
             // pnlSide
             // 
-            pnlSide.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnlSide.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlSide.BackColor = Color.Transparent;
             pnlSide.BorderColor = Color.Gainsboro;
             pnlSide.BorderRadius = 15;
@@ -272,16 +275,16 @@
             pnlSide.Location = new Point(408, 600);
             pnlSide.Margin = new Padding(2);
             pnlSide.Name = "pnlSide";
-            pnlSide.Size = new Size(573, 408);
+            pnlSide.Size = new Size(573, 416);
             pnlSide.TabIndex = 57;
             // 
             // pnlPermissions
             // 
-            pnlPermissions.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnlPermissions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlPermissions.AutoScroll = true;
             pnlPermissions.Location = new Point(8, 24);
             pnlPermissions.Name = "pnlPermissions";
-            pnlPermissions.Size = new Size(560, 360);
+            pnlPermissions.Size = new Size(560, 368);
             pnlPermissions.TabIndex = 0;
             // 
             // label2
@@ -413,12 +416,41 @@
             label4.Text = "Plugin ID:";
             label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // pnlPluginSplash
+            // 
+            pnlPluginSplash.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlPluginSplash.BackColor = Color.Transparent;
+            pnlPluginSplash.BorderColor = Color.Gainsboro;
+            pnlPluginSplash.BorderRadius = 15;
+            pnlPluginSplash.Controls.Add(label7);
+            pnlPluginSplash.FillColor = Color.White;
+            pnlPluginSplash.Location = new Point(392, 144);
+            pnlPluginSplash.Margin = new Padding(2);
+            pnlPluginSplash.Name = "pnlPluginSplash";
+            pnlPluginSplash.Size = new Size(600, 888);
+            pnlPluginSplash.TabIndex = 56;
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.None;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            label7.ForeColor = Color.DimGray;
+            label7.Location = new Point(184, 368);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(248, 88);
+            label7.TabIndex = 1;
+            label7.Text = "Select a Plugin";
+            label7.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // uiPluginManagerv2
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1001, 1045);
+            Controls.Add(pnlPluginSplash);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(pnlSide);
@@ -435,6 +467,7 @@
             guna2Panel3.ResumeLayout(false);
             pnlSide.ResumeLayout(false);
             guna2Panel2.ResumeLayout(false);
+            pnlPluginSplash.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -463,5 +496,7 @@
         private Label lblCompany;
         private Label lblAuthor;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Panel pnlPluginSplash;
+        private Label label7;
     }
 }

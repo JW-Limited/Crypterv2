@@ -5,6 +5,7 @@ using LILO_Packager.v2.Core.LILO;
 using LILO_Packager.v2.Core.LILO.Types;
 using LILO_Packager.v2.Shared;
 using System.Diagnostics;
+using System.Printing;
 
 namespace LILO_Packager.v2.Forms
 {
@@ -23,6 +24,8 @@ namespace LILO_Packager.v2.Forms
         {
             _ = Task.Run(async () =>
             {
+                
+
                 var itemInfo = await PixelDrainService.CloudFileInfo.GetFileInfoAsync(File.CloudEntry.PublicFileId);
                 var picture = await PixelDrainService.PixelDrainThumbnail.GetThumbnailAsync(File.CloudEntry.PublicFileId);
 
@@ -32,6 +35,20 @@ namespace LILO_Packager.v2.Forms
                 lblSize.Text = FileOperations.GetSizeString(itemInfo.Size);
                 lblDateUploaded.Text = File.Identity.Timestamp.ToLocalTime().ToString();
                 pnlImage.BackgroundImage = picture;
+
+                if (System.IO.File.Exists(File.File.RealPath))
+                {
+                    this.Invoke(() =>
+                    {
+                        pnlProgess.Visible = false;
+                        pnlInfos.Visible = true;
+                        this.bntCopy.Text = "Open";
+                        pnlSuccess.Visible = true;
+                        pnlLoading.Visible = false;
+                    });
+
+                    return;
+                }
 
                 this.Invoke(() =>
                 {
@@ -71,6 +88,7 @@ namespace LILO_Packager.v2.Forms
                 progress.Value = 0;
 
                 pnlProgess.Visible = true;
+                pnlInfos.Visible = false;
 
                 await Task.Run(async () =>
                 {
@@ -92,6 +110,7 @@ namespace LILO_Packager.v2.Forms
                                     this.Invoke(() =>
                                     {
                                         pnlProgess.Visible = false;
+                                        pnlInfos.Visible = true;
                                         this.bntCopy.Text = "Open";
                                         pnlSuccess.Visible = true;
                                     });
@@ -108,7 +127,7 @@ namespace LILO_Packager.v2.Forms
                             this.Invoke(() =>
                             {
                                 pnlProgess.Visible = false;
-
+                                pnlInfos.Visible = true;
                                 this.Text = "LILO Cloud - Error";
                             });
                         });

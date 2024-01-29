@@ -1,5 +1,6 @@
 ﻿using LILO_Packager.v2.Controls;
 using LILO_Packager.v2.Core.Interfaces;
+using LILO_Packager.v2.Plugins.Internal;
 using LILO_Packager.v2.Plugins.PluginCore;
 
 namespace LILO_Packager.v2.Forms
@@ -20,11 +21,13 @@ namespace LILO_Packager.v2.Forms
         private static Lazy<uiPluginManagerv2> _instance = new Lazy<uiPluginManagerv2>(() => new uiPluginManagerv2());
         public static uiPluginManagerv2 Instance => _instance.Value;
         public static IPluginBase SelectedPlugin;
+        public static PluginData PluginData { get; private set; }
 
         public async Task SetPlugin(IPluginBase entry)
         {
             try
             {
+                pnlPluginSplash.Visible = false;
                 SelectedPlugin = entry;
                 var interfacev2 = MainHost.Instance()._pluginManager.PluginsV2.First(k => k.Name == entry.Name);
 
@@ -35,11 +38,15 @@ namespace LILO_Packager.v2.Forms
                 lblCompany.Text = interfacev2.Company;
                 lblVersion.Text = interfacev2.Version;
 
-                pnlPermissions.Controls.Clear();
+                PluginData = PluginSystemManagement.Instance.GetPluginData(PluginID.IDtoString(SelectedPlugin.ID) + SelectedPlugin.Name);
 
-                foreach (var item in interfacev2.Permissions)
+                pnlPermissions.Controls.Clear();
+                Height = 0;
+                Height_P = 0;
+
+                foreach (var item in PluginData.Permissions)
                 {
-                    await AddPermission(item);
+                    await AddPermission(item.Permission,item.Enabled);
                 }
             }
             catch (Exception)
@@ -47,6 +54,41 @@ namespace LILO_Packager.v2.Forms
                 MessageBox.Show("This plugin doesnt support this Feature.", "Manifest Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        public async Task SetPermissionState(Permission permission, bool enabled)
+        {
+            try
+            {
+                var entry = PluginData.Permissions.FirstOrDefault(k => k.Permission.Type == permission.Type && k.Permission.Description == permission.Description,null);
+                if (entry != null)
+                {
+                    PluginData.Permissions.Remove(entry);
+                    var _PermissionSet = new PluginData.PermissionSet()
+                    {
+                        Permission = permission,
+                        Enabled = enabled
+                    };
+
+                    PluginData.Permissions.Add(_PermissionSet);
+
+                    PluginSystemManagement.Instance.UpdatePlugin(PluginID.IDtoString(SelectedPlugin.ID) + SelectedPlugin.Name, PluginData);
+
+                    pnlPermissions.Controls.Clear();
+                    Height = 0;
+                    Height_P = 0;
+
+                    foreach (var item in PluginData.Permissions)
+                    {
+                        await AddPermission(item.Permission, item.Enabled);
+                    }
+                
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Cant change this plugin attribute.\n" + ex.Message + ex.Source + ex.StackTrace, "Manifest Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void uiPluginManagerv2_Load(object sender, EventArgs e)
@@ -60,7 +102,7 @@ namespace LILO_Packager.v2.Forms
         public int Height = 0;
         public int Height_P = 0;
 
-        private Task AddPermission(Permission permission)
+        private Task AddPermission(Permission permission, bool enabled)
         {
             var uiPermissionElement = new DynamikPermissionView()
             {
@@ -69,6 +111,8 @@ namespace LILO_Packager.v2.Forms
             };
 
             pnlPermissions.Controls.Add(uiPermissionElement);
+            uiPermissionElement.EnabledState = enabled;
+            uiPermissionElement.Permission = permission;
 
             uiPermissionElement.Show();
 
@@ -131,6 +175,16 @@ namespace LILO_Packager.v2.Forms
         private void bntDeinstall(object sender, EventArgs e)
         {
 
+        }
+
+        private void bntShare_Click(object sender, EventArgs e)
+        {
+            PluginSystemManagement.Instance.UpdatePlugin(PluginID.IDtoString(SelectedPlugin.ID) + SelectedPlugin.Name, PluginData);
+        }
+
+        private void bntAdvanced_Click(object sender, EventArgs e)
+        {
+            pnlPluginSplash.Visible = true;
         }
     }
 }

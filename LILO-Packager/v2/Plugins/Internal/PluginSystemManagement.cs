@@ -74,13 +74,13 @@ namespace LILO_Packager.v2.Plugins.Internal
                 if (existingPluginData == null) throw new PluginDataNotFoundException();
                 if (existingPluginData.Equals(data)) return 1;
 
-                if (existingPluginData.spValues != data.spValues) throw new NotChangebleDataRequestException();
-                if (existingPluginData.FileFormatClearifier != data.FileFormatClearifier) throw new NotChangebleDataRequestException();
+                //if (existingPluginData.spValues != data.spValues) throw new NotChangebleDataRequestException();
+                //if (existingPluginData.FileFormatClearifier != data.FileFormatClearifier) throw new NotChangebleDataRequestException();
 
                 var file = StorageProvider.Instance.FindFile(key + ".pdex");
                 File.Delete(file.Path);
 
-                StorageProvider.Instance.SaveDataToXml(data, key, "\\plugins\\data");
+                StorageProvider.Instance.SaveDataToXml(data, key + ".pdex", "\\plugins\\data");
 
                 return 1;
             }

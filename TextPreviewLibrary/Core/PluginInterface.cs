@@ -1,36 +1,29 @@
-﻿using LILO_Packager.v2.Controls;
-using LILO_Packager.v2.Plugins.PluginCore;
+﻿using LILO_Packager.v2.Plugins.PluginCore;
+using LILO_Packager.v2.Plugins.PluginCore.UI;
+using MediaFoundation;
 using System.Drawing;
 using System.Windows.Forms;
 using TextPreviewLibrary.Core.Formats;
+using TextPreviewLibrary.Core.Tabs;
+using TextPreviewLibrary.Core.Third_Party.Docx;
 
 namespace TextPreviewLibrary.Core;
 public partial class PluginInterface : Form
 {
-    private CrypterTextFile _emptyFile = new()
-    {
-        CreatedAt = DateTime.Now,
-        Author = "",
-        IsLocked = false,
-        FileName = "",
-        RtfContent = "",
-        TextColor = Color.Black,
-        LastModified = DateTime.Now,
-    };
-
     private string Version => new PluginBase().Version;
+    public int Widht = 0;
     public string Name => new PluginBase().Name;
     public PluginID Id => new PluginBase().ID;
-    public CrypterTextFile _file;
-    public string openedFilePath;
+    public CrypterTextFile? _file;
+    public string? openedFilePath;
     private static object _lock = new object();
     private static PluginInterface? _encrypt;
 
-    public static PluginInterface Instance(bool needNewInstance)
+    public static PluginInterface Instance(bool needNewInstance = false)
     {
         lock (_lock)
         {
-            if (_encrypt is null || _encrypt.IsDisposed || needNewInstance)
+            if (_encrypt is null || needNewInstance)
             {
                 _encrypt = new PluginInterface();
             }
@@ -39,35 +32,14 @@ public partial class PluginInterface : Form
         }
     }
 
-    public static void SetInstance(object newInstance)
-    {
-        _encrypt = (PluginInterface)newInstance;
-    }
-
     public PluginInterface()
     {
         InitializeComponent();
-
         this.FormClosing += (sender, e) =>
         {
             e.Cancel = true;
             this.Hide();
         };
-    }
-
-    public void SetContent(CrypterTextFile file)
-    {
-        if (file is not null)
-        {
-            _file = file;
-            mainTextBox.Text = file.RtfContent;
-            mainTextBox.ForeColor = file.TextColor;
-            lblWordCounts.Text = "Words: " + file.WordCount;
-            lblLanguage.Text = file.FileName;
-            lblVersion.Text += " - " + file.version;
-
-            AddTextTab(file.FileName);
-        }
     }
 
     public void ui_Load(object sender, EventArgs e)
@@ -86,16 +58,6 @@ public partial class PluginInterface : Form
                 MessageBox.Show(ex.Message,"LILO Shell",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
-
-        if (_file is not null)
-        {
-            mainTextBox.Text = _file.RtfContent;
-            mainTextBox.ForeColor = _file.TextColor;
-            lblWordCounts.Text = "Words: " + _file.WordCount;
-            lblLanguage.Text = _file.FileName;
-
-            AddTextTab(_file.FileName);
-        }
     }
 
     private void guna2Button1_Click(object sender, EventArgs e)
@@ -113,7 +75,7 @@ public partial class PluginInterface : Form
         }
     }
 
-    private void guna2Button1_Click_1(object sender, EventArgs e)
+    private void SaveButton_Clicked(object sender, EventArgs e)
     {
         if (openedFilePath is not null or "")
         {
@@ -179,13 +141,13 @@ public partial class PluginInterface : Form
 
     }
 
-    private void guna2Button5_Click(object sender, EventArgs e)
+    private void OpenButtonClicked(object sender, EventArgs e)
     {
         try
         {
             var ofd = new OpenFileDialog()
             {
-                Filter = "CrypterTextFile|*.ctv|Alle Datein|*.",
+                Filter = "CrypterTextFile|*.ctv|Word Documents|*.docx|Alle Datein|*.",
                 AddToRecent = true,
                 ShowPinnedPlaces = true,
                 ShowHiddenFiles = true,
@@ -194,57 +156,64 @@ public partial class PluginInterface : Form
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                var securedFile = CrypterTextFile.LoadInstanceFromFile(ofd.FileName);
-                var file = CrypterTextFile.CreateUnsecuredTextFile(securedFile);
+                if (ofd.FileName.EndsWith(".ctv"))
+                {
+                    var securedFile = CrypterTextFile.LoadInstanceFromFile(ofd.FileName);
+                    var file = CrypterTextFile.CreateUnsecuredTextFile(securedFile);
 
-                mainTextBox.Text = file.RtfContent;
-                mainTextBox.ForeColor = file.TextColor;
-                lblWordCounts.Text = "Words: " + file.WordCount;
-                lblLanguage.Text = file.FileName;
-                lblVersion.Text += " - " + file.version;
+                    mainTextBox.Text = file.RtfContent;
+                    mainTextBox.ForeColor = file.TextColor;
+                    lblWordCounts.Text = "Words: " + file.WordCount;
+                    lblLanguage.Text = file.FileName;
+                    lblVersion.Text += " - " + file.version;
 
-                _file = file;
-                openedFilePath = ofd.FileName;
+                    _file = file;
+                    openedFilePath = ofd.FileName;
 
-                AddTextTab(_file.FileName);
+                    TabManager.Instance.RegisterTab(file.FileName, file.RtfContent,this, ofd.FileName);
+                }
+                else if (ofd.FileName.EndsWith(".docx"))
+                {
+                    mainTextBox.Text =  Converter.ConvertToPlainText(ofd.FileName);
+                }
             }
 
             bntPlugin_Click(sender, e);
         }
         catch (ArgumentOutOfRangeException ex)
         {
-            PluginBase.channelToMainHost.Broadcast(new LILO_Packager.v2.Shared.Api.Types.BroadcastMessage(
-                                                       LILO_Packager.v2.Shared.Api.Types.BroadcastMessageType.Error,
-                                                       LILO_Packager.v2.Shared.Api.Types.BroadcastEndPoint.MainHost,
-                                                       "Error: " + ex.Message));
+            SendError(ex);
             MessageBox.Show("It seems that the file was created with another structure i can not understand. Please be sure you use the same version that the file was created with.\n\n" + ex.Message, "Not Matching Formats", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         catch (ArgumentException ex)
         {
+            SendError(ex);
             MessageBox.Show("It seems that the file is missing on of its main components. Please be sure you use the same version that the file was created with and it is not corrupted.\n\n" + ex.Message, "Not Matching Formats", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            PluginBase.channelToMainHost.Broadcast(new LILO_Packager.v2.Shared.Api.Types.BroadcastMessage(
-                                                       LILO_Packager.v2.Shared.Api.Types.BroadcastMessageType.Error,
-                                                       LILO_Packager.v2.Shared.Api.Types.BroadcastEndPoint.MainHost,
-                                                       "Error: " + ex.Message));
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            SendError(ex);
         }
     }
+
+    
 
     private void newFile_Click(object sender, EventArgs e)
     {
         _file = null;
         openedFilePath = null;
-        mainTextBox.Text = _emptyFile.RtfContent;
-        mainTextBox.ForeColor = _emptyFile.TextColor;
-        lblWordCounts.Text = "Words: " + _emptyFile.WordCount;
-        lblLanguage.Text = _emptyFile.FileName;
+        mainTextBox.Text = CrypterTextFile._emptyFile.RtfContent;
+        mainTextBox.ForeColor = CrypterTextFile._emptyFile.TextColor;
+        lblWordCounts.Text = "Words: " + CrypterTextFile._emptyFile.WordCount;
+        lblLanguage.Text = CrypterTextFile._emptyFile.FileName;
 
         bntPlugin_Click(sender, e);
     }
 
     private void guna2Button4_Click(object sender, EventArgs e)
     {
-        this.Close();
+        //this.Close();
     }
 
     private void PluginInterface_Shown(object sender, EventArgs e)
@@ -262,35 +231,32 @@ public partial class PluginInterface : Form
 
     }
 
-    public int Widht = 0;
-    public HashSet<string> FilesOpen = new HashSet<string>();
-
-    public void AddTextTab(string text)
-    {
-        if (text != null && !FilesOpen.Contains(text))
-        {
-            var uiElement = new TextPreviewLibrary.Controls.DynamikPluginListItem();
-            uiElement.TabName = text;
-            uiElement.Content = mainTextBox.Rtf;
-
-            pnlTabs.Controls.Add(uiElement);
-
-            uiElement.Show();
-            uiElement.Location = new Point(Widht, 0);
-            uiElement.Height = pnlTabs.Height -2;
-
-            Widht += uiElement.Width + 20;
-
-            FilesOpen.Add(text);
-        }
-        else if (FilesOpen.Contains(text))
-        {
-
-        }
-    }
-
     private void bntCloseDesign(object sender, EventArgs e)
     {
-        pnlDesing.Visible = false; 
+        pnlDesing.Visible = false;
+    }
+
+
+    private void SendError(Exception ex)
+    {
+        PluginBase.channelToMainHost.Broadcast(new LILO_Packager.v2.Shared.Api.Types.BroadcastMessage(
+                                                   LILO_Packager.v2.Shared.Api.Types.BroadcastMessageType.Error,
+                                                   LILO_Packager.v2.Shared.Api.Types.BroadcastEndPoint.MainHost,
+                                                   "Error: " + ex.Message));
+    }
+
+    public void SetContent(CrypterTextFile file)
+    {
+        if (file is not null)
+        {
+            _file = file;
+            mainTextBox.Text = file.RtfContent;
+            mainTextBox.ForeColor = file.TextColor;
+            lblWordCounts.Text = "Words: " + file.WordCount;
+            lblLanguage.Text = file.FileName;
+            lblVersion.Text += " - " + file.version;
+
+            TabManager.Instance.RegisterTab(file.FileName, file.RtfContent, this);
+        }
     }
 }

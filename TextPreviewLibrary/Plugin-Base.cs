@@ -11,6 +11,7 @@ using LILO_Packager.v2.Plugins.ThirdParty.Types;
 using JWLimited.Licensing.Schemes;
 using LILO_Packager.v2;
 using TextPreviewLibrary.Properties;
+using LILO_Packager.v2.Plugins.PluginCore.UI;
 
 namespace TextPreviewLibrary
 {
@@ -23,7 +24,7 @@ namespace TextPreviewLibrary
         public string Version { get; set; } = "v0.12.3-beta";
         public Bitmap PluginIcon { get; set; } = Resources.icons8_foxit_reader_240;
         public static SemanticVersion _sVersion = new SemanticVersion(0, 1, 2, "alpha", false);
-        public Form PluginInterface { get; set; } = Core.PluginInterface.Instance(true);
+        public Form PluginInterface { get; set; } = Core.PluginInterface.Instance(false);
         public string Company { get; set; } = "JW Limited © 2023";
 
         public static ThemeManager _thManager;
@@ -86,6 +87,7 @@ namespace TextPreviewLibrary
             OwnedUser = new JWLimited.Licensing.Schemes.Structs.User(),
             License = new PluginLicense(),
         };
+        
 
         public PluginResponse Execute(PluginParameters args)
         {
@@ -96,15 +98,15 @@ namespace TextPreviewLibrary
             {
 
                 var file = (string)args.Context[0];
-
+                var instance = Core.PluginInterface.Instance();
                 if (file.EndsWith(".ctv"))
                 {
                     var content = CrypterTextFile.LoadInstanceFromFile(file);
-                    Core.PluginInterface.Instance(args.needNewInstance).SetContent(content);
+                    instance.SetContent(content);
                 }
                 else
                 {
-                    Core.PluginInterface.Instance(args.needNewInstance).SetContent(new CrypterTextFile()
+                    instance.SetContent(new CrypterTextFile()
                     {
                         RtfContent = File.ReadAllText(file),
                         IsLocked = false,

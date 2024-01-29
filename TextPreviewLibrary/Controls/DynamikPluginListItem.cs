@@ -25,6 +25,7 @@ namespace TextPreviewLibrary.Controls
         }
 
         public string Content { get; set; } = "";
+        public PluginInterface _form;
 
         private void guna2Panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -33,7 +34,7 @@ namespace TextPreviewLibrary.Controls
 
         private void guna2Button4_Click(object sender, EventArgs e)
         {
-            PluginInterface.Instance(false).mainTextBox.Rtf = Content;
+            _form.mainTextBox.Text = Content;
         }
     }
 }

@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LILO-Packager\LILO-Packager.csproj" />
     <ProjectReference Include="..\LILO-WebEngine\LILO-WebEngine.csproj" />
   </ItemGroup>
@@ -16,9 +20,7 @@
     <Compile Update="Controls\DynamikPluginListItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Core\PluginInterface.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Core\PluginInterface.cs" />
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
