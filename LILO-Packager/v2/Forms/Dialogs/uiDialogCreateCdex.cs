@@ -1,32 +1,13 @@
 ﻿using LILO_Packager.Properties;
 using LILO_Packager.v2.Cloud.Storage;
-using LILO_Packager.v2.Core.LILO.Types;
 using LILO_Packager.v2.Shared;
 using Microsoft.Win32;
 using System.Diagnostics;
 
 namespace LILO_Packager.v2.Forms.Dialogs
 {
-    public class CdexArgs
-    {
-        public string Name { get; set; } = "";
-        public string Directory { get; set; } = "";
-        public string EncryptenKey { get; set; } = "";
-        public List<MatrixEntry> MatrixEntries { get; set; } = null;
-
-        // Not Essential
-        public List<User> AllowedUsers { get; set; } = null;
-    }
-
-    public interface ICDEXDialog : IManagableDialog
-    {
-
-    }
-
     public partial class uiDialogCreateCdex : Form, ICDEXDialog
     {
-        
-
         public uiDialogCreateCdex(List<MatrixEntry> MatrixEntries)
         {
             InitializeComponent();

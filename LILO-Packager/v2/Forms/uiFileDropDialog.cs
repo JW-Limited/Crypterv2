@@ -1,4 +1,6 @@
-﻿namespace LILO_Packager.v2.Forms
+﻿using LILO_Packager.v2.Core.Dialogs;
+
+namespace LILO_Packager.v2.Forms
 {
     public partial class uiFileDropDialog : Form
     {

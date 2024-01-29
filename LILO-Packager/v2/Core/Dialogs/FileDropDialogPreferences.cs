@@ -1,4 +1,4 @@
-﻿namespace LILO_Packager.v2.Forms
+﻿namespace LILO_Packager.v2.Core.Dialogs
 {
     public class FileDropDialogPreferences
     {

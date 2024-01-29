@@ -220,6 +220,7 @@
       <TreatAsUsed>true</TreatAsUsed>
     </ProjectReference>
     <ProjectReference Include="..\JWLimited.Licensing\JWLimited.Licensing.csproj" />
+    <ProjectReference Include="..\JWLimited.Types\JWLimited.Types.csproj" />
     <ProjectReference Include="..\LILO-WebEngine\LILO-WebEngine.csproj" />
   </ItemGroup>
 
