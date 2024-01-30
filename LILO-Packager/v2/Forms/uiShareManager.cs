@@ -1,6 +1,7 @@
 ﻿using LILO_Packager.Properties;
 using LILO_Packager.v2.Cloud.Services;
 using LILO_Packager.v2.Cloud.Storage;
+using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Forms.Dialogs;
 

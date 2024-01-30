@@ -90,7 +90,7 @@ namespace TextPreviewLibrary.Controls
             lblPluginName.Location = new Point(16, 8);
             lblPluginName.Margin = new Padding(4, 0, 4, 0);
             lblPluginName.Name = "lblPluginName";
-            lblPluginName.Size = new Size(328, 48);
+            lblPluginName.Size = new Size(232, 48);
             lblPluginName.TabIndex = 53;
             lblPluginName.Text = "Name";
             lblPluginName.TextAlign = ContentAlignment.MiddleLeft;

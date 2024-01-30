@@ -313,7 +313,7 @@ namespace LILO_Packager.v2.Forms
             }
             else
             {
-                foreach (var plugin in MainHost.Instance()._pluginManager.Pluginsv1)
+                foreach (var plugin in MainHost.Instance()._pluginManager.PluginsV2)
                 {
                     if (PluginID.IDtoString(plugin.ID) == PluginID.IDtoString(PluginID.GetID("tpl", "lbl", "lvl02")))
                     {
@@ -324,18 +324,24 @@ namespace LILO_Packager.v2.Forms
                             _file.outputFileName
                         };
 
+                        plugin.MainHostInstance = MainHost.Instance();
+
+                        var responseIn = plugin.Initialize(new PluginParameters()
+                        {
+                            themeManager = MainHost.Instance()._thManager,
+                        });
+
+                        MainHost.Instance().OpenInApp(plugin.PluginInterface);
+
                         var responseEx = plugin.Execute(new PluginParameters()
                         {
                             Context = list,
-                            themeManager = MainHost.Instance()._thManager,
                         });
 
                         if (responseEx.HasError)
                         {
                             ConsoleManager.Instance().WriteLineWithColor(responseEx.Message + responseEx.MESSAGE_UINT, ConsoleColor.DarkRed);
                         }
-
-                        MainHost.Instance().OpenInApp(plugin.PluginInterface);
                     }
                 }
             }

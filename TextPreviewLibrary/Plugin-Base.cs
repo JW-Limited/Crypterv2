@@ -12,6 +12,7 @@ using JWLimited.Licensing.Schemes;
 using LILO_Packager.v2;
 using TextPreviewLibrary.Properties;
 using LILO_Packager.v2.Plugins.PluginCore.UI;
+using LILO_Packager.v2.Shared;
 
 namespace TextPreviewLibrary
 {
@@ -97,6 +98,15 @@ namespace TextPreviewLibrary
             try
             {
 
+                if (MainHostInstance.EnviromentVariables.GetVariable(PluginID.IDtoString(ID)) == null)
+                {
+                    MainHostInstance.EnviromentVariables.SetVariable(PluginID.IDtoString(ID), "intalled_correct::" + Version);
+                }
+
+                Channel = args.Channel;
+                channelToMainHost = args.Channel;
+                Channel.Subscribe(new PluginBroadCastObserver(), "TPL - Plugin");
+
                 var file = (string)args.Context[0];
                 var instance = Core.PluginInterface.Instance();
                 if (file.EndsWith(".ctv"))
@@ -115,10 +125,6 @@ namespace TextPreviewLibrary
                     });
                 }
                 
-                Channel = args.Channel;
-                channelToMainHost = args.Channel;
-                Channel.Subscribe(new PluginBroadCastObserver(),"TPL - Plugin");
-
                 para.HasError = false;
                 para.Message = "Executed Succesfully";
                 para.MessageID = "0x0";
@@ -141,6 +147,7 @@ namespace TextPreviewLibrary
 
             try
             {
+                var instance = Core.PluginInterface.Instance();
 
                 para.HasError = false;
                 para.Message = "Initilized Succesfully";

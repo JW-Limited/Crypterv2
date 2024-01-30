@@ -21,6 +21,9 @@ using System.Text;
 using System.Net;
 using Newtonsoft.Json;
 using srvlocal_gui.AppMananger;
+using LILO_Packager.v2.Plugins.Internal;
+using Permission = LILO_Packager.v2.Plugins.PluginCore.Permission;
+using JWLimited.Cryptography.Nodes;
 
 
 namespace LILO_Packager.v2;
@@ -31,6 +34,10 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
     #region Variables
 
     public readonly ThemeManager _thManager;
+    public EnviromentVariables EnviromentVariables;
+    public readonly NodeManager<object> nodeManager; 
+    public readonly PluginRightsManager pluginRightsManager;
+    public readonly PluginSystemManagement pluginSystemManagement;
     private readonly BroadcastChannel _broadCastChannel;
     private readonly TcpListener _listener;
     private readonly Thread _listenerThread;
@@ -217,6 +224,17 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         }
 
         if (!Directory.Exists(ThemePath)) Directory.CreateDirectory(ThemePath);
+
+        pluginRightsManager = PluginRightsManager.Instance;
+        Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Created Plugin Permission Controller.");
+
+        nodeManager = NodeManager<object>.Create((e) =>
+        {
+            NotifyIconManager.Instance().ShowBubbleNotification(new Notification("Node Controller", e.Message));
+        });
+        Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Created Node Controller.");
+
+        EnviromentVariables = new EnviromentVariables();
 
         if (FeatureFlagePipeLineConfig.DebugModeEnabled)
         {
@@ -594,6 +612,15 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         //}
         //var dialog = new uiDialogCreateCdex(null);
         //DialogManager.Instance.ShowDialog(dialog, dialog);
+
+        Permission set = new()
+        {
+            Type = PermissionType.AccessStorage,
+            Description = "To access files for preview.",
+            UseCase = "Runtime"
+        };
+
+        var result = await PluginRightsManager.Instance.RequestPermission(set, PluginID.GetID("tpl", "lbl", "lvl02"), "TextPreviewLibrary");
 
         bntMenu(sender, e);
     }

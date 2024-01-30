@@ -1,12 +1,12 @@
 ﻿using LILO_Packager.v2.Plugins.Internal;
+using LILO_Packager.v2.Plugins.PluginCore;
+using System.Collections.ObjectModel;
 
 namespace LILO_Packager.v2.Forms
 {
     public partial class uiPermissionRequest : Form
     {
-        private readonly PluginData.PermissionSet _permission;
-        private readonly PluginData _data;
-        private object _dataLock = new object();
+        private readonly object _dataLock = new object();
         private byte _changedPermissionState = 0;
 
         public uiPermissionRequest(PluginData.PermissionSet permission, PluginData data)
@@ -15,18 +15,23 @@ namespace LILO_Packager.v2.Forms
 
             if (permission.Equals(null) || permission is null || data is null) throw new ArgumentNullException(nameof(permission));
             if (permission.Enabled) throw new AccessAlreadyGrantedException();
-
-            _permission = permission;
-            _data = data;
+            lblPermissionName.Text = permission.Permission.Type.ToString();
+            lblDescription.Text = permission.Permission.Description;
+           
         }
 
         public async Task<byte> RequestAccess()
         {
-            if (this is null) throw new ArgumentNullException("uiHost");
+            lock(_dataLock)
+            {
+                if (this is null) throw new ArgumentNullException("uiHost");
 
-            this.ShowDialog();
+                this.ShowDialog();
 
-            return _changedPermissionState;
+                return _changedPermissionState;
+            }
+
+            
         }
 
         private void uiPermissionRequest_Load(object sender, EventArgs e)
@@ -42,6 +47,18 @@ namespace LILO_Packager.v2.Forms
         private void pnlMain_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void bntGrant_Click(object sender, EventArgs e)
+        {
+            _changedPermissionState = 1;
+            this.Close();
+        }
+
+        private void bntDeny_Click(object sender, EventArgs e)
+        {
+            _changedPermissionState = 0;
+            this.Close();
         }
     }
 }

@@ -30,16 +30,12 @@
         {
             pnlMain = new Guna.UI2.WinForms.Guna2Panel();
             bntDeny = new Guna.UI2.WinForms.Guna2Button();
-            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            lblPluginName = new Label();
             pnlPermission = new Guna.UI2.WinForms.Guna2Panel();
             pnlIcon = new Sipaa.Framework.SPanel();
             lblPermissionName = new Label();
             lblDescription = new Label();
-            lblVersion = new Label();
             bntGrant = new Guna.UI2.WinForms.Guna2Button();
             pnlMain.SuspendLayout();
-            guna2Panel1.SuspendLayout();
             pnlPermission.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,14 +44,14 @@
             pnlMain.BackColor = SystemColors.HighlightText;
             pnlMain.BorderColor = Color.Gainsboro;
             pnlMain.Controls.Add(bntDeny);
-            pnlMain.Controls.Add(guna2Panel1);
+            pnlMain.Controls.Add(pnlPermission);
             pnlMain.Controls.Add(bntGrant);
             pnlMain.Dock = DockStyle.Fill;
             pnlMain.FillColor = Color.White;
             pnlMain.Location = new Point(0, 0);
             pnlMain.Margin = new Padding(2);
             pnlMain.Name = "pnlMain";
-            pnlMain.Size = new Size(443, 327);
+            pnlMain.Size = new Size(365, 459);
             pnlMain.TabIndex = 46;
             pnlMain.Paint += pnlMain_Paint;
             // 
@@ -79,62 +75,31 @@
             bntDeny.FocusedColor = Color.FromArgb(100, 170, 209);
             bntDeny.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntDeny.ForeColor = Color.DarkGray;
-            bntDeny.Location = new Point(296, 253);
+            bntDeny.Location = new Point(219, 383);
             bntDeny.Margin = new Padding(2);
             bntDeny.Name = "bntDeny";
             bntDeny.Size = new Size(120, 48);
             bntDeny.TabIndex = 51;
             bntDeny.Text = "Deny";
-            // 
-            // guna2Panel1
-            // 
-            guna2Panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            guna2Panel1.BackColor = SystemColors.HighlightText;
-            guna2Panel1.BorderColor = Color.Gainsboro;
-            guna2Panel1.BorderRadius = 15;
-            guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            guna2Panel1.BorderThickness = 2;
-            guna2Panel1.Controls.Add(lblPluginName);
-            guna2Panel1.Controls.Add(pnlPermission);
-            guna2Panel1.Controls.Add(lblVersion);
-            guna2Panel1.FillColor = Color.White;
-            guna2Panel1.Location = new Point(24, 24);
-            guna2Panel1.Margin = new Padding(2);
-            guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(392, 200);
-            guna2Panel1.TabIndex = 45;
-            guna2Panel1.Visible = false;
-            guna2Panel1.Paint += guna2Panel1_Paint;
-            // 
-            // lblPluginName
-            // 
-            lblPluginName.BackColor = Color.Transparent;
-            lblPluginName.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblPluginName.ForeColor = Color.DimGray;
-            lblPluginName.Location = new Point(24, 24);
-            lblPluginName.Margin = new Padding(4, 0, 4, 0);
-            lblPluginName.Name = "lblPluginName";
-            lblPluginName.Size = new Size(200, 32);
-            lblPluginName.TabIndex = 50;
-            lblPluginName.Text = "Productname";
-            lblPluginName.TextAlign = ContentAlignment.MiddleLeft;
+            bntDeny.Click += bntDeny_Click;
             // 
             // pnlPermission
             // 
+            pnlPermission.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlPermission.BackColor = SystemColors.HighlightText;
-            pnlPermission.BorderColor = Color.Gainsboro;
+            pnlPermission.BorderColor = Color.WhiteSmoke;
             pnlPermission.BorderRadius = 15;
             pnlPermission.BorderThickness = 2;
             pnlPermission.Controls.Add(pnlIcon);
             pnlPermission.Controls.Add(lblPermissionName);
             pnlPermission.Controls.Add(lblDescription);
+            pnlPermission.CustomBorderColor = Color.Gainsboro;
             pnlPermission.FillColor = Color.WhiteSmoke;
-            pnlPermission.Location = new Point(24, 96);
+            pnlPermission.Location = new Point(24, 32);
             pnlPermission.Margin = new Padding(2);
             pnlPermission.Name = "pnlPermission";
-            pnlPermission.Size = new Size(344, 80);
+            pnlPermission.Size = new Size(315, 320);
             pnlPermission.TabIndex = 45;
-            pnlPermission.Visible = false;
             // 
             // pnlIcon
             // 
@@ -144,50 +109,38 @@
             pnlIcon.BorderRadius = 20;
             pnlIcon.BorderSize = 0;
             pnlIcon.ForeColor = Color.White;
-            pnlIcon.Location = new Point(16, 16);
+            pnlIcon.Location = new Point(96, 40);
             pnlIcon.Margin = new Padding(4);
             pnlIcon.Name = "pnlIcon";
-            pnlIcon.Size = new Size(48, 48);
+            pnlIcon.Size = new Size(120, 112);
             pnlIcon.TabIndex = 47;
             // 
             // lblPermissionName
             // 
             lblPermissionName.AutoEllipsis = true;
             lblPermissionName.BackColor = Color.Transparent;
-            lblPermissionName.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblPermissionName.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblPermissionName.ForeColor = Color.DimGray;
-            lblPermissionName.Location = new Point(80, 16);
+            lblPermissionName.Location = new Point(24, 176);
             lblPermissionName.Margin = new Padding(4, 0, 4, 0);
             lblPermissionName.Name = "lblPermissionName";
-            lblPermissionName.Size = new Size(176, 30);
+            lblPermissionName.Size = new Size(272, 30);
             lblPermissionName.TabIndex = 44;
             lblPermissionName.Text = "n/a";
-            lblPermissionName.TextAlign = ContentAlignment.MiddleLeft;
+            lblPermissionName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblDescription
             // 
             lblDescription.BackColor = Color.Transparent;
-            lblDescription.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            lblDescription.ForeColor = Color.LightGray;
-            lblDescription.Location = new Point(80, 48);
+            lblDescription.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblDescription.ForeColor = Color.DarkGray;
+            lblDescription.Location = new Point(32, 224);
             lblDescription.Margin = new Padding(4, 0, 4, 0);
             lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(248, 32);
+            lblDescription.Size = new Size(256, 72);
             lblDescription.TabIndex = 44;
             lblDescription.Text = "Description";
-            // 
-            // lblVersion
-            // 
-            lblVersion.BackColor = Color.Transparent;
-            lblVersion.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            lblVersion.ForeColor = Color.Silver;
-            lblVersion.Location = new Point(24, 56);
-            lblVersion.Margin = new Padding(4, 0, 4, 0);
-            lblVersion.Name = "lblVersion";
-            lblVersion.Size = new Size(216, 24);
-            lblVersion.TabIndex = 44;
-            lblVersion.Text = "version";
-            lblVersion.TextAlign = ContentAlignment.MiddleLeft;
+            lblDescription.TextAlign = ContentAlignment.TopCenter;
             // 
             // bntGrant
             // 
@@ -207,26 +160,27 @@
             bntGrant.FocusedColor = Color.FromArgb(100, 170, 209);
             bntGrant.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntGrant.ForeColor = Color.SteelBlue;
-            bntGrant.Location = new Point(24, 253);
+            bntGrant.Location = new Point(24, 383);
             bntGrant.Margin = new Padding(2);
             bntGrant.Name = "bntGrant";
-            bntGrant.Size = new Size(280, 48);
+            bntGrant.Size = new Size(203, 48);
             bntGrant.TabIndex = 52;
             bntGrant.Text = "Grant";
+            bntGrant.Click += bntGrant_Click;
             // 
             // uiPermissionRequest
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(443, 327);
+            ClientSize = new Size(365, 459);
             ControlBox = false;
             Controls.Add(pnlMain);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(2);
             Name = "uiPermissionRequest";
-            Text = " ";
+            Text = "Permission Request";
             Load += uiPermissionRequest_Load;
             pnlMain.ResumeLayout(false);
-            guna2Panel1.ResumeLayout(false);
             pnlPermission.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -238,9 +192,6 @@
         private Sipaa.Framework.SPanel pnlIcon;
         private Label lblDescription;
         private Label lblPermissionName;
-        private Label lblVersion;
-        private Label lblPluginName;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2Button bntDeny;
         private Guna.UI2.WinForms.Guna2Button bntGrant;
     }

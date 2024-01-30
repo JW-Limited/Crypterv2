@@ -1,5 +1,6 @@
 ﻿using LILO_Packager.Properties;
 using LILO_Packager.v2.Core.LILO.Interfaces;
+using LILO_Packager.v2.Shared;
 using System.Diagnostics;
 
 namespace LILO_Packager.v2.Forms
@@ -35,7 +36,7 @@ namespace LILO_Packager.v2.Forms
         {
             lblProductname.Text = "Crypterv2";
 
-            if (Program.LicMng.CheckLicx<CrypterLicense, CrypterLicenseTrail>(Program.AppPath, new CrypterLicense(), new CrypterLicenseTrail()) == 0)
+            if (Program.LicMng.CheckLicx<CrypterLicense, CrypterLicenseTrail>(EnviromentVariables.ApplicationDirectory, new CrypterLicense(), new CrypterLicenseTrail()) == 0)
             {
                 pnlLicense.BackgroundImage = Resources.Close;
                 lblActivationState.Text = "Product needs Activation.";
@@ -49,7 +50,7 @@ namespace LILO_Packager.v2.Forms
                 return;
             }
 
-            var license = Program.LicMng.GetPrintedClass(Program.AppPath);
+            var license = Program.LicMng.GetPrintedClass(EnviromentVariables.ApplicationDirectory);
             lblActivationState.Text = "License Activated (Local)";
             lblLicenseName.Text = "License";
             if (license.License.LicenseName.Contains("Trail"))
@@ -73,7 +74,7 @@ namespace LILO_Packager.v2.Forms
             {
                 if (Program.LicMng.CheckLicxDynamic(openFileDialog.FileName, new CrypterLicense()) == 1)
                 {
-                    File.Copy(openFileDialog.FileName, Program.AppPath + "\\objdt\\license.licx");
+                    File.Copy(openFileDialog.FileName, EnviromentVariables.ApplicationDirectory + "\\objdt\\license.licx");
                     Application.Restart();
                 }
             }

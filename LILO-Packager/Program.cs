@@ -1,13 +1,29 @@
+/*
+   ------------------------------------------------------------------------------
+   Copyright (c) 2024 JW Limited. All rights reserved.
+
+   Project: CrypterV2
+   Company: JW Limited  
+   Author: Joey West (CEO)
+
+   This software is proprietary to JW Limited and constitutes valuable 
+   intellectual property. It is entrusted solely to employees named above
+   and may not be disclosed, copied, reproduced, transmitted, or used in 
+   any manner outside of the scope of its license without prior written
+   authorization from JW Limited.
+
+   ------------------------------------------------------------------------------
+*/
+
+
 using System.Diagnostics;
 using LILO_Packager.v2;
 using LILO_Packager.v2.Shared;
 using LILO_Packager.v2.Core.Boot;
-using LILO_Packager.v2.Shared.Types;
 using LILO_Packager.v2.Core.BugBarrier;
 using LILO_Packager.v2.Core.Interfaces;
 using JWLimited.Licensing.Core;
 using LILO_Packager.v2.Forms;
-using JWLimited.Licensing.Schemes;
 
 namespace LILO_Packager
 {
@@ -15,8 +31,7 @@ namespace LILO_Packager
     {
         public static NotifyIcon noty;
         public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
-        public static readonly string AppPath = Application.ExecutablePath.Replace("crypterv2.exe", "");
-        public static string Version = "v0.20.3-beta";
+        public static string Version = "v0.21.1-beta";
         public static string ProductVersion = "Professional Developer Edition";
         public static string LibraryName = "JWLimited.Crypter.Windows";
         public static int BuildNumber = 20030;
@@ -45,7 +60,7 @@ namespace LILO_Packager
 
             try
             {
-                Task.Run(() => Process.Start(@$"{Application.ExecutablePath.Replace("crypterv2.exe", "")}InstallHelper.exe", "--cp=" + Application.ExecutablePath));
+                Task.Run(() => Process.Start(@$"{EnviromentVariables.ApplicationDirectory}InstallHelper.exe", "--cp=" + Application.ExecutablePath));
                 ConsoleManager.Instance().WriteLineWithColor("Started InstallHelper the Application is closing now meanwhile the Helper is doing his thing.", ConsoleColor.DarkGreen);
             }
             catch (Exception ex)
@@ -68,7 +83,7 @@ namespace LILO_Packager
                 try
                 {
                     LicMng = LicenseManager.Initialize(_AuthAgent);
-                    if(LicMng.CheckLicx<CrypterLicense,CrypterLicenseTrail>(AppPath, new CrypterLicense(), new CrypterLicenseTrail()) == 1)
+                    if(LicMng.CheckLicx<CrypterLicense,CrypterLicenseTrail>(EnviromentVariables.ApplicationDirectory, new CrypterLicense(), new CrypterLicenseTrail()) == 1)
                     {
                         if (args.Length > 0)
                         {
@@ -109,7 +124,6 @@ namespace LILO_Packager
                 }
                 catch (Exception ex)
                 {
-
                     System.Windows.Forms.MessageBox.Show(ex.Message, "Error - BootManager", 
                                     MessageBoxButtons.OK, 
                                     MessageBoxIcon.Error, 
