@@ -58,6 +58,7 @@
             colPlace = new ColumnHeader();
             conmenu = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             detailToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             downloadToolStripMenuItem = new ToolStripMenuItem();
             toCrypterv2StorageToolStripMenuItem = new ToolStripMenuItem();
@@ -81,7 +82,6 @@
             sPanel2 = new Sipaa.Framework.SPanel();
             label9 = new Label();
             label18 = new Label();
-            toolStripMenuItem1 = new ToolStripMenuItem();
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             pnlSide.SuspendLayout();
@@ -94,56 +94,34 @@
             // lblVersion
             // 
             lblVersion.BackColor = Color.Transparent;
-            lblVersion.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            resources.ApplyResources(lblVersion, "lblVersion");
             lblVersion.ForeColor = Color.Silver;
-            lblVersion.Location = new Point(136, 72);
-            lblVersion.Margin = new Padding(4, 0, 4, 0);
             lblVersion.Name = "lblVersion";
-            lblVersion.Size = new Size(184, 22);
-            lblVersion.TabIndex = 50;
-            lblVersion.Text = "VERSION\r\n";
-            lblVersion.TextAlign = ContentAlignment.BottomLeft;
             // 
             // label5
             // 
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            resources.ApplyResources(label5, "label5");
             label5.ForeColor = SystemColors.ControlDark;
-            label5.Location = new Point(40, 144);
-            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(136, 40);
-            label5.TabIndex = 48;
-            label5.Text = "    Checklist";
-            label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            resources.ApplyResources(label4, "label4");
             label4.ForeColor = SystemColors.WindowFrame;
-            label4.Location = new Point(136, 32);
-            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(224, 40);
-            label4.TabIndex = 49;
-            label4.Text = "LILO Sync";
-            label4.TextAlign = ContentAlignment.BottomLeft;
             // 
             // sPanel1
             // 
             sPanel1.BackColor = Color.White;
             sPanel1.BackgroundImage = Properties.Resources.Screenshot_2023_10_13_052005;
-            sPanel1.BackgroundImageLayout = ImageLayout.Zoom;
+            resources.ApplyResources(sPanel1, "sPanel1");
             sPanel1.BorderColor = Color.Gainsboro;
             sPanel1.BorderRadius = 20;
             sPanel1.BorderSize = 0;
             sPanel1.ForeColor = Color.White;
-            sPanel1.Location = new Point(24, 24);
-            sPanel1.Margin = new Padding(4);
             sPanel1.Name = "sPanel1";
-            sPanel1.Size = new Size(96, 88);
-            sPanel1.TabIndex = 47;
             // 
             // guna2Panel1
             // 
@@ -163,162 +141,93 @@
             guna2Panel1.Controls.Add(label3);
             guna2Panel1.Controls.Add(label6);
             guna2Panel1.FillColor = Color.White;
-            guna2Panel1.Location = new Point(24, 160);
-            guna2Panel1.Margin = new Padding(2);
+            resources.ApplyResources(guna2Panel1, "guna2Panel1");
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(304, 240);
-            guna2Panel1.TabIndex = 45;
             // 
             // lblMatrixVersion
             // 
             lblMatrixVersion.BackColor = Color.Transparent;
-            lblMatrixVersion.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(lblMatrixVersion, "lblMatrixVersion");
             lblMatrixVersion.ForeColor = Color.DimGray;
-            lblMatrixVersion.Location = new Point(160, 184);
-            lblMatrixVersion.Margin = new Padding(4, 0, 4, 0);
             lblMatrixVersion.Name = "lblMatrixVersion";
-            lblMatrixVersion.Size = new Size(112, 30);
-            lblMatrixVersion.TabIndex = 44;
-            lblMatrixVersion.Text = "n/a";
-            lblMatrixVersion.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblMatrix
             // 
             lblMatrix.BackColor = Color.Transparent;
-            lblMatrix.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(lblMatrix, "lblMatrix");
             lblMatrix.ForeColor = Color.DimGray;
-            lblMatrix.Location = new Point(160, 136);
-            lblMatrix.Margin = new Padding(4, 0, 4, 0);
             lblMatrix.Name = "lblMatrix";
-            lblMatrix.Size = new Size(112, 30);
-            lblMatrix.TabIndex = 44;
-            lblMatrix.Text = "n/a";
-            lblMatrix.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblCloud
             // 
             lblCloud.BackColor = Color.Transparent;
-            lblCloud.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(lblCloud, "lblCloud");
             lblCloud.ForeColor = Color.DimGray;
-            lblCloud.Location = new Point(160, 88);
-            lblCloud.Margin = new Padding(4, 0, 4, 0);
             lblCloud.Name = "lblCloud";
-            lblCloud.Size = new Size(112, 30);
-            lblCloud.TabIndex = 44;
-            lblCloud.Text = "n/a";
-            lblCloud.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblNetwork
             // 
             lblNetwork.BackColor = Color.Transparent;
-            lblNetwork.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(lblNetwork, "lblNetwork");
             lblNetwork.ForeColor = Color.DimGray;
-            lblNetwork.Location = new Point(160, 40);
-            lblNetwork.Margin = new Padding(4, 0, 4, 0);
             lblNetwork.Name = "lblNetwork";
-            lblNetwork.Size = new Size(112, 30);
-            lblNetwork.TabIndex = 44;
-            lblNetwork.Text = "n/a";
-            lblNetwork.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // panel3
             // 
             panel3.BackgroundImage = Properties.Resources.Screenshot_2023_10_12_222907;
-            panel3.BackgroundImageLayout = ImageLayout.Stretch;
-            panel3.Location = new Point(24, 168);
-            panel3.Margin = new Padding(2);
+            resources.ApplyResources(panel3, "panel3");
             panel3.Name = "panel3";
-            panel3.Size = new Size(248, 16);
-            panel3.TabIndex = 36;
             // 
             // panel2
             // 
             panel2.BackgroundImage = Properties.Resources.Screenshot_2023_10_12_222907;
-            panel2.BackgroundImageLayout = ImageLayout.Stretch;
-            panel2.Location = new Point(24, 120);
-            panel2.Margin = new Padding(2);
+            resources.ApplyResources(panel2, "panel2");
             panel2.Name = "panel2";
-            panel2.Size = new Size(248, 16);
-            panel2.TabIndex = 36;
             // 
             // label10
             // 
             label10.BackColor = Color.Transparent;
-            label10.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(label10, "label10");
             label10.ForeColor = Color.Silver;
-            label10.Location = new Point(40, 184);
-            label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(136, 30);
-            label10.TabIndex = 44;
-            label10.Text = "Mtx Version";
-            label10.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // panel1
             // 
             panel1.BackgroundImage = Properties.Resources.Screenshot_2023_10_12_222907;
-            panel1.BackgroundImageLayout = ImageLayout.Stretch;
-            panel1.Location = new Point(24, 72);
-            panel1.Margin = new Padding(2);
+            resources.ApplyResources(panel1, "panel1");
             panel1.Name = "panel1";
-            panel1.Size = new Size(248, 16);
-            panel1.TabIndex = 36;
             // 
             // label8
             // 
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(label8, "label8");
             label8.ForeColor = Color.Silver;
-            label8.Location = new Point(40, 136);
-            label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(136, 30);
-            label8.TabIndex = 44;
-            label8.Text = "Matrix";
-            label8.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(label3, "label3");
             label3.ForeColor = Color.Silver;
-            label3.Location = new Point(40, 40);
-            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(136, 30);
-            label3.TabIndex = 44;
-            label3.Text = "Internet";
-            label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
             label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(label6, "label6");
             label6.ForeColor = Color.Silver;
-            label6.Location = new Point(40, 88);
-            label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(136, 30);
-            label6.TabIndex = 44;
-            label6.Text = "Cloud";
-            label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // SubOp_lblToLocation
             // 
             SubOp_lblToLocation.BackColor = Color.Transparent;
-            SubOp_lblToLocation.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            resources.ApplyResources(SubOp_lblToLocation, "SubOp_lblToLocation");
             SubOp_lblToLocation.ForeColor = Color.Silver;
-            SubOp_lblToLocation.Location = new Point(24, 56);
-            SubOp_lblToLocation.Margin = new Padding(4, 0, 4, 0);
             SubOp_lblToLocation.Name = "SubOp_lblToLocation";
-            SubOp_lblToLocation.Size = new Size(208, 30);
-            SubOp_lblToLocation.TabIndex = 44;
-            SubOp_lblToLocation.Text = "n/a";
-            SubOp_lblToLocation.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // guna2Panel3
             // 
-            guna2Panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            resources.ApplyResources(guna2Panel3, "guna2Panel3");
             guna2Panel3.BackColor = Color.White;
             guna2Panel3.BorderColor = Color.Gainsboro;
             guna2Panel3.BorderRadius = 15;
@@ -326,43 +235,25 @@
             guna2Panel3.Controls.Add(label2);
             guna2Panel3.Controls.Add(label1);
             guna2Panel3.FillColor = Color.WhiteSmoke;
-            guna2Panel3.Location = new Point(24, 784);
-            guna2Panel3.Margin = new Padding(2);
             guna2Panel3.Name = "guna2Panel3";
-            guna2Panel3.Size = new Size(304, 80);
-            guna2Panel3.TabIndex = 46;
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            resources.ApplyResources(label2, "label2");
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
             label2.ForeColor = Color.Silver;
-            label2.Location = new Point(16, 8);
-            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(136, 30);
-            label2.TabIndex = 44;
-            label2.Text = "powered by ";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            resources.ApplyResources(label1, "label1");
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             label1.ForeColor = SystemColors.WindowFrame;
-            label1.Location = new Point(22, 32);
-            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(200, 40);
-            label1.TabIndex = 43;
-            label1.Text = "JW Limited ©️ 2023";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlSide
             // 
-            pnlSide.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            resources.ApplyResources(pnlSide, "pnlSide");
             pnlSide.BackColor = Color.Transparent;
             pnlSide.BorderColor = Color.Gainsboro;
             pnlSide.BorderRadius = 15;
@@ -373,51 +264,38 @@
             pnlSide.Controls.Add(prgMiniProgress);
             pnlSide.Controls.Add(label7);
             pnlSide.FillColor = Color.White;
-            pnlSide.Location = new Point(352, 32);
-            pnlSide.Margin = new Padding(2);
             pnlSide.Name = "pnlSide";
-            pnlSide.Size = new Size(984, 832);
-            pnlSide.TabIndex = 51;
             // 
             // listView1
             // 
-            listView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            resources.ApplyResources(listView1, "listView1");
             listView1.BorderStyle = BorderStyle.None;
             listView1.Columns.AddRange(new ColumnHeader[] { colFileName, colFileType, colSize, colUploadDate, colPlace });
             listView1.ContextMenuStrip = conmenu;
             listView1.FullRowSelect = true;
-            listView1.Location = new Point(40, 120);
-            listView1.Margin = new Padding(2);
             listView1.Name = "listView1";
-            listView1.Size = new Size(904, 640);
-            listView1.TabIndex = 50;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
             // 
             // colFileName
             // 
-            colFileName.Text = "Name";
-            colFileName.Width = 300;
+            resources.ApplyResources(colFileName, "colFileName");
             // 
             // colFileType
             // 
-            colFileType.Text = "Type";
-            colFileType.Width = 120;
+            resources.ApplyResources(colFileType, "colFileType");
             // 
             // colSize
             // 
-            colSize.Text = "Size";
-            colSize.Width = 90;
+            resources.ApplyResources(colSize, "colSize");
             // 
             // colUploadDate
             // 
-            colUploadDate.Text = "Uploaded";
-            colUploadDate.Width = 180;
+            resources.ApplyResources(colUploadDate, "colUploadDate");
             // 
             // colPlace
             // 
-            colPlace.Text = "Place";
-            colPlace.Width = 160;
+            resources.ApplyResources(colPlace, "colPlace");
             // 
             // conmenu
             // 
@@ -434,35 +312,37 @@
             conmenu.RenderStyle.SelectionForeColor = Color.White;
             conmenu.RenderStyle.SeparatorColor = Color.LightGray;
             conmenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            conmenu.Size = new Size(241, 273);
+            resources.ApplyResources(conmenu, "conmenu");
             // 
             // detailToolStripMenuItem
             // 
             detailToolStripMenuItem.Name = "detailToolStripMenuItem";
-            detailToolStripMenuItem.Size = new Size(240, 32);
-            detailToolStripMenuItem.Text = "Details";
+            resources.ApplyResources(detailToolStripMenuItem, "detailToolStripMenuItem");
             detailToolStripMenuItem.Click += detailToolStripMenuItem_Click;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(toolStripMenuItem1, "toolStripMenuItem1");
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(237, 6);
+            resources.ApplyResources(toolStripSeparator1, "toolStripSeparator1");
             // 
             // downloadToolStripMenuItem
             // 
             downloadToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toCrypterv2StorageToolStripMenuItem, toDownloadsToolStripMenuItem });
             downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
-            downloadToolStripMenuItem.Size = new Size(240, 32);
-            downloadToolStripMenuItem.Text = "Download";
+            resources.ApplyResources(downloadToolStripMenuItem, "downloadToolStripMenuItem");
             // 
             // toCrypterv2StorageToolStripMenuItem
             // 
             toCrypterv2StorageToolStripMenuItem.BackColor = Color.White;
-            toCrypterv2StorageToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            resources.ApplyResources(toCrypterv2StorageToolStripMenuItem, "toCrypterv2StorageToolStripMenuItem");
             toCrypterv2StorageToolStripMenuItem.ForeColor = Color.RoyalBlue;
             toCrypterv2StorageToolStripMenuItem.Name = "toCrypterv2StorageToolStripMenuItem";
-            toCrypterv2StorageToolStripMenuItem.Size = new Size(290, 34);
-            toCrypterv2StorageToolStripMenuItem.Text = "To Crypterv2 Storage";
             toCrypterv2StorageToolStripMenuItem.Click += toCrypterv2StorageToolStripMenuItem_Click;
             // 
             // toDownloadsToolStripMenuItem
@@ -470,118 +350,87 @@
             toDownloadsToolStripMenuItem.BackColor = Color.White;
             toDownloadsToolStripMenuItem.ForeColor = SystemColors.ControlDarkDark;
             toDownloadsToolStripMenuItem.Name = "toDownloadsToolStripMenuItem";
-            toDownloadsToolStripMenuItem.Size = new Size(290, 34);
-            toDownloadsToolStripMenuItem.Text = "To .\\Downloads";
+            resources.ApplyResources(toDownloadsToolStripMenuItem, "toDownloadsToolStripMenuItem");
             toDownloadsToolStripMenuItem.Click += toDownloadsToolStripMenuItem_Click;
             // 
             // viewToolStripMenuItem
             // 
             viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            viewToolStripMenuItem.Size = new Size(240, 32);
-            viewToolStripMenuItem.Text = "View";
+            resources.ApplyResources(viewToolStripMenuItem, "viewToolStripMenuItem");
             viewToolStripMenuItem.Click += viewToolStripMenuItem_Click;
             // 
             // compareToolStripMenuItem
             // 
             compareToolStripMenuItem.Name = "compareToolStripMenuItem";
-            compareToolStripMenuItem.Size = new Size(240, 32);
-            compareToolStripMenuItem.Text = "Compare";
+            resources.ApplyResources(compareToolStripMenuItem, "compareToolStripMenuItem");
             compareToolStripMenuItem.Click += compareToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(237, 6);
+            resources.ApplyResources(toolStripSeparator2, "toolStripSeparator2");
             // 
             // reportToolStripMenuItem
             // 
             reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            reportToolStripMenuItem.Size = new Size(240, 32);
-            reportToolStripMenuItem.Text = "Report";
+            resources.ApplyResources(reportToolStripMenuItem, "reportToolStripMenuItem");
             reportToolStripMenuItem.Click += reportToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(240, 32);
-            deleteToolStripMenuItem.Text = "Delete";
+            resources.ApplyResources(deleteToolStripMenuItem, "deleteToolStripMenuItem");
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // guna2Panel2
             // 
-            guna2Panel2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            resources.ApplyResources(guna2Panel2, "guna2Panel2");
             guna2Panel2.BackColor = Color.Transparent;
             guna2Panel2.BorderColor = Color.LightSteelBlue;
             guna2Panel2.BorderRadius = 10;
             guna2Panel2.BorderThickness = 2;
             guna2Panel2.Controls.Add(lblAllInCloud);
             guna2Panel2.FillColor = Color.RoyalBlue;
-            guna2Panel2.Location = new Point(888, 32);
-            guna2Panel2.Margin = new Padding(2);
             guna2Panel2.Name = "guna2Panel2";
             guna2Panel2.ShadowDecoration.BorderRadius = 10;
             guna2Panel2.ShadowDecoration.Color = Color.LightGray;
             guna2Panel2.ShadowDecoration.Depth = 20;
-            guna2Panel2.Size = new Size(72, 32);
-            guna2Panel2.TabIndex = 49;
             // 
             // lblAllInCloud
             // 
             lblAllInCloud.BackColor = Color.Transparent;
-            lblAllInCloud.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(lblAllInCloud, "lblAllInCloud");
             lblAllInCloud.ForeColor = Color.White;
-            lblAllInCloud.Location = new Point(0, 0);
-            lblAllInCloud.Margin = new Padding(4, 0, 4, 0);
             lblAllInCloud.Name = "lblAllInCloud";
-            lblAllInCloud.Size = new Size(72, 30);
-            lblAllInCloud.TabIndex = 44;
-            lblAllInCloud.Text = "0";
-            lblAllInCloud.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlSpaceTrim
             // 
-            pnlSpaceTrim.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            resources.ApplyResources(pnlSpaceTrim, "pnlSpaceTrim");
             pnlSpaceTrim.BackgroundImage = Properties.Resources.Screenshot_2023_10_12_222907;
-            pnlSpaceTrim.BackgroundImageLayout = ImageLayout.Stretch;
-            pnlSpaceTrim.Location = new Point(32, 88);
-            pnlSpaceTrim.Margin = new Padding(2);
             pnlSpaceTrim.Name = "pnlSpaceTrim";
-            pnlSpaceTrim.Size = new Size(920, 16);
-            pnlSpaceTrim.TabIndex = 48;
             // 
             // prgMiniProgress
             // 
-            prgMiniProgress.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            resources.ApplyResources(prgMiniProgress, "prgMiniProgress");
             prgMiniProgress.BackColor = Color.Transparent;
             prgMiniProgress.BorderColor = Color.Gainsboro;
             prgMiniProgress.BorderRadius = 2;
             prgMiniProgress.BorderThickness = 2;
             prgMiniProgress.FillColor = Color.White;
             prgMiniProgress.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            prgMiniProgress.Location = new Point(32, 792);
-            prgMiniProgress.Margin = new Padding(2);
             prgMiniProgress.Name = "prgMiniProgress";
             prgMiniProgress.ProgressColor = Color.SteelBlue;
             prgMiniProgress.ProgressColor2 = Color.RoyalBlue;
             prgMiniProgress.ShadowDecoration.Depth = 20;
-            prgMiniProgress.Size = new Size(920, 8);
             prgMiniProgress.Style = ProgressBarStyle.Marquee;
-            prgMiniProgress.TabIndex = 45;
-            prgMiniProgress.Text = "guna2ProgressBar1";
             prgMiniProgress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             // 
             // label7
             // 
             label7.BackColor = Color.Transparent;
-            label7.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            resources.ApplyResources(label7, "label7");
             label7.ForeColor = Color.DimGray;
-            label7.Location = new Point(32, 16);
-            label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(320, 64);
-            label7.TabIndex = 46;
-            label7.Text = "My Files";
-            label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // guna2Panel4
             // 
@@ -593,11 +442,8 @@
             guna2Panel4.Controls.Add(sPanel2);
             guna2Panel4.Controls.Add(label9);
             guna2Panel4.FillColor = Color.White;
-            guna2Panel4.Location = new Point(24, 432);
-            guna2Panel4.Margin = new Padding(2);
+            resources.ApplyResources(guna2Panel4, "guna2Panel4");
             guna2Panel4.Name = "guna2Panel4";
-            guna2Panel4.Size = new Size(304, 256);
-            guna2Panel4.TabIndex = 45;
             // 
             // SubOp
             // 
@@ -612,124 +458,75 @@
             SubOp.Controls.Add(SubOp_lblFileName);
             SubOp.Controls.Add(SubOp_lblToLocation);
             SubOp.FillColor = Color.White;
-            SubOp.Location = new Point(24, 40);
-            SubOp.Margin = new Padding(2);
+            resources.ApplyResources(SubOp, "SubOp");
             SubOp.Name = "SubOp";
-            SubOp.Size = new Size(256, 192);
-            SubOp.TabIndex = 45;
-            SubOp.Visible = false;
             // 
             // SubOp_pnlIco
             // 
-            SubOp_pnlIco.BackgroundImageLayout = ImageLayout.Zoom;
-            SubOp_pnlIco.Location = new Point(24, 24);
-            SubOp_pnlIco.Margin = new Padding(2);
+            resources.ApplyResources(SubOp_pnlIco, "SubOp_pnlIco");
             SubOp_pnlIco.Name = "SubOp_pnlIco";
-            SubOp_pnlIco.Size = new Size(32, 32);
-            SubOp_pnlIco.TabIndex = 48;
             // 
             // SubOp_ProgressBar
             // 
-            SubOp_ProgressBar.Anchor = AnchorStyles.None;
+            resources.ApplyResources(SubOp_ProgressBar, "SubOp_ProgressBar");
             SubOp_ProgressBar.BackColor = Color.Transparent;
             SubOp_ProgressBar.BorderColor = Color.Gainsboro;
             SubOp_ProgressBar.BorderRadius = 9;
             SubOp_ProgressBar.BorderThickness = 2;
             SubOp_ProgressBar.FillColor = Color.White;
             SubOp_ProgressBar.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            SubOp_ProgressBar.Location = new Point(24, 136);
-            SubOp_ProgressBar.Margin = new Padding(2);
             SubOp_ProgressBar.Name = "SubOp_ProgressBar";
             SubOp_ProgressBar.ProgressColor = Color.SteelBlue;
             SubOp_ProgressBar.ProgressColor2 = Color.RoyalBlue;
             SubOp_ProgressBar.ShadowDecoration.Depth = 20;
-            SubOp_ProgressBar.Size = new Size(208, 32);
-            SubOp_ProgressBar.TabIndex = 47;
-            SubOp_ProgressBar.Text = "guna2ProgressBar1";
             SubOp_ProgressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             SubOp_ProgressBar.Value = 70;
             // 
             // SubOp_lblOperationType
             // 
             SubOp_lblOperationType.BackColor = Color.Transparent;
-            SubOp_lblOperationType.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            resources.ApplyResources(SubOp_lblOperationType, "SubOp_lblOperationType");
             SubOp_lblOperationType.ForeColor = Color.DimGray;
-            SubOp_lblOperationType.Location = new Point(24, 96);
-            SubOp_lblOperationType.Margin = new Padding(4, 0, 4, 0);
             SubOp_lblOperationType.Name = "SubOp_lblOperationType";
-            SubOp_lblOperationType.Size = new Size(208, 30);
-            SubOp_lblOperationType.TabIndex = 44;
-            SubOp_lblOperationType.Text = "n/a";
-            SubOp_lblOperationType.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // SubOp_lblFileName
             // 
             SubOp_lblFileName.AutoEllipsis = true;
             SubOp_lblFileName.BackColor = Color.Transparent;
-            SubOp_lblFileName.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            resources.ApplyResources(SubOp_lblFileName, "SubOp_lblFileName");
             SubOp_lblFileName.ForeColor = Color.DimGray;
-            SubOp_lblFileName.Location = new Point(56, 24);
-            SubOp_lblFileName.Margin = new Padding(4, 0, 4, 0);
             SubOp_lblFileName.Name = "SubOp_lblFileName";
-            SubOp_lblFileName.Size = new Size(176, 30);
-            SubOp_lblFileName.TabIndex = 44;
-            SubOp_lblFileName.Text = "n/a";
-            SubOp_lblFileName.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // sPanel2
             // 
             sPanel2.BackColor = Color.White;
             sPanel2.BackgroundImage = Properties.Resources.icons8_verified_badge_96;
-            sPanel2.BackgroundImageLayout = ImageLayout.Zoom;
+            resources.ApplyResources(sPanel2, "sPanel2");
             sPanel2.BorderColor = Color.Gainsboro;
             sPanel2.BorderRadius = 20;
             sPanel2.BorderSize = 0;
             sPanel2.ForeColor = Color.White;
-            sPanel2.Location = new Point(96, 72);
-            sPanel2.Margin = new Padding(4);
             sPanel2.Name = "sPanel2";
-            sPanel2.Size = new Size(96, 88);
-            sPanel2.TabIndex = 47;
             // 
             // label9
             // 
             label9.BackColor = Color.Transparent;
-            label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(label9, "label9");
             label9.ForeColor = Color.Silver;
-            label9.Location = new Point(56, 176);
-            label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(184, 22);
-            label9.TabIndex = 50;
-            label9.Text = "All done!";
-            label9.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label18
             // 
             label18.BackColor = Color.Transparent;
-            label18.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            resources.ApplyResources(label18, "label18");
             label18.ForeColor = SystemColors.ControlDark;
-            label18.Location = new Point(40, 416);
-            label18.Margin = new Padding(4, 0, 4, 0);
             label18.Name = "label18";
-            label18.Size = new Size(152, 40);
-            label18.TabIndex = 48;
-            label18.Text = "    Operations";
-            label18.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(240, 32);
-            toolStripMenuItem1.Text = "Share";
-            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
             // uiCloudFilesViewer
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(1359, 892);
             Controls.Add(pnlSide);
             Controls.Add(lblVersion);
             Controls.Add(label18);
@@ -739,11 +536,7 @@
             Controls.Add(guna2Panel4);
             Controls.Add(guna2Panel1);
             Controls.Add(guna2Panel3);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(2);
             Name = "uiCloudFilesViewer";
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "MainHost - Cloud";
             Load += CloudFilesViewer_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel3.ResumeLayout(false);

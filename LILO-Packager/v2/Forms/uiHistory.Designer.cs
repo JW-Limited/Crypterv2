@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem(new string[] { "12345", "Encryption", "Library Based", "v2", "C:File", "C:File.lsf" }, -1);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiHistory));
             tableLayoutPanel1 = new TableLayoutPanel();
             listViewHistory = new HTAlt.WinForms.HTListView();
             ColId = new ColumnHeader();
@@ -65,29 +65,18 @@
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            resources.ApplyResources(tableLayoutPanel1, "tableLayoutPanel1");
             tableLayoutPanel1.Controls.Add(listViewHistory, 0, 1);
-            tableLayoutPanel1.Location = new Point(40, 104);
-            tableLayoutPanel1.Margin = new Padding(2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(952, 824);
-            tableLayoutPanel1.TabIndex = 3;
             // 
             // listViewHistory
             // 
             listViewHistory.Activation = ItemActivation.OneClick;
-            listViewHistory.Alignment = ListViewAlignment.Default;
+            resources.ApplyResources(listViewHistory, "listViewHistory");
             listViewHistory.AllowColumnReorder = true;
             listViewHistory.BorderStyle = BorderStyle.None;
             listViewHistory.Columns.AddRange(new ColumnHeader[] { ColId, ColOperation, ColMode, ColVersion, ColInput, ColOutput });
             listViewHistory.ContextMenuStrip = conmenu;
-            listViewHistory.Dock = DockStyle.Fill;
             listViewHistory.FullRowSelect = true;
             listViewHistory.GridLines = true;
             listViewHistory.HeaderBackColor = Color.FromArgb(235, 235, 235);
@@ -95,16 +84,12 @@
             listViewHistory.HeaderForeColor = Color.Black;
             listViewHistory.HideSelection = true;
             listViewHistory.HoverSelection = true;
-            listViewHistory.Items.AddRange(new ListViewItem[] { listViewItem1 });
-            listViewHistory.Location = new Point(2, 52);
-            listViewHistory.Margin = new Padding(2);
+            listViewHistory.Items.AddRange(new ListViewItem[] { (ListViewItem)resources.GetObject("listViewHistory.Items") });
             listViewHistory.MultiSelect = false;
             listViewHistory.Name = "listViewHistory";
             listViewHistory.OverlayColor = Color.DodgerBlue;
             listViewHistory.ShowGroups = false;
             listViewHistory.ShowItemToolTips = true;
-            listViewHistory.Size = new Size(948, 770);
-            listViewHistory.TabIndex = 0;
             listViewHistory.UseCompatibleStateImageBehavior = false;
             listViewHistory.View = View.Details;
             listViewHistory.SelectedIndexChanged += listViewBerechtigungen_SelectedIndexChanged;
@@ -112,33 +97,28 @@
             // ColId
             // 
             ColId.Tag = "ID";
-            ColId.Text = "ID";
-            ColId.Width = 140;
+            resources.ApplyResources(ColId, "ColId");
             // 
             // ColOperation
             // 
             ColOperation.Tag = "Opration";
-            ColOperation.Text = "Operation";
-            ColOperation.Width = 160;
+            resources.ApplyResources(ColOperation, "ColOperation");
             // 
             // ColMode
             // 
-            ColMode.Text = "Core";
-            ColMode.Width = 160;
+            resources.ApplyResources(ColMode, "ColMode");
             // 
             // ColVersion
             // 
-            ColVersion.Text = "Algorithm - Version";
+            resources.ApplyResources(ColVersion, "ColVersion");
             // 
             // ColInput
             // 
-            ColInput.Text = "Input File";
-            ColInput.Width = 250;
+            resources.ApplyResources(ColInput, "ColInput");
             // 
             // ColOutput
             // 
-            ColOutput.Text = "Output File";
-            ColOutput.Width = 250;
+            resources.ApplyResources(ColOutput, "ColOutput");
             // 
             // conmenu
             // 
@@ -155,74 +135,66 @@
             conmenu.RenderStyle.SelectionForeColor = Color.White;
             conmenu.RenderStyle.SeparatorColor = Color.LightGray;
             conmenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            conmenu.Size = new Size(158, 176);
+            resources.ApplyResources(conmenu, "conmenu");
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(157, 32);
-            deleteToolStripMenuItem.Text = "Delete";
+            resources.ApplyResources(deleteToolStripMenuItem, "deleteToolStripMenuItem");
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(154, 6);
+            resources.ApplyResources(toolStripSeparator1, "toolStripSeparator1");
             // 
             // viewToolStripMenuItem
             // 
             viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            viewToolStripMenuItem.Size = new Size(157, 32);
-            viewToolStripMenuItem.Text = "View";
+            resources.ApplyResources(viewToolStripMenuItem, "viewToolStripMenuItem");
             viewToolStripMenuItem.Click += viewToolStripMenuItem_Click;
             // 
             // showInExplorerToolStripMenuItem
             // 
             showInExplorerToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { explorerToolStripMenuItem, lILOWebEngineToolStripMenuItem });
             showInExplorerToolStripMenuItem.Name = "showInExplorerToolStripMenuItem";
-            showInExplorerToolStripMenuItem.Size = new Size(157, 32);
-            showInExplorerToolStripMenuItem.Text = "Show in";
+            resources.ApplyResources(showInExplorerToolStripMenuItem, "showInExplorerToolStripMenuItem");
             showInExplorerToolStripMenuItem.Click += showInExplorerToolStripMenuItem_Click;
             // 
             // explorerToolStripMenuItem
             // 
             explorerToolStripMenuItem.BackColor = SystemColors.ButtonHighlight;
             explorerToolStripMenuItem.Name = "explorerToolStripMenuItem";
-            explorerToolStripMenuItem.Size = new Size(254, 34);
-            explorerToolStripMenuItem.Text = "Explorer";
+            resources.ApplyResources(explorerToolStripMenuItem, "explorerToolStripMenuItem");
             explorerToolStripMenuItem.Click += explorerToolStripMenuItem_Click;
             // 
             // lILOWebEngineToolStripMenuItem
             // 
             lILOWebEngineToolStripMenuItem.BackColor = SystemColors.ButtonHighlight;
             lILOWebEngineToolStripMenuItem.Name = "lILOWebEngineToolStripMenuItem";
-            lILOWebEngineToolStripMenuItem.Size = new Size(254, 34);
-            lILOWebEngineToolStripMenuItem.Text = "LILO - WebEngine";
+            resources.ApplyResources(lILOWebEngineToolStripMenuItem, "lILOWebEngineToolStripMenuItem");
             lILOWebEngineToolStripMenuItem.Click += lILOWebEngineToolStripMenuItem_Click;
             // 
             // compareToolStripMenuItem
             // 
             compareToolStripMenuItem.Name = "compareToolStripMenuItem";
-            compareToolStripMenuItem.Size = new Size(157, 32);
-            compareToolStripMenuItem.Text = "Compare";
+            resources.ApplyResources(compareToolStripMenuItem, "compareToolStripMenuItem");
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(154, 6);
+            resources.ApplyResources(toolStripSeparator2, "toolStripSeparator2");
             // 
             // reportToolStripMenuItem
             // 
             reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            reportToolStripMenuItem.Size = new Size(157, 32);
-            reportToolStripMenuItem.Text = "Report";
+            resources.ApplyResources(reportToolStripMenuItem, "reportToolStripMenuItem");
             reportToolStripMenuItem.Click += reportToolStripMenuItem_Click;
             // 
             // sPanel2
             // 
-            sPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            resources.ApplyResources(sPanel2, "sPanel2");
             sPanel2.BackColor = Color.WhiteSmoke;
-            sPanel2.BackgroundImageLayout = ImageLayout.Stretch;
             sPanel2.BorderColor = Color.Gainsboro;
             sPanel2.BorderRadius = 20;
             sPanel2.BorderSize = 2;
@@ -232,11 +204,7 @@
             sPanel2.Controls.Add(bntCancel);
             sPanel2.Controls.Add(lblText);
             sPanel2.ForeColor = Color.White;
-            sPanel2.Location = new Point(24, 32);
-            sPanel2.Margin = new Padding(4);
             sPanel2.Name = "sPanel2";
-            sPanel2.Size = new Size(968, 88);
-            sPanel2.TabIndex = 13;
             // 
             // guna2Panel1
             // 
@@ -246,29 +214,21 @@
             guna2Panel1.BorderThickness = 2;
             guna2Panel1.Controls.Add(textBox1);
             guna2Panel1.FillColor = Color.White;
-            guna2Panel1.Location = new Point(160, 19);
-            guna2Panel1.Margin = new Padding(2);
+            resources.ApplyResources(guna2Panel1, "guna2Panel1");
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(280, 50);
-            guna2Panel1.TabIndex = 59;
             // 
             // textBox1
             // 
             textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 10F);
-            textBox1.Location = new Point(16, 8);
+            resources.ApplyResources(textBox1, "textBox1");
             textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Search...";
-            textBox1.Size = new Size(248, 27);
-            textBox1.TabIndex = 0;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // guna2Button1
             // 
-            guna2Button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            resources.ApplyResources(guna2Button1, "guna2Button1");
             guna2Button1.Animated = true;
             guna2Button1.BackColor = Color.Transparent;
-            guna2Button1.BackgroundImageLayout = ImageLayout.Zoom;
             guna2Button1.BorderColor = Color.Gainsboro;
             guna2Button1.BorderRadius = 20;
             guna2Button1.BorderThickness = 2;
@@ -278,22 +238,15 @@
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button1.FillColor = Color.White;
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(752, 16);
-            guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(120, 58);
-            guna2Button1.TabIndex = 15;
-            guna2Button1.Text = "Sync";
             guna2Button1.Click += bntSync_Click;
             // 
             // bntPlugin
             // 
-            bntPlugin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            resources.ApplyResources(bntPlugin, "bntPlugin");
             bntPlugin.Animated = true;
             bntPlugin.BackColor = Color.Transparent;
-            bntPlugin.BackgroundImageLayout = ImageLayout.Zoom;
             bntPlugin.BorderColor = Color.Gainsboro;
             bntPlugin.BorderRadius = 20;
             bntPlugin.BorderThickness = 2;
@@ -303,20 +256,15 @@
             bntPlugin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntPlugin.FillColor = Color.White;
             bntPlugin.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntPlugin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntPlugin.ForeColor = Color.DimGray;
             bntPlugin.Image = Properties.Resources.icons8_synchronize_240;
             bntPlugin.ImageSize = new Size(30, 30);
-            bntPlugin.Location = new Point(888, 16);
-            bntPlugin.Margin = new Padding(2);
             bntPlugin.Name = "bntPlugin";
-            bntPlugin.Size = new Size(64, 58);
-            bntPlugin.TabIndex = 15;
             bntPlugin.Click += bntPlugin_Click;
             // 
             // bntCancel
             // 
-            bntCancel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            resources.ApplyResources(bntCancel, "bntCancel");
             bntCancel.Animated = true;
             bntCancel.BackColor = Color.Transparent;
             bntCancel.BorderColor = Color.Gainsboro;
@@ -328,66 +276,42 @@
             bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntCancel.FillColor = Color.Transparent;
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             bntCancel.ForeColor = Color.White;
-            bntCancel.Location = new Point(2368, 16);
-            bntCancel.Margin = new Padding(2);
             bntCancel.Name = "bntCancel";
-            bntCancel.Size = new Size(128, 58);
-            bntCancel.TabIndex = 14;
-            bntCancel.Text = "Cancel";
-            bntCancel.Visible = false;
             // 
             // lblText
             // 
             lblText.BackColor = Color.Transparent;
-            lblText.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            resources.ApplyResources(lblText, "lblText");
             lblText.ForeColor = Color.DimGray;
-            lblText.Location = new Point(24, 0);
-            lblText.Margin = new Padding(4, 0, 4, 0);
             lblText.Name = "lblText";
-            lblText.Size = new Size(144, 88);
-            lblText.TabIndex = 1;
-            lblText.Text = "History";
-            lblText.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlLoginLoad
             // 
-            pnlLoginLoad.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            resources.ApplyResources(pnlLoginLoad, "pnlLoginLoad");
             pnlLoginLoad.BackColor = Color.Transparent;
             pnlLoginLoad.BorderColor = Color.Silver;
             pnlLoginLoad.BorderRadius = 15;
             pnlLoginLoad.Controls.Add(progressSpinner);
             pnlLoginLoad.FillColor = Color.White;
-            pnlLoginLoad.Location = new Point(32, 144);
-            pnlLoginLoad.Margin = new Padding(2);
             pnlLoginLoad.Name = "pnlLoginLoad";
-            pnlLoginLoad.Size = new Size(960, 785);
-            pnlLoginLoad.TabIndex = 16;
             // 
             // progressSpinner
             // 
-            progressSpinner.Anchor = AnchorStyles.None;
+            resources.ApplyResources(progressSpinner, "progressSpinner");
             progressSpinner.AutoStart = true;
             progressSpinner.BackColor = Color.White;
-            progressSpinner.Location = new Point(404, 312);
-            progressSpinner.Margin = new Padding(2);
             progressSpinner.Name = "progressSpinner";
-            progressSpinner.Size = new Size(135, 135);
-            progressSpinner.TabIndex = 8;
             // 
             // uiHistory
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(1020, 948);
             Controls.Add(pnlLoginLoad);
             Controls.Add(sPanel2);
             Controls.Add(tableLayoutPanel1);
-            Margin = new Padding(2);
             Name = "uiHistory";
-            Text = "uiHistory";
             Load += uiHistory_Load;
             tableLayoutPanel1.ResumeLayout(false);
             conmenu.ResumeLayout(false);

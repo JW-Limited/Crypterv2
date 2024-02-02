@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiKeyInput));
             pnlPreview = new Guna.UI2.WinForms.Guna2Panel();
             label1 = new Label();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
@@ -37,31 +38,21 @@
             // 
             // pnlPreview
             // 
-            pnlPreview.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            resources.ApplyResources(pnlPreview, "pnlPreview");
             pnlPreview.BackColor = Color.Transparent;
             pnlPreview.BorderColor = Color.Silver;
             pnlPreview.BorderRadius = 15;
             pnlPreview.BorderThickness = 2;
             pnlPreview.Controls.Add(label1);
             pnlPreview.FillColor = Color.White;
-            pnlPreview.Location = new Point(24, 23);
-            pnlPreview.Margin = new Padding(2);
             pnlPreview.Name = "pnlPreview";
-            pnlPreview.Size = new Size(632, 73);
-            pnlPreview.TabIndex = 16;
             // 
             // label1
             // 
-            label1.AutoSize = true;
+            resources.ApplyResources(label1, "label1");
             label1.BackColor = Color.White;
-            label1.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ActiveCaptionText;
-            label1.Location = new Point(24, 17);
-            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(198, 36);
-            label1.TabIndex = 17;
-            label1.Text = "Secured Dialog";
             // 
             // guna2Button1
             // 
@@ -76,15 +67,10 @@
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button1.FillColor = Color.White;
-            guna2Button1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            resources.ApplyResources(guna2Button1, "guna2Button1");
             guna2Button1.ForeColor = Color.Black;
-            guna2Button1.Location = new Point(504, 272);
-            guna2Button1.Margin = new Padding(4);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = Color.DarkGray;
-            guna2Button1.Size = new Size(152, 48);
-            guna2Button1.TabIndex = 20;
-            guna2Button1.Text = "Cancel";
             guna2Button1.UseTransparentBackground = true;
             // 
             // bntLogin
@@ -100,28 +86,21 @@
             bntLogin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             bntLogin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntLogin.FillColor = Color.White;
-            bntLogin.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            resources.ApplyResources(bntLogin, "bntLogin");
             bntLogin.ForeColor = Color.Black;
-            bntLogin.Location = new Point(24, 272);
-            bntLogin.Margin = new Padding(4);
             bntLogin.Name = "bntLogin";
             bntLogin.PressedColor = Color.DarkGray;
-            bntLogin.Size = new Size(464, 48);
-            bntLogin.TabIndex = 21;
-            bntLogin.Text = "n/a";
             bntLogin.UseTransparentBackground = true;
             // 
             // uiKeyInput
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(679, 358);
             Controls.Add(guna2Button1);
             Controls.Add(bntLogin);
             Controls.Add(pnlPreview);
             Name = "uiKeyInput";
-            Text = "uiKeyInput";
             pnlPreview.ResumeLayout(false);
             pnlPreview.PerformLayout();
             ResumeLayout(false);

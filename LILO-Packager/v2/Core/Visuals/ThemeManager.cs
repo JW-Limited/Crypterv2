@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Windows.Forms;
-using LILO_Packager.v2.Shared;
-using LILO_Packager.v2.Shared.Streaming.Core;
+﻿using LILO_Packager.v2.Shared;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace LILO_Packager.v2.Core.Visuals
 {
     public class ThemeManager
     {
+        public class ThemeFileConstructor(Dictionary<string,Theme> themes)
+        {
+            public FileFormatClearifier FileFormat = new()
+            {
+                ExtensionPrefix = ".lcs",
+                FriendlyName = "LILO Custtom Style",
+                SchemeUri = "https://beta.lilo.com/schemes/ui/custom/1",
+                Description = "An Collection of Theme for LILO Framework powered Applications.",
+                FormatVersion = "1.0",
+            };
+            public Dictionary<string, Theme> ThemeCollection = themes;
+        }
         private Dictionary<string, Theme> themes = new Dictionary<string, Theme>();
         private Theme currentTheme;
 
@@ -49,38 +55,38 @@ namespace LILO_Packager.v2.Core.Visuals
             var themeManager = new ThemeManager();
 
             var assembly = Assembly.GetEntryAssembly();
+            var controlTypes = assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(HostForm)));
 
-            var controlTypes = assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(Control)));
-
-            foreach (var controlType in controlTypes)
+            foreach (var controlType in controlTypes) 
             {
                 try
                 {
-                    var control = Activator.CreateInstance(controlType) as Control;
-                    themeManager.RegisterControl(control, ThemeManager.ModeType.Light, Color.White, Color.Black);
+                   var handle = controlType.InvokeMember("Instance",
+                                                       BindingFlags.GetField, null, null, null) as HostForm;
+                    themeManager.RegisterControl(handle.HostControlHandle, ModeType.Light, Color.White, Color.Black);
                 }
                 catch (Exception ex)
                 {
                     ConsoleManager.Instance().WriteLineWithColor(ex.Message, ConsoleColor.DarkRed);
-                    continue;
+                   continue;
                 }
             }
 
-            var darkTheme = new ThemeManager.Theme
+            var darkTheme = new Theme
             {
                 Name = "Dark",
             };
-            darkTheme.ModeSettings[ThemeManager.ModeType.Dark] = new ThemeManager.ModeSettings
+            darkTheme.ModeSettings[ModeType.Dark] = new ModeSettings
             {
                 BackColor = Color.FromArgb(32,32,32),
                 ForeColor = Color.White,
             };
-            var whiteTheme = new ThemeManager.Theme
+            var whiteTheme = new Theme
             {
                 Name = "White",
             };
 
-            whiteTheme.ModeSettings[ThemeManager.ModeType.Light] = new ThemeManager.ModeSettings
+            whiteTheme.ModeSettings[ModeType.Light] = new ModeSettings
             {
                 BackColor = Color.White,
                 ForeColor = Color.Black,
@@ -119,7 +125,7 @@ namespace LILO_Packager.v2.Core.Visuals
             if (themes.TryGetValue(themeName, out var theme))
             {
                 CurrentTheme = theme;
-                ApplyThemeToControls(Application.OpenForms[0]);
+                ApplyThemeToControls(System.Windows.Forms.Application.OpenForms[0]);
             }
         }
 
@@ -191,7 +197,8 @@ namespace LILO_Packager.v2.Core.Visuals
 
         public void SaveThemesToJson(string filePath)
         {
-            var serializedThemes = JsonConvert.SerializeObject(themes, Formatting.Indented);
+            var file = new ThemeFileConstructor(themes);
+            var serializedThemes = JsonConvert.SerializeObject(file, Formatting.Indented);
             System.IO.File.WriteAllText(filePath, serializedThemes);
         }
 
@@ -201,39 +208,40 @@ namespace LILO_Packager.v2.Core.Visuals
             themes = JsonConvert.DeserializeObject<Dictionary<string, Theme>>(serializedThemes);
         }
 
-        public class Theme
+        
+    }
+    public class Theme
+    {
+        public string Name { get; set; }
+        public string Author { get; set; }
+        public Dictionary<ModeType, ModeSettings> ModeSettings { get; } = new Dictionary<ModeType, ModeSettings>();
+    }
+
+    public class ControlSettings
+    {
+        public Dictionary<ModeType, ModeSettings> ModeSettings { get; } = new Dictionary<ModeType, ModeSettings>();
+
+        public void ApplySettings(Control control, ModeSettings settings)
         {
-            public string Name { get; set; }
-            public Dictionary<ModeType, ModeSettings> ModeSettings { get; } = new Dictionary<ModeType, ModeSettings>();
+            Console.WriteLine(control.Name + " - " + settings.BackColor, settings.ForeColor);
+
+
+            control.BackColor = settings.BackColor;
+            control.ForeColor = settings.ForeColor;
         }
+    }
 
-        public class ControlSettings
-        {
-            public Dictionary<ModeType, ModeSettings> ModeSettings { get; } = new Dictionary<ModeType, ModeSettings>();
+    public class ModeSettings
+    {
+        public Color BackColor { get; set; }
+        public Color AccentColor { get; set; }
+        public Color ForeColor { get; set; }
+    }
 
-            public void ApplySettings(Control control, ModeSettings settings)
-            {
-                Console.WriteLine(control.Name + " - " + settings.BackColor,settings.ForeColor);
-
-
-                control.BackColor = settings.BackColor;
-                control.ForeColor = settings.ForeColor;
-            }
-        }
-
-        public class ModeSettings
-        {
-            public Color BackColor { get; set; }
-            public Color ForeColor { get; set; }
-        }
-
-        public enum ModeType
-        {
-            Default,
-            Dark,
-            Light,
-            Custom1,
-            Custom2,
-        }
+    public enum ModeType
+    {
+        Default,
+        Dark,
+        Light,
     }
 }

@@ -11,7 +11,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
     {
         // --- Plugins ---
 
-        public readonly HashSet<IPluginBase> Pluginsv1 = new HashSet<IPluginBase>();
+        public readonly HashSet<IPluginBase> PluginsV1 = new HashSet<IPluginBase>();
         public readonly HashSet<IPluginBasev2> PluginsV2 = new HashSet<IPluginBasev2>();
         private HashSet<IPluginBasev3> PluginsV3 = new HashSet<IPluginBasev3>();
 
@@ -116,7 +116,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                                     IPluginBase? b = t.InvokeMember(null,
                                                         BindingFlags.CreateInstance, null, null, null) as IPluginBase;
 
-                                    Pluginsv1.Add(b);
+                                    PluginsV1.Add(b);
                                     pluginPaths.Add(b, file.FullName);
 
 
@@ -211,7 +211,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
                                 IPluginBase? b = t.InvokeMember(null,
                                                     BindingFlags.CreateInstance, null, null, null) as IPluginBase;
 
-                                Pluginsv1.Add(b);
+                                PluginsV1.Add(b);
                                 pluginPaths.Add(b, file.FullName);
                                 try
                                 {
@@ -250,7 +250,7 @@ namespace LILO_Packager.v2.Plugins.PluginCore
 
                 var plugins = new HashSet<PluginIndexEntry>();
 
-                foreach (var plugin in Pluginsv1)
+                foreach (var plugin in PluginsV1)
                 {
                     pluginPaths.TryGetValue(plugin, out string path);
 

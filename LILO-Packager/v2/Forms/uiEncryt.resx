@@ -117,6 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="sPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="sPanel1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="bntPlugin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="bntPlugin.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
   <metadata name="Transition.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>172, 20</value>
   </metadata>
@@ -155,13 +168,904 @@
         d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
 </value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bntPlugin.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 11pt, style=Bold</value>
+  </data>
+  <data name="bntPlugin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>864, 16</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bntPlugin.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="bntPlugin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 58</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bntPlugin.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="bntPlugin.Text" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="&gt;&gt;bntPlugin.Name" xml:space="preserve">
+    <value>bntPlugin</value>
+  </data>
+  <data name="&gt;&gt;bntPlugin.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Button, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;bntPlugin.Parent" xml:space="preserve">
+    <value>sPanel1</value>
+  </data>
+  <data name="&gt;&gt;bntPlugin.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="bntCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="bntCancel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 11pt, style=Bold</value>
+  </data>
+  <data name="bntCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>832, 16</value>
+  </data>
+  <data name="bntCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="bntCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 58</value>
+  </data>
+  <data name="bntCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="bntCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="bntCancel.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;bntCancel.Name" xml:space="preserve">
+    <value>bntCancel</value>
+  </data>
+  <data name="&gt;&gt;bntCancel.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Button, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;bntCancel.Parent" xml:space="preserve">
+    <value>sPanel1</value>
+  </data>
+  <data name="&gt;&gt;bntCancel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblText.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 14pt, style=Bold</value>
+  </data>
+  <data name="lblText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 0</value>
+  </data>
+  <data name="lblText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="lblText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 88</value>
+  </data>
+  <data name="lblText.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lblText.Text" xml:space="preserve">
+    <value>Encrypt</value>
+  </data>
+  <data name="lblText.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lblText.Name" xml:space="preserve">
+    <value>lblText</value>
+  </data>
+  <data name="&gt;&gt;lblText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblText.Parent" xml:space="preserve">
+    <value>sPanel1</value>
+  </data>
+  <data name="&gt;&gt;lblText.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="sPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 32</value>
+  </data>
+  <data name="sPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="sPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 88</value>
+  </data>
+  <data name="sPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;sPanel1.Name" xml:space="preserve">
+    <value>sPanel1</value>
+  </data>
+  <data name="&gt;&gt;sPanel1.Type" xml:space="preserve">
+    <value>Sipaa.Framework.SPanel, SipaaFramework, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;sPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;sPanel1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="bntOpen.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="bntOpen.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="bntOpen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 308</value>
+  </data>
+  <data name="bntOpen.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="bntOpen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 40</value>
+  </data>
+  <data name="bntOpen.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="bntOpen.Text" xml:space="preserve">
+    <value>Select Files</value>
+  </data>
+  <data name="&gt;&gt;bntOpen.Name" xml:space="preserve">
+    <value>bntOpen</value>
+  </data>
+  <data name="&gt;&gt;bntOpen.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Button, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;bntOpen.Parent" xml:space="preserve">
+    <value>guna2Panel2</value>
+  </data>
+  <data name="&gt;&gt;bntOpen.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="pnlFile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="pnlFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 72</value>
+  </data>
+  <data name="pnlFile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="pnlFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="pnlFile.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;pnlFile.Name" xml:space="preserve">
+    <value>pnlFile</value>
+  </data>
+  <data name="&gt;&gt;pnlFile.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2CirclePictureBox, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;pnlFile.Parent" xml:space="preserve">
+    <value>guna2Panel1</value>
+  </data>
+  <data name="&gt;&gt;pnlFile.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="guna2Panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="guna2Panel1.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblReady.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lblReady.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Open Sans, 10pt, style=Bold</value>
+  </data>
+  <data name="lblReady.Location" type="System.Drawing.Point, System.Drawing">
+    <value>792, 128</value>
+  </data>
+  <data name="lblReady.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lblReady.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 32</value>
+  </data>
+  <data name="lblReady.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lblReady.Text" xml:space="preserve">
+    <value>Encrypted</value>
+  </data>
+  <data name="lblReady.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lblReady.Name" xml:space="preserve">
+    <value>lblReady</value>
+  </data>
+  <data name="&gt;&gt;lblReady.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblReady.Parent" xml:space="preserve">
+    <value>guna2Panel1</value>
+  </data>
+  <data name="&gt;&gt;lblReady.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblEnrcypt.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lblEnrcypt.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Open Sans, 10pt, style=Bold</value>
+  </data>
+  <data name="lblEnrcypt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>544, 128</value>
+  </data>
+  <data name="lblEnrcypt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lblEnrcypt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 32</value>
+  </data>
+  <data name="lblEnrcypt.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lblEnrcypt.Text" xml:space="preserve">
+    <value>Encrypt</value>
+  </data>
+  <data name="lblEnrcypt.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lblEnrcypt.Name" xml:space="preserve">
+    <value>lblEnrcypt</value>
+  </data>
+  <data name="&gt;&gt;lblEnrcypt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblEnrcypt.Parent" xml:space="preserve">
+    <value>guna2Panel1</value>
+  </data>
+  <data name="&gt;&gt;lblEnrcypt.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblComb.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lblComb.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Open Sans, 10pt, style=Bold</value>
+  </data>
+  <data name="lblComb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>304, 128</value>
+  </data>
+  <data name="lblComb.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lblComb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 32</value>
+  </data>
+  <data name="lblComb.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lblComb.Text" xml:space="preserve">
+    <value>Compress</value>
+  </data>
+  <data name="lblComb.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lblComb.Name" xml:space="preserve">
+    <value>lblComb</value>
+  </data>
+  <data name="&gt;&gt;lblComb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblComb.Parent" xml:space="preserve">
+    <value>guna2Panel1</value>
+  </data>
+  <data name="&gt;&gt;lblComb.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblFile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lblFile.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Open Sans, 10pt, style=Bold</value>
+  </data>
+  <data name="lblFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>56, 128</value>
+  </data>
+  <data name="lblFile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lblFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 32</value>
+  </data>
+  <data name="lblFile.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lblFile.Text" xml:space="preserve">
+    <value>Choose File</value>
+  </data>
+  <data name="lblFile.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lblFile.Name" xml:space="preserve">
+    <value>lblFile</value>
+  </data>
+  <data name="&gt;&gt;lblFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblFile.Parent" xml:space="preserve">
+    <value>guna2Panel1</value>
+  </data>
+  <data name="&gt;&gt;lblFile.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="linkAccountOnline.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="linkAccountOnline.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkAccountOnline.Location" type="System.Drawing.Point, System.Drawing">
+    <value>508, 535</value>
+  </data>
+  <data name="linkAccountOnline.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="linkAccountOnline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 25</value>
+  </data>
+  <data name="linkAccountOnline.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="linkAccountOnline.Text" xml:space="preserve">
+    <value>Manage Subscription</value>
+  </data>
+  <data name="&gt;&gt;linkAccountOnline.Name" xml:space="preserve">
+    <value>linkAccountOnline</value>
+  </data>
+  <data name="&gt;&gt;linkAccountOnline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkAccountOnline.Parent" xml:space="preserve">
+    <value>guna2Panel1</value>
+  </data>
+  <data name="&gt;&gt;linkAccountOnline.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="pnlReady.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="pnlReady.Location" type="System.Drawing.Point, System.Drawing">
+    <value>840, 72</value>
+  </data>
+  <data name="pnlReady.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="pnlReady.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="pnlReady.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;pnlReady.Name" xml:space="preserve">
+    <value>pnlReady</value>
+  </data>
+  <data name="&gt;&gt;pnlReady.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2CirclePictureBox, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;pnlReady.Parent" xml:space="preserve">
+    <value>guna2Panel1</value>
+  </data>
+  <data name="&gt;&gt;pnlReady.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="pnlEncrypt.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="pnlEncrypt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>592, 72</value>
+  </data>
+  <data name="pnlEncrypt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="pnlEncrypt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="pnlEncrypt.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;pnlEncrypt.Name" xml:space="preserve">
+    <value>pnlEncrypt</value>
+  </data>
+  <data name="&gt;&gt;pnlEncrypt.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2CirclePictureBox, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;pnlEncrypt.Parent" xml:space="preserve">
+    <value>guna2Panel1</value>
+  </data>
+  <data name="&gt;&gt;pnlEncrypt.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="pnlComb.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="pnlComb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>352, 72</value>
+  </data>
+  <data name="pnlComb.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="pnlComb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="pnlComb.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;pnlComb.Name" xml:space="preserve">
+    <value>pnlComb</value>
+  </data>
+  <data name="&gt;&gt;pnlComb.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2CirclePictureBox, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;pnlComb.Parent" xml:space="preserve">
+    <value>guna2Panel1</value>
+  </data>
+  <data name="&gt;&gt;pnlComb.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="guna2Panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 160</value>
+  </data>
+  <data name="guna2Panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="guna2Panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 200</value>
+  </data>
+  <data name="guna2Panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel1.Name" xml:space="preserve">
+    <value>guna2Panel1</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel1.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Panel, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="guna2Panel3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="progress.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="progress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="progress.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="progress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>600, 56</value>
+  </data>
+  <data name="progress.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="progress.Text" xml:space="preserve">
+    <value>guna2ProgressBar1</value>
+  </data>
+  <data name="progress.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;progress.Name" xml:space="preserve">
+    <value>progress</value>
+  </data>
+  <data name="&gt;&gt;progress.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2ProgressBar, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;progress.Parent" xml:space="preserve">
+    <value>guna2Panel3</value>
+  </data>
+  <data name="&gt;&gt;progress.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="guna2Button1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="guna2Button1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 11pt, style=Bold</value>
+  </data>
+  <data name="guna2Button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="guna2Button1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="guna2Button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>600, 58</value>
+  </data>
+  <data name="guna2Button1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="guna2Button1.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="&gt;&gt;guna2Button1.Name" xml:space="preserve">
+    <value>guna2Button1</value>
+  </data>
+  <data name="&gt;&gt;guna2Button1.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Button, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;guna2Button1.Parent" xml:space="preserve">
+    <value>guna2Panel3</value>
+  </data>
+  <data name="&gt;&gt;guna2Button1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="guna2Panel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>400, 789</value>
+  </data>
+  <data name="guna2Panel3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="guna2Panel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>600, 58</value>
+  </data>
+  <data name="guna2Panel3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel3.Name" xml:space="preserve">
+    <value>guna2Panel3</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel3.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Panel, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="pnlFiles.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="chbFolders.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="chbFolders.ColumnWidth" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="chbFolders.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Semibold, 9pt, style=Bold</value>
+  </data>
+  <data name="chbFolders.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 112</value>
+  </data>
+  <data name="chbFolders.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="chbFolders.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 280</value>
+  </data>
+  <data name="chbFolders.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="chbFolders.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;chbFolders.Name" xml:space="preserve">
+    <value>chbFolders</value>
+  </data>
+  <data name="&gt;&gt;chbFolders.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbFolders.Parent" xml:space="preserve">
+    <value>pnlFiles</value>
+  </data>
+  <data name="&gt;&gt;chbFolders.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="bntChangeToFolders.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="bntChangeToFolders.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 11pt, style=Bold</value>
+  </data>
+  <data name="bntChangeToFolders.Location" type="System.Drawing.Point, System.Drawing">
+    <value>176, 40</value>
+  </data>
+  <data name="bntChangeToFolders.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="bntChangeToFolders.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 48</value>
+  </data>
+  <data name="bntChangeToFolders.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="bntChangeToFolders.Text" xml:space="preserve">
+    <value>Folders</value>
+  </data>
+  <data name="&gt;&gt;bntChangeToFolders.Name" xml:space="preserve">
+    <value>bntChangeToFolders</value>
+  </data>
+  <data name="&gt;&gt;bntChangeToFolders.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Button, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;bntChangeToFolders.Parent" xml:space="preserve">
+    <value>pnlFiles</value>
+  </data>
+  <data name="&gt;&gt;bntChangeToFolders.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="bntChangeToFiles.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="bntChangeToFiles.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 11pt, style=Bold</value>
+  </data>
+  <data name="bntChangeToFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 40</value>
+  </data>
+  <data name="bntChangeToFiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="bntChangeToFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 48</value>
+  </data>
+  <data name="bntChangeToFiles.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="bntChangeToFiles.Text" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="&gt;&gt;bntChangeToFiles.Name" xml:space="preserve">
+    <value>bntChangeToFiles</value>
+  </data>
+  <data name="&gt;&gt;bntChangeToFiles.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Button, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;bntChangeToFiles.Parent" xml:space="preserve">
+    <value>pnlFiles</value>
+  </data>
+  <data name="&gt;&gt;bntChangeToFiles.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chblistFiles.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="chblistFiles.ColumnWidth" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="chblistFiles.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Semibold, 9pt, style=Bold</value>
+  </data>
+  <data name="chblistFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 112</value>
+  </data>
+  <data name="chblistFiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="chblistFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 280</value>
+  </data>
+  <data name="chblistFiles.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;chblistFiles.Name" xml:space="preserve">
+    <value>chblistFiles</value>
+  </data>
+  <data name="&gt;&gt;chblistFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chblistFiles.Parent" xml:space="preserve">
+    <value>pnlFiles</value>
+  </data>
+  <data name="&gt;&gt;chblistFiles.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="pnlFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 384</value>
+  </data>
+  <data name="pnlFiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="pnlFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>352, 469</value>
+  </data>
+  <data name="pnlFiles.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pnlFiles.Name" xml:space="preserve">
+    <value>pnlFiles</value>
+  </data>
+  <data name="&gt;&gt;pnlFiles.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Panel, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;pnlFiles.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlFiles.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="pnlChild.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="pnlChild.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Open Sans, 9pt, style=Bold</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 200</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 32</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>pnlChild</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="pnlChild.Location" type="System.Drawing.Point, System.Drawing">
+    <value>224, 36</value>
+  </data>
+  <data name="pnlChild.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="pnlChild.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 240</value>
+  </data>
+  <data name="pnlChild.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pnlChild.Name" xml:space="preserve">
+    <value>pnlChild</value>
+  </data>
+  <data name="&gt;&gt;pnlChild.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Panel, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;pnlChild.Parent" xml:space="preserve">
+    <value>guna2Panel2</value>
+  </data>
+  <data name="&gt;&gt;pnlChild.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="guna2Panel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="guna2Panel2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="guna2Panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>400, 384</value>
+  </data>
+  <data name="guna2Panel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="guna2Panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>600, 384</value>
+  </data>
+  <data name="guna2Panel2.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel2.Name" xml:space="preserve">
+    <value>guna2Panel2</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel2.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Panel, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;guna2Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <metadata name="pswDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="pswDialog.Content" xml:space="preserve">
+    <value>Put in an Encrypten Key</value>
+  </data>
+  <data name="pswDialog.MainInstruction" xml:space="preserve">
+    <value>Encrypten Key</value>
+  </data>
+  <data name="pswDialog.WindowTitle" xml:space="preserve">
+    <value>MainHost</value>
+  </data>
   <metadata name="taskBarProgress.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>351, 20</value>
   </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>10, 25</value>
+  </data>
+  <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1020, 872</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>uiEncryt</value>
+  </data>
+  <data name="&gt;&gt;pswDialog.Name" xml:space="preserve">
+    <value>pswDialog</value>
+  </data>
+  <data name="&gt;&gt;pswDialog.Type" xml:space="preserve">
+    <value>Ookii.Dialogs.WinForms.InputDialog, Ookii.Dialogs.WinForms, Culture=neutral, PublicKeyToken=66aa232afad40158</value>
+  </data>
+  <data name="&gt;&gt;taskBarProgress.Name" xml:space="preserve">
+    <value>taskBarProgress</value>
+  </data>
+  <data name="&gt;&gt;taskBarProgress.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2TaskBarProgress, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;asyncTask.Name" xml:space="preserve">
+    <value>asyncTask</value>
+  </data>
+  <data name="&gt;&gt;asyncTask.Type" xml:space="preserve">
+    <value>Ookii.Dialogs.WinForms.ProgressDialog, Ookii.Dialogs.WinForms, Culture=neutral, PublicKeyToken=66aa232afad40158</value>
+  </data>
+  <data name="&gt;&gt;Transition.Name" xml:space="preserve">
+    <value>Transition</value>
+  </data>
+  <data name="&gt;&gt;Transition.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Transition, Guna.UI2, Culture=neutral, PublicKeyToken=4015e4865bda28a4</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>uiEncryt</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="asyncTask.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>536, 20</value>
   </metadata>
+  <data name="asyncTask.Description" xml:space="preserve">
+    <value>We prepraing youre Files</value>
+  </data>
+  <data name="asyncTask.Text" xml:space="preserve">
+    <value>Please hold on</value>
+  </data>
+  <data name="asyncTask.WindowTitle" xml:space="preserve">
+    <value>MainHost</value>
+  </data>
 </root>

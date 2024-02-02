@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiUpdater));
             progress = new Guna.UI2.WinForms.Guna2ProgressBar();
             label1 = new Label();
             bntCancel = new Guna.UI2.WinForms.Guna2Button();
@@ -40,40 +41,28 @@
             // 
             // progress
             // 
-            progress.Anchor = AnchorStyles.None;
+            resources.ApplyResources(progress, "progress");
             progress.BackColor = Color.Transparent;
             progress.BorderColor = Color.DarkGray;
             progress.BorderRadius = 20;
             progress.BorderThickness = 2;
             progress.FillColor = Color.White;
-            progress.Location = new Point(196, 480);
-            progress.Margin = new Padding(2);
             progress.Name = "progress";
             progress.ProgressColor = Color.DeepSkyBlue;
             progress.ProgressColor2 = Color.RoyalBlue;
             progress.ShowText = true;
-            progress.Size = new Size(704, 45);
-            progress.TabIndex = 18;
-            progress.Text = "guna2ProgressBar1";
             progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Bottom;
+            resources.ApplyResources(label1, "label1");
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             label1.ForeColor = SystemColors.WindowFrame;
-            label1.Location = new Point(448, 744);
-            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(200, 40);
-            label1.TabIndex = 32;
-            label1.Text = "JW Limited ©️ 2023";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // bntCancel
             // 
-            bntCancel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            resources.ApplyResources(bntCancel, "bntCancel");
             bntCancel.Animated = true;
             bntCancel.BackColor = Color.Transparent;
             bntCancel.BorderColor = Color.Gainsboro;
@@ -85,76 +74,45 @@
             bntCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntCancel.FillColor = Color.White;
             bntCancel.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             bntCancel.ForeColor = Color.DimGray;
-            bntCancel.Location = new Point(940, 24);
-            bntCancel.Margin = new Padding(2);
             bntCancel.Name = "bntCancel";
-            bntCancel.Size = new Size(124, 40);
-            bntCancel.TabIndex = 31;
-            bntCancel.Text = "Cancel";
             bntCancel.Click += bntCancel_Click;
             // 
             // lblExc
             // 
-            lblExc.Anchor = AnchorStyles.None;
+            resources.ApplyResources(lblExc, "lblExc");
             lblExc.BackColor = Color.Transparent;
-            lblExc.Font = new Font("Segoe UI", 10F);
             lblExc.ForeColor = Color.Black;
-            lblExc.Location = new Point(316, 424);
-            lblExc.Margin = new Padding(4, 0, 4, 0);
             lblExc.Name = "lblExc";
-            lblExc.Size = new Size(464, 40);
-            lblExc.TabIndex = 29;
-            lblExc.Text = "Please dont close the Application";
-            lblExc.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlImg
             // 
-            pnlImg.Anchor = AnchorStyles.None;
+            resources.ApplyResources(pnlImg, "pnlImg");
             pnlImg.BackColor = Color.White;
             pnlImg.BackgroundImage = Properties.Resources.icons8_synchronize_240;
-            pnlImg.BackgroundImageLayout = ImageLayout.Zoom;
             pnlImg.BorderColor = Color.Black;
             pnlImg.BorderRadius = 20;
             pnlImg.BorderSize = 0;
             pnlImg.ForeColor = Color.White;
-            pnlImg.Location = new Point(432, 280);
-            pnlImg.Margin = new Padding(4);
             pnlImg.Name = "pnlImg";
-            pnlImg.Size = new Size(232, 120);
-            pnlImg.TabIndex = 33;
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Bottom;
+            resources.ApplyResources(label2, "label2");
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
             label2.ForeColor = Color.Silver;
-            label2.Location = new Point(480, 720);
-            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(136, 30);
-            label2.TabIndex = 34;
-            label2.Text = "powered by ";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblVerison
             // 
             lblVerison.BackColor = Color.Transparent;
-            lblVerison.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            resources.ApplyResources(lblVerison, "lblVerison");
             lblVerison.ForeColor = Color.Silver;
-            lblVerison.Location = new Point(32, 24);
-            lblVerison.Margin = new Padding(4, 0, 4, 0);
             lblVerison.Name = "lblVerison";
-            lblVerison.Size = new Size(168, 40);
-            lblVerison.TabIndex = 34;
-            lblVerison.Text = "v/n";
-            lblVerison.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // bntRestart
             // 
-            bntRestart.Anchor = AnchorStyles.None;
+            resources.ApplyResources(bntRestart, "bntRestart");
             bntRestart.Animated = true;
             bntRestart.BackColor = Color.Transparent;
             bntRestart.BorderColor = Color.Gainsboro;
@@ -166,23 +124,15 @@
             bntRestart.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntRestart.FillColor = Color.White;
             bntRestart.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntRestart.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             bntRestart.ForeColor = Color.DimGray;
-            bntRestart.Location = new Point(432, 488);
-            bntRestart.Margin = new Padding(2);
             bntRestart.Name = "bntRestart";
-            bntRestart.Size = new Size(232, 40);
-            bntRestart.TabIndex = 31;
-            bntRestart.Text = "Restart now!";
-            bntRestart.Visible = false;
             bntRestart.Click += bntRestart_Click;
             // 
             // uiUpdater
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1082, 826);
             Controls.Add(lblVerison);
             Controls.Add(label2);
             Controls.Add(pnlImg);
@@ -191,9 +141,7 @@
             Controls.Add(bntCancel);
             Controls.Add(lblExc);
             Controls.Add(progress);
-            Margin = new Padding(2);
             Name = "uiUpdater";
-            Text = "uiUpdater";
             Load += uiUpdater_Load;
             ResumeLayout(false);
         }

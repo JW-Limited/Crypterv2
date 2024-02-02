@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3">
+  <assemblyIdentity version="0.22.2.6623" name="JWLimited.Crypter"/>
+	<msix xmlns="urn:schemas-microsoft-com:msix.v1"
+		  publisher="CN=JW Limited"
+		  packageName="Crypterv2"
+		  applicationId="Crypterv2"
+		/>
+  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
+	<security>
+	  <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+		<requestedExecutionLevel level="asInvoker" uiAccess="false" />
+	  </requestedPrivileges>
+	</security>
+  </trustInfo>
+
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+	<application>
+		<maxversiontested Id="10.0.26020"/>
+	  <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />
+	</application>
+  </compatibility>
+  <application xmlns="urn:schemas-microsoft-com:asm.v3">
+	<windowsSettings>
+	  <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true</dpiAware>
+	  <longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>
+	</windowsSettings>
+  </application>
+
+	<dependency>
+	<dependentAssembly>
+	  <assemblyIdentity
+		  type="win32"
+		  name="Microsoft.Windows.Common-Controls"
+		  version="6.0.0.0"
+		  processorArchitecture="*"
+		  publicKeyToken="6595b64144ccf1df"
+		  language="*"
+		/>
+	</dependentAssembly>
+  </dependency>
+	<file name="WinRTComponent.dll">
+		<activatableClass
+			name="WinRTComponent.MessageHolder"
+			threadingModel="both"
+			xmlns="urn:schemas-microsoft-com:winrt.v1"
+	 />
+	</file>
+	<asmv3:application>
+		<asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2019/WindowsSettings">
+			<activeCodePage>UTF-8</activeCodePage>
+		</asmv3:windowsSettings>
+	</asmv3:application>
+
+	<asmv3:application>
+		<asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2011/WindowsSettings">
+			<disableWindowFiltering>true</disableWindowFiltering>
+		</asmv3:windowsSettings>
+	</asmv3:application>
+ 
+
+</assembly>

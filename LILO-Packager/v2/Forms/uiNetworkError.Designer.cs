@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiNetworkError));
             pnlPreview = new Guna.UI2.WinForms.Guna2Panel();
             lblExc = new Label();
             imgImage = new Guna.UI2.WinForms.Guna2Panel();
@@ -42,83 +43,55 @@
             // 
             // pnlPreview
             // 
-            pnlPreview.Anchor = AnchorStyles.None;
+            resources.ApplyResources(pnlPreview, "pnlPreview");
             pnlPreview.BackColor = Color.White;
             pnlPreview.BorderColor = SystemColors.ActiveBorder;
             pnlPreview.BorderRadius = 15;
             pnlPreview.Controls.Add(lblExc);
             pnlPreview.Controls.Add(imgImage);
             pnlPreview.FillColor = Color.White;
-            pnlPreview.Location = new Point(296, 112);
-            pnlPreview.Margin = new Padding(2);
             pnlPreview.Name = "pnlPreview";
-            pnlPreview.Size = new Size(488, 416);
-            pnlPreview.TabIndex = 12;
             // 
             // lblExc
             // 
-            lblExc.Anchor = AnchorStyles.None;
+            resources.ApplyResources(lblExc, "lblExc");
             lblExc.AutoEllipsis = true;
             lblExc.BackColor = Color.Transparent;
-            lblExc.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             lblExc.ForeColor = Color.Black;
-            lblExc.Location = new Point(0, 352);
-            lblExc.Margin = new Padding(4, 0, 4, 0);
             lblExc.Name = "lblExc";
-            lblExc.Size = new Size(488, 56);
-            lblExc.TabIndex = 13;
-            lblExc.Text = "Huh, strange.";
-            lblExc.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // imgImage
             // 
-            imgImage.Anchor = AnchorStyles.None;
+            resources.ApplyResources(imgImage, "imgImage");
             imgImage.BackColor = Color.Transparent;
             imgImage.BackgroundImage = Properties.Resources.image_removebg_preview__2_;
-            imgImage.BackgroundImageLayout = ImageLayout.Zoom;
             imgImage.BorderColor = SystemColors.ActiveBorder;
             imgImage.BorderRadius = 20;
             imgImage.Controls.Add(guna2Panel2);
             imgImage.FillColor = Color.Transparent;
-            imgImage.Location = new Point(80, 32);
-            imgImage.Margin = new Padding(2);
             imgImage.Name = "imgImage";
-            imgImage.Size = new Size(320, 312);
-            imgImage.TabIndex = 11;
             // 
             // guna2Panel2
             // 
-            guna2Panel2.Anchor = AnchorStyles.None;
+            resources.ApplyResources(guna2Panel2, "guna2Panel2");
             guna2Panel2.BackColor = Color.Transparent;
             guna2Panel2.BackgroundImage = Properties.Resources.Close;
-            guna2Panel2.BackgroundImageLayout = ImageLayout.Zoom;
             guna2Panel2.BorderColor = SystemColors.ActiveBorder;
             guna2Panel2.BorderRadius = 20;
             guna2Panel2.FillColor = Color.Transparent;
-            guna2Panel2.Location = new Point(176, 160);
-            guna2Panel2.Margin = new Padding(2);
             guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.Size = new Size(120, 136);
-            guna2Panel2.TabIndex = 11;
             // 
             // lblMes
             // 
-            lblMes.Anchor = AnchorStyles.None;
+            resources.ApplyResources(lblMes, "lblMes");
             lblMes.AutoEllipsis = true;
             lblMes.BackColor = Color.Transparent;
-            lblMes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblMes.ForeColor = Color.Black;
-            lblMes.Location = new Point(288, 544);
-            lblMes.Margin = new Padding(4, 0, 4, 0);
             lblMes.Name = "lblMes";
-            lblMes.Size = new Size(496, 56);
-            lblMes.TabIndex = 13;
-            lblMes.Text = "This Feature is not availlabel.";
-            lblMes.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // bntTrouble
             // 
-            bntTrouble.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            resources.ApplyResources(bntTrouble, "bntTrouble");
             bntTrouble.Animated = true;
             bntTrouble.BackColor = Color.Transparent;
             bntTrouble.BorderColor = Color.Gainsboro;
@@ -130,34 +103,22 @@
             bntTrouble.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             bntTrouble.FillColor = Color.White;
             bntTrouble.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntTrouble.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             bntTrouble.ForeColor = Color.DimGray;
             bntTrouble.Image = Properties.Resources.icons8_synchronize_240;
             bntTrouble.ImageSize = new Size(30, 30);
-            bntTrouble.Location = new Point(1008, 16);
-            bntTrouble.Margin = new Padding(2);
             bntTrouble.Name = "bntTrouble";
-            bntTrouble.Size = new Size(56, 48);
-            bntTrouble.TabIndex = 27;
             bntTrouble.Click += bntRetry;
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Bottom;
+            resources.ApplyResources(label1, "label1");
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.WindowFrame;
-            label1.Location = new Point(432, 752);
-            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(200, 40);
-            label1.TabIndex = 28;
-            label1.Text = "JW Limited ©️ 2023";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // guna2Button1
             // 
-            guna2Button1.Anchor = AnchorStyles.None;
+            resources.ApplyResources(guna2Button1, "guna2Button1");
             guna2Button1.Animated = true;
             guna2Button1.BackColor = Color.Transparent;
             guna2Button1.BorderColor = Color.Gainsboro;
@@ -169,29 +130,21 @@
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button1.FillColor = Color.White;
             guna2Button1.FocusedColor = Color.FromArgb(100, 170, 209);
-            guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             guna2Button1.ForeColor = Color.DimGray;
-            guna2Button1.Location = new Point(376, 616);
-            guna2Button1.Margin = new Padding(2);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.Size = new Size(328, 40);
-            guna2Button1.TabIndex = 27;
-            guna2Button1.Text = "Log out";
             guna2Button1.Click += bntTrouble_Click;
             // 
             // uiNetworkError
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1083, 826);
             Controls.Add(lblMes);
             Controls.Add(label1);
             Controls.Add(guna2Button1);
             Controls.Add(bntTrouble);
             Controls.Add(pnlPreview);
             Name = "uiNetworkError";
-            Text = "uiNetworkError";
             Load += uiFeatureNullException_Load;
             pnlPreview.ResumeLayout(false);
             imgImage.ResumeLayout(false);

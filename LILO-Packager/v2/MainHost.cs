@@ -22,14 +22,15 @@ using System.Net;
 using Newtonsoft.Json;
 using srvlocal_gui.AppMananger;
 using LILO_Packager.v2.Plugins.Internal;
-using Permission = LILO_Packager.v2.Plugins.PluginCore.Permission;
 using JWLimited.Cryptography.Nodes;
+
+/// STATIC PERMISSION RULE
+using Permission = LILO_Packager.v2.Plugins.PluginCore.Permission;
+
 
 
 namespace LILO_Packager.v2;
-
-[DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
+public partial class MainHost : HostForm, ILILOMainHost
 {
     #region Variables
 
@@ -265,10 +266,14 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
         };
     }
 
-    private async void MainHost_Load(object sender, EventArgs e)
+    private async void MainHost_Load(object sender, EventArgs e) 
     {
+        base.SetFormValue(_hostInstance);
+
         _ = Task.Run(() => this.Invoke(async () =>
         {
+            
+
             var updater = Updater.Instance();
             Program.InstanceCacheContainer.Register<IUpdater>(() => updater);
 
@@ -331,10 +336,10 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
             {
                 if (item.Name == "pnlSide")
                 {
-                    _thManager.RegisterControl(item, ThemeManager.ModeType.Light, Color.LightGray, Color.Black);
+                    _thManager.RegisterControl(item, ModeType.Light, Color.LightGray, Color.Black);
                 }
 
-                _thManager.RegisterControl(item, ThemeManager.ModeType.Light, Color.White, Color.Black);
+                _thManager.RegisterControl(item, ModeType.Light, Color.White, Color.Black);
             }
 
             _thManager.ApplyTheme("White");
@@ -388,7 +393,7 @@ public partial class MainHost : System.Windows.Forms.Form, ILILOMainHost
                 {
                     var responseScan = await _pluginManager.Scan();
 
-                    foreach (var ele in _pluginManager.Pluginsv1)
+                    foreach (var ele in _pluginManager.PluginsV1)
                     {
                         PluginEntry ent = new PluginEntry(ele);
                         plugins.Add(ent);

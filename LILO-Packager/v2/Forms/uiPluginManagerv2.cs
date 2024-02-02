@@ -93,7 +93,7 @@ namespace LILO_Packager.v2.Forms
 
         private void uiPluginManagerv2_Load(object sender, EventArgs e)
         {
-            foreach (var plug in MainHost.Instance()._pluginManager.Pluginsv1)
+            foreach (var plug in MainHost.Instance()._pluginManager.PluginsV1)
             {
                 AddToPluginList(plug);
             }

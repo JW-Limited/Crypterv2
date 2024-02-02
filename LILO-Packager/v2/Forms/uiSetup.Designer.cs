@@ -28,153 +28,154 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uiSetup));
             lblVersion = new Label();
             label4 = new Label();
             sPanel1 = new Sipaa.Framework.SPanel();
-            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             panel1 = new Panel();
             panel2 = new Panel();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            CheckBox = new Guna.UI2.WinForms.Guna2CheckBox();
+            guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            richText = new RichTextBox();
             bntSync = new Guna.UI2.WinForms.Guna2Button();
-            dynamikFileListItem3 = new Controls.DynamikFileListItem();
+            lblVersion_left = new Label();
             sPanel1.SuspendLayout();
             guna2Panel1.SuspendLayout();
+            guna2Panel2.SuspendLayout();
             SuspendLayout();
             // 
             // lblVersion
             // 
             lblVersion.BackColor = Color.Transparent;
-            lblVersion.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            resources.ApplyResources(lblVersion, "lblVersion");
             lblVersion.ForeColor = Color.Silver;
-            lblVersion.Location = new Point(192, 56);
-            lblVersion.Margin = new Padding(4, 0, 4, 0);
             lblVersion.Name = "lblVersion";
-            lblVersion.Size = new Size(192, 30);
-            lblVersion.TabIndex = 49;
-            lblVersion.Text = "to Crypterv2";
-            lblVersion.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            resources.ApplyResources(label4, "label4");
             label4.ForeColor = Color.DimGray;
-            label4.Location = new Point(48, 48);
-            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(224, 40);
-            label4.TabIndex = 48;
-            label4.Text = "Welcome,";
-            label4.TextAlign = ContentAlignment.BottomLeft;
             // 
             // sPanel1
             // 
             sPanel1.BackColor = Color.White;
             sPanel1.BackgroundImage = Properties.Resources.pexels_johannes_plenio_1103970;
-            sPanel1.BackgroundImageLayout = ImageLayout.Stretch;
+            resources.ApplyResources(sPanel1, "sPanel1");
             sPanel1.BorderColor = Color.Gainsboro;
             sPanel1.BorderRadius = 0;
             sPanel1.BorderSize = 0;
             sPanel1.Controls.Add(panel1);
             sPanel1.Controls.Add(panel2);
-            sPanel1.Dock = DockStyle.Fill;
             sPanel1.ForeColor = Color.White;
-            sPanel1.Location = new Point(0, 0);
-            sPanel1.Margin = new Padding(4);
             sPanel1.Name = "sPanel1";
-            sPanel1.Size = new Size(472, 723);
-            sPanel1.TabIndex = 46;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Transparent;
+            panel1.BackgroundImage = Properties.Resources.favico;
+            resources.ApplyResources(panel1, "panel1");
+            panel1.Name = "panel1";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Black;
+            resources.ApplyResources(panel2, "panel2");
+            panel2.Name = "panel2";
             // 
             // guna2Panel1
             // 
             guna2Panel1.BackColor = SystemColors.HighlightText;
             guna2Panel1.BorderColor = Color.Gainsboro;
             guna2Panel1.BorderRadius = 15;
-            guna2Panel1.BorderThickness = 2;
-            guna2Panel1.Controls.Add(dynamikFileListItem3);
+            guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            guna2Panel1.Controls.Add(CheckBox);
+            guna2Panel1.Controls.Add(guna2Panel2);
             guna2Panel1.Controls.Add(bntSync);
+            guna2Panel1.Controls.Add(lblVersion_left);
             guna2Panel1.Controls.Add(lblVersion);
             guna2Panel1.Controls.Add(label4);
             guna2Panel1.CustomizableEdges.BottomLeft = false;
             guna2Panel1.CustomizableEdges.BottomRight = false;
             guna2Panel1.CustomizableEdges.TopLeft = false;
             guna2Panel1.CustomizableEdges.TopRight = false;
-            guna2Panel1.Dock = DockStyle.Right;
+            resources.ApplyResources(guna2Panel1, "guna2Panel1");
             guna2Panel1.FillColor = Color.White;
-            guna2Panel1.Location = new Point(472, 0);
-            guna2Panel1.Margin = new Padding(2);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.Size = new Size(657, 723);
-            guna2Panel1.TabIndex = 45;
             // 
-            // panel1
+            // CheckBox
             // 
-            panel1.BackColor = Color.Transparent;
-            panel1.BackgroundImage = Properties.Resources.favico;
-            panel1.BackgroundImageLayout = ImageLayout.Zoom;
-            panel1.Location = new Point(80, 288);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(324, 144);
-            panel1.TabIndex = 0;
+            CheckBox.CheckedState.BorderRadius = 0;
+            CheckBox.CheckedState.BorderThickness = 0;
+            resources.ApplyResources(CheckBox, "CheckBox");
+            CheckBox.Name = "CheckBox";
+            CheckBox.UncheckedState.BorderRadius = 0;
+            CheckBox.UncheckedState.BorderThickness = 0;
+            CheckBox.CheckStateChanged += CheckBox_CheckStateChanged;
             // 
-            // panel2
+            // guna2Panel2
             // 
-            panel2.BackColor = Color.Black;
-            panel2.Location = new Point(192, 312);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(120, 96);
-            panel2.TabIndex = 1;
+            resources.ApplyResources(guna2Panel2, "guna2Panel2");
+            guna2Panel2.BackColor = Color.Transparent;
+            guna2Panel2.BorderColor = Color.FromArgb(218, 218, 218);
+            guna2Panel2.BorderRadius = 15;
+            guna2Panel2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+            guna2Panel2.BorderThickness = 2;
+            guna2Panel2.Controls.Add(richText);
+            guna2Panel2.FillColor = Color.White;
+            guna2Panel2.Name = "guna2Panel2";
+            // 
+            // richText
+            // 
+            resources.ApplyResources(richText, "richText");
+            richText.BackColor = Color.White;
+            richText.BorderStyle = BorderStyle.None;
+            richText.ForeColor = Color.Gray;
+            richText.Name = "richText";
             // 
             // bntSync
             // 
-            bntSync.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            resources.ApplyResources(bntSync, "bntSync");
             bntSync.Animated = true;
             bntSync.BackColor = Color.Transparent;
             bntSync.BorderColor = Color.Gainsboro;
             bntSync.BorderRadius = 12;
             bntSync.BorderThickness = 2;
-            bntSync.DisabledState.BorderColor = Color.DarkGray;
-            bntSync.DisabledState.CustomBorderColor = Color.DarkGray;
-            bntSync.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            bntSync.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            bntSync.DisabledState.BorderColor = Color.Gainsboro;
+            bntSync.DisabledState.CustomBorderColor = Color.Gainsboro;
+            bntSync.DisabledState.FillColor = Color.White;
+            bntSync.DisabledState.ForeColor = Color.Silver;
             bntSync.FillColor = Color.White;
             bntSync.FocusedColor = Color.FromArgb(100, 170, 209);
-            bntSync.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             bntSync.ForeColor = Color.DimGray;
-            bntSync.Location = new Point(424, 656);
-            bntSync.Margin = new Padding(2);
             bntSync.Name = "bntSync";
             bntSync.ShadowDecoration.BorderRadius = 15;
             bntSync.ShadowDecoration.Color = Color.LightGray;
             bntSync.ShadowDecoration.Depth = 20;
             bntSync.ShadowDecoration.Enabled = true;
-            bntSync.Size = new Size(192, 40);
-            bntSync.TabIndex = 51;
-            bntSync.Text = "Continue";
+            bntSync.Click += bntSync_Click;
             // 
-            // dynamikFileListItem3
+            // lblVersion_left
             // 
-            dynamikFileListItem3.Entry = null;
-            dynamikFileListItem3.Location = new Point(48, 552);
-            dynamikFileListItem3.Margin = new Padding(4, 4, 4, 4);
-            dynamikFileListItem3.Name = "dynamikFileListItem3";
-            dynamikFileListItem3.PluginName = "Developer";
-            dynamikFileListItem3.PluginVersion = "Enables the developer Mode";
-            dynamikFileListItem3.ShowedInstance = null;
-            dynamikFileListItem3.Size = new Size(568, 80);
-            dynamikFileListItem3.TabIndex = 52;
+            resources.ApplyResources(lblVersion_left, "lblVersion_left");
+            lblVersion_left.BackColor = Color.Transparent;
+            lblVersion_left.ForeColor = Color.Silver;
+            lblVersion_left.Name = "lblVersion_left";
             // 
             // uiSetup
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1129, 723);
-            Controls.Add(sPanel1);
             Controls.Add(guna2Panel1);
+            Controls.Add(sPanel1);
             Name = "uiSetup";
-            Text = "uiSetup";
+            Load += uiSetup_Load;
             sPanel1.ResumeLayout(false);
             guna2Panel1.ResumeLayout(false);
+            guna2Panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -186,7 +187,10 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Panel panel1;
         private Panel panel2;
-        private Controls.DynamikFileListItem dynamikFileListItem3;
         private Guna.UI2.WinForms.Guna2Button bntSync;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private RichTextBox richText;
+        private Guna.UI2.WinForms.Guna2CheckBox CheckBox;
+        private Label lblVersion_left;
     }
 }

@@ -38,6 +38,7 @@ namespace LILO_Packager
         public static string CloudVersion = "0.9.4-preview";
         private static IBootManager _bootManager;
         public static LicenseManager LicMng;
+        public static TaskManager TaskMng;
         public static JWLimited.AuthAgent _AuthAgent;
 
         private static void InitializeApplication()
@@ -77,7 +78,7 @@ namespace LILO_Packager
         public static void Main(string[] args)
         {
             InitializeApplication();
-            
+
             if (config.Default.aggrementAccepted)
             {
                 try
@@ -98,6 +99,13 @@ namespace LILO_Packager
                                     BringRunningInstanceToFront();
                                     return;
                                 }
+
+                                TaskMng = new TaskManager();
+                                var prefix = new string[]
+                                {
+                                    "--cp=" + Application.ExecutablePath
+                                };
+                                //TaskMng.StartTaskAsAdmin(@$"{EnviromentVariables.ApplicationDirectory}InstallHelper.exe",prefix);
 
                                 RunMainUI();
                             }
@@ -133,7 +141,7 @@ namespace LILO_Packager
             }
             else
             {
-                RunAgrrement();
+                RunAgrrementv2();
             }
             
         }
@@ -179,6 +187,11 @@ namespace LILO_Packager
         private static void RunAgrrement()
         {
             Application.Run(v2.Forms.uiAgrement.Instance());
+        }
+
+        private static void RunAgrrementv2()
+        {
+            Application.Run(new uiSetup());
         }
     }
 }

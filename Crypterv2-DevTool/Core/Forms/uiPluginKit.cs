@@ -76,14 +76,14 @@ namespace Crypterv2_DevTool.Core.Forms
 
                     try
                     {
-                        if (PluginBaseManager.Pluginsv1.Count > 0 || PluginBaseManager.PluginsV2.Count > 0)
+                        if (PluginBaseManager.PluginsV1.Count > 0 || PluginBaseManager.PluginsV2.Count > 0)
                         {
                             foreach (var item in PluginBaseManager.PluginsV2.Where(x => x is not null))
                             {
                                 cmbState.Items.Add(item.Name);
                             }
 
-                            foreach (var item in PluginBaseManager.Pluginsv1.Where(x => !cmbState.Items.Contains(x.Name)))
+                            foreach (var item in PluginBaseManager.PluginsV1.Where(x => !cmbState.Items.Contains(x.Name)))
                             {
                                 cmbState.Items.Add(item.Name);
                             }
@@ -103,7 +103,7 @@ namespace Crypterv2_DevTool.Core.Forms
                             }
                             else
                             {
-                                var pluginv1 = PluginBaseManager.Pluginsv1.First(x => x?.Name == cmbState.Items[0] as string);
+                                var pluginv1 = PluginBaseManager.PluginsV1.First(x => x?.Name == cmbState.Items[0] as string);
                                 pluginUi.PluginName = pluginv1.Name;
                                 pluginUi.PluginDescription = pluginv1.Description;
                                 pluginUi.PluginVersion = pluginv1.Version;
@@ -210,7 +210,7 @@ namespace Crypterv2_DevTool.Core.Forms
 
                         try
                         {
-                            if (PluginBaseManager.Pluginsv1.Count > 0 || PluginBaseManager.PluginsV2.Count > 0)
+                            if (PluginBaseManager.PluginsV1.Count > 0 || PluginBaseManager.PluginsV2.Count > 0)
                             {
                                 Console.WriteLine("Filling in v2");
 
@@ -221,7 +221,7 @@ namespace Crypterv2_DevTool.Core.Forms
 
                                 Console.WriteLine("Filling in v1");
 
-                                foreach (var item in PluginBaseManager.Pluginsv1.Where(x => !cmbState.Items.Contains(x.Name)))
+                                foreach (var item in PluginBaseManager.PluginsV1.Where(x => !cmbState.Items.Contains(x.Name)))
                                 {
                                     cmbState.Items.Add(item.Name);
                                 }
@@ -241,7 +241,7 @@ namespace Crypterv2_DevTool.Core.Forms
                                 }
                                 else
                                 {
-                                    var pluginv1 = PluginBaseManager.Pluginsv1.First(x => x?.Name == cmbState.Items[0] as string);
+                                    var pluginv1 = PluginBaseManager.PluginsV1.First(x => x?.Name == cmbState.Items[0] as string);
                                     pluginUi.PluginName = pluginv1.Name;
                                     pluginUi.PluginDescription = pluginv1.Description;
                                     pluginUi.PluginVersion = pluginv1.Version;
@@ -411,7 +411,7 @@ namespace Crypterv2_DevTool.Core.Forms
 
         private void cmbPlugins_SelectedIndexChanged(object sender, EventArgs e)
         {
-            IPluginBase neededPlugin = PluginBaseManager.Pluginsv1.First(x => x.Name == cmbState.SelectedItem as string);
+            IPluginBase neededPlugin = PluginBaseManager.PluginsV1.First(x => x.Name == cmbState.SelectedItem as string);
 
             if (neededPlugin != null)
             {

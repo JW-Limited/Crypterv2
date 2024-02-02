@@ -42,6 +42,7 @@
     <FileVersion>2.0.0.0</FileVersion>
     <AssemblyOriginatorKeyFile>C:\Users\joeva\Downloads\JW_Limited.crt</AssemblyOriginatorKeyFile>
     <DelaySign>True</DelaySign>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -128,8 +129,6 @@
     <PackageReference Include="Markdig" Version="0.33.0" />
     <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
     <PackageReference Include="metromodernui" Version="1.4.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0-preview.6.23329.7" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     <PackageReference Include="microsoft.web.webview2" Version="1.0.2106-prerelease" />
     <PackageReference Include="MimeKit" Version="4.2.0" />
     <PackageReference Include="modern.forms" Version="0.3.0" />
@@ -219,6 +218,7 @@
     <ProjectReference Include="..\InstallHelper\InstallHelper.csproj">
       <TreatAsUsed>true</TreatAsUsed>
     </ProjectReference>
+    <ProjectReference Include="..\JWLimited.ElevationService\JWLimited.ElevationService.csproj" />
     <ProjectReference Include="..\JWLimited.Licensing\JWLimited.Licensing.csproj" />
     <ProjectReference Include="..\JWLimited.Types\JWLimited.Types.csproj" />
     <ProjectReference Include="..\LILO-WebEngine\LILO-WebEngine.csproj" />
