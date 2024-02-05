@@ -26,7 +26,7 @@ namespace LILO_Packager.v2.Forms
 
         private void CheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            bntSync.Enabled = CheckBox.Checked;
+            
         }
 
         private void bntSync_Click(object sender, EventArgs e)
@@ -34,6 +34,11 @@ namespace LILO_Packager.v2.Forms
             config.Default.aggrementAccepted = true;
             config.Default.Save();
             Application.Restart();
+        }
+
+        private void dynamicToggleButton1_Clicked(object sender, EventArgs e)
+        {
+            bntSync.Enabled = dynamicToggleButton1.Checked;
         }
     }
 }

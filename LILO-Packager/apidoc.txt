@@ -1,0 +1,1880 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>crypterv2</name>
+    </assembly>
+    <members>
+        <member name="T:LILO_Packager.Properties.Resources">
+            <summary>
+              Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.ResourceManager">
+            <summary>
+              Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Culture">
+            <summary>
+              Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+              Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.aboutme">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Aqua_Marine">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Aqua_Marine_180degree">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.asterisk">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Bookmark">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Close">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.debug_win">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.encLib">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.errorScreen">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.facebook_profile_image">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.favico">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.favico1">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.help_96px">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_approved_unlock_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_back_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_bursts_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_checkmark_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_circled_play_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_collapse_arrow_64">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_collapse_arrow_641">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_copy_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_earth_planet_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_expand_arrow_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_external_link_240">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_installing_updates">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_key_security_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_male_user_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_menu_240__1_">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_more_than_52">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_no_access_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_notification_100">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_notification_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_pause_button_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_private_lock_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_settings_32">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_share_240">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_spielen_94">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_synchronize_240">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.icons8_verified_badge_96">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.image_removebg_preview__2_">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Info">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.lilo">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.lilo_black">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.lilo_white">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Lock">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.logo_sync">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Moonlit_Asteroid">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Nimvelo">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.no_cover">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.no_cover1">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.nocon">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.nothing">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.OIP">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Padlock">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.pexels_johannes_plenio_1103970">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.plainLib">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.pngwing_com__19_">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.pull_32">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.ReadMe">
+             <summary>
+               Sucht eine lokalisierte Zeichenfolge, die {\rtf1\adeflang1025\ansi\ansicpg1252\uc1\adeff31507\deff0\stshfdbch31505\stshfloch31506\stshfhich31506\stshfbi31507\deflang1031\deflangfe1031\themelang1031\themelangfe0\themelangcs0{\fonttbl{\f0\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f34\fbidi \froman\fcharset0\fprq2{\*\panose 02040503050406030204}Cambria Math;}
+            {\f37\fbidi \fswiss\fcharset0\fprq2{\*\panose 020f0502020204030204}Calibri;}{\flomajor\f31500\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}T [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+             </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Removal_294">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Royal_Blue">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Screenshot_2022_08_25_001747">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Screenshot_2023_08_02_171939">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Screenshot_2023_08_26_190917">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Screenshot_2023_09_14_200707">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Screenshot_2023_10_12_222907">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Screenshot_2023_10_13_052005">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Screenshot_2023_11_06_213239">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Screenshot_2023_12_03_151605">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Screenshot_2023_12_15_224423">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Screenshot_2023_12_15_224827">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Screenshot_2023_12_15_224918">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.Settings">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.shiled">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.sub">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.syncIcon">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.syncStatusSyncing">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.theme_manager">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.to_trash">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.unavailable_240px">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.Properties.Resources.use">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Plugins.ThirdParty.Forms.InstallerInfoDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.ThirdParty.Forms.InstallerInfoDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.ThirdParty.Forms.InstallerInfoDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Plugins.ThirdParty.PluginInstaller.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.ThirdParty.PluginInstaller.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.ThirdParty.PluginInstaller.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.InvalidPackageException">
+            <summary>
+            An exception that is thrown when an invalid package is encountered.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.InvalidPackageException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.InvalidPackageException"/> class.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.InvalidPackageException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.InvalidPackageException"/> class with the specified package file.
+            </summary>
+            <param name="packageFile">The package file that is invalid.</param>
+        </member>
+        <member name="P:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.InvalidPackageException.PackageFile">
+            <summary>
+            Gets the package file that is invalid.
+            </summary>
+        </member>
+        <member name="T:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.MissingFileException">
+            <summary>
+            An exception that is thrown when a required file is missing in the package.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.MissingFileException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.MissingFileException"/> class.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.MissingFileException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.MissingFileException"/> class with the specified file name.
+            </summary>
+            <param name="fileName">The name of the missing file.</param>
+        </member>
+        <member name="P:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.MissingFileException.FileName">
+            <summary>
+            Gets the name of the missing file.
+            </summary>
+        </member>
+        <member name="T:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.InvalidXmlException">
+            <summary>
+            An exception that is thrown when an XML file is not valid.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.InvalidXmlException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.InvalidXmlException"/> class.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.InvalidXmlException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LILO_Packager.v2.Plugins.ThirdParty.Types.Exceptions.InvalidXmlException"/> class with the specified message.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.PluginCore.IndexFileInvalidException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LILO_Packager.v2.Plugins.PluginCore.IndexFileInvalidException"/> class.
+            </summary>
+            <param name="filename">The name of the invalid index file.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.PluginCore.IndexFileInvalidException.GetFileName(System.String)">
+            <summary>
+            Gets the file name from the specified path.
+            </summary>
+            <param name="path">The full path to the file.</param>
+            <returns>The name of the file.</returns>
+        </member>
+        <member name="M:LILO_Packager.v2.Plugins.PluginCore.IndexFileInvalidException.GetDirectoryName(System.String)">
+            <summary>
+            Gets the directory name from the specified path.
+            </summary>
+            <param name="path">The full path to the directory.</param>
+            <returns>The name of the directory.</returns>
+        </member>
+        <member name="T:LILO_Packager.v2.Core.Dialogs.DialogResources">
+            <summary>
+              Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Core.Dialogs.DialogResources.ResourceManager">
+            <summary>
+              Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Core.Dialogs.DialogResources.Culture">
+            <summary>
+              Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+              Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Core.Dialogs.DialogResources.close_small">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Core.Dialogs.DialogResources.delete_small">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Core.Dialogs.DialogResources.error_small">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Core.Dialogs.DialogResources.help_small">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Core.Dialogs.DialogResources.info_small">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Core.Dialogs.DialogResources.risk_small">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Core.Dialogs.DialogResources.user_small">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamicAnimatedButton.ButtonAnimationBack(System.Object,System.EventArgs)">
+            <summary>
+            Triggered every AnimationBack tick
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamicAnimatedButton.ButtonAnimation(System.Object,System.EventArgs)">
+            <summary>
+            Triggered every Animation tick
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:LILO_Packager.v2.Controls.DynamicCloudFileListItem.components">
+            <summary> 
+            Erforderliche Designervariable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamicCloudFileListItem.Dispose(System.Boolean)">
+            <summary> 
+            Verwendete Ressourcen bereinigen.
+            </summary>
+            <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamicCloudFileListItem.InitializeComponent">
+            <summary> 
+            Erforderliche Methode für die Designerunterstützung. 
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Controls.DynamicPluginListItem.components">
+            <summary> 
+            Erforderliche Designervariable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamicPluginListItem.Dispose(System.Boolean)">
+            <summary> 
+            Verwendete Ressourcen bereinigen.
+            </summary>
+            <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamicPluginListItem.InitializeComponent">
+            <summary> 
+            Erforderliche Methode für die Designerunterstützung. 
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Controls.DynamicToggleButton.components">
+            <summary> 
+            Erforderliche Designervariable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamicToggleButton.Dispose(System.Boolean)">
+            <summary> 
+            Verwendete Ressourcen bereinigen.
+            </summary>
+            <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamicToggleButton.InitializeComponent">
+            <summary> 
+            Erforderliche Methode für die Designerunterstützung. 
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Controls.DynamikFileListItem.components">
+            <summary> 
+            Erforderliche Designervariable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamikFileListItem.Dispose(System.Boolean)">
+            <summary> 
+            Verwendete Ressourcen bereinigen.
+            </summary>
+            <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamikFileListItem.InitializeComponent">
+            <summary> 
+            Erforderliche Methode für die Designerunterstützung. 
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Controls.DynamikPanelControl.components">
+            <summary> 
+            Erforderliche Designervariable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamikPanelControl.Dispose(System.Boolean)">
+            <summary> 
+            Verwendete Ressourcen bereinigen.
+            </summary>
+            <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamikPanelControl.InitializeComponent">
+            <summary> 
+            Erforderliche Methode für die Designerunterstützung. 
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Controls.DynamikPermissionView.components">
+            <summary> 
+            Erforderliche Designervariable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamikPermissionView.Dispose(System.Boolean)">
+            <summary> 
+            Verwendete Ressourcen bereinigen.
+            </summary>
+            <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamikPermissionView.InitializeComponent">
+            <summary> 
+            Erforderliche Methode für die Designerunterstützung. 
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Controls.DynamikPluginListItem.components">
+            <summary> 
+            Erforderliche Designervariable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamikPluginListItem.Dispose(System.Boolean)">
+            <summary> 
+            Verwendete Ressourcen bereinigen.
+            </summary>
+            <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Controls.DynamikPluginListItem.InitializeComponent">
+            <summary> 
+            Erforderliche Methode für die Designerunterstützung. 
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LILO_Packager.v2.Shared.ConsoleManager.InitializeLogger" -->
+        <member name="M:LILO_Packager.v2.Shared.ConsoleManager.GetSessionID">
+            <inheritdoc/>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LILO_Packager.v2.Shared.ConsoleManager.ShowConsoleWindow(System.String)" -->
+        <member name="M:LILO_Packager.v2.Shared.ConsoleManager.HideConsoleWindow">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.ConsoleManager.SetConsoleColors(System.ConsoleColor,System.ConsoleColor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.ConsoleManager.WriteLineWithColor(System.String,System.ConsoleColor)">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.IManagableDialog.CanBeAccessed">
+            <summary>
+            Indicates whether the dialog is accessible for access.
+            </summary>
+            <value><c>true</c> if the dialog is accessible; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.IManagableDialog.IsAccessed">
+            <summary>
+            Indicates whether the dialog has been accessed.
+            </summary>
+            <value><c>true</c> if the dialog has been accessed; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.IManagableDialog.DialogId">
+            <summary>
+            Provides a unique identifier for the dialog.
+            </summary>
+            <value>A unique identifier for the dialog.</value>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.IManagableDialog.LoadData">
+            <summary>
+            Loads and initializes the dialog's data.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.IManagableDialog.SaveData">
+            <summary>
+            Saves the dialog's data to persistent storage.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.IManagableDialog.ProcessDialog">
+            <summary>
+            Handles the dialog's internal operations and events.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.IManagableDialog.ShowDialog(System.Object)">
+            <summary>
+            Displays the dialog.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.DialogManager.ShowDialog``1(System.Windows.Forms.Form,``0)">
+            <summary>
+            Displays the specified dialog form.
+            </summary>
+            <typeparam name="TService">The type of the dialog service.</typeparam>
+            <param name="form">The dialog form to display.</param>
+            <returns>A byte indicating success or failure.</returns>
+        </member>
+        <member name="F:LILO_Packager.v2.Shared.LogonWindowsUser.LogonType.LOGON32_LOGON_INTERACTIVE">
+            <summary>
+            This logon type is intended for users who will be interactively using the computer, such as a user being logged on  
+            by a terminal server, remote shell, or similar process.
+            This logon type has the additional expense of caching logon information for disconnected operations;
+            therefore, it is inappropriate for some client/server applications,
+            such as a mail server.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:LILO_Packager.v2.Shared.LogonWindowsUser.LogonType.LOGON32_LOGON_NETWORK" -->
+        <member name="F:LILO_Packager.v2.Shared.LogonWindowsUser.LogonType.LOGON32_LOGON_BATCH">
+            <summary>
+            This logon type is intended for batch servers, where processes may be executing on behalf of a user without
+            their direct intervention. This type is also for higher performance servers that process many plaintext
+            authentication attempts at a time, such as mail or Web servers.
+            The LogonUser function does not cache credentials for this logon type.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Shared.LogonWindowsUser.LogonType.LOGON32_LOGON_SERVICE">
+            <summary>
+            Indicates a service-type logon. The account provided must have the service privilege enabled.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Shared.LogonWindowsUser.LogonType.LOGON32_LOGON_UNLOCK">
+            <summary>
+            This logon type is for GINA DLLs that log on users who will be interactively using the computer.
+            This logon type can generate a unique audit record that shows when the workstation was unlocked.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Shared.LogonWindowsUser.LogonType.LOGON32_LOGON_NETWORK_CLEARTEXT">
+            <summary>
+            This logon type preserves the name and password in the authentication package, which allows the server to make
+            connections to other network servers while impersonating the client. A server can accept plaintext credentials
+            from a client, call LogonUser, verify that the user can access the system across the network, and still
+            communicate with other servers.
+            NOTE: Windows NT:  This value is not supported.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Shared.LogonWindowsUser.LogonType.LOGON32_LOGON_NEW_CREDENTIALS">
+            <summary>
+            This logon type allows the caller to clone its current token and specify new credentials for outbound connections.
+            The new logon session has the same local identifier but uses different credentials for other network connections.
+            NOTE: This logon type is supported only by the LOGON32_PROVIDER_WINNT50 logon provider.
+            NOTE: Windows NT:  This value is not supported.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Shared.LogonWindowsUser.LogonProvider.LOGON32_PROVIDER_DEFAULT">
+            <summary>
+            Use the standard logon provider for the system.
+            The default security provider is negotiate, unless you pass NULL for the domain name and the user name
+            is not in UPN format. In this case, the default provider is NTLM.
+            NOTE: Windows 2000/NT:   The default security provider is NTLM.
+            </summary>
+        </member>
+        <member name="T:LILO_Packager.v2.Shared.Streaming.Core.FileIdentifier`1">
+            <summary>
+            A class for generating identifiers for files.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Streaming.Core.FileIdentifier`1.GenerateIdentifier(`0)">
+            <summary>
+            Generates an identifier for the specified file.
+            </summary>
+            <param name="file">The file to generate an identifier for.</param>
+            <returns>A 7-digit integer identifier for the file.</returns>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Streaming.Core.FileIdentifier`1.CompareIdentifiers(`0,`0)">
+            <summary>
+            Checks if two files have the same identifier.
+            </summary>
+            <param name="file1">The first file to check.</param>
+            <param name="file2">The second file to check.</param>
+            <returns>True if the two files have the same identifier, false otherwise.</returns>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Streaming.Core.FileIdentifier`1.ProveFileIntegrity(`0,System.DateTime)">
+            <summary>
+            Proves that a file has not been modified since a given timestamp.
+            </summary>
+            <param name="file">The file to check.</param>
+            <param name="timestamp">The timestamp to compare the file's last modified time against.</param>
+            <returns>True if the file has not been modified since the given timestamp, false otherwise.</returns>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Streaming.Core.FileIdentifier`1.GenerateIdentifierFromFileHash(System.String,System.DateTime)">
+            <summary>
+            Generates an identifier for a file from its hash at a given timestamp.
+            </summary>
+            <param name="filename">The path to the file.</param>
+            <param name="timestamp">The timestamp to compare the file's last modified time against.</param>
+            <returns>An identifier for the file from its hash at a given timestamp.</returns>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Streaming.Core.FileIdentifier`1.CalculateFileHash(System.String,System.DateTime)">
+            <summary>
+            Calculates the hash of a file at a given timestamp.
+            </summary>
+            <param name="filename">The path to the file.</param>
+            <param name="timestamp">The timestamp to compare the file's last modified time against.</param>
+            <returns>The hash of the file at a given timestamp.</returns>
+        </member>
+        <member name="T:LILO_Packager.v2.Shared.Streaming.Core.SongID">
+            <summary>
+            Represents a unique identifier for a song.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Streaming.Core.SongID.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LILO_Packager.v2.Shared.Streaming.Core.SongID"/> class.
+            </summary>
+            <param name="filename">The path to the song file.</param>
+            <exception cref="T:System.ArgumentNullException">If the filename is null.</exception>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Streaming.Core.SongID.GetId">
+            <summary>
+            Gets the unique identifier for the song.
+            </summary>
+            <returns>A unique integer value that can be used to identify the song.</returns>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Streaming.Core.SongID.op_Implicit(LILO_Packager.v2.Shared.Streaming.Core.SongID)~System.Int32">
+            <summary>
+            Implicitly converts a <see cref="T:LILO_Packager.v2.Shared.Streaming.Core.SongID"/> object to an integer value.
+            </summary>
+            <param name="songID">The <see cref="T:LILO_Packager.v2.Shared.Streaming.Core.SongID"/> object to convert.</param>
+            <returns>The integer value of the <see cref="T:LILO_Packager.v2.Shared.Streaming.Core.SongID"/> object.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LILO_Packager.v2.Shared.Types.AudioFile.#ctor(System.String)" -->
+        <member name="P:LILO_Packager.v2.Shared.Types.AudioFile.Exists">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.AudioFile.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.AudioFile.PhysicalPath">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.AudioFile.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.AudioFile.LastModified">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.AudioFile.IsDirectory">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.AudioFile.CreateReadStream">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOSecuredFile.Exists">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOSecuredFile.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOSecuredFile.PhysicalPath">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOSecuredFile.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOSecuredFile.LastModified">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOSecuredFile.IsDirectory">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOSecuredFile.PreviewPlugin_ID">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOSecuredFile.CreateReadStream">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOSecuredFile.GetSizeInReadableForm">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOSecuredFile.Dispose(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOSecuredFile.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOSecuredFile.GetFileInfo(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOSecuredFile.GetDirectoryContents(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOSecuredFile.Watch(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOSecuredFile.CopyToAsync(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOSecuredFile.MoveToAsync(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOSecuredFile.DeleteAsync">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOSecuredFile.ReadAllBytesAsync">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOUnsecuredFile.Exists">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOUnsecuredFile.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOUnsecuredFile.PhysicalPath">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOUnsecuredFile.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOUnsecuredFile.LastModified">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.LILOUnsecuredFile.IsDirectory">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.LILOUnsecuredFile.CreateReadStream">
+            <inheritdoc/>
+        </member>
+        <member name="T:LILO_Packager.v2.Shared.Types.TextFile`1">
+            <summary>
+            A class that represents a text file.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.TextFile`1.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="!:TextFile"/> class.
+            </summary>
+            <param name="filename">The path to the text file.</param>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.TextFile`1.Exists">
+            <summary>
+            Gets a value indicating whether the text file exists.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.TextFile`1.Length">
+            <summary>
+            Gets the length of the text file in bytes.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.TextFile`1.PhysicalPath">
+            <summary>
+            Gets the physical path to the text file.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.TextFile`1.Name">
+            <summary>
+            Gets the name of the text file.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.TextFile`1.LastModified">
+            <summary>
+            Gets the last modified time of the text file.
+            </summary>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.TextFile`1.IsDirectory">
+            <summary>
+            Gets a value indicating whether the text file is a directory.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.TextFile`1.CreateReadStream">
+            <summary>
+            Creates a read stream to the text file.
+            </summary>
+            <returns>A read stream to the text file.</returns>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.TextFile`1.ReadAllText">
+            <summary>
+            Reads the entire text file into a string.
+            </summary>
+            <returns>The entire text file as a string.</returns>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.TextFile`1.WriteAllText(System.String)">
+            <summary>
+            Writes the entire text file from a string.
+            </summary>
+            <param name="text">The text to write to the text file.</param>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.VideoFile.Exists">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.VideoFile.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.VideoFile.PhysicalPath">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.VideoFile.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.VideoFile.LastModified">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.VideoFile.IsDirectory">
+            <inheritdoc/>
+        </member>
+        <member name="M:LILO_Packager.v2.Shared.Types.VideoFile.CreateReadStream">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.VideoFile.Duration">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.VideoFile.Width">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.VideoFile.Height">
+            <inheritdoc/>
+        </member>
+        <member name="P:LILO_Packager.v2.Shared.Types.VideoFile.FrameRate">
+            <inheritdoc/>
+        </member>
+        <member name="F:LILO_Packager.v2.Streaming.MusikPlayer.Forms.uiPlayer.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Streaming.MusikPlayer.Forms.uiPlayer.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Streaming.MusikPlayer.Forms.uiPlayer.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Streaming.MusikPlayer.Forms.uiPlayerDynamic.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Streaming.MusikPlayer.Forms.uiPlayerDynamic.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Streaming.MusikPlayer.Forms.uiPlayerDynamic.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Streaming.MusikPlayer.Forms.uiPlayerDynamicSmall.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Streaming.MusikPlayer.Forms.uiPlayerDynamicSmall.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Streaming.MusikPlayer.Forms.uiPlayerDynamicSmall.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.Dialogs.uiDialogCreateCdex.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.Dialogs.uiDialogCreateCdex.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.Dialogs.uiDialogCreateCdex.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiSecureInputHandler.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiSecureInputHandler.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiSecureInputHandler.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiAccontDetails.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiAccontDetails.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiAccontDetails.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiAccount.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiAccount.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiAccount.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiAgrement.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiAgrement.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiAgrement.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiArgumentStart.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiArgumentStart.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiArgumentStart.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiArgumentStart_Encrypt.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiArgumentStart_Encrypt.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiArgumentStart_Encrypt.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiAsyncTask.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiAsyncTask.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiAsyncTask.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiCare.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCare.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCare.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiCloudFileDetails.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCloudFileDetails.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCloudFileDetails.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiCloudFilesViewer.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCloudFilesViewer.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCloudFilesViewer.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiCloudSyncronization.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCloudSyncronization.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCloudSyncronization.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiCustomDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCustomDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCustomDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiCustomProcess.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCustomProcess.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiCustomProcess.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiDebugSessionLogViewer.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiDebugSessionLogViewer.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiDebugSessionLogViewer.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiDecrypt.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiDecrypt.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiDecrypt.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiDownloadFileFromArguments.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiDownloadFileFromArguments.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiDownloadFileFromArguments.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiEncryt.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiEncryt.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiEncryt.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiErrorHandle.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiErrorHandle.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiErrorHandle.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiFeatureNullException.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiFeatureNullException.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiFeatureNullException.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiFileDropDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiFileDropDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiFileDropDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiHistory.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiHistory.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiHistory.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiHistoryElementInfo.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiHistoryElementInfo.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiHistoryElementInfo.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiImportSharedFiles.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiImportSharedFiles.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiImportSharedFiles.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiKeyInput.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiKeyInput.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiKeyInput.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiKeyManager.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiKeyManager.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiKeyManager.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiLicenseDetails.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiLicenseDetails.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiLicenseDetails.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiLILOAccountLogin.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiLILOAccountLogin.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiLILOAccountLogin.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiLILOLogin.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiLILOLogin.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiLILOLogin.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiNetworkError.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiNetworkError.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiNetworkError.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiNews.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiNews.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiNews.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiPermissionRequest.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiPermissionRequest.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiPermissionRequest.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiPluginInformation.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiPluginInformation.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiPluginInformation.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiPluginManager.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiPluginManager.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiPluginManager.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiPluginManagerv2.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiPluginManagerv2.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiPluginManagerv2.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiPluginStore.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiPluginStore.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiPluginStore.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiSettings.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiSettings.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiSettings.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiSetup.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiSetup.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiSetup.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiShareManager.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiShareManager.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiShareManager.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiSplashScreen.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiSplashScreen.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiSplashScreen.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiUpdater.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiUpdater.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiUpdater.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.Forms.uiWebView.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiWebView.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.Forms.uiWebView.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:LILO_Packager.v2.MainHost.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LILO_Packager.v2.MainHost.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LILO_Packager.v2.MainHost.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

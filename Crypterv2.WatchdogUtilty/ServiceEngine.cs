@@ -1,8 +1,4 @@
-﻿using System.Net;
-using System.Runtime.Serialization;
-using System.Xml.Serialization;
-using LILO_WebEngine;
-using LILO_WebEngine.Core.Handler;
+﻿using System.Xml.Serialization;
 using LILO_WebEngine.Core.Local.Types;
 
 namespace Crypterv2.WatchdogUtilty
@@ -19,15 +15,7 @@ namespace Crypterv2.WatchdogUtilty
         {
             _listeningPort = port;
             var uri = new Uri($"http://localhost:{port}/api/state");
-            try
-            {
-                await client.GetAsync(uri);
-            }
-            catch (Exception ex)
-            {
-                
-                return false;
-            }
+            await client.GetAsync(uri);
             return true;
         }
 

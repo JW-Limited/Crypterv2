@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Text;
 
 namespace JWLimited.Cryptography.Nodes
 {
@@ -86,7 +87,10 @@ namespace JWLimited.Cryptography.Nodes
 
                     string json = JsonConvert.SerializeObject(nodeData);
 
-                    File.WriteAllText(fileName, json);
+                    using (StreamWriter writer = new StreamWriter(fileName, append: false, Encoding.UTF8))
+                    {
+                        writer.WriteLine(json);
+                    }
 
                     current = current.Next;
                     index++;
@@ -94,9 +98,9 @@ namespace JWLimited.Cryptography.Nodes
 
                 return 1;
             }
-            catch(Exception  ex)
+            catch (Exception ex)
             {
-                errorHandler?.Invoke(ex);
+                errorHandler?.Invoke(new Exception("Error while saving to separate files", ex));
             }
 
             return 0;
@@ -133,7 +137,7 @@ namespace JWLimited.Cryptography.Nodes
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                errorHandler?.Invoke(new Exception("Error while loading from separate files", e));
                 return null;
             }
         }

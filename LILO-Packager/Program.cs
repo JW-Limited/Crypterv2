@@ -79,6 +79,8 @@ namespace LILO_Packager
         {
             InitializeApplication();
 
+            //RunAgrrementv2();
+
             if (config.Default.aggrementAccepted)
             {
                 try
@@ -99,6 +101,36 @@ namespace LILO_Packager
                                     BringRunningInstanceToFront();
                                     return;
                                 }
+
+                                var processes = Process.GetProcessesByName("JWLimited.ElevationService");
+
+                                foreach (var process in processes)
+                                {
+                                    process.Kill();
+                                }
+
+                                var proc = new Process()
+                                {
+                                    StartInfo = new ProcessStartInfo()
+                                    {
+                                        FileName = ".\\JWLimited.ElevationService.exe",
+                                        CreateNoWindow = true,
+                                        RedirectStandardOutput = true,
+                                        RedirectStandardError = true,
+                                        WindowStyle = ProcessWindowStyle.Hidden,
+                                        Verb = "arun"
+                                    },
+                                   
+                                };
+
+                                proc.Start();
+
+                                proc.OutputDataReceived += (s, e) =>
+                                {
+                                    ConsoleManager.Instance().WriteLineWithColor("[JWLimited.ElevationService]" + e.Data, ConsoleColor.DarkGray);
+                                };
+
+                                proc.BeginOutputReadLine();
 
                                 TaskMng = new TaskManager();
                                 var prefix = new string[]
@@ -184,10 +216,10 @@ namespace LILO_Packager
             Application.Run(MainHost.Instance());
         }
 
-        private static void RunAgrrement()
-        {
-            Application.Run(v2.Forms.uiAgrement.Instance());
-        }
+        //private static void RunAgrrement()
+        //{
+        //    Application.Run(v2.Forms.uiAgrement.Instance());
+        //}
 
         private static void RunAgrrementv2()
         {

@@ -35,14 +35,17 @@
             panel1 = new Panel();
             panel2 = new Panel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            CheckBox = new Guna.UI2.WinForms.Guna2CheckBox();
+            dynamicToggleButton1 = new Controls.DynamicToggleButton();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             richText = new RichTextBox();
             bntSync = new Guna.UI2.WinForms.Guna2Button();
             lblVersion_left = new Label();
+            panel3 = new Panel();
+            progressSpinner = new Guna.UI2.WinForms.Guna2WinProgressIndicator();
             sPanel1.SuspendLayout();
             guna2Panel1.SuspendLayout();
             guna2Panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // lblVersion
@@ -91,7 +94,8 @@
             guna2Panel1.BorderColor = Color.Gainsboro;
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            guna2Panel1.Controls.Add(CheckBox);
+            guna2Panel1.Controls.Add(panel3);
+            guna2Panel1.Controls.Add(dynamicToggleButton1);
             guna2Panel1.Controls.Add(guna2Panel2);
             guna2Panel1.Controls.Add(bntSync);
             guna2Panel1.Controls.Add(lblVersion_left);
@@ -105,15 +109,19 @@
             guna2Panel1.FillColor = Color.White;
             guna2Panel1.Name = "guna2Panel1";
             // 
-            // CheckBox
+            // dynamicToggleButton1
             // 
-            CheckBox.CheckedState.BorderRadius = 0;
-            CheckBox.CheckedState.BorderThickness = 0;
-            resources.ApplyResources(CheckBox, "CheckBox");
-            CheckBox.Name = "CheckBox";
-            CheckBox.UncheckedState.BorderRadius = 0;
-            CheckBox.UncheckedState.BorderThickness = 0;
-            CheckBox.CheckStateChanged += CheckBox_CheckStateChanged;
+            dynamicToggleButton1.BorderColor = Color.Gainsboro;
+            dynamicToggleButton1.BorderRadius = 15;
+            dynamicToggleButton1.Checked = false;
+            dynamicToggleButton1.CheckedColor = Color.FromArgb(94, 148, 255);
+            dynamicToggleButton1.CheckedText = "Aggred";
+            dynamicToggleButton1.DisabledText = "Disaggre";
+            dynamicToggleButton1.EnabledState = true;
+            resources.ApplyResources(dynamicToggleButton1, "dynamicToggleButton1");
+            dynamicToggleButton1.Name = "dynamicToggleButton1";
+            dynamicToggleButton1.UnCheckedText = "Disaggred";
+            dynamicToggleButton1.Clicked += dynamicToggleButton1_Clicked;
             // 
             // guna2Panel2
             // 
@@ -121,7 +129,6 @@
             guna2Panel2.BackColor = Color.Transparent;
             guna2Panel2.BorderColor = Color.FromArgb(218, 218, 218);
             guna2Panel2.BorderRadius = 15;
-            guna2Panel2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
             guna2Panel2.BorderThickness = 2;
             guna2Panel2.Controls.Add(richText);
             guna2Panel2.FillColor = Color.White;
@@ -164,6 +171,19 @@
             lblVersion_left.ForeColor = Color.Silver;
             lblVersion_left.Name = "lblVersion_left";
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(progressSpinner);
+            resources.ApplyResources(panel3, "panel3");
+            panel3.Name = "panel3";
+            // 
+            // progressSpinner
+            // 
+            resources.ApplyResources(progressSpinner, "progressSpinner");
+            progressSpinner.AutoStart = true;
+            progressSpinner.BackColor = Color.White;
+            progressSpinner.Name = "progressSpinner";
+            // 
             // uiSetup
             // 
             resources.ApplyResources(this, "$this");
@@ -176,6 +196,7 @@
             sPanel1.ResumeLayout(false);
             guna2Panel1.ResumeLayout(false);
             guna2Panel2.ResumeLayout(false);
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -190,7 +211,9 @@
         private Guna.UI2.WinForms.Guna2Button bntSync;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private RichTextBox richText;
-        private Guna.UI2.WinForms.Guna2CheckBox CheckBox;
         private Label lblVersion_left;
+        private Controls.DynamicToggleButton dynamicToggleButton1;
+        private Panel panel3;
+        private Guna.UI2.WinForms.Guna2WinProgressIndicator progressSpinner;
     }
 }

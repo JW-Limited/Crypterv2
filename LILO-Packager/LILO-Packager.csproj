@@ -12,8 +12,8 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <GenerateDocumentationFile>False</GenerateDocumentationFile>
-    <DocumentationFile>C:\Users\joeva\OneDrive - JW Lmt\LILO\LILO - api\apis-listed.xml</DocumentationFile>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>C:\Users\joeva\Documents\GitHub\LILO-Packager\Crypterv2\LILO-Packager\apidoc.xml</DocumentationFile>
     <AssemblyName>crypterv2</AssemblyName>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <SignAssembly>False</SignAssembly>
@@ -47,18 +47,26 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <Optimize>False</Optimize>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <Optimize>False</Optimize>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <Optimize>False</Optimize>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <Optimize>False</Optimize>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
