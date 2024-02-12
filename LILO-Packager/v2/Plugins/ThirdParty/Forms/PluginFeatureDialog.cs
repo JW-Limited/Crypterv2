@@ -38,7 +38,6 @@ namespace LILO_Packager.v2.Plugins.ThirdParty.Forms
             }
 
 
-            featureListBox.Items.DataSource = _bindingSource;
 
             featureListBox.ForeColor = Color.DimGray;
             featureListBox.BackColor = Color.WhiteSmoke;

@@ -4,6 +4,7 @@ using LILO_Packager.v2.Core.Dialogs;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.Shared;
+using LILO_Packager.v2.Shared.Packages;
 using Telerik.Windows.Documents.Model.Drawing.Charts;
 
 namespace LILO_Packager.v2.Forms;
@@ -186,11 +187,9 @@ public partial class uiDecrypt : Form
 
                         try
                         {
-                            Directory.CreateDirectory(decryptedFile.Replace(".lsf", "").Replace(".zip", ""));
+                            //Directory.CreateDirectory(decryptedFile.Replace(".lsf", "").Replace(".zip", ""));
 
-                            var handler = new Shared.MultiplefileHandling();
-                            var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
-                            var musltifileHandler = new Shared.MultiplefileHandling();
+                            var musltifileHandler = new SmartFilePacker();
                             var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Copying, async (progress) =>
                             {
 
@@ -200,17 +199,24 @@ public partial class uiDecrypt : Form
                                 });
 
 
-                                await handler.UnzipFilesAsync(decryptedFile.Replace(".lsf", ""), decryptedFile.Replace(".lsf", "").Replace(".zip", ""), unzipProgress);
+                                await musltifileHandler.UnzipFilesAsync(decryptedFile.Replace(".lsf", ""), decryptedFile.Replace(".lsf", "").Replace(".zip", ""), unzipProgress);
                             });
 
-                            var uiAsyncTask = new uiCustomProcess(asyncTask);
-                            uiAsyncTask.ShowDialog();
+                            this.Invoke(() =>
+                            {
+                                var uiAsyncTask = new uiCustomProcess(asyncTask);
+                                uiAsyncTask.ShowDialog();
+                                File.Delete(decryptedFile.Replace(".lsf", ""));
 
-                            File.Delete(decryptedFile.Replace(".lsf", ""));
+                            });
+
+                            
+
+                            //
                         }
                         catch(Exception ex) 
                         {
-                            ShowError("File Operation",ex.Message + decryptedFile.Replace(".lsf", "").Replace(".zip", ""));
+                            ShowError("File Operation - Stage 0x32", ex.Message + decryptedFile.Replace(".lsf", "").Replace(".zip", ""));
                         }
                         
                     }
@@ -311,12 +317,12 @@ public partial class uiDecrypt : Form
             {
                 ControlEnable(true,null);
 
-                ShowError("Error", ey.Message);
+                ShowError("Error - Stage 0x12", ey.Message);
             }
         }
         else
         {
-            ShowError("Error", "Please Insert a valid Key.");
+            ShowError("Error - Stage 0x453", "Please Insert a valid Key.");
         }
     }
 
@@ -326,7 +332,7 @@ public partial class uiDecrypt : Form
 
         try
         {
-            OkDialog.Show(message, title, DialogIcon.Error);
+            //OkDialog.Show(message, title, DialogIcon.Error);
         }
         catch (Exception ex)
         {
@@ -336,29 +342,24 @@ public partial class uiDecrypt : Form
 
     public void HandleError(Exception error)
     {
-        MessageBox.Show("Encryption Error", error.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //MessageBox.Show(error.Message, "Encryption Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         ConsoleManager.Instance().WriteLineWithColor($"(Encryption Error) - {error.Message}");
-
-        try
-        {
-            OkDialog.Show(error.Message, "Encryption Error", DialogIcon.Error);
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(error.Message + "\n\n" + ex.Message, "Encryption Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
     }
 
     public void HandleProgessChange(ProgressCallBackValues values)
     {
-        MainHost.Instance().taskBarProgress.TargetForm = MainHost.Instance();
-        MainHost.Instance().taskBarProgress.State = Guna2TaskBarProgress.TaskbarStates.Normal;
+        this.Invoke(() =>
+        {
+            MainHost.Instance().taskBarProgress.TargetForm = MainHost.Instance();
+            MainHost.Instance().taskBarProgress.State = Guna2TaskBarProgress.TaskbarStates.Normal;
 
-        progress.Maximum = (int)values.TotalBytes;
-        progress.Value = (int)values.BytesRead;
+            progress.Maximum = (int)values.TotalBytes;
+            progress.Value = (int)values.BytesRead;
 
-        MainHost.Instance().taskBarProgress.Value = values.Procentage;
+            MainHost.Instance().taskBarProgress.Value = values.Procentage;
+        });
+       
     }
 
     private void bntOpen_Click(object sender, EventArgs e)

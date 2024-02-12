@@ -1,32 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LILO_Packager.v2.Controls
+﻿namespace LILO_Packager.v2.Controls
 {
-    public class ModernListView : Control
+    public class ModernListView : UserControl
     {
         private ListBox _listBox;
+        private Panel _panel;
         private List<IRenderer> _renderers;
 
         public ModernListView()
         {
+            _panel = new Panel();
             _listBox = new ListBox();
+
+            _panel.Dock = DockStyle.Fill;
+
+            this.Controls.Add(_panel);
+            _panel.Controls.Add(_listBox);
+
             _listBox.Dock = DockStyle.Fill;
             _listBox.DrawMode = DrawMode.OwnerDrawVariable;
 
             _renderers = new List<IRenderer>();
-
-            this.Controls.Add(_listBox);
-
         }
 
-        public override string Text
+        public override string Text 
         {
             get { return _listBox.Text; }
             set { _listBox.Text = value; }
+        }
+
+        public override Image? BackgroundImage 
+        {
+            get => base.BackgroundImage; 
+            set => base.BackgroundImage = value;
         }
 
         public override Font Font
@@ -44,7 +49,7 @@ namespace LILO_Packager.v2.Controls
         public override Color BackColor
         {
             get { return _listBox.BackColor; }
-            set { _listBox.BackColor = value; }
+            set { _listBox.BackColor = value; _listBox.BackColor = value; }
         }
 
         public override DockStyle Dock
@@ -53,9 +58,10 @@ namespace LILO_Packager.v2.Controls
             set { _listBox.Dock = value; }
         }
 
-        public ListBox Items
+        public ListBox ListBox
         {
             get { return _listBox; }
+            set { _listBox = value; }
         }
 
         public new void Add(object item)

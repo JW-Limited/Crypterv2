@@ -1,19 +1,5 @@
-﻿using LILO_Packager.v2.Core.AsyncTasks;
-using LILO_Packager.v2.Core.Dialogs;
-using LILO_Packager.v2.Core.History;
-using LILO_Packager.v2.Core.LILO.Interfaces;
+﻿using LILO_Packager.v2.Core.LILO.Interfaces;
 using LILO_Packager.v2.Core.LILO.Types;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Telerik.WinControls.UI;
 
 namespace LILO_Packager.v2.Forms
 {

@@ -43,8 +43,8 @@ partial class uiDecrypt
         lblDecrypt = new Label();
         pnlDecrypt = new Guna.UI2.WinForms.Guna2CirclePictureBox();
         lblFile = new Label();
-        label4 = new Label();
         pnlFiles = new Guna.UI2.WinForms.Guna2Panel();
+        bntChangeToFiles = new Guna.UI2.WinForms.Guna2Button();
         chblistFiles = new CheckedListBox();
         progress = new Guna.UI2.WinForms.Guna2ProgressBar();
         guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
@@ -189,23 +189,38 @@ partial class uiDecrypt
         lblFile.ForeColor = SystemColors.ButtonHighlight;
         lblFile.Name = "lblFile";
         // 
-        // label4
-        // 
-        label4.BackColor = Color.Transparent;
-        resources.ApplyResources(label4, "label4");
-        label4.ForeColor = Color.DimGray;
-        label4.Name = "label4";
-        // 
         // pnlFiles
         // 
         resources.ApplyResources(pnlFiles, "pnlFiles");
         pnlFiles.BorderColor = Color.Gainsboro;
         pnlFiles.BorderRadius = 15;
         pnlFiles.BorderThickness = 2;
+        pnlFiles.Controls.Add(bntChangeToFiles);
         pnlFiles.Controls.Add(chblistFiles);
-        pnlFiles.Controls.Add(label4);
         pnlFiles.FillColor = Color.WhiteSmoke;
         pnlFiles.Name = "pnlFiles";
+        // 
+        // bntChangeToFiles
+        // 
+        resources.ApplyResources(bntChangeToFiles, "bntChangeToFiles");
+        bntChangeToFiles.Animated = true;
+        bntChangeToFiles.BackColor = Color.Transparent;
+        bntChangeToFiles.BorderColor = Color.Gainsboro;
+        bntChangeToFiles.BorderRadius = 20;
+        bntChangeToFiles.BorderThickness = 2;
+        bntChangeToFiles.Checked = true;
+        bntChangeToFiles.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+        bntChangeToFiles.CheckedState.ForeColor = Color.White;
+        bntChangeToFiles.DisabledState.BorderColor = Color.DarkGray;
+        bntChangeToFiles.DisabledState.CustomBorderColor = Color.DarkGray;
+        bntChangeToFiles.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+        bntChangeToFiles.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+        bntChangeToFiles.FillColor = Color.WhiteSmoke;
+        bntChangeToFiles.FocusedColor = Color.FromArgb(100, 170, 209);
+        bntChangeToFiles.ForeColor = Color.Gray;
+        bntChangeToFiles.HoverState.FillColor = Color.RoyalBlue;
+        bntChangeToFiles.HoverState.ForeColor = Color.White;
+        bntChangeToFiles.Name = "bntChangeToFiles";
         // 
         // chblistFiles
         // 
@@ -213,7 +228,7 @@ partial class uiDecrypt
         chblistFiles.BackColor = Color.WhiteSmoke;
         chblistFiles.BorderStyle = BorderStyle.None;
         chblistFiles.CheckOnClick = true;
-        chblistFiles.ForeColor = Color.White;
+        chblistFiles.ForeColor = Color.Gray;
         chblistFiles.FormattingEnabled = true;
         chblistFiles.Name = "chblistFiles";
         chblistFiles.ThreeDCheckBoxes = true;
@@ -371,7 +386,6 @@ partial class uiDecrypt
     private Guna.UI2.WinForms.Guna2CirclePictureBox pnlComb;
     private Guna.UI2.WinForms.Guna2CirclePictureBox pnlDecrypt;
     private Guna.UI2.WinForms.Guna2CirclePictureBox pnlFile;
-    private Label label4;
     private Guna.UI2.WinForms.Guna2Panel pnlFiles;
     private Guna.UI2.WinForms.Guna2ProgressBar progress;
     private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
@@ -385,4 +399,5 @@ partial class uiDecrypt
     private Guna.UI2.WinForms.Guna2TaskBarProgress taskBarProgress;
     private Ookii.Dialogs.WinForms.InputDialog pswDialog;
     private Guna.UI2.WinForms.Guna2Button bntCancel;
+    private Guna.UI2.WinForms.Guna2Button bntChangeToFiles;
 }

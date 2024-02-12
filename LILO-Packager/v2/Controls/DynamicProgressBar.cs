@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing.Drawing2D;
 using Timer = System.Windows.Forms.Timer;
 
 namespace LILO_Packager.v2.Controls
 {
-    public class DynamicProgressBar : Control
+    public class DynamicProgressBar : UserControl
     {
         private Graphics _graphics;
         private LinearGradientBrush _gradientBrush;

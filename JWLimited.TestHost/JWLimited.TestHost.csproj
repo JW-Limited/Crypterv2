@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JWLimited.Codes\JWLimited.Codes.csproj" />
+    <ProjectReference Include="..\JWLimited.Contracts\JWLimited.Contracts.csproj" />
+    <ProjectReference Include="..\JWLimited.Cryptography\JWLimited.Cryptography.csproj" />
+    <ProjectReference Include="..\JWLimited.ElevationService\JWLimited.ElevationService.csproj" />
+    <ProjectReference Include="..\JWLimited.Licensing\JWLimited.Licensing.csproj" />
+    <ProjectReference Include="..\JWLimited.Types\JWLimited.Types.csproj" />
+  </ItemGroup>
+
+</Project>

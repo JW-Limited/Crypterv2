@@ -660,7 +660,7 @@ from youre Local Hardrive</value>
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 47</value>
+    <value>240, 48</value>
   </data>
   <data name="label14.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -853,7 +853,7 @@ form youre Account.</value>
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 47</value>
+    <value>232, 48</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -1022,6 +1022,9 @@ form youre Account.</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1020, 948</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>uiAccontDetails</value>

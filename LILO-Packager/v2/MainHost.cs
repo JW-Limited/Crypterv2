@@ -26,6 +26,7 @@ using JWLimited.Cryptography.Nodes;
 
 /// STATIC PERMISSION RULE
 using Permission = LILO_Packager.v2.Plugins.PluginCore.Permission;
+using LILO_Packager.v2.Shared.Packages;
 
 
 
@@ -598,36 +599,36 @@ public partial class MainHost : HostForm, ILILOMainHost
 
     private async void bntOpenDevApp(object sender, EventArgs e)
     {
-        //var ofd = new OpenFileDialog();
-        //ofd.ShowDialog();
+        var ofd = new OpenFileDialog();
+        ofd.ShowDialog();
 
-        //if (await new SmartFilePacker().CheckIfFileIsValid(ofd.FileName))
-        //{
-        //    var files = await new SmartFilePacker().GetZippedFileInfoAsync(ofd.FileName);
-        //    Console.WriteLine(files.Package.Name + files.Application.Name + files.Application.Version);
+        if (await new SmartFilePacker().CheckIfFileIsValid(ofd.FileName))
+        {
+            var files = await new SmartFilePacker().GetZippedFileInfoAsync(ofd.FileName);
+            Console.WriteLine(files.Package.Name + files.Application.Name + files.Application.Version);
 
-        //    foreach (var file in files.Files)
-        //    {
-        //        Console.WriteLine(file.FilePath + file.Hash + "\n");
-        //    }
-        //}
-        //else
-        //{
-        //    OkDialog.Show("This file was not packaged with this Application.", "Error");
-        //}
+            foreach (var file in files.Files)
+            {
+                Console.WriteLine(file.FilePath + file.Hash + "\n");
+            }
+        }
+        else
+        {
+            OkDialog.Show("This file was not packaged with this Application.", "Error");
+        }
         //var dialog = new uiDialogCreateCdex(null);
         //DialogManager.Instance.ShowDialog(dialog, dialog);
 
-        Permission set = new()
-        {
-            Type = PermissionType.AccessStorage,
-            Description = "To access files for preview.",
-            UseCase = "Runtime"
-        };
+        //Permission set = new()
+        //{
+        //    Type = PermissionType.AccessStorage,
+        //    Description = "To access files for preview.",
+        //    UseCase = "Runtime"
+        //};
 
-        var result = await PluginRightsManager.Instance.RequestPermission(set, PluginID.GetID("tpl", "lbl", "lvl02"), "TextPreviewLibrary");
+        //var result = await PluginRightsManager.Instance.RequestPermission(set, PluginID.GetID("tpl", "lbl", "lvl02"), "TextPreviewLibrary");
 
-        bntMenu(sender, e);
+        //bntMenu(sender, e);
     }
 
     private void bntCloseNoti(object sender, EventArgs e)

@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWLimited.Codes", "..\JWLim
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWLimited.Types", "..\JWLimited.Types\JWLimited.Types.csproj", "{B350C47A-657E-402C-B7A4-EFDDB2B043E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWLimited.ElevationService", "..\JWLimited.ElevationService\JWLimited.ElevationService.csproj", "{472FCB1F-5AD7-452E-9E49-BE94DC3D9C93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWLimited.ElevationService", "..\JWLimited.ElevationService\JWLimited.ElevationService.csproj", "{472FCB1F-5AD7-452E-9E49-BE94DC3D9C93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWLimited.TestHost", "..\JWLimited.TestHost\JWLimited.TestHost.csproj", "{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -347,6 +349,26 @@ Global
 		{472FCB1F-5AD7-452E-9E49-BE94DC3D9C93}.Release|x64.Build.0 = Release|Any CPU
 		{472FCB1F-5AD7-452E-9E49-BE94DC3D9C93}.Release|x86.ActiveCfg = Release|Any CPU
 		{472FCB1F-5AD7-452E-9E49-BE94DC3D9C93}.Release|x86.Build.0 = Release|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Debug|ARM.Build.0 = Debug|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Debug|x64.Build.0 = Debug|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Debug|x86.Build.0 = Debug|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Release|ARM.ActiveCfg = Release|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Release|ARM.Build.0 = Release|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Release|ARM64.Build.0 = Release|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Release|x64.ActiveCfg = Release|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Release|x64.Build.0 = Release|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Release|x86.ActiveCfg = Release|Any CPU
+		{26B6B9AB-C9C0-4055-A4A6-5C06A75B6832}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

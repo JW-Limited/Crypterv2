@@ -9,6 +9,7 @@ using LILO_Packager.v2.Core.LILO.Types;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.Plugins.Model;
 using LILO_Packager.v2.Shared;
+using LILO_Packager.v2.Shared.Packages;
 using Microsoft.Win32;
 
 namespace LILO_Packager.v2.Forms;
@@ -309,7 +310,11 @@ public partial class uiEncryt : Form
 
                             if (response.Item1)
                             {
-                                MessageBox.Show("All Clear!");
+                                this.Invoke(() =>
+                                {
+                                    var file = new uiFinishedFileTask(FileTaskInformation.Create(values, FileOperation.EncryptedFile));
+                                    file.ShowDialog();
+                                });
                             }
                         });
 
@@ -365,7 +370,7 @@ public partial class uiEncryt : Form
                     FileInfo info = new FileInfo(_arFiles[0]);
 
                     var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
-                    var musltifileHandler = new Shared.SmartFilePacker();
+                    var musltifileHandler = new SmartFilePacker();
                     var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Refresing, async (progress) =>
                     {
                         var zipProgress = new Progress<int>(progressPercentage =>
@@ -430,7 +435,7 @@ public partial class uiEncryt : Form
 
                 var info = new DirectoryInfo(Directories[0]);
                 var tempZip = info.FullName.Replace(info.Name, "") + $"{new Random().NextInt64(1111111, 9999999)}_collected_files.zip";
-                var musltifileHandler = new Shared.SmartFilePacker();
+                var musltifileHandler = new SmartFilePacker();
                 var asyncTask = new Core.AsyncTasks.AsyncTask("Mainhost - Task", TaskMode.Refresing, async (progress) =>
                 {
                     var zipProgress = new Progress<int>(progressPercentage =>
