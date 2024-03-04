@@ -2,7 +2,8 @@
 {
     public interface ICloudService
     {
-        private string PDSERVER { get => PDSERVER; }
+        public string PDSERVER { get => _pdServer; }
+        internal string _pdServer => "";
         public Task UploadFiles(string[] files, Action<string> statusCallback, Action<long, long> progressCallback);
         public Task DownloadFiles(string[] files);
     }

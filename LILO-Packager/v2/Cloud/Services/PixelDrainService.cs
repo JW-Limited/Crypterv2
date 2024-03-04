@@ -7,9 +7,9 @@ namespace LILO_Packager.v2.Cloud.Services
 {
     public partial class PixelDrainService : ICloudService
     {
-        private const string PDSERVER = "https://pixeldrain.com";
+        public string PDSERVER => pdServer;
         private const string PDCLIENTURL = "https://beta.lilo.com";
-
+        internal const string pdServer = "https://pixeldrain.com";
 
         public static async Task DownloadFileAsync(string id, string outputPath, Action<long, long> progressCallback, bool downloadAsAttachment = false)
         {

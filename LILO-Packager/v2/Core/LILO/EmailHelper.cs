@@ -1,10 +1,6 @@
 ﻿using LILO_Packager.v2.Core.Interfaces;
-using LILO_Packager.v2.Shared;
 using System.Diagnostics;
-using System.Net.Mail;
-using System.Net;
 using System.Text.RegularExpressions;
-using Telerik.WinControls.UI;
 using MimeKit;
 using MimeKit.Text;
 
@@ -20,7 +16,7 @@ namespace LILO_Packager.v2.Core.LILO
             }
 
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress("JW Limited", "kidjjoe@duck.com"));
+            emailMessage.From.Add(new MailboxAddress("JW Limited", "ceo@swapix.fun"));
             emailMessage.To.Add(new MailboxAddress("Customer",toEmailAddress));
             emailMessage.Subject = subject;
             emailMessage.Body = new MimeKit.TextPart(TextFormat.Html) { Text = body };
@@ -32,21 +28,6 @@ namespace LILO_Packager.v2.Core.LILO
                 FileName = url,
                 UseShellExecute = true
             });
-        }
-
-        public override bool Equals(object? obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        public override string? ToString()
-        {
-            return base.ToString();
         }
     }
 

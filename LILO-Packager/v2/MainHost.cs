@@ -27,6 +27,7 @@ using JWLimited.Cryptography.Nodes;
 /// STATIC PERMISSION RULE
 using Permission = LILO_Packager.v2.Plugins.PluginCore.Permission;
 using LILO_Packager.v2.Shared.Packages;
+using Windows.Media.Capture;
 
 
 
@@ -599,23 +600,23 @@ public partial class MainHost : HostForm, ILILOMainHost
 
     private async void bntOpenDevApp(object sender, EventArgs e)
     {
-        var ofd = new OpenFileDialog();
-        ofd.ShowDialog();
+        //var ofd = new OpenFileDialog();
+        //ofd.ShowDialog();
 
-        if (await new SmartFilePacker().CheckIfFileIsValid(ofd.FileName))
-        {
-            var files = await new SmartFilePacker().GetZippedFileInfoAsync(ofd.FileName);
-            Console.WriteLine(files.Package.Name + files.Application.Name + files.Application.Version);
+        //if (await new SmartFilePacker().CheckIfFileIsValid(ofd.FileName))
+        //{
+        //    var files = await new SmartFilePacker().GetZippedFileInfoAsync(ofd.FileName);
+        //    Console.WriteLine(files.Package.Name + files.Application.Name + files.Application.Version);
 
-            foreach (var file in files.Files)
-            {
-                Console.WriteLine(file.FilePath + file.Hash + "\n");
-            }
-        }
-        else
-        {
-            OkDialog.Show("This file was not packaged with this Application.", "Error");
-        }
+        //    foreach (var file in files.Files)
+        //    {
+        //        Console.WriteLine(file.FilePath + file.Hash + "\n");
+        //    }
+        //}
+        //else
+        //{
+        //    OkDialog.Show("This file was not packaged with this Application.", "Error");
+        //}
         //var dialog = new uiDialogCreateCdex(null);
         //DialogManager.Instance.ShowDialog(dialog, dialog);
 
@@ -628,7 +629,28 @@ public partial class MainHost : HostForm, ILILOMainHost
 
         //var result = await PluginRightsManager.Instance.RequestPermission(set, PluginID.GetID("tpl", "lbl", "lvl02"), "TextPreviewLibrary");
 
-        //bntMenu(sender, e);
+        var mng = JWLimited.ApiCollection.Deezer.Manager.Create(new JWLimited.ApiCollection.Deezer.DeezerCredentials()
+        {
+            Name = "Crypterv2",
+            arlToken = "",
+        }, (e) =>
+        {
+            MessageBox.Show(e.Message);
+        });
+
+        if(await mng.AuthenticateUserAsync())
+        {
+            this.BringToFront();
+            MessageBox.Show("Successfully logged into Deezer.","Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
+
+        var listSongs = await mng.SearchSong("rewrite");
+        foreach(var song in listSongs.Results)
+        {
+            Console.WriteLine(song.Id + " - " + song.Title);
+        }
+
+        bntMenu(sender, e);
     }
 
     private void bntCloseNoti(object sender, EventArgs e)

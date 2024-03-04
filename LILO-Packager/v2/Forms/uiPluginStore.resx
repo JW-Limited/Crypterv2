@@ -380,7 +380,7 @@
     <value>Segoe UI, 12pt</value>
   </data>
   <data name="lblMes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 521</value>
+    <value>208, 517</value>
   </data>
   <data name="lblMes.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -416,7 +416,7 @@
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
   <data name="guna2Button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>292, 601</value>
+    <value>292, 597</value>
   </data>
   <data name="guna2Button1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -449,7 +449,7 @@
     <value>Segoe UI, 14pt, style=Bold</value>
   </data>
   <data name="lblExc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 456</value>
+    <value>212, 452</value>
   </data>
   <data name="lblExc.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -515,7 +515,7 @@
     <value>0</value>
   </data>
   <data name="imgImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 153</value>
+    <value>296, 149</value>
   </data>
   <data name="imgImage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -539,13 +539,13 @@
     <value>3</value>
   </data>
   <data name="pnlNetworkError.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 136</value>
+    <value>24, 144</value>
   </data>
   <data name="pnlNetworkError.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="pnlNetworkError.Size" type="System.Drawing.Size, System.Drawing">
-    <value>920, 800</value>
+    <value>920, 792</value>
   </data>
   <data name="pnlNetworkError.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>

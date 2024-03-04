@@ -10,7 +10,7 @@ public partial class PluginInterface : Form
     public PluginID id;
     public string Name;
 
-    private static object _lock = new object();
+    private static readonly object _lock = new object();
 
     private static PluginInterface _encrypt;
 

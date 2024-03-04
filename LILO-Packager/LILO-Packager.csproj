@@ -226,6 +226,7 @@
     <ProjectReference Include="..\InstallHelper\InstallHelper.csproj">
       <TreatAsUsed>true</TreatAsUsed>
     </ProjectReference>
+    <ProjectReference Include="..\JWLimited.ApiCollection\JWLimited.ApiCollection.csproj" />
     <ProjectReference Include="..\JWLimited.ElevationService\JWLimited.ElevationService.csproj" />
     <ProjectReference Include="..\JWLimited.Licensing\JWLimited.Licensing.csproj" />
     <ProjectReference Include="..\JWLimited.Types\JWLimited.Types.csproj" />

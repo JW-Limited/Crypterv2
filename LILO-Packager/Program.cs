@@ -30,6 +30,10 @@ namespace LILO_Packager
     public static partial class Program
     {
         public static NotifyIcon noty;
+        public static JWLimited.ApiCollection.Registry.Manager RegistryManager = JWLimited.ApiCollection.Registry.Manager.Create("Crypterv2",(e) =>
+        {
+            ConsoleManager.Instance().WriteLineWithColor(e.Message, ConsoleColor.DarkRed);
+        });
         public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
         public static string Version = "v0.21.1-beta";
         public static string ProductVersion = "Professional Developer Edition";
@@ -59,15 +63,27 @@ namespace LILO_Packager
             InstanceCacheContainer.Register<IBootManager>(() => new BootManager());
             _bootManager = InstanceCacheContainer.Resolve<IBootManager>();
 
-            try
+            if(config.Default.aggrementAccepted &&
+               !config.Default.installedBindings 
+               || config.Default.debugInstallHelper)
             {
-                Task.Run(() => Process.Start(@$"{EnviromentVariables.ApplicationDirectory}InstallHelper.exe", "--cp=" + Application.ExecutablePath));
-                ConsoleManager.Instance().WriteLineWithColor("Started InstallHelper the Application is closing now meanwhile the Helper is doing his thing.", ConsoleColor.DarkGreen);
+                config.Default.installedBindings = true;
+                config.Default.Save();
+
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        Process.Start(@$"{EnviromentVariables.ApplicationDirectory}auth-in\Elevate.exe", $"{EnviromentVariables.ApplicationDirectory}InstallHelper.exe --cp=" + Application.ExecutablePath);
+                        ConsoleManager.Instance().WriteLineWithColor("Started InstallHelper the Application is closing now meanwhile the Helper is doing his thing.", ConsoleColor.DarkGreen);
+                    }
+                    catch (Exception ex)
+                    {
+                        ConsoleManager.Instance().WriteLineWithColor(ex.Message);
+                    }
+                });
             }
-            catch (Exception ex)
-            {
-                ConsoleManager.Instance().WriteLineWithColor(ex.Message);
-            }
+            
 
             InstanceCacheContainer.Register<ILILOConsoleManager>(() => ConsoleManager.Instance());
 

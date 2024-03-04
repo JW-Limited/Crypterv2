@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows10.0.22000.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JWLimited.ApiCollection\JWLimited.ApiCollection.csproj" />
+    <ProjectReference Include="..\LILO-Packager\LILO-Packager.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\SearchItem.cs" />
+    <Compile Update="Core\PluginInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Resources\index.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>index.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\index.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>index.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

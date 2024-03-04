@@ -27,7 +27,6 @@ namespace Crypterv2_DevTool
             ConsoleManager.Instance().WriteLineWithColor("Initializing C2DT.");
             ConsoleManager.Instance().WriteLineWithColor("Session Log Located: " + Logger.Instance.logFilePath);
             Application.Run(MainHost.GetInstance());
-            Console.ReadKey();
         }
     }
 }

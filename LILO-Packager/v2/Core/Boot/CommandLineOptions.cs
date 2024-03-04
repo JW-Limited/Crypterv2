@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 
+namespace LILO_Packager.v2.Core.Boot;
 public class CommandLineOptions
 {
     [Value(0, MetaName = "FilePath", Required = true, HelpText = "Path to the file to open.")]

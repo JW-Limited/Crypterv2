@@ -26,7 +26,7 @@ namespace TextPreviewLibrary
         public Bitmap PluginIcon { get; set; } = Resources.icons8_foxit_reader_240;
         public static SemanticVersion _sVersion = new SemanticVersion(0, 1, 2, "alpha", false);
         public Form PluginInterface { get; set; } = Core.PluginInterface.Instance(false);
-        public string Company { get; set; } = "JW Limited © 2023";
+        public string Company { get; set; } = "JW Limited © 2024";
 
         public static ThemeManager _thManager;
         public static BroadcastChannel channelToMainHost { get; set; } = null;

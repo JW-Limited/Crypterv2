@@ -39,8 +39,6 @@ namespace JWLimited.Cryptography
 
         }
 
-        
-
         public static CryptographyManager Create(IServiceValues values)
         {
             var newInstance = new CryptographyManager(values);

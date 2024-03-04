@@ -1,4 +1,5 @@
 ﻿using JWLimited.Cryptography;
+using JWLimited.TestHost.Core.APILib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace JWLimited.TestHost.Core
     {
         Cryptography_Encryptv2 = 1,
         Cryptography_Decryptv2 = 2,
+        WebEngine_Server = 3,
+        DeezerApi = 4
     }
 
     public class TestManager
@@ -75,6 +78,16 @@ namespace JWLimited.TestHost.Core
                     Console.ReadKey();
                     Program.Main(null);
                 }
+            }
+            else if(test == 3)
+            {
+                var WebMng = WebServer.Manager.Instance;
+                await WebMng.RequestNewSession();
+            }
+            else if( test == 4)
+            {
+                var mng = new DeezerHandler();
+                mng.AcceptRequests();
             }
         }
 
