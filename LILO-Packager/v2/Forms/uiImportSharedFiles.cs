@@ -2,6 +2,7 @@
 using LILO_Packager.v2.Cloud.Storage;
 using LILO_Packager.v2.Controls;
 using LILO_Packager.v2.Core.AsyncTasks;
+using LILO_Packager.v2.Shared;
 using System.Diagnostics;
 
 namespace LILO_Packager.v2.Forms
@@ -13,6 +14,8 @@ namespace LILO_Packager.v2.Forms
             InitializeComponent();
 
             CDEXFile = file;
+
+            bntPlugin.Visible = LifeManagement.IsAlive();
         }
 
         public string CDEXFile { get; set; }

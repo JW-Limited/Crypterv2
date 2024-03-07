@@ -4,13 +4,14 @@ using System.Text;
 using CommandLine;
 using LILO_Packager.v2.Core.Debug.Types;
 using LILO_Packager.v2.Shared.Types;
-using LILO_Packager.v2.Plugins.ThirdParty;
+
 using System.Diagnostics;
 using LILO_Packager.v2.Core.Interfaces;
+using LILO_Packager.v2.Plugins.ThirdParty;
+using LILO_Packager.v2.Cloud.Storage;
 
 namespace LILO_Packager.v2.Core.Boot
 {
-
     public class BootManager : IBootManager
     {
         public void Run(string[] args)
@@ -18,6 +19,8 @@ namespace LILO_Packager.v2.Core.Boot
             var parser = new Parser(config =>
             {
                 config.AutoHelp = true;
+                config.AllowMultiInstance = false;
+                config.EnableDashDash = true;
                 config.AutoVersion = true;
             });
 
@@ -47,6 +50,10 @@ namespace LILO_Packager.v2.Core.Boot
                     {
                         HandleCloudPlaceholder(options.FilePath);
                     }
+                    else if (options.FilePath.EndsWith(".cdex"))
+                    {
+                        HandleCDexFile(options.FilePath);
+                    }
                     else
                     {
                         HandleUnknownFile(options.FilePath);
@@ -57,6 +64,38 @@ namespace LILO_Packager.v2.Core.Boot
                     HandleArgumentParsingErrors(errors, result);
                 });
         }
+
+        private void HandleCDexFile(string filePath)
+        {
+            try
+            {
+                var info = MatrixShareManager.GetPackageDeclaration(filePath);
+
+                if (info.PasswordSecured)
+                {
+                    var password = AuthenticationHandler.GetPassword((password) =>
+                    {
+                        if (Core.Service.Services.Base.EncryptString(password, password) == info.PasswordEnc)
+                        {
+                            var newHost = new uiImportSharedFiles(filePath);
+                            newHost.StartPosition = FormStartPosition.CenterScreen;
+                            newHost.Text = "CDEX Dialog";
+                            newHost.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("The passkey did not match.", "LILO Cloud", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    });
+                }
+            }
+            catch 
+            {
+
+            }
+        }
+
+
 
         private void HandleCloudPlaceholder(string filePath)
         {

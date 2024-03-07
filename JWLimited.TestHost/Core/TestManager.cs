@@ -58,11 +58,15 @@ namespace JWLimited.TestHost.Core
                             }
                         };
 
-                        var crypto = JWLimited.Cryptography.CryptographyManager.Create(serviceValues);
-                        var result = await crypto.EncryptFileWithService((e) => Console.WriteLine(e));
+                        await Task.Run(async () =>
+                        {
+                            var crypto = JWLimited.Cryptography.CryptographyManager.Create(serviceValues);
+                            var result = await crypto.EncryptFileWithService((e) => Console.WriteLine(e));
 
-                        Console.WriteLine("The task ended.");
-                        Console.ReadKey();
+                            Console.WriteLine("The task ended.");
+                            Console.ReadKey();
+                        });
+
                         Program.Main(null);
                     }
 

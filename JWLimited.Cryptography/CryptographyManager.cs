@@ -1,5 +1,4 @@
-﻿using JWLimited.Contracts.Cryptography;
-using JWLimited.Contracts.LILO;
+﻿using JWLimited.Contracts.LILO;
 using JWLimited.Cryptography.Nodes;
 using System.IO.Compression;
 
@@ -55,11 +54,11 @@ namespace JWLimited.Cryptography
                 var services = new Services(_serviceValues);
                 var result = await services.CompressAndEncryptFileAsync();
 
-                _errorCallback?.Invoke("Encrypted file.");
+                _serviceValues.CurrentWorkingTask?.Invoke("Encrypted file: " + _serviceValues.FileInput);
 
                 if (result.Item1)
                 {
-                    var splitResult = _splitter.SplitAndSave(_serviceValues.FileOutput, 4);
+                    var splitResult = await _splitter.SplitAndSave(_serviceValues.FileOutput, 4);
 
                     using (FileStream stream = new FileStream(_serviceValues.FileOutput + "~tmp", FileMode.Create))
                     using (ZipArchive archieve = new ZipArchive(stream, ZipArchiveMode.Create))
@@ -76,7 +75,10 @@ namespace JWLimited.Cryptography
 
                     return result;
                 }
-
+                else
+                {
+                    Console.WriteLine("The Operation didnt complett successfully.");
+                }
                 (bool, Dictionary<string, ILILOResponse>) value = (false, null);
                 return value;
             }

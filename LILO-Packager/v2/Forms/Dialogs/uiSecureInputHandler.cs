@@ -40,6 +40,8 @@ namespace LILO_Packager.v2.Forms
 
         private void bntOk_Click(object sender, EventArgs e)
         {
+            this.Visible = false;
+
             _Preferences.Callback?.Invoke(new SecuredDialogCallBack()
             {
                 DialogClosingReason = DialogClosingReason.DialogAborted,
@@ -50,6 +52,8 @@ namespace LILO_Packager.v2.Forms
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
+            this.Visible = false;
+
             _Preferences.Callback?.Invoke(new SecuredDialogCallBack()
             {
                 DialogClosingReason = DialogClosingReason.Success,

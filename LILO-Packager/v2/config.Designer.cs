@@ -142,5 +142,17 @@ namespace LILO_Packager.v2 {
                 this["debugInstallHelper"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool showStatusWhileStartup {
+            get {
+                return ((bool)(this["showStatusWhileStartup"]));
+            }
+            set {
+                this["showStatusWhileStartup"] = value;
+            }
+        }
     }
 }

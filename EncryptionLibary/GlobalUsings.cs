@@ -8,3 +8,6 @@ global using global::System.Threading.Tasks;
 global using global::LILO_Packager.v2.Plugins.API;
 global using global::LILO_Packager.v2.Cloud;
 global using global::LILO_WebEngine.Core;
+global using global::LILO_Packager.v2.Plugins.PluginCore;
+global using global::System.Drawing;
+global using global::System.Windows.Forms;

@@ -100,7 +100,6 @@ namespace LILO_Packager.v2.Shared
             Console.ForegroundColor = color;
             Console.WriteLine($"[{DateTime.Now}] - " + text);
             Console.ResetColor();
-
             Log(text);
         }
 

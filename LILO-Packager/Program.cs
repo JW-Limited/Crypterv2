@@ -35,11 +35,11 @@ namespace LILO_Packager
             ConsoleManager.Instance().WriteLineWithColor(e.Message, ConsoleColor.DarkRed);
         });
         public static DependencyInjectionContainer InstanceCacheContainer = new DependencyInjectionContainer();
-        public static string Version = "v0.21.1-beta";
+        public static string Version = "v0.22.0-beta";
         public static string ProductVersion = "Professional Developer Edition";
         public static string LibraryName = "JWLimited.Crypter.Windows";
         public static int BuildNumber = 20030;
-        public static string CloudVersion = "0.9.4-preview";
+        public static string CloudVersion = "0.9.5-preview";
         private static IBootManager _bootManager;
         public static LicenseManager LicMng;
         public static TaskManager TaskMng;
@@ -104,6 +104,35 @@ namespace LILO_Packager
                     LicMng = LicenseManager.Initialize(_AuthAgent);
                     if(LicMng.CheckLicx<CrypterLicense,CrypterLicenseTrail>(EnviromentVariables.ApplicationDirectory, new CrypterLicense(), new CrypterLicenseTrail()) == 1)
                     {
+                        RegistryManager.SetKey("EvaluationState", "0x1093");
+
+                        JWLimited.ApiCollection.Registry.Manager.Trees TreeManager = new JWLimited.ApiCollection.Registry.Manager.Trees("Crypterv2");
+                        TreeManager.CreateNode(new JWLimited.ApiCollection.Registry.RegistryNode()
+                        {
+                            Children = new Dictionary<string, JWLimited.Contracts.API.IChangableNode>()
+                            {
+                                { "",
+                                    new JWLimited.ApiCollection.Registry.RegistryNode()
+                                    {
+                                        Name = "CurrentState",
+                                        Value = "1x0",
+                                    } 
+                                }
+                            },
+                            Name = "License",
+                            Value = "CurrentState"
+                        });
+
+
+                        if(RegistryManager.GetKey("ShwDbgCns") == "1")
+                        {
+                            ConsoleManager.Instance().ShowConsoleWindow();
+                        }
+                        else
+                        {
+                            RegistryManager.SetKey("ShwDbgCns","0x0");
+                        }
+
                         if (args.Length > 0)
                         {
                             _bootManager.Run(args);
@@ -114,8 +143,20 @@ namespace LILO_Packager
                             {
                                 if (IsApplicationAlreadyRunning())
                                 {
-                                    BringRunningInstanceToFront();
-                                    return;
+                                    if (LifeManagement.IsAlive())
+                                    {
+                                        BringRunningInstanceToFront();
+                                        return;
+                                    }
+
+                                    var procID = Process.GetCurrentProcess().Id;
+
+                                    foreach(var procC in Process.GetProcessesByName("crypterv2"))
+                                    {
+                                        if (procC.Id == procID) continue;
+
+                                        procC.Kill();
+                                    }
                                 }
 
                                 var processes = Process.GetProcessesByName("JWLimited.ElevationService");
@@ -147,6 +188,8 @@ namespace LILO_Packager
                                 };
 
                                 proc.BeginOutputReadLine();
+
+                                
 
                                 TaskMng = new TaskManager();
                                 var prefix = new string[]
@@ -227,6 +270,11 @@ namespace LILO_Packager
 
         private static async void RunMainUI()
         {
+            if(RegistryManager.GetKey("OpenedSetupOnce") != "1")
+            {
+                RunAgrrementv2();
+            }
+
             MainHost.Instance().AutoScaleMode = AutoScaleMode.Font;
             //Application.AddMessageFilter(new AdvancedMessageFilter(MainHost.Instance()));
             Application.Run(MainHost.Instance());
@@ -239,6 +287,8 @@ namespace LILO_Packager
 
         private static void RunAgrrementv2()
         {
+            RegistryManager.SetKey("OpenedSetupOnce", "1");
+
             Application.Run(new uiSetup());
         }
     }

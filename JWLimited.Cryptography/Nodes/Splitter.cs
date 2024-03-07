@@ -16,7 +16,7 @@
             this.nodeManager = nodeManager ?? throw new ArgumentNullException(nameof(nodeManager));
         }
 
-        public SplitResult SplitAndSave(string filePath, int chunkSize)
+        public Task<SplitResult> SplitAndSave(string filePath, int chunkSize)
         {
             var result = new SplitResult
             {
@@ -58,7 +58,7 @@
                 result.Error = ex;
             }
 
-            return result;
+            return Task.FromResult(result);
         }
     }
 }

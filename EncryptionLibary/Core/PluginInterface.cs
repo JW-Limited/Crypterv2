@@ -1,9 +1,4 @@
-﻿using LILO_Packager.v2.Cloud;
-using LILO_Packager.v2.Plugins.PluginCore;
-using System.Drawing;
-using System.Windows.Forms;
-
-namespace EncryptionLibary.Core;
+﻿namespace EncryptionLibary.Core;
 public partial class PluginInterface : Form
 {
     public string Version;

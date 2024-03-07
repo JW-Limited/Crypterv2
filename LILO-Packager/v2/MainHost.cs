@@ -274,7 +274,12 @@ public partial class MainHost : HostForm, ILILOMainHost
 
         _ = Task.Run(() => this.Invoke(async () =>
         {
-            
+            if (config.Default.showStatusWhileStartup)
+            {
+                lblCurrentState.Visible = true;
+            }
+
+            lblCurrentState.Text = $"[{GetDebuggerDisplay()}] - Initialized Updater.";
 
             var updater = Updater.Instance();
             Program.InstanceCacheContainer.Register<IUpdater>(() => updater);
@@ -286,9 +291,15 @@ public partial class MainHost : HostForm, ILILOMainHost
 
             FileOperations.CreateDirectoryRecursively(".\\log");
 
+            lblCurrentState.Text = $"[{GetDebuggerDisplay()}] - Initializing StorageProvider.";
+
             var storageProvider = await StorageProvider.Create(".\\");
             if(storageProvider is not null) Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Initialized StorageProvider.");
 
+            lblCurrentState.Text = $"[{GetDebuggerDisplay()}] - Creating LifeManagment.";
+            await LifeManagement.Create();
+
+            lblCurrentState.Text = $"[{GetDebuggerDisplay()}] - Initializing LILO WebEngine.";
 
             var response = await _localServer.Initialization(new LILO_WebEngine.Service.LocalServerOptions()
             {
@@ -305,6 +316,7 @@ public partial class MainHost : HostForm, ILILOMainHost
 
             if (response.SuccessFull)
             {
+                lblCurrentState.Text = $"[{GetDebuggerDisplay()}] - Initialized LILO WebEngine.";
                 Program.InstanceCacheContainer.Resolve<ILILOConsoleManager>().WriteLineWithColor($"[{GetDebuggerDisplay()}] - Initialized LILO WebEngine.");
 
                 var running = await _localServer.Start();
@@ -333,6 +345,8 @@ public partial class MainHost : HostForm, ILILOMainHost
             {
                 OkDialog.Show(response.ErrorMessage, "InternalServerErrror");
             }
+
+            lblCurrentState.Text = $"[{GetDebuggerDisplay()}] - Registering Controls.";
 
             foreach (Control item in this.Controls)
             {
@@ -383,16 +397,18 @@ public partial class MainHost : HostForm, ILILOMainHost
                 }
             }
 
-
+            lblCurrentState.Text = $"[{GetDebuggerDisplay()}] - Initializing Database Handler.";
             await dataHandler.InitializeDatabaseAsync(process => { });
 
-
+            lblCurrentState.Text = $"[{GetDebuggerDisplay()}] - Loading FeatureManager.";
             await v2.Core.FeatureManager.LoadConfigurationAsync();
 
             if (config.Default.allowedPlugins)
             {
                 try
                 {
+                    lblCurrentState.Text = $"[{GetDebuggerDisplay()}] - Loading Plugins.";
+
                     var responseScan = await _pluginManager.Scan();
 
                     foreach (var ele in _pluginManager.PluginsV1)
@@ -433,6 +449,7 @@ public partial class MainHost : HostForm, ILILOMainHost
 
             }
 
+            lblCurrentState.Visible = false;
             pnlChild.BackgroundImage = null;
             await Task.Delay(500);
 

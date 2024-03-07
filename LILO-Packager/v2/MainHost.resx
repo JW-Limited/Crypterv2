@@ -636,6 +636,39 @@
   <data name="pnlChild.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
+  <data name="lblCurrentState.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="lblCurrentState.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCurrentState.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 880</value>
+  </data>
+  <data name="lblCurrentState.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 25</value>
+  </data>
+  <data name="lblCurrentState.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="lblCurrentState.Text" xml:space="preserve">
+    <value>progress</value>
+  </data>
+  <data name="lblCurrentState.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentState.Name" xml:space="preserve">
+    <value>lblCurrentState</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentState.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentState.Parent" xml:space="preserve">
+    <value>pnlChild</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentState.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="prgMiniProgress.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
   </data>
@@ -664,7 +697,7 @@
     <value>pnlChild</value>
   </data>
   <data name="&gt;&gt;prgMiniProgress.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="splash_Panel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -694,7 +727,7 @@
     <value>pnlChild</value>
   </data>
   <data name="&gt;&gt;splash_Panel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="pnlNoti.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -829,7 +862,7 @@
     <value>pnlChild</value>
   </data>
   <data name="&gt;&gt;pnlNoti.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="pnlChild.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

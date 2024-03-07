@@ -71,47 +71,31 @@ namespace LILO_Packager.v2.Shared
 
         public async Task<List<IndexedFile>> IndexFiles()
         {
-            if( ServedDirectory is null || ServedDirectory == string.Empty || !Directory.Exists(ServedDirectory) ) 
+            if (string.IsNullOrEmpty(ServedDirectory) || !Directory.Exists(ServedDirectory))
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Invalid ServedDirectory");
             }
 
             var files = new List<IndexedFile>();
-
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
                 try
                 {
-                    foreach (var file in Directory.EnumerateFiles(ServedDirectory, "*", SearchOption.AllDirectories))
-                    {
-                        var Ifile = new IndexedFile()
-                        {
-                            Name = new FileInfo(file).Name,
-                            Path = file,
-                        };
+                    var tasks = Directory.EnumerateFiles(ServedDirectory, "*", SearchOption.AllDirectories)
+                                         .Select(file => GetIndexedFileInfoAsync(file))
+                                         .ToList();
 
-                        try
-                        {
-                            Ifile.Sha256 = CloudSyncroniztationBase.GetFileHash(file);
-                        }
-                        catch (Exception)
-                        {
-                            Ifile.Sha256 = "error";
-                        }
+                    await Task.WhenAll(tasks);
+                    files.AddRange(tasks.Select(t => t.Result));
 
-                        files.Add(Ifile);
-                    }
-
-                    SaveDataToXml(new IndexFile()
-                    {
-                        IndexedFiles = files
-                    }, "__index__crypterv2.find", "");
+                    SaveDataToXml(new IndexFile { IndexedFiles = files }, "__index__crypterv2.find", "");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message,"StorageProvider - Index");
+                    MessageBox.Show(ex.Message, "StorageProvider - Index");
                 }
             });
+            
 
             FileSystemWatcher = new FileSystemWatcher(ServedDirectory);
             FileSystemWatcher.Created += FileSystemWatcher_Created;
@@ -119,6 +103,26 @@ namespace LILO_Packager.v2.Shared
             FileSystemWatcher.IncludeSubdirectories = true;
 
             return files;
+        }
+
+        private async Task<IndexedFile> GetIndexedFileInfoAsync(string file)
+        {
+            var indexedFile = new IndexedFile
+            {
+                Name = new FileInfo(file).Name,
+                Path = file
+            };
+
+            try
+            {
+                indexedFile.Sha256 = CloudSyncroniztationBase.GetFileHash(file);
+            }
+            catch (Exception)
+            {
+                indexedFile.Sha256 = "error";
+            }
+
+            return indexedFile;
         }
 
         private void FileSystemWatcher_Created(object sender, FileSystemEventArgs e)

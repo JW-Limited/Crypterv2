@@ -48,6 +48,7 @@ partial class MainHost
         bntChoose_File = new Guna.UI2.WinForms.Guna2Button();
         Transition = new Guna.UI2.WinForms.Guna2Transition();
         pnlChild = new Panel();
+        lblCurrentState = new Label();
         prgMiniProgress = new Guna.UI2.WinForms.Guna2ProgressBar();
         splash_Panel = new Sipaa.Framework.SPanel();
         pnlNoti = new Guna.UI2.WinForms.Guna2Panel();
@@ -440,11 +441,19 @@ partial class MainHost
         // pnlChild
         // 
         resources.ApplyResources(pnlChild, "pnlChild");
+        pnlChild.Controls.Add(lblCurrentState);
         pnlChild.Controls.Add(prgMiniProgress);
         pnlChild.Controls.Add(splash_Panel);
         pnlChild.Controls.Add(pnlNoti);
         Transition.SetDecoration(pnlChild, Guna.UI2.AnimatorNS.DecorationType.None);
         pnlChild.Name = "pnlChild";
+        // 
+        // lblCurrentState
+        // 
+        resources.ApplyResources(lblCurrentState, "lblCurrentState");
+        Transition.SetDecoration(lblCurrentState, Guna.UI2.AnimatorNS.DecorationType.None);
+        lblCurrentState.ForeColor = SystemColors.ActiveBorder;
+        lblCurrentState.Name = "lblCurrentState";
         // 
         // prgMiniProgress
         // 
@@ -753,6 +762,7 @@ partial class MainHost
         pnlMenu.ResumeLayout(false);
         sPanel1.ResumeLayout(false);
         pnlChild.ResumeLayout(false);
+        pnlChild.PerformLayout();
         pnlNoti.ResumeLayout(false);
         pnlSide.ResumeLayout(false);
         pnlNotifications.ResumeLayout(false);
@@ -802,4 +812,5 @@ partial class MainHost
     public Guna.UI2.WinForms.Guna2TaskBarProgress taskBarProgress;
     private Sipaa.Framework.SPanel splash_Panel;
     private Guna.UI2.WinForms.Guna2ProgressBar prgMiniProgress;
+    public Label lblCurrentState;
 }
