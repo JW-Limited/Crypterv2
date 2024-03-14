@@ -157,7 +157,7 @@ namespace LILO_Packager.v2.Core.Boot
 
     }
 
-    // Enums and structs for Windows Service Control Manager
+    // Enums and structs for Collections Service Control Manager
     [Flags]
     public enum ServiceControlManagerAccessRights
     {

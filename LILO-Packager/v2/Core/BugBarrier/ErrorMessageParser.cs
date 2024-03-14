@@ -128,7 +128,7 @@ namespace LILO_Packager.v2.Core.BugBarrier
                 { "System.Xml.XmlException", "An error occurred while parsing XML. Make sure that the XML is formatted correctly." },
                 { "System.IO.Compression.GZipException", "An error occurred while compressing or decompressing data. Make sure that the data is in a valid format." },
                 { "System.IO.Packaging.ZipException", "An error occurred while zipping or unzipping data. Make sure that the data is in a valid format." },
-                { "WinRT.ExceptionHelpers.ThrowExceptionForHR", "An error occurred while sharing a file with the windows FileSharer. Please update youre Windows to keep using this function." },
+                { "WinRT.ExceptionHelpers.ThrowExceptionForHR", "An error occurred while sharing a file with the windows FileSharer. Please update youre Collections to keep using this function." },
             };
 
             return suggestedSolutions;

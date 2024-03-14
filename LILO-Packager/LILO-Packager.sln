@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LABLibary", "..\..\..\LILO-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWLimited.ApiCollection", "..\JWLimited.ApiCollection\JWLimited.ApiCollection.csproj", "{301F3BD8-1C97-4438-A268-DBEEA2D3E90F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeezerPlugin", "..\DeezerPlugin\DeezerPlugin.csproj", "{5553268D-9402-4009-BDC8-BE19F2DC61BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeezerPlugin", "..\DeezerPlugin\DeezerPlugin.csproj", "{5553268D-9402-4009-BDC8-BE19F2DC61BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWLimited.Drawing", "..\JWLimited.Drawing\JWLimited.Drawing.csproj", "{A180A070-D096-4780-9D4E-10B02D988ACA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -435,6 +437,26 @@ Global
 		{5553268D-9402-4009-BDC8-BE19F2DC61BE}.Release|x64.Build.0 = Release|Any CPU
 		{5553268D-9402-4009-BDC8-BE19F2DC61BE}.Release|x86.ActiveCfg = Release|Any CPU
 		{5553268D-9402-4009-BDC8-BE19F2DC61BE}.Release|x86.Build.0 = Release|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Debug|ARM.Build.0 = Debug|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Debug|x64.Build.0 = Debug|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Debug|x86.Build.0 = Debug|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Release|ARM.Build.0 = Release|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Release|ARM64.Build.0 = Release|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Release|x64.ActiveCfg = Release|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Release|x64.Build.0 = Release|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Release|x86.ActiveCfg = Release|Any CPU
+		{A180A070-D096-4780-9D4E-10B02D988ACA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

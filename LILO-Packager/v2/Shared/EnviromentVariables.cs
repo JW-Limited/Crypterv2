@@ -16,6 +16,8 @@ namespace LILO_Packager.v2.Shared
         private const string FilePath = "objdt\\env.env";
         private Dictionary<string, string> variables;
 
+        Image
+
         public EnviromentVariables()
         {
             LoadVariables();

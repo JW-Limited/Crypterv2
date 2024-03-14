@@ -4,12 +4,12 @@ using System.ComponentModel;
 namespace LILO_Packager.v2.Plugins.PluginCore.UI
 {
     [DefaultEvent("InitializeGraphicContainer")]
-    [Designer("System.Windows.Forms.Design.FormDocumentDesigner, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(IRootDesigner))]
+    [Designer("System.Collections.Forms.Design.FormDocumentDesigner, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(IRootDesigner))]
     [DesignerCategory("Form")]
     [DesignTimeVisible(false)]
     [InitializationEvent("Load")]
     [ToolboxItem(true)]
-    [ToolboxItemFilter("System.Windows.Forms.Control.TopLevel")]
+    [ToolboxItemFilter("System.Collections.Forms.Control.TopLevel")]
     public class HostControllableGraphicInterface : Form
     {
         public HostControllableGraphicInterface(HostControllableGraphicInterface _form)

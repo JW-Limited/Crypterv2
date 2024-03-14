@@ -1,5 +1,6 @@
 ﻿using JWLimited.Cryptography;
 using JWLimited.TestHost.Core.APILib;
+using JWLimited.TestHost.Core.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,50 +32,8 @@ namespace JWLimited.TestHost.Core
             {
                 try
                 {
-                    Console.Clear();
-
-                    Console.Write("--> Input a file to encrypt: ");
-                    var input = Console.ReadLine();
-                    
-
-                    if (File.Exists(input))
-                    {
-                        Console.Write("\n--> Input password to encrypt: ");
-                        var psw = Console.ReadLine();
-
-                        var serviceValues = new ServiceValues()
-                        {
-                            FileInput = input,
-                            FileType = FileType.File,
-                            Password = psw,
-                            CurrentWorkingTask = status =>
-                            {
-                                Console.WriteLine("[SERVICE] " + status);
-                            },
-                            FileOutput = input + ".sflx",
-                            ProgressCallback = progress =>
-                            {
-                                Console.Title = $"Working: {progress.Message} - {progress.Procentage}({progress.BytesRead}/{progress.TotalBytes})";
-                            }
-                        };
-
-                        await Task.Run(async () =>
-                        {
-                            var crypto = JWLimited.Cryptography.CryptographyManager.Create(serviceValues);
-                            var result = await crypto.EncryptFileWithService((e) => Console.WriteLine(e));
-
-                            Console.WriteLine("The task ended.");
-                            Console.ReadKey();
-                        });
-
-                        Program.Main(null);
-                    }
-
-                    else
-                    {
-                        ExecuteTest(1);
-                    }
-                
+                    var encMNG = new EncryptenManager();
+                    await encMNG.LFS_LFSO_NMS();
                 }
                 catch(Exception ex)
                 {

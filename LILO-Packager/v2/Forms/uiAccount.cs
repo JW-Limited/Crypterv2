@@ -104,7 +104,7 @@ namespace LILO_Packager.v2.Forms
             var url = $"https://www.googleapis.com/oauth2/v3/userinfo?access_token={access.Access_token}";
             var wc = new WebClient();
             wc.Headers.Add(HttpRequestHeader.AcceptCharset, "utf-8");
-            wc.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/55.0");
+            wc.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (Collections NT 10.0; …) Gecko/20100101 Firefox/55.0");
             wc.Encoding = Encoding.UTF8;
             var jsonProfile = wc.DownloadString(url);
             var frm = new FrmProfile(jsonProfile);

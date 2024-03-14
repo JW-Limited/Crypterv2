@@ -77,7 +77,7 @@ public partial class PluginInstaller : Form
                 this.Invoke(new Action(() =>
                 {
                     bntInstall.Enabled = false;
-                    lblError.Text = $"Youre Windows is not compatible with the plugin. 0x{INSTALLER_CODES.INVALID_DATA.ToString("X")}";
+                    lblError.Text = $"Youre Collections is not compatible with the plugin. 0x{INSTALLER_CODES.INVALID_DATA.ToString("X")}";
                     lblError.Visible = true;
                     lblFunctionList.Visible = false;
                     lblFunctions.Visible = false;

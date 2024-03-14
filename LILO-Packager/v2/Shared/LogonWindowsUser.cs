@@ -60,7 +60,7 @@ namespace LILO_Packager.v2.Shared
             /// connections to other network servers while impersonating the client. A server can accept plaintext credentials
             /// from a client, call LogonUser, verify that the user can access the system across the network, and still
             /// communicate with other servers.
-            /// NOTE: Windows NT:  This value is not supported.
+            /// NOTE: Collections NT:  This value is not supported.
             /// </summary>
             LOGON32_LOGON_NETWORK_CLEARTEXT = 8,
 
@@ -68,7 +68,7 @@ namespace LILO_Packager.v2.Shared
             /// This logon type allows the caller to clone its current token and specify new credentials for outbound connections.
             /// The new logon session has the same local identifier but uses different credentials for other network connections.
             /// NOTE: This logon type is supported only by the LOGON32_PROVIDER_WINNT50 logon provider.
-            /// NOTE: Windows NT:  This value is not supported.
+            /// NOTE: Collections NT:  This value is not supported.
             /// </summary>
             LOGON32_LOGON_NEW_CREDENTIALS = 9,
         }
@@ -79,7 +79,7 @@ namespace LILO_Packager.v2.Shared
             /// Use the standard logon provider for the system.
             /// The default security provider is negotiate, unless you pass NULL for the domain name and the user name
             /// is not in UPN format. In this case, the default provider is NTLM.
-            /// NOTE: Windows 2000/NT:   The default security provider is NTLM.
+            /// NOTE: Collections 2000/NT:   The default security provider is NTLM.
             /// </summary>
             LOGON32_PROVIDER_DEFAULT = 0,
             LOGON32_PROVIDER_WINNT35 = 1,
