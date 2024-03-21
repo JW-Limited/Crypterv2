@@ -1,5 +1,4 @@
 ﻿using JWLimited.Licensing.Schemes.Contracts;
-using System.Runtime.CompilerServices;
 
 namespace JWLimited.Licensing.Schemes.Templates
 {

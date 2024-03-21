@@ -227,6 +227,9 @@
       <TreatAsUsed>true</TreatAsUsed>
     </ProjectReference>
     <ProjectReference Include="..\JWLimited.ApiCollection\JWLimited.ApiCollection.csproj" />
+    <ProjectReference Include="..\JWLimited.Codes\JWLimited.Codes.csproj" />
+    <ProjectReference Include="..\JWLimited.Contracts\JWLimited.Contracts.csproj" />
+    <ProjectReference Include="..\JWLimited.Cryptography\JWLimited.Cryptography.csproj" />
     <ProjectReference Include="..\JWLimited.ElevationService\JWLimited.ElevationService.csproj" />
     <ProjectReference Include="..\JWLimited.Licensing\JWLimited.Licensing.csproj" />
     <ProjectReference Include="..\JWLimited.Types\JWLimited.Types.csproj" />

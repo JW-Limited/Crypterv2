@@ -13,7 +13,6 @@ namespace JWLimited.TestHost
 
         public static void Main(string[] args)
         {
-
             Console.Title = "JWLimited.TestHost.exe";
             Console.WriteLine($"JWLimited TestHost {stVersion}\nSelect youre Test:");
 
@@ -26,6 +25,12 @@ namespace JWLimited.TestHost
 
             Console.Write("Input:");
             var input = Console.ReadLine();
+
+            if (input == "help")
+            if (input == "path") Process.Start("explorer.exe", Path.GetDirectoryName(Environment.ProcessPath));
+            if (input == "version") Console.WriteLine($"JW LIMITED - TestHost {stVersion}v");
+            if (input == "exit") Environment.Exit(100);
+
             int.TryParse(input, out var value);
             try
             {

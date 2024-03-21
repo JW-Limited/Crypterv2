@@ -1,8 +1,6 @@
 ﻿using Crypterv2.DevTool.Core.Plugins.Config;
 using Crypterv2_DevTool.Core.Forms;
-using LILO_Packager.v2.Plugins.Model;
 using LILO_Packager.v2.Plugins.PluginCore;
-using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
 
 namespace Crypterv2.DevTool.Core.Forms
 {
@@ -24,8 +22,6 @@ namespace Crypterv2.DevTool.Core.Forms
         {
             base.StartPosition = FormStartPosition.CenterParent;
             base.ShowDialog();
-
-
 
             if(!Canceled)
             {

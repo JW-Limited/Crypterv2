@@ -86,8 +86,7 @@ namespace LILO_Packager
             
 
             InstanceCacheContainer.Register<ILILOConsoleManager>(() => ConsoleManager.Instance());
-
-            //ConsoleManager.Instance().ShowConsoleWindow();
+                        //ConsoleManager.Instance().ShowConsoleWindow();
         }
 
         [STAThread]
@@ -114,7 +113,7 @@ namespace LILO_Packager
                                 { "",
                                     new JWLimited.ApiCollection.Registry.RegistryNode()
                                     {
-                                        Name = "CurrentState",
+                                        Name = "1x0",
                                         Value = "1x0",
                                     } 
                                 }
@@ -124,7 +123,7 @@ namespace LILO_Packager
                         });
 
 
-                        if(RegistryManager.GetKey("ShwDbgCns") == "1")
+                        if(RegistryManager.GetKey("ShwDbgCns") == "0x10")
                         {
                             ConsoleManager.Instance().ShowConsoleWindow();
                         }

@@ -1,6 +1,7 @@
 ﻿using JWLimited.Cryptography;
 using JWLimited.TestHost.Core.APILib;
 using JWLimited.TestHost.Core.Cryptography;
+using JWLimited.TestHost.Core.Licx;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace JWLimited.TestHost.Core
         Cryptography_Encryptv2 = 1,
         Cryptography_Decryptv2 = 2,
         WebEngine_Server = 3,
-        DeezerApi = 4
+        DeezerApi = 4,
+        LicenseGenerator = 5
     }
 
     public class TestManager
@@ -51,6 +53,10 @@ namespace JWLimited.TestHost.Core
             {
                 var mng = new DeezerHandler();
                 mng.AcceptRequests();
+            }
+            else if (test == 5)
+            {
+                LicenseManager.Instance.PrintLicense();
             }
         }
 

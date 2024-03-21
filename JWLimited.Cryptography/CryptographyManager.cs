@@ -24,20 +24,6 @@ namespace JWLimited.Cryptography
             _tempInstance = null;
         }
 
-        public static CryptographyManager Instance
-        {
-            get
-            {
-                if(_tempInstance == null)
-                {
-                    throw new NotInitializedException(nameof(CryptographyManager));
-                }
-
-                return _tempInstance;
-            }
-
-        }
-
         public static CryptographyManager Create(IServiceValues values)
         {
             var newInstance = new CryptographyManager(values);
