@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LILO.Shell;
+namespace LILO_Packager.v2.Shared;
 public partial class ImageProcessing
 {
     public class Templates

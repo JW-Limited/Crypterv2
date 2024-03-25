@@ -94,6 +94,8 @@ namespace LILO_Packager.v2.Forms
 
         private void bntShare_Click(object sender, EventArgs e)
         {
+            if (MainHost.Instance().loggedInUser is null) throw new UnauthorizedAccessException();
+
             if (listView2.Items.Count == 1)
             {
                 MatrixShareManager.ExportMatrixEntry(
@@ -101,6 +103,7 @@ namespace LILO_Packager.v2.Forms
                         listView2.Items[0]),
                     MainHost.Instance().loggedInUser,
                     Resources.Close);
+                
                 //uiCloudFilesViewer.Instance(null).FetchedMatrixEntries.First(
                 //k => k.Key == (string)listView2.Items[0].Tag).Value.Item1
             }

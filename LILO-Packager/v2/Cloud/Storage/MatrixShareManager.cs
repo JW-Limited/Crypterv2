@@ -1,4 +1,5 @@
 ﻿using LILO_Packager.v2.Core.LILO.Types;
+using LILO_Packager.v2.Forms;
 using System.IO.Compression;
 using System.Xml.Serialization;
 
@@ -113,6 +114,13 @@ namespace LILO_Packager.v2.Cloud.Storage
                     File.Delete(sfd.FileName + "~preview");
                     File.Delete(sfd.FileName + "~User");
                     File.Delete(sfd.FileName + "~");
+
+                    var ui = new uiFinishedFileTask(new Core.Service.FileTaskInformation()
+                    {
+                        AfterFileOperation = sfd.FileName,
+                        BeforeFileOperation = sfd.FileName,
+                        FileOperationType = FileOperation.DecryptedFile
+                    }).ShowDialog();
                 }
 
             }

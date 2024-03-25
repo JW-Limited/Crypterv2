@@ -17,6 +17,7 @@ namespace LILO_Packager.v2.Forms
     public enum FileOperation : uint
     {
         EncryptedFile = 0x1486,
+        SharedFile = 0x3232,
         DecryptedFile = 0x2486
     }
 
@@ -36,6 +37,11 @@ namespace LILO_Packager.v2.Forms
             if(_fileInfo.FileOperationType == FileOperation.EncryptedFile)
             {
                 lblType.Text = "Encrypted File";
+                pnlPluginIcon.BackgroundImage = Resources.encLib;
+            }
+            else if(_fileInfo.FileOperationType == FileOperation.SharedFile)
+            {
+                lblType.Text = "Shared File";
                 pnlPluginIcon.BackgroundImage = Resources.encLib;
             }
             else
