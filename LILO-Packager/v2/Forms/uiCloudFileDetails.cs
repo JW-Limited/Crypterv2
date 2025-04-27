@@ -10,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Telerik.WinControls.FileDialogs.DragDrop;
 
 namespace LILO_Packager.v2.Forms
 {

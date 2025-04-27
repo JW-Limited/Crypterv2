@@ -148,7 +148,6 @@
     <PackageReference Include="SipaaFramework" Version="1.1.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
     <PackageReference Include="TagLibSharp" Version="2.3.0" />
-    <PackageReference Include="ui.for.winforms.allcontrols.net70.trial" Version="2023.1.314" />
     <PackageReference Include="WinBlur" Version="1.0.0" />
     <PackageReference Include="WMPLib" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using Telerik.WinControls;
 using static LILO_Packager.v2.Shared.Streaming.Core.FileStreamObserver;
 
 namespace LILO_Packager.v2.Shared.Streaming.Core

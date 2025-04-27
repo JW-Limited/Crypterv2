@@ -16,5 +16,6 @@ namespace JWLimited.TestHost.Core.WebServer
         public string LogDirectory { get; set; }
         public string ApiKey { get; set; }
         public Port Port { get; set; }
+        public DateTime LastAccessed { get; set; } = DateTime.Now;
     }
 }

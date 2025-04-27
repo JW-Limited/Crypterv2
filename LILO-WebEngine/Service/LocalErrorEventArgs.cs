@@ -14,5 +14,6 @@
 
         public string Message { get; set; }
         public LocalErrorFatality ErrorFatality { get; set; }
+        public object Fatality { get; internal set; }
     }
 }

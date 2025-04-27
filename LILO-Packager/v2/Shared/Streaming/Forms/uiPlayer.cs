@@ -7,6 +7,7 @@ using LILO_Packager.v2.Shared;
 using LILO_Packager.v2.Shared.Streaming.Core;
 using Microsoft.Extensions.FileProviders;
 using LILO_Packager.v2.Shared.Types;
+using ImageProcessing = LILO_Packager.v2.Shared.ImageProcessing;
 
 namespace LILO_Packager.v2.Streaming.MusikPlayer.Forms
 {

@@ -9,6 +9,7 @@ using LILO_Packager.v2.Shared.Types;
 using Microsoft.Extensions.FileProviders;
 using SharpDX.MediaFoundation;
 using System.Diagnostics;
+using ImageProcessing = LILO_Packager.v2.Shared.ImageProcessing;
 
 namespace LILO_Packager.v2.Streaming.MusikPlayer.Forms
 {

@@ -13,8 +13,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Telerik.WinControls.UI;
-using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
 using WinRT;
 using static System.Data.Entity.Infrastructure.Design.Executor;
 

@@ -12,7 +12,10 @@ namespace LILO_Packager.v2.Core.History
         {
 
         }
-
+        /// <summary>
+        /// A history Element Class
+        /// </summary>
+        /// <param name="FileName"></param>
         public HistoryElement(string FileName)
         {
             outputFileName = FileName;
@@ -23,7 +26,7 @@ namespace LILO_Packager.v2.Core.History
             inputFileName = FileName;
         }
 
-
+    
         public int id { get; set; } = 0;
         public String operationType { get; set; } = String.Empty;
         public String mode { get; set; } = String.Empty;

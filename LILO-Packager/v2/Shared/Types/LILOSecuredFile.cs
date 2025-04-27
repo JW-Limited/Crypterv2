@@ -2,7 +2,6 @@
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Primitives;
 using RestSharp.Extensions;
-using Telerik.WinControls;
 
 namespace LILO_Packager.v2.Shared.Types
 {

@@ -589,6 +589,12 @@
               Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
             </summary>
         </member>
+        <member name="M:LILO_Packager.v2.Core.History.HistoryElement.#ctor(System.String)">
+            <summary>
+            A history Element Class
+            </summary>
+            <param name="FileName"></param>
+        </member>
         <member name="M:LILO_Packager.v2.Controls.DynamicAnimatedButton.ButtonAnimationBack(System.Object,System.EventArgs)">
             <summary>
             Triggered every AnimationBack tick

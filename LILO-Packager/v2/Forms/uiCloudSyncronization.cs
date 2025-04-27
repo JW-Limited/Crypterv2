@@ -5,7 +5,6 @@ using LILO_Packager.v2.Contracts;
 using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Shared;
 using System.Diagnostics;
-using Telerik.Windows.Documents.Flow.FormatProviders.Html;
 
 namespace LILO_Packager.v2.Forms
 {

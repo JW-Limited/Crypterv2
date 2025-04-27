@@ -4,6 +4,7 @@ namespace JWLimited.TestHost.Core.WebServer
 {
     internal partial class ConsoleMenu
     {
+
         public class RequestResponse
         {
             public Port Port { get; set; } = new Port();

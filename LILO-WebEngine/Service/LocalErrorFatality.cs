@@ -4,6 +4,9 @@
     {
         RuntimeBreak,
         Asteriks,
-        Background
+        Background,
+        Critical,
+        Warning,
+        Severe
     }
 }

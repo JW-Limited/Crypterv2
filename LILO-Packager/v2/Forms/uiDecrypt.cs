@@ -5,7 +5,6 @@ using LILO_Packager.v2.Core.History;
 using LILO_Packager.v2.Core.Service;
 using LILO_Packager.v2.Shared;
 using LILO_Packager.v2.Shared.Packages;
-using Telerik.Windows.Documents.Model.Drawing.Charts;
 
 namespace LILO_Packager.v2.Forms;
 public partial class uiDecrypt : Form
