@@ -74,7 +74,7 @@ namespace JWLimited.TestHost.Core.Licx
             OwnedUser = new User()
             {
                 Email = "test@jwlmt.com",
-                RegistrationDate = DateTime.Now,
+                RegistrationDate = DateTime.Now, 
                 Password = "",
                 Role = "user"
             };
